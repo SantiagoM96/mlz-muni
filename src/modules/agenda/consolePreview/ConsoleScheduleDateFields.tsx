@@ -3,7 +3,7 @@ import type { ConsoleSchedule } from './model';
 import type { ConsoleScheduleInvalidField } from './scheduleEditorRules';
 import { WEEKDAYS } from './demoData';
 import { FormField } from '../../../shared/ui/FormField';
-import { TextField, SelectControl, TextAreaControl } from '../../../shared/ui/FormControls';
+import { TextField, SelectControl } from '../../../shared/ui/FormControls';
 
 const weekdayButtonClassName = (selected: boolean) =>
   'min-h-11 rounded-[6px] border px-1 text-[13px] font-medium focus-visible:outline-2 focus-visible:outline-primary-600 ' +

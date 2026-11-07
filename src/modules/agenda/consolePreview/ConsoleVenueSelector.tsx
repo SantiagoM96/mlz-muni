@@ -3,7 +3,7 @@ import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import type { ConsoleVenue } from './model';
 import { venueById } from './scheduleRules';
 import { FormField } from '../../../shared/ui/FormField';
-import { TextField, SelectControl, TextAreaControl } from '../../../shared/ui/FormControls';
+import { TextField, SelectControl } from '../../../shared/ui/FormControls';
 import { normalizeVenueInput, validateVenueInput } from './venueRules';
 
 interface Props {
