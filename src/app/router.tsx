@@ -23,5 +23,11 @@ const router = createBrowserRouter([{
   lazy: async () => ({
     Component: (await import('../modules/agenda/pages/AgendaConsolePreviewPage')).AgendaConsolePreviewPage,
   }),
+}, {
+  // Laboratorio técnico independiente del layout público y cargado solo al visitarlo.
+  path: '/ui-kit/:categoria?',
+  lazy: async () => ({
+    Component: (await import('../pages/ui-kit/UiKitPage')).UiKitPage,
+  }),
 }], { basename });
 export function AppRouter() { return <RouterProvider router={router} />; }

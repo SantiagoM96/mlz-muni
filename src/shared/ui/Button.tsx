@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { MouseEventHandler, ReactNode } from 'react';
 
 type ButtonProps = {
   children: ReactNode;
@@ -7,6 +7,8 @@ type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'success';
   className?: string;
   title?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  type?: 'button' | 'submit' | 'reset';
 };
 
 const variants = {
@@ -15,8 +17,8 @@ const variants = {
   success: 'bg-success-500 text-white hover:bg-success-600',
 } as const;
 
-export function Button({ children, href, disabled = false, variant = 'primary', className = '', title }: ButtonProps) {
+export function Button({ children, href, disabled = false, variant = 'primary', className = '', title, onClick, type = 'button' }: ButtonProps) {
   const classes = 'inline-flex min-h-12 items-center justify-center gap-2 rounded-[4px] px-6 py-2.5 text-institutional-body font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700 ' + variants[variant] + ' ' + className;
   if (href && !disabled) return <a className={classes} href={href} title={title}>{children}</a>;
-  return <button className={classes + (disabled ? ' cursor-not-allowed opacity-75' : '')} type="button" disabled={disabled} title={title}>{children}</button>;
+  return <button className={classes + (disabled ? ' cursor-not-allowed opacity-75' : '')} type={type} disabled={disabled} title={title} onClick={onClick}>{children}</button>;
 }
