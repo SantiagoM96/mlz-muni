@@ -5,7 +5,8 @@ Esta guía describe el código vigente, no habilita rediseños. Aplica a cualqui
 ## Responsabilidades
 
 - `src/styles/tokens.css`: tokens institucionales en `@theme` de Tailwind CSS v4. No inventar escalas ni duplicar hexadecimales.
-- `src/styles/globals.css`: import de Tailwind/tokens, fuentes, estilos base, composición institucional transversal. Los bloques `.agenda-*` que todavía contiene son deuda localizada; su extracción se hará en el PR de arquitectura CSS con pruebas de paridad.
+- `src/styles/globals.css`: import de Tailwind/tokens, fuentes, estilos base y composición institucional transversal. No alberga selectores propios de Agenda tras el PR #18.
+- `src/modules/agenda/styles/agenda.css`: reglas, animaciones, estados táctiles y scrollbars específicos de Agenda; se importa desde las cuatro páginas del módulo. Su extracción **no implica carga diferida de CSS por ruta**.
 - `src/styles/material-symbols.css`: subset existente de íconos; su generación no se modifica desde estilos.
 - `src/shared/ui`, `layout`, `navigation`: componentes con contrato institucional real, no envoltorios universales.
 - `src/modules/<nombre>/`: estilos y componentes del módulo cuando tengan responsabilidad específica. No crear carpetas vacías.
@@ -55,7 +56,7 @@ Extraer solo si (a) hay al menos dos consumidores semánticamente compatibles, o
 
 - [ ] Indicar archivos afectados, consumidores, motivo y alternativa rechazada.
 - [ ] Conservar contenido, rutas, tipografía, colores, alturas y breakpoints aprobados.
-- [ ] Ejecutar `npm ci`, `npm run typecheck`, `npm run lint`, `npm run test:architecture`, `npm run check:architecture`, `npm run build` y E2E relevantes.
+- [ ] Ejecutar `npm ci`, `npm run typecheck`, `npm run lint`, `npm run test:architecture`, `npm run check:architecture`, `npm run check:styles`, `npm run build` y E2E relevantes (el check de estilos se introduce en el PR #19).
 - [ ] Comparar capturas a 390, 432, 768 y 1415 px; revisar Agenda, consola, foco, gestos y reduced motion.
 - [ ] Registrar tamaños CSS en kB y gzip obtenidos del mismo modo/entorno; no afirmar LCP/CLS/INP sin medición.
 - [ ] No actualizar snapshots para tapar diferencias, ni fusionar o desplegar sin autorización.
