@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { argentinaTodayISO } from '../../data/agenda';
+import { argentinaTodayISO } from '../../features/agenda/utils/argentinaTodayISO';
 import { agendaV2PreviewActivities } from '../../data/agenda-v2-previews';
 import { AgendaIntro } from '../../features/agenda/components/shared/AgendaIntro';
 import { filterAgendaActivities } from '../../features/agenda/utils/filterAgendaActivities';

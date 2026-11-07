@@ -1,5 +1,5 @@
 import type { AgendaActivity, AgendaSchedule } from '../model/activity';
-import { argentinaTodayISO } from '../../../data/agenda';
+import { argentinaTodayISO } from './argentinaTodayISO';
 
 export interface AgendaSchedulePresentation {
   id: string;

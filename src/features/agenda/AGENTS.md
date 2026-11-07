@@ -13,7 +13,7 @@ Estas reglas complementan [AGENTS.md de la raíz](../../../AGENTS.md) y se aplic
 
 - Los tipos de dominio de Agenda tienen como fuente autoritativa `model/activity.ts`; `src/data/agenda.ts` mantiene reexportaciones de compatibilidad para consumidores heredados. No introducir imports runtime de fixtures en `model/activity.ts`.
 - La fuente autoritativa de estructura y operaciones de selección está en `model/filterState.ts`; el contrato de ordenamiento está en `model/sort.ts`.
-- `utils/filterAgendaActivities.ts` concentra la búsqueda, selección temporal y ordenamiento del dataset sin mutarlo. `utils/normalizeAgendaText.ts` centraliza la comparación insensible a tildes y mayúsculas.
+- `utils/filterAgendaActivities.ts` concentra filtrado y ordenamiento puros: requiere la fecha y colección explícitas, sin importar fixtures. `utils/argentinaTodayISO.ts` proporciona la fecha local argentina y permite inyección de un instante para tests. `utils/normalizeAgendaText.ts` centraliza la comparación insensible a tildes y mayúsculas.
 - El estado de búsqueda y filtros se mantiene en la página; los controles reciben valores y callbacks. No crear estados seleccionados paralelos en componentes hijos.
 - Conservar multiselección, limpieza individual y general, etiquetas de chips, búsqueda por opción, ordenamiento A-Z/Z-A, resultado vacío y mostrar más actividades.
 - Conservar click outside, Escape, restauración de foco, scroll lock, accesibilidad y separación táctil de al menos 44 px cuando corresponda, sin aumentar padding arbitrariamente.

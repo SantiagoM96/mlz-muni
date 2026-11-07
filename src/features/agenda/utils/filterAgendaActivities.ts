@@ -1,4 +1,3 @@
-import { agendaActivities, argentinaTodayISO } from '../../../data/agenda';
 import type { AgendaActivity } from '../model/activity';
 import type { SelectedFilters } from '../model/filterState';
 import type { AgendaSortValue } from '../model/sort';
@@ -9,8 +8,8 @@ export function filterAgendaActivities(
   search: string,
   filters: SelectedFilters,
   sort: AgendaSortValue,
-  today = argentinaTodayISO(),
-  activities: readonly AgendaActivity[] = agendaActivities,
+  today: string,
+  activities: readonly AgendaActivity[],
 ): AgendaActivity[] {
     const normalize = normalizeAgendaText;
     const term = normalize(search.trim());

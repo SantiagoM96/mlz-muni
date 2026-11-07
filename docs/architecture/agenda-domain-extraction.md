@@ -19,3 +19,12 @@ Este PR prepara la migración posterior de Agenda a `src/modules/agenda` sin mov
 ## Validación requerida
 
 Ejecutar `npm run typecheck`, `npm run lint`, `npm run build` y E2E de Agenda. Revisar el diff para confirmar que no hay cambios funcionales.
+
+## Etapa 2 — reloj municipal y filtrado sin datos globales
+
+- La función `argentinaTodayISO` pasa a `src/features/agenda/utils/argentinaTodayISO.ts`, con `now: Date = new Date()` para permitir pruebas deterministas. El módulo de datos mantiene un reexport de compatibilidad.
+- `filterAgendaActivities` recibe fecha y colección obligatorias, sin importar `agendaActivities` ni el reloj. La página de Agenda ya proporcionaba ambos argumentos explícitamente: su comportamiento no cambia.
+- `activitySchedules.ts` deja de cargar indirectamente los fixtures para consultar la fecha.
+- `tests/e2e/agenda-domain-rules.spec.ts` verifica explícitamente medianoche argentina, búsqueda, filtros, ordenamiento y visibilidad con fixtures locales.
+
+La separación final de datos y la migración a `modules/agenda` se abordarán en PRs posteriores.
