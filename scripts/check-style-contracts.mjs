@@ -27,6 +27,10 @@ export function inspectStyleContracts(root = process.cwd()) {
     '--color-primary-600: #236999;',
     '--color-grey-900: #3d3d3d;',
     '--font-sans: Geometria,',
+    '--text-institutional-body: 18px;',
+    '--text-institutional-body--line-height: 26px;',
+    '--text-institutional-section: 24px;',
+    '--text-institutional-section--line-height: 30px;'
   ]) {
     if (!tokens.includes(declaration)) violations.push('Token institucional faltante o modificado: ' + declaration);
   }
@@ -59,6 +63,18 @@ export function inspectStyleContracts(root = process.cwd()) {
       if (!source.includes("import '../styles/agenda.css';")) {
         violations.push('Falta importar CSS en ' + page);
       }
+    }
+  }
+  const jovenesPath = join(root, 'src/modules/jovenes-en-comunidad/styles/jovenes.css');
+  if (existsSync(jovenesPath)) {
+    const jovenes = file(root, 'src/modules/jovenes-en-comunidad/styles/jovenes.css');
+    const page = file(root, 'src/modules/jovenes-en-comunidad/JovenesEnComunidadPage.tsx');
+    for (const marker of ['.article-copy', '.article-section', '.intro-copy']) {
+      if (global.includes(marker)) violations.push('Regla de Jóvenes presente en globals.css: ' + marker);
+      if (!jovenes.includes(marker)) violations.push('Regla de Jóvenes faltante en módulo: ' + marker);
+    }
+    if (!page.includes("import './styles/jovenes.css';")) {
+      violations.push('La página Jóvenes no importa su CSS propio.');
     }
   }
   return { violations, tokensSeparate, agendaSeparate };

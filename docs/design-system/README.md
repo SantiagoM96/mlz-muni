@@ -64,4 +64,12 @@ Extraer solo si (a) hay al menos dos consumidores semánticamente compatibles, o
 - [ ] Registrar tamaños CSS en kB y gzip obtenidos del mismo modo/entorno; no afirmar LCP/CLS/INP sin medición.
 - [ ] No actualizar snapshots para tapar diferencias, ni fusionar o desplegar sin autorización.
 
-Ver también [auditoría inicial](./audit-2026-11-07.md), `AGENTS.md` y `src/modules/agenda/AGENTS.md`.
+## Estado real de adopción — Etapa 2
+
+- **Componentes compartidos:** pares `text-institutional-body` (18/26) y `text-institutional-section` (24/30) aplicados a Button, IconLink, InfoCard, header, footer y texto institucional global.
+- **Jóvenes:** CSS editorial extraído al módulo, foco visible en enlaces y títulos consistentes; [arquitectura](../architecture/jovenes-styles.md).
+- **Agenda pública:** pares tipográficos adoptados solo donde coinciden font-size/line-height y semántica; excepciones documentadas en [Agenda pública](../architecture/agenda-public-design-system.md).
+- **Consola Agenda:** controles con acento institucional compartido, semántica confinada al módulo; [decisiones](../architecture/agenda-console-design-system.md).
+- **Pruebas:** E2E de estilos computados y paridad visual por viewport. Los cambios requieren aprobación de CI, no se consideran verificados por existir en documentos.
+
+Ver también [auditoría inicial](./audit-2026-11-07.md), [diagnóstico etapa 2](./adoption-stage2-2026-11-07.md), `AGENTS.md` y `src/modules/agenda/AGENTS.md`.
