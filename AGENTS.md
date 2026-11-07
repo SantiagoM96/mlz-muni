@@ -5,7 +5,7 @@ Este repositorio `mlz-muni` contiene exclusivamente Jóvenes en Comunidad, Agend
 
 ## Flujo seguro
 1. Inspeccionar el código, los consumidores y las pruebas antes de modificar.
-2. Trabajar en ramas con commits descriptivos y PR revisables; no mergear o publicar de manera automática.
+2. Trabajar en ramas con commits descriptivos y PR revisables; revisar PRs y publicar en Pages únicamente desde `main` por el workflow de preview autorizado; no publicar otros entornos ni hacer merge automático.
 3. No modificar datos originales, contenido editorial, rutas, expectativas de QA, Figma ni entornos externos durante una migración de infraestructura.
 4. No introducir secretos, credenciales ni dependencias sin justificación.
 5. Ejecutar `npm ci`, `npm run typecheck`, `npm run lint`, `npm run build` y `npm run test:e2e` según alcance. Documentar comandos, SHA y resultados, sin atribuir éxito a pruebas no ejecutadas.
@@ -28,5 +28,5 @@ Este repositorio `mlz-muni` contiene exclusivamente Jóvenes en Comunidad, Agend
 ## GitHub / CI
 - `vite.config.ts`: `/` en desarrollo y `/mlz-muni/` al compilar con `--mode pages`.
 - CI valida PRs con TypeScript, ESLint, build y Playwright; un workflow especial compara la primera migración con `adc097b3fd6f129e7994b67b24cce46edc2b608b`.
-- No existe despliegue automático; nunca agregar `deploy-pages`, Vercel o redirecciones sin autorización.
+- Por autorización posterior del usuario, `pages.yml` despliega el preview de GitHub Pages después de pushes a `main` y por ejecución manual. No conectar Vercel, otros entornos ni redirecciones sin nueva autorización.
 - Registrar riesgos, validaciones y regresiones en el PR. La comparación pixel a pixel y la revisión humana son cosas diferentes.

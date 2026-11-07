@@ -65,7 +65,7 @@ Playwright prueba 390, 432, 768 y 1415 px. `npm run test:visual` crea capturas d
 npm run build:pages
 ```
 
-Este comando **compila localmente**, prepara copias de `index.html` para enlaces directos y configura la base `/mlz-muni/`. **No despliega por sí mismo.** No hay workflow de publicación automática en este repositorio. La publicación, si se aprueba en el futuro, deberá configurarse expresamente; no modificar ni redirigir las antiguas URL de `/mlz/` sin autorización.
+Este comando **compila localmente**, prepara copias de `index.html` para enlaces directos y configura la base `/mlz-muni/`. **No despliega por sí mismo.** El workflow `.github/workflows/pages.yml` publica el preview en GitHub Pages desde `main` tras una autorización posterior a la migración. URL prevista: `https://santiagom96.github.io/mlz-muni/` (confirmar tras el primer despliegue). No modificar ni redirigir las antiguas URL de `/mlz/`.
 
 ## Procedencia y políticas
 

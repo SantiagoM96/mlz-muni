@@ -4,7 +4,7 @@
 **Origen:** https://github.com/SantiagoM96/mlz  
 **Destino:** https://github.com/SantiagoM96/mlz-muni  
 **SHA inmutable de origen:** `adc097b3fd6f129e7994b67b24cce46edc2b608b`  
-**Rama de trabajo:** `migration/institutional-frontend-v2`. No se realizó merge, ni despliegue, ni modificación del origen.
+**Rama de trabajo:** `migration/institutional-frontend-v2`. La primera migración se preparó como Draft y sin despliegue. Posteriormente, por autorización del usuario, se agregó `pages.yml` para publicar un preview de GitHub Pages desde el nuevo repositorio; la modificación del origen sigue prohibida.
 
 ## Alcance y método
 
@@ -50,6 +50,7 @@ No se trasladó ningún fichero de los directorios `public/cronica`, `public/bae
 - `package.json`: se quita `validate:prototypes`, script ligado a artefactos excluidos; no se agregan librerías.
 - `.github/workflows/visual-qa.yml`: se eliminan triggers de BAE y prototipos de Deportes.
 - `.github/workflows/agenda-console-parity.yml`: el PR de migración usa el SHA original como baseline, no el main recién inicializado; futuros PR comparan contra main.
+- `.github/workflows/pages.yml`: añadido posteriormente para publicar el preview institucional autorizado desde `main`, sin afectar el antiguo `/mlz/`.
 - `README.md`, `AGENTS.md`, `docs/ci-cd.md`: adaptados al alcance municipal independiente.
 
 ## Rutas conservadas
@@ -63,7 +64,7 @@ No se trasladó ningún fichero de los directorios `public/cronica`, `public/bae
 - Comandos esperados: `npm ci`, `npm run typecheck`, `npm run lint`, `npm run build`, `npm run test:e2e`.
 - Resoluciones: 390, 432, 768 y 1415 px.
 - **Ejecución local no realizada en la migración por ausencia de dependencias descargables en el entorno de trabajo.** Consultar los resultados efectivos de CI del PR antes de aceptar la paridad. La presencia de un workflow no constituye éxito.
-- No se realizó inspección de Figma, merge, publicación Pages ni conexión a Vercel.
+- No se consultó Figma ni se conectó Vercel. La publicación de Pages fue autorizada después de la primera etapa; verificar estado del workflow para constatar su ejecución.
 
 ## Archivos copiados/adaptados (inventario de corte)
 
@@ -241,4 +242,4 @@ No se trasladó ningún fichero de los directorios `public/cronica`, `public/bae
 
 ## Pendientes de aceptación
 
-Revisar el estado de GitHub Actions del SHA final del PR, los artefactos visuales y pruebas E2E por viewport; confirmar derechos de uso/distribución de los archivos de Geometria si fuera necesario antes de publicar; revisión humana de UI y teclado; autorizar publicación por separado. Cualquier refactorización posterior deberá abrirse en otro PR, sin mezclarla con esta migración.
+Revisar el estado de GitHub Actions del SHA final del PR, los artefactos visuales y pruebas E2E por viewport; confirmar derechos de uso/distribución de los archivos de Geometria si fuera necesario antes de publicar; revisión humana de UI y teclado; verificar publicación del preview tras autorización posterior. Cualquier refactorización posterior deberá abrirse en otro PR, sin mezclarla con esta migración.
