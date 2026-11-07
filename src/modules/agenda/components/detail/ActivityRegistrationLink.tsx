@@ -1,5 +1,6 @@
 import type { AgendaActivity } from '../../data/agenda';
 import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
+import { ActionLink } from '../../../../shared/ui/ActionLink';
 
 /** Solo URLs absolutas http(s); no convertir textos de inscripción en enlaces. */
 export function validRegistrationUrl(raw?: string): string | null {
@@ -43,12 +44,11 @@ export function ActivityRegistrationLink({ activity, preview = false }: { activi
         </button>
       )}
       {href && (
-        <a data-testid="agenda-registration-link" href={href} target="_blank" rel="noopener noreferrer"
-          aria-label={'Inscribirme a ' + activity.title + ' (se abre en una pestaña nueva)'}
-          className="flex min-h-12 w-full items-center justify-center gap-2 rounded-[4px] bg-primary-600 px-5 py-3 text-center text-[18px] font-bold text-white transition-colors hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-info-500">
+        <ActionLink appearance="wide" data-testid="agenda-registration-link" href={href} target="_blank" rel="noopener noreferrer"
+          aria-label={'Inscribirme a ' + activity.title + ' (se abre en una pestaña nueva)'}>
           Inscribirse
           <MaterialIcon name="arrow_forward" size={22} />
-        </a>
+        </ActionLink>
       )}
     </div>
   );
