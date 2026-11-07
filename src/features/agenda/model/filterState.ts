@@ -1,4 +1,4 @@
-import type { FilterGroup } from '../../../data/agenda';
+import type { FilterGroup } from './activity';
 
 /** Estado y operaciones de selección de la Agenda, independientes de la presentación. */
 export type SelectedFilters = Record<FilterGroup, string[]>;

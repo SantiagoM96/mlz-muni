@@ -1,4 +1,5 @@
-import { agendaActivities, argentinaTodayISO, type AgendaActivity } from '../../../data/agenda';
+import { agendaActivities, argentinaTodayISO } from '../../../data/agenda';
+import type { AgendaActivity } from '../model/activity';
 import type { SelectedFilters } from '../model/filterState';
 import type { AgendaSortValue } from '../model/sort';
 import { normalizeAgendaText } from './normalizeAgendaText';

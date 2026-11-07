@@ -1,4 +1,4 @@
-import type { AgendaActivity, AgendaSchedule } from '../../../data/agenda';
+import type { AgendaActivity, AgendaSchedule } from '../model/activity';
 import { argentinaTodayISO } from '../../../data/agenda';
 
 export interface AgendaSchedulePresentation {

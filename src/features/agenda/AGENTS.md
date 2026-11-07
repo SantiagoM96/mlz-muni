@@ -11,6 +11,7 @@ Estas reglas complementan [AGENTS.md de la raíz](../../../AGENTS.md) y se aplic
 
 ## Filtros
 
+- Los tipos de dominio de Agenda tienen como fuente autoritativa `model/activity.ts`; `src/data/agenda.ts` mantiene reexportaciones de compatibilidad para consumidores heredados. No introducir imports runtime de fixtures en `model/activity.ts`.
 - La fuente autoritativa de estructura y operaciones de selección está en `model/filterState.ts`; el contrato de ordenamiento está en `model/sort.ts`.
 - `utils/filterAgendaActivities.ts` concentra la búsqueda, selección temporal y ordenamiento del dataset sin mutarlo. `utils/normalizeAgendaText.ts` centraliza la comparación insensible a tildes y mayúsculas.
 - El estado de búsqueda y filtros se mantiene en la página; los controles reciben valores y callbacks. No crear estados seleccionados paralelos en componentes hijos.
