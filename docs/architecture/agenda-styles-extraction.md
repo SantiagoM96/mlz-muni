@@ -1,6 +1,6 @@
 # Extracción del CSS de Agenda — PR 2
 
-**Base:** `main` `b8203c6ebe8592a64aea8b4540186f93573e87b0`. PR independiente del refactor de tokens.
+**Base del PR #18:** rama `refactor/styles-pr1-tokens-20261107` (PR #17). La separación de CSS de Agenda es el segundo paso de la cadena #17 → #18 → #20 → #19, no un PR aislado contra `main`. El estado original de referencia era `main` `b8203c6ebe8592a64aea8b4540186f93573e87b0`.
 
 ## Propósito
 
