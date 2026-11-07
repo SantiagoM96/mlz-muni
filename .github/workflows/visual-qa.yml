@@ -9,6 +9,7 @@ on:
     # PRs conservan cobertura completa; push a main ejecuta E2E solo si afecta a la web.
     paths:
       - 'src/**'
+      - 'requirements-fonts.txt'
       - 'public/assets/**'
       - 'tests/**'
       - 'scripts/**'
@@ -46,6 +47,11 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencias de generación de íconos
+        run: python -m pip install --disable-pip-version-check -r requirements-fonts.txt
       - name: Instalar dependencias
         run: npm ci --no-audit --no-fund
       - name: Instalar Chromium y librerías del sistema

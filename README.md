@@ -18,6 +18,7 @@ React 19, React Router 7, TypeScript 5.9, Vite 8, Tailwind CSS 4, Material Symbo
 
 ```bash
 npm ci
+python3 -m pip install -r requirements-fonts.txt
 npm run dev
 ```
 
@@ -54,6 +55,7 @@ Se preservan las rutas, los componentes y las reglas existentes. El color instit
 npm ci
 npm run typecheck
 npm run lint
+python3 -m pip install -r requirements-fonts.txt
 npm run build
 npx playwright install chromium
 npm run test:e2e
