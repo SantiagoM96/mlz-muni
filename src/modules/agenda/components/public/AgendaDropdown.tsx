@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
+import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
 import { toggleSelectedValue } from '../../model/filterState';
 import { normalizeAgendaText } from '../../utils/normalizeAgendaText';
 import { AgendaSheetBackdrop, AgendaSheetHeader } from './AgendaMobileSheet';

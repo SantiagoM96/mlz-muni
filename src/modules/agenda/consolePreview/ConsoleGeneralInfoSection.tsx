@@ -1,4 +1,4 @@
-import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import type { ConsoleDraft } from './model';
 import { CATEGORY_TYPES } from './demoData';
 import { FormField, SectionTitle, inputClass } from './ConsoleFormPrimitives';

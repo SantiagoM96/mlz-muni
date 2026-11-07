@@ -2,7 +2,7 @@ import type { AgendaActivity } from '../../data/agenda';
 import { ActivityBadges } from '../public/ActivityBadges';
 import { ActivityScheduleDateTime } from '../public/ActivityScheduleDateTime';
 import { ActivityScheduleParticipants } from '../public/ActivityScheduleParticipants';
-import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
+import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
 import { getActivityMapUrl } from '../../utils/activityMap';
 import { formatActivityAddress } from '../../utils/formatActivityAddress';
 import {

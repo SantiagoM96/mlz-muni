@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { getMobileBreadcrumbParent } from '../../src/components/navigation/getMobileBreadcrumbParent';
+import { getMobileBreadcrumbParent } from '../../src/shared/navigation/getMobileBreadcrumbParent';
 
 test.describe('Breadcrumbs institucionales — contrato de navegación', () => {
   test('conserva el vínculo móvil a Actividades de Agenda', () => {

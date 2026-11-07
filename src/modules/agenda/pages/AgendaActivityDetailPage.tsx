@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { PageContainer } from '../../../components/layout/PageContainer';
-import { Breadcrumbs } from '../../../components/navigation/Breadcrumbs';
+import { PageContainer } from '../../../shared/layout/PageContainer';
+import { Breadcrumbs } from '../../../shared/navigation/Breadcrumbs';
 import { ActivityShare } from '../components/public/ActivityShare';
 import { ActivityDescription } from '../components/public/ActivityDescription';
 import { ActivitySummary } from '../components/detail/ActivitySummary';

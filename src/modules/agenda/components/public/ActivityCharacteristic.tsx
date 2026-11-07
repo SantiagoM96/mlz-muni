@@ -1,4 +1,4 @@
-import { MaterialIcon, type MaterialIconName } from '../../../../components/ui/MaterialIcon';
+import { MaterialIcon, type MaterialIconName } from '../../../../shared/ui/MaterialIcon';
 
 /**
  * Variante del componente Figma Cards_buscadores / Características:
