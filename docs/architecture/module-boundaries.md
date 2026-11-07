@@ -21,7 +21,7 @@ La estructura antigua de Agenda y la estructura institucional actual siguen sien
 - Los componentes públicos de Agenda (`src/modules/agenda/components/public`) pertenecen exclusivamente al módulo y no deben confundirse con UI institucional genérica.
 - `src/modules/agenda/data/agenda.ts` contiene los fixtures y transformaciones editoriales; los contratos y el reloj municipal están separados en `src/modules/agenda/model` y `src/modules/agenda/utils`.
 - `src/modules/jovenes-en-comunidad` contiene la página y los datos de Jóvenes; importa componentes institucionales existentes sin duplicarlos.
-- `src/components/navigation/Breadcrumbs.tsx` aún contiene un fallback específico de Agenda; corregir ese acoplamiento en un PR propio, con pruebas.
+- `src/components/navigation/Breadcrumbs.tsx` no contiene fallback de Agenda: muestra «Volver» únicamente si el padre declara `to`; ante ausencia de destino, conserva el breadcrumb completo en mobile. Las rutas se definen por cada módulo, no por la UI institucional.
 - Mantener los tests E2E de todas las rutas mientras migra la estructura.
 
 ## Reglas de mantenimiento
