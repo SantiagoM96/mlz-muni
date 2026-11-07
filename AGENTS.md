@@ -8,7 +8,7 @@ Este repositorio `mlz-muni` aloja funcionalidades municipales autorizadas. Actua
 2. Trabajar en ramas con commits descriptivos y PR revisables; revisar PRs y publicar en Pages únicamente desde `main` por el workflow de preview autorizado; no publicar otros entornos ni hacer merge automático.
 3. No modificar datos originales, contenido editorial, rutas, expectativas de QA, Figma ni entornos externos durante una migración de infraestructura.
 4. No introducir secretos, credenciales ni dependencias sin justificación.
-5. Ejecutar `npm ci`, `npm run typecheck`, `npm run lint`, `npm run build` y `npm run test:e2e` según alcance. Documentar comandos, SHA y resultados, sin atribuir éxito a pruebas no ejecutadas.
+5. Ejecutar `npm ci`, `npm run typecheck`, `npm run lint`, `npm run test:architecture`, `npm run check:architecture`, `npm run build` y `npm run test:e2e` según alcance. Documentar comandos, SHA y resultados, sin atribuir éxito a pruebas no ejecutadas.
 
 ## Arquitectura
 - La arquitectura objetivo agrupa cada funcionalidad autorizada bajo `src/modules/<nombre>/`; crear únicamente subcarpetas con responsabilidad real. Ver `docs/architecture/overview.md` y `module-boundaries.md`.

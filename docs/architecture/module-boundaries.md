@@ -40,3 +40,16 @@ Documentar: archivos movidos, antiguos y nuevos consumidores, invariantes conser
 ## Migración parcial de las páginas de Agenda
 
 Las cuatro páginas de Agenda están en `src/modules/agenda/pages/`, incluida `AgendaConsolePreviewPage`; el router conserva las mismas rutas y el mismo `basename`. Los modelos, componentes, hooks, utilidades y la consola ya se incorporaron al mismo módulo. Los datos editoriales también están en `src/modules/agenda/data/`. Otros módulos no deben importar los archivos internos de Agenda.
+
+## Control automático (CI)
+
+Los scripts `npm run check:architecture` y `npm run test:architecture` se ejecutan en el workflow de calidad. El primero analiza imports estáticos, exports y `import()` literales con el parser de TypeScript. Aplica:
+
+- UI institucional (`src/shared`, `src/components/ui|layout|navigation` y `src/layouts`) no importa módulos municipales.
+- Un módulo de `src/modules/<nombre>` no importa internals de otro módulo.
+- `src/app` solo compone páginas de módulos, no datos, hooks ni utilidades.
+- `src/modules/<nombre>/model` no depende de otras capas del módulo ni de React.
+
+**Límite:** el control está orientado a módulos TS/TSX y rutas de importación relativas, `src/` o `@/`; no reemplaza TypeScript, lint ni revisiones manuales de arquitectura. Las rutas de importación computadas dinámicamente no se pueden inspeccionar estáticamente. No usar imports computados para eludir las reglas.
+
+Para probar nuevas restricciones, extender primero `tests/architecture/module-boundaries.test.mjs`.

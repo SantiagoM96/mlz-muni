@@ -17,7 +17,9 @@
     "format:check": "prettier --check .",
     "test:e2e": "playwright test",
     "test:visual": "playwright test tests/e2e/visual.spec.ts",
-    "test:visual:report": "playwright show-report"
+    "test:visual:report": "playwright show-report",
+    "test:architecture": "node --test tests/architecture/*.test.mjs",
+    "check:architecture": "node scripts/check-module-boundaries.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",

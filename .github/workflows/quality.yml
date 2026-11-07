@@ -17,4 +17,6 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run typecheck
       - run: npm run lint
+      - run: npm run test:architecture
+      - run: npm run check:architecture
       - run: npm run build
