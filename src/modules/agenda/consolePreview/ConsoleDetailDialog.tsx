@@ -1,7 +1,7 @@
 import { useRef } from 'react';
-import type { AgendaActivity } from '../../../data/agenda';
-import { ActivityDescription } from '../../../components/agenda/ActivityDescription';
-import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import type { AgendaActivity } from '../data/agenda';
+import { ActivityDescription } from '../components/public/ActivityDescription';
+import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import { ActivityRegistrationLink } from '../components/detail/ActivityRegistrationLink';
 import { ActivityLocationMap } from '../components/detail/ActivityLocationMap';
 import { getActivitySchedulePresentations, getUniqueActivityLocations } from '../utils/activitySchedules';

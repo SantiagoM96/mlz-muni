@@ -1,17 +1,17 @@
 # Agenda — instrucciones específicas para agentes
 
-Estas reglas complementan [AGENTS.md de la raíz](../../../AGENTS.md) y se aplican al código de `src/modules/agenda/` y a sus consumidores en `src/components/agenda/` y `src/modules/agenda/pages/`.
+Estas reglas complementan [AGENTS.md de la raíz](../../../AGENTS.md) y se aplican al código de `src/modules/agenda/` incluidos sus componentes públicos en `components/public/` y sus páginas en `pages/`.
 
 ## Contratos de las vistas
 
 - Rutas públicas invariables: `/agenda-de-la-comunidad`, `/agenda-de-la-comunidad/actividades` y `/agenda-de-la-comunidad/actividades/:id`. Mantener Breadcrumbs, back/forward y `ScrollRestoration`.
 - Las tarjetas deben conservar contenido, destinos, badges, imágenes, etiquetas, alturas aprobadas y estados hover/focus.
 - La ficha mantiene descripción completa, imagen, compartir, resumen sticky de desktop, horario/fecha/ubicación y mapa cuando exista dirección.
-- Los registros de `src/data/agenda*.ts` son la fuente original: no alterar fechas, títulos, descripciones, badges ni imágenes para facilitar la implementación. Mantener separados los datos de demostración de eventos confirmados.
+- Los registros de `src/modules/agenda/data/agenda*.ts` son la fuente original: no alterar fechas, títulos, descripciones, badges ni imágenes para facilitar la implementación. Mantener separados los datos de demostración de eventos confirmados.
 
 ## Filtros
 
-- Los tipos de dominio de Agenda tienen como fuente autoritativa `model/activity.ts`; `src/data/agenda.ts` mantiene reexportaciones de compatibilidad para consumidores heredados. No introducir imports runtime de fixtures en `model/activity.ts`.
+- Los tipos de dominio de Agenda tienen como fuente autoritativa `model/activity.ts`; `src/modules/agenda/data/agenda.ts` mantiene reexportaciones de compatibilidad para consumidores heredados. No introducir imports runtime de fixtures en `model/activity.ts`.
 - La fuente autoritativa de estructura y operaciones de selección está en `model/filterState.ts`; el contrato de ordenamiento está en `model/sort.ts`.
 - `utils/filterAgendaActivities.ts` concentra filtrado y ordenamiento puros: requiere la fecha y colección explícitas, sin importar fixtures. `utils/argentinaTodayISO.ts` proporciona la fecha local argentina y permite inyección de un instante para tests. `utils/normalizeAgendaText.ts` centraliza la comparación insensible a tildes y mayúsculas.
 - El estado de búsqueda y filtros se mantiene en la página; los controles reciben valores y callbacks. No crear estados seleccionados paralelos en componentes hijos.

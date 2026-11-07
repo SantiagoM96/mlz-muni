@@ -1,12 +1,12 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { MaterialIcon } from '../ui/MaterialIcon';
-import { toggleSelectedValue } from '../../modules/agenda/model/filterState';
-import { normalizeAgendaText } from '../../modules/agenda/utils/normalizeAgendaText';
+import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
+import { toggleSelectedValue } from '../../model/filterState';
+import { normalizeAgendaText } from '../../utils/normalizeAgendaText';
 import { AgendaSheetBackdrop, AgendaSheetHeader } from './AgendaMobileSheet';
-import { useAgendaMobileScrollLock } from './useAgendaMobileScrollLock';
-import { useAgendaSheetDismiss } from './useAgendaSheetDismiss';
-import { useAgendaOutsideDismiss } from '../../modules/agenda/hooks/useAgendaOutsideDismiss';
-import { useAgendaViewportPopover } from '../../modules/agenda/hooks/useAgendaViewportPopover';
+import { useAgendaMobileScrollLock } from '../../hooks/useAgendaMobileScrollLock';
+import { useAgendaSheetDismiss } from '../../hooks/useAgendaSheetDismiss';
+import { useAgendaOutsideDismiss } from '../../hooks/useAgendaOutsideDismiss';
+import { useAgendaViewportPopover } from '../../hooks/useAgendaViewportPopover';
 import { AgendaFilterCounter } from './AgendaFilterCounter';
 
 type FilterDropdownProps = {
@@ -159,5 +159,5 @@ export function AgendaDropdown({
 }
 
 /** Compatibilidad con consumidores previos mientras migran sus imports. */
-export type { AgendaSortValue } from '../../modules/agenda/model/sort';
-export { AgendaSortDropdown } from '../../modules/agenda/components/filters/AgendaSortDropdown';
+export type { AgendaSortValue } from '../../model/sort';
+export { AgendaSortDropdown } from '../filters/AgendaSortDropdown';

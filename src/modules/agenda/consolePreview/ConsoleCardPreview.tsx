@@ -1,5 +1,5 @@
-import type { AgendaActivity } from '../../../data/agenda';
-import { ActivityCard } from '../../../components/agenda/ActivityCard';
+import type { AgendaActivity } from '../data/agenda';
+import { ActivityCard } from '../components/public/ActivityCard';
 import { getPublicActivityViews } from '../utils/publicActivityViews';
 import type { ConsoleDraft, ConsoleSchedule, ConsoleVenue } from './model';
 import { makePreviewActivity } from './previewActivity';

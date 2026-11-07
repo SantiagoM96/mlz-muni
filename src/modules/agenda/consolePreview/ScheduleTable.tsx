@@ -1,4 +1,4 @@
-import { MaterialIcon, type MaterialIconName } from '../../../components/ui/MaterialIcon';
+import { MaterialIcon, type MaterialIconName } from '../../../shared/ui/MaterialIcon';
 import { formatAgendaScheduleDate } from '../utils/activitySchedules';
 import { venueById } from './scheduleRules';
 import type { ConsoleSchedule, ConsoleVenue } from './model';

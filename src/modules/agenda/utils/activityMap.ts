@@ -1,4 +1,4 @@
-import type { AgendaActivity } from '../../../data/agenda';
+import type { AgendaActivity } from '../data/agenda';
 
 /** Mantiene una única forma de construir la consulta de ubicación de la ficha. */
 export function getActivityMapQuery(activity: AgendaActivity): string {

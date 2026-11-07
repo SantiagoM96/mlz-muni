@@ -1,5 +1,5 @@
-import type { AgendaActivity } from '../../../../data/agenda';
-import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
+import type { AgendaActivity } from '../../data/agenda';
+import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
 
 /** Solo URLs absolutas http(s); no convertir textos de inscripción en enlaces. */
 export function validRegistrationUrl(raw?: string): string | null {

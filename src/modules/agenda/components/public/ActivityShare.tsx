@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MaterialIcon } from '../ui/MaterialIcon';
+import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
 
 async function copyToClipboard(value: string): Promise<boolean> {
   try {

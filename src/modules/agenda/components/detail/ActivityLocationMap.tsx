@@ -1,5 +1,5 @@
-import type { AgendaActivity } from '../../../../data/agenda';
-import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
+import type { AgendaActivity } from '../../data/agenda';
+import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
 import { getActivityMapQuery, getActivityMapUrl } from '../../utils/activityMap';
 import { formatActivityAddress } from '../../utils/formatActivityAddress';
 

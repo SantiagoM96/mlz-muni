@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import type { ConsoleVenue } from './model';
 import { venueById } from './scheduleRules';
 import { Field, inputClass } from './ConsoleScheduleFormPrimitives';

@@ -1,13 +1,13 @@
 import { Fragment, type ReactNode } from 'react';
 import type { AgendaActivity } from '../../data/agenda';
-import { MaterialIcon } from '../ui/MaterialIcon';
+import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
 import { ActivityBadges } from './ActivityBadges';
 import { ActivityCharacteristic } from './ActivityCharacteristic';
 import { ActivityScheduleDateTime } from './ActivityScheduleDateTime';
 import { ActivityScheduleParticipants } from './ActivityScheduleParticipants';
-import { formatActivityCardAddress } from '../../modules/agenda/utils/formatActivityAddress';
+import { formatActivityCardAddress } from '../../utils/formatActivityAddress';
 import { Link } from 'react-router-dom';
-import { getActivitySchedulePresentations } from '../../modules/agenda/utils/activitySchedules';
+import { getActivitySchedulePresentations } from '../../utils/activitySchedules';
 
 type Props = {
   activity: AgendaActivity;
