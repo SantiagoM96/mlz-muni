@@ -36,3 +36,10 @@ Este repositorio `mlz-muni` aloja funcionalidades municipales autorizadas. Actua
 ## Fuente de íconos
 - El archivo `src/styles/material-symbols.css` usa un subconjunto variable autohospedado, generado desde la fuente `material-symbols` fijada en npm. No volver al import completo ni agregar una URL externa sin mediciones y aprobación.
 - `MaterialIconName` es la fuente única de ligaduras permitidas. Para ampliar la lista, ejecutar `npm run fonts:build` y comprobar que no se modifican glifos ni ejes.
+
+## Estándares de estilos institucionales
+- Leer `docs/design-system/README.md` y la auditoría vigente antes de intervenir CSS, Tailwind o componentes visuales.
+- `src/styles/tokens.css` concentra los tokens Tailwind v4 aprobados; Geometria, `#236999` y el resto de los colores existentes son contratos visuales, no valores a normalizar por conveniencia.
+- No trasladar CSS de Agenda hacia `shared`; las excepciones de motion, drawers, `!important` y el corte de 680 px se conservan hasta una extracción verificada.
+- Preferir utilidades Tailwind; extraer patrones visuales solo ante una necesidad semántica real, sin crear abstracciones por longitud del `className`.
+- Documentar medidas CSS de producción, pruebas reales, capturas comparadas, errores y excepciones en cada PR. No llamar «paridad visual» a un build exitoso.
