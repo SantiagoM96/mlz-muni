@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { PageContainer } from '../../../components/layout/PageContainer';
-import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import { PageContainer } from '../../../shared/layout/PageContainer';
+import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import { FeaturedActivityCard } from '../components/public/FeaturedActivityCard';
 import { AgendaIntro } from '../components/shared/AgendaIntro';
 import { ActivityCard } from '../components/public/ActivityCard';
 import { AgendaCircuitCard, type AgendaCircuit } from '../components/public/AgendaCircuitCard';
-import { agendaActivities } from '../../../data/agenda';
-import { featuredActivity } from '../../../data/agenda-featured';
+import { agendaActivities } from '../data/agenda';
+import { featuredActivity } from '../data/agenda-featured';
 
 const circuits: AgendaCircuit[] = [
   { title: 'Circuito Cultural', description: 'Obras, funciones, encuentros culturales y propuestas culturales en salas y espacios independientes del municipio.', actionLabel: 'Ir a cartelera', image: import.meta.env.BASE_URL + 'assets/agenda/home-theater.jpg', variant: 'theater' },

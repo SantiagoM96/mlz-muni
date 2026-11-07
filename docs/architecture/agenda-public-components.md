@@ -13,3 +13,5 @@ Este cambio traslada los componentes específicos de la Agenda desde `src/compon
 ## Validación
 
 Comparar `npm run typecheck`, `npm run lint`, `npm run build`, Playwright en cuatro viewports y paridad visual de la consola. El movimiento no implica aprobación automática de diseño o accesibilidad.
+
+> Evolución posterior: el contenido de `src/data/agenda*.ts` se trasladó después a `src/modules/agenda/data/` en un PR distinto, conservando los registros.

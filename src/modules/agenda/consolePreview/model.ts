@@ -1,4 +1,4 @@
-import type { AgendaScheduleType, AgendaRegistrationMode } from '../../../data/agenda';
+import type { AgendaScheduleType, AgendaRegistrationMode } from '../data/agenda';
 
 export interface ConsoleSchedule {
   id: number;

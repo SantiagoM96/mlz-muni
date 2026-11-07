@@ -1,5 +1,5 @@
-import type { AgendaActivity } from '../../../../data/agenda';
-import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
+import type { AgendaActivity } from '../../data/agenda';
+import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
 
 const styles: Record<AgendaActivity['badges'][number]['kind'], string> = {
   rain: 'bg-[#e5f0ff] text-[#006eff]',

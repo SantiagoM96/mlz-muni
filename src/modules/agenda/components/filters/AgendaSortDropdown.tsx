@@ -1,5 +1,5 @@
 import { useId, useRef, useState } from 'react';
-import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
+import { MaterialIcon } from '../../../../shared/ui/MaterialIcon';
 import { AgendaSheetBackdrop, AgendaSheetHeader } from '../public/AgendaMobileSheet';
 import { useAgendaMobileScrollLock } from '../../hooks/useAgendaMobileScrollLock';
 import { useAgendaSheetDismiss } from '../../hooks/useAgendaSheetDismiss';

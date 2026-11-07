@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import type { AgendaActivity } from '../../../data/agenda';
-import { agendaV2ExampleCases, agendaV2PreviewActivities } from '../../../data/agenda-v2-previews';
-import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import type { AgendaActivity } from '../data/agenda';
+import { agendaV2ExampleCases, agendaV2PreviewActivities } from '../data/agenda-v2-previews';
+import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import { ConsoleScheduleEditorDialog } from '../consolePreview/ConsoleScheduleEditorDialog';
 import { ConsoleTypeEditorDialog } from '../consolePreview/ConsoleTypeEditorDialog';
 import { ScheduleTable } from '../consolePreview/ScheduleTable';

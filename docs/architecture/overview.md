@@ -10,14 +10,14 @@ El repositorio puede alojar módulos municipales autorizados de distinta complej
 
 - `src/app/`: router, configuración de composición y dependencias globales; no contiene reglas de negocio.
 - `src/modules/<modulo>/`: propietario de páginas, UI específica, modelos, reglas, hooks y datos de ese ámbito. Agregar subcarpetas **solo si el código existente lo justifica**.
-- `src/shared/` (objetivo evolutivo, aún no creado): layout, navegación, estilos y primitivas realmente transversales. Compartir por contrato y comportamiento, no por parecido visual.
+- `src/shared/`: componentes UI, navegación y layout institucional realmente transversal. Los estilos globales y assets actuales siguen en `src/styles` y `src/assets` para evitar movimientos sin beneficio.
 - `src/main.tsx`: punto de entrada de React y estilos globales.
 
 ## Estado comprobado de la transición
 
 1. `src/modules/jovenes-en-comunidad/` es el primer módulo piloto: su página y sus datos editoriales se mantienen juntos.
-2. Agenda reúne páginas, modelo, utilidades, componentes públicos e internos, hooks y consola bajo `src/modules/agenda/`. Sus fixtures y adaptadores editoriales todavía residen en `src/data/agenda*.ts` y se migrarán en un PR separado.
-3. El diseño institucional conserva `src/layouts/`, `src/components/layout/`, `src/components/navigation/`, `src/components/ui/`, `src/styles/` y las fuentes existentes. No moverlos por estética.
+2. Agenda reúne páginas, modelos, utilidades, componentes públicos e internos, hooks, consola y datos editoriales bajo `src/modules/agenda/`. Los archivos de datos se trasladaron sin modificar registros o transformaciones.
+3. La infraestructura institucional se concentra en `src/shared/ui/`, `src/shared/navigation/` y `src/shared/layout/`. Los estilos globales y las fuentes no se mueven; se conserva el diseño original.
 4. El router mantiene rutas públicas, `basename` y tratamiento actual de GitHub Pages.
 
 ## Restricciones de las refactorizaciones

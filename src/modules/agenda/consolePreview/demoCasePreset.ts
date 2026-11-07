@@ -1,4 +1,4 @@
-import { agendaV2PreviewActivities } from '../../../data/agenda-v2-previews';
+import { agendaV2PreviewActivities } from '../data/agenda-v2-previews';
 import type { ConsoleDraft, ConsoleSchedule } from './model';
 import { DEMO_VENUES, INITIAL_DRAFT } from './demoData';
 import { createDemoSchedule } from './scheduleRules';

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { PageContainer } from '../../../components/layout/PageContainer';
-import { Breadcrumbs } from '../../../components/navigation/Breadcrumbs';
+import { PageContainer } from '../../../shared/layout/PageContainer';
+import { Breadcrumbs } from '../../../shared/navigation/Breadcrumbs';
 import { ActivityShare } from '../components/public/ActivityShare';
 import { ActivityDescription } from '../components/public/ActivityDescription';
 import { ActivitySummary } from '../components/detail/ActivitySummary';
@@ -10,9 +10,9 @@ import { ActivityLocationMap } from '../components/detail/ActivityLocationMap';
 import {
   getActivitySchedulePresentations, getUniqueActivityLocations, isAgendaActivityVisible,
 } from '../utils/activitySchedules';
-import { agendaActivities } from '../../../data/agenda';
-import { featuredActivity } from '../../../data/agenda-featured';
-import { agendaV2PreviewActivities } from '../../../data/agenda-v2-previews';
+import { agendaActivities } from '../data/agenda';
+import { featuredActivity } from '../data/agenda-featured';
+import { agendaV2PreviewActivities } from '../data/agenda-v2-previews';
 import { getPublicActivityList, getPublicActivityViews } from '../utils/publicActivityViews';
 import { NotFoundPage } from '../../../pages/not-found/NotFoundPage';
 

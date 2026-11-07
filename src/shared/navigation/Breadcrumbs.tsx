@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { MaterialIcon } from '../ui/MaterialIcon';
+import { getMobileBreadcrumbParent } from './getMobileBreadcrumbParent';
 
 export interface BreadcrumbItem {
   label: string;
@@ -21,6 +22,7 @@ export interface BreadcrumbsProps {
 export function Breadcrumbs({ items, className = '', mobileParentOnly = false }: BreadcrumbsProps) {
   // El breadcrumb institucional siempre utiliza el azul primario.
   const linkColor = 'text-primary-600 visited:text-primary-600 hover:text-primary-600';
+  const mobileParent = getMobileBreadcrumbParent(items, mobileParentOnly);
 
   return (
     <nav
@@ -28,13 +30,13 @@ export function Breadcrumbs({ items, className = '', mobileParentOnly = false }:
       className={`my-6 w-full min-w-0 text-[18px] leading-6
         text-primary-600 ${className}`}
     >
-      {mobileParentOnly && items.length > 1 && (
+      {mobileParent && (
         <div className="flex min-w-0 items-center sm:hidden">
           <Link
-            to={items[items.length - 2]?.to ?? '/agenda-de-la-comunidad/actividades'}
+            to={mobileParent.to}
             className={`inline-flex min-w-0 items-center gap-2 rounded-sm font-medium ${linkColor}
               focus-visible:outline-2 focus-visible:outline-primary-600`}
-            aria-label={'Volver a ' + items[items.length - 2]?.label}
+            aria-label={'Volver a ' + mobileParent.label}
             data-testid="breadcrumb-mobile-back"
           >
             <MaterialIcon name="arrow_back" size={20} />
@@ -43,7 +45,7 @@ export function Breadcrumbs({ items, className = '', mobileParentOnly = false }:
         </div>
       )}
       <ol className={`w-full min-w-0 flex-nowrap items-center gap-2 overflow-hidden
-        ${mobileParentOnly ? 'hidden sm:flex' : 'flex'}`}>
+        ${mobileParent ? 'hidden sm:flex' : 'flex'}`}>
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           const isParent = index === items.length - 2;

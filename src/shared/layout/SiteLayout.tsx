@@ -1,6 +1,6 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom';
-import { SiteHeader } from '../components/navigation/SiteHeader';
-import { SiteFooter } from '../components/layout/SiteFooter';
+import { SiteHeader } from '../navigation/SiteHeader';
+import { SiteFooter } from './SiteFooter';
 
 export function SiteLayout() {
   return (
