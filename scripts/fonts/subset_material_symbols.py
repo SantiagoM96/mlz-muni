@@ -100,7 +100,9 @@ def build_subset(names: list[str]) -> int:
     options = subset.Options()
     options.flavor = "woff2"
     options.layout_closure = False
-    options.layout_features = ["liga"]
+    # Algunas ligaduras de Material Symbols requieren lookups OpenType auxiliares.
+    # Se retienen las features originales, pero no se expande el conjunto de glifos.
+    options.layout_features = ["*"]
     options.glyph_names = True
     options.recalc_timestamp = False
 
