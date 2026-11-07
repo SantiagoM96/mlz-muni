@@ -69,7 +69,7 @@ test('Tarjetas exhibe componentes del proyecto y sus datos ilustrativos', async 
 test('MaterialIcon busca y redimensiona el icono real', async ({ page }) => {
   await page.goto('/ui-kit/iconos');
   await page.getByRole('textbox', { name: 'Buscar ícono' }).fill('calendar');
-  await expect(page.getByText('calendar_month', { exact: true })).toBeVisible();
+  await expect(page.locator('li code').getByText('calendar_month', { exact: true })).toBeVisible();
   await expect(page.getByText('bookmark', { exact: true })).toHaveCount(0);
   await page.getByRole('combobox', { name: 'Tamaño de íconos' }).selectOption('32');
   await expect(page.locator('[data-material-symbol="calendar_month"]')).toHaveCSS('width', '32px');
