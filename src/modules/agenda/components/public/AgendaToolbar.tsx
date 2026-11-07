@@ -75,7 +75,7 @@ export function AgendaToolbar({ search, onSearch, filters, resultCount, onFilter
       <button ref={moreFiltersButtonRef} type="button" aria-haspopup="dialog" aria-expanded={open} aria-controls="agenda-more-filters"
         aria-description={advancedCount ? `${advancedCount} ${advancedCount === 1 ? 'filtro avanzado seleccionado' : 'filtros avanzados seleccionados'}` : undefined}
         onClick={() => setOpen(v => !v)}
-        className={`agenda-filter-trigger agenda-motion-control flex h-12 w-full min-w-0 items-center justify-center rounded border border-[#5ba8d5] bg-white px-4 text-[16px] text-primary-600 transition-colors duration-150 hover:bg-[#f4f9fd] hover:border-primary-600 focus-visible:outline-2 ${open || advancedCount ? 'agenda-filter-trigger-active' : ''}`}>
+        className={`agenda-filter-trigger agenda-motion-control flex h-12 w-full min-w-0 items-center justify-center rounded border border-[#5ba8d5] bg-white px-4 text-[16px] text-primary-600 transition-colors duration-150 hover:bg-[#f4f9fd] hover:border-primary-600 focus-visible:outline-2 focus-visible:outline-info-500 ${open || advancedCount ? 'agenda-filter-trigger-active' : ''}`}>
         <span data-agenda-more-content className="inline-flex shrink-0 items-center gap-2">
           <span data-agenda-more-label className="whitespace-nowrap">Más Filtros</span>
           <AgendaFilterCounter count={advancedCount} />
@@ -96,7 +96,7 @@ export function AgendaToolbar({ search, onSearch, filters, resultCount, onFilter
         </button>
       )))}
       </div>
-      <button type="button" onClick={onReset} className="agenda-filter-clear min-h-[30px] px-2 font-bold text-primary-600 underline-offset-2 hover:underline">Limpiar</button>
+      <button type="button" onClick={onReset} className="agenda-filter-clear min-h-[30px] px-2 font-bold text-primary-600 underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-primary-600">Limpiar</button>
     </div>}
 
   </div>;

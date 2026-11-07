@@ -1,3 +1,4 @@
+import '../styles/agenda.css';
 import { useEffect, useMemo, useState } from 'react';
 import { argentinaTodayISO } from '../utils/argentinaTodayISO';
 import { agendaV2PreviewActivities } from '../data/agenda-v2-previews';
