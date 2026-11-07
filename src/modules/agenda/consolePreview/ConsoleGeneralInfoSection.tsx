@@ -1,7 +1,7 @@
 import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import type { ConsoleDraft } from './model';
 import { CATEGORY_TYPES } from './demoData';
-import { FormField, SectionTitle, inputClass } from './ConsoleFormPrimitives';
+import { FormField, SectionTitle, consoleCheckboxClass, inputClass } from './ConsoleFormPrimitives';
 
 interface Props {
   draft: ConsoleDraft;
@@ -56,7 +56,7 @@ export function ConsoleGeneralInfoSection({
                   <label className="flex min-h-7 cursor-pointer items-center gap-2 text-[16px] font-bold text-primary-600">
                     <input type="checkbox" checked={draft.inclusive}
                       onChange={event => onDraftChange({ inclusive: event.target.checked })}
-                      className="h-5 w-5 accent-[#236999]" />
+                      className={consoleCheckboxClass} />
                     Disciplina inclusiva
                   </label>
                 </div>

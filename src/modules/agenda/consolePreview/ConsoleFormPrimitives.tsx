@@ -3,10 +3,12 @@ import type { ReactNode } from 'react';
 // Estilos de la consola existente: conservar el radio 4px del formulario.
 // Los controles del editor de programaciones usan un radio distinto.
 /** Base visual compartida solo por los dos formularios de la consola Agenda. */
-export const consoleInputBaseClass = 'min-h-12 w-full min-w-0 border border-[#93bfe0] bg-white px-4 py-2.5 text-[16px] leading-6 text-[#236999] outline-none placeholder:text-[#8baac3] focus-visible:border-primary-600 focus-visible:ring-2 focus-visible:ring-[#236999]/20';
+export const consoleInputBaseClass = 'min-h-12 w-full min-w-0 border border-[#93bfe0] bg-white px-4 py-2.5 text-[16px] leading-6 text-primary-600 outline-none placeholder:text-[#8baac3] focus-visible:border-primary-600 focus-visible:ring-2 focus-visible:ring-primary-600/20';
 
 // El formulario general conserva 4px y su transición de colores.
 export const inputClass = consoleInputBaseClass + ' rounded-[4px] transition-colors';
+/** Casillas semánticamente equivalentes de la consola (20px + acento primario). */
+export const consoleCheckboxClass = 'h-5 w-5 accent-primary-600';
 export const labelClass = 'mb-1.5 block text-[16px] font-bold leading-6 text-primary-600';
 export const noteClass = 'mt-2 text-[14px] leading-[21px] text-[#718092]';
 
@@ -25,7 +27,7 @@ export function FormField({ label, htmlFor, children, hint }: {
 export function SectionTitle({ number, title, subtitle }: { number: number; title: string; subtitle?: string }) {
   return (
     <div className="mb-5">
-      <h2 className="text-[24px] font-bold leading-[30px] text-primary-600">
+      <h2 className="text-institutional-section font-bold text-primary-600">
         {number}. {title}
       </h2>
       {subtitle && <p className="mt-1 text-[16px] leading-6 text-grey-900">{subtitle}</p>}
