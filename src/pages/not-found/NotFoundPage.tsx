@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { PageContainer } from '../../components/layout/PageContainer';
+import { PageContainer } from '../../shared/layout/PageContainer';
 
 export function NotFoundPage() {
   return <PageContainer className="flex min-h-[50vh] flex-col items-start justify-center py-16">

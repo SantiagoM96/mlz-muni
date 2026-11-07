@@ -30,7 +30,7 @@ src/modules/agenda/
 
 - Los componentes públicos se trasladaron desde `src/components/agenda/` a `src/modules/agenda/components/public/`; los dos hooks de interacción se movieron a `src/modules/agenda/hooks/`.
 - Los cinco archivos de `src/data/agenda*.ts` ya se trasladaron a `src/modules/agenda/data/`, preservando IDs, imágenes, textos y semántica editorial.
-- Re-evaluar el `src/shared` institucional, una vez demostrados contratos transversales entre módulos.
+- La UI institucional se consolidó en `src/shared/{layout,navigation,ui}`; Agenda solo consume esos componentes, sin introducir dependencias desde `shared` hacia su dominio.
 - Verificar TypeScript, lint, build, cuatro proyectos Playwright y paridad visual, antes de integrar.
 
 Las dependencias objetivo y sus excepciones temporales se documentan en [module-boundaries.md](./module-boundaries.md).
