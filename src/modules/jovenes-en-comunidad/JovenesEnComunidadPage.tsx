@@ -7,7 +7,7 @@ import { TableOfContents } from '../../components/ui/TableOfContents';
 import { InfoCard } from '../../components/ui/InfoCard';
 import { IconLink } from '../../components/ui/IconLink';
 import { MaterialIcon } from '../../components/ui/MaterialIcon';
-import { initiatives, introduction, type ContentBlock, type Initiative } from '../../data/jovenes';
+import { initiatives, introduction, type ContentBlock, type Initiative } from './data/jovenes';
 
 const instagramUrl = 'https://www.instagram.com/jovenesencomunidad/';
 

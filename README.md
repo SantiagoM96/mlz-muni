@@ -36,10 +36,10 @@ La URL local se muestra en la salida de Vite. En modo local el `base` es `/`.
 
 ## Organización
 
-- `src/app`, `src/layouts`, `src/pages`: router, layout y páginas.
-- `src/components`: elementos de interfaz compartidos e interfaz pública de Agenda.
-- `src/features/agenda`: dominio, consola, filtros, hooks y utilidades.
-- `src/data`: datos fuente y de demostración.
+- `src/app`: router y composición global.
+- `src/modules/jovenes-en-comunidad`: landing y datos propios del módulo, como primera migración estructural.
+- `src/pages/agenda`, `src/components/agenda`, `src/features/agenda` y `src/data/agenda*.ts`: Agenda V2, todavía en estructura heredada para evitar una migración masiva.
+- `src/layouts`, `src/components/layout`, `src/components/navigation` y `src/components/ui`: UI institucional existente, reutilizable cuando haya un contrato transversal real.
 - `src/styles` y `src/assets/fonts`: estilos institucionales y Geometria.
 - `public/assets`: logos, fotografías e ilustraciones.
 - `tests/e2e` y `tests/visual-parity`: QA funcional y paridad visual.
@@ -59,7 +59,7 @@ npm run test:e2e
 
 Playwright prueba 390, 432, 768 y 1415 px. `npm run test:visual` crea capturas de revisión. El estado de cada ejecución debe consultarse en GitHub Actions; que exista un script no significa que ya se haya ejecutado exitosamente.
 
-## GitHub Pages (preparación únicamente)
+## GitHub Pages (compilación local y publicación controlada)
 
 ```bash
 npm run build:pages
@@ -71,4 +71,4 @@ Este comando **compila localmente**, prepara copias de `index.html` para enlaces
 
 Migrado selectivamente de [`SantiagoM96/mlz`](https://github.com/SantiagoM96/mlz) desde el commit fijo `adc097b3fd6f129e7994b67b24cce46edc2b608b`. El origen no se modifica. No incorporar Crónica, BAE, editores ni prototipos ajenos al alcance municipal.
 
-Consultar [`AGENTS.md`](./AGENTS.md), [documentación de migración](./docs/migracion-frontend-2026-11-06.md), [CI y pruebas](./docs/ci-cd.md) y el [diagnóstico de Agenda V2](./docs/agenda-v2-refactor.md).
+Consultar [`AGENTS.md`](./AGENTS.md), [arquitectura modular](./docs/architecture/overview.md), [límites de módulos](./docs/architecture/module-boundaries.md), [guía para nuevas funcionalidades](./docs/contributing/new-feature.md), [documentación de migración](./docs/migracion-frontend-2026-11-06.md), [CI y pruebas](./docs/ci-cd.md) y el [diagnóstico de Agenda V2](./docs/agenda-v2-refactor.md).

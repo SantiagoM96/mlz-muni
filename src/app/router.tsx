@@ -5,7 +5,7 @@ import { AgendaPage } from '../pages/agenda/AgendaPage';
 import { AgendaHomePage } from '../pages/agenda/AgendaHomePage';
 import { AgendaActivityDetailPage } from '../pages/agenda/AgendaActivityDetailPage';
 import { AgendaConsolePreviewPage } from '../pages/agenda/AgendaConsolePreviewPage';
-import { JovenesEnComunidadPage } from '../pages/jovenes-en-comunidad/JovenesEnComunidadPage';
+import { JovenesEnComunidadPage } from '../modules/jovenes-en-comunidad/JovenesEnComunidadPage';
 import { NotFoundPage } from '../pages/not-found/NotFoundPage';
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';

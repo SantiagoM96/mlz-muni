@@ -1,7 +1,7 @@
 # AGENTS — MLZ municipal
 
 ## Alcance y responsabilidades
-Este repositorio `mlz-muni` contiene exclusivamente Jóvenes en Comunidad, Agenda de la Comunidad V2 y dependencias institucionales necesarias. No incorporar Crónica, BAE, Deportes independiente ni otros trabajos ajenos. La consola es demostrativa: no agregar backend, almacenamiento ni prometer publicación efectiva sin nueva autorización.
+Este repositorio `mlz-muni` aloja funcionalidades municipales autorizadas. Actualmente incluye Jóvenes en Comunidad, Agenda de la Comunidad V2 y dependencias institucionales necesarias. No incorporar Crónica, BAE, Deportes independiente ni proyectos futuros no solicitados. La consola de Agenda es demostrativa: no agregar backend, almacenamiento ni prometer publicación efectiva sin nueva autorización.
 
 ## Flujo seguro
 1. Inspeccionar el código, los consumidores y las pruebas antes de modificar.
@@ -11,10 +11,12 @@ Este repositorio `mlz-muni` contiene exclusivamente Jóvenes en Comunidad, Agend
 5. Ejecutar `npm ci`, `npm run typecheck`, `npm run lint`, `npm run build` y `npm run test:e2e` según alcance. Documentar comandos, SHA y resultados, sin atribuir éxito a pruebas no ejecutadas.
 
 ## Arquitectura
-- `src/pages` compone las vistas; `src/layouts` y `src/components/layout` definen la estructura institucional.
-- `src/components/ui` contiene componentes realmente compartidos.
-- `src/features/agenda` contiene lógica de Agenda, consola, hooks, componentes y reglas.
+- La arquitectura objetivo agrupa cada funcionalidad autorizada bajo `src/modules/<nombre>/`; crear únicamente subcarpetas con responsabilidad real. Ver `docs/architecture/overview.md` y `module-boundaries.md`.
+- `src/modules/jovenes-en-comunidad` es el primer módulo migrado: posee su página y datos editoriales.
+- Durante la transición, `src/pages/agenda`, `src/components/agenda`, `src/features/agenda` y `src/data/agenda*.ts` mantienen su ubicación original; migrarlos requiere PRs separados.
+- `src/layouts`, `src/components/layout`, `src/components/navigation` y `src/components/ui` son infraestructura institucional existente, pendiente de una eventual consolidación en `shared`, no un permiso para agregar allí código de Agenda.
 - `src/data/agenda*.ts` se considera fuente original inmutable durante trabajos de arquitectura.
+- `app` configura rutas, los módulos son propietarios de su lógica y `shared` no debe importar módulos municipales. Ningún módulo debe importar internals de otro módulo.
 - Respetar importaciones entre capas; evitar dependencias circulares, duplicaciones, abstracciones prematuras y barrels innecesarios.
 - Aplicar DRY, KISS, Separation of Concerns y TypeScript explícito. Componentes PascalCase, hooks useCamelCase, variables camelCase.
 
