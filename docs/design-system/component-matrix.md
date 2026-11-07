@@ -23,3 +23,10 @@
 3. Evitar un componente universal que dependa de datos de Agenda o Jóvenes.
 4. Preservar excepciones 18/22, 22/28 y radios 4/6 cuando correspondan.
 5. Verificar con pruebas de arquitectura + E2E, y paridad a 390/432/768/1415 px.
+
+## Adopción tras la tercera etapa
+
+- **Definido:** contratos documentados de `PageTitle`, `FormField`, `TextField`, `SelectControl`, `TextAreaControl`, `CheckboxField` y `ActionLink`.
+- **Implementado:** funciones React reales y tipadas en `src/shared/ui/`, con semántica HTML propia.
+- **Adoptado:** Jóvenes, Agenda pública y consola consumen esos componentes; dos composiciones locales se extrajeron en Jóvenes.
+- **Verificado:** tests de arquitectura/E2E y paridad visual contra `main` (evidencia en PR de integración). No declarar WCAG AA integral ni mejora de Web Vitals sin estudios específicos.
