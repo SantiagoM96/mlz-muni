@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { PageContainer } from '../../../components/layout/PageContainer';
-import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import { PageContainer } from '../../../shared/layout/PageContainer';
+import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import { FeaturedActivityCard } from '../components/public/FeaturedActivityCard';
 import { AgendaIntro } from '../components/shared/AgendaIntro';
 import { ActivityCard } from '../components/public/ActivityCard';

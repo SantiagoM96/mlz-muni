@@ -5,7 +5,7 @@ import { AgendaIntro } from '../components/shared/AgendaIntro';
 import { filterAgendaActivities } from '../utils/filterAgendaActivities';
 import { isAgendaActivityVisible } from '../utils/activitySchedules';
 import { getPublicActivityList } from '../utils/publicActivityViews';
-import { PageContainer } from '../../../components/layout/PageContainer';
+import { PageContainer } from '../../../shared/layout/PageContainer';
 import { ActivityCard } from '../components/public/ActivityCard';
 import { AgendaToolbar } from '../components/public/AgendaToolbar';
 import { AgendaSortDropdown } from '../components/filters/AgendaSortDropdown';

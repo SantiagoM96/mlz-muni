@@ -17,7 +17,13 @@
     "format:check": "prettier --check .",
     "test:e2e": "playwright test",
     "test:visual": "playwright test tests/e2e/visual.spec.ts",
-    "test:visual:report": "playwright show-report"
+    "test:visual:report": "playwright show-report",
+    "test:architecture": "node --test tests/architecture/*.test.mjs",
+    "check:architecture": "node scripts/check-module-boundaries.mjs",
+    "fonts:build": "python3 scripts/fonts/subset_material_symbols.py",
+    "predev": "npm run fonts:build",
+    "prebuild": "npm run fonts:build",
+    "prebuild:pages": "npm run fonts:build"
   },
   "dependencies": {
     "react": "^19.2.0",

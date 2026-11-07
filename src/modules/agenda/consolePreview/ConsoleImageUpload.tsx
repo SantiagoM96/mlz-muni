@@ -1,4 +1,4 @@
-import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 
 interface Props {
   id: string;
