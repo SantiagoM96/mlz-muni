@@ -4,7 +4,6 @@ import { HomePage } from '../pages/home/HomePage';
 import { AgendaPage } from '../modules/agenda/pages/AgendaPage';
 import { AgendaHomePage } from '../modules/agenda/pages/AgendaHomePage';
 import { AgendaActivityDetailPage } from '../modules/agenda/pages/AgendaActivityDetailPage';
-import { AgendaConsolePreviewPage } from '../modules/agenda/pages/AgendaConsolePreviewPage';
 import { JovenesEnComunidadPage } from '../modules/jovenes-en-comunidad/JovenesEnComunidadPage';
 import { NotFoundPage } from '../pages/not-found/NotFoundPage';
 
@@ -21,6 +20,8 @@ const router = createBrowserRouter([{
   ],
 }, {
   path: '/agenda-de-la-comunidad/consola-preview',
-  element: <AgendaConsolePreviewPage />,
+  lazy: async () => ({
+    Component: (await import('../modules/agenda/pages/AgendaConsolePreviewPage')).AgendaConsolePreviewPage,
+  }),
 }], { basename });
 export function AppRouter() { return <RouterProvider router={router} />; }
