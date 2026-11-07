@@ -2,7 +2,8 @@ import { useRef, useState } from 'react';
 import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import type { ConsoleVenue } from './model';
 import { venueById } from './scheduleRules';
-import { Field, inputClass } from './ConsoleScheduleFormPrimitives';
+import { FormField } from '../../../shared/ui/FormField';
+import { TextField, SelectControl, TextAreaControl } from '../../../shared/ui/FormControls';
 import { normalizeVenueInput, validateVenueInput } from './venueRules';
 
 interface Props {
@@ -46,12 +47,12 @@ export function ConsoleVenueSelector({ venueId, venues, onVenueChange, onCreateV
   return (
     <>
           <div className="space-y-2">
-            <Field id="console-schedule-venue" label="Lugar">
-              <select ref={venueSelectRef} id="console-schedule-venue" value={venueId} className={inputClass}
+            <FormField htmlFor="console-schedule-venue" label="Lugar">
+              <SelectControl appearance="soft" ref={venueSelectRef} id="console-schedule-venue" value={venueId} 
                 onChange={event => onVenueChange(event.target.value)}>
                 {venues.map(place => <option key={place.id} value={place.id}>{place.name}</option>)}
-              </select>
-            </Field>
+              </SelectControl>
+            </FormField>
             <button ref={addVenueButtonRef} type="button" onClick={() => { setAddingVenue(current => !current); clearError(); }}
               className="inline-flex min-h-10 items-center gap-2 rounded-[6px] text-[15px] font-bold text-primary-600 hover:underline"
               aria-expanded={addingVenue}>
@@ -62,31 +63,31 @@ export function ConsoleVenueSelector({ venueId, venues, onVenueChange, onCreateV
             <section aria-label="Nuevo lugar" data-testid="console-new-venue"
               className="space-y-3 rounded-[8px] border border-[#c5dce9] bg-[#f5f9fc] p-4">
               <h3 className="font-bold text-primary-600">Nuevo lugar</h3>
-              <Field id="console-venue-name" label="Nombre del lugar">
-                <input id="console-venue-name" ref={nameRef}
+              <FormField htmlFor="console-venue-name" label="Nombre del lugar">
+                <TextField appearance="soft" id="console-venue-name" ref={nameRef}
                   aria-invalid={invalidField === 'name'}
                   aria-describedby={invalidField === 'name' ? 'console-venue-error' : undefined}
-                  className={inputClass} value={venueFields.name}
+                   value={venueFields.name}
                   onChange={event => { setVenueFields(v => ({ ...v, name: event.target.value })); clearError(); }}
                   placeholder="Ej.: Centro Cultural del Barrio"/>
-              </Field>
+              </FormField>
               <div className="grid gap-3 sm:grid-cols-2">
-                <Field id="console-venue-locality" label="Localidad">
-                  <input id="console-venue-locality" ref={localityRef}
+                <FormField htmlFor="console-venue-locality" label="Localidad">
+                  <TextField appearance="soft" id="console-venue-locality" ref={localityRef}
                   aria-invalid={invalidField === 'locality'}
                   aria-describedby={invalidField === 'locality' ? 'console-venue-error' : undefined}
-                  className={inputClass} value={venueFields.locality}
+                   value={venueFields.locality}
                     onChange={event => { setVenueFields(v => ({ ...v, locality: event.target.value })); clearError(); }}
                     placeholder="Ej.: Banfield"/>
-                </Field>
-                <Field id="console-venue-address" label="Dirección">
-                  <input id="console-venue-address" ref={addressRef}
+                </FormField>
+                <FormField htmlFor="console-venue-address" label="Dirección">
+                  <TextField appearance="soft" id="console-venue-address" ref={addressRef}
                   aria-invalid={invalidField === 'address'}
                   aria-describedby={invalidField === 'address' ? 'console-venue-error' : undefined}
-                  className={inputClass} value={venueFields.address}
+                   value={venueFields.address}
                     onChange={event => { setVenueFields(v => ({ ...v, address: event.target.value })); clearError(); }}
                     placeholder="Calle y altura"/>
-                </Field>
+                </FormField>
               </div>
               {venueError && <p id="console-venue-error" role="alert" className="text-[14px] font-medium text-[#ac343e]">{venueError}</p>}
               <div className="flex flex-wrap justify-end gap-2">
