@@ -11,7 +11,7 @@ export function ActivityDescription({ activity }: { activity: AgendaActivity }) 
     <section aria-label="Descripción de la actividad" className="w-full min-w-0">
       <div className="space-y-3">
         {paragraphs.map((paragraph, index) => (
-          <p key={index} className="break-words text-[18px] leading-[26px] text-grey-900">
+          <p key={index} className="break-words text-institutional-body text-grey-900">
             {paragraph}
           </p>
         ))}

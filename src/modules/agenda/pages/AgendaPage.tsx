@@ -78,7 +78,7 @@ export function AgendaPage() {
           <img src={import.meta.env.BASE_URL + 'assets/agenda/no-results.png'}
             alt="" width={194} height={207}
             className="h-[207px] w-[194px] shrink-0 object-contain" />
-          <div className="mt-6 max-w-full px-3 text-[18px] leading-[26px] text-grey-900">
+          <div className="mt-6 max-w-full px-3 text-institutional-body text-grey-900">
             <h2 className="font-bold">No encontramos actividades</h2>
             <p>Probá cambiar los filtros o buscá con otro término.</p>
           </div>

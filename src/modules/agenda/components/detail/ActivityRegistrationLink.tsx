@@ -31,7 +31,7 @@ export function ActivityRegistrationLink({ activity, preview = false }: { activi
   return (
     <div className="mt-4 space-y-4">
       {information && (
-        <section aria-label="Información de inscripción" className="text-[18px] leading-[26px] text-grey-900">
+        <section aria-label="Información de inscripción" className="text-institutional-body text-grey-900">
           <h3 className="font-bold">Inscripción</h3>
           <p className="mt-2 whitespace-pre-line">{information}</p>
         </section>

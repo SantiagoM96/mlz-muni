@@ -17,7 +17,7 @@ export function AgendaCircuitCard({ circuit }: { circuit: AgendaCircuit }) {
       <img src={circuit.image} alt="" className="absolute inset-x-0 top-0 -z-10 h-[52%] w-full object-cover object-center" loading="lazy" />
       <div className="relative z-10 flex flex-col gap-4 bg-gradient-to-t from-black/30 via-black/10 to-transparent px-6 pb-7 pt-10 md:px-12">
         <h2 className="text-[30px] font-bold leading-10">{circuit.title}</h2>
-        <p className="text-[18px] leading-[26px]">{circuit.description}</p>
+        <p className="text-institutional-body">{circuit.description}</p>
         {circuit.to ? <Link className="text-[18px] font-bold hover:underline" to={circuit.to}>{circuit.actionLabel}</Link> :
           <span className="text-[18px] font-bold">{circuit.actionLabel} · Próximamente</span>}
       </div>

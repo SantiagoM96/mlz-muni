@@ -14,7 +14,7 @@ export function ActivityInformation({ activity }: { activity: AgendaActivity }) 
       </h2>
       <dl className="grid max-w-[900px] gap-x-10 gap-y-5 sm:grid-cols-2">
         {fields.map(field => (
-          <div key={field.label} className="min-w-0 text-[18px] leading-[26px] text-grey-900">
+          <div key={field.label} className="min-w-0 text-institutional-body text-grey-900">
             <dt className="text-[18px] font-bold leading-6">{field.label}</dt>
             <dd className="mt-1">{field.value}</dd>
           </div>
