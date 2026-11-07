@@ -2,7 +2,8 @@ import type { RefObject } from 'react';
 import type { ConsoleSchedule } from './model';
 import type { ConsoleScheduleInvalidField } from './scheduleEditorRules';
 import { WEEKDAYS } from './demoData';
-import { Field, inputClass } from './ConsoleScheduleFormPrimitives';
+import { FormField } from '../../../shared/ui/FormField';
+import { TextField, SelectControl } from '../../../shared/ui/FormControls';
 
 const weekdayButtonClassName = (selected: boolean) =>
   'min-h-11 rounded-[6px] border px-1 text-[13px] font-medium focus-visible:outline-2 focus-visible:outline-primary-600 ' +
@@ -20,8 +21,8 @@ interface Props {
 export function ConsoleScheduleDateFields({ value, onScheduleChange, selectRef, invalidField }: Props) {
   return (
     <>
-          <Field id="console-schedule-kind" label="Tipo de fecha">
-            <select ref={selectRef} id="console-schedule-kind" className={inputClass}
+          <FormField htmlFor="console-schedule-kind" label="Tipo de fecha">
+            <SelectControl appearance="soft" ref={selectRef} id="console-schedule-kind" 
               value={value.scheduleType}
               onChange={event => {
                 const scheduleType = event.target.value as ConsoleSchedule['scheduleType'];
@@ -31,20 +32,20 @@ export function ConsoleScheduleDateFields({ value, onScheduleChange, selectRef, 
               <option value="exact">Fecha puntual</option>
               <option value="range">Período</option>
               <option value="recurring">Recurrente</option>
-            </select>
-          </Field>
+            </SelectControl>
+          </FormField>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field id="console-schedule-start" label={value.scheduleType === 'exact' ? 'Fecha' : 'Desde'}>
-              <input id="console-schedule-start" aria-invalid={invalidField === 'startDate'}
-                aria-describedby={invalidField === 'startDate' ? 'console-schedule-error' : undefined} type="date" lang="es-AR" className={inputClass}
+            <FormField htmlFor="console-schedule-start" label={value.scheduleType === 'exact' ? 'Fecha' : 'Desde'}>
+              <TextField appearance="soft" id="console-schedule-start" aria-invalid={invalidField === 'startDate'}
+                aria-describedby={invalidField === 'startDate' ? 'console-schedule-error' : undefined} type="date" lang="es-AR" 
                 value={value.startDate} onChange={event => onScheduleChange({ startDate: event.target.value })}/>
-            </Field>
+            </FormField>
             {value.scheduleType !== 'exact' && (
-              <Field id="console-schedule-end" label="Hasta">
-                <input id="console-schedule-end" aria-invalid={invalidField === 'endDate'}
-                aria-describedby={invalidField === 'endDate' ? 'console-schedule-error' : undefined} type="date" lang="es-AR" className={inputClass}
+              <FormField htmlFor="console-schedule-end" label="Hasta">
+                <TextField appearance="soft" id="console-schedule-end" aria-invalid={invalidField === 'endDate'}
+                aria-describedby={invalidField === 'endDate' ? 'console-schedule-error' : undefined} type="date" lang="es-AR" 
                   value={value.endDate} onChange={event => onScheduleChange({ endDate: event.target.value })}/>
-              </Field>
+              </FormField>
             )}
           </div>
           {value.scheduleType === 'recurring' && (
@@ -69,16 +70,16 @@ export function ConsoleScheduleDateFields({ value, onScheduleChange, selectRef, 
             </fieldset>
           )}
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field id="console-schedule-start-time" label="Horario de inicio">
-              <input id="console-schedule-start-time" aria-invalid={invalidField === 'startTime'}
-                aria-describedby={invalidField === 'startTime' ? 'console-schedule-error' : undefined} type="time" lang="es-AR" className={inputClass}
+            <FormField htmlFor="console-schedule-start-time" label="Horario de inicio">
+              <TextField appearance="soft" id="console-schedule-start-time" aria-invalid={invalidField === 'startTime'}
+                aria-describedby={invalidField === 'startTime' ? 'console-schedule-error' : undefined} type="time" lang="es-AR" 
                 value={value.startTime} onChange={event => onScheduleChange({ startTime: event.target.value })}/>
-            </Field>
-            <Field id="console-schedule-end-time" label="Horario de fin (opcional)">
-              <input id="console-schedule-end-time" aria-invalid={invalidField === 'endTime'}
-                aria-describedby={invalidField === 'endTime' ? 'console-schedule-error' : undefined} type="time" lang="es-AR" className={inputClass}
+            </FormField>
+            <FormField htmlFor="console-schedule-end-time" label="Horario de fin (opcional)">
+              <TextField appearance="soft" id="console-schedule-end-time" aria-invalid={invalidField === 'endTime'}
+                aria-describedby={invalidField === 'endTime' ? 'console-schedule-error' : undefined} type="time" lang="es-AR" 
                 value={value.endTime} onChange={event => onScheduleChange({ endTime: event.target.value })}/>
-            </Field>
+            </FormField>
           </div>
     </>
   );

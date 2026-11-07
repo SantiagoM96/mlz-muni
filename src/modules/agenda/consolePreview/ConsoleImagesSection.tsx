@@ -1,6 +1,7 @@
 import type { ConsoleDraft } from './model';
 import { ConsoleImageUpload } from './ConsoleImageUpload';
-import { SectionTitle, consoleCheckboxClass } from './ConsoleFormPrimitives';
+import { SectionTitle } from './ConsoleFormPrimitives';
+import { CheckboxField } from '../../../shared/ui/CheckboxField';
 
 function readLocalImage(file: File | undefined, onReady: (dataUrl: string) => void) {
   if (!file || !file.type.startsWith('image/')) return;
@@ -37,11 +38,10 @@ export function ConsoleImagesSection({ draft, onDraftChange, onGalleryFile, onGa
                     onRemove={() => onGalleryRemove(index)}/>
                 ))}
               </div>
-              <label className="mt-4 flex min-h-7 cursor-pointer items-center gap-2 text-[16px] font-bold text-primary-600">
-                <input type="checkbox" className={consoleCheckboxClass} checked={draft.featured}
-                  onChange={event => onDraftChange({ featured: event.target.checked })} />
+              <CheckboxField className="mt-4" checked={draft.featured}
+                onChange={event => onDraftChange({ featured: event.target.checked })}>
                 Destacar actividad
-              </label>
+              </CheckboxField>
             </section>
   );
 }

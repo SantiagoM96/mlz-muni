@@ -1,7 +1,8 @@
 import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import type { ConsoleDraft } from './model';
 import { CATEGORY_TYPES } from './demoData';
-import { SectionTitle, consoleCheckboxClass } from './ConsoleFormPrimitives';
+import { SectionTitle } from './ConsoleFormPrimitives';
+import { CheckboxField } from '../../../shared/ui/CheckboxField';
 import { FormField } from '../../../shared/ui/FormField';
 import { TextField, SelectControl, TextAreaControl } from '../../../shared/ui/FormControls';
 
@@ -55,12 +56,10 @@ export function ConsoleGeneralInfoSection({
                     placeholder="Contá de qué se trata la actividad" />
                 </FormField>
                 <div className="space-y-3 pt-1">
-                  <label className="flex min-h-7 cursor-pointer items-center gap-2 text-[16px] font-bold text-primary-600">
-                    <input type="checkbox" checked={draft.inclusive}
-                      onChange={event => onDraftChange({ inclusive: event.target.checked })}
-                      className={consoleCheckboxClass} />
+                  <CheckboxField checked={draft.inclusive}
+                    onChange={event => onDraftChange({ inclusive: event.target.checked })}>
                     Disciplina inclusiva
-                  </label>
+                  </CheckboxField>
                 </div>
               </div>
             </section>

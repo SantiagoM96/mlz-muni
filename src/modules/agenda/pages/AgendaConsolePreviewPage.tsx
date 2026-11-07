@@ -12,7 +12,8 @@ import { ConsoleGeneralInfoSection } from '../consolePreview/ConsoleGeneralInfoS
 import { ConsoleRegistrationSection } from '../consolePreview/ConsoleRegistrationSection';
 import { ConsoleImagesSection } from '../consolePreview/ConsoleImagesSection';
 import { getDemoCasePreset } from '../consolePreview/demoCasePreset';
-import { inputClass, labelClass, noteClass } from '../consolePreview/ConsoleFormPrimitives';
+import { labelClass, noteClass } from '../consolePreview/ConsoleFormPrimitives';
+import { SelectControl } from '../../../shared/ui/FormControls';
 import { ConsoleDetailDialog } from '../consolePreview/ConsoleDetailDialog';
 import type { ConsoleDraft } from '../consolePreview/model';
 import { CATEGORY_TYPES, INITIAL_DRAFT, INITIAL_SCHEDULES } from '../consolePreview/demoData';
@@ -95,7 +96,7 @@ export function AgendaConsolePreviewPage() {
             <p className="mb-2 text-[14px] leading-5 text-[#61788b]">
               Elegí un ejemplo para probar la consola. No se guardan ni publican actividades.
             </p>
-            <select id="figma-preset" className={inputClass} value={searchParams.get('caso') ?? ''}
+            <SelectControl id="figma-preset" value={searchParams.get('caso') ?? ''}
               onChange={event => loadDemoCase(event.target.value)}>
               <option value="">Taller de compostaje · Inicial</option>
               {agendaV2ExampleCases.map(example => {
@@ -104,7 +105,7 @@ export function AgendaConsolePreviewPage() {
                   {example.label} · {activity?.title ?? ''}
                 </option>;
               })}
-            </select>
+            </SelectControl>
           </div>
           <Link to="/agenda-de-la-comunidad/actividades"
             className="inline-flex min-h-11 shrink-0 items-center rounded-[4px] px-2 text-[15px] font-bold text-primary-600 hover:underline focus-visible:outline-2 focus-visible:outline-primary-600">
