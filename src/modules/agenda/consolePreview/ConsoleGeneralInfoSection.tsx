@@ -56,7 +56,7 @@ export function ConsoleGeneralInfoSection({
                 </FormField>
                 <div className="space-y-3 pt-1">
                   <label className="flex min-h-7 cursor-pointer items-center gap-2 text-[16px] font-bold text-primary-600">
-                    <TextField type="checkbox" checked={draft.inclusive}
+                    <input type="checkbox" checked={draft.inclusive}
                       onChange={event => onDraftChange({ inclusive: event.target.checked })}
                       className={consoleCheckboxClass} />
                     Disciplina inclusiva
