@@ -20,4 +20,9 @@
   --color-panel: #f3f7fc;
   --color-divider: #e1e7eb;
   --font-sans: Geometria, 'Century Gothic', 'Avenir Next', 'Trebuchet MS', Arial, sans-serif;
+  /* Pares tipográficos reales; Tailwind v4 genera font-size y line-height juntos. */
+  --text-institutional-body: 18px;
+  --text-institutional-body--line-height: 26px;
+  --text-institutional-section: 24px;
+  --text-institutional-section--line-height: 30px;
 }

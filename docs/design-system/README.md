@@ -22,6 +22,8 @@ Esta guía describe el código vigente, no habilita rediseños. Aplica a cualqui
 | `success-500` / `success-600` | `#2abb5b` / `#208c43` | Estados/acciones positivos existentes |
 | `panel` / `divider` | `#f3f7fc` / `#e1e7eb` | Superficies y separadores |
 | `font-sans` | Geometria y fallback existente | Tipografía institucional |
+| `text-institutional-body` | 18px / 26px | Texto de acciones y enlaces institucionales |
+| `text-institutional-section` | 24px / 30px | Encabezados de secciones y tarjetas existentes |
 
 No establecer un color de error, warning o nuevas sombras hasta encontrar un contrato validado y varios usos. Los colores de Agenda específicos (por ejemplo, de filtros) se preservan hasta demostrar equivalencia; un color idéntico no implica automáticamente la misma semántica.
 

@@ -26,7 +26,7 @@ export function SiteFooter() {
         />
 
         <section aria-label="Centro de atención a la comunidad" className="space-y-4">
-          <h2 className="text-[24px] leading-[30px] font-bold">
+          <h2 className="text-institutional-section font-bold">
             Centro de Atención a la Comunidad
           </h2>
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap">
@@ -56,7 +56,7 @@ export function SiteFooter() {
         </nav>
 
         <section aria-label="Redes sociales" className="space-y-4">
-          <h2 className="text-[24px] leading-[30px] font-bold">
+          <h2 className="text-institutional-section font-bold">
             ¡Seguinos en nuestras redes!
           </h2>
           <div className="inline-flex h-12 w-[256px] items-center justify-between rounded bg-white px-4 text-primary-600">
@@ -77,7 +77,7 @@ export function SiteFooter() {
           </div>
         </section>
 
-        <ul className="flex flex-wrap gap-x-4 gap-y-4 text-[18px] leading-[26px]">
+        <ul className="flex flex-wrap gap-x-4 gap-y-4 text-institutional-body">
           {emergencyNumbers.map((entry) => (
             <li key={entry.number}>
               <strong>{entry.number}</strong> {entry.service}

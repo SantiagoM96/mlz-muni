@@ -41,14 +41,14 @@ export function SiteHeader() {
               <Link
                 key={label}
                 to="/"
-                className="inline-flex min-h-12 items-center rounded-[4px] px-4 text-[18px] leading-[26px] font-bold hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white"
+                className="inline-flex min-h-12 items-center rounded-[4px] px-4 text-institutional-body font-bold hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white"
               >
                 {label}
               </Link>
             ) : (
               <span
                 key={label}
-                className="inline-flex min-h-12 items-center gap-2 px-4 text-[18px] leading-[26px] font-bold"
+                className="inline-flex min-h-12 items-center gap-2 px-4 text-institutional-body font-bold"
               >
                 {label}
                 {hasChevron && <MaterialIcon name="chevron_right" size={24} />}
