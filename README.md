@@ -18,6 +18,7 @@ React 19, React Router 7, TypeScript 5.9, Vite 8, Tailwind CSS 4, Material Symbo
 
 ```bash
 npm ci
+python3 -m pip install -r requirements-fonts.txt
 npm run dev
 ```
 
@@ -36,10 +37,12 @@ La URL local se muestra en la salida de Vite. En modo local el `base` es `/`.
 
 ## Organización
 
-- `src/app`, `src/layouts`, `src/pages`: router, layout y páginas.
-- `src/components`: elementos de interfaz compartidos e interfaz pública de Agenda.
-- `src/features/agenda`: dominio, consola, filtros, hooks y utilidades.
-- `src/data`: datos fuente y de demostración.
+- `src/app`: router y composición global.
+- `src/modules/jovenes-en-comunidad`: landing y datos propios del módulo, como primera migración estructural.
+- `src/modules/agenda`: páginas, modelos, utilidades, componentes internos, hooks y consola demostrativa de Agenda V2.
+- `src/modules/agenda/components/public`: componentes públicos de Agenda, exclusivos del módulo (no shared institucional).
+- `src/modules/agenda/data`: datasets, vistas previas y transformaciones editoriales de Agenda; los registros y sus identificadores siguen siendo los originales.
+- `src/shared/layout`, `src/shared/navigation` y `src/shared/ui`: UI institucional realmente compartida entre módulos. Las fuentes y estilos globales conservan sus ubicaciones originales.
 - `src/styles` y `src/assets/fonts`: estilos institucionales y Geometria.
 - `public/assets`: logos, fotografías e ilustraciones.
 - `tests/e2e` y `tests/visual-parity`: QA funcional y paridad visual.
@@ -52,6 +55,7 @@ Se preservan las rutas, los componentes y las reglas existentes. El color instit
 npm ci
 npm run typecheck
 npm run lint
+python3 -m pip install -r requirements-fonts.txt
 npm run build
 npx playwright install chromium
 npm run test:e2e
@@ -59,7 +63,7 @@ npm run test:e2e
 
 Playwright prueba 390, 432, 768 y 1415 px. `npm run test:visual` crea capturas de revisión. El estado de cada ejecución debe consultarse en GitHub Actions; que exista un script no significa que ya se haya ejecutado exitosamente.
 
-## GitHub Pages (preparación únicamente)
+## GitHub Pages (compilación local y publicación controlada)
 
 ```bash
 npm run build:pages
@@ -71,4 +75,4 @@ Este comando **compila localmente**, prepara copias de `index.html` para enlaces
 
 Migrado selectivamente de [`SantiagoM96/mlz`](https://github.com/SantiagoM96/mlz) desde el commit fijo `adc097b3fd6f129e7994b67b24cce46edc2b608b`. El origen no se modifica. No incorporar Crónica, BAE, editores ni prototipos ajenos al alcance municipal.
 
-Consultar [`AGENTS.md`](./AGENTS.md), [documentación de migración](./docs/migracion-frontend-2026-11-06.md), [CI y pruebas](./docs/ci-cd.md) y el [diagnóstico de Agenda V2](./docs/agenda-v2-refactor.md).
+Consultar [`AGENTS.md`](./AGENTS.md), [arquitectura modular](./docs/architecture/overview.md), [límites de módulos](./docs/architecture/module-boundaries.md), [guía para nuevas funcionalidades](./docs/contributing/new-feature.md), [documentación de migración](./docs/migracion-frontend-2026-11-06.md), [CI y pruebas](./docs/ci-cd.md) y el [diagnóstico de Agenda V2](./docs/agenda-v2-refactor.md).

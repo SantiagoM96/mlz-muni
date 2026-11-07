@@ -1,11 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { SiteLayout } from '../layouts/SiteLayout';
+import { SiteLayout } from '../shared/layout/SiteLayout';
 import { HomePage } from '../pages/home/HomePage';
-import { AgendaPage } from '../pages/agenda/AgendaPage';
-import { AgendaHomePage } from '../pages/agenda/AgendaHomePage';
-import { AgendaActivityDetailPage } from '../pages/agenda/AgendaActivityDetailPage';
-import { AgendaConsolePreviewPage } from '../pages/agenda/AgendaConsolePreviewPage';
-import { JovenesEnComunidadPage } from '../pages/jovenes-en-comunidad/JovenesEnComunidadPage';
+import { AgendaPage } from '../modules/agenda/pages/AgendaPage';
+import { AgendaHomePage } from '../modules/agenda/pages/AgendaHomePage';
+import { AgendaActivityDetailPage } from '../modules/agenda/pages/AgendaActivityDetailPage';
+import { JovenesEnComunidadPage } from '../modules/jovenes-en-comunidad/JovenesEnComunidadPage';
 import { NotFoundPage } from '../pages/not-found/NotFoundPage';
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
@@ -21,6 +20,8 @@ const router = createBrowserRouter([{
   ],
 }, {
   path: '/agenda-de-la-comunidad/consola-preview',
-  element: <AgendaConsolePreviewPage />,
+  lazy: async () => ({
+    Component: (await import('../modules/agenda/pages/AgendaConsolePreviewPage')).AgendaConsolePreviewPage,
+  }),
 }], { basename });
 export function AppRouter() { return <RouterProvider router={router} />; }
