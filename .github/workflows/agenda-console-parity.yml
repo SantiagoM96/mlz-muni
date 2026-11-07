@@ -12,6 +12,10 @@ on:
       - 'src/components/agenda/**'
       - 'src/data/agenda**'
       - 'src/styles/**'
+      - 'src/shared/**'
+      - 'src/modules/agenda/**'
+      - 'scripts/fonts/**'
+      - 'requirements-fonts.txt'
       - 'package.json'
       - 'package-lock.json'
       - 'playwright.config.ts'
@@ -60,6 +64,12 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: candidate/package-lock.json
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Instalar herramientas para generar la fuente candidata
+        run: python -m pip install --disable-pip-version-check -r candidate/requirements-fonts.txt
 
       - name: Instalar candidato
         working-directory: candidate
