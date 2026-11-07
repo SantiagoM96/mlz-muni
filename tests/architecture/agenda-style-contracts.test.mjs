@@ -6,8 +6,10 @@ const read = path => readFileSync(new URL('../../' + path, import.meta.url), 'ut
 
 test('CSS institucional no conoce las clases ni animaciones de Agenda', () => {
   const global = read('src/styles/globals.css');
-  assert.doesNotMatch(global, /(?:\\.agenda-|--agenda-|@keyframes agenda-)/);
-  assert.match(global, /html \{ scrollbar-gutter: stable; \}/);
+  for (const forbidden of ['.agenda-', '--agenda-', '@keyframes agenda-']) {
+    assert.ok(!global.includes(forbidden), 'CSS de Agenda filtrado al global: ' + forbidden);
+  }
+  assert.ok(global.includes('html { scrollbar-gutter: stable; }'));
 });
 
 test('Agenda conserva contratos de CSS táctil y motion', () => {
@@ -25,7 +27,10 @@ test('Agenda conserva contratos de CSS táctil y motion', () => {
 });
 
 test('Todas las entradas de Agenda cargan los estilos del módulo', () => {
-  for (const file of ['AgendaPage', 'AgendaHomePage', 'AgendaActivityDetailPage', 'AgendaConsolePreviewPage']) {
-    assert.match(read('src/modules/agenda/pages/' + file + '.tsx'), /import '\\.\\.\\/styles\\/agenda\\.css';/);
+  for (const name of ['AgendaPage', 'AgendaHomePage', 'AgendaActivityDetailPage', 'AgendaConsolePreviewPage']) {
+    assert.ok(
+      read('src/modules/agenda/pages/' + name + '.tsx').includes("import '../styles/agenda.css';"),
+      'El módulo no importa sus estilos: ' + name,
+    );
   }
 });
