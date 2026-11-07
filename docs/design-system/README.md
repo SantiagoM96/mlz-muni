@@ -73,3 +73,9 @@ Extraer solo si (a) hay al menos dos consumidores semánticamente compatibles, o
 - **Pruebas:** E2E de estilos computados y paridad visual por viewport. Los cambios requieren aprobación de CI, no se consideran verificados por existir en documentos.
 
 Ver también [auditoría inicial](./audit-2026-11-07.md), [diagnóstico etapa 2](./adoption-stage2-2026-11-07.md), `AGENTS.md` y `src/modules/agenda/AGENTS.md`.
+
+## Biblioteca React institucional — tercera etapa
+
+La componentización implementada y sus contratos están detallados en [Componentes React](./component-library.md). El inventario de patrones reales y las decisiones de compartir/mantener en cada módulo están en [Matriz de reutilización](./component-matrix.md).
+
+La biblioteca debe **consumirse en código de producción**; los componentes sin consumidores o los wrappers que solo reexpongan `className` no se consideran migración. Conservar la semántica de enlaces, labels nativos, refs y variantes 4/6px. Los modales y badges específicos de Agenda permanecen encapsulados hasta demostrar una API verdaderamente transversal.
