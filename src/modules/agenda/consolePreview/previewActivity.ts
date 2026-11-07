@@ -1,4 +1,4 @@
-import type { AgendaActivity } from '../../../data/agenda';
+import type { AgendaActivity } from '../data/agenda';
 import type { ConsoleDraft, ConsoleSchedule, ConsoleVenue } from './model';
 import { venueById } from './scheduleRules';
 

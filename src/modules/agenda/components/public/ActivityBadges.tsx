@@ -1,4 +1,4 @@
-import type { AgendaActivity } from '../../../../data/agenda';
+import type { AgendaActivity } from '../../data/agenda';
 import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
 
 const styles: Record<AgendaActivity['badges'][number]['kind'], string> = {

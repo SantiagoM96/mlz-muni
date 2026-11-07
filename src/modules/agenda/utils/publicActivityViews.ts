@@ -1,4 +1,4 @@
-import type { AgendaActivity, AgendaSchedule } from '../../../data/agenda';
+import type { AgendaActivity, AgendaSchedule } from '../data/agenda';
 
 /**
  * La consola conserva una única actividad con N programaciones.

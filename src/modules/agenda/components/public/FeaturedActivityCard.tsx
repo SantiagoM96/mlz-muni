@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { AgendaActivity } from '../../../../data/agenda';
+import type { AgendaActivity } from '../../data/agenda';
 import { ActivityBadges } from './ActivityBadges';
 import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
 

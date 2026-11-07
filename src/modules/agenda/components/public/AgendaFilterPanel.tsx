@@ -1,7 +1,7 @@
 import { useState, type RefObject } from 'react';
 import { useAgendaViewportPopover } from '../../hooks/useAgendaViewportPopover';
 import { agendaFilterGroups, toggleFilterValue, type SelectedFilters } from '../../model/filterState';
-import { filterOptions, filterTitles, type FilterGroup } from '../../../../data/agenda';
+import { filterOptions, filterTitles, type FilterGroup } from '../../data/agenda';
 import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
 import { AgendaSheetBackdrop, AgendaSheetHeader } from './AgendaMobileSheet';
 import { useAgendaMobileScrollLock } from '../../hooks/useAgendaMobileScrollLock';

@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode } from 'react';
-import type { AgendaActivity } from '../../../../data/agenda';
+import type { AgendaActivity } from '../../data/agenda';
 import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
 import { ActivityBadges } from './ActivityBadges';
 import { ActivityCharacteristic } from './ActivityCharacteristic';

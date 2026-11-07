@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { argentinaTodayISO } from '../utils/argentinaTodayISO';
-import { agendaV2PreviewActivities } from '../../../data/agenda-v2-previews';
+import { agendaV2PreviewActivities } from '../data/agenda-v2-previews';
 import { AgendaIntro } from '../components/shared/AgendaIntro';
 import { filterAgendaActivities } from '../utils/filterAgendaActivities';
 import { isAgendaActivityVisible } from '../utils/activitySchedules';

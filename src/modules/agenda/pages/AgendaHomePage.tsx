@@ -6,8 +6,8 @@ import { FeaturedActivityCard } from '../components/public/FeaturedActivityCard'
 import { AgendaIntro } from '../components/shared/AgendaIntro';
 import { ActivityCard } from '../components/public/ActivityCard';
 import { AgendaCircuitCard, type AgendaCircuit } from '../components/public/AgendaCircuitCard';
-import { agendaActivities } from '../../../data/agenda';
-import { featuredActivity } from '../../../data/agenda-featured';
+import { agendaActivities } from '../data/agenda';
+import { featuredActivity } from '../data/agenda-featured';
 
 const circuits: AgendaCircuit[] = [
   { title: 'Circuito Cultural', description: 'Obras, funciones, encuentros culturales y propuestas culturales en salas y espacios independientes del municipio.', actionLabel: 'Ir a cartelera', image: import.meta.env.BASE_URL + 'assets/agenda/home-theater.jpg', variant: 'theater' },

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { agendaFilterGroups, countAdvancedFilters, type SelectedFilters } from '../../model/filterState';
-import { filterOptions } from '../../../../data/agenda';
+import { filterOptions } from '../../data/agenda';
 import { AgendaFilterPanel } from './AgendaFilterPanel';
 import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
 import { AgendaDropdown } from './AgendaDropdown';

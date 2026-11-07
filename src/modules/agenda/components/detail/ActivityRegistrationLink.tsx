@@ -1,4 +1,4 @@
-import type { AgendaActivity } from '../../../../data/agenda';
+import type { AgendaActivity } from '../../data/agenda';
 import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
 
 /** Solo URLs absolutas http(s); no convertir textos de inscripción en enlaces. */

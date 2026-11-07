@@ -1,4 +1,4 @@
-import type { AgendaActivity } from '../../../../data/agenda';
+import type { AgendaActivity } from '../../data/agenda';
 
 export function ActivityInformation({ activity }: { activity: AgendaActivity }) {
   const fields = [

@@ -1,4 +1,4 @@
-import type { AgendaActivity } from '../../../data/agenda';
+import type { AgendaActivity } from '../data/agenda';
 import { ActivityBadges } from '../components/public/ActivityBadges';
 import { ActivityScheduleParticipants } from '../components/public/ActivityScheduleParticipants';
 import { ActivityScheduleDateTime } from '../components/public/ActivityScheduleDateTime';

@@ -1,4 +1,4 @@
-import type { AgendaActivity } from '../../../../data/agenda';
+import type { AgendaActivity } from '../../data/agenda';
 
 /** Descripción completa sin recortes ni avisos internos del prototipo. */
 export function ActivityDescription({ activity }: { activity: AgendaActivity }) {
