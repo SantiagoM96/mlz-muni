@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { PageContainer } from '../../../components/layout/PageContainer';
-import { Breadcrumbs } from '../../../components/navigation/Breadcrumbs';
-import { ActivityShare } from '../../../components/agenda/ActivityShare';
-import { ActivityDescription } from '../../../components/agenda/ActivityDescription';
-import { ActivitySummary } from '../../../features/agenda/components/detail/ActivitySummary';
-import { ActivityRegistrationLink } from '../../../features/agenda/components/detail/ActivityRegistrationLink';
-import { ActivityLocationMap } from '../../../features/agenda/components/detail/ActivityLocationMap';
+import { PageContainer } from '../../../shared/layout/PageContainer';
+import { Breadcrumbs } from '../../../shared/navigation/Breadcrumbs';
+import { ActivityShare } from '../components/public/ActivityShare';
+import { ActivityDescription } from '../components/public/ActivityDescription';
+import { ActivitySummary } from '../components/detail/ActivitySummary';
+import { ActivityRegistrationLink } from '../components/detail/ActivityRegistrationLink';
+import { ActivityLocationMap } from '../components/detail/ActivityLocationMap';
 import {
   getActivitySchedulePresentations, getUniqueActivityLocations, isAgendaActivityVisible,
-} from '../../../features/agenda/utils/activitySchedules';
-import { agendaActivities } from '../../../data/agenda';
-import { featuredActivity } from '../../../data/agenda-featured';
-import { agendaV2PreviewActivities } from '../../../data/agenda-v2-previews';
-import { getPublicActivityList, getPublicActivityViews } from '../../../features/agenda/utils/publicActivityViews';
+} from '../utils/activitySchedules';
+import { agendaActivities } from '../data/agenda';
+import { featuredActivity } from '../data/agenda-featured';
+import { agendaV2PreviewActivities } from '../data/agenda-v2-previews';
+import { getPublicActivityList, getPublicActivityViews } from '../utils/publicActivityViews';
 import { NotFoundPage } from '../../../pages/not-found/NotFoundPage';
 
 const editorialActivities = [featuredActivity, ...agendaActivities, ...agendaV2PreviewActivities];

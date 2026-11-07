@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { MaterialIcon } from '../../components/ui/MaterialIcon';
+import { PageContainer } from '../../shared/layout/PageContainer';
+import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 
 export function HomePage() {
   return (

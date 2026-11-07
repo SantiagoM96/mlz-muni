@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
-import { DEMO_VENUES } from '../../src/features/agenda/consolePreview/demoData';
-import { createDemoSchedule, sameScheduleContent, venueById } from '../../src/features/agenda/consolePreview/scheduleRules';
-import { normalizeConsoleSchedule, validateConsoleSchedule, getConsoleScheduleValidationIssue } from '../../src/features/agenda/consolePreview/scheduleEditorRules';
-import { normalizeVenueInput, validateVenueInput } from '../../src/features/agenda/consolePreview/venueRules';
+import { DEMO_VENUES } from '../../src/modules/agenda/consolePreview/demoData';
+import { createDemoSchedule, sameScheduleContent, venueById } from '../../src/modules/agenda/consolePreview/scheduleRules';
+import { normalizeConsoleSchedule, validateConsoleSchedule, getConsoleScheduleValidationIssue } from '../../src/modules/agenda/consolePreview/scheduleEditorRules';
+import { normalizeVenueInput, validateVenueInput } from '../../src/modules/agenda/consolePreview/venueRules';
 
 test.describe('Agenda V2 — contratos puros de programaciones', () => {
   test('una programación nueva conserva valores iniciales de demostración', () => {
