@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { ActionLink } from '../../shared/ui/ActionLink';
 import { PageContainer } from '../../shared/layout/PageContainer';
 
 export function NotFoundPage() {
@@ -6,6 +6,6 @@ export function NotFoundPage() {
     <p className="text-[72px] leading-none font-bold text-primary-600">404</p>
     <h1 className="mt-4 text-[30px] font-bold text-primary-600">No encontramos esta página</h1>
     <p className="mt-3 text-[18px]">Puede que la dirección haya cambiado o que la página todavía no esté disponible.</p>
-    <Link to="/" className="mt-7 inline-flex min-h-12 items-center rounded bg-primary-600 px-6 py-2 font-bold text-white hover:bg-primary-700">Volver al inicio</Link>
+    <ActionLink to="/" className="mt-7">Volver al inicio</ActionLink>
   </PageContainer>;
 }
