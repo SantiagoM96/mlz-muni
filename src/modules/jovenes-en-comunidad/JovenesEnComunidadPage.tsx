@@ -4,6 +4,7 @@ import { Breadcrumbs } from '../../shared/navigation/Breadcrumbs';
 import { PageContainer } from '../../shared/layout/PageContainer';
 import { PageHero } from '../../shared/layout/PageHero';
 import { Button } from '../../shared/ui/Button';
+import { PageTitle } from '../../shared/ui/PageTitle';
 import { TableOfContents } from '../../shared/ui/TableOfContents';
 import { InfoCard } from '../../shared/ui/InfoCard';
 import { IconLink } from '../../shared/ui/IconLink';
@@ -92,9 +93,9 @@ export function JovenesEnComunidadPage() {
           { label: 'Jóvenes en Comunidad' },
         ]}
       />
-      <h1 className="mb-6 text-[32px] leading-[40px] font-bold text-primary-600">
+      <PageTitle className="mb-6">
         Jóvenes en Comunidad
-      </h1>
+      </PageTitle>
 
       {/*
         Mobile en Figma: presentación → índice/contacto → iniciativas.
