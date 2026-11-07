@@ -36,7 +36,7 @@ test('las importaciones relativas y alias explícitos se resuelven dentro del pr
 test('un módulo puede importar su propio modelo y la UI institucional', () => {
   const file = from('modules/agenda/pages/AgendaPage.tsx');
   assert.equal(getBoundaryViolation(file, from('modules/agenda/model/activity'), srcRoot), null);
-  assert.equal(getBoundaryViolation(file, from('components/ui/Button'), srcRoot), null);
+  assert.equal(getBoundaryViolation(file, from('shared/ui/Button'), srcRoot), null);
 });
 
 test('bloquea importaciones cruzadas entre módulos', () => {
@@ -45,9 +45,9 @@ test('bloquea importaciones cruzadas entre módulos', () => {
 });
 
 test('bloquea UI institucional acoplada al dominio de Agenda', () => {
-  const file = from('components/navigation/Breadcrumbs.tsx');
+  const file = from('shared/navigation/Breadcrumbs.tsx');
   assert.match(getBoundaryViolation(file, from('modules/agenda/utils/argentinaTodayISO'), srcRoot), /UI institucional/);
-  assert.match(getBoundaryViolation(from('layouts/SiteLayout.tsx'), from('modules/agenda/model/activity'), srcRoot), /UI institucional/);
+  assert.match(getBoundaryViolation(from('shared/layout/SiteLayout.tsx'), from('modules/agenda/model/activity'), srcRoot), /UI institucional/);
 });
 
 test('app puede componer páginas, no acceder a los fixtures ni utilidades internas', () => {
@@ -69,5 +69,5 @@ test('el modelo solo depende de otros archivos del mismo modelo', () => {
 test('inspecciona imports dinámicos y detecta cruces no permitidos', () => {
   const file = from('modules/agenda/pages/AgendaPage.tsx');
   assert.equal(inspectSourceImports(file, "const page = import('../../jovenes-en-comunidad/JovenesEnComunidadPage');", srcRoot).length, 1);
-  assert.deepEqual(inspectSourceImports(file, "import { Button } from '../../../components/ui/Button';", srcRoot), []);
+  assert.deepEqual(inspectSourceImports(file, "import { Button } from '../../../shared/ui/Button';", srcRoot), []);
 });

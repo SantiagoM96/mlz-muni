@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import { ConsoleVenueSelector } from './ConsoleVenueSelector';
 import { ConsoleScheduleDateFields } from './ConsoleScheduleDateFields';
 import { ConsoleScheduleAdditionalFields } from './ConsoleScheduleAdditionalFields';

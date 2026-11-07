@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { SiteLayout } from '../layouts/SiteLayout';
+import { SiteLayout } from '../shared/layout/SiteLayout';
 import { HomePage } from '../pages/home/HomePage';
 import { AgendaPage } from '../modules/agenda/pages/AgendaPage';
 import { AgendaHomePage } from '../modules/agenda/pages/AgendaHomePage';
