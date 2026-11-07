@@ -1,7 +1,9 @@
 import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import type { ConsoleDraft } from './model';
 import { CATEGORY_TYPES } from './demoData';
-import { FormField, SectionTitle, consoleCheckboxClass, inputClass } from './ConsoleFormPrimitives';
+import { SectionTitle, consoleCheckboxClass } from './ConsoleFormPrimitives';
+import { FormField } from '../../../shared/ui/FormField';
+import { TextField, SelectControl, TextAreaControl } from '../../../shared/ui/FormControls';
 
 interface Props {
   draft: ConsoleDraft;
@@ -20,24 +22,24 @@ export function ConsoleGeneralInfoSection({
               <div id="console-information"><SectionTitle number={1} title="Información general" /></div>
               <div className="space-y-4">
                 <FormField label="Título" htmlFor="console-title">
-                  <input id="console-title" className={inputClass} value={draft.title}
+                  <TextField id="console-title"  value={draft.title}
                     onChange={event => onDraftChange({ title: event.target.value })} placeholder="Nombre de la actividad" />
                 </FormField>
                 <div className="grid min-w-0 gap-4 sm:grid-cols-2">
                   <FormField label="Categoría" htmlFor="console-category">
-                    <select id="console-category" className={inputClass} value={draft.category}
+                    <SelectControl id="console-category"  value={draft.category}
                       onChange={event => onCategoryChange(event.target.value)}>
                       {Object.keys(CATEGORY_TYPES).map(category => (
                         <option key={category} value={category}>{category}</option>
                       ))}
-                    </select>
+                    </SelectControl>
                   </FormField>
                   <FormField label="Tipo de actividad" htmlFor="console-type">
-                    <select id="console-type" className={inputClass} value={draft.type}
+                    <SelectControl id="console-type"  value={draft.type}
                       onChange={event => onDraftChange({ type: event.target.value })}>
                       {[...new Set([...(typesByCategory[draft.category] ?? []), draft.type])].map(type =>
                         <option key={type} value={type}>{type}</option>)}
-                    </select>
+                    </SelectControl>
                     <button type="button" onClick={() => onAddType()}
                       className="mt-2 inline-flex min-h-10 items-center gap-1.5 rounded-[6px] text-[15px] font-bold text-primary-600 hover:underline">
                       <MaterialIcon name="add" size={19}/> Agregar tipo de actividad
@@ -48,7 +50,7 @@ export function ConsoleGeneralInfoSection({
                   Las categorías son fijas; los tipos se pueden agregar desde la consola.
                 </p>
                 <FormField label="Descripción general" htmlFor="console-description">
-                  <textarea id="console-description" rows={4} className={inputClass + ' min-h-[120px] resize-y'}
+                  <TextAreaControl id="console-description" rows={4} className="min-h-[120px] resize-y"
                     value={draft.description} onChange={event => onDraftChange({ description: event.target.value })}
                     placeholder="Contá de qué se trata la actividad" />
                 </FormField>

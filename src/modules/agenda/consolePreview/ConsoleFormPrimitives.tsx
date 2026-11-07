@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react';
-
 // Estilos de la consola existente: conservar el radio 4px del formulario.
 // Los controles del editor de programaciones usan un radio distinto.
 /** Base visual compartida solo por los dos formularios de la consola Agenda. */
@@ -11,18 +9,6 @@ export const inputClass = consoleInputBaseClass + ' rounded-[4px] transition-col
 export const consoleCheckboxClass = 'h-5 w-5 accent-primary-600';
 export const labelClass = 'mb-1.5 block text-[16px] font-bold leading-6 text-primary-600';
 export const noteClass = 'mt-2 text-[14px] leading-[21px] text-[#718092]';
-
-export function FormField({ label, htmlFor, children, hint }: {
-  label: string; htmlFor: string; children: ReactNode; hint?: string;
-}) {
-  return (
-    <div className="min-w-0">
-      <label className={labelClass} htmlFor={htmlFor}>{label}</label>
-      {children}
-      {hint && <p className={noteClass}>{hint}</p>}
-    </div>
-  );
-}
 
 export function SectionTitle({ number, title, subtitle }: { number: number; title: string; subtitle?: string }) {
   return (
