@@ -1,3 +1,4 @@
+import '../styles/agenda.css';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PageContainer } from '../../../shared/layout/PageContainer';
