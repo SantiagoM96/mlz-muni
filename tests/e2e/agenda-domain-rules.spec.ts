@@ -36,7 +36,7 @@ test.describe('Agenda — contratos puros de fecha, filtros y programaciones', (
   });
 
   test('la búsqueda es insensible a mayúsculas y tildes', () => {
-    const items = [activity('music', today, 'Música en la Plaza'), activity('garden', today, 'Huerta')];
+    const items = [activity('music', today, 'Música en la Plaza'), activity('garden', today, 'Huerta', { type: 'Taller' })];
     expect(filterAgendaActivities('MUSICA', emptyFilters(), 'default', today, items).map(item => item.id))
       .toEqual(['music']);
   });
