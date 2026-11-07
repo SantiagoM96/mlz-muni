@@ -1,5 +1,5 @@
 import { useRef, useState, type FormEvent } from 'react';
-import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import { useConsoleDialogFocus } from './useConsoleDialogFocus';
 
 /** La categoría es fija; cada categoría admite nuevos tipos administrables. */
