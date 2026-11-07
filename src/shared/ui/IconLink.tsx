@@ -18,7 +18,7 @@ export function IconLink({
   return (
     <a
       {...rest}
-      className={`flex min-h-[26px] items-start gap-1 rounded-[4px] text-[18px] leading-[26px] font-bold text-primary-600 no-underline hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${className}`}
+      className={`flex min-h-[26px] items-start gap-1 rounded-[4px] text-institutional-body font-bold text-primary-600 no-underline hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 ${className}`}
     >
       {brandIcon ? (
         <img
