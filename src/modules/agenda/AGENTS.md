@@ -1,6 +1,6 @@
 # Agenda — instrucciones específicas para agentes
 
-Estas reglas complementan [AGENTS.md de la raíz](../../../AGENTS.md) y se aplican al código de `src/features/agenda/` y a sus consumidores en `src/components/agenda/` y `src/modules/agenda/pages/`.
+Estas reglas complementan [AGENTS.md de la raíz](../../../AGENTS.md) y se aplican al código de `src/modules/agenda/` y a sus consumidores en `src/components/agenda/` y `src/modules/agenda/pages/`.
 
 ## Contratos de las vistas
 

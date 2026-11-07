@@ -39,4 +39,4 @@ Documentar: archivos movidos, antiguos y nuevos consumidores, invariantes conser
 
 ## Migración parcial de las páginas de Agenda
 
-Las cuatro páginas de Agenda están en `src/modules/agenda/pages/`, incluida `AgendaConsolePreviewPage`; el router conserva exactamente las mismas rutas y el mismo `basename`. Por el momento importan componentes y datos de las carpetas heredadas. Esta excepción temporal está documentada y no autoriza a módulos futuros a importar código interno de Agenda.
+Las cuatro páginas de Agenda están en `src/modules/agenda/pages/`, incluida `AgendaConsolePreviewPage`; el router conserva las mismas rutas y el mismo `basename`. Los modelos, hooks, utilidades y la consola ya se incorporaron al mismo módulo. Por ahora, los componentes públicos y datos editoriales permanecen en `src/components/agenda/` y `src/data/agenda*.ts`. Esta excepción temporal no autoriza a módulos futuros a importar código interno de Agenda.

@@ -1,14 +1,14 @@
 import { useState, type RefObject } from 'react';
-import { useAgendaViewportPopover } from '../../features/agenda/hooks/useAgendaViewportPopover';
-import { agendaFilterGroups, toggleFilterValue, type SelectedFilters } from '../../features/agenda/model/filterState';
+import { useAgendaViewportPopover } from '../../modules/agenda/hooks/useAgendaViewportPopover';
+import { agendaFilterGroups, toggleFilterValue, type SelectedFilters } from '../../modules/agenda/model/filterState';
 import { filterOptions, filterTitles, type FilterGroup } from '../../data/agenda';
 import { MaterialIcon } from '../ui/MaterialIcon';
 import { AgendaSheetBackdrop, AgendaSheetHeader } from './AgendaMobileSheet';
 import { useAgendaMobileScrollLock } from './useAgendaMobileScrollLock';
 import { useAgendaSheetDismiss } from './useAgendaSheetDismiss';
 
-export { emptyFilters } from '../../features/agenda/model/filterState';
-export type { SelectedFilters } from '../../features/agenda/model/filterState';
+export { emptyFilters } from '../../modules/agenda/model/filterState';
+export type { SelectedFilters } from '../../modules/agenda/model/filterState';
 
 type Props = {
   value: SelectedFilters;

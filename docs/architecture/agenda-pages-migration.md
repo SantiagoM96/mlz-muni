@@ -12,3 +12,5 @@ Este cambio traslada las cuatro páginas de Agenda V2 desde `src/pages/agenda/` 
 ## Control de riesgos
 
 Verificar TypeScript, lint, build y Playwright por cuatro viewports. Inspeccionar rutas directas y refresco en GitHub Pages. Comparar snapshots existentes cuando aplique. Una migración mecánica no prueba ausencia de regresión visual por sí sola. No unir este PR hasta que sus antecesores estén validados.
+
+> En una etapa posterior, las reglas, componentes internos, hooks y consola pasaron de `src/features/agenda/` a `src/modules/agenda/`. La descripción anterior registra el alcance original de la migración de páginas.

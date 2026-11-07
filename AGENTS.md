@@ -13,7 +13,7 @@ Este repositorio `mlz-muni` aloja funcionalidades municipales autorizadas. Actua
 ## Arquitectura
 - La arquitectura objetivo agrupa cada funcionalidad autorizada bajo `src/modules/<nombre>/`; crear únicamente subcarpetas con responsabilidad real. Ver `docs/architecture/overview.md` y `module-boundaries.md`.
 - `src/modules/jovenes-en-comunidad` es el primer módulo migrado: posee su página y datos editoriales.
-- Durante la transición, `src/modules/agenda/pages`, `src/components/agenda`, `src/features/agenda` y `src/data/agenda*.ts` mantienen su ubicación original; migrarlos requiere PRs separados.
+- Agenda V2 tiene sus páginas, modelos, componentes internos, consola, hooks y utilidades bajo `src/modules/agenda`. Durante la transición, componentes públicos específicos en `src/components/agenda` y fixtures en `src/data/agenda*.ts` permanecen en su ubicación anterior; migrarlos requiere PRs separados.
 - `src/layouts`, `src/components/layout`, `src/components/navigation` y `src/components/ui` son infraestructura institucional existente, pendiente de una eventual consolidación en `shared`, no un permiso para agregar allí código de Agenda.
 - `src/data/agenda*.ts` se considera fuente original inmutable durante trabajos de arquitectura.
 - `app` configura rutas, los módulos son propietarios de su lógica y `shared` no debe importar módulos municipales. Ningún módulo debe importar internals de otro módulo.
@@ -25,7 +25,7 @@ Este repositorio `mlz-muni` aloja funcionalidades municipales autorizadas. Actua
 - Mantener diseño, componentes, spacing, breakpoints y comportamiento aprobado. No consultar Figma en la fase de migración; las referencias de diseño heredadas son documentales.
 - Preservar filtros, chips, búsqueda, navegación, scroll restoration, teclado, focus/escape, diálogos, scroll lock y animaciones móviles; no alterar curvas de motion sin pruebas.
 - Utilizar HTML semántico, controles accesibles y verificar anchos 390, 432, 768, 1415 px sin overflow horizontal.
-- Consultar también `src/features/agenda/AGENTS.md` para contratos específicos.
+- Consultar también `src/modules/agenda/AGENTS.md` para contratos específicos.
 
 ## GitHub / CI
 - `vite.config.ts`: `/` en desarrollo y `/mlz-muni/` al compilar con `--mode pages`.

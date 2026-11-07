@@ -1,10 +1,10 @@
 import { importedActivityRows } from './agenda-imported';
 import { originalActivityDescriptions } from './agenda-descriptions';
 
-import type { AgendaActivity, FilterGroup } from '../features/agenda/model/activity';
-export type { ActivityCategory, FilterGroup, AgendaScheduleType, AgendaSchedule, AgendaRegistrationMode, AgendaActivity } from '../features/agenda/model/activity';
+import type { AgendaActivity, FilterGroup } from '../modules/agenda/model/activity';
+export type { ActivityCategory, FilterGroup, AgendaScheduleType, AgendaSchedule, AgendaRegistrationMode, AgendaActivity } from '../modules/agenda/model/activity';
 
-export { argentinaTodayISO } from '../features/agenda/utils/argentinaTodayISO';
+export { argentinaTodayISO } from '../modules/agenda/utils/argentinaTodayISO';
 
 /**
  * Pictogramas originales del frame ANDY / BUSCADOR en Figma.

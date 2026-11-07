@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { PageContainer } from '../../../components/layout/PageContainer';
 import { MaterialIcon } from '../../../components/ui/MaterialIcon';
 import { FeaturedActivityCard } from '../../../components/agenda/FeaturedActivityCard';
-import { AgendaIntro } from '../../../features/agenda/components/shared/AgendaIntro';
+import { AgendaIntro } from '../components/shared/AgendaIntro';
 import { ActivityCard } from '../../../components/agenda/ActivityCard';
 import { AgendaCircuitCard, type AgendaCircuit } from '../../../components/agenda/AgendaCircuitCard';
 import { agendaActivities } from '../../../data/agenda';

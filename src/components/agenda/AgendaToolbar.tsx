@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { agendaFilterGroups, countAdvancedFilters, type SelectedFilters } from '../../features/agenda/model/filterState';
+import { agendaFilterGroups, countAdvancedFilters, type SelectedFilters } from '../../modules/agenda/model/filterState';
 import { filterOptions } from '../../data/agenda';
 import { AgendaFilterPanel } from './AgendaFilterPanel';
 import { MaterialIcon } from '../ui/MaterialIcon';

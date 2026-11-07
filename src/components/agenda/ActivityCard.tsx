@@ -5,9 +5,9 @@ import { ActivityBadges } from './ActivityBadges';
 import { ActivityCharacteristic } from './ActivityCharacteristic';
 import { ActivityScheduleDateTime } from './ActivityScheduleDateTime';
 import { ActivityScheduleParticipants } from './ActivityScheduleParticipants';
-import { formatActivityCardAddress } from '../../features/agenda/utils/formatActivityAddress';
+import { formatActivityCardAddress } from '../../modules/agenda/utils/formatActivityAddress';
 import { Link } from 'react-router-dom';
-import { getActivitySchedulePresentations } from '../../features/agenda/utils/activitySchedules';
+import { getActivitySchedulePresentations } from '../../modules/agenda/utils/activitySchedules';
 
 type Props = {
   activity: AgendaActivity;

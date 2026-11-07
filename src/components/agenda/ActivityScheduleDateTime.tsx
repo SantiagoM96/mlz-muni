@@ -1,4 +1,4 @@
-import type { AgendaSchedulePresentation } from '../../features/agenda/utils/activitySchedules';
+import type { AgendaSchedulePresentation } from '../../modules/agenda/utils/activitySchedules';
 import { ActivityCharacteristic } from './ActivityCharacteristic';
 
 /**
