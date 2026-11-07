@@ -1,7 +1,7 @@
 import type { AgendaActivity } from '../../../../data/agenda';
-import { ActivityBadges } from '../../../../components/agenda/ActivityBadges';
-import { ActivityScheduleDateTime } from '../../../../components/agenda/ActivityScheduleDateTime';
-import { ActivityScheduleParticipants } from '../../../../components/agenda/ActivityScheduleParticipants';
+import { ActivityBadges } from '../public/ActivityBadges';
+import { ActivityScheduleDateTime } from '../public/ActivityScheduleDateTime';
+import { ActivityScheduleParticipants } from '../public/ActivityScheduleParticipants';
 import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
 import { getActivityMapUrl } from '../../utils/activityMap';
 import { formatActivityAddress } from '../../utils/formatActivityAddress';

@@ -10,6 +10,10 @@ src/modules/agenda/
 ├── utils/
 ├── hooks/
 ├── components/
+│   ├── public/
+│   ├── detail/
+│   ├── filters/
+│   └── shared/
 └── consolePreview/
 ```
 
@@ -23,7 +27,7 @@ src/modules/agenda/
 
 ## Pendiente
 
-- Trasladar `src/components/agenda/` al módulo como componentes públicos, sin convertirlos en shared institucionales.
+- Los componentes públicos se trasladaron desde `src/components/agenda/` a `src/modules/agenda/components/public/`; los dos hooks de interacción se movieron a `src/modules/agenda/hooks/`.
 - Separar y trasladar `src/data/agenda*.ts` manteniendo IDs, imágenes, textos y semántica editorial.
 - Re-evaluar el `src/shared` institucional, una vez demostrados contratos transversales entre módulos.
 - Verificar TypeScript, lint, build, cuatro proyectos Playwright y paridad visual, antes de integrar.

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import type { AgendaActivity } from '../../../data/agenda';
-import { ActivityDescription } from '../../../components/agenda/ActivityDescription';
+import { ActivityDescription } from '../components/public/ActivityDescription';
 import { MaterialIcon } from '../../../components/ui/MaterialIcon';
 import { ActivityRegistrationLink } from '../components/detail/ActivityRegistrationLink';
 import { ActivityLocationMap } from '../components/detail/ActivityLocationMap';

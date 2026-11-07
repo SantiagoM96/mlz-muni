@@ -1,5 +1,5 @@
 import { useEffect, useRef, type PointerEvent } from 'react';
-import { MaterialIcon } from '../ui/MaterialIcon';
+import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
 
 /** Backdrop separado del contenido para poder animar el cierre. */
 export function AgendaSheetBackdrop({ onClose }: { onClose: () => void }) {

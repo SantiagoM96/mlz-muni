@@ -6,11 +6,11 @@ import { filterAgendaActivities } from '../utils/filterAgendaActivities';
 import { isAgendaActivityVisible } from '../utils/activitySchedules';
 import { getPublicActivityList } from '../utils/publicActivityViews';
 import { PageContainer } from '../../../components/layout/PageContainer';
-import { ActivityCard } from '../../../components/agenda/ActivityCard';
-import { AgendaToolbar } from '../../../components/agenda/AgendaToolbar';
+import { ActivityCard } from '../components/public/ActivityCard';
+import { AgendaToolbar } from '../components/public/AgendaToolbar';
 import { AgendaSortDropdown } from '../components/filters/AgendaSortDropdown';
 import type { AgendaSortValue } from '../model/sort';
-import { AgendaPromo } from '../../../components/agenda/AgendaPromo';
+import { AgendaPromo } from '../components/public/AgendaPromo';
 import { emptyFilters, type SelectedFilters } from '../model/filterState';
 
 /**

@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PageContainer } from '../../../components/layout/PageContainer';
 import { MaterialIcon } from '../../../components/ui/MaterialIcon';
-import { FeaturedActivityCard } from '../../../components/agenda/FeaturedActivityCard';
+import { FeaturedActivityCard } from '../components/public/FeaturedActivityCard';
 import { AgendaIntro } from '../components/shared/AgendaIntro';
-import { ActivityCard } from '../../../components/agenda/ActivityCard';
-import { AgendaCircuitCard, type AgendaCircuit } from '../../../components/agenda/AgendaCircuitCard';
+import { ActivityCard } from '../components/public/ActivityCard';
+import { AgendaCircuitCard, type AgendaCircuit } from '../components/public/AgendaCircuitCard';
 import { agendaActivities } from '../../../data/agenda';
 import { featuredActivity } from '../../../data/agenda-featured';
 

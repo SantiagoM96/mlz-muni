@@ -1,8 +1,8 @@
 import { useId, useRef, useState } from 'react';
 import { MaterialIcon } from '../../../../components/ui/MaterialIcon';
-import { AgendaSheetBackdrop, AgendaSheetHeader } from '../../../../components/agenda/AgendaMobileSheet';
-import { useAgendaMobileScrollLock } from '../../../../components/agenda/useAgendaMobileScrollLock';
-import { useAgendaSheetDismiss } from '../../../../components/agenda/useAgendaSheetDismiss';
+import { AgendaSheetBackdrop, AgendaSheetHeader } from '../public/AgendaMobileSheet';
+import { useAgendaMobileScrollLock } from '../../hooks/useAgendaMobileScrollLock';
+import { useAgendaSheetDismiss } from '../../hooks/useAgendaSheetDismiss';
 import { useAgendaOutsideDismiss } from '../../hooks/useAgendaOutsideDismiss';
 import type { AgendaSortValue } from '../../model/sort';
 
