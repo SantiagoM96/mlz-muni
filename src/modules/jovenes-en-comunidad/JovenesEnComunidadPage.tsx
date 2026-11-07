@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { Breadcrumbs } from '../../components/navigation/Breadcrumbs';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { PageHero } from '../../components/layout/PageHero';
-import { Button } from '../../components/ui/Button';
-import { TableOfContents } from '../../components/ui/TableOfContents';
-import { InfoCard } from '../../components/ui/InfoCard';
-import { IconLink } from '../../components/ui/IconLink';
-import { MaterialIcon } from '../../components/ui/MaterialIcon';
+import { Breadcrumbs } from '../../shared/navigation/Breadcrumbs';
+import { PageContainer } from '../../shared/layout/PageContainer';
+import { PageHero } from '../../shared/layout/PageHero';
+import { Button } from '../../shared/ui/Button';
+import { TableOfContents } from '../../shared/ui/TableOfContents';
+import { InfoCard } from '../../shared/ui/InfoCard';
+import { IconLink } from '../../shared/ui/IconLink';
+import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { initiatives, introduction, type ContentBlock, type Initiative } from './data/jovenes';
 
 const instagramUrl = 'https://www.instagram.com/jovenesencomunidad/';

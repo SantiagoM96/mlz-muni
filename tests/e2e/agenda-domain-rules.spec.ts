@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
-import type { AgendaActivity, AgendaSchedule } from '../../src/features/agenda/model/activity';
-import { emptyFilters } from '../../src/features/agenda/model/filterState';
-import { argentinaTodayISO } from '../../src/features/agenda/utils/argentinaTodayISO';
-import { filterAgendaActivities } from '../../src/features/agenda/utils/filterAgendaActivities';
-import { getActivitySchedulePresentations, isAgendaActivityVisible } from '../../src/features/agenda/utils/activitySchedules';
+import type { AgendaActivity, AgendaSchedule } from '../../src/modules/agenda/model/activity';
+import { emptyFilters } from '../../src/modules/agenda/model/filterState';
+import { argentinaTodayISO } from '../../src/modules/agenda/utils/argentinaTodayISO';
+import { filterAgendaActivities } from '../../src/modules/agenda/utils/filterAgendaActivities';
+import { getActivitySchedulePresentations, isAgendaActivityVisible } from '../../src/modules/agenda/utils/activitySchedules';
 
 const today = '2026-11-07';
 
