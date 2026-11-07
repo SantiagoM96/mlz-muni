@@ -11,3 +11,7 @@ coverage/
 # Playwright / Chromium QA
 playwright-report/
 test-results/
+
+# Font subset derivado de la dependencia npm fijada
+src/assets/fonts/material-symbols-outlined-subset.woff2
+src/assets/fonts/.material-symbols-subset.json
