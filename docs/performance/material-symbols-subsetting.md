@@ -29,3 +29,7 @@ El generador **falla** si una ligadura desaparece, si cambia el glifo final, si 
 Se añade **una herramienta Python solo para construir assets**, no una dependencia del frontend en runtime. Requiere Python 3.11+ para uharfbuzz. Un entorno sin Python o sin el set de dependencias falla explícitamente con instrucciones de instalación; no existe fallback silencioso que descargue fuentes de Google. Los workflows incorporan el requisito antes de compilar.
 
 Fuentes: [guía Material Symbols](https://developers.google.com/fonts/docs/material_symbols) y [fontTools subset](https://fonttools.readthedocs.io/en/latest/subset/).
+
+## Licencia y redistribución
+
+Material Symbols es obra de Google distribuida bajo Apache-2.0. El sitio incluye la licencia íntegra y un aviso de atribución en `public/assets/licenses/`. El subset es una modificación técnica consistente en eliminar glifos no utilizados; sus contornos y ejes permanecen intactos.
