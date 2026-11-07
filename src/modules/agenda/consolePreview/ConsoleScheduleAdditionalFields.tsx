@@ -1,5 +1,6 @@
 import type { ConsoleSchedule } from './model';
 import { Field, inputClass } from './ConsoleScheduleFormPrimitives';
+import { consoleCheckboxClass } from './ConsoleFormPrimitives';
 
 interface Props {
   value: ConsoleSchedule;
@@ -13,7 +14,7 @@ export function ConsoleScheduleAdditionalFields({ value, onScheduleChange }: Pro
           <label className="flex min-h-11 cursor-pointer items-center gap-2 text-[16px] font-bold text-primary-600">
             <input type="checkbox" checked={value.suspendedByRain}
               onChange={event => onScheduleChange({ suspendedByRain: event.target.checked })}
-              className="h-5 w-5 accent-[#236999]"/> Se suspende por lluvia
+              className={consoleCheckboxClass}/> Se suspende por lluvia
           </label>
           <div className="grid gap-4 sm:grid-cols-[220px_minmax(0,1fr)]">
             <Field id="console-schedule-participants-type" label="Participantes (tipo)">
