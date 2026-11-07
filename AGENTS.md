@@ -32,3 +32,7 @@ Este repositorio `mlz-muni` aloja funcionalidades municipales autorizadas. Actua
 - CI valida PRs con TypeScript, ESLint, build y Playwright; un workflow especial compara la primera migración con `adc097b3fd6f129e7994b67b24cce46edc2b608b`.
 - Por autorización posterior del usuario, `pages.yml` despliega el preview de GitHub Pages después de pushes a `main` y por ejecución manual. No conectar Vercel, otros entornos ni redirecciones sin nueva autorización.
 - Registrar riesgos, validaciones y regresiones en el PR. La comparación pixel a pixel y la revisión humana son cosas diferentes.
+
+## Fuente de íconos
+- El archivo `src/styles/material-symbols.css` usa un subconjunto variable autohospedado, generado desde la fuente `material-symbols` fijada en npm. No volver al import completo ni agregar una URL externa sin mediciones y aprobación.
+- `MaterialIconName` es la fuente única de ligaduras permitidas. Para ampliar la lista, ejecutar `npm run fonts:build` y comprobar que no se modifican glifos ni ejes.
