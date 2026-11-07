@@ -38,7 +38,7 @@ La URL local se muestra en la salida de Vite. En modo local el `base` es `/`.
 
 - `src/app`: router y composición global.
 - `src/modules/jovenes-en-comunidad`: landing y datos propios del módulo, como primera migración estructural.
-- `src/pages/agenda`, `src/components/agenda`, `src/features/agenda` y `src/data/agenda*.ts`: Agenda V2, todavía en estructura heredada para evitar una migración masiva.
+- `src/modules/agenda/pages`: páginas públicas y consola de Agenda V2; el resto de Agenda sigue en `src/components/agenda`, `src/features/agenda` y `src/data/agenda*.ts` hasta siguientes PRs.
 - `src/layouts`, `src/components/layout`, `src/components/navigation` y `src/components/ui`: UI institucional existente, reutilizable cuando haya un contrato transversal real.
 - `src/styles` y `src/assets/fonts`: estilos institucionales y Geometria.
 - `public/assets`: logos, fotografías e ilustraciones.

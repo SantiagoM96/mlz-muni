@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import type { AgendaActivity } from '../../data/agenda';
-import { agendaV2ExampleCases, agendaV2PreviewActivities } from '../../data/agenda-v2-previews';
-import { MaterialIcon } from '../../components/ui/MaterialIcon';
-import { ConsoleScheduleEditorDialog } from '../../features/agenda/consolePreview/ConsoleScheduleEditorDialog';
-import { ConsoleTypeEditorDialog } from '../../features/agenda/consolePreview/ConsoleTypeEditorDialog';
-import { ScheduleTable } from '../../features/agenda/consolePreview/ScheduleTable';
-import { CardPreview } from '../../features/agenda/consolePreview/ConsoleCardPreview';
-import { ConsoleGeneralInfoSection } from '../../features/agenda/consolePreview/ConsoleGeneralInfoSection';
-import { ConsoleRegistrationSection } from '../../features/agenda/consolePreview/ConsoleRegistrationSection';
-import { ConsoleImagesSection } from '../../features/agenda/consolePreview/ConsoleImagesSection';
-import { getDemoCasePreset } from '../../features/agenda/consolePreview/demoCasePreset';
-import { inputClass, labelClass, noteClass } from '../../features/agenda/consolePreview/ConsoleFormPrimitives';
-import { ConsoleDetailDialog } from '../../features/agenda/consolePreview/ConsoleDetailDialog';
-import type { ConsoleDraft } from '../../features/agenda/consolePreview/model';
-import { CATEGORY_TYPES, INITIAL_DRAFT, INITIAL_SCHEDULES } from '../../features/agenda/consolePreview/demoData';
-import { useConsoleSchedules } from '../../features/agenda/consolePreview/useConsoleSchedules';
+import type { AgendaActivity } from '../../../data/agenda';
+import { agendaV2ExampleCases, agendaV2PreviewActivities } from '../../../data/agenda-v2-previews';
+import { MaterialIcon } from '../../../components/ui/MaterialIcon';
+import { ConsoleScheduleEditorDialog } from '../../../features/agenda/consolePreview/ConsoleScheduleEditorDialog';
+import { ConsoleTypeEditorDialog } from '../../../features/agenda/consolePreview/ConsoleTypeEditorDialog';
+import { ScheduleTable } from '../../../features/agenda/consolePreview/ScheduleTable';
+import { CardPreview } from '../../../features/agenda/consolePreview/ConsoleCardPreview';
+import { ConsoleGeneralInfoSection } from '../../../features/agenda/consolePreview/ConsoleGeneralInfoSection';
+import { ConsoleRegistrationSection } from '../../../features/agenda/consolePreview/ConsoleRegistrationSection';
+import { ConsoleImagesSection } from '../../../features/agenda/consolePreview/ConsoleImagesSection';
+import { getDemoCasePreset } from '../../../features/agenda/consolePreview/demoCasePreset';
+import { inputClass, labelClass, noteClass } from '../../../features/agenda/consolePreview/ConsoleFormPrimitives';
+import { ConsoleDetailDialog } from '../../../features/agenda/consolePreview/ConsoleDetailDialog';
+import type { ConsoleDraft } from '../../../features/agenda/consolePreview/model';
+import { CATEGORY_TYPES, INITIAL_DRAFT, INITIAL_SCHEDULES } from '../../../features/agenda/consolePreview/demoData';
+import { useConsoleSchedules } from '../../../features/agenda/consolePreview/useConsoleSchedules';
 
 function mobileViewTabClassName(selected: boolean): string {
   return 'min-h-11 flex-1 rounded-[6px] px-3 text-[16px] font-bold focus-visible:outline-2 focus-visible:outline-primary-600 ' +

@@ -13,7 +13,7 @@ Este repositorio `mlz-muni` aloja funcionalidades municipales autorizadas. Actua
 ## Arquitectura
 - La arquitectura objetivo agrupa cada funcionalidad autorizada bajo `src/modules/<nombre>/`; crear únicamente subcarpetas con responsabilidad real. Ver `docs/architecture/overview.md` y `module-boundaries.md`.
 - `src/modules/jovenes-en-comunidad` es el primer módulo migrado: posee su página y datos editoriales.
-- Durante la transición, `src/pages/agenda`, `src/components/agenda`, `src/features/agenda` y `src/data/agenda*.ts` mantienen su ubicación original; migrarlos requiere PRs separados.
+- Durante la transición, `src/modules/agenda/pages`, `src/components/agenda`, `src/features/agenda` y `src/data/agenda*.ts` mantienen su ubicación original; migrarlos requiere PRs separados.
 - `src/layouts`, `src/components/layout`, `src/components/navigation` y `src/components/ui` son infraestructura institucional existente, pendiente de una eventual consolidación en `shared`, no un permiso para agregar allí código de Agenda.
 - `src/data/agenda*.ts` se considera fuente original inmutable durante trabajos de arquitectura.
 - `app` configura rutas, los módulos son propietarios de su lógica y `shared` no debe importar módulos municipales. Ningún módulo debe importar internals de otro módulo.

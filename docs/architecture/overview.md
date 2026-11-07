@@ -16,7 +16,7 @@ El repositorio puede alojar módulos municipales autorizados de distinta complej
 ## Estado comprobado de la transición
 
 1. `src/modules/jovenes-en-comunidad/` es el primer módulo piloto: su página y sus datos editoriales se mantienen juntos.
-2. Agenda conserva **por ahora** `src/pages/agenda/`, `src/features/agenda/`, `src/components/agenda/` y `src/data/agenda*.ts`. La consolidación será mediante PRs separados con caracterización de comportamiento previa.
+2. Las páginas de Agenda ya se ubican en `src/modules/agenda/pages/`; sus componentes, reglas y datos siguen en `src/features/agenda/`, `src/components/agenda/` y `src/data/agenda*.ts` hasta una consolidación en PRs separados, con pruebas de caracterización.
 3. El diseño institucional conserva `src/layouts/`, `src/components/layout/`, `src/components/navigation/`, `src/components/ui/`, `src/styles/` y las fuentes existentes. No moverlos por estética.
 4. El router mantiene rutas públicas, `basename` y tratamiento actual de GitHub Pages.
 

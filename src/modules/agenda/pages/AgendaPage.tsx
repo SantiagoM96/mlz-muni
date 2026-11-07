@@ -1,17 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
-import { argentinaTodayISO } from '../../features/agenda/utils/argentinaTodayISO';
-import { agendaV2PreviewActivities } from '../../data/agenda-v2-previews';
-import { AgendaIntro } from '../../features/agenda/components/shared/AgendaIntro';
-import { filterAgendaActivities } from '../../features/agenda/utils/filterAgendaActivities';
-import { isAgendaActivityVisible } from '../../features/agenda/utils/activitySchedules';
-import { getPublicActivityList } from '../../features/agenda/utils/publicActivityViews';
-import { PageContainer } from '../../components/layout/PageContainer';
-import { ActivityCard } from '../../components/agenda/ActivityCard';
-import { AgendaToolbar } from '../../components/agenda/AgendaToolbar';
-import { AgendaSortDropdown } from '../../features/agenda/components/filters/AgendaSortDropdown';
-import type { AgendaSortValue } from '../../features/agenda/model/sort';
-import { AgendaPromo } from '../../components/agenda/AgendaPromo';
-import { emptyFilters, type SelectedFilters } from '../../features/agenda/model/filterState';
+import { argentinaTodayISO } from '../../../features/agenda/utils/argentinaTodayISO';
+import { agendaV2PreviewActivities } from '../../../data/agenda-v2-previews';
+import { AgendaIntro } from '../../../features/agenda/components/shared/AgendaIntro';
+import { filterAgendaActivities } from '../../../features/agenda/utils/filterAgendaActivities';
+import { isAgendaActivityVisible } from '../../../features/agenda/utils/activitySchedules';
+import { getPublicActivityList } from '../../../features/agenda/utils/publicActivityViews';
+import { PageContainer } from '../../../components/layout/PageContainer';
+import { ActivityCard } from '../../../components/agenda/ActivityCard';
+import { AgendaToolbar } from '../../../components/agenda/AgendaToolbar';
+import { AgendaSortDropdown } from '../../../features/agenda/components/filters/AgendaSortDropdown';
+import type { AgendaSortValue } from '../../../features/agenda/model/sort';
+import { AgendaPromo } from '../../../components/agenda/AgendaPromo';
+import { emptyFilters, type SelectedFilters } from '../../../features/agenda/model/filterState';
 
 /**
  * 10 tarjetas públicas para revisión visual de Agenda V2.

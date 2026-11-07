@@ -36,3 +36,7 @@ La estructura antigua de Agenda y la estructura institucional actual siguen sien
 ## Revisión de PR
 
 Documentar: archivos movidos, antiguos y nuevos consumidores, invariantes conservados, comandos verificados, regresiones conocidas y plan de rollback. No confundir un compilado exitoso con aprobación visual.
+
+## Migración parcial de las páginas de Agenda
+
+Las cuatro páginas de Agenda están en `src/modules/agenda/pages/`, incluida `AgendaConsolePreviewPage`; el router conserva exactamente las mismas rutas y el mismo `basename`. Por el momento importan componentes y datos de las carpetas heredadas. Esta excepción temporal está documentada y no autoriza a módulos futuros a importar código interno de Agenda.

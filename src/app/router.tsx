@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { SiteLayout } from '../layouts/SiteLayout';
 import { HomePage } from '../pages/home/HomePage';
-import { AgendaPage } from '../pages/agenda/AgendaPage';
-import { AgendaHomePage } from '../pages/agenda/AgendaHomePage';
-import { AgendaActivityDetailPage } from '../pages/agenda/AgendaActivityDetailPage';
-import { AgendaConsolePreviewPage } from '../pages/agenda/AgendaConsolePreviewPage';
+import { AgendaPage } from '../modules/agenda/pages/AgendaPage';
+import { AgendaHomePage } from '../modules/agenda/pages/AgendaHomePage';
+import { AgendaActivityDetailPage } from '../modules/agenda/pages/AgendaActivityDetailPage';
+import { AgendaConsolePreviewPage } from '../modules/agenda/pages/AgendaConsolePreviewPage';
 import { JovenesEnComunidadPage } from '../modules/jovenes-en-comunidad/JovenesEnComunidadPage';
 import { NotFoundPage } from '../pages/not-found/NotFoundPage';
 
