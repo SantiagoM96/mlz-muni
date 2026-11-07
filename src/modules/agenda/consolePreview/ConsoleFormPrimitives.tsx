@@ -2,7 +2,11 @@ import type { ReactNode } from 'react';
 
 // Estilos de la consola existente: conservar el radio 4px del formulario.
 // Los controles del editor de programaciones usan un radio distinto.
-export const inputClass = 'min-h-12 w-full min-w-0 rounded-[4px] border border-[#93bfe0] bg-white px-4 py-2.5 text-[16px] leading-6 text-[#236999] outline-none transition-colors placeholder:text-[#8baac3] focus-visible:border-primary-600 focus-visible:ring-2 focus-visible:ring-[#236999]/20';
+/** Base visual compartida solo por los dos formularios de la consola Agenda. */
+export const consoleInputBaseClass = 'min-h-12 w-full min-w-0 border border-[#93bfe0] bg-white px-4 py-2.5 text-[16px] leading-6 text-[#236999] outline-none placeholder:text-[#8baac3] focus-visible:border-primary-600 focus-visible:ring-2 focus-visible:ring-[#236999]/20';
+
+// El formulario general conserva 4px y su transición de colores.
+export const inputClass = consoleInputBaseClass + ' rounded-[4px] transition-colors';
 export const labelClass = 'mb-1.5 block text-[16px] font-bold leading-6 text-primary-600';
 export const noteClass = 'mt-2 text-[14px] leading-[21px] text-[#718092]';
 

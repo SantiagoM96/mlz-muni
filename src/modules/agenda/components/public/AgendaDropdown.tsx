@@ -70,7 +70,7 @@ export function AgendaDropdown({
         className={`agenda-filter-trigger agenda-motion-control flex h-12 w-full min-w-0 items-center gap-2 rounded border border-[#5ba8d5] bg-white
           py-2 px-4 text-left text-[16px] text-primary-600 outline-offset-2
           transition-colors duration-150 hover:border-primary-600 hover:bg-[#f4f9fd]
-          focus-visible:outline-2 focus-visible:outline-[#006eff]
+          focus-visible:outline-2 focus-visible:outline-info-500
           ${isOpen || selected.length ? 'agenda-filter-trigger-active' : ''}`}
       >
         <span className="min-w-0 flex-1 truncate">{label}</span>
@@ -142,12 +142,12 @@ export function AgendaDropdown({
           <div className="mt-2 flex shrink-0 items-center gap-2 border-t border-[#e1e7eb] pt-2">
             <button type="button" onClick={dismiss}
               className="min-h-12 flex-1 rounded bg-primary-600 px-3 text-[16px] font-bold
-                text-white transition-colors hover:bg-primary-700">
+                text-white transition-colors hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
               Ver resultados ({resultCount})
             </button>
             <button type="button" onClick={() => { onChange([]); setSearch(''); }}
               className="min-h-12 shrink-0 rounded px-4 text-[16px] font-bold
-                text-primary-600 transition-colors hover:bg-[#f2f7fc]">
+                text-primary-600 transition-colors hover:bg-[#f2f7fc] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
               Limpiar
             </button>
           </div>
