@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
 /* Fuentes institucionales alojadas en MLZ y resueltas por Vite, incluido GitHub Pages. */
 @font-face {
@@ -23,26 +24,6 @@
   font-display: swap;
 }
 
-
-/*
- * Figma — Biblioteca de colores MLZ
- * Primario/Primario 600 = #236999
- * Nutral/Grey 900     = #3d3d3d
- * Mantener el uso semántico: azul para títulos/enlaces institucionales,
- * gris 900 para textos de contenido.
- */
-@theme {
-  --color-primary-500: #358dc2;
-  --color-info-500: #006eff;
-  --color-primary-600: #236999;
-  --color-primary-700: #19577f;
-  --color-grey-900: #3d3d3d;
-  --color-success-500: #2abb5b;
-  --color-success-600: #208c43;
-  --color-panel: #f3f7fc;
-  --color-divider: #e1e7eb;
-  --font-sans: Geometria, 'Century Gothic', 'Avenir Next', 'Trebuchet MS', Arial, sans-serif;
-}
 
 :root {
   font-family: var(--font-sans);
