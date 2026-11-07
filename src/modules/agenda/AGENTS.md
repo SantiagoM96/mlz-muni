@@ -21,7 +21,7 @@ Estas reglas complementan [AGENTS.md de la raíz](../../../AGENTS.md) y se aplic
 ## Drawer y animaciones
 
 - Las hojas móviles existentes (`AgendaMobileSheet`, `useAgendaSheetDismiss`, `useAgendaMobileScrollLock`) preservan apertura/salida, backdrop, arrastre, resistencia hacia arriba, rebote elástico y cancelación de gestos.
-- Los tiempos, clases CSS y curvas están calibrados en `src/styles/globals.css`. No simplificar ni sustituir con otra biblioteca sin medir regresiones.
+- Los tiempos, clases CSS y curvas están calibrados en `src/modules/agenda/styles/agenda.css`. No simplificar ni sustituir con otra biblioteca sin medir regresiones.
 - Comprobar `prefers-reduced-motion` y body scroll lock, también después de cerrar mediante Escape, botón, backdrop o swipe.
 - Evitar cambiar el punto de quiebre mobile actual de 680 px sin autorización visual.
 

@@ -1,3 +1,4 @@
+import '../styles/agenda.css';
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import type { AgendaActivity } from '../data/agenda';
