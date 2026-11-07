@@ -25,5 +25,6 @@ jobs:
       - run: npm run test:architecture
       - run: npm run check:architecture
       - run: npm run check:styles
+      - run: npm run audit:styles
       - run: npm run build
       - run: npm run report:css

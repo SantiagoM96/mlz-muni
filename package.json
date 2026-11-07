@@ -25,7 +25,8 @@
     "prebuild": "npm run fonts:build",
     "prebuild:pages": "npm run fonts:build",
     "check:styles": "node scripts/check-style-contracts.mjs",
-    "report:css": "node scripts/report-css-size.mjs"
+    "report:css": "node scripts/report-css-size.mjs",
+    "audit:styles": "node scripts/audit-style-usage.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",

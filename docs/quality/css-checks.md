@@ -26,3 +26,7 @@ En main `b8203c6ebe8592a64aea8b4540186f93573e87b0`, el build **Pages** [#4238973
 ## Ampliación futura
 
 Para agregar reglas, exigir primero un bug real o un patrón de error repetido, tests negativos y justificación de falsos positivos. No bloquear indiscriminadamente hexadecimales, `!important`, breakpoints especiales ni valores `[...]` que ya son contratos de Agenda.
+
+## Inventario informativo
+
+`npm run audit:styles` recorre `src/**/*.ts|tsx|css` y publica conteos heurísticos de valores arbitrarios, hexadecimales, `!important`, estilos inline, selectores de Agenda en global y `className` literales repetidos. Es **solo informativo**: no clasifica por semántica ni bloquea los valores aprobados, y el análisis textual puede omitir estilos construidos mediante templates. No usar estos números como evidencia de una mejora de performance ni de una duplicación CSS compilada.
