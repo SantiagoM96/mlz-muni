@@ -1,4 +1,4 @@
-name: Paridad visual — Consola Agenda V2
+name: Paridad visual — Agenda y Jóvenes
 
 on:
   pull_request:
@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/agenda-console-parity.yml'
       - 'tests/visual-parity/agenda-console-parity.spec.ts'
+      - 'tests/visual-parity/jovenes-public-parity.spec.ts'
       - 'playwright.parity.config.ts'
       - 'src/pages/agenda/**'
       - 'src/features/agenda/**'
@@ -14,6 +15,7 @@ on:
       - 'src/styles/**'
       - 'src/shared/**'
       - 'src/modules/agenda/**'
+      - 'src/modules/jovenes-en-comunidad/**'
       - 'scripts/fonts/**'
       - 'requirements-fonts.txt'
       - 'package.json'

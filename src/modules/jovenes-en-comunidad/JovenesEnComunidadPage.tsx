@@ -1,3 +1,4 @@
+import './styles/jovenes.css';
 import { useEffect } from 'react';
 import { Breadcrumbs } from '../../shared/navigation/Breadcrumbs';
 import { PageContainer } from '../../shared/layout/PageContainer';
@@ -19,7 +20,7 @@ function LinkedParagraph({ text }: { text: string }) {
   return (
     <p>
       {text.slice(0, index)}
-      <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+      <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
         {handle}
       </a>
       {text.slice(index + handle.length)}
@@ -124,7 +125,7 @@ export function JovenesEnComunidadPage() {
         </aside>
 
         <div className="min-w-0 lg:col-start-1 lg:row-start-2">
-          <h2 data-testid="initiatives-heading" className="mb-6 text-[18px] leading-[26px] font-bold tracking-[0.03em] text-primary-600">
+          <h2 data-testid="initiatives-heading" className="mb-6 text-institutional-body font-bold tracking-[0.03em] text-primary-600">
             INICIATIVAS
           </h2>
           <div>

@@ -7,6 +7,7 @@ Esta guía describe el código vigente, no habilita rediseños. Aplica a cualqui
 - `src/styles/tokens.css`: tokens institucionales en `@theme` de Tailwind CSS v4. No inventar escalas ni duplicar hexadecimales.
 - `src/styles/globals.css`: import de Tailwind/tokens, fuentes, estilos base y composición institucional transversal. No alberga selectores propios de Agenda tras el PR #18.
 - `src/modules/agenda/styles/agenda.css`: reglas, animaciones, estados táctiles y scrollbars específicos de Agenda; se importa desde las cuatro páginas del módulo. Su extracción **no implica carga diferida de CSS por ruta**.
+- `src/modules/jovenes-en-comunidad/styles/jovenes.css`: contenido editorial maquetado e iniciativas exclusivos de Jóvenes; sus selectores `.article-*` y `.intro-copy` no son reglas institucionales globales.
 - `src/styles/material-symbols.css`: subset existente de íconos; su generación no se modifica desde estilos.
 - `src/shared/ui`, `layout`, `navigation`: componentes con contrato institucional real, no envoltorios universales.
 - `src/modules/<nombre>/`: estilos y componentes del módulo cuando tengan responsabilidad específica. No crear carpetas vacías.
