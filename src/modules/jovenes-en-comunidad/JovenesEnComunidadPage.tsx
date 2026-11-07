@@ -3,72 +3,13 @@ import { useEffect } from 'react';
 import { Breadcrumbs } from '../../shared/navigation/Breadcrumbs';
 import { PageContainer } from '../../shared/layout/PageContainer';
 import { PageHero } from '../../shared/layout/PageHero';
-import { Button } from '../../shared/ui/Button';
 import { PageTitle } from '../../shared/ui/PageTitle';
 import { TableOfContents } from '../../shared/ui/TableOfContents';
 import { InfoCard } from '../../shared/ui/InfoCard';
 import { IconLink } from '../../shared/ui/IconLink';
-import { MaterialIcon } from '../../shared/ui/MaterialIcon';
-import { initiatives, introduction, type ContentBlock, type Initiative } from './data/jovenes';
-
-const instagramUrl = 'https://www.instagram.com/jovenesencomunidad/';
-
-function LinkedParagraph({ text }: { text: string }) {
-  const handle = '@jovenesencomunidad';
-  const index = text.indexOf(handle);
-  if (index === -1) return <p>{text}</p>;
-
-  return (
-    <p>
-      {text.slice(0, index)}
-      <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
-        {handle}
-      </a>
-      {text.slice(index + handle.length)}
-    </p>
-  );
-}
-
-function Content({ blocks }: { blocks: ContentBlock[] }) {
-  return (
-    <div className="article-copy">
-      {blocks.map((block, index) =>
-        block.kind === 'paragraph' ? (
-          <LinkedParagraph key={index} text={block.text} />
-        ) : (
-          <ul key={index}>
-            {block.items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        ),
-      )}
-    </div>
-  );
-}
-
-function InitiativeSection({ initiative, first }: { initiative: Initiative; first?: boolean }) {
-  return (
-    <section
-      id={initiative.id}
-      className={'article-section ' + (first ? '!pt-0' : '')}
-      aria-labelledby={'heading-' + initiative.id}
-    >
-      <h3 id={'heading-' + initiative.id}>{initiative.title}</h3>
-      <Content blocks={initiative.blocks} />
-      {initiative.showPointsButton && (
-        <div className="mt-6">
-          <Button
-            disabled
-            title="La página de Puntos Jóvenes se incorporará en una etapa posterior"
-          >
-            Ver Puntos Jóvenes <MaterialIcon name="chevron_right" size={20} />
-          </Button>
-        </div>
-      )}
-    </section>
-  );
-}
+import { initiatives, introduction } from './data/jovenes';
+import { instagramUrl } from './data/links';
+import { InitiativeSection } from './components/InitiativeSection';
 
 export function JovenesEnComunidadPage() {
   useEffect(() => {
