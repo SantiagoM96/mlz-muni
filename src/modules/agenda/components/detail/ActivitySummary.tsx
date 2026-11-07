@@ -23,7 +23,7 @@ export function ActivitySummary({
 
   return (
     <aside aria-label="Cuándo y dónde" className="min-w-0">
-      <h2 className="mb-4 text-[24px] font-bold leading-[30px] text-primary-600">
+      <h2 className="mb-4 text-institutional-section font-bold text-primary-600">
         Cuándo y dónde
       </h2>
       {badges.length > 0 && (
@@ -40,7 +40,7 @@ export function ActivitySummary({
               </div>
             )}
           <section className="min-w-0 rounded-lg border border-[#d1d1d1] bg-white p-4">
-            <div className="space-y-4 text-[18px] leading-[26px] text-grey-900">
+            <div className="space-y-4 text-institutional-body text-grey-900">
               <ActivityScheduleDateTime schedule={schedule} />
               {multiple && (
                 <div className="space-y-2 pt-2">
