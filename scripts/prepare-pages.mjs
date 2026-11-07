@@ -2,6 +2,14 @@ import { copyFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 const dist = join(process.cwd(), 'dist');
 const staticPaths = [
+  'ui-kit',
+  'ui-kit/formularios',
+  'ui-kit/botones',
+  'ui-kit/tipografia',
+  'ui-kit/tarjetas',
+  'ui-kit/navegacion',
+  'ui-kit/iconos',
+  'ui-kit/tokens',
   'jovenes-en-comunidad',
   'agenda-de-la-comunidad',
   'agenda-de-la-comunidad/actividades',
