@@ -14,6 +14,8 @@ test('componentes de Figma se implementan como React reales sin reemplazar produ
   }
   assert.ok(!src('src/shared/ui/Button.tsx').includes('MlzFigmaButton'));
   assert.ok(!src('src/modules/agenda/pages/AgendaPage.tsx').includes('MlzFigmaButton'));
+  assert.ok(src('src/pages/ui-kit/views/CardsView.tsx').includes('<MlzFigmaJovenCard'));
+  assert.ok(src('src/pages/ui-kit/figma/MlzFigmaJovenCard.tsx').includes('export function MlzFigmaJovenCard'));
 });
 
 test('Figma UI KIT tiene entrada directa en Pages y rutas de catálogo', () => {

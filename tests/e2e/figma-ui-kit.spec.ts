@@ -26,6 +26,9 @@ test('Input New expone tipos y estados de Figma con HTML funcional', async ({ pa
   await input.fill('Prueba Figma');
   await expect(input).toHaveValue('Prueba Figma');
   await expect(input).toHaveCSS('border-radius', '4px');
+  // Al escribir, el campo sigue enfocado y muestra correctamente el borde de focus.
+  await expect(input).toHaveCSS('border-top-color', 'rgb(35, 105, 153)');
+  await input.press('Tab');
   await expect(input).toHaveCSS('border-top-color', 'rgb(91, 168, 213)');
   const select = section.getByRole('combobox', { name: 'Tipo de documento' });
   await select.selectOption('DNI');

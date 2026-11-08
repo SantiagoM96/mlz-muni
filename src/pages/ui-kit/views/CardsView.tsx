@@ -8,13 +8,30 @@ import { AgendaCircuitCard } from '../../../modules/agenda/components/public/Age
 import { agendaV2PreviewActivities } from '../../../modules/agenda/data/agenda-v2-previews';
 import { featuredActivity } from '../../../modules/agenda/data/agenda-featured';
 import { StoryCard } from '../components/StoryCard';
+import { MlzFigmaJovenCard } from '../figma/MlzFigmaJovenCard';
 import '../../../modules/agenda/styles/agenda.css';
 
 export function CardsView() {
   const [message, setMessage] = useState('Seleccioná una acción de muestra.');
+  const [showWaitlist, setShowWaitlist] = useState(false);
+  const [jovenMessage, setJovenMessage] = useState('');
   const sample = agendaV2PreviewActivities.find(item => item.id === 'preview-v2-compostaje');
   return (
     <>
+      <StoryCard title="MLZ - UI KIT · joven_card"
+        source="Figma · joven_card · componentSetKey ad152cc5…"
+        description="Opcion 2: 352 × 297,5 px; categoría 14px, título 22px, datos y acción de texto. La etiqueta Lista de espera es opcional (oculta en el original). Los íconos usan equivalentes locales."
+        usage={'<MlzFigmaJovenCard showWaitlist={false} onViewMore={() => {}} />'}>
+        <label className="mb-4 flex items-center gap-2 text-[14px]">
+          <input type="checkbox" checked={showWaitlist} onChange={event => setShowWaitlist(event.target.checked)} />
+          Mostrar lista de espera
+        </label>
+        <div className="max-w-[352px]">
+          <MlzFigmaJovenCard showWaitlist={showWaitlist}
+            onViewMore={() => setJovenMessage('Se seleccionó Dibujo y artes plásticas')} />
+          <p aria-live="polite" className="mt-3 text-[13px] text-primary-600">{jovenMessage}</p>
+        </div>
+      </StoryCard>
       <StoryCard title="InfoCard"
         source="src/shared/ui/InfoCard.tsx"
         description="Tarjeta institucional compartida, con título accesible, fondo panel, radio 4px y padding 24px."
