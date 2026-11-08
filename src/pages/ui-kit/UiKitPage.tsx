@@ -7,12 +7,14 @@ import { CardsView } from './views/CardsView';
 import { NavigationView } from './views/NavigationView';
 import { IconsView } from './views/IconsView';
 import { TokensView } from './views/TokensView';
+import { FigmaTagsStory } from './figma/FigmaStories';
 
 const categories = [
   { slug: 'formularios', name: 'Formularios', detail: 'Inputs, selects, textarea y checkbox' },
   { slug: 'botones', name: 'Botones y enlaces', detail: 'Acciones, variantes y estados' },
   { slug: 'tipografia', name: 'Tipografía', detail: 'Títulos, textos y jerarquías' },
   { slug: 'tarjetas', name: 'Tarjetas', detail: 'Institucionales y de Agenda' },
+  { slug: 'etiquetas', name: 'Etiquetas y chips', detail: 'Variantes publicadas de Figma' },
   { slug: 'navegacion', name: 'Navegación y layout', detail: 'Breadcrumbs, índice y hero' },
   { slug: 'iconos', name: 'Íconos', detail: 'Material Symbols disponibles' },
   { slug: 'tokens', name: 'Tokens', detail: 'Colores, superficies y medidas' },
@@ -23,6 +25,7 @@ const views: Record<Category, ComponentType> = {
   botones: ButtonsView,
   tipografia: TypographyView,
   tarjetas: CardsView,
+  etiquetas: FigmaTagsStory,
   navegacion: NavigationView,
   iconos: IconsView,
   tokens: TokensView,

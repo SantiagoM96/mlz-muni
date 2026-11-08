@@ -13,17 +13,32 @@ npm run dev
 
 Abrir `http://localhost:5173/ui-kit/formularios`. El puerto es el que imprima Vite si se configuró uno distinto.
 
-Las siete vistas son:
+Las ocho vistas son:
 
 - `/ui-kit/formularios`: FormField, TextField, SelectControl, TextAreaControl y CheckboxField. Variantes standard (radio 4px), soft (6px), disabled, aria-invalid y densidad. Valores de estado local.
 - `/ui-kit/botones`: Button primary/secondary/success, disabled, callback de click, ActionLink compact/wide e IconLink.
 - `/ui-kit/tipografia`: PageTitle, pares tipográficos 18/26 y 24/30, fuente Geometria y pesos existentes.
-- `/ui-kit/tarjetas`: InfoCard y componentes reales de Agenda (ActivityCard, ActivityBadges, FeaturedActivityCard, AgendaCircuitCard).
+- `/ui-kit/tarjetas`: InfoCard, joven_card basada en Figma y componentes reales de Agenda (ActivityCard, ActivityBadges, FeaturedActivityCard, AgendaCircuitCard).
 - `/ui-kit/navegacion`: Breadcrumbs, TableOfContents y PageHero con recursos reales.
 - `/ui-kit/iconos`: MaterialIcon con búsqueda y selección de tamaño.
 - `/ui-kit/tokens`: colores actuales y geometrías existentes.
 
 `/ui-kit` abre por defecto Formularios. Cada categoría tiene su URL; `scripts/prepare-pages.mjs` crea su entrada HTML para que funcionen los enlaces directos de GitHub Pages. Cuando el cambio se fusione y se publique, el catálogo podrá abrirse desde `https://santiagom96.github.io/mlz-muni/ui-kit/formularios/`.
+
+## Fuente visual: biblioteca Figma MLZ - UI KIT
+
+Los ejemplos nuevos usan los componentes publicados de la biblioteca **MLZ - UI KIT** como fuente verificada de medidas y estados:
+
+- `Button/Standar`: cinco tipos (primario, secundario, terciario, gost, link) × cinco estados. Alto 48px, tipografía Geometria Bold 18/26, radio 4px.
+- `Button/Chico`: mismos tipos y estados, alto 40px y tipografía 16/26.
+- `Input New`: Text field, Dropdownn, Text area; estados Default, Hovered, Focus, Completo, Disable y Error. Controles 48px, radio 4px, error #ef284c.
+- `Input/ChecBox`, `Input/RadioButton`: variantes Horizontal/Vertical.
+- `tag`: 3 tamaños (Chico, Mediano, Grande) × 6 colores, icono opcional.
+- `Chip/Fill` y `Chip/Trazo`: 6 estados, incluido selected.
+
+La implementación de referencia vive en `src/pages/ui-kit/figma/`. **No reemplaza los componentes de producción** antes de evaluar diferencias. Se reconstruyó `joven_card` a partir del componente `Opcion 2` (352 × 297,5 px, categoría y título, día, hora, edades y sede; lista de espera oculta por defecto). Usa los Material Symbols equivalentes disponibles; verificar los pictogramas contra Figma antes de aprobarlo para producción. `Cards_buscadores` permanece pendiente porque requiere su imagen decorativa original y no se declaran migradas sus ilustraciones.
+
+No hay sincronización automática: se recuperaron variantes y propiedades reales y se implementaron componentes React para estudio. La nueva ruta `/ui-kit/etiquetas` abre tags y chips.
 
 ## Alcance y reglas
 

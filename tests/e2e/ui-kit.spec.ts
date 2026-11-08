@@ -5,6 +5,7 @@ const categories = [
   ['botones', 'Botones y enlaces'],
   ['tipografia', 'Tipografía'],
   ['tarjetas', 'Tarjetas'],
+  ['etiquetas', 'Etiquetas y chips'],
   ['navegacion', 'Navegación y layout'],
   ['iconos', 'Íconos'],
   ['tokens', 'Tokens'],
@@ -49,7 +50,8 @@ test('Formularios usa controles reales, variantes y estados locales', async ({ p
 test('Botones presenta variantes reales y callbacks funcionales', async ({ page }) => {
   await page.goto('/ui-kit/botones');
   await page.getByRole('button', { name: 'Primario', exact: true }).click();
-  await expect(page.getByRole('status').first()).toContainText('Primario');
+  // Hay más de un ejemplo de botones; buscar el estado del Button institucional, no el de Figma.
+  await expect(page.getByRole('status').filter({ hasText: 'Última interacción: Primario' })).toBeVisible();
   await page.getByRole('checkbox', { name: 'Deshabilitar acciones' }).check();
   await expect(page.getByRole('button', { name: 'Primario', exact: true })).toBeDisabled();
   await expect(page.getByRole('link', { name: 'Abrir Agenda' })).toHaveAttribute('href', /agenda-de-la-comunidad/);

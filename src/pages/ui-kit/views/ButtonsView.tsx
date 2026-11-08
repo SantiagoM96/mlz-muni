@@ -4,12 +4,14 @@ import { ActionLink } from '../../../shared/ui/ActionLink';
 import { IconLink } from '../../../shared/ui/IconLink';
 import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import { StoryCard } from '../components/StoryCard';
+import { FigmaButtonsStory } from '../figma/FigmaStories';
 
 export function ButtonsView() {
   const [disabled, setDisabled] = useState(false);
   const [lastClick, setLastClick] = useState('Ninguna acción');
   return (
     <>
+      <FigmaButtonsStory />
       <div className="flex flex-wrap items-center gap-4 rounded-[12px] border border-[#c5dce9] bg-[#eaf3f9] p-4">
         <label className="flex items-center gap-2 text-[14px] font-medium">
           <input type="checkbox" checked={disabled} onChange={event => setDisabled(event.target.checked)} />

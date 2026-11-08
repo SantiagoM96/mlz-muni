@@ -3,6 +3,7 @@ import { FormField } from '../../../shared/ui/FormField';
 import { TextField, SelectControl, TextAreaControl, type FormControlAppearance } from '../../../shared/ui/FormControls';
 import { CheckboxField } from '../../../shared/ui/CheckboxField';
 import { StoryCard } from '../components/StoryCard';
+import { FigmaFormsStory } from '../figma/FigmaStories';
 
 export function FormsView() {
   const [appearance, setAppearance] = useState<FormControlAppearance>('standard');
@@ -21,6 +22,7 @@ export function FormsView() {
 
   return (
     <>
+      <FigmaFormsStory />
       <div className="rounded-[12px] border border-[#c5dce9] bg-[#eaf3f9] p-4 md:p-5">
         <h2 className="text-[16px] font-bold text-primary-600">Panel de pruebas</h2>
         <p className="mt-1 text-[14px] leading-5">Los ajustes afectan únicamente a los ejemplos y no se guardan.</p>
