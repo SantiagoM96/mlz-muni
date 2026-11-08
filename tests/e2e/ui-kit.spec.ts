@@ -22,14 +22,17 @@ test('catálogo simplificado: cuatro categorías de Figma, sin overflow', async 
 test('formularios: Input New, checkbox y radio nativos', async ({ page }) => {
   await page.goto('/ui-kit/formularios');
   await expect(page.getByRole('heading',{name:'Input New'})).toBeVisible();
-  const input=page.getByRole('textbox',{name:'Text field'});
+  const input=page.locator('#kit-new-text');
   await input.fill('Nombre');
   await expect(input).toHaveValue('Nombre');
-  await page.getByRole('combobox',{name:'Dropdownn'}).selectOption('Opción 1');
-  await page.getByRole('checkbox',{name:'Opción 2'}).check();
-  await expect(page.getByRole('checkbox',{name:'Opción 2'})).toBeChecked();
-  await page.getByRole('radio',{name:'Opción 2'}).check();
-  await expect(page.getByRole('radio',{name:'Opción 2'})).toBeChecked();
+  await page.locator('#kit-new-dropdown').selectOption('DNI');
+  await expect(page.locator('#kit-new-dropdown')).toHaveValue('DNI');
+  const checkbox=page.getByRole('checkbox',{name:'Opción 2'}).first();
+  await checkbox.check();
+  await expect(checkbox).toBeChecked();
+  const radio=page.getByRole('radio',{name:'Opción 2'}).first();
+  await radio.check();
+  await expect(radio).toBeChecked();
 });
 
 test('botones: exclusivamente Standar y Chico de Figma', async ({ page }) => {
