@@ -153,7 +153,7 @@ export function MlzFigmaFileUpload({ option = 1 }: { option?: 1 | 2 }) {
 
   return (
     <div className={option === 1 ? 'min-w-0 max-w-[435px]' : 'min-w-0 max-w-[473px]'}>
-      {option === 1 && <label className={labelClass} htmlFor={id}>Frente del DNI</label>}
+      {option === 1 && <label className="mb-2 block text-[16px] font-bold leading-5 text-[#236999]" htmlFor={id}>Frente del DNI</label>}
       <input ref={inputRef} id={id} type="file" aria-label={option === 1 ? 'Adjuntar frente del DNI' : 'Adjuntar foto del documento'} accept={option === 1 ? '.pdf,.jpg,.jpeg,.png' : '.jpg,.jpeg,.png'}
         className="sr-only" onChange={event => selectFile(event.target.files?.[0])} />
       {option === 1 ? (
@@ -172,7 +172,7 @@ export function MlzFigmaFileUpload({ option = 1 }: { option?: 1 | 2 }) {
           <span className="min-w-0">{fileName || 'Adjunta una foto de el frente de tu documento'}</span>
         </button>
       )}
-      {option === 1 && <p className="mt-1 text-[16px] leading-5 text-[#236999]">PDF, JPG o PNG de hasta 2 MB</p>}
+      {option === 1 && <p className="mt-2 text-[16px] leading-5 text-[#236999]">PDF, JPG o PNG de hasta 2 MB</p>}
       {error && <p role="alert" className="mt-1 text-[14px] text-[#ef284c]">{error}</p>}
     </div>
   );
