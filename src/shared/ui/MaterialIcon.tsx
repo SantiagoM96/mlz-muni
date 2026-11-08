@@ -38,7 +38,10 @@ export type MaterialIconName =
   | 'groups'
   | 'record_voice_over'
   | 'star'
-  | 'info';
+  | 'info'
+  | 'visibility'
+  | 'visibility_off'
+  | 'attach_file';
 
 export type MaterialIconProps = {
   name: MaterialIconName;

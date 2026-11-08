@@ -89,9 +89,7 @@ export function MlzFigmaField({
               <button type="button" aria-label={visible ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                 aria-pressed={visible} onClick={() => setVisible(v => !v)} disabled={disabled}
                 className="absolute inset-y-0 right-3 flex min-w-9 items-center justify-center text-[#236999] focus-visible:outline-2 focus-visible:outline-[#006eff]">
-                <span aria-hidden="true" className="material-symbols-outlined text-[22px]">
-                  {visible ? 'visibility_off' : 'visibility'}
-                </span>
+                <MaterialIcon name={visible ? 'visibility_off' : 'visibility'} size={22} />
               </button>
             )}
             {!password && showVerified && state === 'Completo' && (

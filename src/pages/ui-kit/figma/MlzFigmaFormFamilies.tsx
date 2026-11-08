@@ -154,13 +154,13 @@ export function MlzFigmaFileUpload({ option = 1 }: { option?: 1 | 2 }) {
   return (
     <div className={option === 1 ? 'min-w-0 max-w-[435px]' : 'min-w-0 max-w-[473px]'}>
       {option === 1 && <label className={labelClass} htmlFor={id}>Frente del DNI</label>}
-      <input ref={inputRef} id={id} type="file" accept=".pdf,.jpg,.jpeg,.png"
+      <input ref={inputRef} id={id} type="file" aria-label={option === 1 ? 'Adjuntar frente del DNI' : 'Adjuntar foto del documento'} accept={option === 1 ? '.pdf,.jpg,.jpeg,.png' : '.jpg,.jpeg,.png'}
         className="sr-only" onChange={event => selectFile(event.target.files?.[0])} />
       {option === 1 ? (
         <div className="flex h-12 min-w-0 items-center gap-2 rounded-[4px] bg-[#e5f0f9] p-1.5">
           <button type="button" onClick={() => inputRef.current?.click()}
             className="inline-flex h-9 shrink-0 items-center gap-1 rounded-[2px] bg-[#236999] px-3 text-[16px] leading-5 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006eff]">
-            <span aria-hidden="true" className="material-symbols-outlined text-[18px]">attach_file</span>
+            <MaterialIcon name="attach_file" size={18} />
             Seleccionar archivo
           </button>
           <span className="min-w-0 truncate text-[16px] text-[#94c6e5]">{fileName || 'No hay archivo'}</span>
@@ -168,7 +168,7 @@ export function MlzFigmaFileUpload({ option = 1 }: { option?: 1 | 2 }) {
       ) : (
         <button type="button" onClick={() => inputRef.current?.click()}
           className="flex min-h-14 w-full min-w-0 items-center gap-2 rounded-[8px] border border-[#dbdbdb] bg-white px-4 text-left text-[18px] leading-[23px] text-[#3d3d3d] focus-visible:outline-2 focus-visible:outline-[#006eff]">
-          <span aria-hidden="true" className="material-symbols-outlined text-[24px]">attach_file</span>
+          <MaterialIcon name="attach_file" size={24} />
           <span className="min-w-0">{fileName || 'Adjunta una foto de el frente de tu documento'}</span>
         </button>
       )}
