@@ -93,7 +93,7 @@ export function MlzFigmaSearch({ id, value, onChange }: {
   id: string; value: string; onChange: (value: string) => void;
 }) {
   return (
-    <div className="relative w-full max-w-[700px]">
+    <div className="relative w-full max-w-[1088px]">
       <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[#236999]">
         <MaterialIcon name="search" size={24} />
       </span>
@@ -159,7 +159,7 @@ export function MlzFigmaFileUpload({ option = 1 }: { option?: 1 | 2 }) {
       {option === 1 ? (
         <div className="flex h-12 min-w-0 items-center gap-2 rounded-[4px] bg-[#e5f0f9] p-1.5">
           <button type="button" onClick={() => inputRef.current?.click()}
-            className="inline-flex h-9 shrink-0 items-center gap-1 rounded-[2px] bg-[#236999] px-3 text-[16px] leading-5 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006eff]">
+            className="inline-flex h-9 w-[190px] shrink-0 items-center justify-center gap-1 rounded-[2px] bg-[#236999] px-2 text-[16px] leading-5 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006eff]">
             <MaterialIcon name="attach_file" size={18} />
             Seleccionar archivo
           </button>

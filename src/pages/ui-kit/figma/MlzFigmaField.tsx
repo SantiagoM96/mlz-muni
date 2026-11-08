@@ -132,7 +132,7 @@ export function MlzFigmaField({
         </p>
       )}
       {password && showPasswordSecurity && (
-        <div className="mt-3 text-[14px] leading-6 text-[#3d3d3d]">
+        <div className="mt-3 min-h-[166px] text-[16px] leading-6 text-[#3d3d3d]">
           <p className={'font-bold ' + (secureEnough ? 'text-[#2abb5b]' : '')}>
             {secureEnough ? 'Tu contraseña es segura' : 'Requisitos para una contraseña segura'}
           </p>
