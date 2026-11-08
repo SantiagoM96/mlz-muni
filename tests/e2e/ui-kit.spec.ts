@@ -5,6 +5,7 @@ const categories = [
   ['botones', 'Botones y enlaces'],
   ['tipografia', 'Tipografía'],
   ['tarjetas', 'Tarjetas'],
+  ['etiquetas', 'Etiquetas y chips'],
   ['navegacion', 'Navegación y layout'],
   ['iconos', 'Íconos'],
   ['tokens', 'Tokens'],

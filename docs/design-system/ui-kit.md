@@ -25,6 +25,21 @@ Las siete vistas son:
 
 `/ui-kit` abre por defecto Formularios. Cada categoría tiene su URL; `scripts/prepare-pages.mjs` crea su entrada HTML para que funcionen los enlaces directos de GitHub Pages. Cuando el cambio se fusione y se publique, el catálogo podrá abrirse desde `https://santiagom96.github.io/mlz-muni/ui-kit/formularios/`.
 
+## Fuente visual: biblioteca Figma MLZ - UI KIT
+
+Los ejemplos nuevos usan los componentes publicados de la biblioteca **MLZ - UI KIT** como fuente verificada de medidas y estados:
+
+- `Button/Standar`: cinco tipos (primario, secundario, terciario, gost, link) × cinco estados. Alto 48px, tipografía Geometria Bold 18/26, radio 4px.
+- `Button/Chico`: mismos tipos y estados, alto 40px y tipografía 16/26.
+- `Input New`: Text field, Dropdownn, Text area; estados Default, Hovered, Focus, Completo, Disable y Error. Controles 48px, radio 4px, error #ef284c.
+- `Input/ChecBox`, `Input/RadioButton`: variantes Horizontal/Vertical.
+- `tag`: 3 tamaños (Chico, Mediano, Grande) × 6 colores, icono opcional.
+- `Chip/Fill` y `Chip/Trazo`: 6 estados, incluido selected.
+
+La implementación de los componentes de referencia vive en `src/pages/ui-kit/figma/`. **No reemplaza los componentes de producción** antes de evaluar diferencias. `Cards_buscadores` y `joven_card` también existen en Figma, pero no se declaran migradas porque incluyen recursos gráficos que requieren exportación fiel.
+
+No hay sincronización automática: se recuperaron variantes y propiedades reales y se implementaron componentes React para estudio. La nueva ruta `/ui-kit/etiquetas` abre tags y chips.
+
 ## Alcance y reglas
 
 - **No está en la navegación institucional.** No constituye autenticación ni control de acceso: al fusionarse se podrá acceder desde la URL pública.

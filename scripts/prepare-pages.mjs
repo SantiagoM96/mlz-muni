@@ -7,6 +7,7 @@ const staticPaths = [
   'ui-kit/botones',
   'ui-kit/tipografia',
   'ui-kit/tarjetas',
+  'ui-kit/etiquetas',
   'ui-kit/navegacion',
   'ui-kit/iconos',
   'ui-kit/tokens',
