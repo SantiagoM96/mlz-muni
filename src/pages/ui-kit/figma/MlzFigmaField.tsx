@@ -50,7 +50,8 @@ export function MlzFigmaField({
     'text-[#236999] outline-none placeholder:text-[#5ba8d5] ' +
     'hover:border-[#236999] focus-visible:border-[#006eff] focus-visible:ring-2 focus-visible:ring-[#006eff]/20 ' +
     'disabled:cursor-not-allowed ' + borderColor + ' ' + bgColor +
-    (search ? ' pl-11' : '') + (password || showVerified ? ' pr-12' : '');
+    (search && kind === 'Text field' ? ' pl-11' : '') +
+    (kind === 'Text field' && (password || (showVerified && state === 'Completo')) ? ' pr-12' : '');
 
   const hint = invalid ? (helpText || 'Campo obligatorio') : helpText;
   const description = hint ? { 'aria-describedby': helpId } : {};
