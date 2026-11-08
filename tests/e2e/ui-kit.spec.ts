@@ -1,87 +1,73 @@
 import { expect, test } from '@playwright/test';
 
 const categories = [
-  ['formularios', 'Formularios'],
-  ['botones', 'Botones y enlaces'],
-  ['tipografia', 'Tipografía'],
-  ['tarjetas', 'Tarjetas'],
-  ['etiquetas', 'Etiquetas y chips'],
-  ['navegacion', 'Navegación y layout'],
-  ['iconos', 'Íconos'],
-  ['tokens', 'Tokens'],
+  ['formularios', 'Formularios'], ['botones', 'Botones'],
+  ['etiquetas', 'Etiquetas y chips'], ['tarjetas', 'Tarjetas'],
 ] as const;
 
-test('catálogo ofrece siete vistas navegables sin desbordamiento horizontal', async ({ page }) => {
-  const response = await page.goto('/ui-kit/formularios');
-  expect(response?.ok()).toBeTruthy();
-  await expect(page.getByRole('navigation', { name: 'Categorías del UI Kit' })).toBeVisible();
-  for (const [slug, heading] of categories) {
-    await page.getByRole('navigation', { name: 'Categorías del UI Kit' })
-      .getByRole('link', { name: heading, exact: true }).click();
-    await expect(page).toHaveURL(new RegExp('/ui-kit/' + slug + '$'));
-    await expect(page.getByRole('heading', { name: heading, level: 1 })).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
-  }
-});
-
-test('Formularios usa controles reales, variantes y estados locales', async ({ page }) => {
+test('catálogo simplificado: cuatro categorías de Figma, sin overflow', async ({ page }) => {
   await page.goto('/ui-kit/formularios');
-  const title = page.getByRole('textbox', { name: 'Título', exact: true });
-  await expect(title).toHaveCSS('border-radius', '4px');
-  await title.fill('Nueva actividad');
-  await expect(page.getByText('Nueva actividad', { exact: true })).toBeVisible();
-  await page.getByRole('combobox', { name: 'Apariencia de los controles' }).selectOption('soft');
-  await expect(title).toHaveCSS('border-radius', '6px');
-  await page.getByRole('checkbox', { name: 'Aria-invalid' }).check();
-  await expect(title).toHaveAttribute('aria-invalid', 'true');
-  await expect(page.getByRole('alert')).toContainText('Falta definir');
-  const inclusive = page.getByRole('checkbox', { name: 'Disciplina inclusiva' });
-  await inclusive.uncheck();
-  await expect(inclusive).not.toBeChecked();
-  await page.getByRole('checkbox', { name: 'Disabled' }).check();
-  await expect(title).toBeDisabled();
-  await expect(inclusive).toBeDisabled();
-  await page.getByRole('button', { name: 'Restablecer' }).click();
-  await expect(title).toBeEnabled();
-  await expect(title).toHaveCSS('border-radius', '4px');
-  await expect(inclusive).toBeChecked();
+  const nav=page.getByRole('navigation', { name: 'Categorías del UI Kit' });
+  await expect(nav.getByRole('link')).toHaveCount(4);
+  for(const [slug,name] of categories) {
+    await nav.getByRole('link',{name,exact:true}).click();
+    await expect(page).toHaveURL(new RegExp('/ui-kit/'+slug+'$'));
+    await expect(page.getByRole('heading',{level:1,name})).toBeVisible();
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+  }
+  await expect(page.getByText('ActivityCard')).toHaveCount(0);
+  await expect(page.getByText('Ver ejemplo de uso')).toHaveCount(0);
 });
 
-test('Botones presenta variantes reales y callbacks funcionales', async ({ page }) => {
+test('formularios: Input New, checkbox y radio nativos', async ({ page }) => {
+  await page.goto('/ui-kit/formularios');
+  await expect(page.getByRole('heading',{name:'Input New'})).toBeVisible();
+  const input=page.getByRole('textbox',{name:'Text field'});
+  await input.fill('Nombre');
+  await expect(input).toHaveValue('Nombre');
+  await page.getByRole('combobox',{name:'Dropdownn'}).selectOption('Opción 1');
+  await page.getByRole('checkbox',{name:'Opción 2'}).check();
+  await expect(page.getByRole('checkbox',{name:'Opción 2'})).toBeChecked();
+  await page.getByRole('radio',{name:'Opción 2'}).check();
+  await expect(page.getByRole('radio',{name:'Opción 2'})).toBeChecked();
+});
+
+test('botones: exclusivamente Standar y Chico de Figma', async ({ page }) => {
   await page.goto('/ui-kit/botones');
-  await page.getByRole('button', { name: 'Primario', exact: true }).click();
-  // Hay más de un ejemplo de botones; buscar el estado del Button institucional, no el de Figma.
-  await expect(page.getByRole('status').filter({ hasText: 'Última interacción: Primario' })).toBeVisible();
-  await page.getByRole('checkbox', { name: 'Deshabilitar acciones' }).check();
-  await expect(page.getByRole('button', { name: 'Primario', exact: true })).toBeDisabled();
-  await expect(page.getByRole('link', { name: 'Abrir Agenda' })).toHaveAttribute('href', /agenda-de-la-comunidad/);
+  await expect(page.getByRole('heading',{name:'Button/Standar'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Button/Chico'})).toBeVisible();
+  const primary=page.getByRole('button',{name:'Primario'});
+  await expect(primary).toHaveCount(2);
+  await expect(primary.first()).toHaveCSS('min-height','48px');
+  await expect(primary.last()).toHaveCSS('min-height','40px');
+  await expect(page.getByText('ActionLink')).toHaveCount(0);
 });
 
-test('Tarjetas exhibe componentes del proyecto y sus datos ilustrativos', async ({ page }) => {
+test('etiquetas y chips son componentes Figma', async ({ page }) => {
+  await page.goto('/ui-kit/etiquetas');
+  await expect(page.getByRole('heading',{name:'tag'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Chip/Fill'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Chip/Trazo'})).toBeVisible();
+  const chip=page.getByRole('button',{name:'Deporte'}).first();
+  await chip.click();
+  await expect(chip).toHaveAttribute('aria-pressed','true');
+});
+
+test('joven_card es la única tarjeta y no hay muestras de Agenda', async ({ page }) => {
   await page.goto('/ui-kit/tarjetas');
-  await expect(page.getByRole('heading', { name: 'InfoCard' })).toBeVisible();
-  const card = page.locator('[data-testid="agenda-card"]');
+  await expect(page.getByRole('heading',{name:'joven_card'})).toBeVisible();
+  const card=page.getByRole('article');
   await expect(card).toHaveCount(1);
-  await expect(card).toContainText('Taller de compostaje');
-  await card.getByRole('button', { name: 'Ver más' }).click();
-  await expect(page.getByRole('status')).toContainText('Taller de compostaje');
-  await expect(page.getByTestId('agenda-featured')).toBeVisible();
+  await expect(card.getByRole('heading',{name:'Dibujo y artes plásticas'})).toBeVisible();
+  await expect(page.getByText('Taller de compostaje')).toHaveCount(0);
+  await expect(page.getByText('InfoCard')).toHaveCount(0);
 });
 
-test('MaterialIcon busca y redimensiona el icono real', async ({ page }) => {
-  await page.goto('/ui-kit/iconos');
-  await page.getByRole('textbox', { name: 'Buscar ícono' }).fill('calendar');
-  await expect(page.locator('li code').getByText('calendar_month', { exact: true })).toBeVisible();
-  await expect(page.getByText('bookmark', { exact: true })).toHaveCount(0);
-  await page.getByRole('combobox', { name: 'Tamaño de íconos' }).selectOption('32');
-  await expect(page.locator('[data-material-symbol="calendar_month"]')).toHaveCSS('width', '32px');
-});
-
-test('rutas del UI Kit admiten acceso directo y la URL base', async ({ page }) => {
+test('rutas antiguas redirigen sin mostrar las vistas heredadas', async ({ page }) => {
   await page.goto('/ui-kit');
-  await expect(page.getByRole('heading', { name: 'Formularios', level: 1 })).toBeVisible();
-  await page.goto('/ui-kit/tokens');
-  await expect(page.getByText('#236999')).toBeVisible();
-  await page.goto('/ui-kit/categoria-inexistente');
-  await expect(page).toHaveURL(/\/ui-kit\/formularios$/);
+  await expect(page.getByRole('heading',{level:1,name:'Formularios'})).toBeVisible();
+  for(const route of ['tipografia','navegacion','iconos','tokens']) {
+    await page.goto('/ui-kit/'+route);
+    await expect(page).toHaveURL(/\/ui-kit\/formularios$/);
+  }
 });

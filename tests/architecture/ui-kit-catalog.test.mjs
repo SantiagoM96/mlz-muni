@@ -1,38 +1,34 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { test } from 'node:test';
+const src=p=>readFileSync(p,'utf8');
+const root='src/pages/ui-kit/';
 
-const file = path => readFileSync(path, 'utf8');
-
-test('UI Kit se carga solo bajo una ruta propia y es navegable en GitHub Pages', () => {
-  const router = file('src/app/router.tsx');
-  assert.match(router, /path: '\/ui-kit\/:categoria\?'/);
-  assert.match(router, /import\('\.\.\/pages\/ui-kit\/UiKitPage'\)/);
-  const pages = file('scripts/prepare-pages.mjs');
-  for (const category of ['formularios', 'botones', 'tipografia', 'tarjetas', 'navegacion', 'iconos', 'tokens']) {
-    assert.ok(pages.includes("'ui-kit/" + category + "'"), category);
-  }
-  assert.ok(!file('src/shared/navigation/SiteHeader.tsx').includes('/ui-kit/'));
+test('solo cuatro galerías UI Kit derivadas de Figma', () => {
+  const page=src(root+'UiKitPage.tsx');
+  for(const slug of ['formularios','botones','etiquetas','tarjetas'])
+    assert.ok(page.includes("slug: '"+slug+"'"),slug);
+  for(const old of ['tipografia','navegacion','iconos','tokens'])
+    assert.ok(!page.includes("slug: '"+old+"'"),old);
+  assert.ok(src('scripts/prepare-pages.mjs').includes("'ui-kit/formularios'"));
+  assert.ok(src('src/app/router.tsx').includes("path: '/ui-kit/:categoria?'"));
+  assert.ok(!src('src/shared/navigation/SiteHeader.tsx').includes('/ui-kit/'));
 });
 
-test('laboratorio consume componentes React reales sin duplicar su implementación', () => {
-  const forms = file('src/pages/ui-kit/views/FormsView.tsx');
-  const buttons = file('src/pages/ui-kit/views/ButtonsView.tsx');
-  const cards = file('src/pages/ui-kit/views/CardsView.tsx');
-  for (const name of ['FormField', 'TextField', 'SelectControl', 'TextAreaControl', 'CheckboxField']) {
-    assert.ok(forms.includes('<' + name), 'No se usa ' + name);
-  }
-  for (const name of ['Button', 'ActionLink', 'IconLink', 'MaterialIcon']) {
-    assert.ok(buttons.includes('<' + name), 'No se usa ' + name);
-  }
-  for (const name of ['InfoCard', 'ActivityCard', 'ActivityBadges', 'FeaturedActivityCard', 'AgendaCircuitCard']) {
-    assert.ok(cards.includes('<' + name), 'No se usa ' + name);
-  }
+test('elimina StoryCard y las siete vistas heredadas del catálogo', () => {
+  assert.ok(!existsSync(root+'components/StoryCard.tsx'));
+  assert.ok(!existsSync(root+'figma/FigmaStories.tsx'));
+  for(const view of ['ButtonsView','CardsView','FormsView','IconsView','NavigationView','TokensView','TypographyView'])
+    assert.ok(!existsSync(root+'views/'+view+'.tsx'),view);
 });
 
-test('los controles demostrativos no persistirán datos', () => {
-  const source = ['UiKitPage.tsx', 'views/FormsView.tsx', 'views/ButtonsView.tsx']
-    .map(path => file('src/pages/ui-kit/' + path)).join('\n');
-  assert.ok(!/\bfetch\s*\(/.test(source));
-  assert.ok(!/localStorage|sessionStorage|indexedDB/.test(source));
+test('galerías usan componentes MLZ Figma y no importan Agenda', () => {
+  const parts={FormsGallery:['MlzFigmaField','MlzFigmaChoices'],
+    ButtonsGallery:['MlzFigmaButton'],TagsGallery:['MlzFigmaTag','MlzFigmaChip'],
+    CardsGallery:['MlzFigmaJovenCard']};
+  for(const [name,components] of Object.entries(parts)) {
+    const code=src(root+'gallery/'+name+'.tsx');
+    for(const component of components) assert.ok(code.includes('<'+component),name+' falta '+component);
+    assert.ok(!code.includes('modules/agenda')&&!code.includes('modules/jovenes-en-comunidad'),name);
+  }
 });
