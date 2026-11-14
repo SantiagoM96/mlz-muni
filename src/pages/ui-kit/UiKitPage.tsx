@@ -6,6 +6,9 @@ import { ButtonsGallery } from './gallery/ButtonsGallery';
 import { TagsGallery } from './gallery/TagsGallery';
 import { CardsGallery } from './gallery/CardsGallery';
 
+const commitSha = import.meta.env.VITE_MLZ_COMMIT_SHA ?? 'local';
+const commitShort = commitSha === 'local' ? 'local' : commitSha.slice(0, 8);
+
 const categories = [
   { slug: 'formularios', label: 'Formularios' },
   { slug: 'deportes', label: 'Patrones de Deportes' },
@@ -44,7 +47,19 @@ export function UiKitPage() {
         <div className="mx-auto max-w-[1200px] px-4 pt-7 sm:px-6 lg:px-8">
           <p className="text-[13px] font-bold uppercase tracking-[0.08em] text-primary-600">Municipio de Lomas de Zamora</p>
           <p className="mt-1 text-[24px] font-bold leading-[30px] text-primary-600">MLZ UI Kit</p>
-          <nav aria-label="Categorías del UI Kit" className="mt-6 flex flex-wrap gap-x-6 gap-y-1">
+          <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] leading-5 text-[#687782]" data-testid="ui-kit-build-version">
+            <span>Versión publicada:</span>
+            {commitSha === 'local' ? (
+              <span className="font-bold text-primary-600">Desarrollo local</span>
+            ) : (
+              <a className="font-bold text-primary-600 underline underline-offset-2 hover:text-primary-700"
+                href={`https://github.com/SantiagoM96/mlz-muni/commit/${commitSha}`}
+                target="_blank" rel="noopener noreferrer" title={`Commit completo: ${commitSha}`}>
+                Commit {commitShort}
+              </a>
+            )}
+          </div>
+          <nav aria-label="Categorías del UI Kit" className="mt-3 flex flex-wrap gap-x-6 gap-y-1">
             {categories.map(item => (
               <NavLink key={item.slug} to={'/ui-kit/' + item.slug}
                 className={({ isActive }) =>
