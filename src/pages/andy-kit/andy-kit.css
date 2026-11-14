@@ -18,3 +18,40 @@
   border:0;color:#006eff;
 }
 .andy-checkbox-symbol .material-symbols-outlined{color:inherit}
+
+
+/* Paridad de estados en demostraciones interactivas:
+   foco 2px visual sin halo y validación Error 600, sin fondo rojo. */
+.andy-kit .andy-field input:not([type=file]):focus-visible,
+.andy-kit .andy-field textarea:focus-visible,
+.andy-kit .andy-select-trigger:focus-visible,
+.andy-kit .andy-select-trigger[aria-expanded="true"],
+.andy-kit .andy-upload:focus-within {
+  border:1px solid #006eff;
+  box-shadow:inset 0 0 0 1px #006eff;
+  outline:none;
+  outline-offset:0;
+}
+.andy-kit .andy-field input[aria-invalid="true"],
+.andy-kit .andy-field textarea[aria-invalid="true"],
+.andy-kit .andy-select-trigger[aria-invalid="true"],
+.andy-kit .andy-upload.is-error {
+  border:1px solid #ef284c;
+  box-shadow:inset 0 0 0 1px #ef284c;
+  outline:none;
+}
+.andy-kit .andy-field input[aria-invalid="true"],
+.andy-kit .andy-field textarea[aria-invalid="true"],
+.andy-kit .andy-select-trigger[aria-invalid="true"] {background:#fff;}
+.andy-kit .andy-upload.is-error {background:#e5f0f9;}
+.andy-kit .andy-field:has([aria-invalid="true"])>span:first-child,
+.andy-kit .andy-field:has(.andy-upload.is-error)>span:first-child {color:#ef284c;}
+.andy-kit .andy-field input:disabled,
+.andy-kit .andy-field textarea:disabled {
+  color:#94c6e5;
+  background:#e5f0f9;
+  border-color:#c6dff1;
+}
+.andy-kit .andy-field input:disabled::placeholder,
+.andy-kit .andy-field textarea:disabled::placeholder {color:#94c6e5;opacity:1;}
+.andy-kit .andy-upload-error {color:#ef284c;font-size:13px;line-height:18px;}
