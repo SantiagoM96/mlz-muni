@@ -2,8 +2,8 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './deportes-controls.css';
 
-const sports = ['Natación', 'Fútbol', 'Vóley', 'Básquet', 'Gimnasia', 'Atletismo'];
-const ages = ['Infancias', 'Adolescentes', 'Personas adultas', 'Personas mayores'];
+const venues = ['Casa Ari', 'Gimnasio de Alto Rendimiento', 'Gimnasio de Deportes de Combate', 'Natatorio Gregorio «Guyo» Sember', 'Natatorio Jorge Omar Rossi', 'Parque Municipal Eva Perón'];
+const ages = ['Hasta 2 años', '3 a 5 años', '6 a 12 años', '13 a 17 años', 'Mayor de 18', 'Mayor de 50'];
 
 type FilterDemoProps = { label: string; options: string[]; multiple?: boolean; searchable?: boolean };
 
@@ -11,6 +11,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const [search, setSearch] = useState('');
+  const [appliedCount, setAppliedCount] = useState(0);
   const trigger = useRef<HTMLButtonElement>(null);
   const root = useRef<HTMLDivElement>(null);
   const id = useId();
@@ -41,12 +42,13 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
       : (previous.includes(option) ? [] : [option]),
   );
   const close = () => { setOpen(false); trigger.current?.focus(); };
+  const apply = () => { setAppliedCount(selected.length); close(); };
   return <div className="kit-sports-filter" ref={root}>
     <button type="button" ref={trigger} className={`kit-sports-trigger ${open || selected.length ? 'is-active' : ''}`}
       aria-haspopup="dialog" aria-expanded={open} aria-controls={id}
       onClick={() => { setOpen(previous => !previous); setSearch(''); }}>
-      <span className="kit-sports-truncate">{label}</span>
-      {selected.length > 0 && <span className="kit-sports-count">{selected.length}</span>}
+      <span className="kit-sports-truncate">{!multiple && selected.length ? selected[0] : label}</span>
+      {multiple && selected.length > 0 && <span className="kit-sports-count">{selected.length}</span>}
       <MaterialIcon name="expand_more" size={22} className={open ? 'rotate-180' : ''} />
     </button>
     {open && <><button className="kit-sports-backdrop" aria-label="Cerrar opciones" onClick={close} type="button" />
@@ -60,14 +62,76 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
             const checked = selected.includes(option);
             return <label className={`kit-sports-option ${checked ? 'is-selected' : ''}`} key={option}>
               <span>{option}</span>
-              <input type="checkbox" checked={checked} onChange={() => toggle(option)} aria-label={option} />
-              <span className="kit-sports-checkbox" aria-hidden="true">{checked && <MaterialIcon name="check" size={16} />}</span>
+              <input type={multiple ? "checkbox" : "radio"} name={multiple ? undefined : id} checked={checked} onChange={() => toggle(option)} aria-label={option} />
+              <span className={multiple ? "kit-sports-checkbox" : "kit-sports-radio"} aria-hidden="true">{checked && (multiple ? <MaterialIcon name="check" size={16} /> : <span className="kit-sports-radio-dot" />)}</span>
             </label>;
           }) : <p className="kit-sports-empty">No encontramos opciones</p>}
         </div>
         <div className="kit-sports-actions">
-          <button className="kit-sports-apply" type="button" onClick={close}>Ver resultados</button>
+          <button className="kit-sports-apply" type="button" onClick={apply}>Ver resultados ({appliedCount})</button>
           <button className="kit-sports-clear" type="button" onClick={() => { setSelected([]); setSearch(''); }}>Limpiar</button>
+        </div>
+      </div></>}
+  </div>;
+}
+
+function MoreFiltersDemo() {
+  const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState<string[]>(['Días de cursada', 'Tipo de deportista']);
+  const [days, setDays] = useState<string[]>(['Lunes']);
+  const [type, setType] = useState('Recreativo');
+  const [applied, setApplied] = useState(0);
+  const root = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const count = days.length + (type ? 1 : 0);
+  useEffect(() => {
+    if (!open) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setOpen(false); trigger.current?.focus(); }
+    };
+    document.addEventListener('keydown', dismiss);
+    return () => document.removeEventListener('keydown', dismiss);
+  }, [open]);
+  const close = () => { setOpen(false); trigger.current?.focus(); };
+  const toggleSection = (section: string) => setExpanded(previous =>
+    previous.includes(section) ? previous.filter(item => item !== section) : [...previous, section],
+  );
+  return <div className="kit-sports-filter kit-sports-more" ref={root}>
+    <button type="button" ref={trigger} className={`kit-sports-trigger ${open || count ? 'is-active' : ''}`}
+      aria-expanded={open} aria-haspopup="dialog" onClick={() => setOpen(previous => !previous)}>
+      <span className="kit-sports-truncate">Más filtros</span><span className="kit-sports-count">{count}</span>
+      <MaterialIcon name="tune" size={24} />
+    </button>
+    {open && <><button type="button" className="kit-sports-backdrop" aria-label="Cerrar más filtros" onClick={close} />
+      <div className="kit-sports-popover kit-sports-more-popover" role="dialog" aria-label="Más filtros">
+        <div className="kit-sports-mobile-header"><span className="kit-sports-grabber" /><strong>Más filtros</strong></div>
+        <div className="kit-sports-more-scroll">
+          {['Días de cursada', 'Tipo de deportista'].map(section =>
+            <div className="kit-sports-more-section" key={section}>
+              <button type="button" className="kit-sports-section-title" aria-expanded={expanded.includes(section)}
+                onClick={() => toggleSection(section)}>{section}
+                <MaterialIcon name="expand_more" size={22} className={expanded.includes(section) ? 'rotate-180' : ''} />
+              </button>
+              {expanded.includes(section) && <div className="kit-sports-choice-grid">
+                {section === 'Días de cursada'
+                  ? ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'].map(day =>
+                    <label className="kit-sports-inline-choice" key={day}>
+                      <input type="checkbox" checked={days.includes(day)} onChange={() => setDays(previous =>
+                        previous.includes(day) ? previous.filter(x => x !== day) : [...previous, day])} />
+                      <span className="kit-sports-inline-symbol" aria-hidden="true">{days.includes(day) && <MaterialIcon name="check" size={17}/>}</span>
+                      {day}
+                    </label>)
+                  : ['Recreativo', 'Competitivo', 'Federado'].map(item =>
+                    <label className="kit-sports-inline-choice" key={item}>
+                      <input type="radio" name="kit-sports-athlete" checked={type === item} onChange={() => setType(item)} />
+                      <span className="kit-sports-inline-symbol" aria-hidden="true" />{item}
+                    </label>)}
+              </div>}
+            </div>)}
+        </div>
+        <div className="kit-sports-actions">
+          <button className="kit-sports-apply" type="button" onClick={() => { setApplied(count); close(); }}>Ver resultados ({applied})</button>
+          <button className="kit-sports-clear kit-sports-clear-bordered" type="button" onClick={() => { setDays([]); setType(''); }}>Limpiar</button>
         </div>
       </div></>}
   </div>;
@@ -97,11 +161,11 @@ export function SportsControlsGallery() {
   return <div className="kit-sports-gallery">
     <p className="kit-sports-intro">Patrones recuperados del prototipo Deportes Anual y de Agenda. Los filtros de catálogo y los campos de inscripción conservan comportamientos diferentes; esta galería no modifica las pantallas productivas.</p>
     <section className="kit-sports-section"><h2>Filtros de selección</h2>
-      <p>Selección múltiple con opciones independientes, check de contorno, búsqueda y acciones explícitas. Fecha no tiene buscador interno.</p>
+      <p>Sede utiliza selección múltiple; Edad, selección única; Más filtros combina checkbox y radio. Las opciones están separadas para que no se peguen al seleccionar varias.</p>
       <div className="kit-sports-filters">
-        <FilterDemo label="Deporte" options={sports} multiple />
-        <FilterDemo label="Edad" options={ages} multiple />
-        <FilterDemo label="Fecha" options={['Hoy', 'Mañana', 'Esta semana', 'Este mes']} searchable={false} />
+        <FilterDemo label="Sede" options={venues} multiple searchable={false} />
+        <FilterDemo label="Edad" options={ages} searchable={false} />
+        <MoreFiltersDemo />
       </div>
     </section>
     <section className="kit-sports-section"><h2>Campos de formulario</h2>
