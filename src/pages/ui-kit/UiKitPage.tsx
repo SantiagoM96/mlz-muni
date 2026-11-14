@@ -1,7 +1,6 @@
 import { useEffect, type ComponentType } from 'react';
 import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { FormsGallery } from './gallery/FormsGallery';
-import { SportsControlsGallery } from './SportsControlsGallery';
 import { ButtonsGallery } from './gallery/ButtonsGallery';
 import { TagsGallery } from './gallery/TagsGallery';
 import { CardsGallery } from './gallery/CardsGallery';
@@ -11,7 +10,6 @@ const commitShort = commitSha === 'local' ? 'local' : commitSha.slice(0, 8);
 
 const categories = [
   { slug: 'formularios', label: 'Formularios' },
-  { slug: 'deportes', label: 'Patrones de Deportes' },
   { slug: 'botones', label: 'Botones' },
   { slug: 'etiquetas', label: 'Etiquetas y chips' },
   { slug: 'tarjetas', label: 'Tarjetas' },
@@ -21,7 +19,6 @@ type Category = (typeof categories)[number]['slug'];
 
 const galleries: Record<Category, ComponentType> = {
   formularios: FormsGallery,
-  deportes: SportsControlsGallery,
   botones: ButtonsGallery,
   etiquetas: TagsGallery,
   tarjetas: CardsGallery,
@@ -36,6 +33,7 @@ export function UiKitPage() {
     document.title = 'MLZ UI Kit · ' + (active?.label ?? 'Componentes');
   }, [active?.label]);
 
+  if (categoria === 'deportes') return <Navigate to="/ui-kit-andy/filtros" replace />;
   if (!active) return <Navigate to="/ui-kit/formularios" replace />;
 
   const Gallery = galleries[active.slug];
