@@ -32,6 +32,8 @@ export type MaterialIconName =
   | 'check'
   | 'check_box'
   | 'check_box_outline_blank'
+  | 'radio_button_checked'
+  | 'radio_button_unchecked'
   | 'link'
   | 'content_copy'
   | 'add'
