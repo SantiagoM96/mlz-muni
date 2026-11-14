@@ -1,0 +1,65 @@
+/* UI Kit reference only: Sports Annual and Agenda selection patterns. */
+.kit-sports-gallery { --kit-blue:#236999; --kit-info:#006eff; --kit-stroke:#5ba8d5; --kit-ink:#3d3d3d; color:var(--kit-ink); }
+.kit-sports-intro { max-width:850px; margin:0 0 28px; line-height:1.6; }
+.kit-sports-section { background:#fff; border:1px solid #e1e7eb; border-radius:8px; padding:24px; margin-bottom:24px; }
+.kit-sports-section h2 { font-size:22px; font-weight:700; color:var(--kit-blue); margin:0 0 8px; }
+.kit-sports-section>p { margin:0 0 22px; font-size:15px; line-height:1.6; }
+.kit-sports-filters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; max-width:950px; }
+.kit-sports-filter { position:relative; min-width:0; }
+.kit-sports-trigger { width:100%; height:48px; display:flex; align-items:center; gap:8px; padding:0 16px; border:1px solid var(--kit-stroke); border-radius:4px; color:var(--kit-blue); background:white; text-align:left; font-size:16px; }
+.kit-sports-trigger:hover { border-color:var(--kit-blue); background:#f4f9fd; }
+.kit-sports-trigger.is-active { background:#f6f6f6; border:2px solid var(--kit-info); padding-inline:15px; }
+.kit-sports-trigger:focus-visible { outline:2px solid var(--kit-info); outline-offset:2px; }
+.kit-sports-truncate { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.kit-sports-count { flex:none; min-width:24px; height:24px; padding:0 5px; border-radius:20px; background:var(--kit-info); color:white; display:grid; place-items:center; font-size:13px; font-weight:700; }
+.kit-sports-trigger .material-symbols-outlined { transition:transform .15s ease; }
+.kit-sports-popover { position:absolute; z-index:40; top:56px; left:0; width:min(416px,calc(100vw - 48px)); max-height:min(76vh,650px); background:#fff; border:1px solid #dfebf3; border-radius:5px; box-shadow:0 8px 24px #15394c2b; display:flex; flex-direction:column; padding:8px; }
+.kit-sports-backdrop,.kit-sports-mobile-header { display:none; }
+.kit-sports-search-wrap { position:relative; flex:0 0 auto; margin-bottom:8px; }
+.kit-sports-search-wrap input { width:100%; height:48px; border:1px solid var(--kit-stroke); border-radius:4px; padding:0 44px 0 16px; color:var(--kit-ink); font-size:16px; background:#fff; }
+.kit-sports-search-wrap input::placeholder { color:var(--kit-stroke); }
+.kit-sports-search-wrap input:focus { outline:2px solid var(--kit-info); outline-offset:-2px; }
+.kit-sports-search-wrap .material-symbols-outlined { position:absolute; pointer-events:none; right:13px; top:13px; color:var(--kit-blue); }
+.kit-sports-options { min-height:0; overflow-y:auto; overscroll-behavior:contain; display:flex; flex-direction:column; gap:2px; scrollbar-width:thin; scrollbar-color:#c4d2dc transparent; }
+.kit-sports-option { position:relative; display:flex; min-height:48px; align-items:center; justify-content:space-between; gap:12px; padding:8px 16px; border-radius:4px; cursor:pointer; background:white; color:var(--kit-blue); font-size:16px; line-height:24px; }
+.kit-sports-option:hover { background:#edf6ff; }
+.kit-sports-option.is-selected,.kit-sports-option.is-selected:hover { background:var(--kit-info); color:#fff; }
+.kit-sports-option:has(input:focus-visible) { outline:2px solid var(--kit-blue); outline-offset:-2px; }
+.kit-sports-option input { position:absolute; inset:0; opacity:0; width:100%; height:100%; cursor:pointer; }
+.kit-sports-checkbox { display:grid; place-items:center; flex:0 0 20px; width:20px; height:20px; border:2px solid var(--kit-blue); border-radius:2px; background:white; }
+.kit-sports-option.is-selected .kit-sports-checkbox { border-color:white; color:white; background:transparent; }
+.kit-sports-empty { margin:0; padding:16px; color:#777; }
+.kit-sports-actions { display:flex; gap:8px; padding-top:8px; margin-top:8px; border-top:1px solid #e1e7eb; }
+.kit-sports-actions button { height:48px; border-radius:4px; font-size:16px; font-weight:700; }
+.kit-sports-apply { flex:1; background:var(--kit-blue); color:white; padding:0 14px; }
+.kit-sports-apply:hover { background:#19577f; }
+.kit-sports-clear { color:var(--kit-blue); background:white; padding:0 18px; }
+.kit-sports-clear:hover { background:#eff6fc; }
+.kit-sports-actions button:focus-visible { outline:2px solid var(--kit-info); outline-offset:2px; }
+.kit-sports-form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; max-width:800px; }
+.kit-sports-field { display:flex; flex-direction:column; gap:6px; font-size:16px; min-width:0; }
+.kit-sports-field>span { color:var(--kit-blue); font-weight:700; }
+.kit-sports-field input,.kit-sports-field select { width:100%; height:48px; border:1px solid var(--kit-stroke); background:white; border-radius:4px; padding:0 14px; color:var(--kit-ink); font-size:16px; }
+.kit-sports-field input::placeholder { color:#5ba8d5; }
+.kit-sports-field input:focus,.kit-sports-field select:focus { outline:2px solid var(--kit-info); outline-offset:-2px; }
+.kit-sports-field input:disabled { background:#e5f0f9; cursor:not-allowed; }
+.kit-sports-field input[aria-invalid=true] { border:2px solid #ef284c; }
+.kit-sports-field small { color:#d42044; }
+.kit-sports-example-button { height:48px; padding:0 16px; border:1px solid var(--kit-blue); border-radius:4px; font-weight:700; color:var(--kit-blue); text-align:left; }
+.kit-sports-swatches { display:flex; gap:16px; flex-wrap:wrap; }
+.kit-sports-swatch { display:flex; align-items:center; gap:8px; min-width:155px; }
+.kit-sports-swatch-color { width:36px; height:36px; border-radius:4px; border:1px solid #dce3e9; }
+.kit-sports-swatch strong,.kit-sports-swatch small { display:block; font-size:12px; }
+.kit-sports-swatch small { margin-top:3px; color:#6c7884; }
+.kit-sports-caption { margin:20px 0 0 !important; font-size:13px !important; color:#687782; }
+@media(max-width:800px) { .kit-sports-filters { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:680px) {
+  .kit-sports-section { padding:16px; }
+  .kit-sports-filters,.kit-sports-form-grid { grid-template-columns:1fr; }
+  .kit-sports-backdrop { display:block; position:fixed; inset:0; z-index:90; background:rgba(19,47,69,.56); border:0; width:100%; height:100%; }
+  .kit-sports-popover { position:fixed; inset:auto 0 0 0; z-index:91; width:100vw; max-width:none; height:min(86dvh,820px); max-height:86dvh; border:0; border-radius:16px 16px 0 0; padding:0 8px max(8px,env(safe-area-inset-bottom)); box-shadow:0 -8px 28px #0003; }
+  .kit-sports-mobile-header { display:flex; flex:none; flex-direction:column; align-items:center; gap:8px; padding:10px 8px 16px; font-size:18px; color:var(--kit-blue); }
+  .kit-sports-grabber { display:block; width:44px; height:4px; border-radius:10px; background:#c8d4dd; }
+  .kit-sports-options { flex:1; }
+}
+@media(prefers-reduced-motion:reduce) { .kit-sports-trigger .material-symbols-outlined { transition:none; } }
