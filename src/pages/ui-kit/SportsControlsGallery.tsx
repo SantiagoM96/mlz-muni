@@ -189,7 +189,7 @@ function FormDemo() {
   </div>;
 }
 
-export function SportsControlsGallery() {
+export function SportsControlsGallery({ mode = 'all' }: { mode?: 'all' | 'filters' }) {
   return <div className="kit-sports-gallery">
     <p className="kit-sports-intro">Patrones recuperados del prototipo Deportes Anual y de Agenda. Los filtros de catálogo y los campos de inscripción conservan comportamientos diferentes; esta galería no modifica las pantallas productivas.</p>
     <section className="kit-sports-section"><h2>Filtros de selección</h2>
@@ -200,11 +200,11 @@ export function SportsControlsGallery() {
         <MoreFiltersDemo />
       </div>
     </section>
-    <section className="kit-sports-section"><h2>Campos de formulario</h2>
+    {mode === 'all' && <section className="kit-sports-section"><h2>Campos de formulario</h2>
       <p>Los campos mantienen etiqueta, placeholder, foco, completado, deshabilitado y error, sin adoptar el patrón de filtros.</p>
       <FormDemo />
-    </section>
-    <section className="kit-sports-section"><h2>Referencia de tokens</h2>
+    </section>}
+    {mode === 'all' && <section className="kit-sports-section"><h2>Referencia de tokens</h2>
       <div className="kit-sports-swatches">{[
         ['Primario 600', '#236999'], ['Info / selección', '#006EFF'], ['Borde filtro', '#5BA8D5'],
         ['Texto', '#3D3D3D'], ['Superficie activa', '#F6F6F6'],
@@ -213,6 +213,6 @@ export function SportsControlsGallery() {
         <span><strong>{name}</strong><small>{value}</small></span>
       </div>)}</div>
       <p className="kit-sports-caption">Geometria · Material Symbols Outlined · controles 48 px · radio 4 px · estado activo con borde 2 px · separación 2 px entre opciones.</p>
-    </section>
+    </section>}
   </div>;
 }
