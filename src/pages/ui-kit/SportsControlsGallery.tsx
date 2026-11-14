@@ -63,7 +63,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
             return <label className={`kit-sports-option ${checked ? 'is-selected' : ''}`} key={option}>
               <span>{option}</span>
               <input type={multiple ? "checkbox" : "radio"} name={multiple ? undefined : id} checked={checked} onChange={() => toggle(option)} aria-label={option} />
-              <span className={multiple ? "kit-sports-checkbox" : "kit-sports-radio"} aria-hidden="true">{checked && (multiple ? <MaterialIcon name="check" size={16} /> : <span className="kit-sports-radio-dot" />)}</span>
+              <span className={multiple ? "kit-sports-checkbox" : "kit-sports-radio"} aria-hidden="true">{multiple ? <MaterialIcon name={checked ? 'check_box' : 'check_box_outline_blank'} size={24} /> : checked && <span className="kit-sports-radio-dot" />}</span>
             </label>;
           }) : <p className="kit-sports-empty">No encontramos opciones</p>}
         </div>
