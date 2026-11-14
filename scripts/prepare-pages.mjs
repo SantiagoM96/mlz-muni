@@ -3,6 +3,9 @@ import { join } from 'node:path';
 const dist = join(process.cwd(), 'dist');
 const staticPaths = [
   'ui-kit',
+  'ui-kit/deportes',
+  'ui-kit-andy',
+  ...['fundamentos', 'filtros', 'formularios', 'seleccion', 'botones', 'etiquetas', 'tarjetas', 'mensajes'].map(section => `ui-kit-andy/${section}`),
   'ui-kit/formularios',
   'ui-kit/botones',
   'ui-kit/tipografia',
