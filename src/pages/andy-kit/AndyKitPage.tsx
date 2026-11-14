@@ -3,6 +3,7 @@ import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
+import { DropdownVariantsGallery } from './DropdownVariantsGallery';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import './andy-kit.css';
 
@@ -83,6 +84,9 @@ function UploadSample(){const [file,setFile]=useState('');return <label classNam
 function Forms(){
  return <>
  <DemoSection title="Biblioteca de estados de formularios" description="Matriz comparativa de todos los estados disponibles, visibles al mismo tiempo y separados por tipo de campo."><FormStateMatrix/></DemoSection>
+ <DemoSection title="Dropdowns abiertos · variantes" description="Selección normal, radio buttons, checkboxes y dropdown con buscador. Las cuatro variantes se muestran abiertas para revisar sus estados y opciones.">
+   <DropdownVariantsGallery/>
+ </DemoSection>
  <DemoSection title="Inputs de inscripción" description="Campos de 48 px, Geometria 16 px, fondo blanco, borde #5BA8D5 y foco #006EFF. Sin halo celeste agregado.">
  <div className="andy-form-grid"><Field label="Nombre y apellido" placeholder="Ingresá tu nombre"/><Field label="DNI" placeholder="Ingresá tu número de documento"/><Field label="Teléfono" placeholder="Ingresá tu teléfono" type="tel"/><Field label="Correo electrónico" placeholder="nombre@ejemplo.com" type="email"/><Field label="Campo deshabilitado" placeholder="No disponible" disabled/><Field label="Campo con error" placeholder="Dato obligatorio" error/></div></DemoSection>
  <DemoSection title="Dropdowns del formulario" description="Este selector es distinto del filtro de catálogo: opción única, marca de radio y menú propio. Localidad incluye búsqueda.">
