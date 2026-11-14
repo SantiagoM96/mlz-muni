@@ -63,7 +63,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
             return <label className={`kit-sports-option ${checked ? 'is-selected' : ''}`} key={option}>
               <span>{option}</span>
               <input type={multiple ? "checkbox" : "radio"} name={multiple ? undefined : id} checked={checked} onChange={() => toggle(option)} aria-label={option} />
-              <span className={multiple ? "kit-sports-checkbox" : "kit-sports-radio"} aria-hidden="true">{multiple ? <MaterialIcon name={checked ? 'check_box' : 'check_box_outline_blank'} size={24} /> : checked && <span className="kit-sports-radio-dot" />}</span>
+              <span className={multiple ? "kit-sports-checkbox" : "kit-sports-radio"} aria-hidden="true"><MaterialIcon name={multiple ? checked ? 'check_box' : 'check_box_outline_blank' : checked ? 'radio_button_checked' : 'radio_button_unchecked'} size={24}/></span>
             </label>;
           }) : <p className="kit-sports-empty">No encontramos opciones</p>}
         </div>
@@ -124,7 +124,7 @@ function MoreFiltersDemo() {
                   : ['Recreativo', 'Competitivo', 'Federado'].map(item =>
                     <label className="kit-sports-inline-choice" key={item}>
                       <input type="radio" name="kit-sports-athlete" checked={type === item} onChange={() => setType(item)} />
-                      <span className="kit-sports-inline-symbol" aria-hidden="true" />{item}
+                      <span className="kit-sports-inline-symbol kit-sports-inline-radio" aria-hidden="true"><MaterialIcon name={type === item ? 'radio_button_checked' : 'radio_button_unchecked'} size={24}/></span>{item}
                     </label>)}
               </div>}
             </div>)}
