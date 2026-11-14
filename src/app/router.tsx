@@ -24,6 +24,12 @@ const router = createBrowserRouter([{
     Component: (await import('../modules/agenda/pages/AgendaConsolePreviewPage')).AgendaConsolePreviewPage,
   }),
 }, {
+  // Catálogo autónomo de diseño de Andy. No reemplaza el UI Kit institucional.
+  path: '/ui-kit-andy/:categoria?',
+  lazy: async () => ({
+    Component: (await import('../pages/andy-kit/AndyKitPage')).AndyKitPage,
+  }),
+}, {
   // Laboratorio técnico independiente del layout público y cargado solo al visitarlo.
   path: '/ui-kit/:categoria?',
   lazy: async () => ({
