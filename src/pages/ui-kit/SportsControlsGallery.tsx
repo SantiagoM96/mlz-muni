@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
+import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './deportes-controls.css';
 
 const sports = ['Natación', 'Fútbol', 'Vóley', 'Básquet', 'Gimnasia', 'Atletismo'];
