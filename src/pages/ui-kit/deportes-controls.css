@@ -109,3 +109,18 @@
 @media(max-width:680px) {
  .kit-sports-form-popover { position:fixed; top:auto; bottom:0; left:0; right:0; z-index:91; padding:18px 12px max(18px,env(safe-area-inset-bottom)); border-radius:16px 16px 0 0; max-height:85dvh; }
 }
+
+
+/* Checkboxes según referencia: Material Symbols Outlined, sin cuadrados CSS superpuestos. */
+.kit-sports-checkbox,
+.kit-sports-inline-symbol.kit-sports-inline-checkbox {
+  display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;
+  border:0;border-radius:0;background:transparent;padding:0;
+  color:#5ba8d5;
+}
+.kit-sports-option.is-selected .kit-sports-checkbox{
+  border:0;background:transparent;color:#fff;
+}
+.kit-sports-inline-choice:has(input:checked) .kit-sports-inline-checkbox{border:0;color:#006eff}
+.kit-sports-inline-checkbox .material-symbols-outlined,
+.kit-sports-checkbox .material-symbols-outlined{color:inherit}
