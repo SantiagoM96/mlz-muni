@@ -33,3 +33,14 @@
 .andy-dropdown-open-again{color:#236999;padding:10px 0;font-size:13px;text-decoration:underline}
 @media(max-width:780px){.andy-dropdown-variants-grid{grid-template-columns:1fr}.andy-dropdown-variant-heading{min-height:0}}
 @media(max-width:680px){.andy-dropdown-variant{padding:14px}.andy-dropdown-variant-options{max-height:240px}}
+
+
+/* Checkbox Outlined de la referencia (check_box / check_box_outline_blank). */
+.andy-dropdown-choice.is-check{
+  width:24px;height:24px;flex:0 0 24px;border:0;border-radius:0;
+  background:transparent;color:#5ba8d5;
+}
+.andy-dropdown-variant-option.selected .andy-dropdown-choice.is-check{
+  border:0;color:#006eff;
+}
+.andy-dropdown-choice.is-check .material-symbols-outlined{color:inherit}
