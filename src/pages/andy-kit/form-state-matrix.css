@@ -70,3 +70,51 @@
   color:#5ba8d5;
   opacity:1;
 }
+
+/* Refinamiento: Text field y Dropdown comparten estados.
+   Primario 300 (#94C6E5) se usa para contenido disabled;
+   Primario 100 (#E5F0F9), para el fondo. */
+.andy-state-cell[data-state="disabled"] .andy-matrix-field input,
+.andy-state-cell[data-state="disabled"] .andy-matrix-select{
+  background:#e5f0f9;
+  border-color:#c6dff1;
+  color:#94c6e5;
+  box-shadow:none;
+  outline:none;
+}
+.andy-state-cell[data-state="disabled"] .andy-matrix-field input::placeholder{
+  color:#94c6e5;
+  opacity:1;
+}
+.andy-state-cell[data-state="disabled"] .andy-matrix-select>.material-symbols-outlined{
+  color:#94c6e5;
+}
+.andy-state-cell[data-state="completed"] .andy-matrix-select{
+  color:var(--matrix-blue);
+  background:#fff;
+}
+.andy-state-cell[data-state="error"] .andy-matrix-select{
+  background:#fff;
+  color:var(--matrix-blue);
+  border:1px solid var(--matrix-error);
+  box-shadow:inset 0 0 0 1px var(--matrix-error);
+  outline:none;
+}
+.andy-state-cell[data-state="focus"] .andy-matrix-select,
+.andy-state-cell[data-state="focus"] .andy-matrix-select:focus-visible{
+  color:var(--matrix-blue);
+  background:#fff;
+  border:1px solid var(--matrix-info);
+  box-shadow:inset 0 0 0 1px var(--matrix-info);
+  outline:none;
+}
+.andy-state-cell[data-state="error"] .andy-matrix-field-label,
+.andy-state-cell[data-state="error"] .andy-matrix-error{
+  color:var(--matrix-error);
+}
+.andy-state-cell[data-state="open"] .andy-matrix-select{
+  background:#fff;
+  border:1px solid var(--matrix-info);
+  box-shadow:inset 0 0 0 1px var(--matrix-info);
+  outline:none;
+}
