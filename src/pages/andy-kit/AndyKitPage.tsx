@@ -50,7 +50,7 @@ function Filters() {return <>
  <DemoSection title="Buscador, Sede, Edad y Más filtros" description="Patrones interactivos recuperados del prototipo de Deportes. Filtros de catálogo independientes de los dropdowns de inscripción.">
   <div className="andy-search-field"><input aria-label="Buscar actividad" placeholder="¿Qué estás buscando?" /><Icon name="search" size={24}/></div>
  </DemoSection>
- <div className="andy-embedded-sports"><SportsControlsGallery/></div>
+ <div className="andy-embedded-sports"><SportsControlsGallery mode="filters"/></div>
  <DemoSection title="Filtros aplicados" description="Chips de selección múltiples y acción para limpiar el conjunto."><ChipGallery compact /></DemoSection>
  </>}
 function Field({label,placeholder,disabled=false,error=false,type='text'}:{label:string;placeholder:string;disabled?:boolean;error?:boolean;type?:string}) {
