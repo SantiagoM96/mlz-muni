@@ -44,3 +44,44 @@
   border:0;color:#006eff;
 }
 .andy-dropdown-choice.is-check .material-symbols-outlined{color:inherit}
+
+/* Controles del menú: tamaño base 24px, trazo Material Symbols weight 400.
+   El cuadrado del checkbox siempre conserva el centro blanco. */
+.andy-dropdown-variant-option .andy-dropdown-choice.is-radio {
+  width:24px;height:24px;flex:0 0 24px;
+  border:2px solid #236999;border-radius:50%;
+  background:#fff;
+}
+.andy-dropdown-variant-option.selected .andy-dropdown-choice.is-radio {
+  border-color:#006eff;background:#fff;
+}
+.andy-dropdown-choice.is-radio>span {width:12px;height:12px;background:#006eff;}
+.andy-dropdown-variant-option .andy-dropdown-choice.is-check {
+  position:relative;
+  width:24px;height:24px;flex:0 0 24px;
+  border:none;border-radius:0;
+  background:#fff;
+  color:#236999;
+  isolation:isolate;
+}
+.andy-dropdown-variant-option:hover .andy-dropdown-choice.is-check,
+.andy-dropdown-variant-option.selected .andy-dropdown-choice.is-check,
+.andy-dropdown-variant-option.selected:hover .andy-dropdown-choice.is-check {
+  background:#fff;
+  border:none;
+  color:#006eff;
+}
+.andy-dropdown-choice.is-check .material-symbols-outlined {
+  color:inherit;
+  position:absolute;
+  inset:0;
+}
+.andy-dropdown-choice.is-check .andy-checkbox-tick {
+  color:#006eff;
+}
+.andy-dropdown-variant-option .andy-dropdown-mark {
+  width:24px;height:24px;flex:0 0 24px;
+}
+.andy-dropdown-search .material-symbols-outlined {
+  top:8px;right:10px;
+}
