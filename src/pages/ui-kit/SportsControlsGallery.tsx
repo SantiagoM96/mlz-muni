@@ -137,18 +137,50 @@ function MoreFiltersDemo() {
   </div>;
 }
 
+function FormSelectDemo() {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const id = useId();
+  const trigger = useRef<HTMLButtonElement>(null);
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setOpen(false); trigger.current?.focus(); }
+    };
+    const outside = (event: PointerEvent) => {
+      if (!root.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener('keydown', dismiss);
+    document.addEventListener('pointerdown', outside);
+    return () => { document.removeEventListener('keydown', dismiss); document.removeEventListener('pointerdown', outside); };
+  }, [open]);
+  return <div className="kit-sports-field kit-sports-form-select" ref={root}>
+    <span id={id + '-label'}>Tipo de documento</span>
+    <button ref={trigger} type="button" className="kit-sports-form-trigger" aria-labelledby={id + '-label'}
+      aria-expanded={open} aria-haspopup="listbox" aria-controls={id}
+      onClick={() => setOpen(previous => !previous)}>
+      <span>{value || 'Seleccionar'}</span><MaterialIcon name="expand_more" size={24} className={open ? 'rotate-180' : ''} />
+    </button>
+    {open && <><button type="button" className="kit-sports-backdrop" aria-label="Cerrar selector" onClick={() => setOpen(false)} />
+      <div id={id} className="kit-sports-form-popover" role="listbox" aria-labelledby={id + '-label'}>
+        {['DNI', 'Pasaporte', 'Libreta cívica'].map(item =>
+          <button type="button" role="option" key={item} aria-selected={value === item}
+            className="kit-sports-form-option" onClick={() => { setValue(item); setOpen(false); trigger.current?.focus(); }}>
+            <span>{item}</span><span className="kit-sports-form-radio" aria-hidden="true"><span /></span>
+          </button>)}
+      </div></>}
+  </div>;
+}
+
 function FormDemo() {
   const [name, setName] = useState('');
-  const [documentType, setDocumentType] = useState('');
   const [error, setError] = useState(false);
   return <div className="kit-sports-form-grid">
     <label className="kit-sports-field"><span>Nombre y apellido</span><input placeholder="Ingresá tu nombre" value={name}
       onChange={event => setName(event.target.value)} aria-invalid={error} aria-describedby={error ? 'kit-sports-error' : undefined} />
       {error && <small id="kit-sports-error">Completá este campo.</small>}</label>
-    <label className="kit-sports-field"><span>Tipo de documento</span>
-      <select value={documentType} onChange={event => setDocumentType(event.target.value)}>
-        <option value="">Seleccionar</option><option value="dni">DNI</option><option value="pasaporte">Pasaporte</option>
-      </select></label>
+    <FormSelectDemo />
     <label className="kit-sports-field"><span>Campo deshabilitado</span><input disabled placeholder="No disponible" /></label>
     <div className="kit-sports-field"><span>Validación</span>
       <button type="button" className="kit-sports-example-button" onClick={() => setError(previous => !previous)}>
