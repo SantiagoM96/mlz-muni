@@ -48,7 +48,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
       aria-haspopup="dialog" aria-expanded={open} aria-controls={id}
       onClick={() => { setOpen(previous => !previous); setSearch(''); }}>
       <span className="kit-sports-truncate">{!multiple && selected.length ? selected[0] : label}</span>
-      {multiple && selected.length > 0 && <span className="kit-sports-count">{selected.length}</span>}
+      {multiple && selected.length > 0 && <span className="kit-sports-count"><span>{selected.length}</span></span>}
       <MaterialIcon name="expand_more" size={22} className={open ? 'rotate-180' : ''} />
     </button>
     {open && <><button className="kit-sports-backdrop" aria-label="Cerrar opciones" onClick={close} type="button" />
@@ -99,7 +99,7 @@ function MoreFiltersDemo() {
   return <div className="kit-sports-filter kit-sports-more" ref={root}>
     <button type="button" ref={trigger} className={`kit-sports-trigger ${open || count ? 'is-active' : ''}`}
       aria-expanded={open} aria-haspopup="dialog" onClick={() => setOpen(previous => !previous)}>
-      <span className="kit-sports-truncate">Más filtros</span><span className="kit-sports-count">{count}</span>
+      <span className="kit-sports-truncate">Más filtros</span><span className="kit-sports-count"><span>{count}</span></span>
       <MaterialIcon name="tune" size={24} />
     </button>
     {open && <><button type="button" className="kit-sports-backdrop" aria-label="Cerrar más filtros" onClick={close} />
