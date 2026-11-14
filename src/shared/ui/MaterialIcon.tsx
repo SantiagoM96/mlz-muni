@@ -30,6 +30,8 @@ export type MaterialIconName =
   | 'rainy'
   | 'comedy_mask'
   | 'check'
+  | 'check_box'
+  | 'check_box_outline_blank'
   | 'link'
   | 'content_copy'
   | 'add'
