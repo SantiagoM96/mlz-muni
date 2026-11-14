@@ -1,0 +1,35 @@
+.andy-dropdown-variants-intro{font-size:14px;line-height:23px;color:#63727e;margin:0 0 20px}
+.andy-dropdown-variants-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.andy-dropdown-variant{min-width:0;border:1px solid #e1e7eb;border-radius:8px;padding:18px;background:white}
+.andy-dropdown-variant-heading{min-height:74px;margin-bottom:18px}.andy-dropdown-variant-heading h4{font-size:17px;line-height:24px;color:#236999;font-weight:700;margin:0 0 5px}.andy-dropdown-variant-heading p{font-size:13px;line-height:20px;color:#687782;margin:0}
+.andy-dropdown-variant-label{font-size:16px;line-height:22px;font-weight:700;color:#236999;margin-bottom:8px}
+.andy-dropdown-variant-trigger{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;width:100%;border:1px solid #5ba8d5;border-radius:4px;background:#fff;color:#236999;padding:8px 16px;font-size:16px;line-height:24px;text-align:left}
+.andy-dropdown-variant-trigger>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.andy-dropdown-variant-trigger.is-open{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-dropdown-variant-trigger.is-open .material-symbols-outlined{transform:rotate(180deg)}
+.andy-dropdown-variant-menu{display:flex;flex-direction:column;gap:0;margin-top:6px;border:1px solid #c7d8e7;border-radius:8px;background:#fff;padding:6px;box-shadow:0 10px 26px #163b541a}
+.andy-dropdown-variant-options{display:flex;flex-direction:column;gap:2px;max-height:270px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#a9bdcd transparent}
+.andy-dropdown-variant-option{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;width:100%;border-radius:5px;padding:9px 12px;color:#3d3d3d;background:white;font-size:16px;line-height:24px;cursor:pointer}
+.andy-dropdown-variant-option:hover{background:#edf6fc}
+.andy-dropdown-variant-option:has(input:focus-visible){outline:2px solid #006eff;outline-offset:-2px}
+.andy-dropdown-variant-option.selected{background:#e5f0ff;color:#236999;font-weight:500}
+.andy-dropdown-variant-option>span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.andy-dropdown-variant-option>input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.andy-dropdown-mark{display:grid;place-items:center;flex:0 0 20px;width:20px;height:20px;color:#006eff}
+.andy-dropdown-choice{display:grid;place-items:center;flex:0 0 20px;width:20px;height:20px;border:2px solid #236999;background:white;color:#006eff}
+.andy-dropdown-choice.is-check{border-radius:2px}.andy-dropdown-choice.is-radio{border-radius:50%}
+.andy-dropdown-choice.is-radio>span{width:10px;height:10px;border-radius:50%;background:#006eff}
+.andy-dropdown-variant-option.selected .andy-dropdown-choice{border-color:#006eff}
+.andy-dropdown-search{position:relative;margin-bottom:8px}
+.andy-dropdown-search input{width:100%;height:40px;border:1px solid #c7d8e7;border-radius:5px;background:#fff;padding:7px 38px 7px 12px;color:#3d3d3d;font-size:15px;line-height:24px;outline:none}
+.andy-dropdown-search input:focus-visible{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-dropdown-search .material-symbols-outlined{position:absolute;right:11px;top:10px;color:#236999;pointer-events:none}
+.andy-dropdown-variant-actions{display:flex;align-items:center;gap:8px;border-top:1px solid #e1e7eb;padding-top:8px;margin-top:8px}
+.andy-dropdown-variant-actions button{min-height:42px;padding:8px 14px;border-radius:4px;font-size:14px;line-height:22px;font-weight:700}
+.andy-dropdown-variant-actions button:first-child{background:#236999;color:white;flex:1}
+.andy-dropdown-variant-actions button:last-child{color:#236999;background:#fff;border:1px solid #c7d8e7}
+.andy-dropdown-variant-actions button:hover{filter:brightness(.96)}
+.andy-dropdown-no-results{margin:0;padding:14px;color:#687782;font-size:14px}
+.andy-dropdown-open-again{color:#236999;padding:10px 0;font-size:13px;text-decoration:underline}
+@media(max-width:780px){.andy-dropdown-variants-grid{grid-template-columns:1fr}.andy-dropdown-variant-heading{min-height:0}}
+@media(max-width:680px){.andy-dropdown-variant{padding:14px}.andy-dropdown-variant-options{max-height:240px}}
