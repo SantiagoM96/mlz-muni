@@ -1,9 +1,8 @@
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
-import { DropdownVariantsGallery } from './DropdownVariantsGallery';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import './andy-kit.css';
 
@@ -59,42 +58,10 @@ function Filters() {return <>
  <div className="andy-embedded-sports"><SportsControlsGallery mode="filters"/></div>
  <DemoSection title="Filtros aplicados" description="Chips de selección múltiples y acción para limpiar el conjunto."><ChipGallery compact /></DemoSection>
  </>}
-function Field({label,placeholder,disabled=false,error=false,type='text'}:{label:string;placeholder:string;disabled?:boolean;error?:boolean;type?:string}) {
- const [v,setV]=useState('');
- return <label className="andy-field"><span>{label}</span><input type={type} value={v} onChange={e=>setV(e.target.value)} placeholder={placeholder} disabled={disabled} aria-invalid={error}/>{error && <small role="alert">Completá este campo para continuar.</small>}</label>;
-}
-function RegistrationSelect({label='Tipo de documento',searchable=false}: {label?:string;searchable?:boolean}) {
- const [open,setOpen]=useState(false),[value,setValue]=useState(''),[search,setSearch]=useState('');
- const id=useId(),root=useRef<HTMLDivElement>(null),trigger=useRef<HTMLButtonElement>(null);
- const values=label==='Localidad'?['Banfield','Lomas de Zamora','Temperley','Turdera','Villa Centenario','San José']:['DNI','Pasaporte','Libreta cívica'];
- useEffect(()=>{if(!open)return;const outside=(e:PointerEvent)=>{if(root.current&&!root.current.contains(e.target as Node))setOpen(false);};const key=(e:KeyboardEvent)=>{if(e.key==='Escape'){setOpen(false);trigger.current?.focus();}};document.addEventListener('pointerdown',outside);document.addEventListener('keydown',key);return()=>{document.removeEventListener('pointerdown',outside);document.removeEventListener('keydown',key);};},[open]);
- return <div className="andy-field andy-select-holder" ref={root}><span id={id+'-label'}>{label}</span>
- <button ref={trigger} className="andy-select-trigger" type="button" aria-haspopup="listbox" aria-expanded={open} aria-controls={id} aria-labelledby={id+'-label'} onClick={()=>{setOpen(!open);setSearch('');}}>
- <span>{value||'Seleccionar'}</span><Icon name="expand_more"/></button>
- {open&&<><button type="button" className="andy-select-backdrop" aria-label="Cerrar opciones" onClick={()=>setOpen(false)}/>
- <div className="andy-select-menu" role="listbox" id={id} aria-labelledby={id+'-label'}>
- {searchable && <input className="andy-select-search" placeholder="Buscar localidad" aria-label="Buscar localidad" value={search} onChange={e=>setSearch(e.target.value)}/>}
- {values.filter(v=>v.toLowerCase().includes(search.toLowerCase())).map(v=><button key={v} type="button" role="option" aria-selected={v===value} className="andy-select-option" onClick={()=>{setValue(v);setOpen(false);trigger.current?.focus();}}><span>{v}</span><span className="andy-option-radio" /></button>)}
- </div></>}</div>;
-}
-function CalendarSample(){
- const [date,setDate]=useState('');return <div className="andy-field"><span>Fecha de nacimiento</span><div className="andy-date-wrap"><input type="date" aria-label="Fecha de nacimiento" value={date} onChange={e=>setDate(e.target.value)}/><Icon name="calendar_month"/></div><small className="andy-help">Referencia funcional nativa; el calendario personalizado de Deportes requiere su migración completa.</small></div>;
-}
-function UploadSample({error=false}:{error?:boolean}){const [file,setFile]=useState('');return <label className="andy-field"><span>Documentación adjunta {error?'· Error':''}</span><span className={'andy-upload'+(error?' is-error':'')}><span className="andy-upload-action"><Icon name="attach_file" size={20}/> Adjuntar archivo</span><span className="andy-upload-name">{file||'Ningún archivo seleccionado'}</span><input type="file" aria-invalid={error} onChange={e=>setFile(e.target.files?.[0]?.name||'')}/></span>{error?<small className="andy-upload-error" role="alert">Adjuntá el archivo solicitado.</small>:<small className="andy-help">Bandeja celeste y botón de 36 px de la inscripción deportiva.</small>}</label>;}
 function Forms(){
- return <>
- <DemoSection title="Biblioteca de estados de formularios" description="Matriz comparativa de todos los estados disponibles, visibles al mismo tiempo y separados por tipo de campo."><FormStateMatrix/></DemoSection>
- <DemoSection title="Dropdowns abiertos · variantes" description="Selección normal, radio buttons, checkboxes y dropdown con buscador. Las cuatro variantes se muestran abiertas para revisar sus estados y opciones.">
-   <DropdownVariantsGallery/>
- </DemoSection>
- <DemoSection title="Inputs de inscripción" description="Campos de 48 px, Geometria 16 px, fondo blanco, borde #5BA8D5 y foco #006EFF. Sin halo celeste agregado.">
- <div className="andy-form-grid"><Field label="Nombre y apellido" placeholder="Ingresá tu nombre"/><Field label="DNI" placeholder="Ingresá tu número de documento"/><Field label="Teléfono" placeholder="Ingresá tu teléfono" type="tel"/><Field label="Correo electrónico" placeholder="nombre@ejemplo.com" type="email"/><Field label="Campo deshabilitado" placeholder="No disponible" disabled/><Field label="Campo con error" placeholder="Dato obligatorio" error/></div></DemoSection>
- <DemoSection title="Dropdowns del formulario" description="Este selector es distinto del filtro de catálogo: opción única, marca de radio y menú propio. Localidad incluye búsqueda.">
- <div className="andy-form-grid"><RegistrationSelect/><RegistrationSelect label="Localidad" searchable/><CalendarSample/></div></DemoSection>
- <DemoSection title="Texto largo y adjuntos"><div className="andy-form-grid"><label className="andy-field"><span>Observaciones</span><textarea placeholder="Escribí una observación"/></label><UploadSample/><UploadSample error/></div></DemoSection>
- <DemoSection title="Ejemplo de bloque de inscripción" description="Composición demostrativa con jerarquía de secciones, etiquetas, campos y controles utilizados en Deportes.">
- <div className="andy-form-composition"><h3>Datos personales</h3><div className="andy-form-grid"><Field label="Nombre" placeholder="Ingresá tu nombre"/><Field label="Apellido" placeholder="Ingresá tu apellido"/><RegistrationSelect/><Field label="Número de documento" placeholder="Ingresá tu DNI"/></div><h3>Información adicional</h3><SelectionGallery embedded/><div className="andy-actions"><button className="andy-btn andy-btn-primary" type="button">Continuar</button><button className="andy-btn andy-btn-outline" type="button">Volver</button></div></div></DemoSection>
- </>;
+ return <DemoSection title="Componentes de formulario" description="Una sola referencia por familia, con todos sus estados visibles. Dropdown reúne aquí las cuatro variantes abiertas, sin duplicarlas en otros bloques.">
+   <FormStateMatrix/>
+ </DemoSection>;
 }
 function SelectionGallery({embedded=false}:{embedded?:boolean}){
  const [days,setDays]=useState(['Lunes']),[athlete,setAthlete]=useState('Recreativo'),[minor,setMinor]=useState(false);
