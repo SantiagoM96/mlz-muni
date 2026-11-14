@@ -11,7 +11,8 @@
 .kit-sports-trigger.is-active { background:#f6f6f6; border:2px solid var(--kit-info); padding-inline:15px; }
 .kit-sports-trigger:focus-visible { outline:2px solid var(--kit-info); outline-offset:2px; }
 .kit-sports-truncate { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.kit-sports-count { flex:none; min-width:24px; height:24px; padding:0 5px; border-radius:20px; background:var(--kit-info); color:white; display:grid; place-items:center; font-size:13px; font-weight:700; }
+.kit-sports-count { flex:none; min-width:24px; height:24px; padding:0 5px; border-radius:20px; background:var(--kit-info); color:white; display:inline-flex; justify-content:center; align-items:center; font-size:13px; line-height:1; font-weight:700; font-variant-numeric:tabular-nums; }
+.kit-sports-count > span { display:block; line-height:1; transform:translateY(1.5px); }
 .kit-sports-trigger .material-symbols-outlined { transition:transform .15s ease; }
 .kit-sports-popover { position:absolute; z-index:40; top:56px; left:0; width:min(416px,calc(100vw - 48px)); max-height:min(76vh,650px); background:#fff; border:1px solid #dfebf3; border-radius:5px; box-shadow:0 8px 24px #15394c2b; display:flex; flex-direction:column; padding:8px; }
 .kit-sports-backdrop,.kit-sports-mobile-header { display:none; }
