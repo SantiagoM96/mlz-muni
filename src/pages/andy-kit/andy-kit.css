@@ -55,3 +55,12 @@
 .andy-kit .andy-field input:disabled::placeholder,
 .andy-kit .andy-field textarea:disabled::placeholder {color:#94c6e5;opacity:1;}
 .andy-kit .andy-upload-error {color:#ef284c;font-size:13px;line-height:18px;}
+
+
+/* Convención de MLZ UI Kit - Andy: Google Material Symbols Outlined.
+   Peso de trazo wght=400 en todos los íconos. MaterialIcon aplica
+   'wght' 400 por defecto y conserva opsz según el tamaño del ícono. */
+.andy-kit .material-symbols-outlined {
+  font-family:"Material Symbols Outlined";
+  font-weight:400;
+}
