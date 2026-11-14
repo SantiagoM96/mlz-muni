@@ -3,6 +3,7 @@ import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
+import { ColorTokensGallery } from './ColorTokensGallery';
 import './andy-kit.css';
 
 const categories = [
@@ -35,8 +36,11 @@ function DemoSection({ title, description, children }: {title:string;description
 function Icon({name,size=24}: {name:MaterialIconName;size?:number}) { return <MaterialIcon name={name} size={size} />; }
 function Foundations() {
  return <>
-  <DemoSection title="Paleta de producto" description="Valores observados en Deportes Anual y el sistema institucional; no todos son tokens semánticos globales.">
-   <div className="andy-swatches">{colors.map(([name,color,desc])=><div className="andy-swatch" key={name}><span style={{backgroundColor:color}}/><strong>{name}</strong><code>{color}</code><small>{desc}</small></div>)}</div>
+  <DemoSection title="Paleta cromática completa de Figma" description="Las 91 variables originales de Color Styles, agrupadas por familia, con nombres exactos y valores HEX. Tocá una muestra para copiar su código.">
+    <ColorTokensGallery/>
+  </DemoSection>
+  <DemoSection title="Colores utilizados actualmente en Deportes" description="Selección de valores presentes en el producto. No todos tienen el mismo rol que una variable semántica global.">
+    <div className="andy-swatches">{colors.map(([name,color,desc])=><div className="andy-swatch" key={name}><span style={{backgroundColor:color}}/><strong>{name}</strong><code>{color}</code><small>{desc}</small></div>)}</div>
   </DemoSection>
   <DemoSection title="Tipografía y geometría" description="Geometria en pesos 400, 500 y 700. Contenedores de hasta 1200 px.">
    <div className="andy-type"><h2>Agenda de deportes 2026</h2><p>Conocé todas las actividades deportivas y recreativas de la comunidad.</p><strong>Etiqueta de formulario</strong><span>Texto de contenido y ayuda</span></div>
