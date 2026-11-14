@@ -38,7 +38,7 @@ function VariantCard({id,title,note,label}:{id:Variant;title:string;note:string;
       {id==='search'&&<div className="andy-dropdown-search">
         <input aria-label="Buscar localidad" placeholder="Buscar localidad" type="search"
           value={query} onChange={event=>setQuery(event.target.value)}/>
-        <MaterialIcon name="search" size={20}/>
+        <MaterialIcon name="search" size={24}/>
       </div>}
       <div className="andy-dropdown-variant-options" role="group" aria-label={'Opciones de '+label}>
         {shown.map(option=>{
@@ -48,11 +48,11 @@ function VariantCard({id,title,note,label}:{id:Variant;title:string;note:string;
             {id==='simple'||id==='search'
               ?<><input type="radio" name={'andy-dropdown-'+id} checked={checked}
                 onChange={()=>select(option)} aria-label={option}/>
-                <span className="andy-dropdown-mark" aria-hidden="true">{checked&&<MaterialIcon name="check" size={20}/>}</span></>
+                <span className="andy-dropdown-mark" aria-hidden="true">{checked&&<MaterialIcon name="check" size={24}/>}</span></>
               :<><input type={multi?'checkbox':'radio'} name={multi?undefined:'andy-dropdown-'+id}
                 checked={checked} onChange={()=>select(option)} aria-label={option}/>
                 <span className={'andy-dropdown-choice '+(multi?'is-check':'is-radio')} aria-hidden="true">
-                  {multi?<MaterialIcon name={checked?'check_box':'check_box_outline_blank'} size={24}/>:checked&&<span/>}
+                  {multi?<><MaterialIcon name="check_box_outline_blank" size={24}/>{checked&&<MaterialIcon name="check" size={24} className="andy-checkbox-tick"/>}</>:checked&&<span/>}
                 </span></>}
           </label>;
         })}
