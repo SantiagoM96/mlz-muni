@@ -118,7 +118,7 @@ function MoreFiltersDemo() {
                     <label className="kit-sports-inline-choice" key={day}>
                       <input type="checkbox" checked={days.includes(day)} onChange={() => setDays(previous =>
                         previous.includes(day) ? previous.filter(x => x !== day) : [...previous, day])} />
-                      <span className="kit-sports-inline-symbol" aria-hidden="true">{days.includes(day) && <MaterialIcon name="check" size={17}/>}</span>
+                      <span className="kit-sports-inline-symbol kit-sports-inline-checkbox" aria-hidden="true"><MaterialIcon name={days.includes(day) ? 'check_box' : 'check_box_outline_blank'} size={24}/></span>
                       {day}
                     </label>)
                   : ['Recreativo', 'Competitivo', 'Federado'].map(item =>
