@@ -64,3 +64,29 @@
   font-family:"Material Symbols Outlined";
   font-weight:400;
 }
+
+/* Checkbox y radio de selección: mismo tamaño óptico (24 px), interior blanco
+   incluso con hover, seleccionado y Focus. Material Symbols weight 400. */
+.andy-kit .andy-choice-symbol.andy-checkbox-symbol {
+  position:relative;width:24px;height:24px;flex:0 0 24px;
+  background:#fff;border:0;border-radius:0;color:#236999;
+}
+.andy-kit .andy-choice:hover .andy-checkbox-symbol,
+.andy-kit .andy-choice:has(input:checked) .andy-checkbox-symbol,
+.andy-kit .andy-choice:has(input:focus-visible) .andy-checkbox-symbol {
+  background:#fff;border:0;color:#006eff;
+}
+.andy-kit .andy-checkbox-symbol .material-symbols-outlined {
+  position:absolute;inset:0;color:inherit;
+}
+.andy-kit .andy-choice input[type=radio]+.andy-choice-symbol {
+  width:24px;height:24px;flex:0 0 24px;
+  background:#fff;border-radius:50%;
+}
+.andy-kit .andy-choice:hover input[type=radio]+.andy-choice-symbol,
+.andy-kit .andy-choice input[type=radio]:checked+.andy-choice-symbol {
+  background-color:#fff;
+}
+.andy-kit .andy-choice input[type=radio]:checked+.andy-choice-symbol {
+  background-image:radial-gradient(circle,#006eff 0 5px,transparent 5.5px);
+}
