@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
+import { DropdownVariantsGallery } from './DropdownVariantsGallery';
 import './form-state-matrix.css';
 
 type FieldState = 'default' | 'hover' | 'focus' | 'completed' | 'error' | 'disabled';
@@ -19,7 +20,7 @@ const families: { id: Family; name: string; desc: string }[] = [
   { id:'date', name:'Fecha', desc:'Selector de fecha' },
   { id:'upload', name:'Adjuntar', desc:'Documentación' },
 ];
-function StateCell({children, state, title, note}:{children:ReactNode;state:FieldState | 'open';title:string;note:string}) {
+function StateCell({children, state, title, note}:{children:ReactNode;state:FieldState;title:string;note:string}) {
   return <div className="andy-state-cell" data-state={state}>
     <div className="andy-state-label"><strong>{title}</strong><small>{note}</small></div>
     {children}
@@ -51,33 +52,22 @@ function StateField({family, state}:{family:Family;state:FieldState}) {
     {isError&&<small className="andy-matrix-error">{family==='upload'?'Adjuntá el archivo solicitado.':'Revisá este campo para continuar.'}</small>}
   </div>;
 }
-function OpenDropdown(){
- const [selected,setSelected]=useState('DNI');
- return <div className="andy-matrix-field andy-matrix-open">
-   <span className="andy-matrix-field-label">Tipo de documento</span>
-   <div className="andy-matrix-select is-open"><span>{selected}</span><MaterialIcon name="expand_more" size={24}/></div>
-   <div className="andy-matrix-options" role="group" aria-label="Opciones de muestra abiertas">
-    {['DNI','Pasaporte','Libreta cívica'].map(option=><button key={option} type="button"
-      className={'andy-matrix-option'+(option===selected?' selected':'')}
-      onClick={()=>setSelected(option)}><span>{option}</span>
-      <MaterialIcon name={option===selected?'check':'chevron_right'} size={20}/></button>)}
-   </div>
- </div>;
-}
 export function FormStateMatrix(){
  return <div className="andy-state-matrix">
-  <p className="andy-matrix-intro">Todos los estados simultáneamente. Cada columna corresponde a un estado del control: así podés comparar bordes, fondos, íconos, textos y dimensiones sin tener que hacer clic para descubrirlos. Los ejemplos interactivos están más abajo.</p>
+  <p className="andy-matrix-intro">Cada familia aparece una sola vez, con sus seis estados simultáneos para comparar bordes, fondos, íconos, textos y dimensiones. El dropdown incluye además sus cuatro variantes abiertas e interactivas.</p>
   {families.map(family=><section key={family.id} className="andy-matrix-family">
     <div className="andy-matrix-family-head"><h3>{family.name}</h3><span>{family.desc}</span></div>
     <div className="andy-matrix-grid">
       {states.map(state=><StateCell key={state.id} state={state.id} title={state.name} note={state.note}>
         <StateField family={family.id} state={state.id}/>
       </StateCell>)}
-      {family.id==='dropdown'&&<StateCell state="open" title="Abierto" note="Menú desplegado">
-        <OpenDropdown/>
-      </StateCell>}
+
     </div>
+    {family.id==='dropdown'&&<div className="andy-matrix-dropdown-types">
+      <h4>Variantes de menú abierto</h4>
+      <DropdownVariantsGallery/>
+    </div>}
   </section>)}
-  <p className="andy-matrix-footnote">Referencia: estados Default, Hovered, Focus, Completo, Disable y Error de los controles de Deportes; se agrega Abierto para el dropdown. Las vistas de Hover y Focus están representadas de forma persistente para facilitar la inspección. El calendario nativo y el adjunto son referencias visuales; sus interacciones avanzadas requieren una implementación específica.</p>
+  <p className="andy-matrix-footnote">Referencia: estados Default, Hovered, Focus, Completo, Disable y Error de los controles de Deportes; los cuatro tipos de dropdown abierto aparecen dentro de esa misma familia. Las vistas de Hover y Focus están representadas de forma persistente para facilitar la inspección. El calendario nativo y el adjunto son referencias visuales; sus interacciones avanzadas requieren una implementación específica.</p>
  </div>;
 }
