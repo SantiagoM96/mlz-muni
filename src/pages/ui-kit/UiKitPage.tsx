@@ -1,12 +1,14 @@
 import { useEffect, type ComponentType } from 'react';
 import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { FormsGallery } from './gallery/FormsGallery';
+import { SportsControlsGallery } from './SportsControlsGallery';
 import { ButtonsGallery } from './gallery/ButtonsGallery';
 import { TagsGallery } from './gallery/TagsGallery';
 import { CardsGallery } from './gallery/CardsGallery';
 
 const categories = [
   { slug: 'formularios', label: 'Formularios' },
+  { slug: 'deportes', label: 'Patrones de Deportes' },
   { slug: 'botones', label: 'Botones' },
   { slug: 'etiquetas', label: 'Etiquetas y chips' },
   { slug: 'tarjetas', label: 'Tarjetas' },
@@ -16,6 +18,7 @@ type Category = (typeof categories)[number]['slug'];
 
 const galleries: Record<Category, ComponentType> = {
   formularios: FormsGallery,
+  deportes: SportsControlsGallery,
   botones: ButtonsGallery,
   etiquetas: TagsGallery,
   tarjetas: CardsGallery,
