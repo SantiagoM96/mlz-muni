@@ -18,7 +18,7 @@
 .kit-sports-search-wrap { position:relative; flex:0 0 auto; margin-bottom:8px; }
 .kit-sports-search-wrap input { width:100%; height:48px; border:1px solid var(--kit-stroke); border-radius:4px; padding:0 44px 0 16px; color:var(--kit-ink); font-size:16px; background:#fff; }
 .kit-sports-search-wrap input::placeholder { color:var(--kit-stroke); }
-.kit-sports-search-wrap input:focus { outline:2px solid var(--kit-info); outline-offset:-2px; }
+.kit-sports-search-wrap input:focus { outline:none; border:2px solid var(--kit-info); padding-left:15px; padding-right:43px; background:#f6f6f6; box-shadow:none; }
 .kit-sports-search-wrap .material-symbols-outlined { position:absolute; pointer-events:none; right:13px; top:13px; color:var(--kit-blue); }
 .kit-sports-options { min-height:0; overflow-y:auto; overscroll-behavior:contain; display:flex; flex-direction:column; gap:2px; scrollbar-width:thin; scrollbar-color:#c4d2dc transparent; }
 .kit-sports-option { position:relative; display:flex; min-height:48px; align-items:center; justify-content:space-between; gap:12px; padding:8px 16px; border-radius:4px; cursor:pointer; background:white; color:var(--kit-blue); font-size:16px; line-height:24px; }
@@ -41,9 +41,9 @@
 .kit-sports-field>span { color:var(--kit-blue); font-weight:700; }
 .kit-sports-field input,.kit-sports-field select { width:100%; height:48px; border:1px solid var(--kit-stroke); background:white; border-radius:4px; padding:0 14px; color:var(--kit-ink); font-size:16px; }
 .kit-sports-field input::placeholder { color:#5ba8d5; }
-.kit-sports-field input:focus,.kit-sports-field select:focus { outline:2px solid var(--kit-info); outline-offset:-2px; }
+.kit-sports-field input:focus-visible,.kit-sports-field select:focus-visible { outline:2px solid var(--kit-info); outline-offset:1px; border-color:var(--kit-info); background:#fff; box-shadow:none; }
 .kit-sports-field input:disabled { background:#e5f0f9; cursor:not-allowed; }
-.kit-sports-field input[aria-invalid=true] { border:2px solid #ef284c; }
+.kit-sports-field input[aria-invalid=true] { border-color:#ef284c; outline-color:#ef284c; background:#fff9f9; }
 .kit-sports-field small { color:#d42044; }
 .kit-sports-example-button { height:48px; padding:0 16px; border:1px solid var(--kit-blue); border-radius:4px; font-weight:700; color:var(--kit-blue); text-align:left; }
 .kit-sports-swatches { display:flex; gap:16px; flex-wrap:wrap; }
@@ -63,3 +63,29 @@
   .kit-sports-options { flex:1; }
 }
 @media(prefers-reduced-motion:reduce) { .kit-sports-trigger .material-symbols-outlined { transition:none; } }
+
+/* Panel de filtros avanzados, basado en los grupos Días de cursada y Tipo de deportista. */
+.kit-sports-more-popover { left:auto; right:0; width:min(576px,calc(100vw - 48px)); max-height:min(78vh,760px); padding:16px; }
+.kit-sports-more-scroll { flex:1; min-height:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#c4d2dc transparent; }
+.kit-sports-more-section { border-bottom:1px solid #e7edf2; padding:0 0 16px; margin-bottom:16px; }
+.kit-sports-more-section:last-child { border-bottom:0; margin-bottom:0; }
+.kit-sports-section-title { display:flex; justify-content:space-between; align-items:center; min-height:44px; width:100%; padding:6px 8px; color:#236999; font-size:20px; font-weight:700; text-align:left; border-radius:4px; }
+.kit-sports-section-title:hover { background:#eff7fd; }
+.kit-sports-choice-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px 12px; padding:8px 0 0; }
+.kit-sports-inline-choice { position:relative; display:flex; align-items:center; min-height:40px; gap:8px; padding:6px 8px; border-radius:4px; font-size:16px; line-height:24px; cursor:pointer; color:#3d3d3d; }
+.kit-sports-inline-choice:hover { background:#eff7fd; }
+.kit-sports-inline-choice:has(input:focus-visible) { outline:2px solid #006eff; outline-offset:1px; }
+.kit-sports-inline-choice input { position:absolute; left:8px; top:10px; width:20px; height:20px; opacity:0; cursor:pointer; }
+.kit-sports-inline-symbol { display:grid; place-items:center; flex:0 0 20px; width:20px; height:20px; border:2px solid #236999; border-radius:2px; background:#fff; color:#006eff; }
+.kit-sports-inline-choice input:checked+.kit-sports-inline-symbol { border-color:#006eff; }
+.kit-sports-inline-choice input[type="radio"]+.kit-sports-inline-symbol { border-radius:50%; }
+.kit-sports-inline-choice input[type="radio"]:checked+.kit-sports-inline-symbol { border:2px solid #006eff; background:radial-gradient(circle at center,#006eff 0 5px,transparent 5.5px); }
+.kit-sports-clear-bordered { border:1px solid #c8d9e3; }
+.kit-sports-radio { display:grid; place-items:center; flex:0 0 20px; width:20px; height:20px; border:2px solid currentColor; border-radius:50%; }
+.kit-sports-radio-dot { width:10px; height:10px; border-radius:50%; background:currentColor; }
+.kit-sports-option.is-selected .kit-sports-radio { border-color:#fff; color:#fff; }
+@media(max-width:680px) {
+  .kit-sports-more-popover { left:0; right:0; width:100vw; max-height:86dvh; padding:0 16px max(12px,env(safe-area-inset-bottom)); }
+  .kit-sports-choice-grid { gap:5px 8px; }
+  .kit-sports-inline-choice { font-size:14px; line-height:21px; }
+}
