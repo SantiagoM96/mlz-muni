@@ -16,10 +16,10 @@
 .andy-dropdown-variant-option>span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
 .andy-dropdown-variant-option>input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
 .andy-dropdown-mark{display:grid;place-items:center;flex:0 0 20px;width:20px;height:20px;color:#006eff}
-.andy-dropdown-choice{display:grid;place-items:center;flex:0 0 20px;width:20px;height:20px;border:2px solid #236999;background:white;color:#006eff}
-.andy-dropdown-choice.is-check{border-radius:2px}.andy-dropdown-choice.is-radio{border-radius:50%}
-.andy-dropdown-choice.is-radio>span{width:10px;height:10px;border-radius:50%;background:#006eff}
-.andy-dropdown-variant-option.selected .andy-dropdown-choice{border-color:#006eff}
+.andy-dropdown-choice{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border:0;border-radius:0;background:#fff;color:#5ba8d5}
+.andy-dropdown-choice .material-symbols-outlined{color:inherit}
+.andy-dropdown-variant-option:hover .andy-dropdown-choice{background:#fff}
+.andy-dropdown-variant-option.selected .andy-dropdown-choice{color:#006eff;background:#fff;border:0}
 .andy-dropdown-search{position:relative;margin-bottom:8px}
 .andy-dropdown-search input{width:100%;height:40px;border:1px solid #c7d8e7;border-radius:5px;background:#fff;padding:7px 38px 7px 12px;color:#3d3d3d;font-size:15px;line-height:24px;outline:none}
 .andy-dropdown-search input:focus-visible{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
@@ -35,53 +35,7 @@
 @media(max-width:680px){.andy-dropdown-variant{padding:14px}.andy-dropdown-variant-options{max-height:240px}}
 
 
-/* Checkbox Outlined de la referencia (check_box / check_box_outline_blank). */
-.andy-dropdown-choice.is-check{
-  width:24px;height:24px;flex:0 0 24px;border:0;border-radius:0;
-  background:transparent;color:#5ba8d5;
-}
-.andy-dropdown-variant-option.selected .andy-dropdown-choice.is-check{
-  border:0;color:#006eff;
-}
-.andy-dropdown-choice.is-check .material-symbols-outlined{color:inherit}
-
-/* Controles del menú: tamaño base 24px, trazo Material Symbols weight 400.
-   El cuadrado del checkbox siempre conserva el centro blanco. */
-.andy-dropdown-variant-option .andy-dropdown-choice.is-radio {
-  width:24px;height:24px;flex:0 0 24px;
-  border:2px solid #236999;border-radius:50%;
-  background:#fff;
-}
-.andy-dropdown-variant-option.selected .andy-dropdown-choice.is-radio {
-  border-color:#006eff;background:#fff;
-}
-.andy-dropdown-choice.is-radio>span {width:12px;height:12px;background:#006eff;}
-.andy-dropdown-variant-option .andy-dropdown-choice.is-check {
-  position:relative;
-  width:24px;height:24px;flex:0 0 24px;
-  border:none;border-radius:0;
-  background:#fff;
-  color:#236999;
-  isolation:isolate;
-}
-.andy-dropdown-variant-option:hover .andy-dropdown-choice.is-check,
-.andy-dropdown-variant-option.selected .andy-dropdown-choice.is-check,
-.andy-dropdown-variant-option.selected:hover .andy-dropdown-choice.is-check {
-  background:#fff;
-  border:none;
-  color:#006eff;
-}
-.andy-dropdown-choice.is-check .material-symbols-outlined {
-  color:inherit;
-  position:absolute;
-  inset:0;
-}
-.andy-dropdown-choice.is-check .andy-checkbox-tick {
-  color:#006eff;
-}
-.andy-dropdown-variant-option .andy-dropdown-mark {
-  width:24px;height:24px;flex:0 0 24px;
-}
-.andy-dropdown-search .material-symbols-outlined {
-  top:8px;right:10px;
-}
+/* Material Symbols oficiales: un único glifo de 24px / wght 400 por estado.
+   La opción puede colorearse, pero el icono conserva superficie blanca. */
+.andy-dropdown-variant-option .andy-dropdown-mark{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;color:#006eff}
+.andy-dropdown-search .material-symbols-outlined{right:10px;top:8px}
