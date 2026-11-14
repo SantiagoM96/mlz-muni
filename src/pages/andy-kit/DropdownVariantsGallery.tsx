@@ -52,7 +52,9 @@ function VariantCard({id,title,note,label}:{id:Variant;title:string;note:string;
               :<><input type={multi?'checkbox':'radio'} name={multi?undefined:'andy-dropdown-'+id}
                 checked={checked} onChange={()=>select(option)} aria-label={option}/>
                 <span className={'andy-dropdown-choice '+(multi?'is-check':'is-radio')} aria-hidden="true">
-                  {multi?<><MaterialIcon name="check_box_outline_blank" size={24}/>{checked&&<MaterialIcon name="check" size={24} className="andy-checkbox-tick"/>}</>:checked&&<span/>}
+                  <MaterialIcon name={multi
+                    ? checked ? 'check_box' : 'check_box_outline_blank'
+                    : checked ? 'radio_button_checked' : 'radio_button_unchecked'} size={24}/>
                 </span></>}
           </label>;
         })}
