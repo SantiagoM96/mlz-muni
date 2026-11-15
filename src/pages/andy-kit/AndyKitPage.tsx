@@ -371,12 +371,10 @@ export function AndyKitPage(){
   <header className="andy-header"><div className="andy-container andy-topbar">
    <div className="andy-topbar-heading"><h1>MLZ UI Kit - Andy</h1>
      <span className="andy-eyebrow"><span>Municipio de Lomas de Zamora</span><span className="andy-eyebrow-divider"> · </span><span className="andy-design-system-label">Design System</span></span></div>
-   <div className="andy-topbar-actions">
-    <p className="andy-version">{commit==='local'?<b><span className="andy-version-prefix">Desarrollo </span>local</b>:<a href={'https://github.com/SantiagoM96/mlz-muni/commit/'+commit} target="_blank" rel="noopener noreferrer" aria-label={'Versión '+commit.slice(-3)}><b><span className="andy-version-prefix">Versión </span>{commit.slice(-3)}</b></a>}</p>
-    <button type="button" className="andy-sidebar-toggle" aria-label={navOpen?'Cerrar menú de componentes':'Abrir menú de componentes'} aria-expanded={navOpen} aria-controls="andy-component-nav" onClick={()=>setNavOpen(v=>!v)}>
-      <Icon name="menu" size={24}/><span className="andy-sidebar-toggle-label">Componentes</span>
-    </button>
-   </div>
+   <p className="andy-version">{commit==='local'?<b><span className="andy-version-prefix">Desarrollo </span>local</b>:<a href={'https://github.com/SantiagoM96/mlz-muni/commit/'+commit} target="_blank" rel="noopener noreferrer" aria-label={'Versión '+commit.slice(-3)}><b><span className="andy-version-prefix">Versión </span>{commit.slice(-3)}</b></a>}</p>
+   <button type="button" className="andy-sidebar-toggle" aria-label={navOpen?'Cerrar menú de componentes':'Abrir menú de componentes'} aria-expanded={navOpen} aria-controls="andy-component-nav" onClick={()=>setNavOpen(v=>!v)}>
+     <Icon name="menu" size={24}/><span className="andy-sidebar-toggle-label">Componentes</span>
+   </button>
   </div></header>
   {navOpen&&<button type="button" className="andy-sidebar-backdrop" aria-label="Cerrar navegación" onClick={()=>setNavOpen(false)}/>}
   <div className="andy-doc-body andy-container">
