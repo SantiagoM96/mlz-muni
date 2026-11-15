@@ -351,3 +351,20 @@
  .andy-doc-layout .andy-header h1{font-size:20px;line-height:26px}
  .andy-doc-layout .andy-topbar-actions .andy-version{min-height:28px;padding:var(--mlz-space-4) var(--mlz-space-8);font-size:11px}
 }
+
+
+/* Buscador compacto del índice izquierdo de componentes. */
+.andy-component-search{
+ display:flex;align-items:center;gap:var(--mlz-space-8);
+ width:100%;height:40px;padding:0 var(--mlz-space-10);
+ border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm);
+ background:#fff;color:#236999;
+}
+.andy-component-search:focus-within{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-component-search>.material-symbols-outlined{color:#236999;flex-shrink:0}
+.andy-component-search input{width:100%;min-width:0;flex:1;padding:0;border:0;background:transparent;color:#3d3d3d;font-size:13px;line-height:20px;outline:0;box-shadow:none}
+.andy-component-search input::-webkit-search-cancel-button{display:none}
+.andy-component-search input::placeholder{color:#8a99a7;opacity:1}
+.andy-component-search-clear{display:grid;place-items:center;flex:0 0 22px;width:22px;height:22px;padding:0;border:0;border-radius:var(--mlz-radius-sm);background:transparent;color:#236999}
+.andy-component-search-clear:hover{background:#e5f0f9}
+.andy-component-search-empty{padding:var(--mlz-space-8) var(--mlz-space-12);margin:0;color:#687782;font-size:13px;line-height:20px}
