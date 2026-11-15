@@ -121,3 +121,18 @@ test('Andy: enlace Componentes y flechas del directorio respetan la geometría d
  });
  expect(Math.abs(centers.parent-centers.child)).toBeLessThan(2);
 });
+
+
+test('Andy: buscador lateral filtra componentes sin perder sus categorías',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes');
+ const nav=page.getByRole('navigation',{name:'Navegación del Design System'});
+ const search=nav.getByRole('searchbox',{name:'Buscar componentes'});
+ await search.fill('calendario');
+ await expect(nav.getByRole('link',{name:'Calendario / Date Picker'})).toBeVisible();
+ await expect(nav.getByRole('link',{name:'Dropdown / Select'})).toHaveCount(0);
+ await search.fill('violeta');
+ await expect(nav.getByText('No encontramos componentes.')).toBeVisible();
+ await nav.getByRole('button',{name:'Limpiar búsqueda'}).click();
+ await expect(nav.getByRole('link',{name:'Dropdown / Select'})).toBeVisible();
+ await expect(search).toHaveValue('');
+});
