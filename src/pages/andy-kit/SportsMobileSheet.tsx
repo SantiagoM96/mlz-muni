@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import './sports-mobile-sheet.css';
 
@@ -55,6 +55,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
   }
   useEffect(()=>{
     if(!open)return;
+    setPhase('entering');setOffset(0);setStretch(0);setScrim(1);
     const before=document.body.style.overflow;
     const previous=document.activeElement instanceof HTMLElement?document.activeElement:null;
     document.body.style.overflow='hidden';
@@ -113,7 +114,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
   };
   return createPortal(<div className="sports-sheet-layer" data-testid="sports-mobile-drawer">
     <button type="button" className="sports-sheet-scrim" aria-label={'Cerrar '+title}
-      style={{'--sports-scrim-level':scrim} as React.CSSProperties}
+      style={{'--sports-scrim-level':scrim} as CSSProperties}
       onClick={dismiss} />
     <div ref={sheet} className={'sports-mobile-sheet is-'+phase+' is-'+size} role="dialog" aria-modal="true"
       aria-labelledby={dialogId}
