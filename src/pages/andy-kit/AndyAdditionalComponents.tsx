@@ -60,6 +60,46 @@ function AndyToastDocs(){
  </>;
 }
 
+function AndySliderDocs(){
+ const [intensity,setIntensity]=useState(45);
+ const [start,setStart]=useState(20);
+ const [end,setEnd]=useState(75);
+ const fill=(value:number)=>({'--andy-slider-fill':value+'%'} as React.CSSProperties);
+ return <>
+  <DocSection title="Slider básico" description="Pista redondeada, tramo seleccionado en Primario 600 y thumb circular blanco con borde Primario 600; adaptación del patrón de shadcn/ui Base UI.">
+   <DocPreview><div className="andy-add-slider-demo">
+    <div className="andy-add-slider-heading"><label htmlFor="andy-mlz-slider">Intensidad</label><output htmlFor="andy-mlz-slider">{intensity}%</output></div>
+    <input className="andy-add-slider" id="andy-mlz-slider" type="range" min="0" max="100" step="1"
+      value={intensity} style={fill(intensity)} onChange={event=>setIntensity(Number(event.target.value))}/>
+    <div className="andy-add-slider-bounds"><span>0</span><span>100</span></div>
+   </div></DocPreview>
+  </DocSection>
+  <DocSection title="Rango" description="Dos manejadores para elegir un mínimo y un máximo. El tramo entre ambos se resalta con Primario 600.">
+   <DocPreview><div className="andy-add-slider-demo">
+    <div className="andy-add-slider-heading"><span>Rango de valores</span><output>{start} – {end}</output></div>
+    <div className="andy-add-slider-range" style={{'--andy-range-start':start+'%','--andy-range-end':end+'%'} as React.CSSProperties}>
+     <div className="andy-add-slider-range-track" aria-hidden="true"><span/></div>
+     <input aria-label="Valor mínimo" type="range" min="0" max="100" step="1" value={start}
+      onChange={event=>setStart(Math.min(Number(event.target.value),end-1))}/>
+     <input aria-label="Valor máximo" type="range" min="0" max="100" step="1" value={end}
+      onChange={event=>setEnd(Math.max(Number(event.target.value),start+1))}/>
+    </div>
+    <div className="andy-add-slider-bounds"><span>0</span><span>100</span></div>
+   </div></DocPreview>
+  </DocSection>
+  <DocSection title="Disabled" description="El slider mantiene su geometría y reduce el contraste cuando no admite interacción.">
+   <DocPreview><div className="andy-add-slider-demo">
+    <div className="andy-add-slider-heading"><label htmlFor="andy-mlz-slider-disabled">Intensidad no disponible</label><output>45%</output></div>
+    <input className="andy-add-slider" id="andy-mlz-slider-disabled" type="range" min="0" max="100"
+      value={45} style={fill(45)} disabled readOnly/>
+   </div></DocPreview>
+  </DocSection>
+  <DocSection title="Comportamiento" description="Control operable con mouse, pantalla táctil y teclado.">
+   <div className="andy-add-guidance"><strong>Interacción</strong><p>Arrastrar el indicador o usar las flechas del teclado para modificar el valor. En rango, el mínimo no puede superar al máximo.</p><strong>Foco</strong><p>Indicador de foco Info 500 visible para navegación con teclado, sin alterar el tamaño del componente.</p></div>
+  </DocSection>
+ </>;
+}
+
 export function AndyAdditionalComponent({id}:{id:AdditionalId}){
  const [visible,setVisible]=useState(false);
  const [value,setValue]=useState(45);
@@ -83,7 +123,7 @@ export function AndyAdditionalComponent({id}:{id:AdditionalId}){
   case 'progreso':demo=<div className="andy-add-stack"><label htmlFor="andy-progress">Progreso: {value}%</label><progress id="andy-progress" max="100" value={value}/><input type="range" min="0" max="100" value={value} onChange={e=>setValue(Number(e.target.value))} aria-label="Cambiar progreso"/></div>;break;
   case 'spinner':demo=<div role="status" className="andy-add-inline"><span className="andy-add-spinner" aria-hidden="true"/> Cargando información…</div>;break;
   case 'tooltip':demo=<div className="andy-add-tooltip-wrap"><button className="andy-btn andy-btn-outline" type="button" aria-describedby="andy-tooltip">Pasá el cursor o enfocá</button><span role="tooltip" id="andy-tooltip">Información adicional de la acción</span></div>;break;
-  case 'slider':demo=<div className="andy-add-stack"><label htmlFor="andy-slider">Intensidad: {value}%</label><input type="range" id="andy-slider" min="0" max="100" value={value} onChange={e=>setValue(Number(e.target.value))}/></div>;break;
+  case 'slider':demo=null;break;
   case 'toggle':demo=<button className={'andy-btn '+(on?'andy-btn-primary':'andy-btn-outline')} type="button" aria-pressed={on} onClick={()=>setOn(!on)}>{on?'Activado':'Desactivado'}</button>;break;
   case 'toggle-group':demo=<div className="andy-add-inline" role="group" aria-label="Vista">{['Día','Semana','Mes'].map(v=><button key={v} className={'andy-btn '+(selected.includes(v)?'andy-btn-primary':'andy-btn-outline')} type="button" aria-pressed={selected.includes(v)} onClick={()=>setSelected(old=>old.includes(v)?old.filter(x=>x!==v):[...old,v])}>{v}</button>)}</div>;break;
   case 'empty':demo=<div className="andy-empty"><h3>No hay resultados</h3><p>Modificá los filtros para volver a buscar.</p>{button('Volver a intentar',()=>setOn(!on))}{on&&<small>Se actualizó la búsqueda de demostración.</small>}</div>;break;
@@ -96,6 +136,7 @@ export function AndyAdditionalComponent({id}:{id:AdditionalId}){
   default: demo=null;
  }
  if(id==='toast')return <AndyToastDocs/>;
+ if(id==='slider')return <AndySliderDocs/>;
  return <>
  <DocSection title="Vista previa" description="Ejemplo interactivo con la identidad visual actual del UI Kit municipal."><DocPreview>{demo}</DocPreview></DocSection>
  <DocSection title="Comportamiento" description="Criterios de interacción, estados y contenido."><div className="andy-add-guidance"><strong>Estados</strong><p>Reposo, hover, foco, selección y deshabilitado según corresponda al componente.</p><strong>Accesibilidad</strong><p>Usar etiquetas semánticas, navegación por teclado y señales visuales de foco. Los diálogos se cierran con Escape en esta demostración.</p></div></DocSection>
