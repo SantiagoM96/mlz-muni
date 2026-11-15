@@ -16,3 +16,14 @@ export function DocPreview({children,align='center',className=''}:{children:Reac
   <div className="andy-doc-demo-content">{children}</div>
  </div>;
 }
+
+/** Tabla semántica compartida para anatomía, criterios y comportamiento.
+ *  No se utiliza para advertencias, controles o instrucciones sin pares comparables. */
+export function GuidelineTable({rows}:{rows:readonly (readonly [string,string])[]}){
+ return <div className="andy-doc-guideline-table-wrap">
+  <table className="andy-doc-guideline-table">
+   <thead><tr><th scope="col">Elemento</th><th scope="col">Descripción</th></tr></thead>
+   <tbody>{rows.map(([name,description])=><tr key={name}><th scope="row">{name}</th><td>{description}</td></tr>)}</tbody>
+  </table>
+ </div>;
+}
