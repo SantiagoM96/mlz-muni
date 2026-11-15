@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type ReactNode, type ChangeEvent } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { DocSection } from './AndyDocsPrimitives';
 import { SportsCalendarPicker } from './SportsCalendarPicker';
@@ -68,14 +68,31 @@ function RadioQuestion({label,options=['Sí','No']}:{label:string;options?:strin
  </fieldset>;
 }
 function FileExample({label,accept}:{label:string;accept:string}){
- const id=useId();const [file,setFile]=useState('');
+ const id=useId();
+ const [file,setFile]=useState('');
+ const [error,setError]=useState('');
+ const onChange=(event:ChangeEvent<HTMLInputElement>)=>{
+  const next=event.currentTarget.files?.[0];
+  if(!next)return;
+  if(next.size>10*1024*1024){
+   setError('El archivo supera los 10 MB. Seleccioná uno más pequeño.');
+   event.currentTarget.value='';return;
+  }
+  const extension=next.name.split('.').pop()?.toLowerCase();
+  if(!['jpg','jpeg','png','webp','pdf'].includes(extension||'')){
+   setError('Formato no compatible. Usá PDF, JPG, PNG o WEBP.');
+   event.currentTarget.value='';return;
+  }
+  setFile(next.name);setError('');
+ };
  return <div className="andy-sports-form-upload">
   <label htmlFor={id}>{label}</label>
-  <div className="andy-sports-form-upload-control">
+  <div className={'andy-sports-form-upload-control'+(error?' is-error':'')}>
    <span className="andy-system-button is-primary is-small icon-start"><MaterialIcon name="attach_file" size={16} weight={400}/>Adjuntar</span>
    <span className="andy-sports-form-upload-value">{file||'Ningún archivo seleccionado'}</span>
-   <input id={id} type="file" accept={accept} onChange={e=>setFile(e.target.files?.[0]?.name||'')}/>
+   <input id={id} type="file" accept={accept} aria-invalid={Boolean(error)} aria-describedby={error?id+'-error':undefined} onChange={onChange}/>
   </div>
+  {error&&<small id={id+'-error'} className="andy-sports-form-upload-error" role="alert">{error}</small>}
  </div>;
 }
 function ExampleSection({title,description,children}:{title:string;description:string;children:ReactNode}){
