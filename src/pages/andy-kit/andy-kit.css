@@ -504,3 +504,77 @@
 .andy-doc-layout .andy-sidebar .andy-nav-label-link.active{
  color:#1e415c;
 }
+
+
+/* Inspector del catálogo, no componente del producto:
+   los controles de configuración se diferencian de los ejemplos MLZ.
+   Info 500 se reserva aquí para el control elegido; los productos no cambian. */
+.andy-doc-page{
+ --andy-doc-tool-accent:#006eff;
+ --andy-doc-tool-wash:#eff6ff;
+ --andy-doc-tool-text:#53677c;
+}
+.andy-doc-page .andy-doc-inspector{
+ display:flex;
+ align-items:center;
+ flex-wrap:wrap;
+ gap:var(--mlz-space-12);
+ padding:var(--mlz-space-12) var(--mlz-space-16);
+ margin-bottom:var(--mlz-space-16);
+ background:var(--andy-doc-tool-wash);
+ border:1px solid #d8e7fa;
+ border-radius:var(--mlz-radius-lg);
+}
+.andy-doc-page .andy-doc-inspector-label{
+ flex:0 0 auto;
+ font-size:12px;
+ font-weight:700;
+ line-height:20px;
+ color:var(--andy-doc-tool-text);
+}
+.andy-doc-page .andy-doc-inspector-label small{font-weight:400;font-size:11px;color:#75889a}
+.andy-doc-page .andy-doc-inspector .andy-button-control-row{flex:1;margin:0}
+.andy-doc-page .andy-button-control-row button,
+.andy-doc-page .andy-palette-size-options button{
+ color:var(--andy-doc-tool-text);
+ background:#fff;
+ border:1px solid #cbdced;
+ border-radius:var(--mlz-radius-full);
+ font-weight:600;
+ box-shadow:none;
+}
+.andy-doc-page .andy-button-control-row button:hover:not([aria-pressed=true]),
+.andy-doc-page .andy-palette-size-options button:hover:not([aria-pressed=true]){
+ color:var(--andy-doc-tool-accent);
+ background:#f8fbff;
+ border-color:#8cbcff;
+}
+.andy-doc-page .andy-button-control-row button[aria-pressed=true],
+.andy-doc-page .andy-button-control-row button[aria-pressed=true]:hover,
+.andy-doc-page .andy-palette-size-options button[aria-pressed=true],
+.andy-doc-page .andy-palette-size-options button[aria-pressed=true]:hover{
+ color:#fff;
+ background:var(--andy-doc-tool-accent);
+ border-color:var(--andy-doc-tool-accent);
+}
+.andy-doc-page .andy-button-control-row button:focus-visible,
+.andy-doc-page .andy-palette-size-options button:focus-visible{
+ outline:2px solid var(--andy-doc-tool-accent);
+ outline-offset:2px;
+}
+.andy-doc-page .andy-palette-sizebar.andy-doc-inspector h3{
+ color:var(--andy-doc-tool-text);
+ font-size:14px;
+ line-height:21px;
+ margin:0;
+}
+.andy-doc-page .andy-palette-sizebar.andy-doc-inspector p{font-size:12px;line-height:19px}
+.andy-doc-page .andy-palette-size-options{
+ background:transparent;
+ padding:0;
+}
+@media(max-width:680px){
+ .andy-doc-page .andy-doc-inspector{align-items:stretch;flex-direction:column}
+ .andy-doc-page .andy-doc-inspector-label{flex:auto}
+ .andy-doc-page .andy-doc-inspector .andy-button-control-row{flex:auto}
+}
