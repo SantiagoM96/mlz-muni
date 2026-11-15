@@ -194,7 +194,7 @@
   color:#3d3d3d;
   font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
 }
-.sports-cal-popup .sports-cal-choice-option:not([aria-selected=true]) .material-symbols-outlined{color:#5ba8d5}
+.sports-cal-popup .sports-cal-choice-option:not([aria-selected=true]) .material-symbols-outlined{color:#236999}
 .sports-cal-popup .sports-cal-choice-option:hover:not([aria-selected=true]){background:#edf6fc;color:#236999}
 .sports-cal-popup .sports-cal-choice-option[aria-selected=true],
 .sports-cal-popup .sports-cal-choice-option[aria-selected=true]:hover{
@@ -207,3 +207,27 @@
 .sports-cal-popup .sports-cal-choice-trigger .material-symbols-outlined,
 .sports-cal-popup .sports-cal-nav .material-symbols-outlined{color:#236999}
 .sports-cal-popup .sports-cal-choice-trigger[aria-expanded=true] .material-symbols-outlined{transform:rotate(180deg)}
+
+/* Select de mes/año: mismo patrón del resto del catálogo.
+   Sin selección = Primario 600; seleccionado = Info 500 y todo blanco. */
+.sports-cal-popup .sports-cal-choice-option{
+ color:#236999;
+ background:#fff;
+ font-weight:400;
+}
+.sports-cal-popup .sports-cal-choice-option:not([aria-selected=true]) .material-symbols-outlined,
+.sports-cal-popup .sports-cal-choice-option:not([aria-selected=true]) .material-symbols-outlined::before{color:#236999}
+.sports-cal-popup .sports-cal-choice-option:hover:not([aria-selected=true]){
+ background:#eaf4ff;
+ color:#236999;
+}
+.sports-cal-popup .sports-cal-choice-option[aria-selected=true],
+.sports-cal-popup .sports-cal-choice-option[aria-selected=true]:hover{
+ background:#006eff;
+ color:#fff;
+ font-weight:600;
+}
+.sports-cal-popup .sports-cal-choice-option[aria-selected=true] .material-symbols-outlined{color:#fff}
+.sports-cal-popup .sports-cal-choice-option:focus-visible{
+ outline:2px solid #006eff;outline-offset:-2px
+}
