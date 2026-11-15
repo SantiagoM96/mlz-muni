@@ -226,3 +226,21 @@
 @media(max-width:580px){
  .andy-doc-page .andy-matrix-grid{row-gap:var(--mlz-space-24);column-gap:0}
 }
+
+
+/* Índice contextual estilo "On This Page" de la documentación: tercer riel.
+   El contenido mantiene su propia caja editorial y el menú izquierdo no cambia. */
+@media(min-width:1180px){
+ .andy-doc-body:has(.andy-doc-toc){grid-template-columns:210px minmax(0,1fr) 150px;gap:var(--mlz-space-24)}
+}
+.andy-doc-toc{position:sticky;top:var(--mlz-space-32);align-self:start;display:flex;flex-direction:column;gap:var(--mlz-space-16);max-height:calc(100dvh - 64px);overflow-y:auto;scrollbar-width:none;padding:var(--mlz-space-8) 0 var(--mlz-space-24);border-left:1px solid #e1e7eb}
+.andy-doc-toc::-webkit-scrollbar{display:none}
+.andy-doc-toc>strong{font-size:12px;line-height:20px;color:#236999;padding-left:var(--mlz-space-16)}
+.andy-doc-toc nav{display:flex;flex-direction:column;gap:var(--mlz-space-4)}
+.andy-doc-toc nav a{font-size:12px;line-height:18px;text-decoration:none;color:#71808c;padding:var(--mlz-space-6) var(--mlz-space-12);border-left:2px solid transparent;margin-left:-1px}
+.andy-doc-toc nav a:hover{color:#236999}
+.andy-doc-toc nav a.is-active,.andy-doc-toc nav a[aria-current=location]{color:#236999;font-weight:700;border-left-color:#006eff}
+.andy-doc-toc nav a:focus-visible{outline:2px solid #006eff;outline-offset:2px}
+.andy-doc-example{scroll-margin-top:var(--mlz-space-24)}
+@media(max-width:1179px){.andy-doc-toc{display:none}}
+@media(min-width:1180px){.andy-doc-page:has(.andy-button-documentation) .andy-button-on-this-page{display:none}}
