@@ -14,6 +14,7 @@ import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
+import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
 import './andy-kit.css';
 
 const categories = [
@@ -32,7 +33,8 @@ const componentGroups=[
  {title:'Campos de formulario',items:[['input','Input / Text field'],['select','Dropdown / Select'],['textarea','Text area'],['calendario','Calendario / Date Picker'],['adjuntos','Adjuntar archivos']]},
  {title:'Selección',items:[['checkbox','Checkbox'],['radio','Radio button'],['switch','Switch']]},
  {title:'Filtros y navegación',items:[['buscador','Buscador'],['seleccion-unica','Selección única'],['seleccion-multiple','Selección múltiple'],['filtros-avanzados','Filtros avanzados'],['ordenamiento','Ordenamiento'],['scrollbars','Barras de scroll']]},
- {title:'Acciones y contenido',items:[['boton','Botones'],['chips','Chips y etiquetas'],['tarjeta','Tarjetas y resúmenes'],['mensaje','Mensajes y alertas'],['acordeon','Acordeón']]}
+ {title:'Acciones y contenido',items:[['boton','Botones'],['chips','Chips y etiquetas'],['tarjeta','Tarjetas y resúmenes'],['mensaje','Mensajes y alertas'],['acordeon','Acordeón']]},
+ {title:'Componentes adicionales',items:additionalComponents}
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
 const componentAliases:Record<string,string>={sede:'seleccion-multiple',edad:'seleccion-unica','mas-filtros':'filtros-avanzados',ordenar:'ordenamiento'};
@@ -58,7 +60,25 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  chips:{description:'Etiquetas y chips removibles.',category:'Acciones y contenido'},
  tarjeta:{description:'Tarjetas de actividad y resúmenes de inscripción.',category:'Acciones y contenido'},
  mensaje:{description:'Avisos informativos, estados de validación y vacíos.',category:'Acciones y contenido'},
- acordeon:{description:'Secciones expandibles de contenido, con apertura única o múltiple.',category:'Acciones y contenido'}
+ acordeon:{description:'Secciones expandibles de contenido, con apertura única o múltiple.',category:'Acciones y contenido'},
+ 'toast':{description:'Notificación temporal y descartable.',category:'Componentes adicionales'},
+ 'skeleton':{description:'Representación del contenido durante la carga.',category:'Componentes adicionales'},
+ 'data-table':{description:'Tabla de registros con filtrado y estados.',category:'Componentes adicionales'},
+ 'tabla':{description:'Presentación tabular de datos estructurados.',category:'Componentes adicionales'},
+ 'paginacion':{description:'Navegación entre páginas de registros.',category:'Componentes adicionales'},
+ 'progreso':{description:'Indicador de porcentaje de avance.',category:'Componentes adicionales'},
+ 'spinner':{description:'Indicador de operación en curso.',category:'Componentes adicionales'},
+ 'tooltip':{description:'Ayuda contextual accesible.',category:'Componentes adicionales'},
+ 'slider':{description:'Selección de un valor dentro de un rango.',category:'Componentes adicionales'},
+ 'toggle':{description:'Control de acción persistente con estado presionado.',category:'Componentes adicionales'},
+ 'toggle-group':{description:'Conjunto de acciones seleccionables.',category:'Componentes adicionales'},
+ 'empty':{description:'Estado vacío de una lista o vista.',category:'Componentes adicionales'},
+ 'separator':{description:'Separación semántica de contenidos.',category:'Componentes adicionales'},
+ 'dialog':{description:'Panel modal de contenido.',category:'Componentes adicionales'},
+ 'alert-dialog':{description:'Diálogo de confirmación.',category:'Componentes adicionales'},
+ 'sheet':{description:'Panel lateral superpuesto.',category:'Componentes adicionales'},
+ 'collapsible':{description:'Región de contenido expandible.',category:'Componentes adicionales'},
+ 'button-group':{description:'Grupo de botones relacionados.',category:'Componentes adicionales'}
 };
 
 const commit = import.meta.env.VITE_MLZ_COMMIT_SHA ?? 'local';
@@ -275,6 +295,7 @@ function ComponentDetails({id}:{id:ComponentId}){
    <div className="andy-empty"><Icon name="search" size={42}/><h3>No encontramos actividades</h3><p>Probá con otros filtros o cambiá el término de búsqueda.</p><button type="button" className="andy-btn andy-btn-outline">Limpiar filtros</button></div>
   </ComponentExample>
  </>;
+ if(additionalComponents.some(([key])=>key===id)) return <AndyAdditionalComponent key={id} id={id as typeof additionalComponents[number][0]}/>;
  if(id==='acordeon')return <>
   <ComponentExample title="Apertura única" description="Solo un panel abierto a la vez."><AccordionDemo/></ComponentExample>
   <ComponentExample title="Apertura múltiple" description="Podés desplegar varios paneles a la vez."><AccordionDemo multiple/></ComponentExample>
