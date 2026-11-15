@@ -158,10 +158,11 @@ export function AndyKitPage(){
  const legacy=categories.find(c=>c.id===(categoria??'fundamentos'));
  const componentEntry=componentEntries.find(([id])=>id===componente);
  const isComponent=categoria==='componentes'&&!!componentEntry;
- const displayName=isComponent?componentEntry[1]:legacy?.name;
+ const isDirectory=categoria==='componentes'&&!componente;
+ const displayName=isComponent?componentEntry[1]:isDirectory?'Componentes':legacy?.name;
  const meta=isComponent?componentMeta[componentEntry[0]]:null;
  useEffect(()=>{document.title='MLZ UI Kit - Andy'+(displayName?' · '+displayName:'');},[displayName]);
- if(!isComponent&&!legacy)return <Navigate to="/ui-kit-andy/fundamentos" replace/>;
+ if(!isComponent&&!isDirectory&&!legacy)return <Navigate to="/ui-kit-andy/fundamentos" replace/>;
  const Gallery=legacy?views[legacy.id]:null;
  return <div className="andy-kit andy-doc-layout" data-testid="andy-ui-kit">
   <a href="#andy-content" className="skip-link">Ir al contenido</a>
@@ -183,7 +184,7 @@ export function AndyKitPage(){
       <NavLink end to="/ui-kit-andy/fundamentos" onClick={()=>setNavOpen(false)} className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}>Fundamentos</NavLink>
      </div>
      <div className="andy-nav-divider"/>
-     <p className="andy-nav-label">Componentes</p>
+     <NavLink end to="/ui-kit-andy/componentes" onClick={()=>setNavOpen(false)} className={({isActive})=>"andy-nav-label andy-nav-label-link"+(isActive?" active":"")}>Componentes</NavLink>
      {componentGroups.map(group=><div className="andy-nav-group" key={group.title}>
       <span className="andy-nav-heading">{group.title}</span>
       {group.items.map(([id,title])=><NavLink key={id} to={'/ui-kit-andy/componentes/'+id} onClick={()=>setNavOpen(false)}
@@ -203,7 +204,12 @@ export function AndyKitPage(){
      </div>
      <a href={import.meta.env.BASE_URL+'ui-kit/formularios'} className="andy-original-link">UI Kit institucional</a>
     </div>
-    {isComponent?<div className="andy-doc-page"><ComponentDetails id={componentEntry[0]}/></div>:Gallery&&<Gallery/>}
+    {isComponent?<div className="andy-doc-page"><ComponentDetails id={componentEntry[0]}/></div>:
+     isDirectory?<div className="andy-component-directory">{componentGroups.map(group=><section key={group.title}>
+       <h3>{group.title}</h3><div className="andy-directory-grid">{group.items.map(([id,title])=><NavLink to={'/ui-kit-andy/componentes/'+id} key={id}>
+        <strong>{title}</strong><span>{componentMeta[id].description}</span><Icon name="chevron_right" size={24}/>
+       </NavLink>)}</div></section>)}</div>:
+     Gallery&&<Gallery/>}
    </main>
   </div>
   <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
