@@ -14,7 +14,7 @@ import { ConsoleRegistrationSection } from '../consolePreview/ConsoleRegistratio
 import { ConsoleImagesSection } from '../consolePreview/ConsoleImagesSection';
 import { getDemoCasePreset } from '../consolePreview/demoCasePreset';
 import { labelClass, noteClass } from '../consolePreview/ConsoleFormPrimitives';
-import { SelectControl } from '../../../shared/ui/FormControls';
+import { ConsoleSelectControl as SelectControl } from '../consolePreview/ConsoleSelectControl';
 import { ConsoleDetailDialog } from '../consolePreview/ConsoleDetailDialog';
 import type { ConsoleDraft } from '../consolePreview/model';
 import { CATEGORY_TYPES, INITIAL_DRAFT, INITIAL_SCHEDULES } from '../consolePreview/demoData';
