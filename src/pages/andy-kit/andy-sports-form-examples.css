@@ -1,9 +1,36 @@
 /* Formulario compuesto de documentación, inspirado en Deportes Anual.
    Aislado de la ficha real y de las matrices de estados individuales. */
 .andy-sports-form-docs{display:flex;flex-direction:column;gap:var(--mlz-space-40);min-width:0;width:100%}
+/* Misma jerarquía editorial de Input / Field. La galería Formularios
+   es una vista general (sin .andy-doc-page), por eso las reglas del
+   componente DocSection deben aplicarse explícitamente aquí. */
+.andy-doc-layout .andy-sports-form-docs > .andy-doc-section{
+ display:flex;flex-direction:column;gap:var(--mlz-space-24);min-width:0;
+ margin:0;padding:0;scroll-margin-top:var(--mlz-space-24);
+}
+.andy-doc-layout .andy-sports-form-docs > .andy-doc-section + .andy-doc-section{
+ border-top:1px solid #e1e7eb;padding-top:var(--mlz-space-40);
+}
+.andy-doc-layout .andy-sports-form-docs .andy-doc-section-heading{
+ display:flex;flex-direction:column;align-items:flex-start;gap:var(--mlz-space-6);
+}
+.andy-doc-layout .andy-sports-form-docs .andy-doc-section-heading > h3{
+ margin:0;font-size:22px;line-height:30px;font-weight:700;color:#236999;
+}
+.andy-doc-layout .andy-sports-form-docs .andy-doc-section-heading > p{
+ margin:0;max-width:760px;font-size:14px;line-height:23px;color:#647686;
+}
+.andy-doc-layout .andy-sports-form-docs .andy-sports-form-preview{margin:0;}
+@media(max-width:680px){
+ .andy-doc-layout .andy-sports-form-docs > .andy-doc-section + .andy-doc-section{
+  padding-top:var(--mlz-space-32);
+ }
+ .andy-doc-layout .andy-sports-form-docs .andy-doc-section-heading > h3{
+  font-size:20px;line-height:28px;
+ }
+}
 .andy-sports-form-intro{font-size:14px;line-height:23px;color:#657886;margin:0}
 .andy-sports-form-preview{display:flex;flex-direction:column;gap:var(--mlz-space-24);width:100%;min-width:0;background:#fff;border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);padding:var(--mlz-space-24)}
-.andy-sports-form-preview-heading{font-size:17px;line-height:24px;font-weight:700;color:#236999}
 .andy-sports-form-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mlz-space-20,var(--mlz-space-16)) var(--mlz-space-16);align-items:start}
 .andy-sports-form-fields .andy-field{min-width:0;gap:var(--mlz-space-8)}
 .andy-sports-form-fields .andy-field.is-full{grid-column:1/-1}
