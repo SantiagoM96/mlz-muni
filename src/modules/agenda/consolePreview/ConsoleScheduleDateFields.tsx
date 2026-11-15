@@ -6,8 +6,7 @@ import { WEEKDAYS } from './demoData';
 import { FormField } from '../../../shared/ui/FormField';
 import { TextField } from '../../../shared/ui/FormControls';
 
-const weekdayButtonClassName = (selected: boolean) =>
-  'console-weekday min-h-10 px-1 focus-visible:outline-2 focus-visible:outline-primary-600';
+const weekdayButtonClassName = 'console-weekday min-h-10 px-1 focus-visible:outline-2 focus-visible:outline-primary-600';
 
 interface Props {
   value: ConsoleSchedule;
@@ -61,7 +60,7 @@ export function ConsoleScheduleDateFields({ value, onScheduleChange, selectRef, 
                     onClick={() => onScheduleChange({ weekdays: selected
                       ? value.weekdays.filter(item => item !== day.number)
                       : [...value.weekdays, day.number].sort((a, b) => a - b) })}
-                    className={weekdayButtonClassName(selected)}>
+                    className={weekdayButtonClassName}>
                     {day.short}
                   </button>;
                 })}
