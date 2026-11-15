@@ -11,10 +11,15 @@
 .andy-scrollbar-demo-row:last-child{border-bottom:0}
 .andy-scrollbar-demo-index{font-size:12px;color:#8899a5;font-variant-numeric:tabular-nums}
 .andy-scrollbar-demo-scroll.is-page{scrollbar-width:auto}
-.andy-scrollbar-demo-scroll.is-dropdown{scrollbar-width:thin;scrollbar-color:#a9bdcd transparent}
-.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar{width:6px}
+.andy-scrollbar-demo-scroll.is-dropdown{scrollbar-width:thin;scrollbar-color:#a9bdcd transparent;padding-right:var(--mlz-space-8)}
+.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar{width:4px}
 .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-thumb{background:#a9bdcd;border-radius:var(--mlz-radius-full)}
 .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-track{background:transparent}
 .andy-scrollbar-demo-scroll.is-hidden{scrollbar-width:none;-ms-overflow-style:none}
 .andy-scrollbar-demo-scroll.is-hidden::-webkit-scrollbar{display:none;width:0;height:0}
 @media(max-width:580px){.andy-scrollbar-frame{padding:var(--mlz-space-16)}}
+
+/* Scrollbar interna MLZ: 4px, sin flechas, 8px de separación con la fila. */
+.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-button,
+.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-button:single-button{display:none;width:0;height:0}
+.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-corner{background:transparent}
