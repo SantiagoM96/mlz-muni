@@ -101,3 +101,23 @@ test('Andy: header sin divisor, título encima del descriptor y documentación f
  expect(measurements.right).toBeGreaterThan(1500);
  expect(measurements.mainWidth).toBeGreaterThan(900);
 });
+
+
+test('Andy: enlace Componentes y flechas del directorio respetan la geometría del sistema',async ({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ await page.goto('/ui-kit-andy/componentes');
+ const nav=page.getByRole('navigation',{name:'Navegación del Design System'});
+ const parent=nav.getByRole('link',{name:'Componentes',exact:true});
+ const child=nav.getByRole('link',{name:'Espaciados'});
+ await expect(parent).toHaveCSS('margin-left','0px');
+ await expect(parent).toHaveCSS('width',await child.evaluate(e=>getComputedStyle(e).width));
+ const tile=page.locator('.andy-directory-grid > a').first();
+ const arrow=tile.locator('.material-symbols-outlined');
+ await expect(arrow).toHaveCSS('color','rgb(35, 105, 153)');
+ const centers=await tile.evaluate(el=>{
+  const parent=el.getBoundingClientRect();
+  const child=el.querySelector('.material-symbols-outlined')!.getBoundingClientRect();
+  return {parent:parent.top+parent.height/2,child:child.top+child.height/2};
+ });
+ expect(Math.abs(centers.parent-centers.child)).toBeLessThan(2);
+});
