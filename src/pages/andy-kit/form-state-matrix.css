@@ -168,5 +168,10 @@
 .andy-matrix-calendar-demo{padding-top:var(--mlz-space-16);margin-top:var(--mlz-space-24);border-top:1px solid #e1e7eb}
 .andy-matrix-calendar-demo h4{margin:0 0 var(--mlz-space-8);color:#236999;font-size:18px;line-height:26px;font-weight:700}
 .andy-matrix-calendar-demo>p{margin:0 0 var(--mlz-space-16);color:#647482;font-size:14px;line-height:22px;max-width:780px}
-.andy-matrix-calendar-sample{width:min(100%,420px);min-width:0;min-height:80px;padding:var(--mlz-space-12) 0 0}
+.andy-matrix-calendar-sample{width:min(100%,420px);min-width:0;min-height:80px;margin-inline:auto;padding:var(--mlz-space-12) 0 0}
 .andy-matrix-calendar-sample .sports-cal-popup{color:#3d3d3d}
+/* Solo el ejemplo de campo desplegable: centrar el control y desplegar
+   el calendario desde el extremo derecho del input en desktop. */
+@media(min-width:791px){
+ .andy-matrix-calendar-sample .sports-cal-popup:not(.is-mobile){left:auto;right:0}
+}
