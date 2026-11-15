@@ -172,7 +172,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
  </div>;
  const popup=mobile?createPortal(<div className="sports-cal-layer">
    <button type="button" className="sports-cal-overlay" aria-label="Cerrar calendario"
-     style={{opacity:exit?0:Math.max(0,1-drawerY/Math.max(panel.current?.offsetHeight||500,1))}} onClick={()=>close()}/>
+     style={{opacity:exit?0:Math.max(0,1-drawerY/Math.max(panelHeight,1))}} onClick={()=>close()}/>
    {body}
  </div>,document.body):body;
  return <div className="sports-cal-field" ref={ref}>
