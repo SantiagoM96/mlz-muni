@@ -130,7 +130,16 @@
 .andy-doc-preview>*{width:100%;min-width:0}
 .andy-doc-page .andy-state-matrix{width:100%}
 .andy-doc-page .andy-matrix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.andy-doc-page .andy-state-cell{min-height:150px;background:#fff;border:1px solid #e3eaf0;border-radius:7px}
+/* En páginas individuales, la caja preview exterior es el único contenedor.
+   Los seis estados conservan sus labels y controles, sin tarjetas anidadas. */
+.andy-doc-page .andy-state-cell{
+  min-height:0;
+  padding:0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+}
 .andy-doc-page .andy-matrix-family{margin:0;padding:0;border:0}
 .andy-doc-page .andy-matrix-family-head{display:none}
 .andy-doc-page .andy-matrix-calendar-demo,
@@ -209,4 +218,11 @@
  .andy-directory-grid{grid-template-columns:1fr}
  .andy-directory-grid>a{min-height:95px;padding:16px 42px 16px 16px}
  .andy-doc-page .andy-section>div:last-child:not(.andy-section-head){padding:18px 12px}
+}
+
+.andy-doc-page .andy-matrix-grid{row-gap:30px;column-gap:24px}
+.andy-doc-page .andy-state-label{margin-bottom:12px}
+.andy-doc-page .andy-state-matrix .andy-matrix-family{background:transparent}
+@media(max-width:580px){
+ .andy-doc-page .andy-matrix-grid{row-gap:26px;column-gap:0}
 }
