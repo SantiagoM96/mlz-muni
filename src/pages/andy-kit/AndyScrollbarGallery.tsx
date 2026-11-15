@@ -1,12 +1,11 @@
 import './andy-scrollbar-gallery.css';
 
-const optionNames=['Natación','Atletismo','Gimnasia artística','Vóley','Básquet','Tenis','Hockey','Fútbol','Patín artístico','Handball','Taekwondo','Yoga','Ajedrez','Danza'];
-
 function ScrollPreview({variant,title}:{variant:'page'|'dropdown'|'hidden';title:string}){
  return <div className="andy-scrollbar-sample">
   <div className={'andy-scrollbar-demo-scroll is-'+variant} tabIndex={0} role="region" aria-label={title+' desplazable'}>
-   {optionNames.map((name,i)=><div key={name} className="andy-scrollbar-demo-row">
-    <span>{name}</span><span className="andy-scrollbar-demo-index">{String(i+1).padStart(2,'0')}</span>
+   {Array.from({length:14},(_,i)=><div key={i} className="andy-scrollbar-demo-row" aria-hidden="true">
+    <span className="andy-scrollbar-demo-placeholder"/>
+    <span className="andy-scrollbar-demo-index-placeholder"/>
    </div>)}
   </div>
  </div>;
@@ -20,8 +19,8 @@ export function AndyScrollbarGallery(){
   </section>
   <section className="andy-scrollbar-section">
    <h3>Barra interna · dropdown y drawer</h3>
-   <p>Variante estándar del UI Kit: <strong>4 px de ancho</strong>, sin flechas, con <strong>8 px de separación</strong> respecto de las opciones y deslizador gris azulado <code>#A9BDCD</code> sobre pista transparente. Se aplica en dropdowns, calendarios y filtros.</p>
-   <div className="andy-scrollbar-frame"><ScrollPreview variant="dropdown" title="Ejemplo de opciones de dropdown"/></div>
+   <p>Variante estándar del UI Kit: <strong>4 px de ancho</strong>, sin flechas, con <strong>8 px de separación</strong> respecto del contenido y deslizador gris azulado <code>#A9BDCD</code> sobre pista transparente. Se aplica en dropdowns, calendarios y filtros.</p>
+   <div className="andy-scrollbar-frame"><ScrollPreview variant="dropdown" title="Ejemplo de desplazamiento interno"/></div>
   </section>
   <section className="andy-scrollbar-section">
    <h3>Barra oculta · navegación lateral</h3>
