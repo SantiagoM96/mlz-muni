@@ -99,3 +99,12 @@
   .sports-mobile-sheet .sports-sheet-footer{gap:8px}
   .sports-mobile-sheet.is-large .sports-sheet-content{flex:1 1 auto}
 }
+
+/* Más filtros: divisor después del título, como la captura de producto. */
+.sports-mobile-sheet.is-large .sports-sheet-heading{
+  border-bottom:1px solid #e1e7eb;
+  margin-bottom:16px;
+}
+.sports-mobile-sheet.is-large .sports-sheet-content{
+  padding-top:0;
+}
