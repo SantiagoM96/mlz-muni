@@ -4,7 +4,7 @@ export const noteClass = 'mt-2 text-[14px] leading-[21px] text-[#718092]';
 
 export function SectionTitle({ number, title, subtitle }: { number: number; title: string; subtitle?: string }) {
   return (
-    <div className="mb-5">
+    <div className="mb-6">
       <h2 className="text-institutional-section font-bold text-primary-600">
         {number}. {title}
       </h2>
