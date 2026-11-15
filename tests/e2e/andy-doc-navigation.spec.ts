@@ -136,3 +136,24 @@ test('Andy: buscador lateral filtra componentes sin perder sus categorías',asyn
  await expect(nav.getByRole('link',{name:'Dropdown / Select'})).toBeVisible();
  await expect(search).toHaveValue('');
 });
+
+
+test('Andy: la UI del catálogo usa píldoras Info 500 sin alterar componentes de ejemplo',async ({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ await page.goto('/ui-kit-andy/componentes/boton');
+ const nav=page.getByRole('navigation',{name:'Navegación del Design System'});
+ const activeNav=nav.getByRole('link',{name:'Botones',exact:true});
+ await expect(activeNav).toHaveCSS('background-color','rgb(0, 110, 255)');
+ await expect(activeNav).toHaveCSS('border-top-left-radius','9999px');
+ const search=nav.getByRole('searchbox',{name:'Buscar componentes'});
+ await expect(search.locator('..')).toHaveCSS('border-top-left-radius','9999px');
+ await search.focus();
+ await expect(search.locator('..')).toHaveCSS('border-top-color','rgb(0, 110, 255)');
+ const version=page.locator('.andy-header .andy-version');
+ await expect(version).toHaveCSS('border-top-left-radius','9999px');
+ const toc=page.getByRole('complementary',{name:'En esta página'});
+ await expect(toc.locator('a').first()).toHaveCSS('border-top-left-radius','9999px');
+ const primarySample=page.locator('#variantes .andy-system-button.is-primary').first();
+ await expect(primarySample).toHaveCSS('background-color','rgb(35, 105, 153)');
+ await expect(primarySample).toHaveCSS('border-top-left-radius','4px');
+});
