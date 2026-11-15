@@ -118,6 +118,7 @@ const visualGuidance:Partial<Record<AdditionalId,{heading:string;description:str
  'button-group':{heading:'Acciones agrupadas',description:'Botones relacionados presentados en una misma fila.',rows:[['Agrupación','Mantener próximas las acciones que pertenecen al mismo contexto.'],['Estados','Conservar la jerarquía y el estado de cada botón.']]}
 };
 export function AndyAdditionalComponent({id}:{id:AdditionalId}){
+ const guidance=visualGuidance[id];
  const [visible,setVisible]=useState(false);
  const [value,setValue]=useState(45);
  const [page,setPage]=useState(1);
@@ -156,6 +157,6 @@ export function AndyAdditionalComponent({id}:{id:AdditionalId}){
  if(id==='slider')return <AndySliderDocs/>;
  return <>
  <DocSection title="Ejemplo interactivo" description="Probá el componente dentro de una demostración de la interfaz municipal."><DocPreview>{demo}</DocPreview></DocSection>
- {visualGuidance[id]&&<DocSection title={visualGuidance[id].heading} description={visualGuidance[id].description}><GuidelineTable rows={visualGuidance[id].rows}/></DocSection>}
+ {guidance&&<DocSection title={guidance.heading} description={guidance.description}><GuidelineTable rows={guidance.rows}/></DocSection>}
  </>;
 }
