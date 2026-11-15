@@ -39,3 +39,21 @@
    El fondo del ícono es transparente: hereda visualmente el celeste de la opción. */
 .andy-dropdown-variant-option .andy-dropdown-mark{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;color:#006eff}
 .andy-dropdown-search .material-symbols-outlined{right:10px;top:8px}
+
+
+/* Paridad desktop/mobile: toda opción seleccionada es Info 500.
+   El estado seleccionado domina hover/focus y los íconos heredan blanco. */
+.andy-dropdown-variant-option.selected,
+.andy-dropdown-variant-option.selected:hover,
+.andy-dropdown-variant-option.selected:focus-within{
+  background:#006eff;
+  color:#fff;
+  font-weight:500;
+}
+.andy-dropdown-variant-option.selected .andy-dropdown-choice,
+.andy-dropdown-variant-option.selected .andy-dropdown-mark,
+.andy-dropdown-variant-option.selected .material-symbols-outlined{
+  color:#fff;
+  background:transparent;
+  border:0;
+}
