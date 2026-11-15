@@ -49,12 +49,13 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
   const primary=onPrimary??onClose;
 
   function clearTimer(){if(timer.current!==null){clearTimeout(timer.current);timer.current=null;}}
-  function dismiss() {
+  function exit(callback?:()=>void) {
     if(phase==='closing')return;
-    clearTimer(); gesture.current=null;
-    setPhase('closing');setOffset(0);setStretch(0);setScrim(0);
-    timer.current=setTimeout(()=>{timer.current=null;closeCallback.current();},260);
+    clearTimer();gesture.current=null;
+    setPhase('closing');setScrim(0);
+    timer.current=setTimeout(()=>{timer.current=null;(callback??closeCallback.current)();},290);
   }
+  function dismiss(){exit();}
   useEffect(()=>{
     if(!open)return;
     const before=document.body.style.overflow;
@@ -104,6 +105,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
     gesture.current=null;
     try{if(event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.releasePointerCapture(event.pointerId);}catch{/* capture may already be released */}
     const dy=event.clientY-g.startY,now=performance.now(),first=g.samples[0]!;
+    if(!cancelled&&Math.abs(dy)<8){dismiss();event.preventDefault();return;}
     const velocity=(event.clientY-first.y)/Math.max(1,now-first.time);
     const threshold=Math.min(168,Math.max(120,g.height*.24));
     if(!cancelled&&dy>0&&(dy>=threshold||(dy>=55&&velocity>=.8))){
@@ -129,7 +131,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
       <div className="sports-sheet-heading" id={dialogId}>{title}</div>
       <div className="sports-sheet-content">{children}</div>
       <div className="sports-sheet-footer">
-        <button type="button" className="sports-sheet-primary" onClick={primary}>{primaryLabel}</button>
+        <button type="button" className="sports-sheet-primary" onClick={()=>exit(primary)}>{primaryLabel}</button>
         <button type="button" className="sports-sheet-secondary" onClick={onSecondary??dismiss}>{secondaryLabel}</button>
       </div>
     </div>
