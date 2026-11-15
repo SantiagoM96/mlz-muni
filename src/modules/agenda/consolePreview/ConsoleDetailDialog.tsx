@@ -57,7 +57,7 @@ export function ConsoleDetailDialog({
             <p className="text-[16px] font-bold text-primary-600">Vista previa · Ficha pública</p>
           </div>
           <button ref={closeRef} type="button" onClick={onClose}
-            className="inline-flex min-h-11 shrink-0 items-center gap-1 rounded-[4px] border border-[#d9e5ed] px-3 text-[16px] font-bold text-primary-600 hover:bg-[#f2f8fc] focus-visible:outline-2 focus-visible:outline-primary-600"
+            className="console-action-tertiary console-action-md console-icon-end inline-flex shrink-0 items-center gap-2 focus-visible:outline-2 focus-visible:outline-primary-600"
             aria-label="Cerrar vista previa del detalle">
             <MaterialIcon name="close" size={20} />
             <span className="hidden min-[390px]:inline">Cerrar</span>
