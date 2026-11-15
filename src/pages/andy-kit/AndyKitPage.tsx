@@ -317,7 +317,7 @@ function ComponentDetails({id}:{id:ComponentId}){
    <AndyCalendarShowcase only="range"/>
   </DocSection>
   <ComponentExample title="Campo desplegable" description="El campo del formulario abre un popover en desktop o un drawer en mobile; conserva el mismo calendario y los controles del UI Kit.">
-   <div className="andy-matrix-calendar-sample"><SportsCalendarPicker/></div>
+   <div className="andy-matrix-calendar-sample andy-calendar-dropdown-sample"><SportsCalendarPicker/></div>
   </ComponentExample>
  </>;
  if(id==='checkbox'||id==='radio'||id==='switch')return <>
