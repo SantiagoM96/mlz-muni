@@ -578,3 +578,62 @@
  .andy-doc-page .andy-doc-inspector-label{flex:auto}
  .andy-doc-page .andy-doc-inspector .andy-button-control-row{flex:auto}
 }
+
+
+/* Herramientas de inspección: solo sus botones de selección, sin panel ni rótulo. */
+.andy-doc-page .andy-doc-inspector{
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ gap:var(--mlz-space-8);
+ flex-wrap:wrap;
+ width:fit-content;
+ max-width:100%;
+ padding:0;
+ margin:0 0 var(--mlz-space-16);
+ background:transparent;
+ border:0;
+ border-radius:0;
+ box-shadow:none;
+}
+.andy-doc-page .andy-doc-inspector .andy-button-control-row{
+ flex:initial;
+ width:auto;
+ margin:0;
+}
+.andy-doc-page .andy-palette-sizebar.andy-doc-inspector{
+ justify-content:flex-start;
+ width:fit-content;
+ padding:0;
+}
+@media(max-width:680px){
+ .andy-doc-page .andy-doc-inspector{flex-direction:row;align-items:center}
+ .andy-doc-page .andy-doc-inspector .andy-button-control-row{flex:initial}
+}
+
+/* SOLO LISTAS DE OPCIONES DE DROPDOWNS.
+   Ocultar la pista y el deslizador no desactiva rueda, táctil o teclado.
+   Se elimina el gutter artificial de 8 px a la derecha: las opciones
+   vuelven a tener el mismo margen a ambos lados del menú. */
+.andy-doc-layout .andy-dropdown-variant-options,
+.andy-doc-layout .andy-select-menu,
+.andy-doc-layout .kit-sports-options,
+.andy-doc-layout .kit-sports-more-scroll,
+.andy-doc-layout .kit-sports-advanced-popover .kit-sports-advanced,
+.sports-cal-popup .sports-cal-choices,
+.sports-cal-popup.is-mobile>.sports-cal-choices{
+ scrollbar-width:none;
+ -ms-overflow-style:none;
+ padding-right:0;
+}
+.andy-doc-layout .andy-dropdown-variant-options::-webkit-scrollbar,
+.andy-doc-layout .andy-select-menu::-webkit-scrollbar,
+.andy-doc-layout .kit-sports-options::-webkit-scrollbar,
+.andy-doc-layout .kit-sports-more-scroll::-webkit-scrollbar,
+.andy-doc-layout .kit-sports-advanced-popover .kit-sports-advanced::-webkit-scrollbar,
+.sports-cal-popup .sports-cal-choices::-webkit-scrollbar,
+.sports-cal-popup.is-mobile>.sports-cal-choices::-webkit-scrollbar{
+ display:none;
+ width:0;
+ height:0;
+}
