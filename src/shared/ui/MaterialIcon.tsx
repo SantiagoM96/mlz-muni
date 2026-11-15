@@ -13,6 +13,7 @@ export type MaterialIconName =
   | 'arrow_back'
   | 'menu'
   | 'close'
+  | 'close_small'
   | 'search'
   | 'calendar_month'
   | 'event_available'
