@@ -37,3 +37,29 @@ test('Andy: enlaces clásicos de las galerías permanecen disponibles',async ({p
  await page.goto('/ui-kit-andy/componentes');
  await expect(page.getByRole('heading',{level:3,name:'Campos de formulario'})).toBeVisible();
 });
+
+
+test('Andy: los seis estados comparten una sola caja exterior sin tarjetas individuales',async ({page})=>{
+ for(const slug of ['input','select','textarea','calendario','adjuntos']){
+  await page.goto('/ui-kit-andy/componentes/'+slug);
+  const frame=page.locator('.andy-doc-preview').first();
+  await expect(frame).toBeVisible();
+  await expect(frame.locator('.andy-state-cell')).toHaveCount(6);
+  await expect(frame.locator('.andy-state-cell').first()).toHaveCSS('border-top-style','none');
+  await expect(frame.locator('.andy-state-cell').first()).toHaveCSS('padding-top','0px');
+ }
+});
+
+test('Andy: scrollbars documentadas y sidebar desplazable sin barra visible',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/scrollbars');
+ await expect(page.getByRole('heading',{name:'Barras de scroll'})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'Barra principal · página'})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'Barra interna · dropdown y drawer'})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'Barra oculta · navegación lateral'})).toBeVisible();
+ await expect(page.locator('.andy-scrollbar-demo-scroll')).toHaveCount(3);
+ await expect(page.locator('.andy-scrollbar-demo-scroll.is-hidden')).toHaveCSS('scrollbar-width','none');
+ await expect(page.locator('.andy-scrollbar-demo-scroll.is-dropdown')).toHaveCSS('scrollbar-width','thin');
+ const sidebar=page.locator('.andy-sidebar');
+ await expect(sidebar).toHaveCSS('scrollbar-width','none');
+ await expect(sidebar).toHaveCSS('overflow-y','auto');
+});
