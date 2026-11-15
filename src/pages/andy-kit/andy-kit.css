@@ -91,8 +91,8 @@
 
 /* MLZ UI Kit · documentación por componente. Navegación inspirada en la
    jerarquía de shadcn/ui, con superficies, tokens e iconografía propios de MLZ. */
-.andy-doc-layout{min-height:100vh;background-color:#fff;background-image:radial-gradient(circle,#edf0f2 .75px,transparent .9px);background-size:22px 22px;background-position:11px 11px}
-.andy-doc-layout .andy-header{position:relative;z-index:30;background:transparent}
+.andy-doc-layout{min-height:100vh;background:#fff}
+.andy-doc-layout .andy-header{position:relative;z-index:30;background:#fff}
 .andy-doc-layout .andy-header .andy-container{padding-top:0}
 .andy-topbar{display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-16);min-height:92px}
 .andy-topbar-heading{min-width:0;padding:var(--mlz-space-16) 0}
@@ -907,3 +907,59 @@
   .andy-doc-layout .andy-topbar-heading .andy-design-system-label{font-size:10px;line-height:13px}
 }
 
+
+/* UI Kit — textura editorial exclusivamente detrás del área central.
+   El header, los laterales y los previews quedan blancos.
+   Dos veladuras blancas se vuelven transparentes hacia el centro. */
+.andy-doc-layout .andy-doc-body{
+ --andy-canvas-grid:20px;
+ --andy-canvas-fade:104px;
+}
+.andy-doc-layout .andy-doc-body::before{
+ content:"";
+ display:block;
+ grid-column:2;
+ grid-row:1;
+ align-self:stretch;
+ min-width:0;
+ margin-inline:-24px;
+ pointer-events:none;
+ background-color:#fff;
+ background-image:
+  linear-gradient(to right,
+   #fff 0,
+   rgb(255 255 255 / 82%) 32px,
+   rgb(255 255 255 / 42%) 68px,
+   transparent var(--andy-canvas-fade),
+   transparent calc(100% - var(--andy-canvas-fade)),
+   rgb(255 255 255 / 42%) calc(100% - 68px),
+   rgb(255 255 255 / 82%) calc(100% - 32px),
+   #fff 100%),
+  radial-gradient(circle,#e4e8eb .95px,transparent 1.12px);
+ background-size:100% 100%,var(--andy-canvas-grid) var(--andy-canvas-grid);
+ background-position:center,10px 10px;
+}
+.andy-doc-layout .andy-doc-body > .andy-sidebar{
+ grid-column:1;grid-row:1;background:#fff;
+}
+.andy-doc-layout .andy-doc-body > .andy-doc-main{
+ grid-column:2;grid-row:1;position:relative;z-index:1;
+}
+.andy-doc-layout .andy-doc-body > .andy-doc-toc{
+ grid-column:3;grid-row:1;background:#fff;
+}
+@media(max-width:790px){
+ .andy-doc-layout .andy-doc-body::before{display:none}
+ .andy-doc-layout .andy-doc-body > .andy-doc-main{
+  position:relative;isolation:isolate;background:transparent;
+ }
+ .andy-doc-layout .andy-doc-body > .andy-doc-main::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-color:#fff;
+  background-image:
+   linear-gradient(to right,#fff,transparent 72px,transparent calc(100% - 72px),#fff),
+   radial-gradient(circle,#e4e8eb .95px,transparent 1.12px);
+  background-size:100% 100%,20px 20px;
+  background-position:center,10px 10px;
+ }
+}
