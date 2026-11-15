@@ -1,0 +1,38 @@
+/* Ejemplo del buscador del producto Deportes Anual dentro de la documentación. */
+.andy-sports-search{width:min(100%,680px);min-width:0;display:flex;flex-direction:column;gap:16px;margin-inline:auto}
+.andy-sports-search-control{position:relative;min-width:0;width:100%}
+.andy-sports-search-control input{
+ display:block;width:100%;height:48px;padding:0 48px 0 16px;
+ border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm);
+ background:#fff;color:#3d3d3d;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+ outline:0;box-shadow:none;
+}
+.andy-sports-search-control input::placeholder{color:#5ba8d5}
+.andy-sports-search-control input:hover{border-color:#236999;background:#fafdff}
+.andy-sports-search-control input:focus-visible{
+ border:2px solid #006eff;padding-left:15px;padding-right:47px;
+ background:#f6f6f6;outline:none;box-shadow:none;
+}
+.andy-sports-search-control>.material-symbols-outlined{
+ position:absolute;right:16px;top:12px;color:#236999;pointer-events:none;
+}
+.andy-sports-search-results{width:100%;min-width:0;display:flex;flex-direction:column;gap:12px}
+.andy-sports-search-results-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:#657886}
+.andy-sports-search-results-top button{background:transparent;border:0;color:#236999;font:600 13px/20px Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer}
+.andy-sports-search-results-top button:hover{text-decoration:underline}
+.andy-sports-search-results ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;list-style:none;margin:0;padding:0}
+.andy-sports-search-results li{border:1px solid #dce7ef;border-radius:var(--mlz-radius-sm);padding:12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.andy-sports-search-results li strong{color:#236999;font-size:14px;line-height:20px}
+.andy-sports-search-results li span,.andy-sports-search-results>p{color:#657886;font-size:13px;line-height:20px;margin:0}
+.andy-sports-search-note{font-size:12px;line-height:19px;color:#657886;margin:0}
+.andy-sports-search-filters{width:100%;min-width:0}
+.andy-sports-search-filters .kit-sports-gallery{width:100%;min-width:0}
+.andy-sports-search-filters .kit-sports-intro,
+.andy-sports-search-filters .kit-sports-section>h2,
+.andy-sports-search-filters .kit-sports-section>p{display:none}
+.andy-sports-search-filters .kit-sports-section{margin:0;padding:0;border:0}
+.andy-sports-search-filters .kit-sports-filters{width:100%}
+@media(max-width:640px){
+ .andy-sports-search-results ul{grid-template-columns:1fr}
+ .andy-sports-search{gap:12px}
+}
