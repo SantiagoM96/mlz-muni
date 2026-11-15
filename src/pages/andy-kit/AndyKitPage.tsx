@@ -206,6 +206,9 @@ const views:Record<Category,()=>ReactNode>={fundamentos:Foundations,filtros:Filt
 export function AndyKitPage(){
  const {categoria,componente}=useParams<{categoria?:string;componente?:string}>();
  const [navOpen,setNavOpen]=useState(false);
+ const [componentSearch,setComponentSearch]=useState('');
+ const normalizedSearch=componentSearch.normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
+ const filteredGroups=componentGroups.map(group=>({...group,items:group.items.filter(([id,title])=>!normalizedSearch||[title,id,componentMeta[id].description,group.title].some(value=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(normalizedSearch)))})).filter(group=>group.items.length>0);
  const legacy=categories.find(c=>c.id===(categoria??'fundamentos'));
  const componentEntry=componentEntries.find(([id])=>id===componente);
  const isComponent=categoria==='componentes'&&!!componentEntry;
@@ -236,7 +239,14 @@ export function AndyKitPage(){
      </div>
      <div className="andy-nav-divider"/>
      <NavLink end to="/ui-kit-andy/componentes" onClick={()=>setNavOpen(false)} className={({isActive})=>"andy-nav-label andy-nav-label-link"+(isActive?" active":"")}>Componentes</NavLink>
-     {componentGroups.map(group=><div className="andy-nav-group" key={group.title}>
+     <div className="andy-component-search">
+      <Icon name="search" size={20}/>
+      <input type="search" aria-label="Buscar componentes" placeholder="Buscar componentes" value={componentSearch}
+        onChange={event=>setComponentSearch(event.target.value)}/>
+      {componentSearch&&<button type="button" className="andy-component-search-clear" onClick={()=>setComponentSearch('')} aria-label="Limpiar búsqueda"><Icon name="close" size={18}/></button>}
+     </div>
+     {filteredGroups.length===0&&<p className="andy-component-search-empty" role="status">No encontramos componentes.</p>}
+     {filteredGroups.map(group=><div className="andy-nav-group" key={group.title}>
       <span className="andy-nav-heading">{group.title}</span>
       {group.items.map(([id,title])=><NavLink key={id} to={'/ui-kit-andy/componentes/'+id} onClick={()=>setNavOpen(false)}
         className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}>{title}</NavLink>)}
