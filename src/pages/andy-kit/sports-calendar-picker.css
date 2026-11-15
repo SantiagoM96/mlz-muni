@@ -1,0 +1,86 @@
+/* Deportes Anual: birthdate-picker portado al catálogo Andy.
+   Fuente: prototipo público, Fecha de nacimiento. */
+.sports-cal-field{position:relative;width:100%;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.sports-cal-label{display:block;margin-bottom:8px;color:#236999;font-size:16px;line-height:22px;font-weight:700}
+.sports-cal-trigger-wrap{position:relative;width:100%}
+.sports-cal-trigger{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;height:48px;padding:8px 16px;color:#236999;background:#fff;border:1px solid #5ba8d5;border-radius:4px;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;text-align:left}
+.sports-cal-trigger:hover{border-color:#236999}
+.sports-cal-trigger[aria-expanded=true],.sports-cal-trigger:focus-visible{border:1px solid #006eff;outline:none;box-shadow:inset 0 0 0 1px #006eff}
+.sports-cal-trigger>span:first-child{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sports-cal-trigger .material-symbols-outlined{color:#236999}
+.sports-cal-trigger-wrap:has(.sports-cal-inline-clear) .sports-cal-trigger{padding-right:86px}
+.sports-cal-trigger-wrap:has(.sports-cal-inline-clear) .sports-cal-trigger>.material-symbols-outlined{position:absolute;right:16px;top:12px}
+.sports-cal-inline-clear{position:absolute;right:47px;top:9px;width:30px;height:30px;display:grid;place-items:center;background:transparent;color:#ef284c;border:0;border-radius:4px}
+.sports-cal-inline-clear:hover{background:#fff0f2}
+.sports-cal-inline-clear:focus-visible{outline:2px solid #006eff;outline-offset:1px}
+.sports-cal-popup{position:absolute;z-index:110;top:calc(100% + 8px);left:0;width:348px;max-width:min(348px,calc(100vw - 32px));padding:22px 20px 18px;background:#fff;border:1px solid #dce3e9;border-radius:16px;box-shadow:0 14px 38px #132c4425;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.sports-cal-top{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:30px;margin-bottom:16px}
+.sports-cal-top strong{font-size:19px;line-height:28px;font-weight:700;color:#30363b}
+.sports-cal-x,.sports-cal-back{width:32px;height:32px;display:grid;place-items:center;border:0;border-radius:5px;background:transparent;color:#71808c}
+.sports-cal-x:hover,.sports-cal-back:hover{background:#edf6fc}
+.sports-cal-bar{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-bottom:18px}
+.sports-cal-period{display:flex;align-items:center;gap:7px;min-width:0}
+.sports-cal-choice-holder{position:relative;min-width:0}
+.sports-cal-choice-trigger{min-height:36px;display:flex;align-items:center;justify-content:space-between;gap:7px;max-width:144px;padding:7px 9px 7px 11px;background:#fff;border:1px solid #5ba8d5;border-radius:4px;color:#236999;white-space:nowrap;font:600 14px/20px Geometria,'Century Gothic',Arial,sans-serif}
+.sports-cal-choice-trigger:hover{border-color:#236999}
+.sports-cal-choice-trigger[aria-expanded=true],.sports-cal-choice-trigger:focus-visible{border:1px solid #006eff;box-shadow:inset 0 0 0 1px #006eff;outline:none}
+.sports-cal-choice-menu{position:absolute;top:calc(100% + 5px);left:0;z-index:140;width:max-content;min-width:140px;max-width:188px;padding:5px;background:#fff;border:1px solid #dfe7ed;border-radius:9px;box-shadow:0 8px 23px #15354a26}
+.sports-cal-choices{display:flex;flex-direction:column;gap:2px;max-height:230px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#b2c4d2 #f4f7f9}
+.sports-cal-choice-option{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;width:100%;padding:9px 12px;border:0;border-radius:5px;background:#fff;color:#3d3d3d;text-align:left;font:400 14px/22px Geometria,'Century Gothic',Arial,sans-serif}
+.sports-cal-choice-option:hover{background:#edf6fc}
+.sports-cal-choice-option[aria-selected=true],.sports-cal-choice-option[aria-selected=true]:hover{background:#006eff;color:#fff;font-weight:600}
+.sports-cal-choice-option .material-symbols-outlined{color:inherit}
+.sports-cal-nav{display:flex;align-items:center;gap:2px}
+.sports-cal-nav button{display:grid;place-items:center;flex:0 0 30px;width:30px;height:34px;background:transparent;color:#236999;border:0;border-radius:7px}
+.sports-cal-nav button:hover:not(:disabled){background:#eef6fd}
+.sports-cal-nav button:disabled{opacity:.3;cursor:not-allowed}
+.sports-cal-week,.sports-cal-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.sports-cal-week{margin-bottom:7px}
+.sports-cal-week span{font:700 12px/24px Geometria,'Century Gothic',Arial,sans-serif;text-align:center;color:#85919a}
+.sports-cal-days{min-height:218px}
+.sports-cal-day{width:100%;height:37px;min-height:37px;padding:0;border:0;border-radius:8px;background:transparent;color:#3d3d3d;font:400 14px/37px Geometria,'Century Gothic',Arial,sans-serif;text-align:center}
+.sports-cal-day:hover:not(:disabled){background:#eaf3ff;color:#006eff}
+.sports-cal-day.is-selected,.sports-cal-day.is-selected:hover{background:#006eff;color:#fff;font-weight:700}
+.sports-cal-day.is-today:not(.is-selected){outline:1px solid #9dbbd2;outline-offset:-2px}
+.sports-cal-day:disabled{opacity:.25;cursor:not-allowed}
+.sports-cal-day:focus-visible,.sports-cal-nav button:focus-visible,.sports-cal-actions button:focus-visible{outline:2px solid #006eff;outline-offset:2px}
+.sports-cal-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:14px;margin-top:12px;border-top:1px solid #e7edf2}
+.sports-cal-actions button{min-height:39px;padding:8px 15px;border-radius:8px;font:700 14px/22px Geometria,'Century Gothic',Arial,sans-serif}
+.sports-cal-clear{color:#236999;background:transparent;border:0}
+.sports-cal-clear:hover{background:#eaf3ff}
+.sports-cal-confirm{min-width:122px;color:#fff;background:#006eff;border:1px solid #006eff}
+.sports-cal-confirm:hover:not(:disabled){background:#005ccc}
+.sports-cal-confirm:disabled{opacity:.4;cursor:not-allowed}
+.sports-cal-layer{display:none}
+@media(max-width:680px){
+ .sports-cal-layer{display:block;position:fixed;inset:0;z-index:6100;pointer-events:none}
+ .sports-cal-overlay{position:absolute;inset:0;display:block;width:100%;height:100%;background:#0a1f33a6;border:0;pointer-events:auto;transition:opacity .29s ease}
+ .sports-cal-popup.is-mobile{position:absolute;bottom:0;top:auto;left:0;right:0;z-index:2;display:flex;flex-direction:column;width:100%;max-width:none;min-height:0;max-height:min(88dvh,690px);padding:0 18px max(20px,env(safe-area-inset-bottom));border:0;border-radius:20px 20px 0 0;box-shadow:0 -8px 35px #081b2940;overflow:hidden;pointer-events:auto;transform:translate3d(0,var(--cal-y,0px),0);animation:sports-cal-appear .34s cubic-bezier(.22,1,.36,1) both}
+ @keyframes sports-cal-appear{from{transform:translate3d(0,100%,0)}to{transform:translate3d(0,var(--cal-y,0px),0)}}
+ .sports-cal-popup.is-mobile.is-rebounding{animation:none;transition:transform .31s ease-out;transform:translate3d(0,var(--cal-y,0px),0)}
+ .sports-cal-popup.is-mobile.is-exiting{animation:none;transition:transform .29s cubic-bezier(.4,0,.7,1);transform:translate3d(0,calc(100% + 52px),0);box-shadow:none}
+ .sports-cal-grab{display:flex;justify-content:center;align-items:center;flex:0 0 36px;height:36px;width:calc(100% + 36px);margin:0 -18px 5px;padding:0;background:transparent;border:0;touch-action:none;cursor:grab}
+ .sports-cal-grab>span{width:44px;height:5px;border-radius:5px;background:#bac5cf}
+ .sports-cal-grab:focus-visible{outline:2px solid #006eff;outline-offset:-3px}
+ .sports-cal-top{flex:0 0 auto;min-height:52px;margin-bottom:14px}
+ .sports-cal-top strong{color:#236999;font-size:20px;line-height:28px}
+ .sports-cal-back{color:#236999;margin-right:6px}
+ .sports-cal-content{flex:0 1 auto;min-height:0;overflow:auto}
+ .sports-cal-choice-trigger{width:100%;max-width:none;min-height:48px;height:48px;padding:10px 12px;font-size:16px;line-height:24px}
+ .sports-cal-period{flex:1;gap:10px}
+ .sports-cal-choice-holder{flex:1}
+ .sports-cal-nav button{width:28px;flex-basis:28px}
+ .sports-cal-week span{font-size:13px}
+ .sports-cal-days{min-height:245px}
+ .sports-cal-day{height:42px;min-height:42px;line-height:42px;font-size:15px}
+ .sports-cal-actions{position:relative;display:flex;align-items:stretch;gap:8px;margin-top:12px;padding-top:14px}
+ .sports-cal-actions button{height:48px;min-height:48px;border-radius:4px;padding:0 12px;font-size:16px;line-height:24px;font-weight:600}
+ .sports-cal-actions .sports-cal-confirm{order:0;flex:3 1 0;background:#236999;border:1px solid #236999;color:#fff;min-width:0}
+ .sports-cal-actions .sports-cal-clear{order:1;flex:1 1 0;background:#fff;border:1px solid #c8d9e3;color:#236999;min-width:0;padding:0 8px;white-space:nowrap}
+ .sports-cal-popup.is-mobile>.sports-cal-choices{flex:1 1 auto;max-height:min(69dvh,470px);min-height:0;overflow:auto;padding:0 0 12px;animation:sports-cal-subview .16s ease-out both}
+ @keyframes sports-cal-subview{from{opacity:.65;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+ .sports-cal-popup.is-mobile>.sports-cal-choices .sports-cal-choice-option{flex:0 0 50px;min-height:50px;margin:2px 0;padding:10px 16px;font-size:16px;line-height:24px}
+ .sports-cal-popup.is-mobile>.sports-cal-choices .sports-cal-choice-option .material-symbols-outlined{color:inherit}
+}
+@media(max-width:380px){.sports-cal-period{gap:6px}.sports-cal-choice-trigger{padding:9px 8px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){.sports-cal-popup.is-mobile,.sports-cal-popup.is-mobile>.sports-cal-choices{animation-duration:.01ms}.sports-cal-popup.is-mobile.is-rebounding,.sports-cal-popup.is-mobile.is-exiting,.sports-cal-overlay{transition-duration:.01ms}}
