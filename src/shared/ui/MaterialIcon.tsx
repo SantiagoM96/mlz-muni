@@ -8,6 +8,7 @@ import type { CSSProperties } from 'react';
 export type MaterialIconName =
   | 'bookmark'
   | 'chevron_right'
+  | 'chevron_left'
   | 'arrow_forward'
   | 'arrow_back'
   | 'menu'
