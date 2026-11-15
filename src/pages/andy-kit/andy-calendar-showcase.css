@@ -11,7 +11,26 @@
 .andy-cal-example .sports-cal-popup.is-inline .sports-cal-choice-option{min-height:44px;font-size:16px;line-height:24px}
 .andy-cal-example .sports-cal-days{min-height:218px}
 .andy-cal-example .sports-cal-day{border-radius:var(--mlz-radius-sm)}
-.andy-cal-example .sports-cal-day.is-in-range,.andy-cal-example .sports-cal-day.is-in-range:hover{background:#e5f0ff;color:#236999;border-radius:0}
+/* El rango se dibuja como una banda continua: sin gutters entre los días. */
+.andy-cal-example .sports-cal-days.is-range-grid{gap:0}
+.andy-cal-example .is-range-grid .sports-cal-day.is-in-range,
+.andy-cal-example .is-range-grid .sports-cal-day.is-in-range:hover{
+ background:#e5f0ff;
+ color:#236999;
+ border-radius:0;
+}
+.andy-cal-example .is-range-grid .sports-cal-day.is-range-start.is-selected,
+.andy-cal-example .is-range-grid .sports-cal-day.is-range-start.is-selected:hover{
+ border-radius:20px 0 0 20px;
+}
+.andy-cal-example .is-range-grid .sports-cal-day.is-range-end.is-selected,
+.andy-cal-example .is-range-grid .sports-cal-day.is-range-end.is-selected:hover{
+ border-radius:0 20px 20px 0;
+}
+/* Si todavía no se eligió el fin, el primer día conserva el botón redondeado. */
+.andy-cal-example .is-range-grid .sports-cal-day.is-range-start.is-selected:not(:has(~ .is-range-end)){
+ border-radius:20px;
+}
 .andy-cal-selection{display:flex;flex-direction:column;gap:var(--mlz-space-4);padding:var(--mlz-space-12) var(--mlz-space-16);border-radius:var(--mlz-radius-sm);background:#f3f7fc;color:#236999}
 .andy-cal-selection strong{font-size:13px;line-height:20px}
 .andy-cal-selection span{font-size:14px;line-height:22px}
