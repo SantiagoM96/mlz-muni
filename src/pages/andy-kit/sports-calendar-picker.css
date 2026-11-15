@@ -84,3 +84,13 @@
 }
 @media(max-width:380px){.sports-cal-period{gap:6px}.sports-cal-choice-trigger{padding:9px 8px;font-size:15px}}
 @media(prefers-reduced-motion:reduce){.sports-cal-popup.is-mobile,.sports-cal-popup.is-mobile>.sports-cal-choices{animation-duration:.01ms}.sports-cal-popup.is-mobile.is-rebounding,.sports-cal-popup.is-mobile.is-exiting,.sports-cal-overlay{transition-duration:.01ms}}
+
+/* Gesto táctil: el drawer sigue el dedo sin que la animación de entrada
+   impida actualizar el transform. */
+@media(max-width:680px){
+ .sports-cal-popup.is-mobile.is-dragging{
+  animation:none;
+  transition:none;
+  transform:translate3d(0,var(--cal-y,0px),0);
+ }
+}
