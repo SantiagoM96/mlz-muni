@@ -201,8 +201,24 @@
 }
 
 /* Índice de componentes y demos existentes que también usan caja preview. */
-.andy-nav-label-link{text-decoration:none!important;display:block;border-radius:var(--mlz-radius-sm);padding-top:var(--mlz-space-6);padding-bottom:var(--mlz-space-6)}
-.andy-nav-label-link:hover,.andy-nav-label-link.active{background:#e5f0f9;color:#236999}
+/* El enlace padre Componentes debe ocupar exactamente el mismo ancho,
+   gutter y radio que los ítems hijos (por ejemplo Espaciados). */
+.andy-nav-label-link{
+  display:flex;
+  align-items:center;
+  width:100%;
+  min-height:34px;
+  margin:0;
+  padding:var(--mlz-space-6) var(--mlz-space-12);
+  border-radius:var(--mlz-radius-sm);
+  box-sizing:border-box;
+  text-decoration:none!important;
+  transition:background-color .13s,color .13s;
+}
+.andy-nav-label-link:hover{background:#f2f7fc;color:#236999}
+.andy-nav-label-link.active,.andy-nav-label-link.active:hover{background:#e5f0f9;color:#236999}
+.andy-nav-label-link:focus{outline:none}
+.andy-nav-label-link:focus-visible{outline:2px solid #006eff;outline-offset:-2px}
 .andy-component-directory{display:flex;flex-direction:column;gap:var(--mlz-space-32)}
 .andy-component-directory section{min-width:0}
 .andy-component-directory h3{margin:0 0 var(--mlz-space-14);color:#236999;font-size:19px;line-height:27px;font-weight:700}
