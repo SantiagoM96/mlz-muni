@@ -74,7 +74,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
           <button className="kit-sports-clear" type="button" onClick={() => { setSelected([]); setSearch(''); }}>Limpiar</button>
         </div>
       </div></>}
-    {mobile && <SportsMobileSheet open={open} title={label} onClose={close}
+    {mobile && open && <SportsMobileSheet open={open} title={label} onClose={close}
       primaryLabel={`Ver resultados (${selected.length})`} onPrimary={apply}
       secondaryLabel="Limpiar" onSecondary={() => { setSelected([]); setSearch(''); }}>
       {searchable && <div className="kit-sports-search-wrap"><input aria-label={`Buscar ${label}`}
@@ -157,7 +157,7 @@ function MoreFiltersDemo() {
           <button className="kit-sports-clear kit-sports-clear-bordered" type="button" onClick={() => { setDays([]); setType(''); }}>Limpiar</button>
         </div>
       </div></>}
-    {mobile && <SportsMobileSheet open={open} title="Más filtros" onClose={close} size="large"
+    {mobile && open && <SportsMobileSheet open={open} title="Más filtros" onClose={close} size="large"
       primaryLabel={`Ver resultados (${count})`} onPrimary={()=>{setApplied(count);close();}}
       secondaryLabel="Limpiar" onSecondary={()=>{setDays([]);setType('');}}>
       <div className="kit-sports-more-scroll">
