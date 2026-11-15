@@ -1,0 +1,39 @@
+/* Componentes adicionales documentados: estilos acotados al UI Kit Andy. */
+.andy-add-stack{display:flex;flex-direction:column;gap:16px;width:100%;min-width:0}
+.andy-add-inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.andy-add-table-wrap{width:100%;overflow-x:auto;border:1px solid #e1e7eb;border-radius:12px}
+.andy-add-table{width:100%;border-collapse:collapse;text-align:left;font-size:14px;min-width:390px}
+.andy-add-table th,.andy-add-table td{padding:12px 16px;border-bottom:1px solid #e1e7eb}
+.andy-add-table th{background:#eff6fb;color:#236999;font-weight:700}
+.andy-add-table tr:last-child td{border-bottom:0}
+.andy-add-stack progress{width:100%;height:12px;accent-color:#006eff}
+.andy-add-stack input[type=range]{width:100%;accent-color:#006eff}
+.andy-add-spinner{display:inline-block;width:24px;height:24px;border:3px solid #dcebf5;border-top-color:#006eff;border-radius:50%;animation:andy-add-spin .8s linear infinite}
+@keyframes andy-add-spin{to{transform:rotate(360deg)}}
+.andy-add-skeleton{width:min(100%,380px);display:flex;flex-direction:column;gap:14px}
+.andy-add-skeleton span{display:block;height:18px;border-radius:8px;background:linear-gradient(90deg,#e7edf3,#f7f9fb,#e7edf3);background-size:200% 100%;animation:andy-add-shimmer 1.5s linear infinite}
+.andy-add-skeleton span:first-child{height:72px}
+.andy-add-skeleton span:last-child{width:65%}
+@keyframes andy-add-shimmer{to{background-position:-200% 0}}
+.andy-add-toast{position:relative;display:flex;flex-direction:column;gap:4px;padding:16px 44px 16px 16px;border:1px solid #9ddbb4;border-radius:12px;background:#f2fcf5;color:#236999;min-width:min(100%,310px)}
+.andy-add-toast span{font-size:13px;color:#3d3d3d}
+.andy-add-toast button{position:absolute;right:12px;top:8px;border:0;background:transparent;font-size:24px;color:#236999;cursor:pointer}
+.andy-add-tooltip-wrap{position:relative;display:inline-flex;flex-direction:column;align-items:center}
+.andy-add-tooltip-wrap [role=tooltip]{position:absolute;bottom:calc(100% + 8px);width:max-content;max-width:240px;opacity:0;pointer-events:none;background:#3d3d3d;color:#fff;border-radius:8px;padding:8px 10px;font-size:12px;transition:opacity .15s}
+.andy-add-tooltip-wrap:hover [role=tooltip],.andy-add-tooltip-wrap:focus-within [role=tooltip]{opacity:1}
+.andy-add-stack hr{width:100%;border:0;border-top:1px solid #e1e7eb}
+.andy-add-panel{border:1px solid #e1e7eb;border-radius:12px;padding:16px;background:#fff}
+.andy-add-guidance{display:flex;flex-direction:column;gap:8px;font-size:14px}
+.andy-add-guidance strong{color:#236999}.andy-add-guidance p{margin:0 0 12px}
+.andy-add-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:#10283a95;padding:16px}
+.andy-add-dialog{width:min(440px,100%);background:#fff;border-radius:16px;padding:24px;box-shadow:0 16px 48px #10283a44}
+.andy-add-dialog h3{margin:0 0 12px;color:#236999}.andy-add-dialog p{margin:0 0 24px}
+.andy-add-dialog.is-sheet{position:absolute;right:0;top:0;bottom:0;width:min(420px,90vw);border-radius:16px 0 0 16px}
+@media(prefers-reduced-motion:reduce){.andy-add-spinner,.andy-add-skeleton span{animation:none}}
+/* Shell de documentación: ancho interno constante, centrado en área flexible. */
+.andy-doc-layout .andy-doc-body{max-width:none;width:100%;grid-template-columns:240px minmax(0,1fr);gap:24px}
+.andy-doc-layout .andy-doc-main{max-width:768px;justify-self:center;margin-inline:auto}
+@media(min-width:1280px){.andy-doc-layout .andy-doc-body:has(.andy-doc-toc){grid-template-columns:240px minmax(0,1fr) 208px;gap:24px}}
+@media(min-width:1180px) and (max-width:1279px){.andy-doc-layout .andy-doc-body:has(.andy-doc-toc){grid-template-columns:220px minmax(0,1fr);gap:24px}.andy-doc-layout .andy-doc-toc{display:none}}
+@media(min-width:791px) and (max-width:1100px){.andy-doc-layout .andy-doc-body{grid-template-columns:210px minmax(0,1fr)}}
+@media(max-width:790px){.andy-doc-layout .andy-doc-body{display:block}.andy-doc-layout .andy-doc-main{max-width:768px}}
