@@ -50,7 +50,7 @@ function VariantSection({appearance,size}: {appearance:Appearance;size:Size}){
  </section>;
 }
 
-export function AndyTagPaletteGallery(){
+export function AndyTagPaletteGallery({onlyAppearance}:{onlyAppearance?:Appearance}={}){
  const [size,setSize]=useState<Size>('mediano');
  return <div className="andy-tag-palette">
   <div className="andy-palette-sizebar">
@@ -62,8 +62,8 @@ export function AndyTagPaletteGallery(){
     </button>)}
    </div>
   </div>
-  <VariantSection appearance="fill" size={size}/>
-  <VariantSection appearance="outline" size={size}/>
+  {(!onlyAppearance||onlyAppearance==='fill')&&<VariantSection appearance="fill" size={size}/>}
+  {(!onlyAppearance||onlyAppearance==='outline')&&<VariantSection appearance="outline" size={size}/>}
   <p className="andy-palette-note">Los colores reproducen los seis estilos del componente <strong>Tag</strong> del UI Kit de Figma. El outline utiliza el mismo color intenso en el borde, texto e ícono.</p>
  </div>;
 }
