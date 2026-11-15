@@ -131,7 +131,7 @@ function Messages(){return <>
  <DemoSection title="Estado sin resultados"><div className="andy-empty"><Icon name="search" size={42}/><h3>No encontramos actividades</h3><p>Probá con otros filtros o cambiá el término de búsqueda.</p><button className="andy-btn andy-btn-outline" type="button">Limpiar filtros</button></div></DemoSection>
 </>}
 function ComponentExample({title,description,children}:{title:string;description?:string;children:ReactNode}){
- return <section className="andy-doc-example"><h3>{title}</h3>{description&&<p>{description}</p>}
+ return <section className="andy-doc-example" id={title.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}><h3>{title}</h3>{description&&<p>{description}</p>}
    <div className="andy-doc-preview">{children}</div></section>;
 }
 function AccordionDemo({multiple=false}:{multiple?:boolean}){
@@ -169,6 +169,28 @@ function ComponentDetails({id}:{id:ComponentId}){
   <ComponentExample title="Deshabilitado"><div className="andy-doc-accordion"><button type="button" disabled>Sección no disponible <Icon name="expand_more"/></button></div></ComponentExample>
  </>;
  return null;
+}
+const tocByComponent:Partial<Record<ComponentId,{id:string;title:string}[]>>={
+ boton:[{id:'variantes',title:'Variantes'},{id:'tamanos',title:'Tamaños'},{id:'estados',title:'Estados'},{id:'iconografia',title:'Íconos'},{id:'uso',title:'Uso y comportamiento'}],
+ acordeon:[{id:'apertura-unica',title:'Apertura única'},{id:'apertura-multiple',title:'Apertura múltiple'},{id:'deshabilitado',title:'Deshabilitado'}],
+ buscador:[{id:'buscador',title:'Buscador'},{id:'buscador-con-contenido',title:'Buscador con contenido'}]
+};
+function HeadingToc({items}:{items:{id:string;title:string}[]}){
+ const [active,setActive]=useState(items[0]?.id??'');
+ useEffect(()=>{
+  if(!items.length)return;
+  const observers=items.map(item=>document.getElementById(item.id)).filter((el):el is HTMLElement=>!!el);
+  const observer=new IntersectionObserver(entries=>{
+   const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+   if(visible[0])setActive(visible[0].target.id);
+  },{rootMargin:'-15% 0px -68% 0px',threshold:0});
+  observers.forEach(el=>observer.observe(el));
+  return()=>observer.disconnect();
+ },[items]);
+ return <aside className="andy-doc-toc" aria-label="En esta página"><strong>En esta página</strong>
+  <nav>{items.map(item=><a key={item.id} className={active===item.id?'is-active':''} href={'#'+item.id} aria-current={active===item.id?'location':undefined}
+   onClick={()=>setActive(item.id)}>{item.title}</a>)}</nav>
+ </aside>;
 }
 const views:Record<Category,()=>ReactNode>={fundamentos:Foundations,filtros:Filters,formularios:Forms,seleccion:Selection,botones:Buttons,etiquetas:Tags,tarjetas:Cards,mensajes:Messages};
 export function AndyKitPage(){
@@ -230,6 +252,7 @@ export function AndyKitPage(){
        </NavLink>)}</div></section>)}</div>:
      Gallery&&<Gallery/>}
    </main>
+   {isComponent&&tocByComponent[componentEntry[0]]&&<HeadingToc key={componentEntry[0]} items={tocByComponent[componentEntry[0]]!}/>}
   </div>
   <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
  </div>;
