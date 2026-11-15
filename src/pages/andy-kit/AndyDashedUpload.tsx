@@ -1,6 +1,7 @@
 import { useId, useLayoutEffect, useRef, useState, type ChangeEvent } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './andy-dashed-upload.css';
+import './andy-button-matrix.css';
 
 type FileKind = 'photo' | 'document' | 'pdf';
 type UploadState = 'default' | 'hover' | 'focus' | 'completed' | 'error' | 'disabled';
@@ -127,7 +128,7 @@ export function AndySolidUploadPreview(){
  return <div className="andy-solid-upload-preview">
   <label className="andy-dashed-upload-title" htmlFor={id}>Documentación adjunta</label>
   <div className={'andy-solid-upload-control'+(error?' is-error':'')}>
-   <span className="andy-solid-upload-button"><MaterialIcon name="attach_file" size={24}/>{file?'Cambiar':'Adjuntar'}</span>
+   <span className="andy-solid-upload-button andy-system-button is-primary is-small icon-start"><MaterialIcon name="attach_file" size={16} weight={400}/>{file?'Cambiar':'Adjuntar'}</span>
    <span className={'andy-solid-upload-file'+(file?' has-file':'')} title={file?.name||'Ningún archivo'}>{file?.name||'Ningún archivo'}</span>
    <input id={id} type="file" accept=".pdf,.doc,.docx" onChange={onChange}
     aria-label="Adjuntar documentación" aria-invalid={Boolean(error)}/>
