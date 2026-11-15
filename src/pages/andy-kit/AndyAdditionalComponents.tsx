@@ -99,6 +99,24 @@ function AndySliderDocs(){
  </>;
 }
 
+const visualGuidance:Partial<Record<AdditionalId,{heading:string;description:string;rows:[string,string][]}>>={
+ skeleton:{heading:'Estados de carga',description:'Representación provisional de una superficie antes de recibir los datos.',rows:[['Uso','Mostrar la estructura aproximada que ocupará el contenido.'],['Transición','Reemplazarla por el contenido real al completar la carga.']]},
+ 'data-table':{heading:'Filtrado y resultados',description:'Ejemplo agrupado de búsqueda, tabla y cantidad de resultados.',rows:[['Filtrar','La búsqueda actualiza las filas mostradas.'],['Sin coincidencias','Mantener cabeceras visibles y comunicar el resultado vacío.']]},
+ tabla:{heading:'Presentación de datos',description:'Filas y columnas para comparar información estructurada.',rows:[['Encabezados','Identificar cada columna con un título claro.'],['Contenido','Mantener alineación y legibilidad de las celdas.']]},
+ paginacion:{heading:'Navegación',description:'Control de página anterior, siguiente y posición actual.',rows:[['Límites','No avanzar más allá de la última página ni retroceder antes de la primera.'],['Contexto','Indicar la página actual y el total disponible.']]},
+ progreso:{heading:'Estados de progreso',description:'Porcentaje visible junto al indicador de avance.',rows:[['Valor','Representar la proporción completada.'],['Contexto','Acompañar el progreso con una etiqueta comprensible.']]},
+ spinner:{heading:'Estado de carga',description:'Indicador de una operación de duración indeterminada.',rows:[['Uso','Mostrarlo solo mientras exista una operación en curso.'],['Accesibilidad','Acompañarlo con una descripción de estado.']]},
+ tooltip:{heading:'Interacción',description:'Ayuda breve disponible mediante hover y foco.',rows:[['Contenido','Usar textos breves, que no sean indispensables para completar una acción.'],['Acceso','Permitir descubrirlo con puntero y teclado.']]},
+ toggle:{heading:'Estados',description:'Comparación interactiva entre presionado y no presionado.',rows:[['Selección','El botón comunica claramente si permanece activado.'],['Uso','Reservarlo para acciones con estado persistente.']]},
+ 'toggle-group':{heading:'Selección agrupada',description:'Opciones relacionadas que comparten una misma superficie de selección.',rows:[['Opciones','Mostrar en conjunto todas las alternativas disponibles.'],['Estados','Distinguir las opciones activas de las inactivas.']]},
+ empty:{heading:'Estados vacíos',description:'Contenido alternativo para una lista o una búsqueda sin resultados.',rows:[['Mensaje','Explicar qué contenido falta.'],['Acción','Ofrecer una salida pertinente, cuando exista.']]},
+ separator:{heading:'Variantes de separación',description:'División visual discreta entre regiones de contenido.',rows:[['Uso','Separar grupos de información con una jerarquía clara.'],['Semántica','No utilizarlo como único recurso para explicar una agrupación.']]},
+ dialog:{heading:'Interacción modal',description:'Ventana superpuesta para realizar una acción sin abandonar la pantalla.',rows:[['Apertura','Presentar la capa y su contexto de forma clara.'],['Cierre','Permitir cancelar y regresar al contenido anterior.']]},
+ 'alert-dialog':{heading:'Confirmación',description:'Diálogo para decisiones que requieren una confirmación explícita.',rows:[['Mensaje','Explicar la consecuencia de confirmar.'],['Acciones','Diferenciar claramente confirmar y cancelar.']]},
+ sheet:{heading:'Panel superpuesto',description:'Contenido contextual presentado desde un borde de la pantalla.',rows:[['Uso','Conservar el contexto de la vista principal.'],['Cierre','Permitir regresar sin perder el lugar anterior.']]},
+ collapsible:{heading:'Expandido y contraído',description:'Dos estados del mismo bloque de contenido.',rows:[['Indicador','Comunicar claramente si la región está desplegada.'],['Acción','Alternar sin modificar el resto de la página.']]},
+ 'button-group':{heading:'Acciones agrupadas',description:'Botones relacionados presentados en una misma fila.',rows:[['Agrupación','Mantener próximas las acciones que pertenecen al mismo contexto.'],['Estados','Conservar la jerarquía y el estado de cada botón.']]}
+};
 export function AndyAdditionalComponent({id}:{id:AdditionalId}){
  const [visible,setVisible]=useState(false);
  const [value,setValue]=useState(45);
@@ -137,7 +155,7 @@ export function AndyAdditionalComponent({id}:{id:AdditionalId}){
  if(id==='toast')return <AndyToastDocs/>;
  if(id==='slider')return <AndySliderDocs/>;
  return <>
- <DocSection title="Vista previa" description="Ejemplo interactivo con la identidad visual actual del UI Kit municipal."><DocPreview>{demo}</DocPreview></DocSection>
- <DocSection title="Comportamiento" description="Criterios de interacción, estados y contenido."><GuidelineTable rows={[["Estados","Reposo, hover, foco, selección y deshabilitado según corresponda al componente."],["Accesibilidad","Usar etiquetas semánticas, navegación por teclado y señales visuales de foco. Los diálogos se cierran con Escape en esta demostración."]]}/></DocSection>
+ <DocSection title="Ejemplo interactivo" description="Probá el componente dentro de una demostración de la interfaz municipal."><DocPreview>{demo}</DocPreview></DocSection>
+ {visualGuidance[id]&&<DocSection title={visualGuidance[id].heading} description={visualGuidance[id].description}><GuidelineTable rows={visualGuidance[id].rows}/></DocSection>}
  </>;
 }
