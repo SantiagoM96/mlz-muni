@@ -92,7 +92,7 @@
 /* MLZ UI Kit · documentación por componente. Navegación inspirada en la
    jerarquía de shadcn/ui, con superficies, tokens e iconografía propios de MLZ. */
 .andy-doc-layout{min-height:100vh;background-color:#fff;background-image:radial-gradient(circle,#edf0f2 .75px,transparent .9px);background-size:22px 22px;background-position:11px 11px}
-.andy-doc-layout .andy-header{position:relative;z-index:30;background:#fff}
+.andy-doc-layout .andy-header{position:relative;z-index:30;background:transparent}
 .andy-doc-layout .andy-header .andy-container{padding-top:0}
 .andy-topbar{display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-16);min-height:92px}
 .andy-topbar-heading{min-width:0;padding:var(--mlz-space-16) 0}
