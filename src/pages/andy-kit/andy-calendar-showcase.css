@@ -17,3 +17,16 @@
 .andy-cal-selection span{font-size:14px;line-height:22px}
 @media(max-width:1180px){.andy-cal-gallery{grid-template-columns:1fr}.andy-cal-preview{min-height:0}.andy-cal-case{max-width:640px}}
 @media(max-width:680px){.andy-cal-preview{padding:var(--mlz-space-16) var(--mlz-space-8)}.andy-cal-example .sports-cal-popup.is-inline{padding:var(--mlz-space-16) var(--mlz-space-12)}.andy-cal-example .sports-cal-popup.is-inline .sports-cal-choice-trigger{height:32px;min-height:32px}.andy-cal-example .sports-cal-popup.is-inline .sports-cal-actions .andy-system-button{min-height:32px;height:32px;font-size:14px;line-height:20px;flex:1}}
+
+/* Una única superficie por demostración, coherente con Button. */
+.andy-doc-page .andy-cal-gallery{display:block;width:100%;min-width:0}
+.andy-doc-page .andy-cal-gallery>.andy-cal-preview{width:100%;min-height:480px;justify-content:center}
+.andy-doc-page .andy-cal-gallery>.andy-cal-preview .andy-doc-demo-content{width:100%;align-items:center}
+.andy-doc-page .andy-cal-gallery>.andy-cal-preview .andy-cal-example{width:min(100%,348px)}
+.andy-doc-page .andy-cal-example .sports-cal-popup.is-inline{
+ box-shadow:none;
+ border:1px solid #dce7ef;
+}
+@media(max-width:680px){
+ .andy-doc-page .andy-cal-gallery>.andy-cal-preview{min-height:0}
+}
