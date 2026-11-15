@@ -33,10 +33,10 @@ const categories = [
 type Category = typeof categories[number]['id'];
 const componentGroups=[
  {title:'Fundamentos',items:[['espaciados','Espaciados'],['border-radius','Border radius']]}, 
- {title:'Campos de formulario',items:[['field','Field'],['input','Input'],['select','Dropdown / Select'],['textarea','Text area'],['calendario','Calendario / Date Picker'],['adjuntos','Adjuntar archivos']]},
- {title:'Selección',items:[['checkbox','Checkbox'],['radio','Radio button'],['switch','Switch']]},
+ {title:'Campos de formulario',items:[['field','Field'],['input','Input'],['select','Select'],['textarea','Textarea'],['calendario','Date Picker'],['adjuntos','Attachment']]},
+ {title:'Selección',items:[['checkbox','Checkbox'],['radio','Radio Group'],['switch','Switch']]},
  {title:'Filtros y navegación',items:[['buscador','Buscador y filtros']]},
- {title:'Acciones y contenido',items:[['boton','Botones'],['chips','Chips y etiquetas'],['tarjeta','Tarjetas y resúmenes'],['mensaje','Mensajes y alertas'],['acordeon','Acordeón']]},
+ {title:'Acciones y contenido',items:[['boton','Button'],['chips','Badge'],['tarjeta','Card'],['mensaje','Alert'],['acordeon','Accordion']]},
  {title:'Componentes adicionales',items:additionalComponents}
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
@@ -182,14 +182,11 @@ function FormStates({family}:{family:'text'|'dropdown'|'textarea'|'date'|'upload
 }
 function FieldDocs(){
  return <>
-  <ComponentExample title="Composición" description="Field reúne la etiqueta, el control, la ayuda y el mensaje de validación sin definir el tipo de control.">
+  <ComponentExample title="Ejemplo básico" description="Un campo completo con etiqueta y texto de ayuda, tal como aparece en los formularios.">
    <div className="andy-form-grid">
     <label className="andy-field"><span>Correo electrónico</span><input type="email" placeholder="nombre@ejemplo.com"/><small className="andy-help">Usaremos esta dirección para enviarte novedades de la inscripción.</small></label>
    </div>
   </ComponentExample>
-  <DocSection title="Anatomía" description="Una estructura consistente permite reemplazar el control sin perder su etiqueta, ayuda o error.">
-   <GuidelineTable rows={[["Field","Contenedor de un único campo."],["FieldLabel","Nombre asociado al control."],["Control","Input, Select, Textarea, Checkbox, Radio o Switch."],["FieldDescription","Ayuda opcional antes de completar."],["FieldError","Mensaje de validación asociado al control."]]}/>
-  </DocSection>
   <ComponentExample title="Field Group" description="Agrupa campos relacionados y conserva el mismo ritmo vertical entre cada bloque.">
    <div className="andy-form-grid">
     <label className="andy-field"><span>Nombre</span><input placeholder="Ingresá tu nombre"/></label>
@@ -357,23 +354,15 @@ function ComponentDetails({id}:{id:ComponentId}){
  </>;
  return null;
 }
-const tocByComponent:Partial<Record<ComponentId,{id:string;title:string}[]>>={
- field:[{id:'composicion',title:'Composición'},{id:'anatomia',title:'Anatomía'},{id:'field-group',title:'Field Group'},{id:'field-set',title:'Field Set'},{id:'responsive-layout',title:'Responsive Layout'},{id:'validacion-y-errores',title:'Validación y errores'},{id:'accesibilidad',title:'Accesibilidad'}],
- input:[{id:'basico',title:'Básico'},{id:'field',title:'Field'},{id:'estados',title:'Estados'},{id:'disabled',title:'Disabled'},{id:'invalid',title:'Invalid'},{id:'required',title:'Required'},{id:'inline',title:'Inline'},{id:'grid',title:'Grid'}],
- calendario:[{id:'estados',title:'Estados'},{id:'seleccion-de-un-dia',title:'Selección de un día'},{id:'seleccion-de-un-rango',title:'Selección de un rango'},{id:'campo-desplegable',title:'Campo desplegable'}],
- boton:[{id:'variantes',title:'Variantes'},{id:'tamanos',title:'Tamaños'},{id:'estados',title:'Estados'},{id:'iconografia',title:'Íconos'},{id:'uso',title:'Uso y comportamiento'}],
- acordeon:[{id:'apertura-unica',title:'Apertura única'},{id:'apertura-multiple',title:'Apertura múltiple'},{id:'deshabilitado',title:'Deshabilitado'}],
- buscador:[{id:'buscador-estandar',title:'Buscador estándar'},{id:'seleccion-unica',title:'Selección única'},{id:'seleccion-multiple',title:'Selección múltiple'},{id:'filtros-avanzados',title:'Filtros avanzados'},{id:'ordenamiento',title:'Ordenamiento'},{id:'barras-de-scroll',title:'Barras de scroll'},{id:'vista-previa-en-deportes-anual',title:'Vista previa en Deportes Anual'}]
-};
 const EMPTY_TOC_ITEMS:{id:string;title:string}[]=[];
 function HeadingToc({items}:{items:{id:string;title:string}[]}){
- const [links,setLinks]=useState(items);
+ const [links,setLinks]=useState<{id:string;title:string}[]>(items);
  const [active,setActive]=useState(items[0]?.id??'');
  useEffect(()=>{
-  const next=items.length?items:[...document.querySelectorAll<HTMLElement>(
+  const next=[...document.querySelectorAll<HTMLElement>(
    '.andy-doc-main .andy-doc-section-heading > h3, .andy-doc-main .andy-section-head > h2, .andy-doc-main .andy-scrollbar-section > h3, .andy-doc-main .andy-palette-variant-heading > h3, .andy-doc-main .andy-button-section-intro > h3'
   )].map((heading,index)=>{
-   const target=heading.closest<HTMLElement>('.andy-doc-section')||heading;
+   const target=heading.closest<HTMLElement>('.andy-doc-section, .andy-button-doc-section')||heading;
    const id=target.id||'andy-toc-'+index;
    if(!target.id)target.id=id;
    return {id,title:heading.textContent?.trim()||'Sección'};
@@ -474,7 +463,7 @@ export function AndyKitPage(){
        </NavLink>)}</div></section>)}</div>:
      Gallery&&<Gallery/>}
    </main>
-   <HeadingToc key={displayName} items={isComponent?tocByComponent[componentEntry[0]]??EMPTY_TOC_ITEMS:EMPTY_TOC_ITEMS}/>
+   <HeadingToc key={displayName} items={EMPTY_TOC_ITEMS}/>
   </div>
   <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
  </div>;
