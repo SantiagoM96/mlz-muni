@@ -221,10 +221,13 @@ function ComponentDetails({id}:{id:ComponentId}){
    <ComponentExample key={variant} title={title} description={description}><DropdownVariantsGallery only={variant}/></ComponentExample>)}
  </>;
  if(id==='calendario')return <><FormStates family="date"/>
-  <DocSection title="Selección de un día y un rango" description="Ambos calendarios permanecen abiertos para inspeccionar sus estados, fechas y dropdowns internos.">
-   <AndyCalendarShowcase/>
+  <DocSection title="Selección de un día" description="Calendario abierto con un día seleccionado. Se puede navegar por meses y años, elegir otro día, borrar o confirmar.">
+   <AndyCalendarShowcase only="single"/>
   </DocSection>
-  <ComponentExample title="Campo desplegable" description="Se conserva el selector original del formulario deportivo: popover en desktop y drawer en mobile.">
+  <DocSection title="Selección de un rango" description="Calendario abierto con inicio, fin y días intermedios resaltados. Se seleccionan dos fechas y se confirma el período.">
+   <AndyCalendarShowcase only="range"/>
+  </DocSection>
+  <ComponentExample title="Campo desplegable" description="El campo del formulario abre un popover en desktop o un drawer en mobile; conserva el mismo calendario y los controles del UI Kit.">
    <div className="andy-matrix-calendar-sample"><SportsCalendarPicker/></div>
   </ComponentExample>
  </>;
@@ -280,7 +283,7 @@ function ComponentDetails({id}:{id:ComponentId}){
  return null;
 }
 const tocByComponent:Partial<Record<ComponentId,{id:string;title:string}[]>>={
- calendario:[{id:'estados',title:'Estados'},{id:'seleccion-de-un-dia-y-un-rango',title:'Selección día y rango'},{id:'campo-desplegable',title:'Campo desplegable'}],
+ calendario:[{id:'estados',title:'Estados'},{id:'seleccion-de-un-dia',title:'Selección de un día'},{id:'seleccion-de-un-rango',title:'Selección de un rango'},{id:'campo-desplegable',title:'Campo desplegable'}],
  boton:[{id:'variantes',title:'Variantes'},{id:'tamanos',title:'Tamaños'},{id:'estados',title:'Estados'},{id:'iconografia',title:'Íconos'},{id:'uso',title:'Uso y comportamiento'}],
  acordeon:[{id:'apertura-unica',title:'Apertura única'},{id:'apertura-multiple',title:'Apertura múltiple'},{id:'deshabilitado',title:'Deshabilitado'}],
  buscador:[{id:'buscador',title:'Buscador'},{id:'buscador-con-contenido',title:'Buscador con contenido'}]
