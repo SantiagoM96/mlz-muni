@@ -637,3 +637,114 @@
  width:0;
  height:0;
 }
+
+
+/* INTERFAZ DEL CATÁLOGO — identidad diferenciada del producto documentado.
+   Los cambios están acotados al chrome: header, índice, búsqueda, navegación
+   y herramientas de inspección. Ninguna tarjeta, campo o botón de ejemplo
+   recibe estas reglas. */
+.andy-doc-layout{
+ --andy-chrome-accent:#006eff; /* Info 500 */
+ --andy-chrome-hover:#eaf4ff;
+ --andy-chrome-outline:#b8d6fb;
+ --andy-chrome-radius:var(--mlz-radius-full);
+}
+/* Búsqueda de componentes: cápsula con foco Info 500. */
+.andy-doc-layout .andy-component-search{
+ border-radius:var(--andy-chrome-radius);
+ border-color:var(--andy-chrome-outline);
+ padding-inline:var(--mlz-space-14);
+ transition:border-color .16s ease,box-shadow .16s ease;
+}
+.andy-doc-layout .andy-component-search:focus-within{
+ border-color:var(--andy-chrome-accent);
+ box-shadow:0 0 0 2px #006eff20;
+}
+.andy-doc-layout .andy-component-search:focus-within>.material-symbols-outlined{
+ color:var(--andy-chrome-accent);
+}
+.andy-doc-layout .andy-component-search-clear{
+ border-radius:var(--andy-chrome-radius);
+}
+.andy-doc-layout .andy-component-search-clear:hover{
+ color:var(--andy-chrome-accent);
+ background:var(--andy-chrome-hover);
+}
+/* Links de ambos paneles de navegación, sin alterar las tarjetas de ejemplo. */
+.andy-doc-layout .andy-sidebar .andy-nav-link,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link{
+ border-radius:var(--andy-chrome-radius);
+ transition:background-color .16s ease,color .16s ease;
+}
+.andy-doc-layout .andy-sidebar .andy-nav-link:hover,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link:hover{
+ background:var(--andy-chrome-hover);
+ color:var(--andy-chrome-accent);
+}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active:hover,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active:hover{
+ background:var(--andy-chrome-accent);
+ color:#fff;
+ font-weight:700;
+}
+.andy-doc-layout .andy-sidebar .andy-nav-link:focus-visible,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link:focus-visible,
+.andy-doc-layout .andy-sidebar-toggle:focus-visible{
+ outline:2px solid var(--andy-chrome-accent);
+ outline-offset:2px;
+}
+/* Tabla de contenidos derecha: el punto activo es una píldora Info 500. */
+.andy-doc-layout .andy-doc-toc nav{gap:var(--mlz-space-4)}
+.andy-doc-layout .andy-doc-toc nav a{
+ display:block;
+ border:0;
+ margin:0 var(--mlz-space-4) 0 var(--mlz-space-8);
+ border-radius:var(--andy-chrome-radius);
+ padding:var(--mlz-space-8) var(--mlz-space-12);
+ transition:background-color .16s ease,color .16s ease;
+}
+.andy-doc-layout .andy-doc-toc nav a:hover{
+ background:var(--andy-chrome-hover);
+ color:var(--andy-chrome-accent);
+}
+.andy-doc-layout .andy-doc-toc nav a.is-active,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location]{
+ background:var(--andy-chrome-accent);
+ color:#fff;
+ font-weight:700;
+ border:0;
+}
+.andy-doc-layout .andy-doc-toc nav a:focus-visible{
+ outline:2px solid var(--andy-chrome-accent);
+ outline-offset:2px;
+}
+.andy-doc-layout .andy-doc-toc>strong{color:var(--andy-chrome-accent)}
+/* Indicador de versión y botón de navegación mobile. */
+.andy-doc-layout .andy-topbar-actions .andy-version{
+ border:1px solid var(--andy-chrome-outline);
+ border-radius:var(--andy-chrome-radius);
+ color:var(--andy-chrome-accent);
+ background:#eff6ff;
+}
+.andy-doc-layout .andy-topbar-actions .andy-version a:hover{color:#0058cc}
+.andy-doc-layout .andy-sidebar-toggle{
+ border-radius:var(--andy-chrome-radius);
+ border-color:var(--andy-chrome-outline);
+ color:var(--andy-chrome-accent);
+}
+.andy-doc-layout .andy-sidebar-toggle:hover{
+ background:var(--andy-chrome-hover);
+}
+/* Selectores auxiliares del propio UI Kit: mismo acento y píldoras sin panel. */
+.andy-doc-layout .andy-doc-inspector .andy-button-control-row button,
+.andy-doc-layout .andy-palette-size-options button{
+ border-radius:var(--andy-chrome-radius);
+}
+.andy-doc-layout .andy-doc-inspector .andy-button-control-row button[aria-pressed=true],
+.andy-doc-layout .andy-palette-size-options button[aria-pressed=true]{
+ color:#fff;
+ background:var(--andy-chrome-accent);
+ border-color:var(--andy-chrome-accent);
+}
