@@ -55,14 +55,14 @@ export function ConsoleVenueSelector({ venueId, venues, onVenueChange, onCreateV
               </SelectControl>
             </FormField>
             <button ref={addVenueButtonRef} type="button" onClick={() => { setAddingVenue(current => !current); clearError(); }}
-              className="inline-flex min-h-10 items-center gap-2 rounded-[6px] text-[15px] font-bold text-primary-600 hover:underline"
+              className="console-action-link console-action-md console-icon-start inline-flex items-center gap-2"
               aria-expanded={addingVenue}>
               <MaterialIcon name="add" size={20}/> Agregar nuevo lugar
             </button>
           </div>
           {addingVenue && (
             <section aria-label="Nuevo lugar" data-testid="console-new-venue"
-              className="space-y-3 rounded-[8px] border border-[#c5dce9] bg-[#f5f9fc] p-4">
+              className="console-surface space-y-3 rounded-[8px] border border-[#c5dce9] bg-[#f5f9fc] p-4">
               <h3 className="font-bold text-primary-600">Nuevo lugar</h3>
               <FormField htmlFor="console-venue-name" label="Nombre del lugar">
                 <TextField appearance="soft" id="console-venue-name" ref={nameRef}
@@ -93,9 +93,9 @@ export function ConsoleVenueSelector({ venueId, venues, onVenueChange, onCreateV
               {venueError && <p id="console-venue-error" role="alert" className="text-[14px] font-medium text-[#ac343e]">{venueError}</p>}
               <div className="flex flex-wrap justify-end gap-2">
                 <button type="button" onClick={() => { setAddingVenue(false); addVenueButtonRef.current?.focus(); }}
-                  className="min-h-11 rounded-[6px] border border-primary-600 px-4 font-bold text-primary-600">Cancelar lugar</button>
+                  className="console-action-tertiary console-action-md">Cancelar lugar</button>
                 <button type="button" onClick={addVenue}
-                  className="min-h-11 rounded-[6px] bg-primary-600 px-4 font-bold text-white">Guardar lugar</button>
+                  className="console-action-primary console-action-md">Guardar lugar</button>
               </div>
             </section>
           )}
