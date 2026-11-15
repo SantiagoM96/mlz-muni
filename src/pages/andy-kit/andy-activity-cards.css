@@ -47,3 +47,65 @@
  .andy-family-card-sports-head{height:32px;min-height:32px;flex-basis:32px}
  .andy-family-card.is-sports .andy-family-card-body{padding:16px 22px 21px}
 }
+
+/* Documentación Andy: la tarjeta real de Agenda adopta las medidas del
+   cuerpo Deportes (16/23, íconos Primario600, gap 8/13, padding 24).
+   Estas reglas están limitadas a la galería: no modifican Agenda pública. */
+.andy-family-agenda-original [data-testid="agenda-card"]{
+  border-color:#e7e7e7;
+  border-radius:8px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] > a > div{
+  gap:12px;
+  padding:17px 24px 23px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] > a > div > div:first-child{
+  gap:10px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] h2{
+  color:#236999;
+  font-size:22px;
+  line-height:29px;
+  font-weight:700;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] [data-testid="agenda-card-schedules"]{
+  gap:13px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] [data-agenda-characteristic]{
+  gap:8px;
+  align-items:flex-start;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] [data-agenda-characteristic] > .material-symbols-outlined{
+  color:#236999;
+  width:20px;
+  height:20px;
+  flex:0 0 20px;
+  margin-top:1px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] [data-agenda-characteristic] p{
+  font-size:16px;
+  line-height:23px;
+  color:#3d3d3d;
+  margin:0;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] [data-agenda-characteristic] > div{
+  gap:8px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] > a > div > .mt-auto{
+  padding-top:14px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] > a > div > .mt-auto > span{
+  color:#236999;
+  font-size:16px;
+  line-height:24px;
+  font-weight:500;
+  gap:8px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] > a > div > .mt-auto .material-symbols-outlined{
+  color:#236999;
+}
+@media(max-width:650px){
+ .andy-family-agenda-original [data-testid="agenda-card"] > a > div{
+  padding:16px 22px 21px;
+ }
+}
