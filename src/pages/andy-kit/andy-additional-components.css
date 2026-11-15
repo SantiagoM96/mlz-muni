@@ -12,7 +12,7 @@
 .andy-add-slider-demo{
  --andy-slider-track-height:var(--mlz-space-6,6px);
  --andy-slider-thumb-size:var(--mlz-space-16,16px);
- --andy-slider-info-600:#0058cc;
+ --andy-slider-info-500:var(--a-info,#006eff);
  display:flex;flex-direction:column;gap:14px;width:min(100%,520px);min-width:0;
  padding-block:12px;font-family:Geometria,'Century Gothic',Arial,sans-serif;
 }
@@ -44,10 +44,10 @@
 .andy-add-slider:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px #006eff33;border-color:#006eff}
 .andy-add-slider:focus-visible::-moz-range-thumb{box-shadow:0 0 0 4px #006eff33;border-color:#006eff}
 .andy-add-slider:not(:disabled):active::-webkit-slider-thumb{
- background:var(--andy-slider-info-600);border-color:var(--andy-slider-info-600);cursor:grabbing;
+ background:var(--andy-slider-info-500);border-color:var(--andy-slider-info-500);cursor:grabbing;
 }
 .andy-add-slider:not(:disabled):active::-moz-range-thumb{
- background:var(--andy-slider-info-600);border-color:var(--andy-slider-info-600);cursor:grabbing;
+ background:var(--andy-slider-info-500);border-color:var(--andy-slider-info-500);cursor:grabbing;
 }
 .andy-add-slider:disabled{cursor:not-allowed;opacity:.48}
 .andy-add-slider:disabled::-webkit-slider-thumb{cursor:not-allowed}
@@ -82,10 +82,10 @@
 .andy-add-slider-range input:focus-visible::-webkit-slider-thumb{border-color:#006eff;box-shadow:0 0 0 4px #006eff33}
 .andy-add-slider-range input:focus-visible::-moz-range-thumb{border-color:#006eff;box-shadow:0 0 0 4px #006eff33}
 .andy-add-slider-range input:active::-webkit-slider-thumb{
- background:var(--andy-slider-info-600);border-color:var(--andy-slider-info-600);cursor:grabbing;
+ background:var(--andy-slider-info-500);border-color:var(--andy-slider-info-500);cursor:grabbing;
 }
 .andy-add-slider-range input:active::-moz-range-thumb{
- background:var(--andy-slider-info-600);border-color:var(--andy-slider-info-600);cursor:grabbing;
+ background:var(--andy-slider-info-500);border-color:var(--andy-slider-info-500);cursor:grabbing;
 }
 .andy-add-slider-range input:first-of-type{z-index:2}
 .andy-add-slider-range input:last-of-type{z-index:3}
