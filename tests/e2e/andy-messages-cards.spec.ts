@@ -29,6 +29,15 @@ test('Andy: las tarjetas Deportes y Agenda conservan sus cabeceras propias y tip
  await expect(sports.locator('h3')).toHaveCSS('font-size','22px');
  await expect(agenda.locator('article h2')).toHaveCSS('font-size','22px');
  await expect(agenda.locator('article p').first()).toHaveCSS('font-size','16px');
+ const agendaDate=agenda.locator('[data-agenda-field="date"] p').first();
+ const sportsDate=sports.locator('.andy-family-card-line').first();
+ await expect(agendaDate).toHaveCSS('font-size','16px');
+ await expect(agendaDate).toHaveCSS('line-height','23px');
+ await expect(sportsDate).toHaveCSS('font-size','16px');
+ await expect(agenda.locator('[data-agenda-field="date"] .material-symbols-outlined')).toHaveCSS('color','rgb(35, 105, 153)');
+ await expect(sportsDate.locator('.material-symbols-outlined')).toHaveCSS('color','rgb(35, 105, 153)');
+ await expect(agenda.locator('[data-testid="agenda-card-schedules"]')).toHaveCSS('row-gap','13px');
+
  await expect(sports.getByText('Preinscribirse')).toBeVisible();
  await expect(agenda.getByText('Ver más')).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
