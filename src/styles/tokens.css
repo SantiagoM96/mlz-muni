@@ -26,3 +26,33 @@
   --text-institutional-section: 24px;
   --text-institutional-section--line-height: 30px;
 }
+
+
+/* Escalas de geometría MLZ compartidas por todas las demos del UI Kit.
+   2–16: incrementos de 2px. 16–64: incrementos de 8px. */
+:root {
+  --mlz-space-0: 0px;
+  --mlz-space-2: 2px;
+  --mlz-space-4: 4px;
+  --mlz-space-6: 6px;
+  --mlz-space-8: 8px;
+  --mlz-space-10: 10px;
+  --mlz-space-12: 12px;
+  --mlz-space-14: 14px;
+  --mlz-space-16: 16px;
+  --mlz-space-24: 24px;
+  --mlz-space-32: 32px;
+  --mlz-space-40: 40px;
+  --mlz-space-48: 48px;
+  --mlz-space-56: 56px;
+  --mlz-space-64: 64px;
+
+  --mlz-radius-none: 0px;
+  --mlz-radius-xs: 2px;
+  --mlz-radius-sm: 4px; /* inputs, botones, opciones */
+  --mlz-radius-md: 6px; /* chips */
+  --mlz-radius-lg: 8px; /* tarjetas, popovers */
+  --mlz-radius-xl: 12px; /* paneles destacados */
+  --mlz-radius-2xl: 16px; /* drawers mobile, modal */
+  --mlz-radius-full: 9999px; /* avatares, píldoras */
+}
