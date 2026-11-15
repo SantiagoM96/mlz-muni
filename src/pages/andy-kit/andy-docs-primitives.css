@@ -4,7 +4,7 @@
 .andy-doc-section-heading{display:flex;flex-direction:column;gap:var(--mlz-space-8)}
 .andy-doc-section-heading>h3{margin:0;font-size:22px;line-height:30px;color:#236999;font-weight:700}
 .andy-doc-section-heading>p{margin:0;max-width:760px;color:#647686;font-size:14px;line-height:23px}
-.andy-doc-demo{display:flex;align-items:center;justify-content:center;min-width:0;min-height:170px;padding:var(--mlz-space-32) var(--mlz-space-24);border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);background:#fff}
+.andy-doc-demo{display:flex;align-items:center;justify-content:center;min-width:0;min-height:170px;padding:var(--mlz-space-32) var(--mlz-space-24);border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);background-color:#fafbfc;background-image:radial-gradient(circle,#c9ced3 0.75px,transparent 0.9px);background-size:14px 14px;background-position:7px 7px}
 .andy-doc-demo.align-start{justify-content:flex-start}
 .andy-doc-demo-content{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;max-width:100%;width:100%;gap:var(--mlz-space-16)}
 .andy-doc-demo.align-start .andy-doc-demo-content{align-items:stretch}
