@@ -339,7 +339,7 @@ function HeadingToc({items}:{items:{id:string;title:string}[]}){
     if(!target)return;
     event.preventDefault();
     setActive(item.id);
-    target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+    target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
     window.history.replaceState(window.history.state,'','#'+item.id);
    }}>{item.title}</a>)}</nav>
  </aside>;
