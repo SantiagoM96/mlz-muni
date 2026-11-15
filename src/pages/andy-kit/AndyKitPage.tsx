@@ -375,7 +375,6 @@ export function AndyKitPage(){
       <h2>{displayName}</h2>
       {meta&&<div className="andy-doc-description">{meta.description}</div>}
      </div>
-     <a href={import.meta.env.BASE_URL+'ui-kit/formularios'} className="andy-original-link">UI Kit institucional</a>
     </div>
     {isComponent?<div className="andy-doc-page"><ComponentDetails id={componentEntry[0]}/></div>:
      isDirectory?<div className="andy-component-directory">{componentGroups.map(group=><section key={group.title}>
