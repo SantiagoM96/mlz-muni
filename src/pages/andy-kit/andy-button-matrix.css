@@ -15,6 +15,17 @@
 .andy-system-button.is-medium{--b-height:40px;--b-padding:16px;--b-font:16px;--b-line:24px}
 .andy-system-button.is-small{--b-height:32px;--b-padding:12px;--b-font:14px;--b-line:20px;gap:6px}
 .andy-system-button.icon-only{width:var(--b-height);min-width:var(--b-height);padding:0}
+/* Compensación óptica: el pictograma contiene aire interno en su caja.
+   Se reduce solamente el padding del lado del ícono, sin tocar el lado del texto.
+   Solo ícono conserva caja cuadrada y Link conserva sus márgenes nulos. */
+.andy-system-button.is-large{--b-icon-inset:6px}
+.andy-system-button.is-medium{--b-icon-inset:4px}
+.andy-system-button.is-small{--b-icon-inset:3px}
+.andy-system-button.icon-start{padding-inline-start:calc(var(--b-padding) - var(--b-icon-inset))}
+.andy-system-button.icon-end{padding-inline-end:calc(var(--b-padding) - var(--b-icon-inset))}
+.andy-system-button.is-link.icon-start,
+.andy-system-button.is-link.icon-end{padding-inline:0}
+
 .andy-system-button.is-primary{background:#236999;color:#fff}
 .andy-system-button.is-secondary{background:#5ba8d5;color:#fff}
 .andy-system-button.is-tertiary{background:#fff;color:#236999;border-color:#94c6e5}
