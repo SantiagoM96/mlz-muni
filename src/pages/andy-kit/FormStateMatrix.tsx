@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { DropdownVariantsGallery } from './DropdownVariantsGallery';
 import { SportsCalendarPicker } from './SportsCalendarPicker';
+import { AndyCalendarShowcase } from './AndyCalendarShowcase';
 import './form-state-matrix.css';
 
 type FieldState = 'default' | 'hover' | 'focus' | 'completed' | 'error' | 'disabled';
@@ -69,9 +70,14 @@ export function FormStateMatrix({onlyFamily}:{onlyFamily?:Family}={}){
       <DropdownVariantsGallery/>
     </div>}
     {family.id==='date'&&<div className="andy-matrix-calendar-demo">
-      <h4>Calendario desplegable · Deportes Anual</h4>
-      <p>Componente funcional del formulario deportivo: elegí mes y año, navegá entre meses, seleccioná un día y confirmá o borrá la fecha. En mobile se abre como drawer con vistas internas de mes y año.</p>
-      <div className="andy-matrix-calendar-sample"><SportsCalendarPicker/></div>
+      <h4>Calendarios abiertos · selección de día y rango</h4>
+      <p>Dos demostraciones interactivas siempre visibles. La selección única marca un día; la selección de rango destaca sus extremos y todos los días intermedios. Los selectores de mes y año respetan los estados y colores de nuestros dropdowns.</p>
+      <AndyCalendarShowcase/>
+      <div className="andy-matrix-calendar-trigger-demo">
+        <h4>Campo con calendario desplegable</h4>
+        <p>También se conserva el comportamiento original del input de Deportes Anual, con popover en desktop y drawer en mobile.</p>
+        <div className="andy-matrix-calendar-sample"><SportsCalendarPicker/></div>
+      </div>
     </div>}
   </section>)}
   {!onlyFamily&&<p className="andy-matrix-footnote">Referencia: estados Default, Hovered, Focus, Completo, Disable y Error de los controles de Deportes; los cuatro tipos de dropdown abierto aparecen dentro de esa misma familia. Las vistas de Hover y Focus están representadas de forma persistente para facilitar la inspección. La sección Fecha incluye el calendario personalizado e interactivo de Deportes Anual. El resto de la matriz muestra estados persistentes para comparación visual.</p>}
