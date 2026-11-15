@@ -8,7 +8,7 @@
 .sports-mobile-sheet.is-entering{animation:sports-sheet-enter .34s cubic-bezier(.22,1,.36,1) both}
 @keyframes sports-sheet-enter{from{transform:translate3d(0,100%,0)}to{transform:translate3d(0,0,0)}}
 .sports-mobile-sheet.is-dragging{animation:none!important;transition:none!important;height:calc(var(--sports-base-height) + var(--sports-stretch-y,0px));max-height:min(calc(85dvh + 34px),784px);transform:translate3d(0,var(--sports-drag-y,0px),0)}
-.sports-mobile-sheet.is-rebounding{animation:none!important;transition:transform .38s cubic-bezier(.21,1.16,.38,1),height .38s cubic-bezier(.21,1.10,.38,1);height:auto;transform:translate3d(0,0,0)}
+.sports-mobile-sheet.is-rebounding{animation:none!important;transition:transform .38s cubic-bezier(.21,1.16,.38,1),height .38s cubic-bezier(.21,1.10,.38,1);height:var(--sports-base-height);transform:translate3d(0,0,0)}
 .sports-mobile-sheet.is-closing{animation:none!important;transform:translate3d(0,calc(100% + 52px),0);transition:transform .29s cubic-bezier(.4,0,.7,1);box-shadow:none}
 .sports-sheet-grab{display:flex;justify-content:center;align-items:flex-start;flex:0 0 36px;height:36px;min-height:36px;width:100%;padding:10px 0 0;margin:0;background:transparent;border:0;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
 .sports-sheet-grab:active{cursor:grabbing}
@@ -32,3 +32,9 @@
 .sports-sheet-content .andy-dropdown-search{margin:0 6px 10px}
 @media(min-width:681px){.sports-sheet-layer{display:none}}
 @media(prefers-reduced-motion:reduce){.sports-mobile-sheet.is-entering{animation-duration:.01ms}.sports-mobile-sheet.is-closing,.sports-mobile-sheet.is-rebounding,.sports-sheet-scrim{transition-duration:.01ms}.sports-sheet-pill{transition:none}}
+
+/* La opción seleccionada del producto conserva Info 500 sin doble superficie. */
+.sports-sheet-content .andy-dropdown-variant-option.selected{background:#006eff;color:#fff}
+.sports-sheet-content .andy-dropdown-variant-option.selected .andy-dropdown-choice,
+.sports-sheet-content .andy-dropdown-variant-option.selected .andy-dropdown-mark{background:transparent;color:#fff}
+.sports-sheet-content .andy-dropdown-variant-option.selected:hover{background:#006eff;color:#fff}
