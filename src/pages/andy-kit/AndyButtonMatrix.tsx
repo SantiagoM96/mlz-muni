@@ -45,16 +45,6 @@ function ButtonSample({kind,size,state='default',icon='none',onClick}:{
    {icon==='end'&&<MaterialIcon name="arrow_forward" size={size==='small'?16:size==='medium'?18:20}/>}
  </button>;
 }
-function SizeTabs({size,setSize}:{size:Size;setSize:(size:Size)=>void}){
- return <div className="andy-button-sizebar">
-  <div><strong>Tamaños</strong><p>Escala MLZ: Large 48 px · Medium 40 px · Small 32 px</p></div>
-  <div className="andy-button-size-options" role="group" aria-label="Tamaño de botones">
-   {sizes.map(opt=><button key={opt.id} type="button" aria-pressed={size===opt.id}
-    onClick={()=>setSize(opt.id)}>{opt.label}<small>{opt.description}</small></button>)}
-  </div>
- </div>;
-}
-
 const variantDetails: Record<Kind,{purpose:string;example:string;guidance:string}>={
  primary:{purpose:'Acción principal de la pantalla.',example:'Continuar',guidance:'Usar un solo primario por bloque de decisión.'},
  secondary:{purpose:'Alternativa complementaria a la principal.',example:'Ver resultados',guidance:'Ideal cuando la acción no debe competir con la principal.'},
