@@ -1,8 +1,24 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { SportsMobileSheet, useSportsMobile } from '../andy-kit/SportsMobileSheet';
 import './deportes-controls.css';
 
+type DropdownContextValue={openId:string|null;setOpenId:(id:string|null)=>void};
+const DropdownContext=createContext<DropdownContextValue|null>(null);
+export function SportsDropdownProvider({children}:{children:ReactNode}){
+ const [openId,setOpenId]=useState<string|null>(null);
+ return <DropdownContext.Provider value={{openId,setOpenId}}>{children}</DropdownContext.Provider>;
+}
+function useExclusiveDropdown(id:string){
+ const context=useContext(DropdownContext);
+ const [localOpen,setLocalOpen]=useState(false);
+ const open=context?context.openId===id:localOpen;
+ const setOpen=(next:boolean|((previous:boolean)=>boolean))=>{
+  const value=typeof next==='function'?next(open):next;
+  if(context)context.setOpenId(value?id:null);else setLocalOpen(value);
+ };
+ return [open,setOpen] as const;
+}
 const venues = ['Casa Ari', 'Gimnasio de Alto Rendimiento', 'Gimnasio de Deportes de Combate', 'Natatorio Gregorio «Guyo» Sember', 'Natatorio Jorge Omar Rossi', 'Parque Municipal Eva Perón'];
 const ages = ['Hasta 2 años', '3 a 5 años', '6 a 12 años', '13 a 17 años', 'Mayor de 18', 'Mayor de 50'];
 
@@ -10,7 +26,7 @@ type FilterDemoProps = { label: string; options: string[]; multiple?: boolean; s
 
 function FilterDemo({ label, options, multiple = false, searchable = true }: FilterDemoProps) {
   const mobile = useSportsMobile();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useExclusiveDropdown('filter-'+label);
   const [selected, setSelected] = useState<string[]>(() => label === 'Sede' ? ['Gimnasio de Alto Rendimiento'] : []);
   const [search, setSearch] = useState('');
   const trigger = useRef<HTMLButtonElement>(null);
@@ -92,7 +108,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
 
 function MoreFiltersDemo() {
   const mobile = useSportsMobile();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useExclusiveDropdown('more-filters');
   const [expanded, setExpanded] = useState(['Días de cursada','Tipo de deportista','Nivel de intensidad']);
   const [disability, setDisability] = useState(true);
   const [days, setDays] = useState<string[]>(['Sábado']);
@@ -186,7 +202,7 @@ function MoreFiltersDemo() {
 
 export function SportsSortDemo() {
   const mobile=useSportsMobile();
-  const [open,setOpen]=useState(false);
+  const [open,setOpen]=useExclusiveDropdown('sort');
   const [sort,setSort]=useState('Alfabético: Z a A');
   const trigger=useRef<HTMLButtonElement>(null);
   const options=['Alfabético: A a Z','Alfabético: Z a A','Edad: menor a mayor','Edad: mayor a menor','Próxima clase primero'];
@@ -208,7 +224,7 @@ export function SportsSortDemo() {
 }
 
 function FormSelectDemo() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useExclusiveDropdown('form-select');
   const [value, setValue] = useState('');
   const id = useId();
   const trigger = useRef<HTMLButtonElement>(null);
@@ -260,7 +276,8 @@ function FormDemo() {
 }
 
 export function SportsControlsGallery({ mode = 'all', only, hideSort = false }: { mode?: 'all' | 'filters'; only?: 'sede'|'edad'|'mas-filtros'|'ordenar'; hideSort?:boolean }) {
-  return <div className="kit-sports-gallery">
+  const existingProvider=useContext(DropdownContext);
+  const content=<div className="kit-sports-gallery">
     <p className="kit-sports-intro">Patrones recuperados del prototipo Deportes Anual y de Agenda. Los filtros de catálogo y los campos de inscripción conservan comportamientos diferentes; esta galería no modifica las pantallas productivas.</p>
     <section className="kit-sports-section"><h2>{only ? ({sede:"Sede",edad:"Edad","mas-filtros":"Más filtros",ordenar:"Ordenar por"}[only]) : "Filtros de selección"}</h2>
       {!only&&<p>Sede utiliza selección múltiple; Edad, selección única; Más filtros combina checkbox y radio. Las opciones están separadas para que no se peguen al seleccionar varias.</p>}
@@ -286,4 +303,5 @@ export function SportsControlsGallery({ mode = 'all', only, hideSort = false }: 
       <p className="kit-sports-caption">Geometria · Material Symbols Outlined · controles 48 px · radio 4 px · estado activo con borde 2 px · separación 2 px entre opciones.</p>
     </section>}
   </div>;
+  return existingProvider?content:<SportsDropdownProvider>{content}</SportsDropdownProvider>;
 }
