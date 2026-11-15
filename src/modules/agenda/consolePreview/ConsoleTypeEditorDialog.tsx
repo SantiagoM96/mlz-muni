@@ -41,7 +41,7 @@ export function ConsoleTypeEditorDialog({
       onMouseDown={event => { if (event.target === event.currentTarget) onClose(); }}>
       <section ref={panelRef} onKeyDown={onKeyDown} role="dialog" aria-modal="true" aria-labelledby="console-new-type-heading"
         data-testid="console-type-editor"
-        className="console-modal w-full max-w-[490px] bg-white p-5 shadow-xl sm:p-6">
+        className="console-modal w-full max-w-[490px] bg-white p-6 shadow-xl sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <div>
             <h2 id="console-new-type-heading" className="text-[24px] font-bold leading-8 text-primary-600">Agregar tipo de actividad</h2>
@@ -52,7 +52,7 @@ export function ConsoleTypeEditorDialog({
             <MaterialIcon name="close" size={24}/>
           </button>
         </div>
-        <form onSubmit={submit} className="mt-5 space-y-4">
+        <form onSubmit={submit} className="mt-6 space-y-4">
           <div>
             <label htmlFor="console-new-type" className="mb-1.5 block font-bold text-primary-600">Nombre del nuevo tipo</label>
             <input id="console-new-type" ref={inputRef} value={name}
