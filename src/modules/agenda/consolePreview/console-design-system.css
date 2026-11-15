@@ -63,3 +63,12 @@
 /* Selector nativo: evita barras falsas y conserva el listado propio del SO. */
 .mlz-console select option{background:#fff;color:var(--console-text)}
 .mlz-console select option:checked{background:var(--console-info);color:#fff}
+
+/* Fecha y hora: ícono Material Symbols institucional, sin perder picker nativo. */
+.mlz-console .console-temporal-wrap{display:block;position:relative;width:100%;min-width:0}
+.mlz-console .console-temporal-native{display:block;width:100%;padding-right:40px}
+.mlz-console .console-temporal-symbol{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--console-primary);pointer-events:none}
+.mlz-console .console-temporal-wrap:focus-within .console-temporal-symbol{color:var(--console-info)}
+.mlz-console .console-temporal-native::-webkit-calendar-picker-indicator{
+ position:absolute;right:0;top:0;width:40px;height:100%;margin:0;opacity:0;cursor:pointer
+}
