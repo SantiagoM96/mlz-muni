@@ -188,7 +188,7 @@ function FieldDocs(){
    </div>
   </ComponentExample>
   <DocSection title="Anatomía" description="Una estructura consistente permite reemplazar el control sin perder su etiqueta, ayuda o error.">
-   <DocPreview><GuidelineTable rows={[["Field","Contenedor de un único campo."],["FieldLabel","Nombre asociado al control."],["Control","Input, Select, Textarea, Checkbox, Radio o Switch."],["FieldDescription","Ayuda opcional antes de completar."],["FieldError","Mensaje de validación asociado al control."]]}/></DocPreview>
+   <GuidelineTable rows={[["Field","Contenedor de un único campo."],["FieldLabel","Nombre asociado al control."],["Control","Input, Select, Textarea, Checkbox, Radio o Switch."],["FieldDescription","Ayuda opcional antes de completar."],["FieldError","Mensaje de validación asociado al control."]]}/>
   </DocSection>
   <ComponentExample title="Field Group" description="Agrupa campos relacionados y conserva el mismo ritmo vertical entre cada bloque.">
    <div className="andy-form-grid">
@@ -209,7 +209,7 @@ function FieldDocs(){
    <div className="andy-form-grid"><label className="andy-field"><span>Correo electrónico</span><input type="email" aria-invalid="true" defaultValue="correo-incompleto" aria-describedby="field-email-error"/><small id="field-email-error">Ingresá una dirección de correo válida.</small></label></div>
   </ComponentExample>
   <DocSection title="Accesibilidad" description="La asociación semántica debe mantenerse aunque cambien el control o la disposición visual.">
-   <DocPreview><GuidelineTable rows={[["Etiqueta","Usar label y htmlFor, o envolver directamente el control."],["Ayuda","Vincular las descripciones mediante aria-describedby cuando corresponda."],["Error","Combinar aria-invalid con un mensaje que indique cómo resolverlo."],["Agrupación","Usar fieldset y legend para opciones que compartan una consigna."]]}/></DocPreview>
+   <GuidelineTable rows={[["Etiqueta","Usar label y htmlFor, o envolver directamente el control."],["Ayuda","Vincular las descripciones mediante aria-describedby cuando corresponda."],["Error","Combinar aria-invalid con un mensaje que indique cómo resolverlo."],["Agrupación","Usar fieldset y legend para opciones que compartan una consigna."]]}/>
   </DocSection>
  </>;
 }
@@ -249,13 +249,13 @@ function ComponentDetails({id}:{id:ComponentId}){
  if(id==='espaciados')return <>
   <DocSection title="Escala" description="Los espacios se documentan como tokens, desde 2 px hasta 64 px."><AndySpacingGuide/></DocSection>
   <DocSection title="Criterios de uso" description="Aplicación consistente de padding, gap y margin en botones, campos y contenedores.">
-   <DocPreview><GuidelineTable rows={[["Pequeños · 2–8 px","Separación entre ícono y etiqueta."],["Medios · 10–16 px","Padding de controles y distancia entre campos."],["Grandes · 24–64 px","Separación de bloques y secciones."]]}/></DocPreview>
+   <GuidelineTable rows={[["Pequeños · 2–8 px","Separación entre ícono y etiqueta."],["Medios · 10–16 px","Padding de controles y distancia entre campos."],["Grandes · 24–64 px","Separación de bloques y secciones."]]}/>
   </DocSection>
  </>;
  if(id==='border-radius')return <>
   <DocSection title="Escala de radios" description="Radios semánticos para cada familia de superficies."><AndyRadiusGuide/></DocSection>
   <DocSection title="Dónde utilizar cada radio" description="Se prioriza un radio de 4 px para controles, 6 px para chips y 8 px para tarjetas.">
-   <DocPreview><GuidelineTable rows={[["4 px · Controles","Input, dropdown y botones."],["6–8 px · Superficies","Chips, popovers y tarjetas."],["12–16 px · Contenedores","Paneles y drawers móviles."]]}/></DocPreview>
+   <GuidelineTable rows={[["4 px · Controles","Input, dropdown y botones."],["6–8 px · Superficies","Chips, popovers y tarjetas."],["12–16 px · Contenedores","Paneles y drawers móviles."]]}/>
   </DocSection>
  </>;
  if(id==='field')return <FieldDocs/>;
@@ -275,7 +275,7 @@ function ComponentDetails({id}:{id:ComponentId}){
    <DocPreview><AndyUploadPreviews/></DocPreview>
   </DocSection>
   <DocSection title="Criterios de uso" description="Las dos variantes conservan la selección nativa de archivos y la validación de tamaño y formato.">
-   <DocPreview><GuidelineTable rows={[["Adjuntar original","Bandeja celeste con acción sólida y nombre de archivo."],["Borde punteado","Acción de seleccionar o cambiar integrada al campo."],["Estados","Default, Hover, Focus, Completo, Error y Disabled; comparar ambas matrices antes de usarlas."]]}/></DocPreview>
+   <GuidelineTable rows={[["Adjuntar original","Bandeja celeste con acción sólida y nombre de archivo."],["Borde punteado","Acción de seleccionar o cambiar integrada al campo."],["Estados","Default, Hover, Focus, Completo, Error y Disabled; comparar ambas matrices antes de usarlas."]]}/>
   </DocSection>
  </>;
  if(id==='select')return <><FormStates family="dropdown"/>
