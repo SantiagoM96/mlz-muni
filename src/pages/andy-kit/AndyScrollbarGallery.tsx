@@ -20,7 +20,7 @@ export function AndyScrollbarGallery(){
   </section>
   <section className="andy-scrollbar-section">
    <h3>Barra interna · dropdown y drawer</h3>
-   <p>Delgada, con deslizador gris azulado <code>#A9BDCD</code> y pista transparente. El contenido se desplaza sin mover las acciones fijas del componente.</p>
+   <p>Variante estándar del UI Kit: <strong>4 px de ancho</strong>, sin flechas, con <strong>8 px de separación</strong> respecto de las opciones y deslizador gris azulado <code>#A9BDCD</code> sobre pista transparente. Se aplica en dropdowns, calendarios y filtros.</p>
    <div className="andy-scrollbar-frame"><ScrollPreview variant="dropdown" title="Ejemplo de opciones de dropdown"/></div>
   </section>
   <section className="andy-scrollbar-section">
