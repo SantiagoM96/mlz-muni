@@ -68,7 +68,7 @@ export function ConsoleScheduleEditorDialog({
       onMouseDown={event => { if (event.target === event.currentTarget) onClose(); }}>
       <section ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="schedule-editor-heading"
         onKeyDown={onKeyDown} data-testid="console-schedule-editor"
-        className="flex h-full max-h-[100dvh] w-full max-w-[850px] min-h-0 flex-col overflow-hidden bg-white shadow-xl sm:h-auto sm:max-h-[calc(100dvh-32px)] sm:rounded-[12px]">
+        className="console-modal flex h-full max-h-[100dvh] w-full max-w-[850px] min-h-0 flex-col overflow-hidden bg-white shadow-xl sm:h-auto sm:max-h-[calc(100dvh-32px)]">
         <header className="z-10 flex shrink-0 items-start justify-between gap-4 border-b border-[#d4e2eb] bg-white px-4 py-4 sm:px-6">
           <div>
             <h2 id="schedule-editor-heading" className="text-[24px] font-bold leading-8 text-primary-600">
@@ -81,7 +81,7 @@ export function ConsoleScheduleEditorDialog({
             </p>
           </div>
           <button type="button" onClick={onClose} aria-label="Cerrar edición de programación"
-            className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[6px] text-primary-600 hover:bg-[#edf5fa] focus-visible:outline-2 focus-visible:outline-primary-600">
+            className="console-action-ghost console-icon-only shrink-0 focus-visible:outline-2 focus-visible:outline-primary-600">
             <MaterialIcon name="close" size={24}/>
           </button>
         </header>
@@ -108,11 +108,11 @@ export function ConsoleScheduleEditorDialog({
         </form>
         <footer className="z-10 flex shrink-0 flex-wrap justify-end gap-3 border-t border-[#d4e2eb] bg-white px-4 py-4 sm:px-6">
           <button type="button" onClick={onClose}
-            className="inline-flex min-h-12 items-center justify-center rounded-[6px] border border-primary-600 px-5 text-[16px] font-bold text-primary-600 hover:bg-[#edf5fa]">
+            className="console-action-tertiary console-action-lg inline-flex items-center justify-center">
             Cancelar
           </button>
           <button form="console-schedule-form" type="submit"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[6px] bg-primary-600 px-5 text-[16px] font-bold text-white hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-primary-600">
+            className="console-action-primary console-action-lg console-icon-start inline-flex items-center justify-center gap-2 focus-visible:outline-2 focus-visible:outline-primary-600">
             <MaterialIcon name="check" size={20}/>
             {mode === 'duplicate' ? 'Crear copia' : 'Guardar programación'}
           </button>
