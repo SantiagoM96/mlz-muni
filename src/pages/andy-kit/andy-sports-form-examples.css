@@ -1,0 +1,44 @@
+/* Formulario compuesto de documentación, inspirado en Deportes Anual.
+   Aislado de la ficha real y de las matrices de estados individuales. */
+.andy-sports-form-docs{display:flex;flex-direction:column;gap:var(--mlz-space-40);min-width:0;width:100%}
+.andy-sports-form-intro{font-size:14px;line-height:23px;color:#657886;margin:0}
+.andy-sports-form-preview{display:flex;flex-direction:column;gap:var(--mlz-space-24);width:100%;min-width:0;background:#fff;border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);padding:var(--mlz-space-24)}
+.andy-sports-form-preview-heading{font-size:17px;line-height:24px;font-weight:700;color:#236999}
+.andy-sports-form-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mlz-space-20,var(--mlz-space-16)) var(--mlz-space-16);align-items:start}
+.andy-sports-form-fields .andy-field{min-width:0;gap:var(--mlz-space-8)}
+.andy-sports-form-fields .andy-field.is-full{grid-column:1/-1}
+.andy-sports-form-docs .andy-field>label,.andy-sports-form-upload>label{font-size:16px;line-height:22px;font-weight:700;color:#236999}
+.andy-sports-form-docs .andy-field input,.andy-sports-form-docs .andy-field select,.andy-sports-form-docs .andy-field textarea{display:block;width:100%;height:48px;min-height:48px;padding:var(--mlz-space-10) var(--mlz-space-14);border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm);outline:0;background:#fff;color:#3d3d3d;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;box-shadow:none;box-sizing:border-box}
+.andy-sports-form-docs .andy-field input:focus,.andy-sports-form-docs .andy-field select:focus,.andy-sports-form-docs .andy-field textarea:focus{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-sports-form-docs .andy-field textarea{height:100px;resize:vertical}
+.andy-sports-form-docs .andy-field input::placeholder,.andy-sports-form-docs .andy-field textarea::placeholder{color:#8695a0;opacity:1}
+.andy-sports-form-select-wrap{position:relative;width:100%}
+.andy-sports-form-select-wrap select{appearance:none;padding-right:44px!important;cursor:pointer}
+.andy-sports-form-select-wrap>.material-symbols-outlined{position:absolute;top:50%;right:var(--mlz-space-12);transform:translateY(-50%);pointer-events:none;color:#236999}
+.andy-sports-form-question{min-width:0;border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--mlz-space-12)}
+.andy-sports-form-question legend{font-size:16px;line-height:24px;font-weight:700;color:#236999;padding:0 0 var(--mlz-space-8)}
+.andy-sports-form-choices{display:flex;gap:var(--mlz-space-16);flex-wrap:wrap}
+.andy-sports-form-check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mlz-space-8)}
+.andy-sports-form-choice{position:relative;display:flex;align-items:center;gap:var(--mlz-space-8);min-height:40px;padding:var(--mlz-space-6) var(--mlz-space-8);border-radius:var(--mlz-radius-sm);font-size:14px;line-height:20px;color:#3d3d3d;cursor:pointer}
+.andy-sports-form-choice:hover{background:#f1f7fc}
+.andy-sports-form-choice:has(input:focus-visible){outline:2px solid #006eff;outline-offset:0}
+.andy-sports-form-choice input{position:absolute;width:24px;height:24px;opacity:0;cursor:pointer}
+.andy-sports-form-choice>.material-symbols-outlined{flex:0 0 24px;color:#236999}
+.andy-sports-form-choice:has(input:checked)>.material-symbols-outlined{color:#006eff}
+.andy-sports-form-switch-row{display:flex;align-items:center;gap:var(--mlz-space-12);position:relative;cursor:pointer;color:#236999;font-size:14px;line-height:22px;font-weight:700}
+.andy-sports-form-switch-row input{position:absolute;opacity:0;width:44px;height:26px;cursor:pointer}
+.andy-sports-form-switch-track{position:relative;flex:0 0 44px;width:44px;height:26px;background:#d2d9df;border-radius:var(--mlz-radius-full);transition:background-color .15s}
+.andy-sports-form-switch-track::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0002;transition:transform .15s}
+.andy-sports-form-switch-row input:checked+.andy-sports-form-switch-track{background:#006eff}
+.andy-sports-form-switch-row input:checked+.andy-sports-form-switch-track::after{transform:translateX(18px)}
+.andy-sports-form-switch-row input:focus-visible+.andy-sports-form-switch-track{outline:2px solid #006eff;outline-offset:2px}
+.andy-sports-form-uploads{display:flex;flex-direction:column;gap:var(--mlz-space-16)}
+.andy-sports-form-upload{display:flex;flex-direction:column;gap:var(--mlz-space-8);min-width:0}
+.andy-sports-form-upload-control{position:relative;display:flex;align-items:center;gap:var(--mlz-space-8);min-height:48px;padding:var(--mlz-space-6);background:#e5f0f9;border:1px solid transparent;border-radius:var(--mlz-radius-sm)}
+.andy-sports-form-upload-control:focus-within{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-sports-form-upload-control .andy-system-button{flex:none;pointer-events:none}
+.andy-sports-form-upload-control input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.andy-sports-form-upload-value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#7198b1;font-size:13px}
+.andy-sports-form-disclaimer{font-size:12px;line-height:19px;color:#71808c;margin:0}
+@media(max-width:650px){.andy-sports-form-preview{padding:var(--mlz-space-16)}.andy-sports-form-fields,.andy-sports-form-check-grid{grid-template-columns:minmax(0,1fr)}.andy-sports-form-fields .andy-field.is-full{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){.andy-sports-form-switch-track,.andy-sports-form-switch-track::after{transition:none}}
