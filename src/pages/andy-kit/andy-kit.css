@@ -100,7 +100,8 @@
 .andy-topbar-actions{display:flex;align-items:center;gap:16px}
 .andy-topbar-actions .andy-version{margin:0;white-space:nowrap}
 .andy-doc-body{display:grid;grid-template-columns:226px minmax(0,1fr);gap:44px;align-items:start;padding-top:30px;padding-bottom:80px;min-height:calc(100vh - 180px)}
-.andy-sidebar{position:sticky;top:24px;max-height:calc(100dvh - 48px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#c6dff1 transparent;padding:4px 14px 32px 0;border-right:1px solid #e1e7eb}
+.andy-sidebar{position:sticky;top:24px;max-height:calc(100dvh - 48px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;-ms-overflow-style:none;padding:4px 14px 32px 0;border-right:1px solid #e1e7eb}
+.andy-sidebar::-webkit-scrollbar{display:none;width:0;height:0}
 .andy-sidebar nav{display:flex;flex-direction:column;gap:18px}
 .andy-nav-group{display:flex;flex-direction:column;gap:2px}
 .andy-nav-label{margin:2px 0 -3px 12px;font-size:14px;font-weight:700;line-height:20px;color:#236999}
