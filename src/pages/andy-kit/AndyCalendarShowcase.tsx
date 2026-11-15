@@ -68,15 +68,16 @@ function CalendarExample({mode}:{mode:Mode}){
      </div>
     </div>
     <div className="sports-cal-week" aria-hidden="true">{days.map((day,index)=><span key={index}>{day}</span>)}</div>
-    <div className="sports-cal-days" role="grid" aria-label="Días del mes">
+    <div className={mode==='range'?'sports-cal-days is-range-grid':'sports-cal-days'} role="grid" aria-label="Días del mes">
      {Array.from({length:startOffset},(_,index)=><span key={'blank'+index} aria-hidden="true"/>)}
      {Array.from({length},(_,index)=>{
        const date=iso(view.year,view.month,index+1);
-       const endpoint=mode==='range'&&(date===range.start||date===range.end);
-       const chosen=mode==='single'?date===single:endpoint;
+       const isStart=mode==='range'&&date===range.start;
+       const isEnd=mode==='range'&&!!range.end&&date===range.end;
+       const chosen=mode==='single'?date===single:isStart||isEnd;
        const between=mode==='range'&&!!range.end&&date>range.start&&date<range.end;
        return <button type="button" key={date} role="gridcell" aria-label={`${index+1} de ${months[view.month]} de ${view.year}`}
-        aria-selected={chosen} className={`sports-cal-day${chosen?' is-selected':''}${between?' is-in-range':''}`}
+        aria-selected={chosen} className={`sports-cal-day${chosen?' is-selected':''}${between?' is-in-range':''}${isStart?' is-range-start':''}${isEnd?' is-range-end':''}`}
         onClick={()=>select(date)}>{index+1}</button>;
      })}
     </div>
