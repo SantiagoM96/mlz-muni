@@ -153,3 +153,51 @@
 .kit-sports-gallery .kit-sports-checkbox .material-symbols-outlined,
 .kit-sports-gallery .kit-sports-inline-checkbox .material-symbols-outlined,
 .kit-sports-gallery .kit-sports-inline-radio .material-symbols-outlined {color:inherit;}
+
+
+/* Catálogo Andy: patrones reales del producto público, basados en capturas mobile.
+   Sede = lista con selección; Más filtros = secciones y switch; Ordenar = lista simple. */
+.kit-sports-sort-demo{margin-top:18px}
+.kit-sports-sort-example{position:relative;display:inline-flex}
+.kit-sports-sort-trigger{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:6px 10px;border:0;background:transparent;color:#236999;font-size:16px;font-weight:700}
+.kit-sports-sort-popover{position:absolute;z-index:42;left:0;top:calc(100% + 8px);width:360px;max-width:calc(100vw - 32px);padding:8px;background:#fff;border:1px solid #e1e7eb;border-radius:8px;box-shadow:0 8px 24px #15394c2b}
+.kit-sports-sort-choices{display:flex;flex-direction:column;gap:0}
+.kit-sports-sort-choice{width:100%;min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 10px;border:0;border-bottom:1px solid #e4ebf1;border-radius:4px;background:#fff;color:#3d3d3d;text-align:left;font-size:16px;line-height:24px}
+.kit-sports-sort-choice:last-child{border-bottom:0}
+.kit-sports-sort-choice:hover{background:#eef5fa}
+.kit-sports-sort-choice.is-selected{background:#e5f0ff;color:#006eff;font-weight:700}
+.kit-sports-sort-choice.is-selected .material-symbols-outlined{color:#006eff}
+.kit-sports-advanced{display:flex;flex-direction:column}
+.kit-sports-advanced-section{border-top:1px solid #e1e7eb;padding:14px 0}
+.kit-sports-advanced-section:last-child{border-bottom:1px solid #e1e7eb}
+.kit-sports-advanced-heading{width:100%;min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left;padding:8px 8px;border:0;background:transparent;color:#236999;font-size:20px;line-height:28px;font-weight:700}
+.kit-sports-advanced-heading:focus-visible{outline:2px solid #006eff;outline-offset:-2px}
+.kit-sports-advanced-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;padding:12px 4px 20px}
+.kit-sports-advanced-choice{position:relative;min-width:0;min-height:44px;display:flex;align-items:center;gap:8px;padding:7px 2px;color:#3d3d3d;font-size:16px;line-height:24px;cursor:pointer}
+.kit-sports-advanced-choice input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.kit-sports-advanced-choice:has(input:focus-visible){outline:2px solid #006eff;outline-offset:1px}
+.kit-sports-advanced-symbol{flex:0 0 24px;width:24px;height:24px;color:#236999}
+.kit-sports-advanced-choice:has(input:checked) .kit-sports-advanced-symbol{color:#006eff}
+.kit-sports-disability{min-height:95px;display:flex;align-items:center;gap:12px;padding:10px 4px 16px;cursor:pointer}
+.kit-sports-disability>span:first-child{min-width:0;display:flex;flex:1;flex-direction:column;gap:6px}
+.kit-sports-disability strong{font-size:18px;line-height:25px;color:#236999;font-weight:700}
+.kit-sports-disability small{font-size:14px;line-height:21px;color:#888}
+.kit-sports-disability input{position:absolute;opacity:0;width:1px;height:1px}
+.kit-sports-disability-track{display:block;flex:0 0 44px;width:44px;height:26px;background:#c6dff1;border-radius:20px;position:relative;transition:background .15s}
+.kit-sports-disability-track:before{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;box-shadow:0 1px 3px #0002;transition:transform .15s}
+.kit-sports-disability input:checked+.kit-sports-disability-track{background:#006eff}
+.kit-sports-disability input:checked+.kit-sports-disability-track:before{transform:translateX(18px)}
+.kit-sports-disability input:focus-visible+.kit-sports-disability-track{outline:2px solid #006eff;outline-offset:2px}
+.kit-sports-advanced-popover{width:min(576px,calc(100vw - 48px));padding:12px}
+.kit-sports-advanced-popover .kit-sports-advanced{overflow-y:auto;min-height:0}
+@media(max-width:680px){
+ .kit-sports-sort-trigger{font-size:16px}
+ .kit-sports-advanced-section{padding:16px 0}
+ .kit-sports-advanced-heading{padding:8px 8px;min-height:54px}
+ .kit-sports-advanced-grid{padding:16px 4px 20px;gap:12px 12px}
+ .kit-sports-advanced-choice{min-height:44px}
+ .kit-sports-disability{padding:0 0 22px;min-height:112px}
+ .kit-sports-disability strong{font-size:18px}
+ .kit-sports-disability small{font-size:14px}
+ .kit-sports-sort-choice{min-height:58px;padding:14px 6px;font-size:16px}
+}
