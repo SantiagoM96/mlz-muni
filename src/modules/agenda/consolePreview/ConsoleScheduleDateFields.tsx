@@ -7,9 +7,7 @@ import { FormField } from '../../../shared/ui/FormField';
 import { TextField } from '../../../shared/ui/FormControls';
 
 const weekdayButtonClassName = (selected: boolean) =>
-  'min-h-11 rounded-[6px] border px-1 text-[13px] font-medium focus-visible:outline-2 focus-visible:outline-primary-600 ' +
-  (selected ? 'border-[#80b4db] bg-[#dceefa] text-primary-600'
-    : 'border-[#d6e2eb] bg-white text-[#8294a4] hover:border-[#93bfe0]');
+  'console-weekday min-h-10 px-1 focus-visible:outline-2 focus-visible:outline-primary-600';
 
 interface Props {
   value: ConsoleSchedule;
