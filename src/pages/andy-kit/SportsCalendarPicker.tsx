@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { useSportsMobile } from './SportsMobileSheet';
 import './sports-calendar-picker.css';
+import './andy-button-matrix.css';
 
 const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const WEEKDAYS=['L','M','M','J','V','S','D'];
@@ -141,7 +142,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
      <div className="sports-cal-bar">
        <div className="sports-cal-period">
          {(['month','year'] as const).map(kind=><div className="sports-cal-choice-holder" key={kind}>
-           <button type="button" className="sports-cal-choice-trigger" aria-expanded={mode===kind}
+           <button type="button" className={'sports-cal-choice-trigger andy-calendar-select '+(mobile?'is-medium':'is-small')} aria-expanded={mode===kind}
              onClick={()=>setMode(mode===kind?'calendar':kind)}>
              <span>{kind==='month'?MONTHS[view.month]:view.year}</span><MaterialIcon name="expand_more" size={24}/>
            </button>
@@ -165,8 +166,8 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
        })}
      </div>
      <div className="sports-cal-actions">
-       <button type="button" className="sports-cal-clear" onClick={reset}>Borrar fecha</button>
-       <button type="button" className="sports-cal-confirm" disabled={!pending} onClick={confirm}>Confirmar</button>
+       <button type="button" className={'sports-cal-clear andy-system-button is-tertiary icon-none '+(mobile?'is-medium':'is-small')} onClick={reset}>Borrar fecha</button>
+       <button type="button" className={'sports-cal-confirm andy-system-button is-primary icon-none '+(mobile?'is-medium':'is-small')} disabled={!pending} onClick={confirm}>Confirmar</button>
      </div>
    </div>}
  </div>;
