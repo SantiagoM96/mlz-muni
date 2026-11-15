@@ -249,7 +249,12 @@ function ComponentDetails({id}:{id:ComponentId}){
  if(id==='scrollbars')return <DocSection title="Tipos de barras de scroll" description="Tres patrones según dónde se desplaza el contenido: página, dropdown y navegación lateral."><AndyScrollbarGallery/></DocSection>;
  if(id==='boton')return <Buttons/>;
  if(id==='chips')return <>
-  <DocSection title="Colores y variantes" description="Los seis colores oficiales de Figma, con fondo suave y outline; cada uno tiene versión con ícono y sin ícono."><AndyTagPaletteGallery/></DocSection>
+  <DocSection title="Fondo suave" description="Seis colores de Figma con fondo claro y texto intenso. Cada color se muestra con y sin ícono.">
+   <DocPreview align="start"><AndyTagPaletteGallery onlyAppearance="fill"/></DocPreview>
+  </DocSection>
+  <DocSection title="Outline" description="Los mismos seis tonos con borde intenso, fondo blanco y texto del color semántico.">
+   <DocPreview align="start"><AndyTagPaletteGallery onlyAppearance="outline"/></DocPreview>
+  </DocSection>
  </>;
  if(id==='tarjeta')return <>
   <ComponentExample title="Deportes Anual" description="Cabecera degradada de 34 px y contenido compacto, con metadatos e íconos del producto deportivo.">
