@@ -136,7 +136,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
    <div className="sports-cal-top">
      {mode!=='calendar'&&<button type="button" className="sports-cal-back" aria-label="Volver al calendario" onClick={()=>setMode('calendar')}><MaterialIcon name="arrow_back" size={24}/></button>}
      <strong>{mode==='calendar'?'Seleccionar fecha':mode==='month'?'Seleccionar mes':'Seleccionar año'}</strong>
-     {!mobile&&<button type="button" className="sports-cal-x" aria-label="Cerrar calendario" onClick={()=>close(false)}><MaterialIcon name="close" size={24}/></button>}
+     {!mobile&&<button type="button" className="sports-cal-x" aria-label="Cerrar calendario" onClick={()=>close(false)}><MaterialIcon name="close_small" size={24}/></button>}
    </div>
    {mode!=='calendar'&&mobile?choices(mode):<div className="sports-cal-content">
      <div className="sports-cal-bar">
