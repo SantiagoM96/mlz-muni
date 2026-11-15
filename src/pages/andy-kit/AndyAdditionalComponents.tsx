@@ -66,7 +66,7 @@ function AndySliderDocs(){
  const [end,setEnd]=useState(75);
  const fill=(value:number)=>({'--andy-slider-fill':value+'%'} as React.CSSProperties);
  return <>
-  <DocSection title="Slider básico" description="Pista redondeada, tramo seleccionado en Primario 600 y thumb circular blanco con borde Primario 600; adaptación del patrón de shadcn/ui Base UI.">
+  <DocSection title="Slider básico" description="Pista fina de 6 px y thumb de 16 px según la escala MLZ. En reposo, blanco con borde Primario 600; al arrastrar, relleno Info 600.">
    <DocPreview><div className="andy-add-slider-demo">
     <div className="andy-add-slider-heading"><label htmlFor="andy-mlz-slider">Intensidad</label><output htmlFor="andy-mlz-slider">{intensity}%</output></div>
     <input className="andy-add-slider" id="andy-mlz-slider" type="range" min="0" max="100" step="1"
