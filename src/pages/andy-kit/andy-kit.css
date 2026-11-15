@@ -695,7 +695,7 @@
  outline:2px solid var(--andy-chrome-accent);
  outline-offset:2px;
 }
-/* Tabla de contenidos derecha: el punto activo es una píldora Info 500. */
+/* Tabla de contenidos derecha: activo con texto Info 500, negrita y subrayado; sin fondo. */
 .andy-doc-layout .andy-doc-toc nav{gap:var(--mlz-space-4)}
 .andy-doc-layout .andy-doc-toc nav a{
  display:block;
@@ -710,10 +710,16 @@
  color:var(--andy-chrome-accent);
 }
 .andy-doc-layout .andy-doc-toc nav a.is-active,
-.andy-doc-layout .andy-doc-toc nav a[aria-current=location]{
- background:var(--andy-chrome-accent);
- color:#fff;
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location],
+.andy-doc-layout .andy-doc-toc nav a.is-active:hover,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location]:hover{
+ background:transparent;
+ color:var(--andy-chrome-accent);
  font-weight:700;
+ text-decoration:underline;
+ text-decoration-color:currentColor;
+ text-underline-offset:3px;
+ text-decoration-thickness:1px;
  border:0;
 }
 .andy-doc-layout .andy-doc-toc nav a:focus-visible{
