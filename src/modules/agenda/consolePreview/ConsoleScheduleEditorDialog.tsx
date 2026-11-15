@@ -87,7 +87,7 @@ export function ConsoleScheduleEditorDialog({
         </header>
 
         <form id="console-schedule-form" onSubmit={handleSave} noValidate aria-label="Formulario de programación"
-          className="min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain px-4 py-5 sm:px-6">
+          className="min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain px-4 py-6 sm:px-6">
           <ConsoleScheduleDateFields
             value={value}
             onScheduleChange={update}
@@ -104,7 +104,7 @@ export function ConsoleScheduleEditorDialog({
             value={value}
             onScheduleChange={update}
           />
-          {validationIssue && <p ref={errorRef} id="console-schedule-error" tabIndex={-1} role="alert" data-testid="console-schedule-error" className="rounded-[6px] bg-[#fff1f2] p-3 text-[14px] font-medium text-[#9d2936]">{validationIssue.message}</p>}
+          {validationIssue && <p ref={errorRef} id="console-schedule-error" tabIndex={-1} role="alert" data-testid="console-schedule-error" className="rounded-[4px] bg-[#fff1f2] p-3 text-[14px] font-medium text-[#9d2936]">{validationIssue.message}</p>}
         </form>
         <footer className="z-10 flex shrink-0 flex-wrap justify-end gap-3 border-t border-[#d4e2eb] bg-white px-4 py-4 sm:px-6">
           <button type="button" onClick={onClose}
