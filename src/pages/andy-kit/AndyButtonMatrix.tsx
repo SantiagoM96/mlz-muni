@@ -72,9 +72,6 @@ export function AndyButtonMatrix(){
    <Preview><ButtonSample kind="primary" size="large" onClick={()=>setLastClicked('Continuar')}/>
     <ButtonSample kind="tertiary" size="large" onClick={()=>setLastClicked('Volver')}/></Preview>
   </div>
-  <nav className="andy-button-on-this-page" aria-label="En esta página">
-   <strong>En esta página</strong><a href="#variantes">Variantes</a><a href="#tamanos">Tamaños</a><a href="#estados">Estados</a><a href="#iconografia">Íconos</a><a href="#uso">Uso</a>
-  </nav>
   <DocSection id="variantes" title="Variantes" description="Cada tipo aparece en una caja independiente y centrado, para evaluar su peso visual sin mezclarlo con otros tipos.">
    {kinds.map(kind=><div key={kind.id} className="andy-button-variant-example">
     <h4>{kind.label}</h4><p>{variantDetails[kind.id].purpose}</p>
