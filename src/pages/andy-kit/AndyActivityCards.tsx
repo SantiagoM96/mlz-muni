@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './andy-activity-cards.css';
 
@@ -28,14 +29,14 @@ const samples:Record<CardKind,CardData>={
   image:import.meta.env.BASE_URL+'assets/agenda/types/teatro.png'
  }
 };
-function DataLine({icon,children}:{icon:'event_available'|'schedule'|'location_on';children:React.ReactNode}) {
+function DataLine({icon,children}:{icon:'event_available'|'schedule'|'location_on';children:ReactNode}) {
  return <div className="andy-family-card-line"><MaterialIcon name={icon} size={20}/><div>{children}</div></div>;
 }
 export function AndyActivityCard({kind}:{kind:CardKind}){
  const data=samples[kind];
  return <article className={'andy-family-card is-'+kind} data-testid={'andy-family-card-'+kind}>
   {kind==='sports'
-   ?<div className="andy-family-card-sports-head"><span>ACTIVIDADES DEPORTIVAS</span><MaterialIcon name="groups" size={36}/></div>
+   ?<div className="andy-family-card-sports-head"><span>ACTIVIDADES DEPORTIVAS</span><MaterialIcon name="groups" size={24}/></div>
    :<img className="andy-family-card-image" src={data.image} alt="" loading="lazy" width="480" height="154"/>}
   <div className="andy-family-card-body">
    <div className="andy-family-card-intro">
@@ -48,7 +49,7 @@ export function AndyActivityCard({kind}:{kind:CardKind}){
     <DataLine icon="schedule"><strong>{data.time}</strong></DataLine>
     <DataLine icon="location_on"><strong>{data.venue}</strong><span>{data.address}</span></DataLine>
    </div>
-   <div className="andy-family-card-action"><span>Ver más</span><MaterialIcon name="chevron_right" size={24}/></div>
+   <div className="andy-family-card-action"><span>{kind==='sports'?'Preinscribirse':'Ver más'}</span><MaterialIcon name="chevron_right" size={24}/></div>
   </div>
  </article>;
 }
