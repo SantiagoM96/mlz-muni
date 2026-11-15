@@ -759,177 +759,139 @@
  border-color:var(--andy-chrome-accent);
 }
 
-/* Header Andy mobile: identidad como bloque a la izquierda y acciones
-   (chip de versión + menú) agrupadas y centradas verticalmente a la derecha. */
-@media(max-width:790px){
- .andy-doc-layout .andy-topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:nowrap;
-  gap:var(--mlz-space-8);
-  min-height:72px;
- }
- .andy-doc-layout .andy-topbar-heading{
-  min-width:0;
-  flex:1 1 auto;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-self:center;
-  gap:var(--mlz-space-4);
-  padding-block:var(--mlz-space-8);
- }
- .andy-doc-layout .andy-topbar-heading .andy-eyebrow{
-  max-width:100%;
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
- }
- .andy-doc-layout .andy-topbar-actions{
-  display:flex;
-  flex:0 0 auto;
-  flex-wrap:nowrap;
-  align-items:center;
-  justify-content:flex-end;
-  gap:var(--mlz-space-8);
-  align-self:center;
- }
- .andy-doc-layout .andy-version-prefix,
- .andy-doc-layout .andy-sidebar-toggle-label{display:none}
- .andy-doc-layout .andy-topbar-actions .andy-version{
+/* Header del UI Kit: tres elementos HERMANOS reales en el DOM.
+   En desktop conserva el indicador de versión en el extremo derecho. */
+.andy-doc-layout .andy-topbar > .andy-version{
+  margin:0 0 0 auto;
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  min-height:32px;
+  padding:6px 12px;
   flex:0 0 auto;
-  min-height:26px;
-  height:26px;
-  padding:0 var(--mlz-space-8);
-  margin:0;
+  border:1px solid var(--andy-chrome-outline);
   border-radius:var(--mlz-radius-full);
-  font-size:11px;
-  line-height:16px;
+  background:#eff6ff;
+  color:var(--andy-chrome-accent);
+  font-size:12px;
+  line-height:18px;
   white-space:nowrap;
- }
- .andy-doc-layout .andy-sidebar-toggle{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  flex:0 0 48px;
-  width:48px;
-  min-width:48px;
-  height:48px;
-  min-height:48px;
-  padding:0;
-  border-radius:var(--mlz-radius-full);
-  font-size:0;
-  gap:0;
- }
- .andy-doc-layout .andy-sidebar-toggle .material-symbols-outlined{
-  width:26px!important;
-  height:26px!important;
-  font-size:26px!important;
- }
 }
-@media(max-width:580px){
- .andy-doc-layout .andy-topbar{min-height:72px}
- .andy-doc-layout .andy-sidebar-toggle{
-  width:48px;
-  min-width:48px;
-  height:48px;
-  min-height:48px;
-  padding:0;
- }
- .andy-doc-layout .andy-topbar-actions .andy-version{
-  min-height:26px;
-  height:26px;
-  padding:0 var(--mlz-space-8);
-  font-size:11px;
- }
- .andy-doc-layout .andy-sidebar-toggle .material-symbols-outlined{
-  width:26px!important;
-  height:26px!important;
-  font-size:26px!important;
- }
-}
+.andy-doc-layout .andy-topbar > .andy-version a{color:inherit;text-decoration:none}
+.andy-doc-layout .andy-topbar > .andy-version a:hover{text-decoration:underline}
+.andy-doc-layout .andy-design-system-label{font-weight:700;text-transform:uppercase}
 
-/* Mobile: una sola fila con tres zonas: identidad en tres renglones,
-   chip de versión al medio y hamburguesa a la derecha. */
+/* Mobile: identidad | versión | hamburguesa (tres columnas independientes). */
 @media(max-width:790px){
- .andy-doc-layout .andy-topbar{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto 48px;
-  align-items:center;
-  column-gap:12px;
-  min-height:72px;
- }
- .andy-doc-layout .andy-topbar-heading{
-  min-width:0;
-  width:100%;
-  gap:1px;
-  padding-block:6px;
-  justify-self:start;
- }
- .andy-doc-layout .andy-header h1{
-  margin:0;
-  font-size:18px;
-  line-height:21px;
-  white-space:nowrap;
- }
- .andy-doc-layout .andy-topbar-heading .andy-eyebrow{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:0;
-  font-size:10px;
-  line-height:13px;
-  white-space:normal;
-  overflow:visible;
-  text-overflow:clip;
-  letter-spacing:0;
- }
- .andy-doc-layout .andy-topbar-heading .andy-eyebrow>span{
-  display:block;
-  white-space:nowrap;
- }
- .andy-doc-layout .andy-topbar-heading .andy-eyebrow-divider{display:none}
- .andy-doc-layout .andy-topbar-actions{
-  display:contents;
- }
- .andy-doc-layout .andy-topbar-actions .andy-version{
-  grid-column:2;
-  justify-self:center;
-  align-self:center;
-  height:24px;
-  min-height:24px;
-  padding:0 8px;
-  margin:0;
-  font-size:10px;
-  line-height:14px;
- }
- .andy-doc-layout .andy-sidebar-toggle{
-  grid-column:3;
-  justify-self:end;
-  align-self:center;
-  width:48px;
-  min-width:48px;
-  height:48px;
-  min-height:48px;
-  padding:0;
- }
+  .andy-doc-layout .andy-topbar{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto 48px;
+    align-items:center;
+    column-gap:14px;
+    min-height:76px;
+  }
+  .andy-doc-layout .andy-topbar-heading{
+    grid-column:1;
+    justify-self:start;
+    align-self:center;
+    min-width:0;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:2px;
+    padding:7px 0;
+  }
+  .andy-doc-layout .andy-header h1{
+    margin:0;
+    font-size:18px;
+    font-weight:700;
+    line-height:22px;
+    letter-spacing:-.35px;
+    white-space:nowrap;
+  }
+  .andy-doc-layout .andy-topbar-heading .andy-eyebrow{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:1px;
+    font-size:10px;
+    line-height:13px;
+    font-weight:500;
+    letter-spacing:0;
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+  }
+  .andy-doc-layout .andy-topbar-heading .andy-eyebrow > span{
+    display:block;
+    white-space:nowrap;
+  }
+  .andy-doc-layout .andy-topbar-heading .andy-eyebrow-divider{display:none}
+  .andy-doc-layout .andy-topbar-heading .andy-design-system-label{
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.35px;
+    line-height:14px;
+    text-transform:uppercase;
+    color:var(--a-blue);
+  }
+  .andy-doc-layout .andy-version-prefix,
+  .andy-doc-layout .andy-sidebar-toggle-label{display:none}
+  .andy-doc-layout .andy-topbar > .andy-version{
+    grid-column:2;
+    justify-self:center;
+    align-self:center;
+    margin:0;
+    min-height:24px;
+    height:24px;
+    padding:0 9px;
+    font-size:11px;
+    line-height:16px;
+  }
+  .andy-doc-layout .andy-sidebar-toggle{
+    grid-column:3;
+    display:inline-flex;
+    justify-self:end;
+    align-self:center;
+    justify-content:center;
+    align-items:center;
+    flex:none;
+    width:48px;
+    min-width:48px;
+    height:48px;
+    min-height:48px;
+    padding:0;
+    gap:0;
+    border-radius:var(--mlz-radius-full);
+    font-size:0;
+  }
+  .andy-doc-layout .andy-sidebar-toggle .material-symbols-outlined{
+    width:26px!important;
+    height:26px!important;
+    font-size:26px!important;
+  }
 }
 @media(max-width:580px){
- .andy-doc-layout .andy-topbar{min-height:72px;column-gap:10px}
- .andy-doc-layout .andy-header h1{font-size:18px;line-height:21px}
- .andy-doc-layout .andy-topbar-actions .andy-version{
-  height:24px;
-  min-height:24px;
-  padding:0 8px;
-  font-size:10px;
- }
+  .andy-doc-layout .andy-topbar{min-height:76px;column-gap:10px}
+  .andy-doc-layout .andy-header h1{font-size:18px;line-height:22px}
+  .andy-doc-layout .andy-topbar > .andy-version{
+    height:24px;
+    min-height:24px;
+    padding:0 9px;
+    font-size:11px;
+  }
+  .andy-doc-layout .andy-sidebar-toggle{
+    width:48px;
+    min-width:48px;
+    height:48px;
+    min-height:48px;
+    padding:0;
+  }
 }
 @media(max-width:360px){
- .andy-doc-layout .andy-topbar{column-gap:6px}
- .andy-doc-layout .andy-header h1{font-size:16px}
- .andy-doc-layout .andy-topbar-heading .andy-eyebrow{font-size:9px}
+  .andy-doc-layout .andy-topbar{column-gap:6px}
+  .andy-doc-layout .andy-header h1{font-size:16px;letter-spacing:-.45px}
+  .andy-doc-layout .andy-topbar-heading .andy-eyebrow{font-size:9px;line-height:12px}
+  .andy-doc-layout .andy-topbar-heading .andy-design-system-label{font-size:9px}
 }
