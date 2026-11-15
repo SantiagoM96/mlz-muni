@@ -963,3 +963,32 @@
   background-position:center,10px 10px;
  }
 }
+
+/* Estabilidad de interacción en la documentación: el foco nunca altera
+   medidas ni desplaza los previews, incluso cuando cambia el scrollbar. */
+html:has(.andy-doc-layout){scrollbar-gutter:stable}
+.andy-doc-layout .andy-doc-page .andy-field input:not([type="file"]),
+.andy-doc-layout .andy-doc-page .andy-field textarea,
+.andy-doc-layout .andy-doc-page .andy-select-trigger{
+ box-sizing:border-box;
+ border-width:1px;
+ transition:background-color .14s ease,border-color .14s ease,box-shadow .14s ease;
+}
+.andy-doc-layout .andy-doc-page .andy-field input:not([type="file"]):is(:focus,:focus-visible),
+.andy-doc-layout .andy-doc-page .andy-field textarea:is(:focus,:focus-visible),
+.andy-doc-layout .andy-doc-page .andy-select-trigger:is(:focus,:focus-visible,[aria-expanded="true"]){
+ border:1px solid #006eff;
+ outline:0;
+ outline-offset:0;
+ box-shadow:inset 0 0 0 1px #006eff;
+}
+.andy-doc-layout .andy-doc-page .andy-field input[aria-invalid="true"]:is(:focus,:focus-visible),
+.andy-doc-layout .andy-doc-page .andy-field textarea[aria-invalid="true"]:is(:focus,:focus-visible){
+ border-color:#ef284c;
+ box-shadow:inset 0 0 0 1px #ef284c;
+}
+@media(prefers-reduced-motion:reduce){
+ .andy-doc-layout .andy-doc-page .andy-field input:not([type="file"]),
+ .andy-doc-layout .andy-doc-page .andy-field textarea,
+ .andy-doc-layout .andy-doc-page .andy-select-trigger{transition:none}
+}
