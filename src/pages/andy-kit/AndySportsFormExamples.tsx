@@ -97,7 +97,7 @@ function FileExample({label,accept}:{label:string;accept:string}){
 }
 function ExampleSection({title,description,children}:{title:string;description:string;children:ReactNode}){
  return <DocSection title={title} description={description}>
-  <div className="andy-sports-form-preview"><div className="andy-sports-form-preview-heading">{title.toUpperCase()}</div>{children}</div>
+  <div className="andy-sports-form-preview">{children}</div>
  </DocSection>;
 }
 export function AndySportsFormExamples(){
