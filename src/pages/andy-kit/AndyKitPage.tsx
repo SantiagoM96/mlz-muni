@@ -187,14 +187,14 @@ function HeadingToc({items}:{items:{id:string;title:string}[]}){
    if(!heading.parentElement?.id)heading.id=id;
    return {id,title:heading.textContent?.trim()||'Sección'};
   });
-  setLinks(next);setActive(next[0]?.id??'');
+  const frame=window.requestAnimationFrame(()=>{setLinks(next);setActive(next[0]?.id??'');});
   const targets=next.map(item=>document.getElementById(item.id)).filter((el):el is HTMLElement=>!!el);
   const observer=new IntersectionObserver(entries=>{
    const visible=entries.filter(e=>e.isIntersecting).sort((left,right)=>left.boundingClientRect.top-right.boundingClientRect.top);
    if(visible[0])setActive(visible[0].target.id);
   },{rootMargin:'-15% 0px -68% 0px',threshold:0});
   targets.forEach(target=>observer.observe(target));
-  return()=>observer.disconnect();
+  return()=>{window.cancelAnimationFrame(frame);observer.disconnect();};
  },[items]);
  if(!links.length)return null;
  return <aside className="andy-doc-toc" aria-label="En esta página"><strong>En esta página</strong>
