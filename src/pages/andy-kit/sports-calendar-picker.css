@@ -231,3 +231,24 @@
 .sports-cal-popup .sports-cal-choice-option:focus-visible{
  outline:2px solid #006eff;outline-offset:-2px
 }
+
+/* Acción de cerrar el Date Picker: Primario 600 en reposo y alerta suave al hover. */
+.sports-cal-popup .sports-cal-x{
+ color:#236999;
+ background:transparent;
+ transition:background-color .16s ease,color .16s ease;
+}
+.sports-cal-popup .sports-cal-x:hover{
+ color:#ef284c;
+ background:#fff0f2;
+}
+.sports-cal-popup .sports-cal-x .material-symbols-outlined{
+ color:inherit;
+}
+.sports-cal-popup .sports-cal-x:focus-visible{
+ outline:2px solid #006eff;
+ outline-offset:2px;
+}
+@media(prefers-reduced-motion:reduce){
+ .sports-cal-popup .sports-cal-x{transition:none}
+}
