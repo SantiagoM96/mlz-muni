@@ -13,7 +13,6 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const [search, setSearch] = useState('');
-  const [appliedCount, setAppliedCount] = useState(0);
   const trigger = useRef<HTMLButtonElement>(null);
   const root = useRef<HTMLDivElement>(null);
   const id = useId();
@@ -38,7 +37,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
       : (previous.includes(option) ? [] : [option]),
   );
   const close = () => { setOpen(false); trigger.current?.focus(); };
-  const apply = () => { setAppliedCount(selected.length); close(); };
+  const apply = () => { close(); };
   return <div className="kit-sports-filter" ref={root}>
     <button type="button" ref={trigger} className={`kit-sports-trigger ${open || selected.length ? 'is-active' : ''}`}
       aria-haspopup="dialog" aria-expanded={open} aria-controls={id}
