@@ -8,6 +8,56 @@
 .andy-add-table tr:last-child td{border-bottom:0}
 .andy-add-stack progress{width:100%;height:12px;accent-color:#006eff}
 .andy-add-stack input[type=range]{width:100%;accent-color:#006eff}
+/* Slider / shadcn Base UI: pista 8 px, thumb 20 px, sin estilo nativo. */
+.andy-add-slider-demo{display:flex;flex-direction:column;gap:14px;width:min(100%,520px);min-width:0;padding-block:12px;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.andy-add-slider-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#236999;font-size:15px;font-weight:600}
+.andy-add-slider-heading output{font-variant-numeric:tabular-nums;color:#3d3d3d;font-weight:500}
+.andy-add-slider-bounds{display:flex;align-items:center;justify-content:space-between;color:#657886;font-size:12px}
+.andy-add-slider{
+ -webkit-appearance:none;appearance:none;display:block;width:100%;height:8px;
+ margin:12px 0;border:0;border-radius:999px;outline:none;cursor:pointer;
+ background:linear-gradient(to right,#236999 0%,#236999 var(--andy-slider-fill,45%),#e5f0f9 var(--andy-slider-fill,45%),#e5f0f9 100%);
+}
+.andy-add-slider::-webkit-slider-runnable-track{height:8px;border:0;border-radius:999px;background:transparent}
+.andy-add-slider::-moz-range-track{height:8px;border:0;border-radius:999px;background:transparent}
+.andy-add-slider::-webkit-slider-thumb{
+ -webkit-appearance:none;appearance:none;width:20px;height:20px;
+ margin-top:-6px;border:2px solid #236999;border-radius:50%;background:#fff;
+ box-shadow:0 1px 3px #143e5914;
+}
+.andy-add-slider::-moz-range-thumb{
+ width:16px;height:16px;border:2px solid #236999;border-radius:50%;background:#fff;
+ box-shadow:0 1px 3px #143e5914;
+}
+.andy-add-slider:hover::-webkit-slider-thumb{border-color:#006eff}
+.andy-add-slider:hover::-moz-range-thumb{border-color:#006eff}
+.andy-add-slider:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px #006eff33;border-color:#006eff}
+.andy-add-slider:focus-visible::-moz-range-thumb{box-shadow:0 0 0 4px #006eff33;border-color:#006eff}
+.andy-add-slider:disabled{cursor:not-allowed;opacity:.48}
+.andy-add-slider:disabled::-webkit-slider-thumb{cursor:not-allowed}
+.andy-add-slider:disabled::-moz-range-thumb{cursor:not-allowed}
+.andy-add-slider-range{position:relative;height:32px;width:100%;margin:0 0 4px}
+.andy-add-slider-range-track{position:absolute;left:0;right:0;top:12px;height:8px;border-radius:999px;background:#e5f0f9;overflow:hidden}
+.andy-add-slider-range-track span{display:block;position:absolute;top:0;bottom:0;left:var(--andy-range-start);right:calc(100% - var(--andy-range-end));background:#236999}
+.andy-add-slider-range input{
+ position:absolute;top:0;left:0;width:100%;height:32px;margin:0;padding:0;
+ background:transparent;-webkit-appearance:none;appearance:none;pointer-events:none;outline:0;
+}
+.andy-add-slider-range input::-webkit-slider-runnable-track{height:8px;background:transparent;border:0}
+.andy-add-slider-range input::-moz-range-track{height:8px;background:transparent;border:0}
+.andy-add-slider-range input::-webkit-slider-thumb{
+ -webkit-appearance:none;appearance:none;width:20px;height:20px;margin-top:-6px;
+ background:#fff;border:2px solid #236999;border-radius:50%;pointer-events:auto;cursor:grab;
+ box-shadow:0 1px 3px #143e5914;
+}
+.andy-add-slider-range input::-moz-range-thumb{
+ width:16px;height:16px;background:#fff;border:2px solid #236999;border-radius:50%;
+ pointer-events:auto;cursor:grab;box-shadow:0 1px 3px #143e5914;
+}
+.andy-add-slider-range input:focus-visible::-webkit-slider-thumb{border-color:#006eff;box-shadow:0 0 0 4px #006eff33}
+.andy-add-slider-range input:focus-visible::-moz-range-thumb{border-color:#006eff;box-shadow:0 0 0 4px #006eff33}
+.andy-add-slider-range input:first-of-type{z-index:2}
+.andy-add-slider-range input:last-of-type{z-index:3}
 .andy-add-spinner{display:inline-block;width:24px;height:24px;border:3px solid #dcebf5;border-top-color:#006eff;border-radius:50%;animation:andy-add-spin .8s linear infinite}
 @keyframes andy-add-spin{to{transform:rotate(360deg)}}
 .andy-add-skeleton{width:min(100%,380px);display:flex;flex-direction:column;gap:14px}
