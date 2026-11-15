@@ -20,6 +20,35 @@ const configs: Record<FileKind, { label: string; hint: string; accept: string; h
 };
 const MAX_BYTES = 10 * 1024 * 1024;
 
+/**
+ * Each corner gets one dash centered at its 45° arc midpoint.
+ * The small leftover spacing is distributed along each side, rather than
+ * allowing the browser to cut a dash arbitrarily at the final corner.
+ */
+function centeredCornerDashes(width:number,height:number,radius:number){
+ const left=1,top=1,right=width-1,bottom=height-1;
+ const r=Math.max(1,Math.min(radius-1,(width-2)/2,(height-2)/2));
+ const k=r/Math.SQRT2;
+ const tl=[left+r-k,top+r-k],tr=[right-r+k,top+r-k];
+ const br=[right-r+k,bottom-r+k],bl=[left+r-k,bottom-r+k];
+ const horizontal=right-left-2*r+Math.PI*r/2;
+ const vertical=bottom-top-2*r+Math.PI*r/2;
+ const dashGap=(length:number)=>{
+  const intervals=Math.max(1,Math.round(length/12));
+  return Math.max(0.5,length/intervals-8);
+ };
+ const topPath=`M ${tl.join(' ')} A ${r} ${r} 0 0 1 ${left+r} ${top} H ${right-r} A ${r} ${r} 0 0 1 ${tr.join(' ')}`;
+ const rightPath=`M ${tr.join(' ')} A ${r} ${r} 0 0 1 ${right} ${top+r} V ${bottom-r} A ${r} ${r} 0 0 1 ${br.join(' ')}`;
+ const bottomPath=`M ${br.join(' ')} A ${r} ${r} 0 0 1 ${right-r} ${bottom} H ${left+r} A ${r} ${r} 0 0 1 ${bl.join(' ')}`;
+ const leftPath=`M ${bl.join(' ')} A ${r} ${r} 0 0 1 ${left} ${bottom-r} V ${top+r} A ${r} ${r} 0 0 1 ${tl.join(' ')}`;
+ return [
+  {d:topPath,gap:dashGap(horizontal)},
+  {d:rightPath,gap:dashGap(vertical)},
+  {d:bottomPath,gap:dashGap(horizontal)},
+  {d:leftPath,gap:dashGap(vertical)},
+ ];
+}
+
 export function AndyDashedUpload({kind,demoState}:{kind:FileKind;demoState?:UploadState}){
  const id=useId();
  const descriptionId=id+'-description';
@@ -73,10 +102,11 @@ export function AndyDashedUpload({kind,demoState}:{kind:FileKind;demoState?:Uplo
    {borderSize.width>2&&borderSize.height>2&&<svg className="andy-dashed-upload-border"
     viewBox={`0 0 ${borderSize.width} ${borderSize.height}`}
     width="100%" height="100%" aria-hidden="true" focusable="false">
-    <rect x="1" y="1" width={borderSize.width-2} height={borderSize.height-2}
-     rx={Math.max(0,borderSize.radius-1)} fill="none"
-     stroke="currentColor" strokeWidth="var(--upload-border-width)"
-     vectorEffect="non-scaling-stroke" strokeDasharray="8 4"/>
+    {centeredCornerDashes(borderSize.width,borderSize.height,borderSize.radius).map(({d,gap},index)=>
+     <path key={index} d={d} fill="none" stroke="currentColor"
+      strokeWidth="var(--upload-border-width)" vectorEffect="non-scaling-stroke"
+      strokeDasharray={`8 ${gap}`} strokeDashoffset={4}/>
+    )}
    </svg>}
    <span className="andy-dashed-upload-action">{displayName?'Cambiar':'Seleccionar archivo'}</span>
    <span className={'andy-dashed-upload-value'+(displayName?' has-file':'')} title={displayName||config.hint}>
