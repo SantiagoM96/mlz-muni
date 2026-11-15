@@ -73,7 +73,7 @@ export function FormStateMatrix({onlyFamily}:{onlyFamily?:Family}={}){
       <h4>Calendarios abiertos · selección de día y rango</h4>
       <p>Dos demostraciones interactivas siempre visibles. La selección única marca un día; la selección de rango destaca sus extremos y todos los días intermedios. Los selectores de mes y año respetan los estados y colores de nuestros dropdowns.</p>
       <AndyCalendarShowcase/>
-      <div className="andy-matrix-calendar-trigger-demo">
+      <div className="andy-matrix-calendar-trigger-demo" id="campo-desplegable">
         <h4>Campo con calendario desplegable</h4>
         <p>También se conserva el comportamiento original del input de Deportes Anual, con popover en desktop y drawer en mobile.</p>
         <div className="andy-matrix-calendar-sample"><SportsCalendarPicker/></div>
