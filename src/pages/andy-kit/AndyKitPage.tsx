@@ -7,7 +7,7 @@ import { AndySportsFormExamples } from './AndySportsFormExamples';
 import { DropdownVariantsGallery } from './DropdownVariantsGallery';
 import { AndyCalendarShowcase } from './AndyCalendarShowcase';
 import { SportsCalendarPicker } from './SportsCalendarPicker';
-import { DocSection, DocPreview } from './AndyDocsPrimitives';
+import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { AndyActivityCard } from './AndyActivityCards';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
@@ -179,14 +179,6 @@ function FormStates({family}:{family:'text'|'dropdown'|'textarea'|'date'|'upload
  return <DocSection title="Estados" description="Comparación simultánea de Default, Hover, Focus, Completo, Error y Disabled. Una única superficie contiene todos los controles.">
   <DocPreview align="start"><FormStateMatrix onlyFamily={family} showExtras={false}/></DocPreview>
  </DocSection>;
-}
-function GuidelineTable({rows}:{rows:readonly (readonly [string,string])[]}){
- return <div className="andy-doc-guideline-table-wrap">
-  <table className="andy-doc-guideline-table">
-   <thead><tr><th scope="col">Elemento</th><th scope="col">Descripción</th></tr></thead>
-   <tbody>{rows.map(([name,description])=><tr key={name}><th scope="row">{name}</th><td>{description}</td></tr>)}</tbody>
-  </table>
- </div>;
 }
 function FieldDocs(){
  return <>
