@@ -368,3 +368,77 @@
 .andy-component-search-clear{display:grid;place-items:center;flex:0 0 22px;width:22px;height:22px;padding:0;border:0;border-radius:var(--mlz-radius-sm);background:transparent;color:#236999}
 .andy-component-search-clear:hover{background:#e5f0f9}
 .andy-component-search-empty{padding:var(--mlz-space-8) var(--mlz-space-12);margin:0;color:#687782;font-size:13px;line-height:20px}
+
+
+/* Documentación unificada: una caja de muestra por variante, sin tarjetas
+   anidadas. Los controles se centran, los formularios usan ancho de lectura. */
+.andy-doc-page .andy-doc-demo .andy-dropdown-variant{
+ width:min(100%,420px);
+ padding:0;
+ border:0;
+ border-radius:0;
+ background:transparent;
+}
+.andy-doc-page .andy-doc-demo .andy-dropdown-variants-grid{
+ display:flex;
+ justify-content:center;
+ width:100%;
+}
+.andy-doc-page .andy-doc-demo .andy-dropdown-variants{width:100%}
+.andy-doc-page .andy-doc-demo .andy-dropdown-variant-heading{min-height:0}
+.andy-doc-page .andy-doc-demo .andy-state-matrix{width:100%}
+.andy-doc-page .andy-doc-demo .andy-matrix-family{border:0;padding:0;margin:0;background:transparent}
+.andy-doc-page .andy-doc-demo .andy-matrix-family-head{display:none}
+.andy-doc-page .andy-doc-demo .andy-matrix-grid{
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:var(--mlz-space-32) var(--mlz-space-24);
+}
+.andy-doc-page .andy-doc-demo .andy-state-cell{padding:0;border:0;min-height:0;background:transparent;box-shadow:none}
+.andy-doc-page .andy-doc-demo .andy-search-field{max-width:540px}
+.andy-doc-page .andy-doc-demo .andy-form-grid{width:min(100%,540px);grid-template-columns:1fr}
+.andy-doc-page .andy-single-card-demo{display:flex;justify-content:center;width:100%;max-width:420px}
+.andy-doc-page .andy-single-card-demo>.andy-family-card,
+.andy-doc-page .andy-single-card-demo>.andy-family-agenda-original{width:100%;max-width:420px}
+.andy-doc-page .andy-doc-guideline{
+ display:grid;
+ grid-template-columns:minmax(140px,.75fr) minmax(0,1.5fr);
+ gap:var(--mlz-space-16) var(--mlz-space-24);
+ width:min(100%,660px);
+ font-size:14px;
+ line-height:23px;
+}
+.andy-doc-guideline strong{color:#236999}
+.andy-doc-guideline span{color:#657585}
+.andy-doc-page .andy-doc-demo .kit-sports-gallery{
+ width:100%;
+ max-width:500px;
+}
+.andy-doc-page .andy-doc-demo .kit-sports-filter,
+.andy-doc-page .andy-doc-demo .kit-sports-sort-example{max-width:360px}
+.andy-doc-page .andy-doc-demo .kit-sports-intro{display:none}
+.andy-doc-page .andy-doc-demo .kit-sports-section{padding:0;margin:0;border:0;background:transparent}
+.andy-doc-page .andy-doc-demo .kit-sports-section>h2{display:none}
+.andy-doc-page .andy-doc-demo .kit-sports-section>div:last-child{width:100%}
+.andy-doc-page .andy-doc-demo .andy-selection-grid{max-width:620px}
+.andy-doc-page .andy-doc-demo .andy-alert{width:min(100%,640px)}
+.andy-doc-page .andy-doc-demo .andy-empty{max-width:540px}
+.andy-doc-page .andy-cal-gallery{width:100%}
+/* El color de reposo de cualquier checkbox/radio de filtros y formularios
+   es Primario 600; las opciones seleccionadas retienen Info500 + blanco. */
+.andy-doc-layout .kit-sports-gallery .kit-sports-option:not(.is-selected) .kit-sports-checkbox,
+.andy-doc-layout .kit-sports-gallery .kit-sports-option:not(.is-selected) .kit-sports-radio,
+.andy-doc-layout .kit-sports-gallery .kit-sports-advanced-choice:not(:has(input:checked)) .kit-sports-advanced-symbol,
+.andy-doc-layout .kit-sports-gallery .kit-sports-inline-choice:not(:has(input:checked)) .kit-sports-inline-symbol,
+.andy-doc-layout .andy-dropdown-variant-option:not(.selected) .andy-dropdown-choice,
+.andy-doc-layout .andy-choice:not(:has(input:checked)) .andy-checkbox-symbol,
+.andy-doc-layout .andy-choice:not(:has(input:checked)) .andy-radio-symbol{
+ color:#236999;
+}
+.andy-doc-layout .kit-sports-gallery .kit-sports-option.is-selected .kit-sports-checkbox,
+.andy-doc-layout .kit-sports-gallery .kit-sports-option.is-selected .kit-sports-radio{color:#fff}
+.andy-doc-layout .kit-sports-gallery .kit-sports-advanced-choice:has(input:checked) .kit-sports-advanced-symbol{color:#006eff}
+@media(max-width:680px){
+ .andy-doc-page .andy-doc-demo .andy-matrix-grid{grid-template-columns:1fr;gap:var(--mlz-space-24)}
+ .andy-doc-page .andy-doc-guideline{grid-template-columns:1fr;gap:var(--mlz-space-4)}
+ .andy-doc-page .andy-doc-guideline span{margin-bottom:var(--mlz-space-12)}
+}
