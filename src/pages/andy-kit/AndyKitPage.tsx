@@ -8,6 +8,7 @@ import { AndyActivityCardGallery } from './AndyActivityCards';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
+import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import './andy-kit.css';
 
 const categories = [
@@ -22,6 +23,7 @@ const categories = [
 ] as const;
 type Category = typeof categories[number]['id'];
 const componentGroups=[
+ {title:'Fundamentos',items:[['espaciados','Espaciados'],['border-radius','Border radius']]}, 
  {title:'Campos de formulario',items:[['input','Input / Text field'],['select','Dropdown / Select'],['textarea','Text area'],['calendario','Calendario / Date Picker'],['adjuntos','Adjuntar archivos']]},
  {title:'Selección',items:[['checkbox','Checkbox'],['radio','Radio button'],['switch','Switch']]},
  {title:'Filtros y navegación',items:[['buscador','Buscador'],['sede','Filtro de Sede'],['edad','Filtro de Edad'],['mas-filtros','Más filtros'],['ordenar','Ordenar por'],['scrollbars','Barras de scroll']]},
@@ -30,6 +32,8 @@ const componentGroups=[
 type ComponentId=typeof componentGroups[number]['items'][number][0];
 const componentEntries:ReadonlyArray<readonly [ComponentId,string]>=componentGroups.flatMap(group=>group.items as ReadonlyArray<readonly [ComponentId,string]>);
 const componentMeta:Record<ComponentId,{description:string;category:string}>={
+ espaciados:{description:'Escala oficial 2–64 px de gaps, márgenes y padding de todos los componentes.',category:'Fundamentos'},
+ 'border-radius':{description:'Escala semántica de redondeos para controles, paneles, tarjetas y drawers.',category:'Fundamentos'},
  input:{description:'Campos de una línea con estados de reposo, hover, foco, completo, error y deshabilitado.',category:'Campos de formulario'},
  select:{description:'Selección única, múltiple y con búsqueda; menús desktop y drawers mobile.',category:'Campos de formulario'},
  textarea:{description:'Campos de texto multilínea y sus estados.',category:'Campos de formulario'},
@@ -140,6 +144,8 @@ function AccordionDemo({multiple=false}:{multiple?:boolean}){
  </div>)}</div>;
 }
 function ComponentDetails({id}:{id:ComponentId}){
+ if(id==='espaciados')return <AndySpacingGuide/>;
+ if(id==='border-radius')return <AndyRadiusGuide/>;
  const formType:{[k:string]:'text'|'dropdown'|'textarea'|'date'|'upload'}={input:'text',select:'dropdown',textarea:'textarea',calendario:'date',adjuntos:'upload'};
  if(formType[id])return <ComponentExample title="Variantes y estados" description="Todos los estados se muestran juntos en una sola caja, con las variantes interactivas debajo.">
   <FormStateMatrix onlyFamily={formType[id]}/></ComponentExample>;
