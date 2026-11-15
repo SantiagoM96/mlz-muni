@@ -3,6 +3,7 @@ import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
+import { AndySportsFormExamples } from './AndySportsFormExamples';
 import { DropdownVariantsGallery } from './DropdownVariantsGallery';
 import { AndyCalendarShowcase } from './AndyCalendarShowcase';
 import { SportsCalendarPicker } from './SportsCalendarPicker';
@@ -128,9 +129,7 @@ function Filters() {return <>
  <DemoSection title="Filtros aplicados" description="Chips de selección múltiples y acción para limpiar el conjunto."><ChipGallery compact /></DemoSection>
  </>}
 function Forms(){
- return <DemoSection title="Componentes de formulario" description="Una sola referencia por familia, con todos sus estados visibles. Dropdown reúne aquí las cuatro variantes abiertas, sin duplicarlas en otros bloques.">
-   <FormStateMatrix/>
- </DemoSection>;
+ return <AndySportsFormExamples/>;
 }
 function SelectionGallery({embedded=false,only}:{embedded?:boolean;only?:'checkbox'|'radio'|'switch'}){
  const [days,setDays]=useState(['Lunes']),[athlete,setAthlete]=useState('Recreativo'),[minor,setMinor]=useState(false);
