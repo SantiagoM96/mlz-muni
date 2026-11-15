@@ -62,3 +62,42 @@ test('Andy: Sede usa drawer con acciones fijas y cierra con gesto hacia abajo',a
   await expect(drawer).toHaveCount(0);
   await expect.poll(()=>page.evaluate(()=>document.body.style.overflow)).toBe('');
 });
+
+
+test('Andy: Más filtros replica secciones, switch y acciones fijas del producto', async ({page},info)=>{
+  test.skip((info.project.use.viewport?.width??900)>680,'Solo mobile');
+  await page.goto('/ui-kit-andy/filtros');
+  await page.getByRole('button',{name:/Más filtros/}).first().click();
+  const sheet=page.getByTestId('sports-mobile-drawer').getByRole('dialog',{name:'Más filtros'});
+  await expect(sheet).toBeVisible();
+  await expect(sheet.getByRole('switch',{name:'Para personas con discapacidad'})).toBeVisible();
+  await expect(sheet.getByRole('button',{name:'Días de cursada'})).toBeVisible();
+  await expect(sheet.getByRole('button',{name:'Tipo de deportista'})).toBeVisible();
+  await expect(sheet.getByRole('button',{name:'Nivel de intensidad'})).toBeVisible();
+  await sheet.getByRole('checkbox',{name:'Sábado'}).check();
+  await expect(sheet.getByRole('checkbox',{name:'Sábado'})).toBeChecked();
+  const footer=sheet.locator('.sports-sheet-footer');
+  await expect(footer.getByRole('button',{name:/Ver resultados \(1\)/})).toBeVisible();
+  await expect(footer.getByRole('button',{name:'Limpiar'})).toBeVisible();
+  await footer.getByRole('button',{name:'Limpiar'}).click();
+  await expect(sheet.getByRole('checkbox',{name:'Sábado'})).not.toBeChecked();
+  await footer.getByRole('button',{name:/Ver resultados/}).click();
+  await expect(sheet).toHaveCount(0);
+});
+
+test('Andy: Ordenar por se abre compacto, marca la opción y no muestra acciones de filtro',async ({page},info)=>{
+  test.skip((info.project.use.viewport?.width??900)>680,'Solo mobile');
+  await page.goto('/ui-kit-andy/filtros');
+  await page.getByRole('button',{name:'Ordenar por'}).click();
+  const sheet=page.getByTestId('sports-mobile-drawer').getByRole('dialog',{name:'Ordenar por'});
+  await expect(sheet).toBeVisible();
+  await expect(sheet.locator('.sports-sheet-footer')).toHaveCount(0);
+  await expect(sheet.getByRole('button',{name:'Alfabético: Z a A'})).toHaveAttribute('aria-pressed','true');
+  const h=await sheet.evaluate(el=>el.getBoundingClientRect().height);
+  expect(h).toBeLessThan((info.project.use.viewport?.height??844)*.75);
+  await sheet.getByRole('button',{name:'Edad: menor a mayor'}).click();
+  await expect(sheet).toHaveCount(0);
+  await page.getByRole('button',{name:'Ordenar por'}).click();
+  const reopened=page.getByTestId('sports-mobile-drawer').getByRole('dialog',{name:'Ordenar por'});
+  await expect(reopened.getByRole('button',{name:'Edad: menor a mayor'})).toHaveAttribute('aria-pressed','true');
+});
