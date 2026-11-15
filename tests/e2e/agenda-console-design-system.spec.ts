@@ -42,7 +42,7 @@ test('consola: selects, botones, días y modales aplican las reglas MLZ sin camb
  await expect(editor).toBeVisible();
  await expect(editor.locator('#console-schedule-kind')).toHaveCSS('border-top-left-radius','4px');
  await editor.getByRole('combobox',{name:'Tipo de fecha'}).selectOption('recurring');
- const weekday=editor.getByRole('button',{name:'Todos los lunes'});
+ const weekday=editor.locator('#console-schedule-weekdays button').first();
  await weekday.click();
  await expect(weekday).toHaveCSS('background-color','rgb(35, 105, 153)');
  await expect(editor.getByRole('button',{name:'Guardar programación'})).toHaveCSS('padding-left','18px');
