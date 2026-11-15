@@ -171,7 +171,7 @@ function MoreFiltersDemo() {
   </div>;
 }
 
-function SortDemo() {
+export function SportsSortDemo() {
   const mobile=useSportsMobile();
   const [open,setOpen]=useState(false);
   const [sort,setSort]=useState('Alfabético: Z a A');
@@ -246,7 +246,7 @@ function FormDemo() {
   </div>;
 }
 
-export function SportsControlsGallery({ mode = 'all', only }: { mode?: 'all' | 'filters'; only?: 'sede'|'edad'|'mas-filtros'|'ordenar' }) {
+export function SportsControlsGallery({ mode = 'all', only, hideSort = false }: { mode?: 'all' | 'filters'; only?: 'sede'|'edad'|'mas-filtros'|'ordenar'; hideSort?:boolean }) {
   return <div className="kit-sports-gallery">
     <p className="kit-sports-intro">Patrones recuperados del prototipo Deportes Anual y de Agenda. Los filtros de catálogo y los campos de inscripción conservan comportamientos diferentes; esta galería no modifica las pantallas productivas.</p>
     <section className="kit-sports-section"><h2>{only ? ({sede:"Sede",edad:"Edad","mas-filtros":"Más filtros",ordenar:"Ordenar por"}[only]) : "Filtros de selección"}</h2>
@@ -256,7 +256,7 @@ export function SportsControlsGallery({ mode = 'all', only }: { mode?: 'all' | '
         {(!only||only==="edad")&&<FilterDemo label="Edad" options={ages} searchable={false} />}
         {(!only||only==="mas-filtros")&&<MoreFiltersDemo />}
       </div>
-      {(!only||only==="ordenar")&&<div className="kit-sports-sort-demo"><SortDemo/></div>}
+      {!hideSort&&(!only||only==="ordenar")&&<div className="kit-sports-sort-demo"><SportsSortDemo/></div>}
     </section>
     {mode === 'all' && !only && <section className="kit-sports-section"><h2>Campos de formulario</h2>
       <p>Los campos mantienen etiqueta, placeholder, foco, completado, deshabilitado y error, sin adoptar el patrón de filtros.</p>
