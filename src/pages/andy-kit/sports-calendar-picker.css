@@ -165,3 +165,45 @@
  .sports-cal-popup.is-mobile .sports-cal-actions .sports-cal-confirm{order:0;flex:1 1 0;background:#236999;border-color:#236999}
  .sports-cal-popup.is-mobile .sports-cal-actions .sports-cal-clear{order:1;flex:1 1 0;background:#fff;border-color:#94c6e5;padding-inline:var(--mlz-space-8)}
 }
+
+
+/* Mes y año: anatomía compartida con Dropdown del UI Kit.
+   Texto 16/24, controles Google Material Symbols, Info 500 seleccionado. */
+.sports-cal-popup .sports-cal-top strong{color:#236999}
+.sports-cal-popup .sports-cal-choice-menu{
+  border:1px solid #c7d8e7;
+  border-radius:var(--mlz-radius-lg);
+  padding:var(--mlz-space-6);
+  background:#fff;
+}
+.sports-cal-popup .sports-cal-choices{
+  gap:var(--mlz-space-2);
+  scrollbar-width:thin;
+  scrollbar-color:#a9bdcd transparent;
+}
+.sports-cal-popup .sports-cal-choice-option{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--mlz-space-10);
+  min-height:44px;
+  padding:var(--mlz-space-8) var(--mlz-space-12);
+  border:0;
+  border-radius:var(--mlz-radius-sm);
+  background:#fff;
+  color:#3d3d3d;
+  font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+}
+.sports-cal-popup .sports-cal-choice-option:not([aria-selected=true]) .material-symbols-outlined{color:#5ba8d5}
+.sports-cal-popup .sports-cal-choice-option:hover:not([aria-selected=true]){background:#edf6fc;color:#236999}
+.sports-cal-popup .sports-cal-choice-option[aria-selected=true],
+.sports-cal-popup .sports-cal-choice-option[aria-selected=true]:hover{
+  background:#006eff;
+  color:#fff;
+  font-weight:500;
+}
+.sports-cal-popup .sports-cal-choice-option[aria-selected=true] .material-symbols-outlined{color:#fff}
+.sports-cal-popup .sports-cal-choice-option:focus-visible{outline:2px solid #006eff;outline-offset:-2px}
+.sports-cal-popup .sports-cal-choice-trigger .material-symbols-outlined,
+.sports-cal-popup .sports-cal-nav .material-symbols-outlined{color:#236999}
+.sports-cal-popup .sports-cal-choice-trigger[aria-expanded=true] .material-symbols-outlined{transform:rotate(180deg)}
