@@ -33,7 +33,7 @@ export function AndyActivityCard({kind}:{kind:CardKind}){
  </div>;
  const data=sportsCard;
  return <article className={'andy-family-card is-'+kind} data-testid={'andy-family-card-'+kind}>
-  <div className="andy-family-card-sports-head"><span>ACTIVIDADES DEPORTIVAS</span><MaterialIcon name="groups" size={24}/></div>
+  <div className="andy-family-card-sports-head" aria-hidden="true"/>
   <div className="andy-family-card-body">
    <div className="andy-family-card-intro">
     <span className="andy-family-card-category">{data.category}</span>
