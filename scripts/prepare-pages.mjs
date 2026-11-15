@@ -7,7 +7,7 @@ const staticPaths = [
   'ui-kit-andy',
   'ui-kit-andy/componentes',
   ...['fundamentos', 'filtros', 'formularios', 'seleccion', 'botones', 'etiquetas', 'tarjetas', 'mensajes'].map(section => `ui-kit-andy/${section}`),
-  ...['input','select','textarea','calendario','adjuntos','checkbox','radio','switch','buscador','sede','edad','mas-filtros','ordenar','scrollbars','boton','chips','tarjeta','mensaje','acordeon'].map(component => `ui-kit-andy/componentes/${component}`),
+  ...['input','select','textarea','calendario','adjuntos','checkbox','radio','switch','buscador','sede','edad','mas-filtros','ordenar','scrollbars','espaciados','border-radius','boton','chips','tarjeta','mensaje','acordeon'].map(component => `ui-kit-andy/componentes/${component}`),
   'ui-kit/formularios',
   'ui-kit/botones',
   'ui-kit/tipografia',
