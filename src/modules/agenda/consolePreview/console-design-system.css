@@ -39,3 +39,27 @@
 .mlz-console .console-action-danger{color:#b5444b}
 .mlz-console .console-action-danger:hover:not(:disabled){background:#fff0f0}
 @media(max-width:639px){.mlz-console .console-modal{border-radius:var(--mlz-radius-2xl) var(--mlz-radius-2xl) 0 0}}
+
+/* Select real + ícono Google Material Symbols: evita flechas nativas negras.
+   Se conserva la navegación y selección por teclado del <select> real. */
+.mlz-console .console-select-wrap{display:block;position:relative;min-width:0;width:100%}
+.mlz-console .console-select-native{
+ display:block;
+ width:100%;
+ appearance:none;
+ -webkit-appearance:none;
+ padding-right:40px;
+ cursor:pointer;
+}
+.mlz-console .console-select-chevron{
+ position:absolute;
+ top:50%;right:12px;
+ transform:translateY(-50%);
+ color:var(--console-primary);
+ pointer-events:none;
+ transition:transform .16s,color .16s;
+}
+.mlz-console .console-select-wrap:focus-within .console-select-chevron{color:var(--console-info)}
+/* Selector nativo: evita barras falsas y conserva el listado propio del SO. */
+.mlz-console select option{background:#fff;color:var(--console-text)}
+.mlz-console select option:checked{background:var(--console-info);color:#fff}
