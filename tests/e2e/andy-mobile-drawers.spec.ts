@@ -74,13 +74,15 @@ test('Andy: Más filtros replica secciones, switch y acciones fijas del producto
   await expect(sheet.getByRole('button',{name:'Días de cursada'})).toBeVisible();
   await expect(sheet.getByRole('button',{name:'Tipo de deportista'})).toBeVisible();
   await expect(sheet.getByRole('button',{name:'Nivel de intensidad'})).toBeVisible();
-  await sheet.getByRole('checkbox',{name:'Sábado'}).check();
   await expect(sheet.getByRole('checkbox',{name:'Sábado'})).toBeChecked();
+  await sheet.getByRole('checkbox',{name:'Lunes'}).check();
+  await expect(sheet.getByRole('checkbox',{name:'Lunes'})).toBeChecked();
   const footer=sheet.locator('.sports-sheet-footer');
-  await expect(footer.getByRole('button',{name:/Ver resultados \(1\)/})).toBeVisible();
+  await expect(footer.getByRole('button',{name:/Ver resultados \(4\)/})).toBeVisible();
   await expect(footer.getByRole('button',{name:'Limpiar'})).toBeVisible();
   await footer.getByRole('button',{name:'Limpiar'}).click();
   await expect(sheet.getByRole('checkbox',{name:'Sábado'})).not.toBeChecked();
+  await expect(sheet.getByRole('checkbox',{name:'Lunes'})).not.toBeChecked();
   await footer.getByRole('button',{name:/Ver resultados/}).click();
   await expect(sheet).toHaveCount(0);
 });
