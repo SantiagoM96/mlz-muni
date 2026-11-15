@@ -201,3 +201,20 @@
  .kit-sports-disability small{font-size:14px}
  .kit-sports-sort-choice{min-height:58px;padding:14px 6px;font-size:16px}
 }
+
+
+/* Paridad de opciones seleccionadas entre desktop y mobile en Sede/Edad.
+   Evita que las reglas antiguas pinten checkbox/radio azul sobre azul. */
+.kit-sports-gallery .kit-sports-option.is-selected,
+.kit-sports-gallery .kit-sports-option.is-selected:hover,
+.kit-sports-gallery .kit-sports-option.is-selected:focus-within{
+  background:#006eff;
+  color:#fff;
+}
+.kit-sports-gallery .kit-sports-option.is-selected .kit-sports-radio,
+.kit-sports-gallery .kit-sports-option.is-selected .kit-sports-checkbox,
+.kit-sports-gallery .kit-sports-option.is-selected .material-symbols-outlined{
+  color:#fff;
+  background:transparent;
+  border:0;
+}
