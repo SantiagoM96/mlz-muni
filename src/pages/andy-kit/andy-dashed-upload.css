@@ -63,11 +63,17 @@
  background:#fff;
 }
 .andy-dashed-upload[data-state="error"] .andy-dashed-upload-title{color:#ef284c}
-.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control{
- --upload-border-color:#c6dff1;
- background:#e5f0f9;
+/* Disabled: superficie suave sin contorno punteado para evitar el choque
+   cromático entre borde y fondo. El campo sigue siendo reconocible. */
+.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control,
+.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control:hover,
+.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control:focus-within{
+ background:#f3f7fc;
+ border-color:transparent;
+ box-shadow:none;
  cursor:not-allowed;
 }
+.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-border{display:none}
 .andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-action,
 .andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-value{color:#94c6e5}
 .andy-dashed-upload[data-state] input[type=file]{pointer-events:none}
