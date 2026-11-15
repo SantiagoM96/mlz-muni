@@ -21,7 +21,7 @@ function SelectField({label,options,full=false}:{label:string;options:string[];f
   <label htmlFor={id}>{label}</label>
   <div className="andy-sports-form-select-wrap">
    <select id={id} defaultValue=""><option value="" disabled>Seleccionar opción</option>{options.map(option=><option key={option} value={option}>{option}</option>)}</select>
-   <MaterialIcon name="keyboard_arrow_down" size={24}/>
+   <MaterialIcon name="expand_more" size={24}/>
   </div>
  </div>;
 }
