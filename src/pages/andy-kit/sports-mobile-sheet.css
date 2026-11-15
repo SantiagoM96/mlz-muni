@@ -38,3 +38,64 @@
 .sports-sheet-content .andy-dropdown-variant-option.selected .andy-dropdown-choice,
 .sports-sheet-content .andy-dropdown-variant-option.selected .andy-dropdown-mark{background:transparent;color:#fff}
 .sports-sheet-content .andy-dropdown-variant-option.selected:hover{background:#006eff;color:#fff}
+
+
+/* El portal vive en document.body: los tokens y reglas del catálogo NO se
+   heredan del contenedor .kit-sports-gallery. Declararlos expresamente. */
+.sports-sheet-layer{
+  --kit-blue:#236999;--kit-info:#006eff;--kit-stroke:#5ba8d5;--kit-ink:#3d3d3d;
+  --primario-600:#236999;
+}
+.sports-mobile-sheet.is-large{height:min(85dvh,750px)}
+/* Un drawer con contenido corto (Sede u Ordenar) no rellena la pantalla. */
+.sports-mobile-sheet.is-normal{height:auto}
+.sports-sheet-heading{font-size:20px;min-height:67px;padding:10px 16px 16px}
+.sports-sheet-content{padding-inline:16px}
+.sports-sheet-content .kit-sports-options{
+  display:flex;flex-direction:column;gap:4px;padding:0 0 14px;
+  min-height:0;max-height:none;overflow:visible;
+}
+.sports-sheet-content .kit-sports-option{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  min-height:52px;margin:0;padding:12px 12px;border-radius:4px;
+  background:transparent;color:#236999;font-size:16px;
+}
+.sports-sheet-content .kit-sports-option:hover{background:#eaf4ff}
+.sports-sheet-content .kit-sports-option.is-selected,
+.sports-sheet-content .kit-sports-option.is-selected:hover{background:#006eff;color:#fff}
+.sports-sheet-content .kit-sports-option .kit-sports-checkbox,
+.sports-sheet-content .kit-sports-option .kit-sports-radio{
+  background:transparent;border:0;color:#236999;width:24px;height:24px;
+}
+.sports-sheet-content .kit-sports-option.is-selected .kit-sports-checkbox,
+.sports-sheet-content .kit-sports-option.is-selected .kit-sports-radio{background:transparent;color:#fff;border:0}
+.sports-sheet-content .kit-sports-option .material-symbols-outlined{color:inherit}
+.sports-sheet-content .kit-sports-advanced{padding-bottom:0}
+.sports-sheet-content .kit-sports-advanced-section{border-top:1px solid #e1e7eb}
+.sports-sheet-content .kit-sports-sort-choices{padding:0 0 2px}
+.sports-sheet-content .kit-sports-sort-choice{
+  border-radius:4px;border-bottom:1px solid #e1e7eb;
+  min-height:60px;font-size:16px;padding:15px 6px;
+}
+.sports-sheet-content .kit-sports-sort-choice:last-child{border-bottom:0}
+.sports-sheet-content .kit-sports-sort-choice.is-selected{background:#e5f0ff;color:#006eff}
+.sports-sheet-footer{padding:12px 16px 8px}
+.sports-sheet-footer .sports-sheet-secondary{
+  flex:0 0 auto;border:0;background:transparent;color:#236999;
+  padding-inline:12px;
+}
+.sports-mobile-sheet.is-large .sports-sheet-footer .sports-sheet-secondary{
+  flex:1 1 0;border:1px solid #c6dff1;border-radius:4px;background:#fff;
+}
+.sports-mobile-sheet.is-large .sports-sheet-footer .sports-sheet-primary{flex:3 1 0}
+.sports-mobile-sheet.actions-form .sports-sheet-footer .sports-sheet-secondary{
+  flex:1 1 0;border:1px solid #c6dff1;background:#fff;
+}
+.sports-mobile-sheet.actions-sort .sports-sheet-footer{display:none}
+.sports-mobile-sheet.actions-sort .sports-sheet-heading{border-bottom:1px solid #e1e7eb;margin:0 16px 0}
+.sports-mobile-sheet.actions-sort .sports-sheet-content{padding-top:6px;padding-bottom:10px}
+@media(max-width:680px){
+  .sports-mobile-sheet .sports-sheet-primary{min-width:0;white-space:nowrap}
+  .sports-mobile-sheet .sports-sheet-footer{gap:8px}
+  .sports-mobile-sheet.is-large .sports-sheet-content{flex:1 1 auto}
+}
