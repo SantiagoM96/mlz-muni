@@ -246,19 +246,19 @@ function FormDemo() {
   </div>;
 }
 
-export function SportsControlsGallery({ mode = 'all' }: { mode?: 'all' | 'filters' }) {
+export function SportsControlsGallery({ mode = 'all', only }: { mode?: 'all' | 'filters'; only?: 'sede'|'edad'|'mas-filtros'|'ordenar' }) {
   return <div className="kit-sports-gallery">
     <p className="kit-sports-intro">Patrones recuperados del prototipo Deportes Anual y de Agenda. Los filtros de catálogo y los campos de inscripción conservan comportamientos diferentes; esta galería no modifica las pantallas productivas.</p>
-    <section className="kit-sports-section"><h2>Filtros de selección</h2>
-      <p>Sede utiliza selección múltiple; Edad, selección única; Más filtros combina checkbox y radio. Las opciones están separadas para que no se peguen al seleccionar varias.</p>
+    <section className="kit-sports-section"><h2>{only ? ({sede:"Sede",edad:"Edad","mas-filtros":"Más filtros",ordenar:"Ordenar por"}[only]) : "Filtros de selección"}</h2>
+      {!only&&<p>Sede utiliza selección múltiple; Edad, selección única; Más filtros combina checkbox y radio. Las opciones están separadas para que no se peguen al seleccionar varias.</p>}
       <div className="kit-sports-filters">
-        <FilterDemo label="Sede" options={venues} multiple searchable={false} />
-        <FilterDemo label="Edad" options={ages} searchable={false} />
-        <MoreFiltersDemo />
+        {(!only||only==="sede")&&<FilterDemo label="Sede" options={venues} multiple searchable={false} />}
+        {(!only||only==="edad")&&<FilterDemo label="Edad" options={ages} searchable={false} />}
+        {(!only||only==="mas-filtros")&&<MoreFiltersDemo />}
       </div>
-      <div className="kit-sports-sort-demo"><SortDemo/></div>
+      {(!only||only==="ordenar")&&<div className="kit-sports-sort-demo"><SortDemo/></div>}
     </section>
-    {mode === 'all' && <section className="kit-sports-section"><h2>Campos de formulario</h2>
+    {mode === 'all' && !only && <section className="kit-sports-section"><h2>Campos de formulario</h2>
       <p>Los campos mantienen etiqueta, placeholder, foco, completado, deshabilitado y error, sin adoptar el patrón de filtros.</p>
       <FormDemo />
     </section>}
