@@ -137,8 +137,7 @@ function Messages(){return <>
  <DemoSection title="Estado sin resultados"><div className="andy-empty"><Icon name="search" size={42}/><h3>No encontramos actividades</h3><p>Probá con otros filtros o cambiá el término de búsqueda.</p><button className="andy-btn andy-btn-outline" type="button">Limpiar filtros</button></div></DemoSection>
 </>}
 function ComponentExample({title,description,children}:{title:string;description?:string;children:ReactNode}){
- return <section className="andy-doc-example" id={title.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}><h3>{title}</h3>{description&&<p>{description}</p>}
-   <div className="andy-doc-preview">{children}</div></section>;
+ return <DocSection title={title} description={description}><DocPreview>{children}</DocPreview></DocSection>;
 }
 function AccordionDemo({multiple=false}:{multiple?:boolean}){
  const [open,setOpen]=useState<string[]>(['1']);
@@ -149,35 +148,134 @@ function AccordionDemo({multiple=false}:{multiple?:boolean}){
   </button>{open.includes(id)&&<div className="andy-doc-accordion-content">{content}</div>}
  </div>)}</div>;
 }
+function FilterExample({kind}:{kind:'sede'|'edad'|'mas-filtros'|'ordenar'}){
+ return <SportsControlsGallery mode="filters" only={kind}/>;
+}
+function FormStates({family}:{family:'text'|'dropdown'|'textarea'|'date'|'upload'}){
+ return <DocSection title="Estados" description="Comparación simultánea de Default, Hover, Focus, Completo, Error y Disabled. Una única superficie contiene todos los controles.">
+  <DocPreview align="start"><FormStateMatrix onlyFamily={family} showExtras={false}/></DocPreview>
+ </DocSection>;
+}
+function FilterDocs({id}:{id:'seleccion-unica'|'seleccion-multiple'|'filtros-avanzados'|'ordenamiento'}){
+ if(id==='seleccion-unica')return <>
+  <ComponentExample title="Selección única" description="El usuario elige una opción a la vez. Edad es el ejemplo real del producto; en mobile se abre como drawer.">
+   <FilterExample kind="edad"/>
+  </ComponentExample>
+  <ComponentExample title="Opciones con radio" description="La opción en reposo utiliza Primario 600; al seleccionarla, el fondo pasa a Info 500 y el control a blanco.">
+   <DropdownVariantsGallery only="radio"/>
+  </ComponentExample>
+ </>;
+ if(id==='seleccion-multiple')return <>
+  <ComponentExample title="Selección múltiple" description="Permite combinar varias sedes. El contador refleja la cantidad de opciones elegidas.">
+   <FilterExample kind="sede"/>
+  </ComponentExample>
+  <ComponentExample title="Opciones con checkbox" description="Íconos de selección en Primario 600 en reposo y blancos sobre el estado seleccionado.">
+   <DropdownVariantsGallery only="checkbox"/>
+  </ComponentExample>
+ </>;
+ if(id==='filtros-avanzados')return <>
+  <ComponentExample title="Filtros combinados" description="Reúne checkbox, radio y switch en secciones desplegables, sin fragmentar el flujo.">
+   <FilterExample kind="mas-filtros"/>
+  </ComponentExample>
+  <ComponentExample title="Selección con buscador" description="Cuando las opciones son numerosas, se incorpora búsqueda dentro del menú.">
+   <DropdownVariantsGallery only="search"/>
+  </ComponentExample>
+ </>;
+ return <ComponentExample title="Ordenamiento" description="Una opción activa a la vez; el control funciona como un filtro de orden, no como un campo de formulario.">
+  <FilterExample kind="ordenar"/>
+ </ComponentExample>;
+}
+const notices=[
+ {id:'success',title:'Success',heading:'Datos completos',body:'El formulario de demostración está listo para continuar.',icon:'check_circle' as const},
+ {id:'info',title:'Info',heading:'Antes de empezar',body:'Completá los datos para continuar con la inscripción.',icon:'error' as const},
+ {id:'warning',title:'Alert',heading:'Información importante',body:'Revisá los requisitos de la actividad antes de inscribirte.',icon:'warning' as const},
+ {id:'error',title:'Error',heading:'Revisá el formulario',body:'Hay campos obligatorios pendientes.',icon:'cancel' as const}
+];
 function ComponentDetails({id}:{id:ComponentId}){
- if(id==='espaciados')return <AndySpacingGuide/>;
- if(id==='border-radius')return <AndyRadiusGuide/>;
- const formType:{[k:string]:'text'|'dropdown'|'textarea'|'date'|'upload'}={input:'text',select:'dropdown',textarea:'textarea',calendario:'date',adjuntos:'upload'};
- if(formType[id])return <ComponentExample title="Variantes y estados" description="Todos los estados se muestran juntos en una sola caja, con las variantes interactivas debajo.">
-  <FormStateMatrix onlyFamily={formType[id]}/></ComponentExample>;
- if(id==='checkbox'||id==='radio'||id==='switch')return <>
-  <ComponentExample title="Selección interactiva"><SelectionGallery only={id}/></ComponentExample>
-  <ComponentExample title="Estados" description="Probá seleccionar y deseleccionar las opciones para observar su comportamiento.">
-    <SelectionGallery embedded only={id}/>
+ if(id==='espaciados')return <>
+  <DocSection title="Escala" description="Los espacios se documentan como tokens, desde 2 px hasta 64 px."><AndySpacingGuide/></DocSection>
+  <DocSection title="Criterios de uso" description="Aplicación consistente de padding, gap y margin en botones, campos y contenedores.">
+   <DocPreview><div className="andy-doc-guideline"><strong>Pequeños · 2–8 px</strong><span>Separación entre ícono y etiqueta.</span><strong>Medios · 10–16 px</strong><span>Padding de controles y distancia entre campos.</span><strong>Grandes · 24–64 px</strong><span>Separación de bloques y secciones.</span></div></DocPreview>
+  </DocSection>
+ </>;
+ if(id==='border-radius')return <>
+  <DocSection title="Escala de radios" description="Radios semánticos para cada familia de superficies."><AndyRadiusGuide/></DocSection>
+  <DocSection title="Dónde utilizar cada radio" description="Se prioriza un radio de 4 px para controles, 6 px para chips y 8 px para tarjetas.">
+   <DocPreview><div className="andy-doc-guideline"><strong>4 px · Controles</strong><span>Input, dropdown y botones.</span><strong>6–8 px · Superficies</strong><span>Chips, popovers y tarjetas.</span><strong>12–16 px · Contenedores</strong><span>Paneles y drawers móviles.</span></div></DocPreview>
+  </DocSection>
+ </>;
+ if(id==='input')return <><FormStates family="text"/>
+  <ComponentExample title="Campo interactivo" description="Escribí para observar cómo se comporta el campo con contenido y foco.">
+   <div className="andy-search-field"><input aria-label="Nombre y apellido" placeholder="Ingresá tu nombre y apellido"/></div>
   </ComponentExample></>;
- if(id==='sede'||id==='edad'||id==='mas-filtros'||id==='ordenar')return <ComponentExample title="Ejemplo interactivo" description="En desktop se abre un desplegable; en mobile se utiliza el drawer del producto de Deportes.">
-  <SportsControlsGallery mode="filters" only={id}/></ComponentExample>;
- if(id==='buscador')return <><ComponentExample title="Buscador"><div className="andy-search-field"><input aria-label="Buscar actividad" placeholder="¿Qué estás buscando?"/><Icon name="search"/></div></ComponentExample>
-  <ComponentExample title="Buscador con contenido"><div className="andy-search-field"><input aria-label="Búsqueda de muestra" defaultValue="Natación"/><Icon name="search"/></div></ComponentExample></>;
- if(id==='scrollbars')return <AndyScrollbarGallery/>;
+ if(id==='textarea')return <><FormStates family="textarea"/>
+  <ComponentExample title="Texto multilínea" description="Permite escribir varias líneas y ajustar la altura.">
+   <div className="andy-form-grid"><label className="andy-field"><span>Observaciones</span><textarea placeholder="Escribí una observación"/></label></div>
+  </ComponentExample></>;
+ if(id==='adjuntos')return <><FormStates family="upload"/>
+  <DocSection title="Criterios de uso" description="La acción de adjuntar se acompaña del nombre del archivo y de mensajes de validación.">
+   <DocPreview><div className="andy-doc-guideline"><strong>Adjuntar</strong><span>La acción se mantiene diferenciada del nombre del archivo.</span><strong>Error y deshabilitado</strong><span>Conservar su semántica y el espacio del contenido.</span></div></DocPreview>
+  </DocSection></>;
+ if(id==='select')return <><FormStates family="dropdown"/>
+  {([['simple','Selección normal','Una opción con marca de confirmación.'],['radio','Selección con radio','Una sola elección con un indicador circular.'],['checkbox','Selección múltiple','Varias opciones con indicadores independientes.'],['search','Con buscador','Filtrado de opciones dentro del menú.']] as const).map(([variant,title,description])=>
+   <ComponentExample key={variant} title={title} description={description}><DropdownVariantsGallery only={variant}/></ComponentExample>)}
+ </>;
+ if(id==='calendario')return <><FormStates family="date"/>
+  <DocSection title="Selección de un día y un rango" description="Ambos calendarios permanecen abiertos para inspeccionar sus estados, fechas y dropdowns internos.">
+   <AndyCalendarShowcase/>
+  </DocSection>
+  <ComponentExample title="Campo desplegable" description="Se conserva el selector original del formulario deportivo: popover en desktop y drawer en mobile.">
+   <div className="andy-matrix-calendar-sample"><SportsCalendarPicker/></div>
+  </ComponentExample>
+ </>;
+ if(id==='checkbox'||id==='radio'||id==='switch')return <>
+  <ComponentExample title="Ejemplo interactivo" description={id==='checkbox'?'Permití seleccionar varias opciones de forma independiente.':id==='radio'?'Solo una alternativa puede estar seleccionada.':'Activá o desactivá la configuración.'}>
+   <SelectionGallery only={id}/>
+  </ComponentExample>
+  <ComponentExample title="Comportamiento y estados" description="Probá la interacción y los indicadores de reposo y seleccionado.">
+   <SelectionGallery embedded only={id}/>
+  </ComponentExample>
+ </>;
+ if(['seleccion-unica','seleccion-multiple','filtros-avanzados','ordenamiento'].includes(id))
+  return <FilterDocs id={id as 'seleccion-unica'|'seleccion-multiple'|'filtros-avanzados'|'ordenamiento'}/>;
+ if(id==='buscador')return <>
+  <ComponentExample title="Vacío" description="Campo de búsqueda con placeholder y símbolo de búsqueda.">
+   <div className="andy-search-field"><input aria-label="Buscar actividad" placeholder="¿Qué estás buscando?"/><Icon name="search"/></div>
+  </ComponentExample>
+  <ComponentExample title="Con contenido" description="El valor ingresado conserva el aspecto del campo.">
+   <div className="andy-search-field"><input aria-label="Búsqueda de muestra" defaultValue="Natación"/><Icon name="search"/></div>
+  </ComponentExample>
+ </>;
+ if(id==='scrollbars')return <DocSection title="Tipos de barras de scroll" description="Tres patrones según dónde se desplaza el contenido: página, dropdown y navegación lateral."><AndyScrollbarGallery/></DocSection>;
  if(id==='boton')return <Buttons/>;
- if(id==='chips')return <Tags/>;
- if(id==='tarjeta')return <Cards/>;
- if(id==='mensaje')return <Messages/>;
+ if(id==='chips')return <>
+  <DocSection title="Colores y variantes" description="Los seis colores oficiales de Figma, con fondo suave y outline; cada uno tiene versión con ícono y sin ícono."><AndyTagPaletteGallery/></DocSection>
+ </>;
+ if(id==='tarjeta')return <>
+  <ComponentExample title="Deportes Anual" description="Cabecera degradada de 34 px y contenido compacto, con metadatos e íconos del producto deportivo.">
+   <div className="andy-single-card-demo"><AndyActivityCard kind="sports"/></div>
+  </ComponentExample>
+  <ComponentExample title="Agenda de la Comunidad" description="Fotografía de 154 px y la misma jerarquía interior que Deportes.">
+   <div className="andy-single-card-demo"><AndyActivityCard kind="agenda"/></div>
+  </ComponentExample>
+ </>;
+ if(id==='mensaje')return <>
+  {notices.map(item=><ComponentExample key={item.id} title={item.title} description="Colores de texto, borde, fondo e ícono tomados del componente mensaje_destacado de Figma.">
+   <div className={'andy-alert andy-alert-'+item.id}><Icon name={item.icon}/><div><strong>{item.heading}</strong><p>{item.body}</p></div></div>
+  </ComponentExample>)}
+  <ComponentExample title="Estado vacío" description="Se muestra cuando no hay resultados para los filtros actuales.">
+   <div className="andy-empty"><Icon name="search" size={42}/><h3>No encontramos actividades</h3><p>Probá con otros filtros o cambiá el término de búsqueda.</p><button type="button" className="andy-btn andy-btn-outline">Limpiar filtros</button></div>
+  </ComponentExample>
+ </>;
  if(id==='acordeon')return <>
   <ComponentExample title="Apertura única" description="Solo un panel abierto a la vez."><AccordionDemo/></ComponentExample>
   <ComponentExample title="Apertura múltiple" description="Podés desplegar varios paneles a la vez."><AccordionDemo multiple/></ComponentExample>
-  <ComponentExample title="Deshabilitado"><div className="andy-doc-accordion"><button type="button" disabled>Sección no disponible <Icon name="expand_more"/></button></div></ComponentExample>
+  <ComponentExample title="Deshabilitado" description="El panel no responde a interacciones."><div className="andy-doc-accordion"><button type="button" disabled>Sección no disponible <Icon name="expand_more"/></button></div></ComponentExample>
  </>;
  return null;
 }
 const tocByComponent:Partial<Record<ComponentId,{id:string;title:string}[]>>={
- calendario:[{id:'seleccion-de-un-dia',title:'Selección de un día'},{id:'seleccion-de-un-rango',title:'Selección de rango'},{id:'campo-desplegable',title:'Campo desplegable'}],
+ calendario:[{id:'estados',title:'Estados'},{id:'seleccion-de-un-dia-y-un-rango',title:'Selección día y rango'},{id:'campo-desplegable',title:'Campo desplegable'}],
  boton:[{id:'variantes',title:'Variantes'},{id:'tamanos',title:'Tamaños'},{id:'estados',title:'Estados'},{id:'iconografia',title:'Íconos'},{id:'uso',title:'Uso y comportamiento'}],
  acordeon:[{id:'apertura-unica',title:'Apertura única'},{id:'apertura-multiple',title:'Apertura múltiple'},{id:'deshabilitado',title:'Deshabilitado'}],
  buscador:[{id:'buscador',title:'Buscador'},{id:'buscador-con-contenido',title:'Buscador con contenido'}]
@@ -188,7 +286,7 @@ function HeadingToc({items}:{items:{id:string;title:string}[]}){
  const [active,setActive]=useState(items[0]?.id??'');
  useEffect(()=>{
   const next=items.length?items:[...document.querySelectorAll<HTMLElement>(
-   '.andy-doc-page .andy-doc-example > h3, .andy-doc-page .andy-section-head > h2, .andy-doc-page .andy-scrollbar-section > h3, .andy-doc-page .andy-palette-variant-heading > h3, .andy-doc-page .andy-button-section-intro > h3'
+   '.andy-doc-page .andy-doc-section-heading > h3, .andy-doc-page .andy-section-head > h2, .andy-doc-page .andy-scrollbar-section > h3, .andy-doc-page .andy-palette-variant-heading > h3, .andy-doc-page .andy-button-section-intro > h3'
   )].map((heading,index)=>{
    const id=heading.parentElement?.id||'andy-toc-'+index;
    if(!heading.parentElement?.id)heading.id=id;
