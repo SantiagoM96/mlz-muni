@@ -17,7 +17,8 @@
 /* SVG alineado a las dimensiones reales del campo: dash 8px / gap 4px.
    La geometría (radius) se toma del propio border-radius del input. */
 .andy-dashed-upload-control{
- --upload-border-width:1px;
+ /* Un SVG antialiasado se percibía más pesado que el borde CSS de 1 px del adjunto original. */
+ --upload-border-width:.75px;
  --upload-border-color:#5ba8d5;
 }
 .andy-dashed-upload-border{
@@ -33,14 +34,14 @@
 .andy-dashed-upload-border rect{stroke-width:var(--upload-border-width)}
 .andy-dashed-upload-control:hover{--upload-border-color:#236999}
 .andy-dashed-upload-control:focus-within{
- --upload-border-width:1px;
+ --upload-border-width:.75px;
  --upload-border-color:#006eff;
 }
 .andy-dashed-upload-control.is-error,
 .andy-dashed-upload-control.is-error:hover,
 .andy-dashed-upload-control.is-error:focus-within{--upload-border-color:#ef284c}
 
-/* Matriz de estados: el patrón SVG sigue siendo 8px dash / 4px gap / 1px stroke. */
+/* Matriz de estados: guiones 8 px / espacio 4 px y trazo óptico equivalente al borde sólido fino. */
 .andy-dashed-state-matrix{width:100%;min-width:0}
 .andy-dashed-state-matrix .andy-state-cell{min-width:0}
 .andy-dashed-state-matrix .andy-dashed-upload-title{font-size:16px}
