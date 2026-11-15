@@ -75,7 +75,7 @@ export function AndyDashedUpload({kind,demoState}:{kind:FileKind;demoState?:Uplo
     <rect x="1" y="1" width={borderSize.width-2} height={borderSize.height-2}
      rx={Math.max(0,borderSize.radius-1)} fill="none"
      stroke="currentColor" strokeWidth="var(--upload-border-width)"
-     strokeDasharray="8 4"/>
+     vectorEffect="non-scaling-stroke" strokeDasharray="8 4"/>
    </svg>}
    <span className="andy-dashed-upload-action">{displayName?'Cambiar':'Seleccionar archivo'}</span>
    <span className={'andy-dashed-upload-value'+(displayName?' has-file':'')} title={displayName||config.hint}>
