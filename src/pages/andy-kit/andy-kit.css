@@ -779,6 +779,9 @@
 }
 .andy-doc-layout .andy-topbar > .andy-version a{color:inherit;text-decoration:none}
 .andy-doc-layout .andy-topbar > .andy-version a:hover{text-decoration:underline}
+.andy-doc-layout .andy-version-updated{display:inline-flex;align-items:center;gap:4px;font-weight:500}
+.andy-doc-layout .andy-version-updated:before{content:'·';margin-inline:2px}
+.andy-doc-layout .andy-version-date:after{content:'·';margin-left:4px}
 .andy-doc-layout .andy-design-system-label{font-weight:700;text-transform:uppercase}
 
 /* Mobile: identidad | versión | hamburguesa (tres columnas independientes). */
@@ -885,6 +888,9 @@
     padding:0 9px;
     font-size:11px;
   }
+  .andy-doc-layout .andy-version-date{display:none}
+  .andy-doc-layout .andy-version-updated-label{display:none}
+  .andy-doc-layout .andy-version-updated{gap:0}
   .andy-doc-layout .andy-sidebar-toggle{
     width:48px;
     min-width:48px;
@@ -899,3 +905,4 @@
   .andy-doc-layout .andy-topbar-heading .andy-eyebrow{font-size:10px;line-height:13px}
   .andy-doc-layout .andy-topbar-heading .andy-design-system-label{font-size:10px;line-height:13px}
 }
+
