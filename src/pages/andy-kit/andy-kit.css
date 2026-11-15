@@ -147,6 +147,7 @@
 .andy-doc-page .andy-matrix-dropdown-types h4,
 .andy-doc-page .andy-matrix-calendar-demo h4{font-size:18px;color:#236999;margin:0 0 var(--mlz-space-12)}
 .andy-doc-page .andy-matrix-calendar-sample{max-width:420px}
+.andy-doc-page .andy-calendar-dropdown-sample{min-height:560px;align-self:flex-start}
 .andy-doc-page .andy-dropdown-variants-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mlz-space-14)}
 .andy-doc-page .andy-dropdown-variant{padding:var(--mlz-space-16)}
 .andy-doc-page .kit-sports-section{padding:0;border:0;margin:0;background:transparent}
