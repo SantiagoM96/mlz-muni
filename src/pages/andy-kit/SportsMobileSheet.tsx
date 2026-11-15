@@ -27,7 +27,7 @@ type Props = {
   onSecondary?:()=>void;
   /** El producto usa una altura contenida por el viewport; el pie queda fijo. */
   size?:'normal'|'large';
-  actions?:'filters'|'form';
+  actions?:'filters'|'form'|'sort';
 };
 
 const elasticUp = (distance:number) => 34 * (1 - Math.exp(distance / 76));
@@ -130,10 +130,10 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
       </button>
       <div className="sports-sheet-heading" id={dialogId}>{title}</div>
       <div className="sports-sheet-content">{children}</div>
-      <div className="sports-sheet-footer">
+      {actions!=='sort'&&<div className="sports-sheet-footer">
         <button type="button" className="sports-sheet-primary" onClick={()=>exit(primary)}>{primaryLabel}</button>
         <button type="button" className="sports-sheet-secondary" onClick={onSecondary??dismiss}>{secondaryLabel}</button>
-      </div>
+      </div>}
     </div>
   </div>,document.body);
 }
