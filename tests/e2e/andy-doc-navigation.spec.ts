@@ -38,6 +38,27 @@ test('Andy: enlaces clásicos de las galerías permanecen disponibles',async ({p
  await expect(page.getByRole('heading',{level:3,name:'Campos de formulario'})).toBeVisible();
 });
 
+test('Andy: Field e Input separan composición y control',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/field');
+ await expect(page.getByRole('heading',{level:2,name:'Field'})).toBeVisible();
+ for(const heading of ['Composición','Anatomía','Field Group','Field Set','Responsive Layout','Validación y errores','Accesibilidad'])
+  await expect(page.getByRole('heading',{level:3,name:heading})).toBeVisible();
+ const nav=page.locator('#andy-component-nav');
+ if(await page.evaluate(()=>innerWidth<=790))await page.getByRole('button',{name:'Abrir menú de componentes'}).click();
+ const fieldLink=nav.getByRole('link',{name:'Field',exact:true});
+ await expect(nav.getByRole('link',{name:'Input',exact:true})).toBeVisible();
+ const formLinks=await fieldLink.locator('..').getByRole('link').allTextContents();
+ expect(formLinks.indexOf('Field')).toBeLessThan(formLinks.indexOf('Input'));
+ await page.goto('/ui-kit-andy/componentes/input');
+ await expect(page.getByRole('heading',{level:2,name:'Input'})).toBeVisible();
+ for(const heading of ['Básico','Field','Estados','Disabled','Invalid','Required','Inline','Grid'])
+  await expect(page.getByRole('heading',{level:3,name:heading})).toBeVisible();
+ await expect(page.locator('#estados .andy-state-cell')).toHaveCount(6);
+ const version=page.locator('.andy-header .andy-version');
+ await expect(version.locator('time')).toHaveAttribute('datetime',/.+/);
+ await expect(version.locator('time')).toHaveText(/^\d{2}:\d{2}$/);
+});
+
 
 test('Andy: los seis estados comparten una sola caja exterior sin tarjetas individuales',async ({page})=>{
  for(const slug of ['input','select','textarea','calendario','adjuntos']){
@@ -157,3 +178,4 @@ test('Andy: la UI del catálogo usa píldoras Info 500 sin alterar componentes d
  await expect(primarySample).toHaveCSS('background-color','rgb(35, 105, 153)');
  await expect(primarySample).toHaveCSS('border-top-left-radius','4px');
 });
+
