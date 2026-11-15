@@ -23,3 +23,25 @@
 .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-button,
 .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-button:single-button{display:none;width:0;height:0}
 .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-corner{background:transparent}
+
+/* Las muestras documentan exclusivamente la barra: el contenido se representa como placeholders neutros. */
+.andy-scrollbar-demo-row{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:var(--mlz-space-16);
+ min-height:44px;
+ flex:0 0 44px;
+ padding:var(--mlz-space-8) var(--mlz-space-12);
+ border-bottom:1px solid #f0f3f6;
+}
+.andy-scrollbar-demo-row:last-child{border-bottom:0}
+.andy-scrollbar-demo-placeholder,
+.andy-scrollbar-demo-index-placeholder{
+ display:block;
+ height:8px;
+ border-radius:var(--mlz-radius-full);
+ background:#e6e9ec;
+}
+.andy-scrollbar-demo-placeholder{width:58%;max-width:190px}
+.andy-scrollbar-demo-index-placeholder{width:22px;flex:0 0 22px;background:#e6e9ec}
