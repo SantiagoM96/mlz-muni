@@ -87,3 +87,105 @@
 .andy-kit .andy-choice .andy-radio-symbol .material-symbols-outlined {
   position:static;color:inherit;
 }
+
+
+/* MLZ UI Kit · documentación por componente. Navegación inspirada en la
+   jerarquía de shadcn/ui, con superficies, tokens e iconografía propios de MLZ. */
+.andy-doc-layout{background:#fff;min-height:100vh}
+.andy-doc-layout .andy-header{position:relative;z-index:30;background:#fff}
+.andy-doc-layout .andy-header .andy-container{padding-top:0}
+.andy-topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:92px}
+.andy-topbar-heading{min-width:0;padding:16px 0}
+.andy-doc-layout .andy-header h1{font-size:23px;line-height:30px;margin:4px 0 0}
+.andy-topbar-actions{display:flex;align-items:center;gap:16px}
+.andy-topbar-actions .andy-version{margin:0;white-space:nowrap}
+.andy-doc-body{display:grid;grid-template-columns:226px minmax(0,1fr);gap:44px;align-items:start;padding-top:30px;padding-bottom:80px;min-height:calc(100vh - 180px)}
+.andy-sidebar{position:sticky;top:24px;max-height:calc(100dvh - 48px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#c6dff1 transparent;padding:4px 14px 32px 0;border-right:1px solid #e1e7eb}
+.andy-sidebar nav{display:flex;flex-direction:column;gap:18px}
+.andy-nav-group{display:flex;flex-direction:column;gap:2px}
+.andy-nav-label{margin:2px 0 -3px 12px;font-size:14px;font-weight:700;line-height:20px;color:#236999}
+.andy-nav-heading{display:block;padding:7px 12px;margin-bottom:3px;font-size:12px;line-height:18px;letter-spacing:.02em;font-weight:700;color:#7b8893}
+.andy-nav-link{display:flex;align-items:center;width:100%;min-height:34px;padding:7px 12px;border-radius:5px;color:#54616e;font-size:13px;line-height:20px;text-decoration:none!important;transition:background-color .13s,color .13s}
+.andy-nav-link:hover{background:#f2f7fc;color:#236999}
+.andy-nav-link.active,.andy-nav-link.active:hover{background:#e5f0f9;color:#236999;font-weight:700}
+.andy-nav-link:focus-visible{outline:2px solid #006eff;outline-offset:-2px}
+.andy-nav-divider{height:1px;background:#e5ebf0;margin:0 12px}
+.andy-doc-main{min-width:0;width:100%;padding-bottom:16px}
+.andy-doc-main .andy-main-heading{align-items:flex-start;margin:4px 0 30px;padding-bottom:22px;border-bottom:1px solid #e1e7eb}
+.andy-doc-main .andy-main-heading h2{font-size:30px;line-height:38px;color:#236999;margin:0}
+.andy-doc-main .andy-main-heading p{color:#8493a0;font-size:13px;margin:0 0 10px}
+.andy-doc-description{font-size:15px;line-height:24px;color:#5f6e7b;max-width:640px;margin-top:12px}
+.andy-doc-layout .andy-section{border:0;border-radius:0;padding:0;margin:0 0 38px;background:transparent}
+.andy-doc-layout .andy-section-head{margin-bottom:14px}
+.andy-doc-layout .andy-section-head h2{font-size:19px;line-height:27px;margin:0 0 6px}
+.andy-doc-layout .andy-section-head p{font-size:14px;color:#697988}
+.andy-doc-layout .andy-embedded-sports .kit-sports-section{background:transparent}
+.andy-doc-page{display:flex;flex-direction:column;gap:30px}
+.andy-doc-example{min-width:0;padding-bottom:20px}
+.andy-doc-example+.andy-doc-example{border-top:1px solid #e7edf3;padding-top:28px}
+.andy-doc-example>h3{color:#236999;font-size:20px;line-height:28px;font-weight:700;margin:0 0 7px}
+.andy-doc-example>p{font-size:14px;line-height:22px;color:#657585;margin:0 0 15px;max-width:720px}
+.andy-doc-preview{min-height:170px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;min-width:0;padding:28px 24px;background:#fff;border:1px solid #dce7ef;border-radius:8px}
+.andy-doc-preview>*{width:100%;min-width:0}
+.andy-doc-page .andy-state-matrix{width:100%}
+.andy-doc-page .andy-matrix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.andy-doc-page .andy-state-cell{min-height:150px;background:#fff;border:1px solid #e3eaf0;border-radius:7px}
+.andy-doc-page .andy-matrix-family{margin:0;padding:0;border:0}
+.andy-doc-page .andy-matrix-family-head{display:none}
+.andy-doc-page .andy-matrix-calendar-demo,
+.andy-doc-page .andy-matrix-dropdown-types{padding-top:28px;margin-top:28px}
+.andy-doc-page .andy-matrix-dropdown-types h4,
+.andy-doc-page .andy-matrix-calendar-demo h4{font-size:18px;color:#236999;margin:0 0 12px}
+.andy-doc-page .andy-matrix-calendar-sample{max-width:420px}
+.andy-doc-page .andy-dropdown-variants-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.andy-doc-page .andy-dropdown-variant{padding:16px}
+.andy-doc-page .kit-sports-section{padding:0;border:0;margin:0;background:transparent}
+.andy-doc-page .kit-sports-section>h2{display:none}
+.andy-doc-page .kit-sports-filters{grid-template-columns:minmax(0,360px);max-width:100%}
+.andy-doc-page .kit-sports-sort-demo{margin:0}
+.andy-doc-page .andy-selection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.andy-doc-page .andy-selection-grid>div{min-width:0}
+.andy-doc-page .andy-switch-card{grid-column:1/-1}
+.andy-doc-accordion{width:100%;max-width:670px;margin:0 auto}
+.andy-doc-accordion-item{border-bottom:1px solid #dbe6ef}
+.andy-doc-accordion-item:first-child{border-top:1px solid #dbe6ef}
+.andy-doc-accordion-item>button,
+.andy-doc-accordion>button{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:56px;padding:14px 10px;border:0;background:#fff;color:#236999;font-size:16px;line-height:24px;text-align:left;font-weight:700}
+.andy-doc-accordion-item>button[aria-expanded=true] .material-symbols-outlined{transform:rotate(180deg)}
+.andy-doc-accordion-item>button .material-symbols-outlined{transition:transform .18s ease}
+.andy-doc-accordion-item>button:hover{background:#f3f8fc}
+.andy-doc-accordion-content{padding:0 10px 18px;font-size:15px;line-height:24px;color:#4e5a65}
+.andy-doc-accordion>button:disabled{color:#94a8b8;background:#e5f0f9;cursor:not-allowed}
+.andy-sidebar-toggle{display:none;align-items:center;justify-content:center;gap:8px;min-height:42px;border:1px solid #c6dff1;border-radius:4px;padding:8px 12px;background:#fff;color:#236999;font-size:14px;font-weight:700}
+.andy-sidebar-backdrop{display:none}
+.andy-doc-layout .andy-footer{border-top:1px solid #e1e7eb;background:#fff;padding:20px 24px;text-align:center;color:#71808e;font-size:12px}
+@media(max-width:1100px){
+ .andy-doc-body{grid-template-columns:202px minmax(0,1fr);gap:26px}
+ .andy-doc-preview{padding:22px 18px}
+ .andy-doc-page .andy-dropdown-variants-grid{grid-template-columns:1fr}
+}
+@media(max-width:790px){
+ .andy-topbar{min-height:76px}
+ .andy-sidebar-toggle{display:flex}
+ .andy-doc-body{display:block;padding-top:24px}
+ .andy-sidebar{display:none;position:fixed;z-index:101;top:0;bottom:0;left:0;width:min(305px,86vw);max-height:none;overflow-y:auto;border:0;border-right:1px solid #dce7ef;background:#fff;padding:22px 18px 48px;box-shadow:10px 0 28px #15394c1c}
+ .andy-sidebar.is-open{display:block}
+ .andy-sidebar-backdrop{display:block;position:fixed;z-index:99;inset:0;width:100%;height:100%;background:#10283a80;border:0}
+ .andy-doc-main .andy-main-heading h2{font-size:26px;line-height:34px}
+ .andy-doc-page .andy-matrix-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:580px){
+ .andy-doc-layout .andy-container{padding-inline:16px}
+ .andy-topbar{align-items:center}
+ .andy-doc-layout .andy-header h1{font-size:20px;line-height:26px}
+ .andy-eyebrow{font-size:10px;letter-spacing:.025em}
+ .andy-topbar-actions{gap:7px;flex-direction:column-reverse;align-items:flex-end}
+ .andy-topbar-actions .andy-version{font-size:11px}
+ .andy-sidebar-toggle{font-size:12px;min-height:34px;padding:5px 9px}
+ .andy-sidebar-toggle .material-symbols-outlined{width:20px!important;height:20px!important;font-size:20px!important}
+ .andy-doc-main .andy-main-heading{gap:10px;margin-bottom:22px}
+ .andy-doc-preview{padding:18px 12px;min-height:140px}
+ .andy-doc-page .andy-matrix-grid{grid-template-columns:1fr}
+ .andy-doc-page .andy-selection-grid{grid-template-columns:1fr}
+ .andy-doc-page .andy-dropdown-variant{padding:12px}
+}
