@@ -25,6 +25,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
  const [open,setOpen]=useState(false);
  const [mode,setMode]=useState<PickerMode>('calendar');
  const [drawerY,setDrawerY]=useState(0);
+ const [dragging,setDragging]=useState(false);
  const [exit,setExit]=useState(false);
  const [transition,setTransition]=useState(false);
  const ref=useRef<HTMLDivElement>(null);
@@ -41,7 +42,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
  const canPrevious=view.year>1900||(view.year===1900&&view.month>0);
  const canNext=view.year<todayYear||(view.year===todayYear&&view.month<todayMonth);
  const clearTimer=()=>{if(timeout.current){clearTimeout(timeout.current);timeout.current=null;}};
- const finish=()=>{clearTimer();setOpen(false);setMode('calendar');setExit(false);setDrawerY(0);setTransition(false);trigger.current?.focus({preventScroll:true});};
+ const finish=()=>{clearTimer();setOpen(false);setMode('calendar');setExit(false);setDrawerY(0);setTransition(false);setDragging(false);trigger.current?.focus({preventScroll:true});};
  const close=(animate=true)=>{
    if(!open||exit)return;
    setMode('calendar');
@@ -90,7 +91,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
  const dragStart=(event:ReactPointerEvent<HTMLButtonElement>)=>{
    if(!mobile||exit||(event.pointerType==='mouse'&&event.button!==0))return;
    gesture.current={pointerId:event.pointerId,start:event.clientY,height:panel.current?.offsetHeight||500,startTime:performance.now(),delta:0};
-   setTransition(false);
+   setTransition(false);setDragging(true);
    event.currentTarget.setPointerCapture(event.pointerId);event.preventDefault();
  };
  const dragMove=(event:ReactPointerEvent<HTMLButtonElement>)=>{
@@ -100,7 +101,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
  };
  const dragEnd=(event:ReactPointerEvent<HTMLButtonElement>)=>{
    const g=gesture.current;if(!g||g.pointerId!==event.pointerId)return;
-   gesture.current=null;
+   gesture.current=null;setDragging(false);
    if(event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.releasePointerCapture(event.pointerId);
    const duration=Math.max(1,performance.now()-g.startTime);
    if(g.delta>Math.min(168,Math.max(120,g.height*.24))||(g.delta>55&&g.delta/duration>.8)){
@@ -121,7 +122,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
        onClick={()=>pickView('year',year)}><span>{year}</span>
        <MaterialIcon name={view.year===year?'radio_button_checked':'radio_button_unchecked'} size={24}/></button>)}
  </div>;
- const body=<div className={'sports-cal-popup'+(mobile?' is-mobile':'')+(exit?' is-exiting':'')+(transition?' is-rebounding':'')} ref={panel}
+ const body=<div className={'sports-cal-popup'+(mobile?' is-mobile':'')+(exit?' is-exiting':'')+(transition?' is-rebounding':'')+(dragging?' is-dragging':'')} ref={panel}
    role="dialog" aria-modal={mobile} aria-label={mode==='calendar'?'Seleccionar fecha':mode==='month'?'Seleccionar mes':'Seleccionar año'}
    style={{'--cal-y':drawerY+'px','--cal-opacity':Math.max(0,1-drawerY/Math.max(panel.current?.offsetHeight||500,1))} as CSSProperties}>
    {mobile&&<button type="button" className="sports-cal-grab" aria-label="Arrastrá hacia abajo para cerrar calendario"
