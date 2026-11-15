@@ -227,7 +227,7 @@
 .andy-directory-grid>a:hover{border-color:#94c6e5;background:#f8fbfe}
 .andy-directory-grid>a>strong{color:#236999;font-size:16px;line-height:23px;font-weight:700}
 .andy-directory-grid>a>span{font-size:13px;line-height:20px;color:#71808c}
-.andy-directory-grid>a>.material-symbols-outlined{position:absolute;top:19px;right:14px;color:#5ba8d5}
+.andy-directory-grid>a>.material-symbols-outlined{position:absolute;top:50%;right:var(--mlz-space-14);transform:translateY(-50%);color:#236999;flex-shrink:0}
 .andy-doc-page .andy-section>div:last-child:not(.andy-section-head){min-width:0;padding:var(--mlz-space-24) var(--mlz-space-24);border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);background:#fff}
 .andy-doc-page .andy-section>div.andy-section-head:last-child{padding:0;border:0}
 @media(max-width:580px){
