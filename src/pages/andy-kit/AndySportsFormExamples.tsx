@@ -1,6 +1,10 @@
-import { useId, useState, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { DocSection } from './AndyDocsPrimitives';
+import { SportsCalendarPicker } from './SportsCalendarPicker';
+import { SportsMobileSheet, useSportsMobile } from './SportsMobileSheet';
+import './andy-button-matrix.css';
+import './dropdown-variants-gallery.css';
 import './andy-sports-form-examples.css';
 
 /** Ejemplos de composición basados en el formulario de inscripción Deportes Anual.
@@ -17,12 +21,39 @@ function TextField({label,placeholder,type='text',full=false}:{label:string;plac
 }
 function SelectField({label,options,full=false}:{label:string;options:string[];full?:boolean}){
  const id=useId();
- return <div className={'andy-field andy-sports-form-select'+(full?' is-full':'')}>
-  <label htmlFor={id}>{label}</label>
+ const mobile=useSportsMobile();
+ const root=useRef<HTMLDivElement>(null);
+ const [selected,setSelected]=useState('');
+ const [open,setOpen]=useState(false);
+ useEffect(()=>{
+  if(!open||mobile)return;
+  const onPointer=(event:PointerEvent)=>{if(root.current&&!root.current.contains(event.target as Node))setOpen(false);};
+  const onKey=(event:KeyboardEvent)=>{if(event.key==='Escape')setOpen(false);};
+  document.addEventListener('pointerdown',onPointer);
+  document.addEventListener('keydown',onKey);
+  return ()=>{document.removeEventListener('pointerdown',onPointer);document.removeEventListener('keydown',onKey);};
+ },[open,mobile]);
+ const choices=<div className="andy-dropdown-variant-options" role="radiogroup" aria-label={label}>
+  {options.map(option=><label className={'andy-dropdown-variant-option'+(selected===option?' selected':'')} key={option}>
+   <span>{option}</span>
+   <input type="radio" name={id} checked={selected===option} onChange={()=>{setSelected(option);if(!mobile)setOpen(false);}}/>
+   <span className="andy-dropdown-mark" aria-hidden="true">{selected===option&&<MaterialIcon name="check" size={24}/>}</span>
+  </label>)}
+ </div>;
+ return <div className={'andy-field andy-sports-form-select'+(full?' is-full':'')} ref={root}>
+  <label id={id+'-label'}>{label}</label>
   <div className="andy-sports-form-select-wrap">
-   <select id={id} defaultValue=""><option value="" disabled>Seleccionar opción</option>{options.map(option=><option key={option} value={option}>{option}</option>)}</select>
-   <MaterialIcon name="expand_more" size={24}/>
+   <button type="button" className={'andy-dropdown-variant-trigger'+(open?' is-open':'')}
+    aria-labelledby={id+'-label'} aria-expanded={open} aria-haspopup={mobile?'dialog':'listbox'}
+    onClick={()=>setOpen(value=>!value)}>
+    <span className={selected?'':'andy-sports-form-placeholder'}>{selected||'Seleccionar opción'}</span>
+    <MaterialIcon name="expand_more" size={24}/>
+   </button>
+   {open&&!mobile&&<div className="andy-dropdown-variant-menu andy-sports-form-select-menu">{choices}</div>}
   </div>
+  {mobile&&open&&<SportsMobileSheet open={open} title={label} actions="form"
+   onClose={()=>setOpen(false)} primaryLabel="Confirmar" secondaryLabel="Limpiar"
+   onPrimary={()=>setOpen(false)} onSecondary={()=>setSelected('')}>{choices}</SportsMobileSheet>}
  </div>;
 }
 function RadioQuestion({label,options=['Sí','No']}:{label:string;options?:string[]}){
@@ -63,7 +94,7 @@ export function AndySportsFormExamples(){
     <TextField label="Nombre" placeholder="Ingresar nombre"/>
     <TextField label="Apellido" placeholder="Ingresar apellido"/>
     <TextField label="DNI" placeholder="Ingresá documento" full/>
-    <TextField label="Fecha de nacimiento" placeholder="Seleccionar fecha" type="date" full/>
+    <div className="andy-sports-form-date is-full"><SportsCalendarPicker label="Fecha de nacimiento"/></div>
     <SelectField label="Género" options={['Femenino','Masculino','No binario','Prefiero no responder']} full/>
     <TextField label="Teléfono" placeholder="Ingresar teléfono" type="tel"/>
     <TextField label="Teléfono alternativo" placeholder="Ingresar teléfono alternativo" type="tel"/>
