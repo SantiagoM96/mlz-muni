@@ -54,7 +54,7 @@ function StateField({family, state}:{family:Family;state:FieldState}) {
     {isError&&<small className="andy-matrix-error">{family==='upload'?'Adjuntá el archivo solicitado.':'Revisá este campo para continuar.'}</small>}
   </div>;
 }
-export function FormStateMatrix({onlyFamily}:{onlyFamily?:Family}={}){
+export function FormStateMatrix({onlyFamily,showExtras=true}:{onlyFamily?:Family;showExtras?:boolean}={}){
  return <div className="andy-state-matrix">
   {!onlyFamily&&<p className="andy-matrix-intro">Cada familia aparece una sola vez, con sus seis estados simultáneos para comparar bordes, fondos, íconos, textos y dimensiones. El dropdown incluye además sus cuatro variantes abiertas e interactivas.</p>}
   {families.filter(family=>!onlyFamily||family.id===onlyFamily).map(family=><section key={family.id} className="andy-matrix-family">
@@ -65,11 +65,11 @@ export function FormStateMatrix({onlyFamily}:{onlyFamily?:Family}={}){
       </StateCell>)}
 
     </div>
-    {family.id==='dropdown'&&<div className="andy-matrix-dropdown-types">
+    {showExtras&&family.id==='dropdown'&&<div className="andy-matrix-dropdown-types">
       <h4>Variantes de menú abierto</h4>
       <DropdownVariantsGallery/>
     </div>}
-    {family.id==='date'&&<div className="andy-matrix-calendar-demo">
+    {showExtras&&family.id==='date'&&<div className="andy-matrix-calendar-demo">
       <h4>Calendarios abiertos · selección de día y rango</h4>
       <p>Dos demostraciones interactivas siempre visibles. La selección única marca un día; la selección de rango destaca sus extremos y todos los días intermedios. Los selectores de mes y año respetan los estados y colores de nuestros dropdowns.</p>
       <AndyCalendarShowcase/>
