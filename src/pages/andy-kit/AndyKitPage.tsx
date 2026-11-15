@@ -4,6 +4,7 @@ import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIco
 import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
 import { ColorTokensGallery } from './ColorTokensGallery';
+import { AndyActivityCardGallery } from './AndyActivityCards';
 import './andy-kit.css';
 
 const categories = [
@@ -109,8 +110,12 @@ function ChipGallery({compact=false}:{compact?:boolean}){
  return <div className="andy-chip-demo">{chips.map(t=><span className="andy-chip" key={t}>{t}<button type="button" aria-label={'Quitar '+t} onClick={()=>setChips(v=>v.filter(c=>c!==t))}><Icon name="close" size={18}/></button></span>)}<button type="button" className="andy-chip-clear" onClick={()=>setChips(compact?['Lunes','Casa Ari','Recreativo']:[])}>{compact?'Restablecer':'Limpiar filtros'}</button></div>;
 }
 function Tags(){return <><DemoSection title="Filtros activos"><ChipGallery/></DemoSection><DemoSection title="Etiquetas de actividad" description="Metadatos para edades, tipos de actividades, accesibilidad y disponibilidad."><div className="andy-tags"><span className="andy-tag">Hasta 2 años</span><span className="andy-tag">Actividad recreativa</span><span className="andy-tag andy-tag-success">Personas con discapacidad</span><span className="andy-tag andy-tag-outline">Cupos limitados</span><span className="andy-tag andy-tag-muted">Deporte</span></div></DemoSection></>}
-function Cards(){return <><DemoSection title="Tarjeta de actividad" description="Familia visual del catálogo de Deportes: categoría, título, metadata, etiqueta y acceso a detalle."><div className="andy-cards"><article className="andy-card"><div className="andy-card-visual"><Icon name="groups" size={40}/></div><div className="andy-card-body"><span className="andy-card-category">DEPORTE Y RECREACIÓN</span><h3>Natación recreativa</h3><span className="andy-tag">6 a 12 años</span><p><Icon name="calendar_month" size={20}/> Lunes y miércoles</p><p><Icon name="schedule" size={20}/> 10:00 a 11:00 h</p><p><Icon name="location_on" size={20}/> Natatorio Gregorio «Guyo» Sember</p><button type="button" className="andy-inline-action">Ver más <Icon name="arrow_forward" size={18}/></button></div></article><article className="andy-summary"><h3>Resumen de inscripción</h3><p><strong>Actividad</strong> Natación recreativa</p><p><strong>Sede</strong> Natatorio Gregorio «Guyo» Sember</p><p><strong>Días y horario</strong> Lunes y miércoles, 10:00 h</p><button type="button" className="andy-btn andy-btn-primary">Continuar inscripción</button></article></div></DemoSection>
- <DemoSection title="Selección de comisión"><CommissionPreview/></DemoSection></>}
+function Cards(){return <>
+ <DemoSection title="Tarjetas de actividad · Deportes y Agenda" description="Dos variantes hermanas del mismo patrón: Deportes conserva la cabecera celeste; Agenda mantiene la imagen del catálogo. Comparten radio, jerarquía, espaciado, metadatos y acceso a detalle.">
+  <AndyActivityCardGallery/>
+ </DemoSection>
+ <DemoSection title="Selección de comisión" description="Componente complementario del flujo de inscripción deportiva."><CommissionPreview/></DemoSection>
+</>}
 function CommissionPreview(){const [sel,setSel]=useState('1');return <div className="andy-commissions">{[['1','Lunes y miércoles','10:00 a 11:00 h'],['2','Martes y jueves','16:00 a 17:00 h']].map(([id,day,time])=><button key={id} type="button" className={'andy-commission '+(sel===id?'chosen':'')} onClick={()=>setSel(id ?? '')}><span className="andy-commission-radio"/><span><strong>{day}</strong><small>{time}</small><small>Profesor/a a confirmar</small></span><span className="andy-tag">Disponible</span></button>)}</div>}
 function Messages(){return <>
  <DemoSection title="Mensajes destacados" description="Cuatro variantes semánticas de Figma · mensaje_destacado. Mismos tokens para desktop y mobile.">
