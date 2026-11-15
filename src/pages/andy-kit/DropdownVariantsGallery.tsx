@@ -81,6 +81,6 @@ function VariantCard({id,title,note,label}:{id:Variant;title:string;note:string;
 export function DropdownVariantsGallery({only}:{only?:Variant}={}){
   return <div className="andy-dropdown-variants">
     {!only&&<p className="andy-dropdown-variants-intro">Cuatro variantes con el menú abierto por defecto. Podés cambiar las opciones, filtrar, seleccionar varias y cerrar o volver a abrir cada dropdown. Estos ejemplos no modifican inscripciones reales.</p>}
-    <div className="andy-dropdown-variants-grid">{definitions.map(d=><VariantCard key={d.id} {...d}/>)}</div>
+    <div className="andy-dropdown-variants-grid">{definitions.filter(d=>!only||d.id===only).map(d=><VariantCard key={d.id} {...d}/>)}</div>
   </div>;
 }
