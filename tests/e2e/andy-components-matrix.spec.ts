@@ -27,3 +27,28 @@ test('Andy: cinco tipos de botones, seis estados, tres tamaños y cuatro opcione
  for(const kind of kinds)for(const icon of ['none','start','end','only'])
   await expect(page.locator(`.andy-button-icon-matrix [data-kind="${kind}"][data-icon="${icon}"]`)).toHaveCount(1);
 });
+
+
+test('Andy: padding óptico compensado del lado del icono en todos los tamaños',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/boton');
+ for(const [size,base,inset] of [['Large',24,6],['Medium',16,4],['Small',12,3]] as const){
+  await page.getByRole('button',{name:new RegExp('^'+size)}).click();
+  for(const kind of ['primary','secondary','tertiary','ghost']){
+   const start=page.locator(`.andy-button-icon-matrix [data-kind="${kind}"][data-icon="start"]`);
+   const end=page.locator(`.andy-button-icon-matrix [data-kind="${kind}"][data-icon="end"]`);
+   const plain=page.locator(`.andy-button-icon-matrix [data-kind="${kind}"][data-icon="none"]`);
+   await expect(plain).toHaveCSS('padding-left',base+'px');
+   await expect(plain).toHaveCSS('padding-right',base+'px');
+   await expect(start).toHaveCSS('padding-left',(base-inset)+'px');
+   await expect(start).toHaveCSS('padding-right',base+'px');
+   await expect(end).toHaveCSS('padding-left',base+'px');
+   await expect(end).toHaveCSS('padding-right',(base-inset)+'px');
+  }
+  const link=page.locator('.andy-button-icon-matrix [data-kind="link"][data-icon="start"]');
+  await expect(link).toHaveCSS('padding-left','0px');
+  await expect(link).toHaveCSS('padding-right','0px');
+  const only=page.locator('.andy-button-icon-matrix [data-kind="primary"][data-icon="only"]');
+  await expect(only).toHaveCSS('padding-left','0px');
+  await expect(only).toHaveCSS('padding-right','0px');
+ }
+});
