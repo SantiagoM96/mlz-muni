@@ -1,4 +1,4 @@
-import { useId, useState, type ChangeEvent } from 'react';
+import { useId, useLayoutEffect, useRef, useState, type ChangeEvent } from 'react';
 import './andy-dashed-upload.css';
 
 type FileKind = 'photo' | 'document' | 'pdf';
@@ -16,6 +16,24 @@ export function AndyDashedUpload({kind}:{kind:FileKind}){
  const config=configs[kind];
  const [file,setFile]=useState<File|null>(null);
  const [error,setError]=useState('');
+ const controlRef=useRef<HTMLDivElement>(null);
+ const [borderSize,setBorderSize]=useState({width:0,height:0,radius:0});
+ useLayoutEffect(()=>{
+  const element=controlRef.current;
+  if(!element)return;
+  const measure=()=>{
+   const computed=window.getComputedStyle(element);
+   setBorderSize({
+    width:element.clientWidth,
+    height:element.clientHeight,
+    radius:Number.parseFloat(computed.borderTopLeftRadius)||0,
+   });
+  };
+  measure();
+  const observer=new ResizeObserver(measure);
+  observer.observe(element);
+  return()=>observer.disconnect();
+ },[]);
  function onChange(event:ChangeEvent<HTMLInputElement>){
   const next=event.currentTarget.files?.[0];
   if(!next)return;
@@ -37,7 +55,15 @@ export function AndyDashedUpload({kind}:{kind:FileKind}){
  }
  return <div className="andy-dashed-upload">
   <label className="andy-dashed-upload-title" htmlFor={id}>{config.label}</label>
-  <div className={'andy-dashed-upload-control'+(file?' is-filled':'')+(error?' is-error':'')}>
+  <div ref={controlRef} className={'andy-dashed-upload-control'+(file?' is-filled':'')+(error?' is-error':'')}>
+   {borderSize.width>2&&borderSize.height>2&&<svg className="andy-dashed-upload-border"
+    viewBox={`0 0 ${borderSize.width} ${borderSize.height}`}
+    width="100%" height="100%" aria-hidden="true" focusable="false">
+    <rect x="1" y="1" width={borderSize.width-2} height={borderSize.height-2}
+     rx={Math.max(0,borderSize.radius-1)} fill="none"
+     stroke="currentColor" strokeWidth="var(--upload-border-width)"
+     strokeDasharray="8 4"/>
+   </svg>}
    <span className="andy-dashed-upload-action">{file?'Cambiar':'Seleccionar archivo'}</span>
    <span className={'andy-dashed-upload-value'+(file?' has-file':'')} title={file?.name||config.hint}>
     {file?.name||config.hint}
