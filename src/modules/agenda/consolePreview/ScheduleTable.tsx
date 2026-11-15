@@ -14,8 +14,8 @@ interface Props {
 type ActionTone = 'primary' | 'danger';
 
 const actionClassNames: Record<ActionTone, string> = {
-  primary: 'inline-flex h-10 w-10 items-center justify-center rounded-[6px] text-primary-600 hover:bg-[#eaf3f9] focus-visible:outline-2 focus-visible:outline-primary-600',
-  danger: 'inline-flex h-10 w-10 items-center justify-center rounded-[6px] text-[#b5444b] hover:bg-[#ffedef] focus-visible:outline-2 focus-visible:outline-[#b5444b]',
+  primary: 'console-action-ghost console-icon-only focus-visible:outline-2 focus-visible:outline-primary-600',
+  danger: 'console-action-danger console-icon-only focus-visible:outline-2 focus-visible:outline-[#b5444b]',
 };
 
 function ScheduleActionButton({
@@ -37,7 +37,7 @@ function ScheduleActionButton({
 /** Tabla de programaciones: render puro; el estado y los handlers pertenecen a la página. */
 export function ScheduleTable({ schedules, venues, onEdit, onDuplicate, onRemove }: Props) {
   return (
-    <div className="overflow-x-auto rounded-[8px] border border-[#d4e2eb]" data-testid="console-schedules-table">
+    <div className="console-schedule-table overflow-x-auto rounded-[8px] border border-[#d4e2eb]" data-testid="console-schedules-table">
       <table className="w-full min-w-[680px] border-collapse text-left text-[15px]">
         <thead className="bg-[#eaf3f9] text-primary-600">
           <tr>
