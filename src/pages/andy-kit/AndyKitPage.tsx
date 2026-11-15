@@ -180,6 +180,14 @@ function FormStates({family}:{family:'text'|'dropdown'|'textarea'|'date'|'upload
   <DocPreview align="start"><FormStateMatrix onlyFamily={family} showExtras={false}/></DocPreview>
  </DocSection>;
 }
+function GuidelineTable({rows}:{rows:readonly (readonly [string,string])[]}){
+ return <div className="andy-doc-guideline-table-wrap">
+  <table className="andy-doc-guideline-table">
+   <thead><tr><th scope="col">Elemento</th><th scope="col">Descripción</th></tr></thead>
+   <tbody>{rows.map(([name,description])=><tr key={name}><th scope="row">{name}</th><td>{description}</td></tr>)}</tbody>
+  </table>
+ </div>;
+}
 function FieldDocs(){
  return <>
   <ComponentExample title="Composición" description="Field reúne la etiqueta, el control, la ayuda y el mensaje de validación sin definir el tipo de control.">
@@ -188,7 +196,7 @@ function FieldDocs(){
    </div>
   </ComponentExample>
   <DocSection title="Anatomía" description="Una estructura consistente permite reemplazar el control sin perder su etiqueta, ayuda o error.">
-   <DocPreview><div className="andy-doc-guideline"><strong>Field</strong><span>Contenedor de un único campo.</span><strong>FieldLabel</strong><span>Nombre asociado al control.</span><strong>Control</strong><span>Input, Select, Textarea, Checkbox, Radio o Switch.</span><strong>FieldDescription</strong><span>Ayuda opcional antes de completar.</span><strong>FieldError</strong><span>Mensaje de validación asociado al control.</span></div></DocPreview>
+   <DocPreview><GuidelineTable rows={[["Field","Contenedor de un único campo."],["FieldLabel","Nombre asociado al control."],["Control","Input, Select, Textarea, Checkbox, Radio o Switch."],["FieldDescription","Ayuda opcional antes de completar."],["FieldError","Mensaje de validación asociado al control."]]}/></DocPreview>
   </DocSection>
   <ComponentExample title="Field Group" description="Agrupa campos relacionados y conserva el mismo ritmo vertical entre cada bloque.">
    <div className="andy-form-grid">
@@ -209,7 +217,7 @@ function FieldDocs(){
    <div className="andy-form-grid"><label className="andy-field"><span>Correo electrónico</span><input type="email" aria-invalid="true" defaultValue="correo-incompleto" aria-describedby="field-email-error"/><small id="field-email-error">Ingresá una dirección de correo válida.</small></label></div>
   </ComponentExample>
   <DocSection title="Accesibilidad" description="La asociación semántica debe mantenerse aunque cambien el control o la disposición visual.">
-   <DocPreview><div className="andy-doc-guideline"><strong>Etiqueta</strong><span>Usar label y htmlFor, o envolver directamente el control.</span><strong>Ayuda</strong><span>Vincular las descripciones mediante aria-describedby cuando corresponda.</span><strong>Error</strong><span>Combinar aria-invalid con un mensaje que indique cómo resolverlo.</span><strong>Agrupación</strong><span>Usar fieldset y legend para opciones que compartan una consigna.</span></div></DocPreview>
+   <DocPreview><GuidelineTable rows={[["Etiqueta","Usar label y htmlFor, o envolver directamente el control."],["Ayuda","Vincular las descripciones mediante aria-describedby cuando corresponda."],["Error","Combinar aria-invalid con un mensaje que indique cómo resolverlo."],["Agrupación","Usar fieldset y legend para opciones que compartan una consigna."]]}/></DocPreview>
   </DocSection>
  </>;
 }
@@ -249,13 +257,13 @@ function ComponentDetails({id}:{id:ComponentId}){
  if(id==='espaciados')return <>
   <DocSection title="Escala" description="Los espacios se documentan como tokens, desde 2 px hasta 64 px."><AndySpacingGuide/></DocSection>
   <DocSection title="Criterios de uso" description="Aplicación consistente de padding, gap y margin en botones, campos y contenedores.">
-   <DocPreview><div className="andy-doc-guideline"><strong>Pequeños · 2–8 px</strong><span>Separación entre ícono y etiqueta.</span><strong>Medios · 10–16 px</strong><span>Padding de controles y distancia entre campos.</span><strong>Grandes · 24–64 px</strong><span>Separación de bloques y secciones.</span></div></DocPreview>
+   <DocPreview><GuidelineTable rows={[["Pequeños · 2–8 px","Separación entre ícono y etiqueta."],["Medios · 10–16 px","Padding de controles y distancia entre campos."],["Grandes · 24–64 px","Separación de bloques y secciones."]]}/></DocPreview>
   </DocSection>
  </>;
  if(id==='border-radius')return <>
   <DocSection title="Escala de radios" description="Radios semánticos para cada familia de superficies."><AndyRadiusGuide/></DocSection>
   <DocSection title="Dónde utilizar cada radio" description="Se prioriza un radio de 4 px para controles, 6 px para chips y 8 px para tarjetas.">
-   <DocPreview><div className="andy-doc-guideline"><strong>4 px · Controles</strong><span>Input, dropdown y botones.</span><strong>6–8 px · Superficies</strong><span>Chips, popovers y tarjetas.</span><strong>12–16 px · Contenedores</strong><span>Paneles y drawers móviles.</span></div></DocPreview>
+   <DocPreview><GuidelineTable rows={[["4 px · Controles","Input, dropdown y botones."],["6–8 px · Superficies","Chips, popovers y tarjetas."],["12–16 px · Contenedores","Paneles y drawers móviles."]]}/></DocPreview>
   </DocSection>
  </>;
  if(id==='field')return <FieldDocs/>;
@@ -275,7 +283,7 @@ function ComponentDetails({id}:{id:ComponentId}){
    <DocPreview><AndyUploadPreviews/></DocPreview>
   </DocSection>
   <DocSection title="Criterios de uso" description="Las dos variantes conservan la selección nativa de archivos y la validación de tamaño y formato.">
-   <DocPreview><div className="andy-doc-guideline"><strong>Adjuntar original</strong><span>Bandeja celeste con acción sólida y nombre de archivo.</span><strong>Borde punteado</strong><span>Acción de seleccionar o cambiar integrada al campo.</span><strong>Estados</strong><span>Default, Hover, Focus, Completo, Error y Disabled; comparar ambas matrices antes de usarlas.</span></div></DocPreview>
+   <DocPreview><GuidelineTable rows={[["Adjuntar original","Bandeja celeste con acción sólida y nombre de archivo."],["Borde punteado","Acción de seleccionar o cambiar integrada al campo."],["Estados","Default, Hover, Focus, Completo, Error y Disabled; comparar ambas matrices antes de usarlas."]]}/></DocPreview>
   </DocSection>
  </>;
  if(id==='select')return <><FormStates family="dropdown"/>
