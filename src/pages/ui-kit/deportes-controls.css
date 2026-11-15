@@ -132,22 +132,22 @@
 .kit-sports-gallery .kit-sports-inline-symbol.kit-sports-inline-checkbox,
 .kit-sports-gallery .kit-sports-inline-symbol.kit-sports-inline-radio {
   display:grid;place-items:center;width:24px;height:24px;flex:0 0 24px;
-  border:0;border-radius:0;background:#fff;padding:0;color:#5ba8d5;
+  border:0;border-radius:0;background:transparent;padding:0;color:#5ba8d5;
 }
 .kit-sports-gallery .kit-sports-option:hover .kit-sports-radio,
 .kit-sports-gallery .kit-sports-option:hover .kit-sports-checkbox,
 .kit-sports-gallery .kit-sports-inline-choice:hover .kit-sports-inline-symbol {
-  border:0;background:#fff;color:#236999;
+  border:0;background:transparent;color:#236999;
 }
 .kit-sports-gallery .kit-sports-option.is-selected .kit-sports-radio,
 .kit-sports-gallery .kit-sports-option.is-selected .kit-sports-checkbox,
 .kit-sports-gallery .kit-sports-inline-choice:has(input:checked) .kit-sports-inline-radio,
 .kit-sports-gallery .kit-sports-inline-choice:has(input:checked) .kit-sports-inline-checkbox {
-  border:0;background:#fff;color:#006eff;
+  border:0;background:transparent;color:#006eff;
 }
 .kit-sports-gallery .kit-sports-inline-choice input[type="radio"]+.kit-sports-inline-symbol.kit-sports-inline-radio,
 .kit-sports-gallery .kit-sports-inline-choice input[type="radio"]:checked+.kit-sports-inline-symbol.kit-sports-inline-radio {
-  background:#fff;border:0;border-radius:0;background-image:none;
+  background:transparent;border:0;border-radius:0;background-image:none;
 }
 .kit-sports-gallery .kit-sports-radio .material-symbols-outlined,
 .kit-sports-gallery .kit-sports-checkbox .material-symbols-outlined,
