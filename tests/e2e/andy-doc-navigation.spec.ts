@@ -77,3 +77,27 @@ test('Andy: guías de espaciado y border radius usan la escala institucional com
  for(const token of ['--mlz-radius-xs','--mlz-radius-sm','--mlz-radius-md','--mlz-radius-lg','--mlz-radius-xl','--mlz-radius-2xl','--mlz-radius-full'])
   expect(await page.evaluate(t=>getComputedStyle(document.documentElement).getPropertyValue(t).trim(),token)).not.toBe('');
 });
+
+
+test('Andy: header sin divisor, título encima del descriptor y documentación full width',async ({page})=>{
+ await page.setViewportSize({width:1600,height:900});
+ await page.goto('/ui-kit-andy/componentes/boton');
+ const header=page.locator('.andy-header');
+ await expect(header).toHaveCSS('border-bottom-width','0px');
+ const heading=header.locator('.andy-topbar-heading');
+ await expect(heading.locator('h1')).toHaveText('MLZ UI Kit - Andy');
+ await expect(heading.locator('.andy-eyebrow')).toHaveText('Municipio de Lomas de Zamora · Design System');
+ await expect(header.locator('.andy-version')).toHaveCSS('border-top-width','1px');
+ const container=page.locator('.andy-doc-body');
+ const measurements=await container.evaluate(el=>{
+  const outer=el.getBoundingClientRect();
+  const main=el.querySelector('.andy-doc-main')?.getBoundingClientRect();
+  const left=el.querySelector('.andy-sidebar')?.getBoundingClientRect();
+  const right=el.querySelector('.andy-doc-toc')?.getBoundingClientRect();
+  return {width:outer.width,left:left?.left??0,right:right?.right??0,mainWidth:main?.width??0};
+ });
+ expect(measurements.width).toBeGreaterThan(1500);
+ expect(measurements.left).toBeLessThan(40);
+ expect(measurements.right).toBeGreaterThan(1500);
+ expect(measurements.mainWidth).toBeGreaterThan(900);
+});
