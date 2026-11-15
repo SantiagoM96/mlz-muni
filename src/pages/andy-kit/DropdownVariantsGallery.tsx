@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
+import { SportsMobileSheet, useSportsMobile } from './SportsMobileSheet';
 import './dropdown-variants-gallery.css';
 
 type Variant = 'simple' | 'radio' | 'checkbox' | 'search';
@@ -19,22 +20,14 @@ const values: Record<Variant,string[]> = {
 function VariantCard({id,title,note,label}:{id:Variant;title:string;note:string;label:string}){
   const [selected,setSelected]=useState<string[]>(id==='checkbox'?['Lunes','Miércoles']:id==='radio'?['Recreativo']:id==='search'?['Banfield']:['DNI']);
   const [query,setQuery]=useState('');
-  const [open,setOpen]=useState(true);
+  const mobile=useSportsMobile();
+  const [open,setOpen]=useState(()=>typeof window==='undefined'||!window.matchMedia('(max-width: 680px)').matches);
   const shown=values[id].filter(v=>v.toLocaleLowerCase('es').includes(query.toLocaleLowerCase('es')));
   const multi=id==='checkbox';
   const select=(option:string)=>{
     setSelected(previous=>multi?(previous.includes(option)?previous.filter(v=>v!==option):[...previous,option]):[option]);
   };
-  return <article className="andy-dropdown-variant" data-variant={id}>
-    <header className="andy-dropdown-variant-heading"><h4>{title}</h4><p>{note}</p></header>
-    <div className="andy-dropdown-variant-label">{label}</div>
-    <button className={'andy-dropdown-variant-trigger'+(open?' is-open':'')} type="button"
-      aria-expanded={open} aria-label={label+'. '+(open?'Cerrar opciones':'Abrir opciones')}
-      onClick={()=>setOpen(v=>!v)}>
-      <span>{multi?(selected.length?selected.length+' seleccionados':'Seleccionar'):selected[0]||'Seleccionar'}</span>
-      <MaterialIcon name="expand_more" size={24}/>
-    </button>
-    {open?<div className="andy-dropdown-variant-menu">
+  const choices=<>
       {id==='search'&&<div className="andy-dropdown-search">
         <input aria-label="Buscar localidad" placeholder="Buscar localidad" type="search"
           value={query} onChange={event=>setQuery(event.target.value)}/>
@@ -60,11 +53,29 @@ function VariantCard({id,title,note,label}:{id:Variant;title:string;note:string;
         })}
         {shown.length===0&&<p className="andy-dropdown-no-results">No se encontraron opciones.</p>}
       </div>
+  </>;
+  return <article className="andy-dropdown-variant" data-variant={id}>
+    <header className="andy-dropdown-variant-heading"><h4>{title}</h4><p>{note}</p></header>
+    <div className="andy-dropdown-variant-label">{label}</div>
+    <button className={'andy-dropdown-variant-trigger'+(open?' is-open':'')} type="button"
+      aria-expanded={open} aria-label={label+'. '+(open?'Cerrar opciones':'Abrir opciones')}
+      onClick={()=>setOpen(v=>!v)}>
+      <span>{multi?(selected.length?selected.length+' seleccionados':'Seleccionar'):selected[0]||'Seleccionar'}</span>
+      <MaterialIcon name="expand_more" size={24}/>
+    </button>
+    {open&&!mobile?<div className="andy-dropdown-variant-menu">
+      {choices}
       {multi&&<div className="andy-dropdown-variant-actions">
         <button type="button" onClick={()=>setOpen(false)}>Confirmar ({selected.length})</button>
         <button type="button" onClick={()=>setSelected([])}>Limpiar</button>
       </div>}
-    </div>:<button type="button" className="andy-dropdown-open-again" onClick={()=>setOpen(true)}>Mostrar opciones</button>}
+    </div>:!mobile?<button type="button" className="andy-dropdown-open-again" onClick={()=>setOpen(true)}>Mostrar opciones</button>:null}
+    {mobile&&<SportsMobileSheet open={open} title={label} onClose={()=>setOpen(false)}
+      primaryLabel={multi?'Ver resultados ('+selected.length+')':'Confirmar'}
+      secondaryLabel="Limpiar" onPrimary={()=>setOpen(false)}
+      onSecondary={()=>{setSelected([]);setQuery('');}}>
+      {choices}
+    </SportsMobileSheet>}
   </article>;
 }
 export function DropdownVariantsGallery(){
