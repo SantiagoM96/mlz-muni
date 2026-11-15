@@ -11,7 +11,7 @@ type FilterDemoProps = { label: string; options: string[]; multiple?: boolean; s
 function FilterDemo({ label, options, multiple = false, searchable = true }: FilterDemoProps) {
   const mobile = useSportsMobile();
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string[]>(() => label === 'Sede' ? ['Gimnasio de Alto Rendimiento'] : []);
   const [search, setSearch] = useState('');
   const trigger = useRef<HTMLButtonElement>(null);
   const root = useRef<HTMLDivElement>(null);
@@ -94,9 +94,9 @@ function MoreFiltersDemo() {
   const mobile = useSportsMobile();
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(['Días de cursada','Tipo de deportista','Nivel de intensidad']);
-  const [disability, setDisability] = useState(false);
-  const [days, setDays] = useState<string[]>([]);
-  const [type, setType] = useState('');
+  const [disability, setDisability] = useState(true);
+  const [days, setDays] = useState<string[]>(['Sábado']);
+  const [type, setType] = useState('Competitivo');
   const [intensity,setIntensity] = useState('');
   const root = useRef<HTMLDivElement>(null);
   const trigger=useRef<HTMLButtonElement>(null);
