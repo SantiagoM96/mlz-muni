@@ -13,7 +13,7 @@ export function ConsoleImageUpload({ id, label, source, onFile, onRemove }: Prop
   return (
     <div className="min-w-0" data-testid="console-image-upload">
       <label htmlFor={id}
-        className={'flex min-h-[128px] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[8px] border text-center ' +
+        className={'console-upload flex min-h-[128px] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[8px] border text-center ' +
           (source
             ? 'border-[#c6dce8] bg-white'
             : 'border-dashed border-[#93bfe0] bg-[#f5f9fc] hover:border-primary-600 hover:bg-[#eaf3f9]')}
@@ -41,7 +41,7 @@ export function ConsoleImageUpload({ id, label, source, onFile, onRemove }: Prop
       {source && (
         <button type="button" onClick={onRemove}
           aria-label={'Eliminar ' + label}
-          className="mt-2 inline-flex min-h-9 items-center gap-1.5 text-[14px] font-bold text-[#b5444b] hover:underline">
+          className="console-action-danger mt-2 inline-flex min-h-10 items-center gap-2 text-[14px] font-bold hover:underline">
           <MaterialIcon name="delete" size={18}/> Eliminar
         </button>
       )}
