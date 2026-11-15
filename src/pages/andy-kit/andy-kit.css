@@ -244,3 +244,94 @@
 .andy-doc-example{scroll-margin-top:var(--mlz-space-24)}
 @media(max-width:1179px){.andy-doc-toc{display:none}}
 @media(min-width:1180px){.andy-doc-page:has(.andy-button-documentation) .andy-button-on-this-page{display:none}}
+
+
+/* Documentación MLZ a ancho completo. El max-width institucional de 1200px
+   no se modifica para otros productos: únicamente se libera este UI Kit. */
+.andy-doc-layout .andy-container{
+  width:100%;
+  max-width:none;
+  margin-inline:0;
+  padding-inline:var(--mlz-space-24);
+}
+.andy-doc-layout .andy-header{
+  border-bottom:0;
+  box-shadow:none;
+}
+.andy-doc-layout .andy-topbar{
+  min-height:88px;
+  width:100%;
+}
+.andy-doc-layout .andy-topbar-heading{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:var(--mlz-space-4);
+  padding-block:var(--mlz-space-16);
+}
+.andy-doc-layout .andy-header h1{
+  order:0;
+  margin:0;
+  font-size:24px;
+  line-height:32px;
+  font-weight:700;
+}
+.andy-doc-layout .andy-topbar-heading .andy-eyebrow{
+  order:1;
+  font-size:12px;
+  line-height:18px;
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+  color:#687782;
+}
+.andy-doc-layout .andy-topbar-actions .andy-version{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:32px;
+  padding:var(--mlz-space-6) var(--mlz-space-12);
+  margin:0;
+  border:1px solid #dce7ef;
+  border-radius:var(--mlz-radius-md);
+  background:#f3f7fc;
+  color:#236999;
+  font-size:12px;
+  line-height:18px;
+}
+.andy-doc-layout .andy-topbar-actions .andy-version a{
+  color:inherit;
+  text-decoration:none;
+}
+.andy-doc-layout .andy-topbar-actions .andy-version a:hover{text-decoration:underline}
+.andy-doc-layout .andy-doc-body{
+  grid-template-columns:228px minmax(0,1fr);
+  gap:var(--mlz-space-32);
+  padding-top:var(--mlz-space-24);
+}
+@media(min-width:1180px){
+ .andy-doc-layout .andy-doc-body:has(.andy-doc-toc){
+   grid-template-columns:228px minmax(0,1fr) 176px;
+   gap:var(--mlz-space-32);
+ }
+}
+@media(max-width:1100px){
+ .andy-doc-layout .andy-doc-body{
+   grid-template-columns:210px minmax(0,1fr);
+   gap:var(--mlz-space-24);
+ }
+}
+@media(max-width:790px){
+ .andy-doc-layout .andy-doc-body{
+   display:block;
+   padding-top:var(--mlz-space-24);
+ }
+ .andy-doc-layout .andy-header h1{font-size:21px;line-height:28px}
+ .andy-doc-layout .andy-topbar-heading .andy-eyebrow{font-size:11px;line-height:16px}
+}
+@media(max-width:580px){
+ .andy-doc-layout .andy-container{padding-inline:var(--mlz-space-16)}
+ .andy-doc-layout .andy-topbar{min-height:76px}
+ .andy-doc-layout .andy-header h1{font-size:20px;line-height:26px}
+ .andy-doc-layout .andy-topbar-actions .andy-version{min-height:28px;padding:var(--mlz-space-4) var(--mlz-space-8);font-size:11px}
+}
