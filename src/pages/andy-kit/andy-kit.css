@@ -91,7 +91,7 @@
 
 /* MLZ UI Kit · documentación por componente. Navegación inspirada en la
    jerarquía de shadcn/ui, con superficies, tokens e iconografía propios de MLZ. */
-.andy-doc-layout{background:#fff;min-height:100vh}
+.andy-doc-layout{min-height:100vh;background-color:#fff;background-image:radial-gradient(circle,#d9dee3 .75px,transparent .9px);background-size:14px 14px;background-position:7px 7px}
 .andy-doc-layout .andy-header{position:relative;z-index:30;background:#fff}
 .andy-doc-layout .andy-header .andy-container{padding-top:0}
 .andy-topbar{display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-16);min-height:92px}
@@ -126,7 +126,7 @@
 .andy-doc-example+.andy-doc-example{border-top:1px solid #e7edf3;padding-top:var(--mlz-space-24)}
 .andy-doc-example>h3{color:#236999;font-size:20px;line-height:28px;font-weight:700;margin:0 0 var(--mlz-space-6)}
 .andy-doc-example>p{font-size:14px;line-height:22px;color:#657585;margin:0 0 var(--mlz-space-14);max-width:720px}
-.andy-doc-preview{min-height:170px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;min-width:0;padding:var(--mlz-space-24) var(--mlz-space-24);background-color:#fafbfc;background-image:radial-gradient(circle,#aeb7c0 1px,transparent 1.15px);background-size:14px 14px;background-position:7px 7px;border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg)}
+.andy-doc-preview{min-height:170px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;min-width:0;padding:var(--mlz-space-24) var(--mlz-space-24);background:#fff;border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg)}
 .andy-doc-preview>*{width:100%;min-width:0}
 .andy-doc-page .andy-state-matrix{width:100%}
 .andy-doc-page .andy-matrix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mlz-space-14)}
