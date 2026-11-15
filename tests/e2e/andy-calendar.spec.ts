@@ -45,8 +45,9 @@ test('Andy: meses futuros deshabilitados y fecha pendiente requiere confirmació
 
 test('Andy: Date Picker usa controles y botones del sistema y los radios aprobados',async ({page})=>{
  await page.goto('/ui-kit-andy/componentes/calendario');
- const sample=page.locator('.andy-matrix-calendar-sample');
- await sample.getByRole('button',{name:'Seleccionar fecha'}).click();
+ const sample=page.locator('.andy-calendar-dropdown-sample');
+ await expect(sample).toHaveCSS('min-height','560px');
+ await sample.getByRole('button',{name:'Fecha de nacimiento'}).click();
  const picker=page.getByRole('dialog',{name:'Seleccionar fecha'});
  await expect(picker).toBeVisible();
  const mobile=await page.evaluate(()=>window.innerWidth<=680);
@@ -106,3 +107,4 @@ test('Andy: mes y año respetan iconos, selección y tipografía de dropdowns ML
  await years.getByRole('option',{name:'2007'}).click();
  await expect(day.getByRole('button',{name:'Seleccionar año'})).toContainText('2007');
 });
+
