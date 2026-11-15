@@ -1011,24 +1011,26 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  align-self:start;
 }
 
-/* Documentación de anatomía y criterios: tablas semánticas en vez de
-   pares de texto flotantes. Alineadas con las superficies del UI Kit. */
+/* Tablas editoriales: referencia y criterios, no componente Data Table.
+   Sin caja externa, acciones ni bandas de una tabla funcional. */
 .andy-doc-layout .andy-doc-guideline-table-wrap{
  width:min(100%,660px);
  max-width:100%;
  overflow-x:auto;
- border:1px solid #e1e7eb;
- border-radius:var(--mlz-radius-lg);
- background:#fff;
+ border:0;
+ border-left:3px solid var(--a-info,#006eff);
+ border-radius:0;
+ background:transparent;
 }
 .andy-doc-layout .andy-doc-guideline-table{
  width:100%;
  border-collapse:collapse;
  table-layout:auto;
+ color:var(--a-text,#3d3d3d);
+ text-align:left;
+ font-family:Geometria,'Century Gothic',Arial,sans-serif;
  font-size:14px;
  line-height:22px;
- color:#3d3d3d;
- text-align:left;
 }
 .andy-doc-layout .andy-doc-guideline-table th,
 .andy-doc-layout .andy-doc-guideline-table td{
@@ -1037,19 +1039,29 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  vertical-align:top;
 }
 .andy-doc-layout .andy-doc-guideline-table thead th{
- background:#f3f7fc;
- color:#236999;
+ padding-top:var(--mlz-space-8);
+ padding-bottom:var(--mlz-space-8);
+ background:transparent;
+ color:#71808c;
+ font-size:12px;
+ line-height:18px;
  font-weight:700;
+ letter-spacing:.025em;
 }
 .andy-doc-layout .andy-doc-guideline-table tbody th{
  width:38%;
- color:#236999;
+ color:var(--a-blue,#236999);
  font-weight:700;
 }
 .andy-doc-layout .andy-doc-guideline-table tbody td{color:#657585}
 .andy-doc-layout .andy-doc-guideline-table tbody tr:last-child > *{border-bottom:0}
 @media(max-width:580px){
  .andy-doc-layout .andy-doc-guideline-table th,
- .andy-doc-layout .andy-doc-guideline-table td{padding:var(--mlz-space-10) var(--mlz-space-12);font-size:13px;line-height:20px}
+ .andy-doc-layout .andy-doc-guideline-table td{
+  padding:var(--mlz-space-10) var(--mlz-space-12);
+  font-size:13px;
+  line-height:20px;
+ }
+ .andy-doc-layout .andy-doc-guideline-table thead th{font-size:11px;line-height:16px}
  .andy-doc-layout .andy-doc-guideline-table tbody th{width:42%}
 }
