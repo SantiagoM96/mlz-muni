@@ -24,6 +24,7 @@ const componentGroups=[
  {title:'Acciones y contenido',items:[['boton','Botones'],['chips','Chips y etiquetas'],['tarjeta','Tarjetas y resúmenes'],['mensaje','Mensajes y alertas'],['acordeon','Acordeón']]}
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
+const componentEntries:ReadonlyArray<readonly [ComponentId,string]>=componentGroups.flatMap(group=>group.items as ReadonlyArray<readonly [ComponentId,string]>);
 const componentMeta:Record<ComponentId,{description:string;category:string}>={
  input:{description:'Campos de una línea con estados de reposo, hover, foco, completo, error y deshabilitado.',category:'Campos de formulario'},
  select:{description:'Selección única, múltiple y con búsqueda; menús desktop y drawers mobile.',category:'Campos de formulario'},
@@ -119,7 +120,7 @@ function ComponentExample({title,description,children}:{title:string;description
 }
 function AccordionDemo({multiple=false}:{multiple?:boolean}){
  const [open,setOpen]=useState<string[]>(['1']);
- const items=[['1','¿Cómo puedo inscribirme?','Elegí una actividad, seleccioná el horario disponible y completá los datos solicitados.'],['2','¿Puedo cambiar el horario?','Podés volver a la ficha de la actividad para elegir otra comisión disponible.'],['3','¿Dónde encuentro la sede?','La dirección y los detalles se muestran en la ficha de cada actividad.']];
+ const items:[string,string,string][]=[['1','¿Cómo puedo inscribirme?','Elegí una actividad, seleccioná el horario disponible y completá los datos solicitados.'],['2','¿Puedo cambiar el horario?','Podés volver a la ficha de la actividad para elegir otra comisión disponible.'],['3','¿Dónde encuentro la sede?','La dirección y los detalles se muestran en la ficha de cada actividad.']];
  return <div className="andy-doc-accordion">{items.map(([id,title,content])=><div className="andy-doc-accordion-item" key={id}>
   <button type="button" aria-expanded={open.includes(id)} onClick={()=>setOpen(prev=>prev.includes(id)?prev.filter(v=>v!==id):multiple?[...prev,id]:[id])}>
     {title}<Icon name="expand_more" size={24}/>
@@ -155,7 +156,7 @@ export function AndyKitPage(){
  const {categoria,componente}=useParams<{categoria?:string;componente?:string}>();
  const [navOpen,setNavOpen]=useState(false);
  const legacy=categories.find(c=>c.id===(categoria??'fundamentos'));
- const componentEntry=componentGroups.flatMap(group=>group.items).find(([id])=>id===componente);
+ const componentEntry=componentEntries.find(([id])=>id===componente);
  const isComponent=categoria==='componentes'&&!!componentEntry;
  const displayName=isComponent?componentEntry[1]:legacy?.name;
  const meta=isComponent?componentMeta[componentEntry[0]]:null;
