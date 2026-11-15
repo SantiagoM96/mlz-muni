@@ -1,4 +1,5 @@
 import '../styles/agenda.css';
+import '../consolePreview/console-design-system.css';
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import type { AgendaActivity } from '../data/agenda';
@@ -20,7 +21,7 @@ import { CATEGORY_TYPES, INITIAL_DRAFT, INITIAL_SCHEDULES } from '../consolePrev
 import { useConsoleSchedules } from '../consolePreview/useConsoleSchedules';
 
 function mobileViewTabClassName(selected: boolean): string {
-  return 'min-h-11 flex-1 rounded-[6px] px-3 text-[16px] font-bold focus-visible:outline-2 focus-visible:outline-primary-600 ' +
+  return 'min-h-11 flex-1 rounded-[4px] px-3 text-[16px] font-bold focus-visible:outline-2 focus-visible:outline-primary-600 ' +
     (selected ? 'bg-primary-600 text-white' : 'text-primary-600');
 }
 
@@ -74,7 +75,7 @@ export function AgendaConsolePreviewPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-grey-900">
+    <div className="mlz-console min-h-screen bg-white text-grey-900">
       <a href="#contenido-principal" className="skip-link">Saltar al contenido</a>
       <main id="contenido-principal" tabIndex={-1} className="mx-auto w-full max-w-[1200px] px-4 pb-16 pt-6 min-[1232px]:px-0">
         <nav className="flex flex-wrap items-center gap-2 text-[15px] leading-6 text-grey-900" aria-label="Ruta de navegación">
@@ -90,7 +91,7 @@ export function AgendaConsolePreviewPage() {
           <p className="mt-1 text-[16px] leading-6">Completá la información general y agregá todas las programaciones necesarias.</p>
         </div>
 
-        <section aria-label="Actividades para cargar" className="mb-7 flex flex-col gap-3 rounded-[8px] border border-[#d4e1ea] bg-[#f5f9fc] p-4 sm:flex-row sm:items-end sm:justify-between">
+        <section aria-label="Actividades para cargar" className="console-surface mb-7 flex flex-col gap-3 rounded-[8px] border border-[#d4e1ea] bg-[#f5f9fc] p-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="min-w-0 flex-1">
             <label htmlFor="figma-preset" className={labelClass}>Casos de demostración</label>
             <p className="mb-2 text-[14px] leading-5 text-[#61788b]">
@@ -145,7 +146,7 @@ export function AgendaConsolePreviewPage() {
                   <p className="mt-1 text-[16px] leading-6">Cada programación puede tener fecha, horario y lugar diferentes.</p>
                 </div>
                 <button type="button" onClick={openNewSchedule}
-                  className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-[6px] bg-primary-600 px-4 text-[16px] font-bold text-white hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                  className="console-action-primary console-action-md console-icon-start inline-flex shrink-0 items-center justify-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
                   <MaterialIcon name="add" size={20} /> Agregar
                 </button>
               </div>
@@ -182,11 +183,11 @@ export function AgendaConsolePreviewPage() {
 
             <div className="flex flex-wrap justify-end gap-3 border-t border-[#edf0f3] pt-6">
               <button type="button" onClick={() => setMobileView('preview')}
-                className="min-h-12 rounded-[4px] border border-[#236999] px-5 text-[16px] font-bold text-primary-600 hover:bg-[#edf6fc] lg:hidden">
+                className="console-action-tertiary console-action-lg lg:hidden">
                 Ver vista previa
               </button>
               <button type="button" disabled
-                className="min-h-12 rounded-[4px] bg-primary-600 px-6 text-[16px] font-bold text-white opacity-60">
+                className="console-action-primary console-action-lg">
                 Guardar actividad
               </button>
             </div>
@@ -197,7 +198,7 @@ export function AgendaConsolePreviewPage() {
               className="lg:sticky lg:top-6 lg:max-h-[calc(100dvh-48px)] lg:overflow-y-auto lg:overscroll-contain">
               <CardPreview draft={draft} schedules={schedules} venues={venues} onViewDetail={setDetailPreview} />
               <button type="button" onClick={() => setMobileView('form')}
-                className="mt-6 min-h-12 w-full rounded-[4px] border border-[#236999] px-5 text-[16px] font-bold text-primary-600 lg:hidden">
+                className="console-action-tertiary console-action-lg mt-6 w-full lg:hidden">
                 Volver al formulario
               </button>
             </div>
