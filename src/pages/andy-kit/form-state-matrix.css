@@ -27,7 +27,7 @@
 .andy-state-cell[data-state="error"] input,.andy-state-cell[data-state="error"] textarea,.andy-state-cell[data-state="error"] .andy-matrix-select{border-color:var(--matrix-error);background:#fff9f9}
 .andy-matrix-error{font-size:12px;line-height:18px;color:#c82443}
 .andy-matrix-upload{display:flex;align-items:center;gap:var(--mlz-space-8);width:100%;min-width:0;height:48px;border-radius:var(--mlz-radius-sm);padding:var(--mlz-space-6);background:#e5f0f9;border:1px solid transparent}
-.andy-matrix-upload-button{height:36px;display:inline-flex;align-items:center;justify-content:center;gap:var(--mlz-space-4);background:var(--matrix-blue);color:#fff;padding:var(--mlz-space-6) var(--mlz-space-8);border-radius:var(--mlz-radius-xs);white-space:nowrap;font-size:14px}
+.andy-matrix-upload-button{flex:none;pointer-events:none}
 .andy-matrix-upload-filename{font-size:13px;color:#94a8b8;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .andy-state-cell[data-state="hover"] .andy-matrix-upload{border-color:#5ba8d5}
 .andy-state-cell[data-state="focus"] .andy-matrix-upload{border:2px solid var(--matrix-info);padding:var(--mlz-space-4)}
