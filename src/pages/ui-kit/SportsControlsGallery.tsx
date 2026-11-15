@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
+import { SportsMobileSheet, useSportsMobile } from '../andy-kit/SportsMobileSheet';
 import './deportes-controls.css';
 
 const venues = ['Casa Ari', 'Gimnasio de Alto Rendimiento', 'Gimnasio de Deportes de Combate', 'Natatorio Gregorio «Guyo» Sember', 'Natatorio Jorge Omar Rossi', 'Parque Municipal Eva Perón'];
@@ -8,6 +9,7 @@ const ages = ['Hasta 2 años', '3 a 5 años', '6 a 12 años', '13 a 17 años', '
 type FilterDemoProps = { label: string; options: string[]; multiple?: boolean; searchable?: boolean };
 
 function FilterDemo({ label, options, multiple = false, searchable = true }: FilterDemoProps) {
+  const mobile = useSportsMobile();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const [search, setSearch] = useState('');
@@ -51,7 +53,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
       {multiple && selected.length > 0 && <span className="kit-sports-count"><span>{selected.length}</span></span>}
       <MaterialIcon name="expand_more" size={22} className={open ? 'rotate-180' : ''} />
     </button>
-    {open && <><button className="kit-sports-backdrop" aria-label="Cerrar opciones" onClick={close} type="button" />
+    {open && !mobile && <><button className="kit-sports-backdrop" aria-label="Cerrar opciones" onClick={close} type="button" />
       <div className="kit-sports-popover" id={id} role="dialog" aria-label={`Opciones de ${label}`}>
         <div className="kit-sports-mobile-header"><span className="kit-sports-grabber" /><strong>{label}</strong></div>
         {searchable && <div className="kit-sports-search-wrap"><input aria-label={`Buscar ${label}`} autoFocus
@@ -72,10 +74,31 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
           <button className="kit-sports-clear" type="button" onClick={() => { setSelected([]); setSearch(''); }}>Limpiar</button>
         </div>
       </div></>}
+    {mobile && <SportsMobileSheet open={open} title={label} onClose={close}
+      primaryLabel={`Ver resultados (${selected.length})`} onPrimary={apply}
+      secondaryLabel="Limpiar" onSecondary={() => { setSelected([]); setSearch(''); }}>
+      {searchable && <div className="kit-sports-search-wrap"><input aria-label={`Buscar ${label}`}
+        placeholder="Buscar" value={search} onChange={event=>setSearch(event.target.value)} />
+        <MaterialIcon name="search" size={24}/></div>}
+      <div className="kit-sports-options" role="group" aria-label={`Seleccionar ${label}`}>
+        {filtered.length ? filtered.map(option => {
+          const checked=selected.includes(option);
+          return <label className={`kit-sports-option ${checked?'is-selected':''}`} key={option}>
+            <span>{option}</span>
+            <input type={multiple?'checkbox':'radio'} name={multiple?undefined:id+'-mobile'}
+              checked={checked} onChange={()=>toggle(option)} aria-label={option}/>
+            <span className={multiple?'kit-sports-checkbox':'kit-sports-radio'} aria-hidden="true">
+              <MaterialIcon name={multiple?checked?'check_box':'check_box_outline_blank':checked?'radio_button_checked':'radio_button_unchecked'} size={24}/>
+            </span>
+          </label>;
+        }):<p className="kit-sports-empty">No encontramos opciones</p>}
+      </div>
+    </SportsMobileSheet>}
   </div>;
 }
 
 function MoreFiltersDemo() {
+  const mobile = useSportsMobile();
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string[]>(['Días de cursada', 'Tipo de deportista']);
   const [days, setDays] = useState<string[]>(['Lunes']);
@@ -102,7 +125,7 @@ function MoreFiltersDemo() {
       <span className="kit-sports-truncate">Más filtros</span><span className="kit-sports-count"><span>{count}</span></span>
       <MaterialIcon name="tune" size={24} />
     </button>
-    {open && <><button type="button" className="kit-sports-backdrop" aria-label="Cerrar más filtros" onClick={close} />
+    {open && !mobile && <><button type="button" className="kit-sports-backdrop" aria-label="Cerrar más filtros" onClick={close} />
       <div className="kit-sports-popover kit-sports-more-popover" role="dialog" aria-label="Más filtros">
         <div className="kit-sports-mobile-header"><span className="kit-sports-grabber" /><strong>Más filtros</strong></div>
         <div className="kit-sports-more-scroll">
@@ -134,6 +157,36 @@ function MoreFiltersDemo() {
           <button className="kit-sports-clear kit-sports-clear-bordered" type="button" onClick={() => { setDays([]); setType(''); }}>Limpiar</button>
         </div>
       </div></>}
+    {mobile && <SportsMobileSheet open={open} title="Más filtros" onClose={close} size="large"
+      primaryLabel={`Ver resultados (${count})`} onPrimary={()=>{setApplied(count);close();}}
+      secondaryLabel="Limpiar" onSecondary={()=>{setDays([]);setType('');}}>
+      <div className="kit-sports-more-scroll">
+        {['Días de cursada','Tipo de deportista'].map(section=>
+          <div className="kit-sports-more-section" key={section}>
+            <button type="button" className="kit-sports-section-title" aria-expanded={expanded.includes(section)}
+              onClick={()=>toggleSection(section)}>{section}
+              <MaterialIcon name="expand_more" size={24} className={expanded.includes(section)?'rotate-180':''}/>
+            </button>
+            {expanded.includes(section)&&<div className="kit-sports-choice-grid">
+              {section==='Días de cursada'
+                ? ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'].map(day=>
+                  <label className="kit-sports-inline-choice" key={day}>
+                    <input type="checkbox" checked={days.includes(day)} onChange={()=>setDays(prev=>prev.includes(day)?prev.filter(x=>x!==day):[...prev,day])}/>
+                    <span className="kit-sports-inline-symbol kit-sports-inline-checkbox" aria-hidden="true">
+                      <MaterialIcon name={days.includes(day)?'check_box':'check_box_outline_blank'} size={24}/>
+                    </span>{day}
+                  </label>)
+                :['Recreativo','Competitivo','Federado'].map(item=>
+                  <label className="kit-sports-inline-choice" key={item}>
+                    <input type="radio" name="kit-sports-athlete-mobile" checked={type===item} onChange={()=>setType(item)}/>
+                    <span className="kit-sports-inline-symbol kit-sports-inline-radio" aria-hidden="true">
+                      <MaterialIcon name={type===item?'radio_button_checked':'radio_button_unchecked'} size={24}/>
+                    </span>{item}
+                  </label>)}
+            </div>}
+          </div>)}
+      </div>
+    </SportsMobileSheet>}
   </div>;
 }
 
