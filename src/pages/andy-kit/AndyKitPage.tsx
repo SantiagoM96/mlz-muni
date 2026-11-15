@@ -343,12 +343,16 @@ export function AndyKitPage(){
  const aliasedComponent=componente?componentAliases[componente]:undefined;
  const [navOpen,setNavOpen]=useState(false);
  const [componentSearch,setComponentSearch]=useState('');
+ const [copied,setCopied]=useState(false);
  const normalizedSearch=componentSearch.normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
  const filteredGroups=componentGroups.map(group=>({...group,items:group.items.filter(([id,title])=>!normalizedSearch||[title,id,componentMeta[id].description,group.title].some(value=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(normalizedSearch)))})).filter(group=>group.items.length>0);
  const legacy=categories.find(c=>c.id===(categoria??'fundamentos'));
  const componentEntry=componentEntries.find(([id])=>id===componente);
  const isComponent=categoria==='componentes'&&!!componentEntry;
  const isDirectory=categoria==='componentes'&&!componente;
+ const componentIndex=componentEntries.findIndex(([id])=>id===componente);
+ const previousComponent=componentIndex>0?componentEntries[componentIndex-1]:null;
+ const nextComponent=componentIndex>=0?componentEntries[componentIndex+1]:null;
  const displayName=isComponent?componentEntry[1]:isDirectory?'Componentes':legacy?.name;
  const meta=isComponent?componentMeta[componentEntry[0]]:null;
  useEffect(()=>{document.title='MLZ UI Kit - Andy'+(displayName?' · '+displayName:'');},[displayName]);
@@ -400,6 +404,7 @@ export function AndyKitPage(){
       <h2>{displayName}</h2>
       {meta&&<div className="andy-doc-description">{meta.description}</div>}
      </div>
+     {isComponent&&<div className="andy-doc-page-actions"><button type="button" onClick={()=>{void navigator.clipboard?.writeText(window.location.href).then(()=>setCopied(true)).catch(()=>setCopied(false))}}><Icon name="content_copy" size={18}/>{copied?'Copiado':'Copiar enlace'}</button><span className="andy-doc-step-links">{previousComponent&&<NavLink to={'/ui-kit-andy/componentes/'+previousComponent[0]} aria-label={'Componente anterior: '+previousComponent[1]}><Icon name="arrow_back" size={20}/></NavLink>}{nextComponent&&<NavLink to={'/ui-kit-andy/componentes/'+nextComponent[0]} aria-label={'Componente siguiente: '+nextComponent[1]}><Icon name="arrow_forward" size={20}/></NavLink>}</span></div>}
     </div>
     {isComponent?<div className="andy-doc-page"><ComponentDetails id={componentEntry[0]}/></div>:
      isDirectory?<div className="andy-component-directory">{componentGroups.map(group=><section key={group.title}>
