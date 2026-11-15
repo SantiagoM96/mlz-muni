@@ -69,6 +69,9 @@
 .andy-sports-map-placeholder span{font-size:13px;line-height:20px;max-width:400px;color:#657886}
 @media(max-width:540px){
  .andy-sports-search.is-integrated .kit-sports-filters{grid-template-columns:1fr}
+ .andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more,
+ .andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more>.kit-sports-trigger{width:100%}
+ .andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more .kit-sports-truncate{flex:1 1 auto}
  .andy-sports-search-results-top{align-items:flex-start}
  .andy-sports-search-results-tools{width:100%;justify-content:space-between}
 }
