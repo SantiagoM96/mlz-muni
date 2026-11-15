@@ -26,6 +26,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
  const [mode,setMode]=useState<PickerMode>('calendar');
  const [drawerY,setDrawerY]=useState(0);
  const [dragging,setDragging]=useState(false);
+ const [panelHeight,setPanelHeight]=useState(500);
  const [exit,setExit]=useState(false);
  const [transition,setTransition]=useState(false);
  const ref=useRef<HTMLDivElement>(null);
@@ -90,7 +91,9 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
 
  const dragStart=(event:ReactPointerEvent<HTMLButtonElement>)=>{
    if(!mobile||exit||(event.pointerType==='mouse'&&event.button!==0))return;
-   gesture.current={pointerId:event.pointerId,start:event.clientY,height:panel.current?.offsetHeight||500,startTime:performance.now(),delta:0};
+   const height=panel.current?.offsetHeight||500;
+   gesture.current={pointerId:event.pointerId,start:event.clientY,height,startTime:performance.now(),delta:0};
+   setPanelHeight(height);
    setTransition(false);setDragging(true);
    event.currentTarget.setPointerCapture(event.pointerId);event.preventDefault();
  };
@@ -124,7 +127,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
  </div>;
  const body=<div className={'sports-cal-popup'+(mobile?' is-mobile':'')+(exit?' is-exiting':'')+(transition?' is-rebounding':'')+(dragging?' is-dragging':'')} ref={panel}
    role="dialog" aria-modal={mobile} aria-label={mode==='calendar'?'Seleccionar fecha':mode==='month'?'Seleccionar mes':'Seleccionar año'}
-   style={{'--cal-y':drawerY+'px','--cal-opacity':Math.max(0,1-drawerY/Math.max(panel.current?.offsetHeight||500,1))} as CSSProperties}>
+   style={{'--cal-y':drawerY+'px','--cal-opacity':Math.max(0,1-drawerY/Math.max(panelHeight,1))} as CSSProperties}>
    {mobile&&<button type="button" className="sports-cal-grab" aria-label="Arrastrá hacia abajo para cerrar calendario"
      onPointerDown={dragStart} onPointerMove={dragMove} onPointerUp={dragEnd} onPointerCancel={dragEnd}>
      <span/>
