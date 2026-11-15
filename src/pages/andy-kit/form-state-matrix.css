@@ -163,3 +163,10 @@
 .andy-state-cell[data-state="disabled"] .andy-matrix-upload-button {background:#94c6e5;}
 .andy-state-cell[data-state="disabled"] .andy-matrix-upload-filename {color:#94c6e5;}
 .andy-state-cell[data-state="disabled"] .andy-matrix-field .andy-matrix-select>.material-symbols-outlined {color:#94c6e5;}
+
+/* Una instancia interactiva del calendario, junto a la matriz de estados Fecha. */
+.andy-matrix-calendar-demo{padding-top:20px;margin-top:22px;border-top:1px solid #e1e7eb}
+.andy-matrix-calendar-demo h4{margin:0 0 8px;color:#236999;font-size:18px;line-height:26px;font-weight:700}
+.andy-matrix-calendar-demo>p{margin:0 0 16px;color:#647482;font-size:14px;line-height:22px;max-width:780px}
+.andy-matrix-calendar-sample{width:min(100%,420px);min-width:0;min-height:80px;padding:12px 0 0}
+.andy-matrix-calendar-sample .sports-cal-popup{color:#3d3d3d}
