@@ -175,6 +175,7 @@ const tocByComponent:Partial<Record<ComponentId,{id:string;title:string}[]>>={
  acordeon:[{id:'apertura-unica',title:'Apertura única'},{id:'apertura-multiple',title:'Apertura múltiple'},{id:'deshabilitado',title:'Deshabilitado'}],
  buscador:[{id:'buscador',title:'Buscador'},{id:'buscador-con-contenido',title:'Buscador con contenido'}]
 };
+const EMPTY_TOC_ITEMS:{id:string;title:string}[]=[];
 function HeadingToc({items}:{items:{id:string;title:string}[]}){
  const [links,setLinks]=useState(items);
  const [active,setActive]=useState(items[0]?.id??'');
@@ -261,7 +262,7 @@ export function AndyKitPage(){
        </NavLink>)}</div></section>)}</div>:
      Gallery&&<Gallery/>}
    </main>
-   {isComponent&&<HeadingToc key={componentEntry[0]} items={tocByComponent[componentEntry[0]]??[]}/>}
+   {isComponent&&<HeadingToc key={componentEntry[0]} items={tocByComponent[componentEntry[0]]??EMPTY_TOC_ITEMS}/>}
   </div>
   <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
  </div>;
