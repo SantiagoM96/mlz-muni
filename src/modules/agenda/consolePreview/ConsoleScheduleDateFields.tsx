@@ -4,7 +4,7 @@ import type { ConsoleSchedule } from './model';
 import type { ConsoleScheduleInvalidField } from './scheduleEditorRules';
 import { WEEKDAYS } from './demoData';
 import { FormField } from '../../../shared/ui/FormField';
-import { TextField } from '../../../shared/ui/FormControls';
+import { ConsoleTemporalInput } from './ConsoleTemporalInput';
 
 const weekdayButtonClassName = 'console-weekday min-h-10 px-1 focus-visible:outline-2 focus-visible:outline-primary-600';
 
@@ -34,13 +34,13 @@ export function ConsoleScheduleDateFields({ value, onScheduleChange, selectRef, 
           </FormField>
           <div className="grid gap-4 sm:grid-cols-2">
             <FormField htmlFor="console-schedule-start" label={value.scheduleType === 'exact' ? 'Fecha' : 'Desde'}>
-              <TextField appearance="soft" id="console-schedule-start" aria-invalid={invalidField === 'startDate'}
+              <ConsoleTemporalInput appearance="soft" id="console-schedule-start" aria-invalid={invalidField === 'startDate'}
                 aria-describedby={invalidField === 'startDate' ? 'console-schedule-error' : undefined} type="date" lang="es-AR" 
                 value={value.startDate} onChange={event => onScheduleChange({ startDate: event.target.value })}/>
             </FormField>
             {value.scheduleType !== 'exact' && (
               <FormField htmlFor="console-schedule-end" label="Hasta">
-                <TextField appearance="soft" id="console-schedule-end" aria-invalid={invalidField === 'endDate'}
+                <ConsoleTemporalInput appearance="soft" id="console-schedule-end" aria-invalid={invalidField === 'endDate'}
                 aria-describedby={invalidField === 'endDate' ? 'console-schedule-error' : undefined} type="date" lang="es-AR" 
                   value={value.endDate} onChange={event => onScheduleChange({ endDate: event.target.value })}/>
               </FormField>
@@ -69,12 +69,12 @@ export function ConsoleScheduleDateFields({ value, onScheduleChange, selectRef, 
           )}
           <div className="grid gap-4 sm:grid-cols-2">
             <FormField htmlFor="console-schedule-start-time" label="Horario de inicio">
-              <TextField appearance="soft" id="console-schedule-start-time" aria-invalid={invalidField === 'startTime'}
+              <ConsoleTemporalInput appearance="soft" id="console-schedule-start-time" aria-invalid={invalidField === 'startTime'}
                 aria-describedby={invalidField === 'startTime' ? 'console-schedule-error' : undefined} type="time" lang="es-AR" 
                 value={value.startTime} onChange={event => onScheduleChange({ startTime: event.target.value })}/>
             </FormField>
             <FormField htmlFor="console-schedule-end-time" label="Horario de fin (opcional)">
-              <TextField appearance="soft" id="console-schedule-end-time" aria-invalid={invalidField === 'endTime'}
+              <ConsoleTemporalInput appearance="soft" id="console-schedule-end-time" aria-invalid={invalidField === 'endTime'}
                 aria-describedby={invalidField === 'endTime' ? 'console-schedule-error' : undefined} type="time" lang="es-AR" 
                 value={value.endTime} onChange={event => onScheduleChange({ endTime: event.target.value })}/>
             </FormField>
