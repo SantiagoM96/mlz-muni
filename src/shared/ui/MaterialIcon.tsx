@@ -44,6 +44,10 @@ export type MaterialIconName =
   | 'record_voice_over'
   | 'star'
   | 'info'
+  | 'check_circle'
+  | 'warning'
+  | 'cancel'
+  | 'error'
   | 'visibility'
   | 'visibility_off'
   | 'attach_file';
