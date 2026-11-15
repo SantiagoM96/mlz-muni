@@ -334,7 +334,14 @@ function HeadingToc({items}:{items:{id:string;title:string}[]}){
  if(!links.length)return null;
  return <aside className="andy-doc-toc" aria-label="En esta página"><strong>En esta página</strong>
   <nav>{links.map(item=><a key={item.id} className={active===item.id?'is-active':''} href={'#'+item.id} aria-current={active===item.id?'location':undefined}
-   onClick={()=>setActive(item.id)}>{item.title}</a>)}</nav>
+   onClick={event=>{
+    const target=document.getElementById(item.id);
+    if(!target)return;
+    event.preventDefault();
+    setActive(item.id);
+    target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+    window.history.replaceState(window.history.state,'','#'+item.id);
+   }}>{item.title}</a>)}</nav>
  </aside>;
 }
 const views:Record<Category,()=>ReactNode>={fundamentos:Foundations,filtros:Filters,formularios:Forms,seleccion:Selection,botones:Buttons,etiquetas:Tags,tarjetas:Cards,mensajes:Messages};
