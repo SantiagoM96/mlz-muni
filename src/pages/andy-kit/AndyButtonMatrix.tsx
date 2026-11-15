@@ -90,9 +90,10 @@ export function AndyButtonMatrix(){
    <p className="andy-button-guidance"><MaterialIcon name="info" size={16}/>Small 32 px · Medium 40 px · Large 48 px. Elegí según la densidad del contexto.</p>
   </DocSection>
   <DocSection id="estados" title="Estados" description="Compará los seis estados de forma persistente. Elegí el tipo de botón que querés inspeccionar.">
+   <div className="andy-doc-inspector"><span className="andy-doc-inspector-label">Elegir variante <small>· control de la documentación</small></span>
    <div className="andy-button-control-row" role="group" aria-label="Tipo de botón para estados">
     {kinds.map(kind=><button key={kind.id} type="button" aria-pressed={stateKind===kind.id} onClick={()=>setStateKind(kind.id)}>{kind.label}</button>)}
-   </div>
+   </div></div>
    <div className="andy-button-preview andy-button-states-preview"><div className="andy-button-state-gallery">
     {states.map(state=><div className="andy-button-state-example" key={state.id}>
      <strong>{state.label}</strong><span>{state.id==='default'?'En reposo':state.id==='hover'?'Puntero encima':state.id==='focus'?'Foco de teclado':state.id==='pressed'?'Durante el clic':state.id==='active'?'Seleccionado':'No interactivo'}</span>
@@ -102,18 +103,20 @@ export function AndyButtonMatrix(){
    <p className="andy-button-guidance"><MaterialIcon name="info" size={16}/>Focus debe verse al navegar por teclado. Disabled mantiene una indicación visual clara de indisponibilidad.</p>
   </DocSection>
   <DocSection id="iconografia" title="Íconos" description="La compensación óptica reduce el padding únicamente del lado del ícono, sin cambiar la altura ni el estilo del botón.">
+   <div className="andy-doc-inspector"><span className="andy-doc-inspector-label">Cambiar tamaño <small>· control de la documentación</small></span>
    <div className="andy-button-control-row" role="group" aria-label="Tamaño para opciones de ícono">
     {sizes.map(size=><button type="button" key={size.id} aria-pressed={iconSize===size.id} onClick={()=>setIconSize(size.id)}>{size.label} · {size.description}</button>)}
-   </div>
+   </div></div>
    {placements.map(place=><div className="andy-button-variant-example" key={place.id}>
     <h4>{place.label}</h4>
     <Preview>{kinds.map(kind=><ButtonSample key={kind.id} kind={kind.id} size={iconSize} icon={place.id}/>)}</Preview>
    </div>)}
   </DocSection>
   <DocSection id="uso" title="Uso y comportamiento" description="Ejemplos interactivos para probar hover, focus y pressed reales.">
+   <div className="andy-doc-inspector"><span className="andy-doc-inspector-label">Cambiar icono <small>· control de la documentación</small></span>
    <div className="andy-button-control-row" role="group" aria-label="Posición de ícono">
     {placements.map(place=><button type="button" key={place.id} aria-pressed={placement===place.id} onClick={()=>setPlacement(place.id)}>{place.label}</button>)}
-   </div>
+   </div></div>
    <Preview>{kinds.map(kind=><ButtonSample key={kind.id} kind={kind.id} size="medium" icon={placement} onClick={()=>setLastClicked(kind.label)}/>)}</Preview>
    {lastClicked&&<p className="andy-button-feedback" role="status">Última acción de demostración: {lastClicked}</p>}
    <div className="andy-button-usage-notes"><p><strong>Jerarquía.</strong> Evitar dos primarios compitiendo en el mismo bloque.</p>
