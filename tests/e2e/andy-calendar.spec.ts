@@ -41,3 +41,26 @@ test('Andy: meses futuros deshabilitados y fecha pendiente requiere confirmació
  await calendar.getByRole('button',{name:'Borrar fecha'}).click();
  await expect(sample.getByRole('button',{name:'Seleccionar fecha'})).toBeVisible();
 });
+
+
+test('Andy: Date Picker usa controles y botones del sistema y los radios aprobados',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ const sample=page.locator('.andy-matrix-calendar-sample');
+ await sample.getByRole('button',{name:'Seleccionar fecha'}).click();
+ const picker=page.getByRole('dialog',{name:'Seleccionar fecha'});
+ await expect(picker).toBeVisible();
+ const mobile=await page.evaluate(()=>window.innerWidth<=680);
+ await expect(picker).toHaveCSS('border-top-left-radius',mobile?'16px':'8px');
+ for(const trigger of await picker.locator('.sports-cal-choice-trigger').all()){
+  await expect(trigger).toHaveCSS('height',mobile?'40px':'32px');
+  await expect(trigger).toHaveCSS('border-top-left-radius','4px');
+ }
+ for(const name of ['Borrar fecha','Confirmar']){
+  const button=picker.getByRole('button',{name,exact:true});
+  await expect(button).toHaveClass(/andy-system-button/);
+  await expect(button).toHaveCSS('height',mobile?'40px':'32px');
+  await expect(button).toHaveCSS('border-top-left-radius','4px');
+ }
+ await expect(picker.getByRole('button',{name:'Confirmar'})).toHaveClass(/is-primary/);
+ await expect(picker.getByRole('button',{name:'Borrar fecha'})).toHaveClass(/is-tertiary/);
+});
