@@ -31,7 +31,7 @@ const categories = [
 type Category = typeof categories[number]['id'];
 const componentGroups=[
  {title:'Fundamentos',items:[['espaciados','Espaciados'],['border-radius','Border radius']]}, 
- {title:'Campos de formulario',items:[['input','Input / Text field'],['select','Dropdown / Select'],['textarea','Text area'],['calendario','Calendario / Date Picker'],['adjuntos','Adjuntar archivos']]},
+ {title:'Campos de formulario',items:[['field','Field'],['input','Input'],['select','Dropdown / Select'],['textarea','Text area'],['calendario','Calendario / Date Picker'],['adjuntos','Adjuntar archivos']]},
  {title:'Selección',items:[['checkbox','Checkbox'],['radio','Radio button'],['switch','Switch']]},
  {title:'Filtros y navegación',items:[['buscador','Buscador'],['seleccion-unica','Selección única'],['seleccion-multiple','Selección múltiple'],['filtros-avanzados','Filtros avanzados'],['ordenamiento','Ordenamiento'],['scrollbars','Barras de scroll']]},
  {title:'Acciones y contenido',items:[['boton','Botones'],['chips','Chips y etiquetas'],['tarjeta','Tarjetas y resúmenes'],['mensaje','Mensajes y alertas'],['acordeon','Acordeón']]},
@@ -43,7 +43,8 @@ const componentEntries:ReadonlyArray<readonly [ComponentId,string]>=componentGro
 const componentMeta:Record<ComponentId,{description:string;category:string}>={
  espaciados:{description:'Escala oficial 2–64 px de gaps, márgenes y padding de todos los componentes.',category:'Fundamentos'},
  'border-radius':{description:'Escala semántica de redondeos para controles, paneles, tarjetas y drawers.',category:'Fundamentos'},
- input:{description:'Campos de una línea con estados de reposo, hover, foco, completo, error y deshabilitado.',category:'Campos de formulario'},
+ field:{description:'Estructura accesible para asociar etiqueta, control, ayuda, validación y grupos de campos.',category:'Campos de formulario'},
+ input:{description:'Control de texto de una línea para el ingreso de datos.',category:'Campos de formulario'},
  select:{description:'Selección única, múltiple y con búsqueda; menús desktop y drawers mobile.',category:'Campos de formulario'},
  textarea:{description:'Campos de texto multilínea y sus estados.',category:'Campos de formulario'},
  calendario:{description:'Selector de fechas del producto Deportes Anual, con vistas de mes y año.',category:'Campos de formulario'},
@@ -83,6 +84,13 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
 };
 
 const commit = import.meta.env.VITE_MLZ_COMMIT_SHA ?? 'local';
+const buildTimestamp = import.meta.env.VITE_MLZ_BUILD_TIME;
+const buildDate = new Date(buildTimestamp);
+const buildParts = new Intl.DateTimeFormat('es-AR', {
+ timeZone:'America/Argentina/Buenos_Aires',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,
+}).formatToParts(buildDate).reduce<Record<string,string>>((parts,part)=>({...parts,[part.type]:part.value}),{});
+const buildDateLabel = `${buildParts.day}/${buildParts.month}/${buildParts.year}`;
+const buildTimeLabel = `${buildParts.hour}:${buildParts.minute}`;
 const colors = [
  ['Primario 600','#236999','Acciones, títulos e íconos'],
  ['Primario 500','#358DC2','Variación institucional'],
@@ -177,6 +185,65 @@ function FormStates({family}:{family:'text'|'dropdown'|'textarea'|'date'|'upload
   <DocPreview align="start"><FormStateMatrix onlyFamily={family} showExtras={false}/></DocPreview>
  </DocSection>;
 }
+function FieldDocs(){
+ return <>
+  <ComponentExample title="Composición" description="Field reúne la etiqueta, el control, la ayuda y el mensaje de validación sin definir el tipo de control.">
+   <div className="andy-form-grid">
+    <label className="andy-field"><span>Correo electrónico</span><input type="email" placeholder="nombre@ejemplo.com"/><small className="andy-help">Usaremos esta dirección para enviarte novedades de la inscripción.</small></label>
+   </div>
+  </ComponentExample>
+  <DocSection title="Anatomía" description="Una estructura consistente permite reemplazar el control sin perder su etiqueta, ayuda o error.">
+   <DocPreview><div className="andy-doc-guideline"><strong>Field</strong><span>Contenedor de un único campo.</span><strong>FieldLabel</strong><span>Nombre asociado al control.</span><strong>Control</strong><span>Input, Select, Textarea, Checkbox, Radio o Switch.</span><strong>FieldDescription</strong><span>Ayuda opcional antes de completar.</span><strong>FieldError</strong><span>Mensaje de validación asociado al control.</span></div></DocPreview>
+  </DocSection>
+  <ComponentExample title="Field Group" description="Agrupa campos relacionados y conserva el mismo ritmo vertical entre cada bloque.">
+   <div className="andy-form-grid">
+    <label className="andy-field"><span>Nombre</span><input placeholder="Ingresá tu nombre"/></label>
+    <label className="andy-field"><span>Apellido</span><input placeholder="Ingresá tu apellido"/></label>
+   </div>
+  </ComponentExample>
+  <DocSection title="Field Set" description="Usá un conjunto semántico cuando varios controles respondan a una misma consigna.">
+   <DocPreview align="start"><div className="andy-form-composition"><h3>Disponibilidad semanal</h3><SelectionGallery embedded only="checkbox"/></div></DocPreview>
+  </DocSection>
+  <ComponentExample title="Responsive Layout" description="Los campos pueden apilarse en mobile y distribuirse en columnas cuando el espacio lo permite.">
+   <div className="andy-form-grid">
+    <label className="andy-field"><span>Localidad</span><input placeholder="Ingresá tu localidad"/></label>
+    <label className="andy-field"><span>Código postal</span><input inputMode="numeric" placeholder="Ingresá el código postal"/></label>
+   </div>
+  </ComponentExample>
+  <ComponentExample title="Validación y errores" description="El control usa aria-invalid y el mensaje explica cómo corregir el dato.">
+   <div className="andy-form-grid"><label className="andy-field"><span>Correo electrónico</span><input type="email" aria-invalid="true" defaultValue="correo-incompleto" aria-describedby="field-email-error"/><small id="field-email-error">Ingresá una dirección de correo válida.</small></label></div>
+  </ComponentExample>
+  <DocSection title="Accesibilidad" description="La asociación semántica debe mantenerse aunque cambien el control o la disposición visual.">
+   <DocPreview><div className="andy-doc-guideline"><strong>Etiqueta</strong><span>Usar label y htmlFor, o envolver directamente el control.</span><strong>Ayuda</strong><span>Vincular las descripciones mediante aria-describedby cuando corresponda.</span><strong>Error</strong><span>Combinar aria-invalid con un mensaje que indique cómo resolverlo.</span><strong>Agrupación</strong><span>Usar fieldset y legend para opciones que compartan una consigna.</span></div></DocPreview>
+  </DocSection>
+ </>;
+}
+function InputDocs(){
+ return <>
+  <ComponentExample title="Básico" description="Control de una línea sin composición adicional.">
+   <div className="andy-search-field"><input aria-label="Texto" placeholder="Ingresá un texto"/></div>
+  </ComponentExample>
+  <ComponentExample title="Field" description="Combiná Input con Field cuando necesites etiqueta y texto de ayuda.">
+   <div className="andy-form-grid"><label className="andy-field"><span>Nombre y apellido</span><input placeholder="Ingresá tu nombre y apellido"/><small className="andy-help">Escribilo como figura en tu documento.</small></label></div>
+  </ComponentExample>
+  <FormStates family="text"/>
+  <ComponentExample title="Disabled" description="El atributo disabled bloquea la interacción y comunica el estado a las tecnologías de asistencia.">
+   <div className="andy-form-grid"><label className="andy-field"><span>Correo electrónico</span><input disabled placeholder="Campo no disponible"/><small className="andy-help">Este dato no puede editarse en este paso.</small></label></div>
+  </ComponentExample>
+  <ComponentExample title="Invalid" description="Usá aria-invalid y un mensaje específico para explicar el problema.">
+   <div className="andy-form-grid"><label className="andy-field"><span>Correo electrónico</span><input type="email" aria-invalid="true" defaultValue="correo-incompleto" aria-describedby="input-email-error"/><small id="input-email-error">Ingresá una dirección de correo válida.</small></label></div>
+  </ComponentExample>
+  <ComponentExample title="Required" description="Indicá visual y semánticamente cuándo el dato es obligatorio.">
+   <div className="andy-form-grid"><label className="andy-field"><span>Documento *</span><input required aria-required="true" placeholder="Ingresá tu documento"/><small className="andy-help">Este campo es obligatorio.</small></label></div>
+  </ComponentExample>
+  <ComponentExample title="Inline" description="El input puede compartir una fila con una acción relacionada.">
+   <div className="andy-form-grid"><label className="andy-field"><span>Buscar actividad</span><div className="andy-button-grid"><input type="search" placeholder="Natación"/><button type="button" className="andy-btn andy-btn-primary">Buscar</button></div></label></div>
+  </ComponentExample>
+  <ComponentExample title="Grid" description="Dos inputs relacionados pueden compartir columnas y apilarse en pantallas pequeñas.">
+   <div className="andy-form-grid"><label className="andy-field"><span>Nombre</span><input placeholder="María"/></label><label className="andy-field"><span>Apellido</span><input placeholder="González"/></label></div>
+  </ComponentExample>
+ </>;
+}
 function FilterDocs({id}:{id:'seleccion-unica'|'seleccion-multiple'|'filtros-avanzados'|'ordenamiento'}){
  if(id==='seleccion-unica')return <>
   <ComponentExample title="Selección única" description="El usuario elige una opción a la vez. Edad es el ejemplo real del producto; en mobile se abre como drawer.">
@@ -225,10 +292,8 @@ function ComponentDetails({id}:{id:ComponentId}){
    <DocPreview><div className="andy-doc-guideline"><strong>4 px · Controles</strong><span>Input, dropdown y botones.</span><strong>6–8 px · Superficies</strong><span>Chips, popovers y tarjetas.</span><strong>12–16 px · Contenedores</strong><span>Paneles y drawers móviles.</span></div></DocPreview>
   </DocSection>
  </>;
- if(id==='input')return <><FormStates family="text"/>
-  <ComponentExample title="Campo interactivo" description="Escribí para observar cómo se comporta el campo con contenido y foco.">
-   <div className="andy-search-field"><input aria-label="Nombre y apellido" placeholder="Ingresá tu nombre y apellido"/></div>
-  </ComponentExample></>;
+ if(id==='field')return <FieldDocs/>;
+ if(id==='input')return <InputDocs/>;
  if(id==='textarea')return <><FormStates family="textarea"/>
   <ComponentExample title="Texto multilínea" description="Permite escribir varias líneas y ajustar la altura.">
    <div className="andy-form-grid"><label className="andy-field"><span>Observaciones</span><textarea placeholder="Escribí una observación"/></label></div>
@@ -308,6 +373,8 @@ function ComponentDetails({id}:{id:ComponentId}){
  return null;
 }
 const tocByComponent:Partial<Record<ComponentId,{id:string;title:string}[]>>={
+ field:[{id:'composicion',title:'Composición'},{id:'anatomia',title:'Anatomía'},{id:'field-group',title:'Field Group'},{id:'field-set',title:'Field Set'},{id:'responsive-layout',title:'Responsive Layout'},{id:'validacion-y-errores',title:'Validación y errores'},{id:'accesibilidad',title:'Accesibilidad'}],
+ input:[{id:'basico',title:'Básico'},{id:'field',title:'Field'},{id:'estados',title:'Estados'},{id:'disabled',title:'Disabled'},{id:'invalid',title:'Invalid'},{id:'required',title:'Required'},{id:'inline',title:'Inline'},{id:'grid',title:'Grid'}],
  calendario:[{id:'estados',title:'Estados'},{id:'seleccion-de-un-dia',title:'Selección de un día'},{id:'seleccion-de-un-rango',title:'Selección de un rango'},{id:'campo-desplegable',title:'Campo desplegable'}],
  boton:[{id:'variantes',title:'Variantes'},{id:'tamanos',title:'Tamaños'},{id:'estados',title:'Estados'},{id:'iconografia',title:'Íconos'},{id:'uso',title:'Uso y comportamiento'}],
  acordeon:[{id:'apertura-unica',title:'Apertura única'},{id:'apertura-multiple',title:'Apertura múltiple'},{id:'deshabilitado',title:'Deshabilitado'}],
@@ -375,7 +442,7 @@ export function AndyKitPage(){
   <header className="andy-header"><div className="andy-container andy-topbar">
    <div className="andy-topbar-heading"><h1>MLZ UI Kit - Andy</h1>
      <span className="andy-eyebrow"><span>Municipio de Lomas de Zamora</span><span className="andy-eyebrow-divider"> · </span><span className="andy-design-system-label">Design System</span></span></div>
-   <p className="andy-version">{commit==='local'?<b><span className="andy-version-prefix">Desarrollo </span>local</b>:<a href={'https://github.com/SantiagoM96/mlz-muni/commit/'+commit} target="_blank" rel="noopener noreferrer" aria-label={'Versión '+commit.slice(-3)}><b><span className="andy-version-prefix">Versión </span>{commit.slice(-3)}</b></a>}</p>
+   <p className="andy-version">{commit==='local'?<b><span className="andy-version-prefix">Desarrollo </span>local</b>:<a href={'https://github.com/SantiagoM96/mlz-muni/commit/'+commit} target="_blank" rel="noopener noreferrer" aria-label={'Versión '+commit.slice(-3)}><b><span className="andy-version-prefix">Versión </span>{commit.slice(-3)}</b></a>}<span className="andy-version-updated"><span className="andy-version-updated-label">Actualizado</span><span className="andy-version-date">{buildDateLabel}</span><time dateTime={buildTimestamp}>{buildTimeLabel}</time></span></p>
    <button type="button" className="andy-sidebar-toggle" aria-label={navOpen?'Cerrar menú de componentes':'Abrir menú de componentes'} aria-expanded={navOpen} aria-controls="andy-component-nav" onClick={()=>setNavOpen(v=>!v)}>
      <Icon name="menu" size={24}/><span className="andy-sidebar-toggle-label">Componentes</span>
    </button>
@@ -427,3 +494,4 @@ export function AndyKitPage(){
   <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
  </div>;
 }
+
