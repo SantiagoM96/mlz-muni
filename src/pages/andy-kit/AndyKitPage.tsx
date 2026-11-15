@@ -5,6 +5,7 @@ import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
+import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import './andy-kit.css';
 
 const categories = [
@@ -21,7 +22,7 @@ type Category = typeof categories[number]['id'];
 const componentGroups=[
  {title:'Campos de formulario',items:[['input','Input / Text field'],['select','Dropdown / Select'],['textarea','Text area'],['calendario','Calendario / Date Picker'],['adjuntos','Adjuntar archivos']]},
  {title:'Selección',items:[['checkbox','Checkbox'],['radio','Radio button'],['switch','Switch']]},
- {title:'Filtros y navegación',items:[['buscador','Buscador'],['sede','Filtro de Sede'],['edad','Filtro de Edad'],['mas-filtros','Más filtros'],['ordenar','Ordenar por']]},
+ {title:'Filtros y navegación',items:[['buscador','Buscador'],['sede','Filtro de Sede'],['edad','Filtro de Edad'],['mas-filtros','Más filtros'],['ordenar','Ordenar por'],['scrollbars','Barras de scroll']]},
  {title:'Acciones y contenido',items:[['boton','Botones'],['chips','Chips y etiquetas'],['tarjeta','Tarjetas y resúmenes'],['mensaje','Mensajes y alertas'],['acordeon','Acordeón']]}
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
@@ -40,6 +41,7 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  edad:{description:'Filtro de una sola opción y drawer mobile.',category:'Filtros y navegación'},
  'mas-filtros':{description:'Filtros combinados, secciones desplegables y controles múltiples.',category:'Filtros y navegación'},
  ordenar:{description:'Opciones de ordenamiento con selección única.',category:'Filtros y navegación'},
+ scrollbars:{description:'Barras de scroll de página, dropdowns y menú lateral sin barra visible.',category:'Filtros y navegación'},
  boton:{description:'Acciones primarias, secundarias, de texto y con íconos.',category:'Acciones y contenido'},
  chips:{description:'Etiquetas y chips removibles.',category:'Acciones y contenido'},
  tarjeta:{description:'Tarjetas de actividad y resúmenes de inscripción.',category:'Acciones y contenido'},
@@ -139,7 +141,7 @@ function AccordionDemo({multiple=false}:{multiple?:boolean}){
 }
 function ComponentDetails({id}:{id:ComponentId}){
  const formType:{[k:string]:'text'|'dropdown'|'textarea'|'date'|'upload'}={input:'text',select:'dropdown',textarea:'textarea',calendario:'date',adjuntos:'upload'};
- if(formType[id])return <ComponentExample title="Variantes y estados" description="Cada estado tiene su propia vista. Las variantes interactivas se encuentran debajo.">
+ if(formType[id])return <ComponentExample title="Variantes y estados" description="Todos los estados se muestran juntos en una sola caja, con las variantes interactivas debajo.">
   <FormStateMatrix onlyFamily={formType[id]}/></ComponentExample>;
  if(id==='checkbox'||id==='radio'||id==='switch')return <>
   <ComponentExample title="Selección interactiva"><SelectionGallery only={id}/></ComponentExample>
@@ -150,6 +152,7 @@ function ComponentDetails({id}:{id:ComponentId}){
   <SportsControlsGallery mode="filters" only={id}/></ComponentExample>;
  if(id==='buscador')return <><ComponentExample title="Buscador"><div className="andy-search-field"><input aria-label="Buscar actividad" placeholder="¿Qué estás buscando?"/><Icon name="search"/></div></ComponentExample>
   <ComponentExample title="Buscador con contenido"><div className="andy-search-field"><input aria-label="Búsqueda de muestra" defaultValue="Natación"/><Icon name="search"/></div></ComponentExample></>;
+ if(id==='scrollbars')return <AndyScrollbarGallery/>;
  if(id==='boton')return <Buttons/>;
  if(id==='chips')return <Tags/>;
  if(id==='tarjeta')return <Cards/>;
