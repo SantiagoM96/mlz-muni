@@ -17,6 +17,34 @@ const categories = [
   { id:'mensajes', name:'Mensajes' },
 ] as const;
 type Category = typeof categories[number]['id'];
+const componentGroups=[
+ {title:'Campos de formulario',items:[['input','Input / Text field'],['select','Dropdown / Select'],['textarea','Text area'],['calendario','Calendario / Date Picker'],['adjuntos','Adjuntar archivos']]},
+ {title:'Selección',items:[['checkbox','Checkbox'],['radio','Radio button'],['switch','Switch']]},
+ {title:'Filtros y navegación',items:[['buscador','Buscador'],['sede','Filtro de Sede'],['edad','Filtro de Edad'],['mas-filtros','Más filtros'],['ordenar','Ordenar por']]},
+ {title:'Acciones y contenido',items:[['boton','Botones'],['chips','Chips y etiquetas'],['tarjeta','Tarjetas y resúmenes'],['mensaje','Mensajes y alertas'],['acordeon','Acordeón']]}
+] as const;
+type ComponentId=typeof componentGroups[number]['items'][number][0];
+const componentMeta:Record<ComponentId,{description:string;category:string}>={
+ input:{description:'Campos de una línea con estados de reposo, hover, foco, completo, error y deshabilitado.',category:'Campos de formulario'},
+ select:{description:'Selección única, múltiple y con búsqueda; menús desktop y drawers mobile.',category:'Campos de formulario'},
+ textarea:{description:'Campos de texto multilínea y sus estados.',category:'Campos de formulario'},
+ calendario:{description:'Selector de fechas del producto Deportes Anual, con vistas de mes y año.',category:'Campos de formulario'},
+ adjuntos:{description:'Adjunto de documentación y sus estados visuales.',category:'Campos de formulario'},
+ checkbox:{description:'Selección múltiple con Material Symbols Outlined.',category:'Selección'},
+ radio:{description:'Selección exclusiva entre varias alternativas.',category:'Selección'},
+ switch:{description:'Activar o desactivar una configuración.',category:'Selección'},
+ buscador:{description:'Campo de búsqueda con ícono y estados institucionales.',category:'Filtros y navegación'},
+ sede:{description:'Filtro multiselección y drawer mobile.',category:'Filtros y navegación'},
+ edad:{description:'Filtro de una sola opción y drawer mobile.',category:'Filtros y navegación'},
+ 'mas-filtros':{description:'Filtros combinados, secciones desplegables y controles múltiples.',category:'Filtros y navegación'},
+ ordenar:{description:'Opciones de ordenamiento con selección única.',category:'Filtros y navegación'},
+ boton:{description:'Acciones primarias, secundarias, de texto y con íconos.',category:'Acciones y contenido'},
+ chips:{description:'Etiquetas y chips removibles.',category:'Acciones y contenido'},
+ tarjeta:{description:'Tarjetas de actividad y resúmenes de inscripción.',category:'Acciones y contenido'},
+ mensaje:{description:'Avisos informativos, estados de validación y vacíos.',category:'Acciones y contenido'},
+ acordeon:{description:'Secciones expandibles de contenido, con apertura única o múltiple.',category:'Acciones y contenido'}
+};
+
 const commit = import.meta.env.VITE_MLZ_COMMIT_SHA ?? 'local';
 const colors = [
  ['Primario 600','#236999','Acciones, títulos e íconos'],
@@ -63,12 +91,12 @@ function Forms(){
    <FormStateMatrix/>
  </DemoSection>;
 }
-function SelectionGallery({embedded=false}:{embedded?:boolean}){
+function SelectionGallery({embedded=false,only}:{embedded?:boolean;only?:'checkbox'|'radio'|'switch'}){
  const [days,setDays]=useState(['Lunes']),[athlete,setAthlete]=useState('Recreativo'),[minor,setMinor]=useState(false);
  return <div className="andy-selection-grid">
- <div><h3>Días de cursada</h3><div className="andy-choices">{['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'].map(day=><label key={day} className="andy-choice"><input type="checkbox" checked={days.includes(day)} onChange={()=>setDays(prev=>prev.includes(day)?prev.filter(x=>x!==day):[...prev,day])}/><span className="andy-choice-symbol andy-checkbox-symbol"><Icon name={days.includes(day)?'check_box':'check_box_outline_blank'} size={24}/></span>{day}</label>)}</div></div>
- <div><h3>Tipo de deportista</h3><div className="andy-choices">{['Recreativo','Competitivo','Federado'].map(item=><label className="andy-choice" key={item}><input type="radio" name={embedded?'athlete-embedded':'athlete-main'} checked={athlete===item} onChange={()=>setAthlete(item)}/><span className="andy-choice-symbol andy-radio-symbol"><Icon name={athlete===item?'radio_button_checked':'radio_button_unchecked'} size={24}/></span>{item}</label>)}</div></div>
- <div className="andy-switch-card"><label className="andy-switch"><input type="checkbox" checked={minor} onChange={e=>setMinor(e.target.checked)}/><span className="andy-switch-track"/></label><div><strong>Inscribir a una persona menor de edad</strong><p>Activá esta opción para visualizar el estado seleccionado.</p></div></div>
+ {(!only||only==="checkbox")&&<div><h3>Días de cursada</h3><div className="andy-choices">{['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'].map(day=><label key={day} className="andy-choice"><input type="checkbox" checked={days.includes(day)} onChange={()=>setDays(prev=>prev.includes(day)?prev.filter(x=>x!==day):[...prev,day])}/><span className="andy-choice-symbol andy-checkbox-symbol"><Icon name={days.includes(day)?'check_box':'check_box_outline_blank'} size={24}/></span>{day}</label>)}</div></div>}
+ {(!only||only==="radio")&&<div><h3>Tipo de deportista</h3><div className="andy-choices">{['Recreativo','Competitivo','Federado'].map(item=><label className="andy-choice" key={item}><input type="radio" name={embedded?'athlete-embedded':'athlete-main'} checked={athlete===item} onChange={()=>setAthlete(item)}/><span className="andy-choice-symbol andy-radio-symbol"><Icon name={athlete===item?'radio_button_checked':'radio_button_unchecked'} size={24}/></span>{item}</label>)}</div></div>}
+ {(!only||only==="switch")&&<div className="andy-switch-card"><label className="andy-switch"><input type="checkbox" checked={minor} onChange={e=>setMinor(e.target.checked)}/><span className="andy-switch-track"/></label><div><strong>Inscribir a una persona menor de edad</strong><p>Activá esta opción para visualizar el estado seleccionado.</p></div></div>}
  </div>;
 }
 function Selection(){return <DemoSection title="Checkbox, radio y switch" description="Controles de selección reales e interactivos, sin duplicar los estados de Formularios."><SelectionGallery/></DemoSection>}
@@ -84,17 +112,99 @@ function Cards(){return <><DemoSection title="Tarjeta de actividad" description=
  <DemoSection title="Selección de comisión"><CommissionPreview/></DemoSection></>}
 function CommissionPreview(){const [sel,setSel]=useState('1');return <div className="andy-commissions">{[['1','Lunes y miércoles','10:00 a 11:00 h'],['2','Martes y jueves','16:00 a 17:00 h']].map(([id,day,time])=><button key={id} type="button" className={'andy-commission '+(sel===id?'chosen':'')} onClick={()=>setSel(id ?? '')}><span className="andy-commission-radio"/><span><strong>{day}</strong><small>{time}</small><small>Profesor/a a confirmar</small></span><span className="andy-tag">Disponible</span></button>)}</div>}
 function Messages(){return <><DemoSection title="Mensajes informativos" description="Avisos y validaciones para inscripción deportiva."><div className="andy-messages"><div className="andy-alert andy-alert-info"><Icon name="info"/><div><strong>Antes de empezar</strong><p>Completá los datos para continuar con la inscripción.</p></div></div><div className="andy-alert andy-alert-error"><Icon name="info"/><div><strong>Revisá el formulario</strong><p>Hay campos obligatorios pendientes.</p></div></div><div className="andy-alert andy-alert-success"><Icon name="check"/><div><strong>Datos completos</strong><p>El formulario de demostración está listo para continuar.</p></div></div></div></DemoSection><DemoSection title="Estado sin resultados"><div className="andy-empty"><Icon name="search" size={42}/><h3>No encontramos actividades</h3><p>Probá con otros filtros o cambiá el término de búsqueda.</p><button className="andy-btn andy-btn-outline" type="button">Limpiar filtros</button></div></DemoSection></>}
+
+function ComponentExample({title,description,children}:{title:string;description?:string;children:ReactNode}){
+ return <section className="andy-doc-example"><h3>{title}</h3>{description&&<p>{description}</p>}
+   <div className="andy-doc-preview">{children}</div></section>;
+}
+function AccordionDemo({multiple=false}:{multiple?:boolean}){
+ const [open,setOpen]=useState<string[]>(['1']);
+ const items=[['1','¿Cómo puedo inscribirme?','Elegí una actividad, seleccioná el horario disponible y completá los datos solicitados.'],['2','¿Puedo cambiar el horario?','Podés volver a la ficha de la actividad para elegir otra comisión disponible.'],['3','¿Dónde encuentro la sede?','La dirección y los detalles se muestran en la ficha de cada actividad.']];
+ return <div className="andy-doc-accordion">{items.map(([id,title,content])=><div className="andy-doc-accordion-item" key={id}>
+  <button type="button" aria-expanded={open.includes(id)} onClick={()=>setOpen(prev=>prev.includes(id)?prev.filter(v=>v!==id):multiple?[...prev,id]:[id])}>
+    {title}<Icon name="expand_more" size={24}/>
+  </button>{open.includes(id)&&<div className="andy-doc-accordion-content">{content}</div>}
+ </div>)}</div>;
+}
+function ComponentDetails({id}:{id:ComponentId}){
+ const formType:{[k:string]:'text'|'dropdown'|'textarea'|'date'|'upload'}={input:'text',select:'dropdown',textarea:'textarea',calendario:'date',adjuntos:'upload'};
+ if(formType[id])return <ComponentExample title="Variantes y estados" description="Cada estado tiene su propia vista. Las variantes interactivas se encuentran debajo.">
+  <FormStateMatrix onlyFamily={formType[id]}/></ComponentExample>;
+ if(id==='checkbox'||id==='radio'||id==='switch')return <>
+  <ComponentExample title="Selección interactiva"><SelectionGallery only={id}/></ComponentExample>
+  <ComponentExample title="Estados" description="Probá seleccionar y deseleccionar las opciones para observar su comportamiento.">
+    <SelectionGallery embedded only={id}/>
+  </ComponentExample></>;
+ if(id==='sede'||id==='edad'||id==='mas-filtros'||id==='ordenar')return <ComponentExample title="Ejemplo interactivo" description="En desktop se abre un desplegable; en mobile se utiliza el drawer del producto de Deportes.">
+  <SportsControlsGallery mode="filters" only={id}/></ComponentExample>;
+ if(id==='buscador')return <><ComponentExample title="Buscador"><div className="andy-search-field"><input aria-label="Buscar actividad" placeholder="¿Qué estás buscando?"/><Icon name="search"/></div></ComponentExample>
+  <ComponentExample title="Buscador con contenido"><div className="andy-search-field"><input aria-label="Búsqueda de muestra" defaultValue="Natación"/><Icon name="search"/></div></ComponentExample></>;
+ if(id==='boton')return <Buttons/>;
+ if(id==='chips')return <Tags/>;
+ if(id==='tarjeta')return <Cards/>;
+ if(id==='mensaje')return <Messages/>;
+ if(id==='acordeon')return <>
+  <ComponentExample title="Apertura única" description="Solo un panel abierto a la vez."><AccordionDemo/></ComponentExample>
+  <ComponentExample title="Apertura múltiple" description="Podés desplegar varios paneles a la vez."><AccordionDemo multiple/></ComponentExample>
+  <ComponentExample title="Deshabilitado"><div className="andy-doc-accordion"><button type="button" disabled>Sección no disponible <Icon name="expand_more"/></button></div></ComponentExample>
+ </>;
+ return null;
+}
 const views:Record<Category,()=>ReactNode>={fundamentos:Foundations,filtros:Filters,formularios:Forms,seleccion:Selection,botones:Buttons,etiquetas:Tags,tarjetas:Cards,mensajes:Messages};
 export function AndyKitPage(){
- const {categoria}=useParams<{categoria?:string}>();
- const active=categories.find(c=>c.id===(categoria??'fundamentos'));
- useEffect(()=>{document.title='MLZ UI Kit - Andy'+(active?' · '+active.name:'');},[active]);
- if(!active)return <Navigate to="/ui-kit-andy/fundamentos" replace/>;
- const Gallery=views[active.id];
- return <div className="andy-kit" data-testid="andy-ui-kit"><a href="#andy-content" className="skip-link">Ir al contenido</a>
- <header className="andy-header"><div className="andy-container"><span className="andy-eyebrow">Municipio de Lomas de Zamora · Laboratorio de componentes</span><h1>MLZ UI Kit - Andy</h1><p className="andy-version">Versión publicada: {commit==='local'?<b>Desarrollo local</b>:<a href={'https://github.com/SantiagoM96/mlz-muni/commit/'+commit} target="_blank" rel="noopener noreferrer"><b>Versión {commit.slice(-3)}</b></a>}</p>
- <nav className="andy-tabs" aria-label="Categorías del UI Kit de Andy">{categories.map(c=><NavLink key={c.id} to={'/ui-kit-andy/'+c.id} className={({isActive})=>'andy-tab'+(isActive?' active':'')}>{c.name}</NavLink>)}</nav></div></header>
- <main className="andy-container andy-main" id="andy-content"><div className="andy-main-heading"><div><p>Biblioteca visual independiente · Deportes Anual y Consola</p><h2>{active.name}</h2></div><a href={import.meta.env.BASE_URL + 'ui-kit/formularios'} className="andy-original-link">UI Kit institucional</a></div><Gallery/></main>
- <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
+ const {categoria,componente}=useParams<{categoria?:string;componente?:string}>();
+ const [navOpen,setNavOpen]=useState(false);
+ const legacy=categories.find(c=>c.id===(categoria??'fundamentos'));
+ const componentEntry=componentGroups.flatMap(group=>group.items).find(([id])=>id===componente);
+ const isComponent=categoria==='componentes'&&!!componentEntry;
+ const displayName=isComponent?componentEntry[1]:legacy?.name;
+ const meta=isComponent?componentMeta[componentEntry[0]]:null;
+ useEffect(()=>{document.title='MLZ UI Kit - Andy'+(displayName?' · '+displayName:'');},[displayName]);
+ if(!isComponent&&!legacy)return <Navigate to="/ui-kit-andy/fundamentos" replace/>;
+ const Gallery=legacy?views[legacy.id]:null;
+ return <div className="andy-kit andy-doc-layout" data-testid="andy-ui-kit">
+  <a href="#andy-content" className="skip-link">Ir al contenido</a>
+  <header className="andy-header"><div className="andy-container andy-topbar">
+   <div className="andy-topbar-heading"><span className="andy-eyebrow">Municipio de Lomas de Zamora · Design System</span>
+     <h1>MLZ UI Kit - Andy</h1></div>
+   <div className="andy-topbar-actions">
+    <p className="andy-version">{commit==='local'?<b>Desarrollo local</b>:<a href={'https://github.com/SantiagoM96/mlz-muni/commit/'+commit} target="_blank" rel="noopener noreferrer"><b>Versión {commit.slice(-3)}</b></a>}</p>
+    <button type="button" className="andy-sidebar-toggle" aria-expanded={navOpen} aria-controls="andy-component-nav" onClick={()=>setNavOpen(v=>!v)}>
+      <Icon name="menu" size={24}/> Componentes
+    </button>
+   </div>
+  </div></header>
+  {navOpen&&<button type="button" className="andy-sidebar-backdrop" aria-label="Cerrar navegación" onClick={()=>setNavOpen(false)}/>}
+  <div className="andy-doc-body andy-container">
+   <aside className={'andy-sidebar'+(navOpen?' is-open':'')} id="andy-component-nav" aria-label="Navegación del Design System">
+    <nav>
+     <div className="andy-nav-group"><span className="andy-nav-heading">Empezar</span>
+      <NavLink end to="/ui-kit-andy/fundamentos" onClick={()=>setNavOpen(false)} className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}>Fundamentos</NavLink>
+     </div>
+     <div className="andy-nav-divider"/>
+     <p className="andy-nav-label">Componentes</p>
+     {componentGroups.map(group=><div className="andy-nav-group" key={group.title}>
+      <span className="andy-nav-heading">{group.title}</span>
+      {group.items.map(([id,title])=><NavLink key={id} to={'/ui-kit-andy/componentes/'+id} onClick={()=>setNavOpen(false)}
+        className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}>{title}</NavLink>)}
+     </div>)}
+     <div className="andy-nav-divider"/>
+     <div className="andy-nav-group"><span className="andy-nav-heading">Vistas generales</span>
+      {categories.filter(c=>c.id!=='fundamentos').map(c=><NavLink to={'/ui-kit-andy/'+c.id} key={c.id} onClick={()=>setNavOpen(false)} className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}>{c.name}</NavLink>)}
+     </div>
+    </nav>
+   </aside>
+   <main className="andy-doc-main" id="andy-content">
+    <div className="andy-main-heading">
+     <div><p>{isComponent?'Componentes / '+meta?.category:'Biblioteca visual / '+(legacy?.name||'Fundamentos')}</p>
+      <h2>{displayName}</h2>
+      {meta&&<div className="andy-doc-description">{meta.description}</div>}
+     </div>
+     <a href={import.meta.env.BASE_URL+'ui-kit/formularios'} className="andy-original-link">UI Kit institucional</a>
+    </div>
+    {isComponent?<div className="andy-doc-page"><ComponentDetails id={componentEntry[0]}/></div>:Gallery&&<Gallery/>}
+   </main>
+  </div>
+  <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
  </div>;
 }
