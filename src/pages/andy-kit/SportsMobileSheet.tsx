@@ -38,6 +38,8 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
   const handle=useRef<HTMLButtonElement>(null);
   const gesture=useRef<Gesture|null>(null);
   const timer=useRef<ReturnType<typeof setTimeout>|null>(null);
+  const closeCallback=useRef(onClose);
+  useEffect(()=>{closeCallback.current=onClose;},[onClose]);
   const [phase,setPhase]=useState<'entering'|'settled'|'dragging'|'rebounding'|'closing'>('entering');
   const [offset,setOffset]=useState(0);
   const [stretch,setStretch]=useState(0);
@@ -49,7 +51,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
     if(phase==='closing')return;
     clearTimer(); gesture.current=null;
     setPhase('closing');setOffset(0);setStretch(0);setScrim(0);
-    timer.current=setTimeout(()=>{timer.current=null;onClose();},260);
+    timer.current=setTimeout(()=>{timer.current=null;closeCallback.current();},260);
   }
   useEffect(()=>{
     if(!open)return;
@@ -57,7 +59,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
     const previous=document.activeElement instanceof HTMLElement?document.activeElement:null;
     document.body.style.overflow='hidden';
     const key=(event:KeyboardEvent)=>{
-      if(event.key==='Escape'){event.preventDefault();onClose();return;}
+      if(event.key==='Escape'){event.preventDefault();closeCallback.current();return;}
       if(event.key!=='Tab'||!sheet.current)return;
       const focusable=[...sheet.current.querySelectorAll<HTMLElement>('button:not([disabled]),input:not([disabled]),[tabindex="0"]')];
       if(!focusable.length)return;
@@ -72,7 +74,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
       document.removeEventListener('keydown',key);
       previous?.focus({preventScroll:true});
     };
-  },[open,onClose]);
+  },[open]);
   useEffect(()=>()=>{if(timer.current!==null)clearTimeout(timer.current);},[]);
   if(!open||typeof document==='undefined')return null;
   const start=(event:ReactPointerEvent<HTMLButtonElement>)=>{
