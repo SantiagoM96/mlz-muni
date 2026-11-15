@@ -1,5 +1,5 @@
 /* Tarjetas hermanas de Deportes Anual y Agenda de la Comunidad.
-   Base común: radio 8, borde gris, imagen/cabecera 154, título 22/28,
+   Base común: radio 8, borde gris, cabecera deportes 55 / imagen Agenda 154, título 22/28,
    categoría 16/26, contenido 24 y Material Symbols 20/24. */
 .andy-family-card-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:24px}
 .andy-family-card-gallery>div{min-width:0}
@@ -7,12 +7,12 @@
 .andy-family-card-gallery p{font-size:13px;line-height:21px;color:#71808c;margin:0 0 14px}
 .andy-family-card{display:flex;flex-direction:column;overflow:hidden;min-width:0;max-width:420px;min-height:0;height:100%;border:1px solid #e7e7e7;border-radius:8px;background:#fff;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .andy-family-card:hover{border-color:#bed8ed;box-shadow:0 8px 23px #174d7017;transform:translateY(-2px)}
-.andy-family-card-image,.andy-family-card-sports-head{display:block;width:100%;height:154px;flex:0 0 154px}
+.andy-family-card-image,.andy-family-card-sports-head{display:block;width:100%}.andy-family-card-image{height:154px;flex:0 0 154px}.andy-family-card-sports-head{height:55px;flex:0 0 55px}
 .andy-family-card-image{object-fit:cover;background:#e5f0f9}
-.andy-family-card-sports-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 24px;background:#e5f0f9;color:#236999}
-.andy-family-card-sports-head>span{font-size:17px;line-height:24px;letter-spacing:.01em;font-weight:700;max-width:180px}
-.andy-family-card-sports-head>.material-symbols-outlined{flex:0 0 36px}
-.andy-family-card-body{display:flex;flex-direction:column;flex:1;min-width:0;gap:16px;padding:16px 24px 20px}
+.andy-family-card-sports-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 16px;background:#e5f0f9;color:#236999}
+.andy-family-card-sports-head>span{font-size:16px;line-height:23px;letter-spacing:0;font-weight:700;max-width:calc(100% - 40px)}
+.andy-family-card-sports-head>.material-symbols-outlined{flex:0 0 24px}
+.andy-family-card-body{display:flex;flex-direction:column;flex:1;min-width:0;gap:16px;padding:16px 24px 20px}.andy-family-card.is-sports{background:#fafafa}.andy-family-card.is-sports .andy-family-card-body{gap:12px}
 .andy-family-card-intro{display:flex;flex-direction:column;align-items:start;min-width:0;gap:8px}
 .andy-family-card-category{font-size:16px;line-height:26px;font-weight:500;color:#888;text-transform:uppercase}
 .andy-family-card-intro h3{font-size:22px;line-height:28px;font-weight:700;color:#236999;margin:0;overflow-wrap:break-word}
@@ -26,6 +26,6 @@
 .andy-family-card-line span{font-weight:400}
 .andy-family-card-action{margin-top:auto;padding-top:8px;display:flex;align-items:center;gap:8px;min-height:36px;color:#236999;font-size:16px;line-height:24px;font-weight:500}
 .andy-family-card-action .material-symbols-outlined{color:#236999}
-@media(max-width:900px){.andy-family-card-gallery{gap:18px}.andy-family-card-body{padding:16px 18px 20px}.andy-family-card-sports-head{padding-inline:18px}}
-@media(max-width:650px){.andy-family-card-gallery{grid-template-columns:1fr;gap:30px}.andy-family-card{max-width:420px}.andy-family-card-body{padding:16px 24px 20px}.andy-family-card-sports-head{padding-inline:24px}}
+@media(max-width:900px){.andy-family-card-gallery{gap:18px}.andy-family-card-body{padding:16px 18px 20px}.andy-family-card-sports-head{padding-inline:16px}}
+@media(max-width:650px){.andy-family-card-gallery{grid-template-columns:1fr;gap:30px}.andy-family-card{max-width:420px}.andy-family-card-body{padding:16px 24px 20px}.andy-family-card-sports-head{padding-inline:16px}}
 @media(prefers-reduced-motion:reduce){.andy-family-card{transition:none}.andy-family-card:hover{transform:none}}
