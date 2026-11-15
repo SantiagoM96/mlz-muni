@@ -75,3 +75,33 @@ test('Andy: calendario documenta dos ejemplos abiertos y meses/años con Primari
  await expect(selected).toHaveCSS('background-color','rgb(0, 110, 255)');
  await expect(selected.locator('.material-symbols-outlined')).toHaveCSS('color','rgb(255, 255, 255)');
 });
+
+
+test('Andy: controles de documentación sin caja, con selección Info 500',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/boton');
+ const inspector=page.locator('#estados .andy-doc-inspector');
+ await expect(inspector).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
+ await expect(inspector).toHaveCSS('border-top-width','0px');
+ await expect(inspector.locator('.andy-doc-inspector-label')).toHaveCount(0);
+ const active=inspector.locator('button[aria-pressed="true"]');
+ await expect(active).toHaveCSS('background-color','rgb(0, 110, 255)');
+ await expect(active).toHaveCSS('border-top-left-radius','9999px');
+ await page.goto('/ui-kit-andy/componentes/chips');
+ const tagTools=page.locator('.andy-palette-sizebar.andy-doc-inspector');
+ await expect(tagTools).toHaveCSS('border-top-width','0px');
+ await expect(tagTools.getByText('Control de la documentación')).toHaveCount(0);
+});
+
+test('Andy: dropdowns permiten scroll sin barra ni margen derecho extra',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ const day=page.locator('#seleccion-de-un-dia');
+ await day.getByRole('button',{name:'Seleccionar mes'}).click();
+ const options=day.locator('.sports-cal-choices:visible');
+ await expect(options).toHaveCSS('scrollbar-width','none');
+ await expect(options).toHaveCSS('padding-right','0px');
+ await expect(options).toHaveCSS('overflow-y','auto');
+ await page.goto('/ui-kit-andy/componentes/select');
+ const list=page.locator('.andy-dropdown-variant-options').first();
+ await expect(list).toHaveCSS('scrollbar-width','none');
+ await expect(list).toHaveCSS('padding-right','0px');
+});
