@@ -491,3 +491,16 @@
 .andy-doc-layout .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-button,
 .sports-cal-popup .sports-cal-choices::-webkit-scrollbar-button,
 .sports-cal-popup.is-mobile>.sports-cal-choices::-webkit-scrollbar-button{display:none;width:0;height:0}
+
+
+/* Títulos de grupos del índice izquierdo — Figma Primario 900 (#1E415C).
+   No modifica labels de opciones ni estados activos. */
+.andy-doc-layout .andy-sidebar .andy-nav-heading,
+.andy-doc-layout .andy-sidebar .andy-nav-label,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link{
+ color:#1e415c;
+}
+.andy-doc-layout .andy-sidebar .andy-nav-label-link:hover,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active{
+ color:#1e415c;
+}
