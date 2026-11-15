@@ -218,8 +218,8 @@ export function AndyKitPage(){
  return <div className="andy-kit andy-doc-layout" data-testid="andy-ui-kit">
   <a href="#andy-content" className="skip-link">Ir al contenido</a>
   <header className="andy-header"><div className="andy-container andy-topbar">
-   <div className="andy-topbar-heading"><span className="andy-eyebrow">Municipio de Lomas de Zamora · Design System</span>
-     <h1>MLZ UI Kit - Andy</h1></div>
+   <div className="andy-topbar-heading"><h1>MLZ UI Kit - Andy</h1>
+     <span className="andy-eyebrow">Municipio de Lomas de Zamora · Design System</span></div>
    <div className="andy-topbar-actions">
     <p className="andy-version">{commit==='local'?<b>Desarrollo local</b>:<a href={'https://github.com/SantiagoM96/mlz-muni/commit/'+commit} target="_blank" rel="noopener noreferrer"><b>Versión {commit.slice(-3)}</b></a>}</p>
     <button type="button" className="andy-sidebar-toggle" aria-expanded={navOpen} aria-controls="andy-component-nav" onClick={()=>setNavOpen(v=>!v)}>
