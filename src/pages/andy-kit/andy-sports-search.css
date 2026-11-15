@@ -95,3 +95,44 @@
 /* El texto no invade el botón de limpiar ni el ícono de búsqueda. */
 .andy-sports-search-control:has(.andy-sports-search-clear) input{padding-right:88px}
 .andy-sports-search-control:has(.andy-sports-search-clear) input:focus-visible{padding-right:87px}
+
+/* Preview: los filtros ocupan exactamente el ancho útil del buscador.
+   Sede y Edad dividen por igual todo el espacio libre y Más filtros
+   se ancla al borde derecho con su ancho de contenido. */
+.andy-doc-demo .andy-sports-search.is-integrated,
+.andy-doc-demo .andy-sports-search.is-integrated .andy-sports-search-filters,
+.andy-doc-demo .andy-sports-search.is-integrated .kit-sports-gallery,
+.andy-doc-demo .andy-sports-search.is-integrated .kit-sports-section,
+.andy-doc-demo .andy-sports-search.is-integrated .kit-sports-filters{
+ width:100%;
+ max-width:none;
+ min-width:0;
+}
+.andy-doc-demo .andy-sports-search.is-integrated .kit-sports-filters{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr) max-content;
+ gap:8px;
+ justify-content:stretch;
+ align-items:stretch;
+}
+.andy-doc-demo .andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-filter{
+ min-width:0;
+ max-width:none;
+}
+.andy-doc-demo .andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more{
+ width:max-content;
+ justify-self:end;
+}
+.andy-doc-demo .andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more>.kit-sports-trigger{
+ width:max-content;
+}
+@media(max-width:540px){
+ .andy-doc-demo .andy-sports-search.is-integrated .kit-sports-filters{
+  grid-template-columns:minmax(0,1fr);
+ }
+ .andy-doc-demo .andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more,
+ .andy-doc-demo .andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more>.kit-sports-trigger{
+  width:100%;
+  justify-self:stretch;
+ }
+}
