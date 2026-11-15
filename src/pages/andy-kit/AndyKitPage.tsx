@@ -176,19 +176,28 @@ const tocByComponent:Partial<Record<ComponentId,{id:string;title:string}[]>>={
  buscador:[{id:'buscador',title:'Buscador'},{id:'buscador-con-contenido',title:'Buscador con contenido'}]
 };
 function HeadingToc({items}:{items:{id:string;title:string}[]}){
+ const [links,setLinks]=useState(items);
  const [active,setActive]=useState(items[0]?.id??'');
  useEffect(()=>{
-  if(!items.length)return;
-  const observers=items.map(item=>document.getElementById(item.id)).filter((el):el is HTMLElement=>!!el);
+  const next=items.length?items:[...document.querySelectorAll<HTMLElement>(
+   '.andy-doc-page .andy-doc-example > h3, .andy-doc-page .andy-section-head > h2, .andy-doc-page .andy-scrollbar-section > h3, .andy-doc-page .andy-palette-variant-heading > h3, .andy-doc-page .andy-button-section-intro > h3'
+  )].map((heading,index)=>{
+   const id=heading.parentElement?.id||'andy-toc-'+index;
+   if(!heading.parentElement?.id)heading.id=id;
+   return {id,title:heading.textContent?.trim()||'Sección'};
+  });
+  setLinks(next);setActive(next[0]?.id??'');
+  const targets=next.map(item=>document.getElementById(item.id)).filter((el):el is HTMLElement=>!!el);
   const observer=new IntersectionObserver(entries=>{
-   const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+   const visible=entries.filter(e=>e.isIntersecting).sort((left,right)=>left.boundingClientRect.top-right.boundingClientRect.top);
    if(visible[0])setActive(visible[0].target.id);
   },{rootMargin:'-15% 0px -68% 0px',threshold:0});
-  observers.forEach(el=>observer.observe(el));
+  targets.forEach(target=>observer.observe(target));
   return()=>observer.disconnect();
  },[items]);
+ if(!links.length)return null;
  return <aside className="andy-doc-toc" aria-label="En esta página"><strong>En esta página</strong>
-  <nav>{items.map(item=><a key={item.id} className={active===item.id?'is-active':''} href={'#'+item.id} aria-current={active===item.id?'location':undefined}
+  <nav>{links.map(item=><a key={item.id} className={active===item.id?'is-active':''} href={'#'+item.id} aria-current={active===item.id?'location':undefined}
    onClick={()=>setActive(item.id)}>{item.title}</a>)}</nav>
  </aside>;
 }
@@ -252,7 +261,7 @@ export function AndyKitPage(){
        </NavLink>)}</div></section>)}</div>:
      Gallery&&<Gallery/>}
    </main>
-   {isComponent&&tocByComponent[componentEntry[0]]&&<HeadingToc key={componentEntry[0]} items={tocByComponent[componentEntry[0]]!}/>}
+   {isComponent&&<HeadingToc key={componentEntry[0]} items={tocByComponent[componentEntry[0]]??[]}/>}
   </div>
   <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
  </div>;
