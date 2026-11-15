@@ -70,7 +70,7 @@ function VariantCard({id,title,note,label}:{id:Variant;title:string;note:string;
         <button type="button" onClick={()=>setSelected([])}>Limpiar</button>
       </div>}
     </div>:!mobile?<button type="button" className="andy-dropdown-open-again" onClick={()=>setOpen(true)}>Mostrar opciones</button>:null}
-    {mobile&&open&&<SportsMobileSheet open={open} title={label} onClose={()=>setOpen(false)}
+    {mobile&&open&&<SportsMobileSheet open={open} title={label} actions="form" onClose={()=>setOpen(false)}
       primaryLabel={multi?'Ver resultados ('+selected.length+')':'Confirmar'}
       secondaryLabel="Limpiar" onPrimary={()=>setOpen(false)}
       onSecondary={()=>{setSelected([]);setQuery('');}}>
