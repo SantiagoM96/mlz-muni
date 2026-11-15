@@ -33,7 +33,7 @@
 .andy-dashed-upload-border rect{stroke-width:var(--upload-border-width)}
 .andy-dashed-upload-control:hover{--upload-border-color:#236999}
 .andy-dashed-upload-control:focus-within{
- --upload-border-width:2px;
+ --upload-border-width:1px;
  --upload-border-color:#006eff;
 }
 .andy-dashed-upload-control.is-error,
