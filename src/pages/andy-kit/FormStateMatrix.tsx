@@ -53,10 +53,10 @@ function StateField({family, state}:{family:Family;state:FieldState}) {
     {isError&&<small className="andy-matrix-error">{family==='upload'?'Adjuntá el archivo solicitado.':'Revisá este campo para continuar.'}</small>}
   </div>;
 }
-export function FormStateMatrix(){
+export function FormStateMatrix({onlyFamily}:{onlyFamily?:Family}={}){
  return <div className="andy-state-matrix">
-  <p className="andy-matrix-intro">Cada familia aparece una sola vez, con sus seis estados simultáneos para comparar bordes, fondos, íconos, textos y dimensiones. El dropdown incluye además sus cuatro variantes abiertas e interactivas.</p>
-  {families.map(family=><section key={family.id} className="andy-matrix-family">
+  {!onlyFamily&&<p className="andy-matrix-intro">Cada familia aparece una sola vez, con sus seis estados simultáneos para comparar bordes, fondos, íconos, textos y dimensiones. El dropdown incluye además sus cuatro variantes abiertas e interactivas.</p>}
+  {families.filter(family=>!onlyFamily||family.id===onlyFamily).map(family=><section key={family.id} className="andy-matrix-family">
     <div className="andy-matrix-family-head"><h3>{family.name}</h3><span>{family.desc}</span></div>
     <div className="andy-matrix-grid">
       {states.map(state=><StateCell key={state.id} state={state.id} title={state.name} note={state.note}>
@@ -74,6 +74,6 @@ export function FormStateMatrix(){
       <div className="andy-matrix-calendar-sample"><SportsCalendarPicker/></div>
     </div>}
   </section>)}
-  <p className="andy-matrix-footnote">Referencia: estados Default, Hovered, Focus, Completo, Disable y Error de los controles de Deportes; los cuatro tipos de dropdown abierto aparecen dentro de esa misma familia. Las vistas de Hover y Focus están representadas de forma persistente para facilitar la inspección. La sección Fecha incluye el calendario personalizado e interactivo de Deportes Anual. El resto de la matriz muestra estados persistentes para comparación visual.</p>
+  {!onlyFamily&&<p className="andy-matrix-footnote">Referencia: estados Default, Hovered, Focus, Completo, Disable y Error de los controles de Deportes; los cuatro tipos de dropdown abierto aparecen dentro de esa misma familia. Las vistas de Hover y Focus están representadas de forma persistente para facilitar la inspección. La sección Fecha incluye el calendario personalizado e interactivo de Deportes Anual. El resto de la matriz muestra estados persistentes para comparación visual.</p>}
  </div>;
 }
