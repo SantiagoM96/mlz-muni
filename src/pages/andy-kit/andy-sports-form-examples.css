@@ -8,10 +8,10 @@
 .andy-sports-form-fields .andy-field{min-width:0;gap:var(--mlz-space-8)}
 .andy-sports-form-fields .andy-field.is-full{grid-column:1/-1}
 .andy-sports-form-docs .andy-field>label,.andy-sports-form-upload>label{font-size:16px;line-height:22px;font-weight:700;color:#236999}
-.andy-sports-form-docs .andy-field input,.andy-sports-form-docs .andy-field select,.andy-sports-form-docs .andy-field textarea{display:block;width:100%;height:48px;min-height:48px;padding:var(--mlz-space-10) var(--mlz-space-14);border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm);outline:0;background:#fff;color:#3d3d3d;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;box-shadow:none;box-sizing:border-box}
-.andy-sports-form-docs .andy-field input:focus,.andy-sports-form-docs .andy-field select:focus,.andy-sports-form-docs .andy-field textarea:focus{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
-.andy-sports-form-docs .andy-field textarea{height:100px;resize:vertical}
-.andy-sports-form-docs .andy-field input::placeholder,.andy-sports-form-docs .andy-field textarea::placeholder{color:#8695a0;opacity:1}
+.andy-sports-form-docs .andy-sports-form-fields > .andy-field > input,.andy-sports-form-docs .andy-sports-form-fields > .andy-field > textarea{display:block;width:100%;height:48px;min-height:48px;padding:var(--mlz-space-10) var(--mlz-space-14);border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm);outline:0;background:#fff;color:#3d3d3d;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;box-shadow:none;box-sizing:border-box}
+.andy-sports-form-docs .andy-sports-form-fields > .andy-field > input:focus,.andy-sports-form-docs .andy-sports-form-fields > .andy-field > textarea:focus{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-sports-form-docs .andy-sports-form-fields > .andy-field > textarea{height:100px;resize:vertical}
+.andy-sports-form-docs .andy-sports-form-fields > .andy-field > input::placeholder,.andy-sports-form-docs .andy-sports-form-fields > .andy-field > textarea::placeholder{color:#8695a0;opacity:1}
 .andy-sports-form-select-wrap{position:relative;width:100%}
 .andy-sports-form-select-wrap select{appearance:none;padding-right:44px!important;cursor:pointer}
 .andy-sports-form-select-wrap>.material-symbols-outlined{position:absolute;top:50%;right:var(--mlz-space-12);transform:translateY(-50%);pointer-events:none;color:#236999}
@@ -74,8 +74,8 @@
  background:#006eff;color:#fff;
 }
 .andy-sports-form-docs .andy-sports-form-select-menu .andy-dropdown-variant-option.selected .material-symbols-outlined{color:#fff}
-.andy-sports-form-docs .andy-field input:not([type=file]):focus-visible,
-.andy-sports-form-docs .andy-field textarea:focus-visible{
+.andy-sports-form-docs .andy-sports-form-fields > .andy-field > input:focus-visible,
+.andy-sports-form-docs .andy-sports-form-fields > .andy-field > textarea:focus-visible{
  border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff;outline:0;
 }
 .andy-sports-form-docs .andy-sports-form-choice:has(input:checked){
