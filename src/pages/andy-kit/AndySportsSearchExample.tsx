@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { SportsControlsGallery, SportsSortDemo } from '../ui-kit/SportsControlsGallery';
 import './andy-sports-search.css';
@@ -15,13 +15,18 @@ const normalize=(text:string)=>text.normalize('NFD').replace(/[\u0300-\u036f]/g,
 
 export function AndySportsSearchExample({integrated=false}:{integrated?:boolean}){
  const [query,setQuery]=useState('');
+ const searchRef=useRef<HTMLInputElement>(null);
  const [mapMode,setMapMode]=useState(false);
  const results=useMemo(()=>sports.filter(activity=>normalize(activity.name+' '+activity.venue).includes(normalize(query))),[query]);
  return <div className={'andy-sports-search'+(integrated?' is-integrated':'')}>
   <div className="andy-sports-search-control">
-   <input type="search" value={query} onChange={event=>setQuery(event.target.value)}
+   <input ref={searchRef} type="search" value={query} onChange={event=>setQuery(event.target.value)}
     placeholder="¿Qué estás buscando?" aria-label="Buscar actividades deportivas"
     aria-controls={integrated?'andy-sports-search-results':'andy-sports-search-simple-results'} />
+   {query&&<button type="button" className="andy-sports-search-clear" aria-label="Limpiar búsqueda"
+    onClick={()=>{setQuery('');searchRef.current?.focus();}}>
+    <MaterialIcon name="close_small" size={20}/>
+   </button>}
    <MaterialIcon name="search" size={24}/>
   </div>
   {integrated&&<div className="andy-sports-search-filters"><SportsControlsGallery mode="filters" hideSort/></div>}
