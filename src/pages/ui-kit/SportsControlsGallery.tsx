@@ -94,93 +94,104 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
 function MoreFiltersDemo() {
   const mobile = useSportsMobile();
   const [open, setOpen] = useState(false);
-  const [expanded, setExpanded] = useState<string[]>(['Días de cursada', 'Tipo de deportista']);
-  const [days, setDays] = useState<string[]>(['Lunes']);
-  const [type, setType] = useState('Recreativo');
-  const [applied, setApplied] = useState(0);
+  const [expanded, setExpanded] = useState(['Días de cursada','Tipo de deportista','Nivel de intensidad']);
+  const [disability, setDisability] = useState(false);
+  const [days, setDays] = useState<string[]>([]);
+  const [type, setType] = useState('');
+  const [intensity,setIntensity] = useState('');
   const root = useRef<HTMLDivElement>(null);
-  const trigger = useRef<HTMLButtonElement>(null);
-  const count = days.length + (type ? 1 : 0);
-  useEffect(() => {
-    if (!open) return;
-    const dismiss = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') { setOpen(false); trigger.current?.focus(); }
-    };
-    document.addEventListener('keydown', dismiss);
-    return () => document.removeEventListener('keydown', dismiss);
-  }, [open]);
-  const close = () => { setOpen(false); trigger.current?.focus(); };
-  const toggleSection = (section: string) => setExpanded(previous =>
-    previous.includes(section) ? previous.filter(item => item !== section) : [...previous, section],
-  );
+  const trigger=useRef<HTMLButtonElement>(null);
+  const count=days.length+Number(Boolean(type))+Number(Boolean(intensity))+Number(disability);
+  const close=()=>{setOpen(false);trigger.current?.focus({preventScroll:true});};
+  useEffect(()=>{
+    if(!open)return;
+    const key=(e:KeyboardEvent)=>{if(e.key==='Escape'){e.preventDefault();close();}};
+    document.addEventListener('keydown',key);
+    return()=>document.removeEventListener('keydown',key);
+  },[open]);
+  const toggleSection=(name:string)=>setExpanded(old=>old.includes(name)?old.filter(v=>v!==name):[...old,name]);
+  const reset=()=>{setDays([]);setType('');setIntensity('');setDisability(false);};
+  const panel=<div className="kit-sports-advanced" aria-label="Opciones de Más filtros">
+    <label className="kit-sports-disability">
+      <span><strong>Para personas con discapacidad</strong><small>Mostrar actividades orientadas a personas con discapacidad</small></span>
+      <input type="checkbox" role="switch" checked={disability} onChange={e=>setDisability(e.target.checked)}
+        aria-label="Para personas con discapacidad"/>
+      <span aria-hidden="true" className="kit-sports-disability-track"/>
+    </label>
+    {([
+      ['Días de cursada',['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo']],
+      ['Tipo de deportista',['Recreativo','Competitivo','Federado']],
+      ['Nivel de intensidad',['Bajo','Medio','Alto']]
+    ] as const).map(([group,values])=>
+      <section className="kit-sports-advanced-section" key={group}>
+        <button type="button" className="kit-sports-advanced-heading" aria-expanded={expanded.includes(group)}
+          onClick={()=>toggleSection(group)}>
+          <span>{group}</span><MaterialIcon name="expand_more" size={24} className={expanded.includes(group)?'rotate-180':''}/>
+        </button>
+        {expanded.includes(group)&&<div className="kit-sports-advanced-grid">
+          {values.map(v=>{
+            const multi=group==='Días de cursada';
+            const chosen=multi?days.includes(v):group==='Tipo de deportista'?type===v:intensity===v;
+            return <label className="kit-sports-advanced-choice" key={v}>
+              <input type={multi?'checkbox':'radio'} name={multi?undefined:group.replaceAll(' ','-')+(mobile?'-mobile':'-desktop')}
+                checked={chosen} onChange={()=>{
+                  if(multi)setDays(old=>old.includes(v)?old.filter(x=>x!==v):[...old,v]);
+                  else if(group==='Tipo de deportista')setType(v);
+                  else setIntensity(v);
+                }} />
+              <span aria-hidden="true" className="kit-sports-advanced-symbol">
+                <MaterialIcon size={24} name={multi?chosen?'check_box':'check_box_outline_blank':chosen?'radio_button_checked':'radio_button_unchecked'}/>
+              </span><span>{v}</span>
+            </label>;
+          })}
+        </div>}
+      </section>)}
+  </div>;
   return <div className="kit-sports-filter kit-sports-more" ref={root}>
-    <button type="button" ref={trigger} className={`kit-sports-trigger ${open || count ? 'is-active' : ''}`}
-      aria-expanded={open} aria-haspopup="dialog" onClick={() => setOpen(previous => !previous)}>
-      <span className="kit-sports-truncate">Más filtros</span><span className="kit-sports-count"><span>{count}</span></span>
-      <MaterialIcon name="tune" size={24} />
+    <button type="button" ref={trigger} className={`kit-sports-trigger ${open||count?'is-active':''}`}
+      aria-expanded={open} aria-haspopup="dialog" onClick={()=>setOpen(v=>!v)}>
+      <span className="kit-sports-truncate">Más filtros</span>
+      {count>0&&<span className="kit-sports-count"><span>{count}</span></span>}
+      <MaterialIcon name="tune" size={24}/>
     </button>
-    {open && !mobile && <><button type="button" className="kit-sports-backdrop" aria-label="Cerrar más filtros" onClick={close} />
-      <div className="kit-sports-popover kit-sports-more-popover" role="dialog" aria-label="Más filtros">
-        <div className="kit-sports-mobile-header"><span className="kit-sports-grabber" /><strong>Más filtros</strong></div>
-        <div className="kit-sports-more-scroll">
-          {['Días de cursada', 'Tipo de deportista'].map(section =>
-            <div className="kit-sports-more-section" key={section}>
-              <button type="button" className="kit-sports-section-title" aria-expanded={expanded.includes(section)}
-                onClick={() => toggleSection(section)}>{section}
-                <MaterialIcon name="expand_more" size={22} className={expanded.includes(section) ? 'rotate-180' : ''} />
-              </button>
-              {expanded.includes(section) && <div className="kit-sports-choice-grid">
-                {section === 'Días de cursada'
-                  ? ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'].map(day =>
-                    <label className="kit-sports-inline-choice" key={day}>
-                      <input type="checkbox" checked={days.includes(day)} onChange={() => setDays(previous =>
-                        previous.includes(day) ? previous.filter(x => x !== day) : [...previous, day])} />
-                      <span className="kit-sports-inline-symbol kit-sports-inline-checkbox" aria-hidden="true"><MaterialIcon name={days.includes(day) ? 'check_box' : 'check_box_outline_blank'} size={24}/></span>
-                      {day}
-                    </label>)
-                  : ['Recreativo', 'Competitivo', 'Federado'].map(item =>
-                    <label className="kit-sports-inline-choice" key={item}>
-                      <input type="radio" name="kit-sports-athlete" checked={type === item} onChange={() => setType(item)} />
-                      <span className="kit-sports-inline-symbol kit-sports-inline-radio" aria-hidden="true"><MaterialIcon name={type === item ? 'radio_button_checked' : 'radio_button_unchecked'} size={24}/></span>{item}
-                    </label>)}
-              </div>}
-            </div>)}
-        </div>
+    {open&&!mobile&&<>
+      <button type="button" className="kit-sports-backdrop" aria-label="Cerrar Más filtros" onClick={close}/>
+      <div className="kit-sports-popover kit-sports-more-popover kit-sports-advanced-popover" role="dialog" aria-label="Más filtros">
+        {panel}
         <div className="kit-sports-actions">
-          <button className="kit-sports-apply" type="button" onClick={() => { setApplied(count); close(); }}>Ver resultados ({applied})</button>
-          <button className="kit-sports-clear kit-sports-clear-bordered" type="button" onClick={() => { setDays([]); setType(''); }}>Limpiar</button>
+          <button className="kit-sports-apply" type="button" onClick={close}>Ver resultados ({count})</button>
+          <button className="kit-sports-clear kit-sports-clear-bordered" type="button" onClick={reset}>Limpiar</button>
         </div>
-      </div></>}
-    {mobile && open && <SportsMobileSheet open={open} title="Más filtros" onClose={close} size="large"
-      primaryLabel={`Ver resultados (${count})`} onPrimary={()=>{setApplied(count);close();}}
-      secondaryLabel="Limpiar" onSecondary={()=>{setDays([]);setType('');}}>
-      <div className="kit-sports-more-scroll">
-        {['Días de cursada','Tipo de deportista'].map(section=>
-          <div className="kit-sports-more-section" key={section}>
-            <button type="button" className="kit-sports-section-title" aria-expanded={expanded.includes(section)}
-              onClick={()=>toggleSection(section)}>{section}
-              <MaterialIcon name="expand_more" size={24} className={expanded.includes(section)?'rotate-180':''}/>
-            </button>
-            {expanded.includes(section)&&<div className="kit-sports-choice-grid">
-              {section==='Días de cursada'
-                ? ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'].map(day=>
-                  <label className="kit-sports-inline-choice" key={day}>
-                    <input type="checkbox" checked={days.includes(day)} onChange={()=>setDays(prev=>prev.includes(day)?prev.filter(x=>x!==day):[...prev,day])}/>
-                    <span className="kit-sports-inline-symbol kit-sports-inline-checkbox" aria-hidden="true">
-                      <MaterialIcon name={days.includes(day)?'check_box':'check_box_outline_blank'} size={24}/>
-                    </span>{day}
-                  </label>)
-                :['Recreativo','Competitivo','Federado'].map(item=>
-                  <label className="kit-sports-inline-choice" key={item}>
-                    <input type="radio" name="kit-sports-athlete-mobile" checked={type===item} onChange={()=>setType(item)}/>
-                    <span className="kit-sports-inline-symbol kit-sports-inline-radio" aria-hidden="true">
-                      <MaterialIcon name={type===item?'radio_button_checked':'radio_button_unchecked'} size={24}/>
-                    </span>{item}
-                  </label>)}
-            </div>}
-          </div>)}
       </div>
+    </>}
+    {mobile&&open&&<SportsMobileSheet open={open} title="Más filtros" onClose={close}
+      size="large" actions="filters" primaryLabel={`Ver resultados (${count})`}
+      onPrimary={close} secondaryLabel="Limpiar" onSecondary={reset}>
+      {panel}
     </SportsMobileSheet>}
+  </div>;
+}
+
+function SortDemo() {
+  const mobile=useSportsMobile();
+  const [open,setOpen]=useState(false);
+  const [sort,setSort]=useState('Alfabético: Z a A');
+  const trigger=useRef<HTMLButtonElement>(null);
+  const options=['Alfabético: A a Z','Alfabético: Z a A','Edad: menor a mayor','Edad: mayor a menor','Próxima clase primero'];
+  const close=()=>{setOpen(false);trigger.current?.focus({preventScroll:true});};
+  const list=<div className="kit-sports-sort-choices">
+    {options.map(option=><button type="button" key={option}
+      className={`kit-sports-sort-choice ${option===sort?'is-selected':''}`}
+      aria-pressed={option===sort}
+      onClick={()=>{setSort(option);close();}}>
+      <span>{option}</span>{option===sort&&<MaterialIcon name="check" size={24}/>}
+    </button>)}
+  </div>;
+  return <div className="kit-sports-sort-example">
+    <button type="button" ref={trigger} className="kit-sports-sort-trigger" aria-expanded={open}
+      onClick={()=>setOpen(v=>!v)}><MaterialIcon name="sort" size={24}/>Ordenar por</button>
+    {open&&!mobile&&<div className="kit-sports-sort-popover" role="group" aria-label="Opciones para ordenar">{list}</div>}
+    {mobile&&open&&<SportsMobileSheet open={open} title="Ordenar por" onClose={close} actions="sort">{list}</SportsMobileSheet>}
   </div>;
 }
 
@@ -246,6 +257,7 @@ export function SportsControlsGallery({ mode = 'all' }: { mode?: 'all' | 'filter
         <FilterDemo label="Edad" options={ages} searchable={false} />
         <MoreFiltersDemo />
       </div>
+      <div className="kit-sports-sort-demo"><SortDemo/></div>
     </section>
     {mode === 'all' && <section className="kit-sports-section"><h2>Campos de formulario</h2>
       <p>Los campos mantienen etiqueta, placeholder, foco, completado, deshabilitado y error, sin adoptar el patrón de filtros.</p>
