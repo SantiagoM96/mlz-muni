@@ -1,8 +1,9 @@
+import { ConsoleSelectControl as SelectControl } from './ConsoleSelectControl';
 import type { ConsoleDraft } from './model';
 import { INITIAL_DRAFT } from './demoData';
 import { SectionTitle, noteClass } from './ConsoleFormPrimitives';
 import { FormField } from '../../../shared/ui/FormField';
-import { TextField, SelectControl, TextAreaControl } from '../../../shared/ui/FormControls';
+import { TextField, TextAreaControl } from '../../../shared/ui/FormControls';
 
 interface Props {
   draft: ConsoleDraft;
