@@ -12,7 +12,7 @@ export function DocSection({title,description,children,id,note}:{title:string;de
  </section>;
 }
 export function DocPreview({children,align='center',className=''}:{children:ReactNode;align?:'center'|'start';className?:string}){
- return <div className={['andy-doc-demo','align-'+align,className].filter(Boolean).join(' ')}>
+ return <div className={['andy-doc-demo','andy-doc-preview','align-'+align,className].filter(Boolean).join(' ')}>
   <div className="andy-doc-demo-content">{children}</div>
  </div>;
 }
