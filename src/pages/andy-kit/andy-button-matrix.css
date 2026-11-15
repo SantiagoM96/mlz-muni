@@ -18,9 +18,9 @@
 /* Compensación óptica: el pictograma contiene aire interno en su caja.
    Se reduce solamente el padding del lado del ícono, sin tocar el lado del texto.
    Solo ícono conserva caja cuadrada y Link conserva sus márgenes nulos. */
-.andy-system-button.is-large{--b-icon-inset:6px}
-.andy-system-button.is-medium{--b-icon-inset:4px}
-.andy-system-button.is-small{--b-icon-inset:3px}
+.andy-system-button.is-large{--b-icon-inset:var(--mlz-space-6)}
+.andy-system-button.is-medium{--b-icon-inset:var(--mlz-space-4)}
+.andy-system-button.is-small{--b-icon-inset:var(--mlz-space-4)}
 .andy-system-button.icon-start{padding-inline-start:calc(var(--b-padding) - var(--b-icon-inset))}
 .andy-system-button.icon-end{padding-inline-end:calc(var(--b-padding) - var(--b-icon-inset))}
 .andy-system-button.is-link.icon-start,
