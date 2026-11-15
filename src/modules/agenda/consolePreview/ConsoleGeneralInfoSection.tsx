@@ -1,10 +1,11 @@
+import { ConsoleSelectControl as SelectControl } from './ConsoleSelectControl';
 import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import type { ConsoleDraft } from './model';
 import { CATEGORY_TYPES } from './demoData';
 import { SectionTitle } from './ConsoleFormPrimitives';
 import { CheckboxField } from '../../../shared/ui/CheckboxField';
 import { FormField } from '../../../shared/ui/FormField';
-import { TextField, SelectControl, TextAreaControl } from '../../../shared/ui/FormControls';
+import { TextField, TextAreaControl } from '../../../shared/ui/FormControls';
 
 interface Props {
   draft: ConsoleDraft;
