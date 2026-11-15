@@ -827,7 +827,11 @@
     display:block;
     white-space:nowrap;
   }
-  .andy-doc-layout .andy-topbar-heading .andy-eyebrow-divider{display:none}
+  /* El separador visual de desktop no debe ocupar una cuarta línea mobile. */
+  .andy-doc-layout .andy-topbar-heading .andy-eyebrow > .andy-eyebrow-divider{display:none}
+  /* Tres renglones reales con exactamente el mismo espacio entre ellos. */
+  .andy-doc-layout .andy-topbar-heading{gap:3px}
+  .andy-doc-layout .andy-topbar-heading .andy-eyebrow{display:contents}
   .andy-doc-layout .andy-topbar-heading .andy-design-system-label{
     font-size:12px;
     font-weight:700;
