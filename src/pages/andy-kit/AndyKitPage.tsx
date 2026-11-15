@@ -6,6 +6,8 @@ import { FormStateMatrix } from './FormStateMatrix';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
+import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
+import { AndyButtonMatrix } from './AndyButtonMatrix';
 import './andy-kit.css';
 
 const categories = [
@@ -104,14 +106,12 @@ function SelectionGallery({embedded=false,only}:{embedded?:boolean;only?:'checkb
  </div>;
 }
 function Selection(){return <DemoSection title="Checkbox, radio y switch" description="Controles de selección reales e interactivos, sin duplicar los estados de Formularios."><SelectionGallery/></DemoSection>}
-function Buttons(){const [clicked,setClicked]=useState(false);return <><DemoSection title="Botones de acciones" description="Primario institucional y secundario de contorno. Altura de referencia 48 px.">
- <div className="andy-button-grid"><button type="button" className="andy-btn andy-btn-primary" onClick={()=>setClicked(!clicked)}>{clicked?'Acción ejecutada':'Continuar'}</button><button type="button" className="andy-btn andy-btn-outline">Volver</button><button type="button" className="andy-btn andy-btn-ghost">Limpiar</button><button type="button" className="andy-btn andy-btn-primary" disabled>Deshabilitado</button><button type="button" className="andy-btn andy-btn-icon"><Icon name="search" size={22}/> Buscar</button><button type="button" className="andy-btn andy-btn-outline"><Icon name="tune" size={22}/> Más filtros</button><button type="button" className="andy-btn andy-btn-primary">Ver resultados (3)</button></div>
- </DemoSection><DemoSection title="Acciones de página" description="Enlaces, iconografía Material Symbols y variantes pequeñas."><div className="andy-button-grid"><button type="button" className="andy-inline-action"><Icon name="grid_view" size={20}/> Ver grilla</button><button type="button" className="andy-inline-action"><Icon name="map" size={20}/> Ver mapa</button><button type="button" className="andy-inline-action"><Icon name="sort" size={20}/> Ordenar por fecha</button><button type="button" className="andy-inline-action"><Icon name="arrow_back" size={20}/> Anterior</button></div></DemoSection></>}
+function Buttons(){return <AndyButtonMatrix/>;}
 function ChipGallery({compact=false}:{compact?:boolean}){
  const [chips,setChips]=useState(['Lunes','Casa Ari','Recreativo']);
  return <div className="andy-chip-demo">{chips.map(t=><span className="andy-chip" key={t}>{t}<button type="button" aria-label={'Quitar '+t} onClick={()=>setChips(v=>v.filter(c=>c!==t))}><Icon name="close" size={18}/></button></span>)}<button type="button" className="andy-chip-clear" onClick={()=>setChips(compact?['Lunes','Casa Ari','Recreativo']:[])}>{compact?'Restablecer':'Limpiar filtros'}</button></div>;
 }
-function Tags(){return <><DemoSection title="Filtros activos"><ChipGallery/></DemoSection><DemoSection title="Etiquetas de actividad" description="Metadatos para edades, tipos de actividades, accesibilidad y disponibilidad."><div className="andy-tags"><span className="andy-tag">Hasta 2 años</span><span className="andy-tag">Actividad recreativa</span><span className="andy-tag andy-tag-success">Personas con discapacidad</span><span className="andy-tag andy-tag-outline">Cupos limitados</span><span className="andy-tag andy-tag-muted">Deporte</span></div></DemoSection></>}
+function Tags(){return <AndyTagPaletteGallery/>;}
 function Cards(){return <DemoSection title="Tarjetas de actividad · Deportes y Agenda" description="Dos variantes hermanas: Deportes utiliza la banda degradada original (34 px desktop y 32 px mobile) y Agenda conserva su fotografía de 154 px. Comparten tipografía, espaciados, metadatos y tratamiento de bordes.">
  <AndyActivityCardGallery/>
 </DemoSection>}
