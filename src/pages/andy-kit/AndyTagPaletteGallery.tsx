@@ -53,8 +53,8 @@ function VariantSection({appearance,size}: {appearance:Appearance;size:Size}){
 export function AndyTagPaletteGallery({onlyAppearance}:{onlyAppearance?:Appearance}={}){
  const [size,setSize]=useState<Size>('mediano');
  return <div className="andy-tag-palette">
-  <div className="andy-palette-sizebar">
-   <div><h3>Tamaños</h3><p>Las variantes de Figma se aplican a todos los colores.</p></div>
+  <div className="andy-palette-sizebar andy-doc-inspector">
+   <div><h3>Tamaños</h3><p>Control de la documentación · elegí el tamaño para visualizar las etiquetas.</p></div>
    <div className="andy-palette-size-options" role="group" aria-label="Tamaño de las etiquetas">
     {(['chico','mediano','grande'] as const).map(option=><button key={option} type="button"
       aria-pressed={size===option} onClick={()=>setSize(option)}>
