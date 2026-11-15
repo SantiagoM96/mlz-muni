@@ -7,6 +7,13 @@
  background:#fff;color:#3d3d3d;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
  outline:0;box-shadow:none;
 }
+/* Oculta la X nativa (WebKit/Chromium) para usar solamente Material Symbols. */
+.andy-sports-search-control input::-webkit-search-cancel-button,
+.andy-sports-search-control input::-webkit-search-decoration{
+ -webkit-appearance:none;
+ appearance:none;
+ display:none;
+}
 .andy-sports-search-control input::placeholder{color:#5ba8d5}
 .andy-sports-search-control input:hover{border-color:#236999;background:#fafdff}
 .andy-sports-search-control input:focus-visible{
@@ -16,6 +23,15 @@
 .andy-sports-search-control>.material-symbols-outlined{
  position:absolute;right:16px;top:12px;color:#236999;pointer-events:none;
 }
+.andy-sports-search-clear{
+ position:absolute;top:8px;right:46px;
+ display:grid;place-items:center;width:32px;height:32px;padding:0;
+ border:0;border-radius:var(--mlz-radius-sm);
+ background:transparent;color:#236999;cursor:pointer;
+}
+.andy-sports-search-clear:hover{background:#edf6fc;color:#236999}
+.andy-sports-search-clear:focus-visible{outline:2px solid #006eff;outline-offset:2px}
+.andy-sports-search-clear .material-symbols-outlined{color:inherit}
 .andy-sports-search-results{width:100%;min-width:0;display:flex;flex-direction:column;gap:12px}
 .andy-sports-search-results-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:#657886}
 .andy-sports-search-results-top button{background:transparent;border:0;color:#236999;font:600 13px/20px Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer}
@@ -75,3 +91,7 @@
  .andy-sports-search-results-top{align-items:flex-start}
  .andy-sports-search-results-tools{width:100%;justify-content:space-between}
 }
+
+/* El texto no invade el botón de limpiar ni el ícono de búsqueda. */
+.andy-sports-search-control:has(.andy-sports-search-clear) input{padding-right:88px}
+.andy-sports-search-control:has(.andy-sports-search-clear) input:focus-visible{padding-right:87px}
