@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId, useState, type ReactNode } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { DocSection } from './AndyDocsPrimitives';
 import './andy-sports-form-examples.css';
@@ -47,7 +47,7 @@ function FileExample({label,accept}:{label:string;accept:string}){
   </div>
  </div>;
 }
-function ExampleSection({title,description,children}:{title:string;description:string;children:React.ReactNode}){
+function ExampleSection({title,description,children}:{title:string;description:string;children:ReactNode}){
  return <DocSection title={title} description={description}>
   <div className="andy-sports-form-preview"><div className="andy-sports-form-preview-heading">{title.toUpperCase()}</div>{children}</div>
  </DocSection>;
