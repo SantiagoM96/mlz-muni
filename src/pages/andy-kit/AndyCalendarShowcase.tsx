@@ -3,6 +3,7 @@ import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './sports-calendar-picker.css';
 import './andy-calendar-showcase.css';
 import './andy-button-matrix.css';
+import { DocPreview } from './AndyDocsPrimitives';
 
 type Mode='single'|'range';
 type Picker='month'|'year'|null;
@@ -88,17 +89,13 @@ function CalendarExample({mode}:{mode:Mode}){
   <div className="andy-cal-selection" role="status"><strong>{mode==='single'?'Día seleccionado':'Rango seleccionado'}</strong><span>{confirmed?`Confirmado: ${confirmed}`:selectedText}</span></div>
  </div>;
 }
-export function AndyCalendarShowcase(){
+export function AndyCalendarShowcase({only}:{only?:Mode}={}){
  return <div className="andy-cal-gallery">
-  <section className="andy-cal-case" id="seleccion-de-un-dia">
-   <h4>Selección de un día</h4>
-   <p>El calendario aparece abierto. Seleccioná un día, cambiá el mes o el año y confirmá la fecha.</p>
-   <div className="andy-cal-preview"><CalendarExample mode="single"/></div>
-  </section>
-  <section className="andy-cal-case" id="seleccion-de-un-rango">
-   <h4>Selección de un rango</h4>
-   <p>Elegí la fecha inicial y luego la final. Los días comprendidos entre ambos extremos quedan resaltados.</p>
-   <div className="andy-cal-preview"><CalendarExample mode="range"/></div>
-  </section>
+  {(!only||only==='single')&&<DocPreview className="andy-cal-preview">
+   <CalendarExample mode="single"/>
+  </DocPreview>}
+  {(!only||only==='range')&&<DocPreview className="andy-cal-preview">
+   <CalendarExample mode="range"/>
+  </DocPreview>}
  </div>;
 }
