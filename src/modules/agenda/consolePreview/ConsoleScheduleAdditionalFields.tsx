@@ -1,6 +1,7 @@
+import { ConsoleSelectControl as SelectControl } from './ConsoleSelectControl';
 import type { ConsoleSchedule } from './model';
 import { FormField } from '../../../shared/ui/FormField';
-import { SelectControl, TextAreaControl } from '../../../shared/ui/FormControls';
+import { TextAreaControl } from '../../../shared/ui/FormControls';
 import { CheckboxField } from '../../../shared/ui/CheckboxField';
 
 interface Props {
