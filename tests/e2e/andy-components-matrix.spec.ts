@@ -50,3 +50,28 @@ test('Andy: los cinco tipos incluyen variantes de icono en tres tamaños',async 
   await expect(page.locator('#iconografia [data-kind="primary"][data-icon="only"]')).toHaveCSS('padding-left','0px');
  }
 });
+
+
+test('Andy: los inspectores son Info 500 y los botones reales conservan Primario 600',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/boton');
+ const tool=page.getByRole('group',{name:'Tipo de botón para estados'});
+ await expect(tool.locator('button[aria-pressed="true"]')).toHaveCSS('background-color','rgb(0, 110, 255)');
+ await expect(page.locator('#variantes .andy-system-button.is-primary').first()).toHaveCSS('background-color','rgb(35, 105, 153)');
+ await tool.getByRole('button',{name:'Secundario'}).click();
+ await expect(tool.getByRole('button',{name:'Secundario'})).toHaveCSS('background-color','rgb(0, 110, 255)');
+ await page.goto('/ui-kit-andy/componentes/chips');
+ await expect(page.locator('.andy-palette-size-options button[aria-pressed="true"]').first()).toHaveCSS('background-color','rgb(0, 110, 255)');
+});
+
+test('Andy: calendario documenta dos ejemplos abiertos y meses/años con Primario 600',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ await expect(page.locator('#seleccion-de-un-dia .andy-cal-example')).toHaveCount(1);
+ await expect(page.locator('#seleccion-de-un-rango .andy-cal-example')).toHaveCount(1);
+ const single=page.locator('#seleccion-de-un-dia');
+ await single.getByRole('button',{name:'Seleccionar mes'}).click();
+ const unselected=single.locator('.sports-cal-choice-option[aria-selected="false"]').first();
+ const selected=single.locator('.sports-cal-choice-option[aria-selected="true"]').first();
+ await expect(unselected.locator('.material-symbols-outlined')).toHaveCSS('color','rgb(35, 105, 153)');
+ await expect(selected).toHaveCSS('background-color','rgb(0, 110, 255)');
+ await expect(selected.locator('.material-symbols-outlined')).toHaveCSS('color','rgb(255, 255, 255)');
+});
