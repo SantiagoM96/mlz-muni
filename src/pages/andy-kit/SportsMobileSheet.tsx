@@ -42,25 +42,22 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
   const [offset,setOffset]=useState(0);
   const [stretch,setStretch]=useState(0);
   const [scrim,setScrim]=useState(1);
-  const close=useRef(onClose);
   const primary=onPrimary??onClose;
-  close.current=onClose;
 
   function clearTimer(){if(timer.current!==null){clearTimeout(timer.current);timer.current=null;}}
   function dismiss() {
     if(phase==='closing')return;
     clearTimer(); gesture.current=null;
     setPhase('closing');setOffset(0);setStretch(0);setScrim(0);
-    timer.current=setTimeout(()=>{timer.current=null;close.current();},260);
+    timer.current=setTimeout(()=>{timer.current=null;onClose();},260);
   }
   useEffect(()=>{
     if(!open)return;
-    setPhase('entering');setOffset(0);setStretch(0);setScrim(1);
     const before=document.body.style.overflow;
     const previous=document.activeElement instanceof HTMLElement?document.activeElement:null;
     document.body.style.overflow='hidden';
     const key=(event:KeyboardEvent)=>{
-      if(event.key==='Escape'){event.preventDefault();close.current();return;}
+      if(event.key==='Escape'){event.preventDefault();onClose();return;}
       if(event.key!=='Tab'||!sheet.current)return;
       const focusable=[...sheet.current.querySelectorAll<HTMLElement>('button:not([disabled]),input:not([disabled]),[tabindex="0"]')];
       if(!focusable.length)return;
@@ -75,7 +72,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
       document.removeEventListener('keydown',key);
       previous?.focus({preventScroll:true});
     };
-  },[open]);
+  },[open,onClose]);
   useEffect(()=>()=>{if(timer.current!==null)clearTimeout(timer.current);},[]);
   if(!open||typeof document==='undefined')return null;
   const start=(event:ReactPointerEvent<HTMLButtonElement>)=>{
