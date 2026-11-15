@@ -4,6 +4,7 @@ import { DropdownVariantsGallery } from './DropdownVariantsGallery';
 import { SportsCalendarPicker } from './SportsCalendarPicker';
 import { AndyCalendarShowcase } from './AndyCalendarShowcase';
 import './form-state-matrix.css';
+import './andy-button-matrix.css';
 
 type FieldState = 'default' | 'hover' | 'focus' | 'completed' | 'error' | 'disabled';
 type Family = 'text' | 'dropdown' | 'textarea' | 'date' | 'upload';
@@ -48,7 +49,7 @@ function StateField({family, state}:{family:Family;state:FieldState}) {
       <span>{content||'Seleccionar fecha'}</span><MaterialIcon name="calendar_month" size={24}/>
     </button>}
     {family==='upload'&&<div className="andy-matrix-upload">
-      <span className="andy-matrix-upload-button"><MaterialIcon name="attach_file" size={24}/>Adjuntar</span>
+      <span className="andy-matrix-upload-button andy-system-button is-primary is-small icon-start"><MaterialIcon name="attach_file" size={16} weight={400}/>Adjuntar</span>
       <span className="andy-matrix-upload-filename">{content||'Ningún archivo'}</span>
     </div>}
     {isError&&<small className="andy-matrix-error">{family==='upload'?'Adjuntá el archivo solicitado.':'Revisá este campo para continuar.'}</small>}
