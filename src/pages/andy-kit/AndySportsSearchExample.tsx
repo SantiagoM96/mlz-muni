@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
-import { SportsControlsGallery, SportsSortDemo } from '../ui-kit/SportsControlsGallery';
+import { SportsControlsGallery, SportsDropdownProvider, SportsSortDemo } from '../ui-kit/SportsControlsGallery';
 import './andy-sports-search.css';
 
 const sports = [
@@ -18,7 +18,7 @@ export function AndySportsSearchExample({integrated=false}:{integrated?:boolean}
  const searchRef=useRef<HTMLInputElement>(null);
  const [mapMode,setMapMode]=useState(false);
  const results=useMemo(()=>sports.filter(activity=>normalize(activity.name+' '+activity.venue).includes(normalize(query))),[query]);
- return <div className={'andy-sports-search'+(integrated?' is-integrated':'')}>
+ return <SportsDropdownProvider><div className={'andy-sports-search'+(integrated?' is-integrated':'')}>
   <div className="andy-sports-search-control">
    <input ref={searchRef} type="search" value={query} onChange={event=>setQuery(event.target.value)}
     placeholder="¿Qué estás buscando?" aria-label="Buscar actividades deportivas"
@@ -42,5 +42,5 @@ export function AndySportsSearchExample({integrated=false}:{integrated?:boolean}
     :<p role="status">No encontramos actividades. Probá con otros términos.</p>}
   </div>
   {integrated&&<p className="andy-sports-search-note">Demostración con datos de ejemplo. El buscador filtra las actividades de esta lista; los filtros desplegables reproducen la interacción de Deportes Anual y tienen estados propios. El botón «Ver mapa» demuestra el cambio de vista, sin representar ubicaciones reales.</p>}
- </div>;
+ </div></SportsDropdownProvider>;
 }
