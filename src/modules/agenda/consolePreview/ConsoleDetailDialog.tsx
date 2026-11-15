@@ -40,7 +40,7 @@ export function ConsoleDetailDialog({
 
   return (
     <div
-      className="fixed inset-0 z-[120] flex items-start justify-center overflow-y-auto bg-[#102c40]/65 px-0 py-0 sm:px-4 sm:py-5"
+      className="fixed inset-0 z-[120] flex items-start justify-center overflow-y-auto bg-[#102c40]/65 px-0 py-0 sm:px-4 sm:py-6"
       onMouseDown={event => { if (event.target === event.currentTarget) onClose(); }}
     >
       <section
@@ -57,7 +57,7 @@ export function ConsoleDetailDialog({
             <p className="text-[16px] font-bold text-primary-600">Vista previa · Ficha pública</p>
           </div>
           <button ref={closeRef} type="button" onClick={onClose}
-            className="inline-flex min-h-11 shrink-0 items-center gap-1 rounded-[6px] border border-[#d9e5ed] px-3 text-[16px] font-bold text-primary-600 hover:bg-[#f2f8fc] focus-visible:outline-2 focus-visible:outline-primary-600"
+            className="inline-flex min-h-11 shrink-0 items-center gap-1 rounded-[4px] border border-[#d9e5ed] px-3 text-[16px] font-bold text-primary-600 hover:bg-[#f2f8fc] focus-visible:outline-2 focus-visible:outline-primary-600"
             aria-label="Cerrar vista previa del detalle">
             <MaterialIcon name="close" size={20} />
             <span className="hidden min-[390px]:inline">Cerrar</span>
