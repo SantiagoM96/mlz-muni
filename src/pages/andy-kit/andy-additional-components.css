@@ -15,9 +15,35 @@
 .andy-add-skeleton span:first-child{height:72px}
 .andy-add-skeleton span:last-child{width:65%}
 @keyframes andy-add-shimmer{to{background-position:-200% 0}}
-.andy-add-toast{position:relative;display:flex;flex-direction:column;gap:4px;padding:16px 44px 16px 16px;border:1px solid #9ddbb4;border-radius:12px;background:#f2fcf5;color:#236999;min-width:min(100%,310px)}
-.andy-add-toast span{font-size:13px;color:#3d3d3d}
-.andy-add-toast button{position:absolute;right:12px;top:8px;border:0;background:transparent;font-size:24px;color:#236999;cursor:pointer}
+/* Toast toma los tokens semánticos de Mensajes y alertas del UI Kit. */
+.andy-add-toast-list{display:flex;flex-direction:column;gap:20px;width:min(100%,640px)}
+.andy-add-toast-item{display:flex;flex-direction:column;gap:8px;min-width:0;width:100%}
+.andy-add-toast-label{font-size:14px;line-height:20px;font-weight:700;color:#236999}
+.andy-add-toast{
+ position:relative;display:flex;align-items:flex-start;gap:12px;
+ width:100%;min-width:0;min-height:72px;
+ padding:14px 16px;
+ border:1px solid;border-radius:var(--mlz-radius-sm);
+ font-family:Geometria,'Century Gothic',Arial,sans-serif;
+}
+.andy-add-toast>.material-symbols-outlined{flex:0 0 24px;color:inherit}
+.andy-add-toast-content{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}
+.andy-add-toast-content strong{font-size:16px;line-height:22px;color:inherit;font-weight:700}
+.andy-add-toast-content span{font-size:14px;line-height:21px;color:inherit}
+.andy-add-toast-success{background:#eaf9ef;border-color:#1d9c48;color:#1d9c48}
+.andy-add-toast-info{background:#e5f0ff;border-color:#0058cc;color:#0058cc}
+.andy-add-toast-warning{background:#fffde7;border-color:#f9a825;color:#b07800}
+.andy-add-toast-error{background:#fff0f0;border-color:#ef284c;color:#ef284c}
+.andy-add-toast-close{
+ display:grid;place-items:center;width:30px;height:30px;flex:0 0 30px;
+ padding:0;margin:-4px -6px 0 0;border:0;border-radius:var(--mlz-radius-sm);
+ background:transparent;color:inherit;cursor:pointer
+}
+.andy-add-toast-close:hover{background:#ffffffa6}
+.andy-add-toast-close:focus-visible{outline:2px solid #006eff;outline-offset:2px}
+.andy-add-toast-demo{display:flex;flex-direction:column;align-items:center;gap:20px;width:min(100%,640px)}
+.andy-add-toast-triggers{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px}
+.andy-add-toast-demo>.andy-add-toast{width:100%}
 .andy-add-tooltip-wrap{position:relative;display:inline-flex;flex-direction:column;align-items:center}
 .andy-add-tooltip-wrap [role=tooltip]{position:absolute;bottom:calc(100% + 8px);width:max-content;max-width:240px;opacity:0;pointer-events:none;background:#3d3d3d;color:#fff;border-radius:8px;padding:8px 10px;font-size:12px;transition:opacity .15s}
 .andy-add-tooltip-wrap:hover [role=tooltip],.andy-add-tooltip-wrap:focus-within [role=tooltip]{opacity:1}
