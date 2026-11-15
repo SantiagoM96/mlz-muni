@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DocSection, DocPreview } from './AndyDocsPrimitives';
+import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './andy-additional-components.css';
 
@@ -54,8 +54,7 @@ function AndyToastDocs(){
    </div></DocPreview>
   </DocSection>
   <DocSection title="Comportamiento" description="Toast comunica resultados breves de acciones. Los mensajes persistentes y contextuales se documentan por separado en Mensajes y alertas.">
-   <div className="andy-add-guidance"><strong>Semántica</strong><p>Success confirma una acción; Info proporciona contexto; Alert advierte; Error informa un problema que requiere atención.</p>
-   <strong>Cierre</strong><p>La notificación se puede cerrar desde su botón. El ejemplo interactivo se anuncia como actualización de estado.</p></div>
+   <GuidelineTable rows={[["Semántica","Success confirma una acción; Info proporciona contexto; Alert advierte; Error informa un problema que requiere atención."],["Cierre","La notificación se puede cerrar desde su botón. El ejemplo interactivo se anuncia como actualización de estado."]]}/>
   </DocSection>
  </>;
 }
@@ -95,7 +94,7 @@ function AndySliderDocs(){
    </div></DocPreview>
   </DocSection>
   <DocSection title="Comportamiento" description="Control operable con mouse, pantalla táctil y teclado.">
-   <div className="andy-add-guidance"><strong>Interacción</strong><p>Arrastrar el indicador o usar las flechas del teclado para modificar el valor. En rango, el mínimo no puede superar al máximo.</p><strong>Foco</strong><p>Indicador de foco Info 500 visible para navegación con teclado, sin alterar el tamaño del componente.</p></div>
+   <GuidelineTable rows={[["Interacción","Arrastrar el indicador o usar las flechas del teclado para modificar el valor. En rango, el mínimo no puede superar al máximo."],["Foco","Indicador de foco Info 500 visible para navegación con teclado, sin alterar el tamaño del componente."]]}/>
   </DocSection>
  </>;
 }
@@ -139,6 +138,6 @@ export function AndyAdditionalComponent({id}:{id:AdditionalId}){
  if(id==='slider')return <AndySliderDocs/>;
  return <>
  <DocSection title="Vista previa" description="Ejemplo interactivo con la identidad visual actual del UI Kit municipal."><DocPreview>{demo}</DocPreview></DocSection>
- <DocSection title="Comportamiento" description="Criterios de interacción, estados y contenido."><div className="andy-add-guidance"><strong>Estados</strong><p>Reposo, hover, foco, selección y deshabilitado según corresponda al componente.</p><strong>Accesibilidad</strong><p>Usar etiquetas semánticas, navegación por teclado y señales visuales de foco. Los diálogos se cierran con Escape en esta demostración.</p></div></DocSection>
+ <DocSection title="Comportamiento" description="Criterios de interacción, estados y contenido."><GuidelineTable rows={[["Estados","Reposo, hover, foco, selección y deshabilitado según corresponda al componente."],["Accesibilidad","Usar etiquetas semánticas, navegación por teclado y señales visuales de foco. Los diálogos se cierran con Escape en esta demostración."]]}/></DocSection>
  </>;
 }
