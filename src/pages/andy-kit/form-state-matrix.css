@@ -1,22 +1,22 @@
 /* Matriz visual estática de estados de Formularios · MLZ UI Kit - Andy */
 .andy-state-matrix{--matrix-blue:#236999;--matrix-info:#006eff;--matrix-stroke:#5ba8d5;--matrix-error:#ef284c;color:#3d3d3d}
-.andy-matrix-intro{font-size:15px;line-height:24px;color:#56646f;margin:0 0 24px}
-.andy-matrix-family{margin:0 0 30px;padding-bottom:28px;border-bottom:1px solid #e1e7eb}
-.andy-matrix-family:last-of-type{border:0;margin-bottom:10px;padding-bottom:0}
-.andy-matrix-family-head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:0 0 14px}
+.andy-matrix-intro{font-size:15px;line-height:24px;color:#56646f;margin:0 0 var(--mlz-space-24)}
+.andy-matrix-family{margin:0 0 var(--mlz-space-32);padding-bottom:var(--mlz-space-24);border-bottom:1px solid #e1e7eb}
+.andy-matrix-family:last-of-type{border:0;margin-bottom:var(--mlz-space-10);padding-bottom:0}
+.andy-matrix-family-head{display:flex;gap:var(--mlz-space-10);align-items:baseline;flex-wrap:wrap;margin:0 0 var(--mlz-space-14)}
 .andy-matrix-family-head h3{font-size:19px;line-height:26px;color:var(--matrix-blue);font-weight:700;margin:0}
 .andy-matrix-family-head>span{font-size:13px;color:#687782}
-.andy-matrix-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.andy-state-cell{min-width:0;border:1px solid #e0e8ed;border-radius:8px;background:white;padding:16px;min-height:160px}
-.andy-state-label{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin:0 0 15px}
+.andy-matrix-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-12)}
+.andy-state-cell{min-width:0;border:1px solid #e0e8ed;border-radius:var(--mlz-radius-lg);background:white;padding:var(--mlz-space-16);min-height:160px}
+.andy-state-label{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:var(--mlz-space-4) var(--mlz-space-12);margin:0 0 var(--mlz-space-14)}
 .andy-state-label strong{font-size:14px;line-height:20px;color:#236999}
 .andy-state-label small{font-size:12px;line-height:18px;color:#76818b}
-.andy-matrix-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.andy-matrix-field{display:flex;flex-direction:column;gap:var(--mlz-space-8);min-width:0}
 .andy-matrix-field-label{font-size:16px;line-height:22px;font-weight:700;color:var(--matrix-blue)}
-.andy-matrix-field input,.andy-matrix-field textarea,.andy-matrix-select{height:48px;min-height:48px;width:100%;border:1px solid var(--matrix-stroke);border-radius:4px;background:#fff;color:#3d3d3d;padding:10px 14px;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;box-shadow:none;outline:none}
+.andy-matrix-field input,.andy-matrix-field textarea,.andy-matrix-select{height:48px;min-height:48px;width:100%;border:1px solid var(--matrix-stroke);border-radius:var(--mlz-radius-sm);background:#fff;color:#3d3d3d;padding:var(--mlz-space-10) var(--mlz-space-14);font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;box-shadow:none;outline:none}
 .andy-matrix-field input::placeholder,.andy-matrix-field textarea::placeholder{color:#8695a0;opacity:1}
 .andy-matrix-field textarea{height:110px;min-height:110px;resize:none}
-.andy-matrix-select{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;color:var(--matrix-blue);padding-inline:16px}
+.andy-matrix-select{display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-10);text-align:left;color:var(--matrix-blue);padding-inline:var(--mlz-space-16)}
 .andy-matrix-select>span:first-child{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .andy-matrix-select>.material-symbols-outlined{flex:none;color:var(--matrix-blue)}
 .andy-state-cell[data-state="hover"] input,.andy-state-cell[data-state="hover"] textarea,.andy-state-cell[data-state="hover"] .andy-matrix-select{border-color:var(--matrix-blue)}
@@ -26,22 +26,22 @@
 .andy-state-cell[data-state="disabled"] .andy-matrix-select>.material-symbols-outlined{color:#888}
 .andy-state-cell[data-state="error"] input,.andy-state-cell[data-state="error"] textarea,.andy-state-cell[data-state="error"] .andy-matrix-select{border-color:var(--matrix-error);background:#fff9f9}
 .andy-matrix-error{font-size:12px;line-height:18px;color:#c82443}
-.andy-matrix-upload{display:flex;align-items:center;gap:8px;width:100%;min-width:0;height:48px;border-radius:4px;padding:6px;background:#e5f0f9;border:1px solid transparent}
-.andy-matrix-upload-button{height:36px;display:inline-flex;align-items:center;justify-content:center;gap:5px;background:var(--matrix-blue);color:#fff;padding:6px 8px;border-radius:2px;white-space:nowrap;font-size:14px}
+.andy-matrix-upload{display:flex;align-items:center;gap:var(--mlz-space-8);width:100%;min-width:0;height:48px;border-radius:var(--mlz-radius-sm);padding:var(--mlz-space-6);background:#e5f0f9;border:1px solid transparent}
+.andy-matrix-upload-button{height:36px;display:inline-flex;align-items:center;justify-content:center;gap:var(--mlz-space-4);background:var(--matrix-blue);color:#fff;padding:var(--mlz-space-6) var(--mlz-space-8);border-radius:var(--mlz-radius-xs);white-space:nowrap;font-size:14px}
 .andy-matrix-upload-filename{font-size:13px;color:#94a8b8;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .andy-state-cell[data-state="hover"] .andy-matrix-upload{border-color:#5ba8d5}
-.andy-state-cell[data-state="focus"] .andy-matrix-upload{border:2px solid var(--matrix-info);padding:5px}
+.andy-state-cell[data-state="focus"] .andy-matrix-upload{border:2px solid var(--matrix-info);padding:var(--mlz-space-4)}
 .andy-state-cell[data-state="error"] .andy-matrix-upload{border-color:var(--matrix-error)}
 .andy-state-cell[data-state="disabled"] .andy-matrix-upload{opacity:.6}
 .andy-state-cell[data-state="completed"] .andy-matrix-upload-filename{color:#3d3d3d}
 .andy-matrix-open .andy-matrix-select{box-shadow:inset 0 0 0 1px var(--matrix-info);border-color:var(--matrix-info)}
 .andy-matrix-open .andy-matrix-select .material-symbols-outlined{transform:rotate(180deg)}
-.andy-matrix-options{background:white;border:1px solid #c7d8e7;border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:2px;box-shadow:0 8px 22px #163b541f}
-.andy-matrix-option{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;min-height:40px;width:100%;border:0;background:white;color:#3d3d3d;padding:8px 12px;border-radius:4px;font-size:15px}
+.andy-matrix-options{background:white;border:1px solid #c7d8e7;border-radius:var(--mlz-radius-lg);padding:var(--mlz-space-6);display:flex;flex-direction:column;gap:var(--mlz-space-2);box-shadow:0 8px 22px #163b541f}
+.andy-matrix-option{display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-10);text-align:left;min-height:40px;width:100%;border:0;background:white;color:#3d3d3d;padding:var(--mlz-space-8) var(--mlz-space-12);border-radius:var(--mlz-radius-sm);font-size:15px}
 .andy-matrix-option:hover{background:#edf6fc}.andy-matrix-option.selected{background:var(--matrix-info);color:white}.andy-matrix-option .material-symbols-outlined{color:inherit}
-.andy-matrix-footnote{font-size:13px;line-height:21px;color:#687782;margin:12px 0 0}
+.andy-matrix-footnote{font-size:13px;line-height:21px;color:#687782;margin:var(--mlz-space-12) 0 0}
 @media(max-width:1020px){.andy-matrix-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){.andy-matrix-grid{grid-template-columns:1fr}.andy-state-cell{min-height:0}.andy-matrix-family{margin-bottom:24px}}
+@media(max-width:650px){.andy-matrix-grid{grid-template-columns:1fr}.andy-state-cell{min-height:0}.andy-matrix-family{margin-bottom:var(--mlz-space-24)}}
 
 /* Text field · refinamiento aprobado en la comparación de estados.
    Focus utiliza exactamente el tratamiento de 2 px visuales del dropdown:
@@ -147,7 +147,7 @@
 .andy-state-cell[data-state="error"] .andy-matrix-field textarea,
 .andy-state-cell[data-state="error"] .andy-matrix-field .andy-matrix-select {background:#fff;}
 /* Documentación mantiene su bandeja celeste y dimensiones en ambos estados. */
-.andy-state-cell[data-state="focus"] .andy-matrix-upload {padding:6px;background:#e5f0f9;}
+.andy-state-cell[data-state="focus"] .andy-matrix-upload {padding:var(--mlz-space-6);background:#e5f0f9;}
 .andy-state-cell[data-state="error"] .andy-matrix-upload {background:#e5f0f9;}
 /* Valor completado con Primario 600, también en textarea y fecha. */
 .andy-state-cell[data-state="completed"] .andy-matrix-field textarea,
@@ -165,8 +165,8 @@
 .andy-state-cell[data-state="disabled"] .andy-matrix-field .andy-matrix-select>.material-symbols-outlined {color:#94c6e5;}
 
 /* Una instancia interactiva del calendario, junto a la matriz de estados Fecha. */
-.andy-matrix-calendar-demo{padding-top:20px;margin-top:22px;border-top:1px solid #e1e7eb}
-.andy-matrix-calendar-demo h4{margin:0 0 8px;color:#236999;font-size:18px;line-height:26px;font-weight:700}
-.andy-matrix-calendar-demo>p{margin:0 0 16px;color:#647482;font-size:14px;line-height:22px;max-width:780px}
-.andy-matrix-calendar-sample{width:min(100%,420px);min-width:0;min-height:80px;padding:12px 0 0}
+.andy-matrix-calendar-demo{padding-top:var(--mlz-space-16);margin-top:var(--mlz-space-24);border-top:1px solid #e1e7eb}
+.andy-matrix-calendar-demo h4{margin:0 0 var(--mlz-space-8);color:#236999;font-size:18px;line-height:26px;font-weight:700}
+.andy-matrix-calendar-demo>p{margin:0 0 var(--mlz-space-16);color:#647482;font-size:14px;line-height:22px;max-width:780px}
+.andy-matrix-calendar-sample{width:min(100%,420px);min-width:0;min-height:80px;padding:var(--mlz-space-12) 0 0}
 .andy-matrix-calendar-sample .sports-cal-popup{color:#3d3d3d}
