@@ -171,6 +171,7 @@ function ComponentDetails({id}:{id:ComponentId}){
  return null;
 }
 const tocByComponent:Partial<Record<ComponentId,{id:string;title:string}[]>>={
+ calendario:[{id:'seleccion-de-un-dia',title:'Selección de un día'},{id:'seleccion-de-un-rango',title:'Selección de rango'},{id:'campo-desplegable',title:'Campo desplegable'}],
  boton:[{id:'variantes',title:'Variantes'},{id:'tamanos',title:'Tamaños'},{id:'estados',title:'Estados'},{id:'iconografia',title:'Íconos'},{id:'uso',title:'Uso y comportamiento'}],
  acordeon:[{id:'apertura-unica',title:'Apertura única'},{id:'apertura-multiple',title:'Apertura múltiple'},{id:'deshabilitado',title:'Deshabilitado'}],
  buscador:[{id:'buscador',title:'Buscador'},{id:'buscador-con-contenido',title:'Buscador con contenido'}]
