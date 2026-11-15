@@ -11,6 +11,7 @@ import { AndyActivityCard } from './AndyActivityCards';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
+import { AndySportsSearchExample } from './AndySportsSearchExample';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadGallery } from './AndyDashedUpload';
@@ -33,12 +34,12 @@ const componentGroups=[
  {title:'Fundamentos',items:[['espaciados','Espaciados'],['border-radius','Border radius']]}, 
  {title:'Campos de formulario',items:[['field','Field'],['input','Input'],['select','Dropdown / Select'],['textarea','Text area'],['calendario','Calendario / Date Picker'],['adjuntos','Adjuntar archivos']]},
  {title:'Selección',items:[['checkbox','Checkbox'],['radio','Radio button'],['switch','Switch']]},
- {title:'Filtros y navegación',items:[['buscador','Buscador'],['seleccion-unica','Selección única'],['seleccion-multiple','Selección múltiple'],['filtros-avanzados','Filtros avanzados'],['ordenamiento','Ordenamiento'],['scrollbars','Barras de scroll']]},
+ {title:'Filtros y navegación',items:[['buscador','Buscador y filtros']]},
  {title:'Acciones y contenido',items:[['boton','Botones'],['chips','Chips y etiquetas'],['tarjeta','Tarjetas y resúmenes'],['mensaje','Mensajes y alertas'],['acordeon','Acordeón']]},
  {title:'Componentes adicionales',items:additionalComponents}
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
-const componentAliases:Record<string,string>={sede:'seleccion-multiple',edad:'seleccion-unica','mas-filtros':'filtros-avanzados',ordenar:'ordenamiento'};
+const componentAliases:Record<string,string>={sede:'buscador',edad:'buscador','mas-filtros':'buscador',ordenar:'buscador','seleccion-unica':'buscador','seleccion-multiple':'buscador','filtros-avanzados':'buscador',ordenamiento:'buscador',scrollbars:'buscador'};
 const componentEntries:ReadonlyArray<readonly [ComponentId,string]>=componentGroups.flatMap(group=>group.items as ReadonlyArray<readonly [ComponentId,string]>);
 const componentMeta:Record<ComponentId,{description:string;category:string}>={
  espaciados:{description:'Escala oficial 2–64 px de gaps, márgenes y padding de todos los componentes.',category:'Fundamentos'},
@@ -52,12 +53,7 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  checkbox:{description:'Selección múltiple con Material Symbols Outlined.',category:'Selección'},
  radio:{description:'Selección exclusiva entre varias alternativas.',category:'Selección'},
  switch:{description:'Activar o desactivar una configuración.',category:'Selección'},
- buscador:{description:'Campo de búsqueda con ícono y estados institucionales.',category:'Filtros y navegación'},
- 'seleccion-unica':{description:'Filtro de una sola elección, con radio button, estados y drawer mobile.',category:'Filtros y navegación'},
- 'seleccion-multiple':{description:'Filtro que permite combinar varias opciones con checkbox y contador.',category:'Filtros y navegación'},
- 'filtros-avanzados':{description:'Secciones desplegables, selección mixta, acciones y estados.',category:'Filtros y navegación'},
- ordenamiento:{description:'Selección exclusiva de criterio de orden y comportamiento del menú.',category:'Filtros y navegación'},
- scrollbars:{description:'Barras de scroll de página, dropdowns y menú lateral sin barra visible.',category:'Filtros y navegación'},
+ buscador:{description:'Buscador, selección única y múltiple, filtros avanzados, ordenamiento y barras de scroll con patrones de Deportes Anual.',category:'Filtros y navegación'},
  boton:{description:'Acciones primarias, secundarias, de texto y con íconos.',category:'Acciones y contenido'},
  chips:{description:'Etiquetas y chips removibles.',category:'Acciones y contenido'},
  tarjeta:{description:'Tarjetas de actividad y resúmenes de inscripción.',category:'Acciones y contenido'},
@@ -244,35 +240,6 @@ function InputDocs(){
   </ComponentExample>
  </>;
 }
-function FilterDocs({id}:{id:'seleccion-unica'|'seleccion-multiple'|'filtros-avanzados'|'ordenamiento'}){
- if(id==='seleccion-unica')return <>
-  <ComponentExample title="Selección única" description="El usuario elige una opción a la vez. Edad es el ejemplo real del producto; en mobile se abre como drawer.">
-   <FilterExample kind="edad"/>
-  </ComponentExample>
-  <ComponentExample title="Opciones con radio" description="La opción en reposo utiliza Primario 600; al seleccionarla, el fondo pasa a Info 500 y el control a blanco.">
-   <DropdownVariantsGallery only="radio"/>
-  </ComponentExample>
- </>;
- if(id==='seleccion-multiple')return <>
-  <ComponentExample title="Selección múltiple" description="Permite combinar varias sedes. El contador refleja la cantidad de opciones elegidas.">
-   <FilterExample kind="sede"/>
-  </ComponentExample>
-  <ComponentExample title="Opciones con checkbox" description="Íconos de selección en Primario 600 en reposo y blancos sobre el estado seleccionado.">
-   <DropdownVariantsGallery only="checkbox"/>
-  </ComponentExample>
- </>;
- if(id==='filtros-avanzados')return <>
-  <ComponentExample title="Filtros combinados" description="Reúne checkbox, radio y switch en secciones desplegables, sin fragmentar el flujo.">
-   <FilterExample kind="mas-filtros"/>
-  </ComponentExample>
-  <ComponentExample title="Selección con buscador" description="Cuando las opciones son numerosas, se incorpora búsqueda dentro del menú.">
-   <DropdownVariantsGallery only="search"/>
-  </ComponentExample>
- </>;
- return <ComponentExample title="Ordenamiento" description="Una opción activa a la vez; el control funciona como un filtro de orden, no como un campo de formulario.">
-  <FilterExample kind="ordenar"/>
- </ComponentExample>;
-}
 const notices=[
  {id:'success',title:'Success',heading:'Datos completos',body:'El formulario de demostración está listo para continuar.',icon:'check_circle' as const},
  {id:'info',title:'Info',heading:'Antes de empezar',body:'Completá los datos para continuar con la inscripción.',icon:'error' as const},
@@ -328,17 +295,29 @@ function ComponentDetails({id}:{id:ComponentId}){
    <SelectionGallery embedded only={id}/>
   </ComponentExample>
  </>;
- if(['seleccion-unica','seleccion-multiple','filtros-avanzados','ordenamiento'].includes(id))
-  return <FilterDocs id={id as 'seleccion-unica'|'seleccion-multiple'|'filtros-avanzados'|'ordenamiento'}/>;
  if(id==='buscador')return <>
-  <ComponentExample title="Vacío" description="Campo de búsqueda con placeholder y símbolo de búsqueda.">
-   <div className="andy-search-field"><input aria-label="Buscar actividad" placeholder="¿Qué estás buscando?"/><Icon name="search"/></div>
-  </ComponentExample>
-  <ComponentExample title="Con contenido" description="El valor ingresado conserva el aspecto del campo.">
-   <div className="andy-search-field"><input aria-label="Búsqueda de muestra" defaultValue="Natación"/><Icon name="search"/></div>
-  </ComponentExample>
+  <DocSection title="Buscador estándar" description="Patrón de Deportes Anual: 48 px de alto, ícono Material Symbols a la derecha, borde Primario 300 y foco Info 500 de 2 px. Escribí para filtrar los resultados de demostración.">
+   <DocPreview><AndySportsSearchExample/></DocPreview>
+  </DocSection>
+  <DocSection title="Selección única" description="Filtro de Edad: una sola opción seleccionada mediante radio button. Popover en desktop y drawer mobile.">
+   <DocPreview><FilterExample kind="edad"/></DocPreview>
+  </DocSection>
+  <DocSection title="Selección múltiple" description="Filtro de Sede: permite combinar varias opciones mediante checkbox con contador de seleccionados.">
+   <DocPreview><FilterExample kind="sede"/></DocPreview>
+  </DocSection>
+  <DocSection title="Filtros avanzados" description="Más filtros combina secciones desplegables, opciones múltiples y exclusivas, y acciones de aplicar y limpiar.">
+   <DocPreview><FilterExample kind="mas-filtros"/></DocPreview>
+  </DocSection>
+  <DocSection title="Ordenamiento" description="Un único criterio de orden a la vez, independiente de los demás filtros.">
+   <DocPreview><FilterExample kind="ordenar"/></DocPreview>
+  </DocSection>
+  <DocSection title="Barras de scroll" description="Tres patrones de desplazamiento: página, dropdown y navegación lateral.">
+   <AndyScrollbarGallery/>
+  </DocSection>
+  <DocSection title="Vista previa en Deportes Anual" description="Buscador y filtros interactivos sobre una muestra de actividades. El buscador filtra los resultados; los filtros mantienen el comportamiento del producto.">
+   <DocPreview><AndySportsSearchExample integrated/></DocPreview>
+  </DocSection>
  </>;
- if(id==='scrollbars')return <DocSection title="Tipos de barras de scroll" description="Tres patrones según dónde se desplaza el contenido: página, dropdown y navegación lateral."><AndyScrollbarGallery/></DocSection>;
  if(id==='boton')return <Buttons/>;
  if(id==='chips')return <>
   <DocSection title="Fondo suave" description="Seis colores de Figma con fondo claro y texto intenso. Cada color se muestra con y sin ícono.">
@@ -378,7 +357,7 @@ const tocByComponent:Partial<Record<ComponentId,{id:string;title:string}[]>>={
  calendario:[{id:'estados',title:'Estados'},{id:'seleccion-de-un-dia',title:'Selección de un día'},{id:'seleccion-de-un-rango',title:'Selección de un rango'},{id:'campo-desplegable',title:'Campo desplegable'}],
  boton:[{id:'variantes',title:'Variantes'},{id:'tamanos',title:'Tamaños'},{id:'estados',title:'Estados'},{id:'iconografia',title:'Íconos'},{id:'uso',title:'Uso y comportamiento'}],
  acordeon:[{id:'apertura-unica',title:'Apertura única'},{id:'apertura-multiple',title:'Apertura múltiple'},{id:'deshabilitado',title:'Deshabilitado'}],
- buscador:[{id:'buscador',title:'Buscador'},{id:'buscador-con-contenido',title:'Buscador con contenido'}]
+ buscador:[{id:'buscador-estandar',title:'Buscador estándar'},{id:'seleccion-unica',title:'Selección única'},{id:'seleccion-multiple',title:'Selección múltiple'},{id:'filtros-avanzados',title:'Filtros avanzados'},{id:'ordenamiento',title:'Ordenamiento'},{id:'barras-de-scroll',title:'Barras de scroll'},{id:'vista-previa-en-deportes-anual',title:'Vista previa en Deportes Anual'}]
 };
 const EMPTY_TOC_ITEMS:{id:string;title:string}[]=[];
 function HeadingToc({items}:{items:{id:string;title:string}[]}){
