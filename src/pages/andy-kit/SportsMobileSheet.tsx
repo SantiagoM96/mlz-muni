@@ -27,12 +27,13 @@ type Props = {
   onSecondary?:()=>void;
   /** El producto usa una altura contenida por el viewport; el pie queda fijo. */
   size?:'normal'|'large';
+  actions?:'filters'|'form';
 };
 
 const elasticUp = (distance:number) => 34 * (1 - Math.exp(distance / 76));
 const constrained = (value:number) => Math.max(0, Math.min(1,value));
 
-export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver resultados',onPrimary,secondaryLabel='Limpiar',onSecondary,size='normal'}:Props) {
+export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver resultados',onPrimary,secondaryLabel='Limpiar',onSecondary,size='normal',actions='filters'}:Props) {
   const dialogId=useId();
   const sheet=useRef<HTMLDivElement>(null);
   const handle=useRef<HTMLButtonElement>(null);
@@ -44,6 +45,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
   const [offset,setOffset]=useState(0);
   const [stretch,setStretch]=useState(0);
   const [scrim,setScrim]=useState(1);
+  const [baseHeight,setBaseHeight]=useState(0);
   const primary=onPrimary??onClose;
 
   function clearTimer(){if(timer.current!==null){clearTimeout(timer.current);timer.current=null;}}
@@ -82,6 +84,7 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
     clearTimer();
     const h=sheet.current?.getBoundingClientRect().height||500;
     gesture.current={id:event.pointerId,startY:event.clientY,height:h,samples:[{y:event.clientY,time:performance.now()}]};
+    setBaseHeight(h);
     setPhase('dragging');setOffset(0);setStretch(0);setScrim(1);
     try{event.currentTarget.setPointerCapture(event.pointerId);}catch{/* Fall back to normal pointer events */}
     event.preventDefault();
@@ -115,9 +118,9 @@ export function SportsMobileSheet({open,title,onClose,children,primaryLabel='Ver
     <button type="button" className="sports-sheet-scrim" aria-label={'Cerrar '+title}
       style={{'--sports-scrim-level':scrim} as CSSProperties}
       onClick={dismiss} />
-    <div ref={sheet} className={'sports-mobile-sheet is-'+phase+' is-'+size} role="dialog" aria-modal="true"
+    <div ref={sheet} className={'sports-mobile-sheet is-'+phase+' is-'+size+' actions-'+actions} role="dialog" aria-modal="true"
       aria-labelledby={dialogId}
-      style={{'--sports-drag-y':offset+'px','--sports-stretch-y':stretch+'px'} as React.CSSProperties}>
+      style={{'--sports-drag-y':offset+'px','--sports-stretch-y':stretch+'px','--sports-base-height':baseHeight+'px'} as CSSProperties}>
       <button ref={handle} type="button" className="sports-sheet-grab" aria-label="Deslizá hacia abajo para cerrar"
         onPointerDown={start} onPointerMove={move} onPointerUp={e=>end(e)}
         onPointerCancel={e=>end(e,true)} onClick={event=>{if(event.detail===0)dismiss();}}>
