@@ -3,6 +3,11 @@ import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
+import { DropdownVariantsGallery } from './DropdownVariantsGallery';
+import { AndyCalendarShowcase } from './AndyCalendarShowcase';
+import { SportsCalendarPicker } from './SportsCalendarPicker';
+import { DocSection, DocPreview } from './AndyDocsPrimitives';
+import { AndyActivityCard } from './AndyActivityCards';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
@@ -26,10 +31,11 @@ const componentGroups=[
  {title:'Fundamentos',items:[['espaciados','Espaciados'],['border-radius','Border radius']]}, 
  {title:'Campos de formulario',items:[['input','Input / Text field'],['select','Dropdown / Select'],['textarea','Text area'],['calendario','Calendario / Date Picker'],['adjuntos','Adjuntar archivos']]},
  {title:'Selección',items:[['checkbox','Checkbox'],['radio','Radio button'],['switch','Switch']]},
- {title:'Filtros y navegación',items:[['buscador','Buscador'],['sede','Filtro de Sede'],['edad','Filtro de Edad'],['mas-filtros','Más filtros'],['ordenar','Ordenar por'],['scrollbars','Barras de scroll']]},
+ {title:'Filtros y navegación',items:[['buscador','Buscador'],['seleccion-unica','Selección única'],['seleccion-multiple','Selección múltiple'],['filtros-avanzados','Filtros avanzados'],['ordenamiento','Ordenamiento'],['scrollbars','Barras de scroll']]},
  {title:'Acciones y contenido',items:[['boton','Botones'],['chips','Chips y etiquetas'],['tarjeta','Tarjetas y resúmenes'],['mensaje','Mensajes y alertas'],['acordeon','Acordeón']]}
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
+const componentAliases:Record<string,string>={sede:'seleccion-multiple',edad:'seleccion-unica','mas-filtros':'filtros-avanzados',ordenar:'ordenamiento'};
 const componentEntries:ReadonlyArray<readonly [ComponentId,string]>=componentGroups.flatMap(group=>group.items as ReadonlyArray<readonly [ComponentId,string]>);
 const componentMeta:Record<ComponentId,{description:string;category:string}>={
  espaciados:{description:'Escala oficial 2–64 px de gaps, márgenes y padding de todos los componentes.',category:'Fundamentos'},
@@ -43,10 +49,10 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  radio:{description:'Selección exclusiva entre varias alternativas.',category:'Selección'},
  switch:{description:'Activar o desactivar una configuración.',category:'Selección'},
  buscador:{description:'Campo de búsqueda con ícono y estados institucionales.',category:'Filtros y navegación'},
- sede:{description:'Filtro multiselección y drawer mobile.',category:'Filtros y navegación'},
- edad:{description:'Filtro de una sola opción y drawer mobile.',category:'Filtros y navegación'},
- 'mas-filtros':{description:'Filtros combinados, secciones desplegables y controles múltiples.',category:'Filtros y navegación'},
- ordenar:{description:'Opciones de ordenamiento con selección única.',category:'Filtros y navegación'},
+ 'seleccion-unica':{description:'Filtro de una sola elección, con radio button, estados y drawer mobile.',category:'Filtros y navegación'},
+ 'seleccion-multiple':{description:'Filtro que permite combinar varias opciones con checkbox y contador.',category:'Filtros y navegación'},
+ 'filtros-avanzados':{description:'Secciones desplegables, selección mixta, acciones y estados.',category:'Filtros y navegación'},
+ ordenamiento:{description:'Selección exclusiva de criterio de orden y comportamiento del menú.',category:'Filtros y navegación'},
  scrollbars:{description:'Barras de scroll de página, dropdowns y menú lateral sin barra visible.',category:'Filtros y navegación'},
  boton:{description:'Acciones primarias, secundarias, de texto y con íconos.',category:'Acciones y contenido'},
  chips:{description:'Etiquetas y chips removibles.',category:'Acciones y contenido'},
@@ -206,6 +212,7 @@ function HeadingToc({items}:{items:{id:string;title:string}[]}){
 const views:Record<Category,()=>ReactNode>={fundamentos:Foundations,filtros:Filters,formularios:Forms,seleccion:Selection,botones:Buttons,etiquetas:Tags,tarjetas:Cards,mensajes:Messages};
 export function AndyKitPage(){
  const {categoria,componente}=useParams<{categoria?:string;componente?:string}>();
+ const aliasedComponent=componente?componentAliases[componente]:undefined;
  const [navOpen,setNavOpen]=useState(false);
  const [componentSearch,setComponentSearch]=useState('');
  const normalizedSearch=componentSearch.normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
@@ -217,6 +224,7 @@ export function AndyKitPage(){
  const displayName=isComponent?componentEntry[1]:isDirectory?'Componentes':legacy?.name;
  const meta=isComponent?componentMeta[componentEntry[0]]:null;
  useEffect(()=>{document.title='MLZ UI Kit - Andy'+(displayName?' · '+displayName:'');},[displayName]);
+ if(categoria==='componentes'&&aliasedComponent)return <Navigate to={'/ui-kit-andy/componentes/'+aliasedComponent} replace/>;
  if(!isComponent&&!isDirectory&&!legacy)return <Navigate to="/ui-kit-andy/fundamentos" replace/>;
  const Gallery=legacy?views[legacy.id]:null;
  return <div className="andy-kit andy-doc-layout" data-testid="andy-ui-kit">
