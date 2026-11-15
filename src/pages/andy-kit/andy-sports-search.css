@@ -36,3 +36,28 @@
  .andy-sports-search-results ul{grid-template-columns:1fr}
  .andy-sports-search{gap:12px}
 }
+
+/* Los tres filtros comparten la fila; mapa y ordenamiento van a la derecha del contador. */
+.andy-sports-search.is-integrated .kit-sports-filters{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:none;
+}
+.andy-sports-search-results-tools{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:10px}
+.andy-sports-search-results-tools .kit-sports-sort-example{display:inline-flex}
+.andy-sports-search-results-tools .kit-sports-sort-trigger{
+ min-height:36px;padding:4px 6px;gap:5px;font-size:14px;
+}
+.andy-sports-search-results-tools .kit-sports-sort-popover{left:auto;right:0}
+.andy-sports-map-toggle{
+ display:inline-flex;align-items:center;gap:5px;min-height:36px;padding:4px 6px;
+ border:0;border-radius:var(--mlz-radius-sm);background:transparent;
+ color:#236999;font:700 14px/22px Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer;
+}
+.andy-sports-map-toggle:hover,.andy-sports-map-toggle.is-active{background:#edf6fc}
+.andy-sports-map-toggle:focus-visible{outline:2px solid #006eff;outline-offset:2px}
+.andy-sports-map-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;padding:28px 16px;border:1px solid #dce7ef;border-radius:var(--mlz-radius-sm);background:#f3f7fc;text-align:center;color:#236999}
+.andy-sports-map-placeholder span{font-size:13px;line-height:20px;max-width:400px;color:#657886}
+@media(max-width:540px){
+ .andy-sports-search.is-integrated .kit-sports-filters{grid-template-columns:1fr}
+ .andy-sports-search-results-top{align-items:flex-start}
+ .andy-sports-search-results-tools{width:100%;justify-content:space-between}
+}
