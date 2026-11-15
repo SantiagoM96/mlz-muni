@@ -63,3 +63,17 @@ test('Andy: scrollbars documentadas y sidebar desplazable sin barra visible',asy
  await expect(sidebar).toHaveCSS('scrollbar-width','none');
  await expect(sidebar).toHaveCSS('overflow-y','auto');
 });
+
+
+test('Andy: guías de espaciado y border radius usan la escala institucional compartida',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/espaciados');
+ const guide=page.getByTestId('andy-spacing-guide');
+ await expect(guide).toBeVisible();
+ for(const size of [2,4,6,8,10,12,14,16,24,32,40,48,56,64])
+   await expect(guide.getByText(size+' px',{exact:true})).toHaveCount(1);
+ expect(await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--mlz-space-64').trim())).toBe('64px');
+ await page.goto('/ui-kit-andy/componentes/border-radius');
+ await expect(page.getByTestId('andy-radius-guide')).toBeVisible();
+ for(const token of ['--mlz-radius-xs','--mlz-radius-sm','--mlz-radius-md','--mlz-radius-lg','--mlz-radius-xl','--mlz-radius-2xl','--mlz-radius-full'])
+  expect(await page.evaluate(t=>getComputedStyle(document.documentElement).getPropertyValue(t).trim(),token)).not.toBe('');
+});
