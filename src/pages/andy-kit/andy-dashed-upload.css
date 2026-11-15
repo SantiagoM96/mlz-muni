@@ -2,14 +2,40 @@
 .andy-dashed-upload-gallery{display:grid;grid-template-columns:1fr;gap:24px;width:min(100%,640px)}
 .andy-dashed-upload{display:flex;flex-direction:column;gap:8px;min-width:0;width:100%;font-family:Geometria,'Century Gothic',Arial,sans-serif}
 .andy-dashed-upload-title{font-weight:700;color:#236999;font-size:16px;line-height:22px}
-.andy-dashed-upload-control{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-width:0;min-height:48px;background:#fff;border:1px dashed #5ba8d5;border-radius:var(--mlz-radius-sm);padding:10px 14px;cursor:pointer;color:#3d3d3d;transition:border-color .14s ease,background-color .14s ease}
-.andy-dashed-upload-control:hover{border-color:#236999;background:#f8fbff}
-.andy-dashed-upload-control:focus-within{border:2px dashed #006eff;padding:9px 13px;box-shadow:none;outline:none}
+.andy-dashed-upload-control{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-width:0;min-height:48px;background:#fff;border:1px solid transparent;border-radius:var(--mlz-radius-sm);padding:10px 14px;cursor:pointer;color:#3d3d3d;transition:border-color .14s ease,background-color .14s ease}
+.andy-dashed-upload-control:hover{background:#f8fbff}
+.andy-dashed-upload-control:focus-within{box-shadow:none;outline:none}
 .andy-dashed-upload-action{flex:0 0 auto;color:#236999;font-weight:700;font-size:14px;line-height:22px;white-space:nowrap}
 .andy-dashed-upload-value{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#8795a2;font-size:14px;line-height:22px}
 .andy-dashed-upload-value.has-file{color:#3d3d3d;font-weight:500}
 .andy-dashed-upload-control input[type=file]{position:absolute;inset:0;z-index:1;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
 .andy-dashed-upload-help{margin:0;color:#657886;font-size:13px;line-height:18px}
-.andy-dashed-upload-control.is-error{border-color:#ef284c}
+.andy-dashed-upload-control.is-error{--upload-border-color:#ef284c}
 .andy-dashed-upload-error{margin:0;color:#ef284c;font-size:13px;line-height:18px}
-@media(max-width:400px){.andy-dashed-upload-control{gap:8px;padding-inline:10px}.andy-dashed-upload-control:focus-within{padding-inline:9px}.andy-dashed-upload-action,.andy-dashed-upload-value{font-size:12px}}
+@media(max-width:400px){.andy-dashed-upload-control{gap:8px;padding-inline:10px}.andy-dashed-upload-action,.andy-dashed-upload-value{font-size:12px}}
+
+/* SVG alineado a las dimensiones reales del campo: dash 8px / gap 4px.
+   La geometría (radius) se toma del propio border-radius del input. */
+.andy-dashed-upload-control{
+ --upload-border-width:1px;
+ --upload-border-color:#5ba8d5;
+}
+.andy-dashed-upload-border{
+ position:absolute;
+ inset:0;
+ display:block;
+ width:100%;
+ height:100%;
+ pointer-events:none;
+ overflow:visible;
+ color:var(--upload-border-color);
+}
+.andy-dashed-upload-border rect{stroke-width:var(--upload-border-width)}
+.andy-dashed-upload-control:hover{--upload-border-color:#236999}
+.andy-dashed-upload-control:focus-within{
+ --upload-border-width:2px;
+ --upload-border-color:#006eff;
+}
+.andy-dashed-upload-control.is-error,
+.andy-dashed-upload-control.is-error:hover,
+.andy-dashed-upload-control.is-error:focus-within{--upload-border-color:#ef284c}
