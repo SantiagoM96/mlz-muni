@@ -110,13 +110,9 @@ function ChipGallery({compact=false}:{compact?:boolean}){
  return <div className="andy-chip-demo">{chips.map(t=><span className="andy-chip" key={t}>{t}<button type="button" aria-label={'Quitar '+t} onClick={()=>setChips(v=>v.filter(c=>c!==t))}><Icon name="close" size={18}/></button></span>)}<button type="button" className="andy-chip-clear" onClick={()=>setChips(compact?['Lunes','Casa Ari','Recreativo']:[])}>{compact?'Restablecer':'Limpiar filtros'}</button></div>;
 }
 function Tags(){return <><DemoSection title="Filtros activos"><ChipGallery/></DemoSection><DemoSection title="Etiquetas de actividad" description="Metadatos para edades, tipos de actividades, accesibilidad y disponibilidad."><div className="andy-tags"><span className="andy-tag">Hasta 2 años</span><span className="andy-tag">Actividad recreativa</span><span className="andy-tag andy-tag-success">Personas con discapacidad</span><span className="andy-tag andy-tag-outline">Cupos limitados</span><span className="andy-tag andy-tag-muted">Deporte</span></div></DemoSection></>}
-function Cards(){return <>
- <DemoSection title="Tarjetas de actividad · Deportes y Agenda" description="Dos variantes hermanas del mismo patrón: Deportes conserva la cabecera celeste; Agenda mantiene la imagen del catálogo. Comparten radio, jerarquía, espaciado, metadatos y acceso a detalle.">
-  <AndyActivityCardGallery/>
- </DemoSection>
- <DemoSection title="Selección de comisión" description="Componente complementario del flujo de inscripción deportiva."><CommissionPreview/></DemoSection>
-</>}
-function CommissionPreview(){const [sel,setSel]=useState('1');return <div className="andy-commissions">{[['1','Lunes y miércoles','10:00 a 11:00 h'],['2','Martes y jueves','16:00 a 17:00 h']].map(([id,day,time])=><button key={id} type="button" className={'andy-commission '+(sel===id?'chosen':'')} onClick={()=>setSel(id ?? '')}><span className="andy-commission-radio"/><span><strong>{day}</strong><small>{time}</small><small>Profesor/a a confirmar</small></span><span className="andy-tag">Disponible</span></button>)}</div>}
+function Cards(){return <DemoSection title="Tarjetas de actividad · Deportes y Agenda" description="Dos variantes hermanas: Deportes conserva la cabecera celeste de 55 px y Agenda reutiliza la tarjeta real con imagen de 154 px. Comparten tipografía, espaciados, metadatos y tratamiento de bordes.">
+ <AndyActivityCardGallery/>
+</DemoSection>}
 function Messages(){return <>
  <DemoSection title="Mensajes destacados" description="Cuatro variantes semánticas de Figma · mensaje_destacado. Mismos tokens para desktop y mobile.">
   <div className="andy-messages">
