@@ -25,7 +25,7 @@ const router = createBrowserRouter([{
   }),
 }, {
   // Catálogo autónomo de diseño de Andy. No reemplaza el UI Kit institucional.
-  path: '/ui-kit-andy/:categoria?',
+  path: '/ui-kit-andy/:categoria?/:componente?',
   lazy: async () => ({
     Component: (await import('../pages/andy-kit/AndyKitPage')).AndyKitPage,
   }),
