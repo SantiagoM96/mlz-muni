@@ -13,6 +13,7 @@ import { AndyActivityCardGallery } from './AndyActivityCards';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
+import { AndyDashedUploadGallery } from './AndyDashedUpload';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
 import './andy-kit.css';
@@ -233,6 +234,9 @@ function ComponentDetails({id}:{id:ComponentId}){
    <div className="andy-form-grid"><label className="andy-field"><span>Observaciones</span><textarea placeholder="Escribí una observación"/></label></div>
   </ComponentExample></>;
  if(id==='adjuntos')return <><FormStates family="upload"/>
+  <DocSection title="Variante con borde punteado" description="Input alternativo con selección de archivo nativa: el texto de la derecha se adapta a fotos, documentos o PDF y muestra el nombre al adjuntar.">
+   <DocPreview align="start"><AndyDashedUploadGallery/></DocPreview>
+  </DocSection>
   <DocSection title="Criterios de uso" description="La acción de adjuntar se acompaña del nombre del archivo y de mensajes de validación.">
    <DocPreview><div className="andy-doc-guideline"><strong>Adjuntar</strong><span>La acción se mantiene diferenciada del nombre del archivo.</span><strong>Error y deshabilitado</strong><span>Conservar su semántica y el espacio del contenido.</span></div></DocPreview>
   </DocSection></>;
