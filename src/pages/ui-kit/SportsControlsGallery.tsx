@@ -23,7 +23,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
       if (event.key === 'Escape') { setOpen(false); trigger.current?.focus(); }
     };
     const onPointer = (event: PointerEvent) => {
-      if (root.current && !root.current.contains(event.target as Node)) setOpen(false);
+      if (!window.matchMedia('(max-width: 680px)').matches && root.current && !root.current.contains(event.target as Node)) setOpen(false);
     };
     document.addEventListener('keydown', onKey);
     document.addEventListener('pointerdown', onPointer);
@@ -31,12 +31,6 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
       document.removeEventListener('keydown', onKey);
       document.removeEventListener('pointerdown', onPointer);
     };
-  }, [open]);
-  useEffect(() => {
-    if (!open || !window.matchMedia('(max-width: 680px)').matches) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = previous; };
   }, [open]);
   const filtered = options.filter(option => option.toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es')));
   const toggle = (option: string) => setSelected(previous =>
@@ -70,7 +64,7 @@ function FilterDemo({ label, options, multiple = false, searchable = true }: Fil
           }) : <p className="kit-sports-empty">No encontramos opciones</p>}
         </div>
         <div className="kit-sports-actions">
-          <button className="kit-sports-apply" type="button" onClick={apply}>Ver resultados ({appliedCount})</button>
+          <button className="kit-sports-apply" type="button" onClick={apply}>Ver resultados ({selected.length})</button>
           <button className="kit-sports-clear" type="button" onClick={() => { setSelected([]); setSearch(''); }}>Limpiar</button>
         </div>
       </div></>}
