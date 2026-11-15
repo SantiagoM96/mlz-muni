@@ -706,8 +706,9 @@
  transition:background-color .16s ease,color .16s ease;
 }
 .andy-doc-layout .andy-doc-toc nav a:hover{
- background:var(--andy-chrome-hover);
+ background:transparent;
  color:var(--andy-chrome-accent);
+ text-decoration:none;
 }
 .andy-doc-layout .andy-doc-toc nav a.is-active,
 .andy-doc-layout .andy-doc-toc nav a[aria-current=location],
@@ -727,6 +728,9 @@
  outline-offset:2px;
 }
 .andy-doc-layout .andy-doc-toc>strong{color:var(--andy-chrome-accent)}
+/* El salto del índice se alinea por debajo del encabezado y evita recortar títulos. */
+.andy-doc-layout .andy-doc-main [id]{scroll-margin-top:32px}
+
 /* Indicador de versión y botón de navegación mobile. */
 .andy-doc-layout .andy-topbar-actions .andy-version{
  border:1px solid var(--andy-chrome-outline);
