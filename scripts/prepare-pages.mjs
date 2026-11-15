@@ -5,6 +5,7 @@ const staticPaths = [
   'ui-kit',
   'ui-kit/deportes',
   'ui-kit-andy',
+  'ui-kit-andy/componentes',
   ...['fundamentos', 'filtros', 'formularios', 'seleccion', 'botones', 'etiquetas', 'tarjetas', 'mensajes'].map(section => `ui-kit-andy/${section}`),
   ...['input','select','textarea','calendario','adjuntos','checkbox','radio','switch','buscador','sede','edad','mas-filtros','ordenar','boton','chips','tarjeta','mensaje','acordeon'].map(component => `ui-kit-andy/componentes/${component}`),
   'ui-kit/formularios',
