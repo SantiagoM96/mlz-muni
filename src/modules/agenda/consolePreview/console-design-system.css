@@ -1,0 +1,41 @@
+/* MLZ UI Kit — estilos productivos de la consola. Ámbito exclusivo: .mlz-console */
+.mlz-console{--console-primary:#236999;--console-info:#006eff;--console-stroke:#5ba8d5;--console-text:#3d3d3d;font-family:Geometria,'Century Gothic',Arial,sans-serif;color:var(--console-text)}
+.mlz-console :is(button,input,select,textarea){font-family:inherit}
+.mlz-console :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea){min-height:48px;border:1px solid var(--console-stroke);border-radius:var(--mlz-radius-sm);color:var(--console-text);font-size:16px;line-height:24px;background:#fff;outline:0;transition:border-color .16s,box-shadow .16s}
+.mlz-console :is(input,textarea)::placeholder{color:#8baac3;opacity:1}
+.mlz-console :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea):hover:not(:disabled):not(:focus){border-color:var(--console-primary)}
+.mlz-console :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea):focus-visible{border-color:var(--console-info);box-shadow:inset 0 0 0 1px var(--console-info);outline:0}
+.mlz-console :is(input,select,textarea):disabled{background:#f3f7fc;color:#71808c;cursor:not-allowed}
+.mlz-console :is(input,select,textarea)[aria-invalid=true]{border-color:#ef284c;box-shadow:inset 0 0 0 1px #ef284c}
+.mlz-console :is(input[type=checkbox],input[type=radio]){width:20px;height:20px;accent-color:var(--console-primary);flex-shrink:0}
+.mlz-console :is(button,a,input[type=checkbox],input[type=radio]):focus-visible{outline:2px solid var(--console-info);outline-offset:2px}
+.mlz-console :is(.console-action-primary,.console-action-tertiary,.console-action-ghost,.console-action-link){border-radius:var(--mlz-radius-sm);transition:background-color .16s,border-color .16s,color .16s}
+.mlz-console .console-action-primary{background:var(--console-primary);border:1px solid var(--console-primary);color:#fff}
+.mlz-console .console-action-primary:hover:not(:disabled){background:#19577f;border-color:#19577f}
+.mlz-console .console-action-tertiary{color:var(--console-primary);border:1px solid var(--console-primary);background:#fff}
+.mlz-console .console-action-tertiary:hover:not(:disabled){background:#f3f7fc}
+.mlz-console .console-action-ghost,.mlz-console .console-action-link{border:1px solid transparent;background:transparent;color:var(--console-primary)}
+.mlz-console .console-action-ghost:hover:not(:disabled){background:#f3f7fc}
+.mlz-console .console-action-link:hover:not(:disabled){text-decoration:underline;text-underline-offset:3px}
+.mlz-console button:disabled{opacity:.5;cursor:not-allowed}
+.mlz-console .console-action-lg{min-height:48px;padding-inline:24px;font-size:18px;line-height:26px;font-weight:700}
+.mlz-console .console-action-md{min-height:40px;padding-inline:16px;font-size:16px;line-height:24px;font-weight:700}
+.mlz-console .console-action-sm{min-height:32px;padding-inline:12px;font-size:14px;line-height:20px;font-weight:700}
+.mlz-console .console-icon-start.console-action-lg{padding-left:18px}
+.mlz-console .console-icon-start.console-action-md{padding-left:12px}
+.mlz-console .console-icon-start.console-action-sm{padding-left:8px}
+.mlz-console .console-icon-end.console-action-lg{padding-right:18px}
+.mlz-console .console-icon-end.console-action-md{padding-right:12px}
+.mlz-console .console-icon-end.console-action-sm{padding-right:8px}
+.mlz-console .console-icon-only{display:inline-grid;place-items:center;min-width:40px;width:40px;height:40px;padding:0;border-radius:var(--mlz-radius-sm)}
+.mlz-console .console-icon-only .material-symbols-outlined{color:inherit}
+.mlz-console .console-surface,.mlz-console .console-upload,.mlz-console .console-schedule-table{border-radius:var(--mlz-radius-lg)}
+.mlz-console .console-modal{border-radius:var(--mlz-radius-xl)}
+.mlz-console .console-weekday{min-height:40px;border:1px solid #d6e2eb;border-radius:var(--mlz-radius-sm);background:#fff;color:var(--console-primary);font-size:14px;line-height:20px;font-weight:600}
+.mlz-console .console-weekday:hover:not([aria-pressed=true]){background:#f3f7fc;border-color:var(--console-primary)}
+.mlz-console .console-weekday[aria-pressed=true]{background:var(--console-primary);border-color:var(--console-primary);color:#fff}
+.mlz-console .console-schedule-table thead{background:#e5f0f9;color:var(--console-primary)}
+.mlz-console .console-schedule-table tbody tr:hover{background:#fafcfe}
+.mlz-console .console-action-danger{color:#b5444b}
+.mlz-console .console-action-danger:hover:not(:disabled){background:#fff0f0}
+@media(max-width:639px){.mlz-console .console-modal{border-radius:var(--mlz-radius-2xl) var(--mlz-radius-2xl) 0 0}}
