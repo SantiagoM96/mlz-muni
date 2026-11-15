@@ -315,10 +315,11 @@ function HeadingToc({items}:{items:{id:string;title:string}[]}){
  const [active,setActive]=useState(items[0]?.id??'');
  useEffect(()=>{
   const next=items.length?items:[...document.querySelectorAll<HTMLElement>(
-   '.andy-doc-page .andy-doc-section-heading > h3, .andy-doc-page .andy-section-head > h2, .andy-doc-page .andy-scrollbar-section > h3, .andy-doc-page .andy-palette-variant-heading > h3, .andy-doc-page .andy-button-section-intro > h3'
+   '.andy-doc-main .andy-doc-section-heading > h3, .andy-doc-main .andy-section-head > h2, .andy-doc-main .andy-scrollbar-section > h3, .andy-doc-main .andy-palette-variant-heading > h3, .andy-doc-main .andy-button-section-intro > h3'
   )].map((heading,index)=>{
-   const id=heading.parentElement?.id||'andy-toc-'+index;
-   if(!heading.parentElement?.id)heading.id=id;
+   const target=heading.closest<HTMLElement>('.andy-doc-section')||heading;
+   const id=target.id||'andy-toc-'+index;
+   if(!target.id)target.id=id;
    return {id,title:heading.textContent?.trim()||'Sección'};
   });
   const frame=window.requestAnimationFrame(()=>{setLinks(next);setActive(next[0]?.id??'');});
@@ -407,7 +408,7 @@ export function AndyKitPage(){
        </NavLink>)}</div></section>)}</div>:
      Gallery&&<Gallery/>}
    </main>
-   {isComponent&&<HeadingToc key={componentEntry[0]} items={tocByComponent[componentEntry[0]]??EMPTY_TOC_ITEMS}/>}
+   <HeadingToc key={displayName} items={isComponent?tocByComponent[componentEntry[0]]??EMPTY_TOC_ITEMS:EMPTY_TOC_ITEMS}/>
   </div>
   <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
  </div>;
