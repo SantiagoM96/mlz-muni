@@ -16,7 +16,7 @@ export function CardPreview({ draft, schedules, venues, onViewDetail }: {
   return (
     <div>
       <h2 className="mb-2 text-[24px] font-bold leading-[30px] text-primary-600">Vista previa</h2>
-      <p className="mb-5 text-[14px] leading-5 text-[#687f91]">
+      <p className="mb-6 text-[14px] leading-5 text-[#687f91]">
         {publicViews.length === 1
           ? 'Una ficha pública para esta actividad'
           : publicViews.length + ' fichas públicas, separadas por sede o encuentro'}
