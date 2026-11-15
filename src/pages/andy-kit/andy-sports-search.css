@@ -39,7 +39,18 @@
 
 /* Los tres filtros comparten la fila; mapa y ordenamiento van a la derecha del contador. */
 .andy-sports-search.is-integrated .kit-sports-filters{
- display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:none;
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) max-content;
+ gap:8px;max-width:none;align-items:start;
+}
+/* Sede y Edad se expanden por igual; Más filtros conserva su ancho hug. */
+.andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more{
+ width:max-content;max-width:100%;
+}
+.andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more>.kit-sports-trigger{
+ width:auto;white-space:nowrap;
+}
+.andy-sports-search.is-integrated .kit-sports-filters>.kit-sports-more .kit-sports-truncate{
+ flex:0 0 auto;
 }
 .andy-sports-search-results-tools{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:10px}
 .andy-sports-search-results-tools .kit-sports-sort-example{display:inline-flex}
