@@ -992,3 +992,21 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  .andy-doc-layout .andy-doc-page .andy-field textarea,
  .andy-doc-layout .andy-doc-page .andy-select-trigger{transition:none}
 }
+
+/* Dos fields en una misma vista previa:
+   evita el recentrado del bloque al adquirir foco y el scroll anchoring.
+   Se conserva la disposición y las medidas de los controles. */
+.andy-doc-layout .andy-doc-page .andy-doc-demo:has(.andy-form-grid > .andy-field:nth-child(2)) {
+ justify-content:flex-start;
+ overflow-anchor:none;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-demo:has(.andy-form-grid > .andy-field:nth-child(2)) > .andy-doc-demo-content {
+ justify-content:flex-start;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-demo .andy-form-grid {
+ align-content:start;
+ align-items:start;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-demo .andy-form-grid > .andy-field {
+ align-self:start;
+}
