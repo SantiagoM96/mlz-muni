@@ -1,9 +1,10 @@
+import { ConsoleSelectControl as SelectControl } from './ConsoleSelectControl';
 import { useRef, useState } from 'react';
 import { MaterialIcon } from '../../../shared/ui/MaterialIcon';
 import type { ConsoleVenue } from './model';
 import { venueById } from './scheduleRules';
 import { FormField } from '../../../shared/ui/FormField';
-import { TextField, SelectControl } from '../../../shared/ui/FormControls';
+import { TextField } from '../../../shared/ui/FormControls';
 import { normalizeVenueInput, validateVenueInput } from './venueRules';
 
 interface Props {
