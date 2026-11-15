@@ -39,3 +39,63 @@
 .andy-dashed-upload-control.is-error,
 .andy-dashed-upload-control.is-error:hover,
 .andy-dashed-upload-control.is-error:focus-within{--upload-border-color:#ef284c}
+
+/* Matriz de estados: el patrón SVG sigue siendo 8px dash / 4px gap / 1px stroke. */
+.andy-dashed-state-matrix{width:100%;min-width:0}
+.andy-dashed-state-matrix .andy-state-cell{min-width:0}
+.andy-dashed-state-matrix .andy-dashed-upload-title{font-size:16px}
+.andy-dashed-state-matrix .andy-dashed-upload-control{gap:8px;padding-inline:10px}
+.andy-dashed-state-matrix .andy-dashed-upload-action,
+.andy-dashed-state-matrix .andy-dashed-upload-value{font-size:12px}
+.andy-dashed-state-matrix .andy-dashed-upload-help{font-size:12px}
+.andy-dashed-upload[data-state="hover"] .andy-dashed-upload-control{
+ --upload-border-color:#236999;
+ background:#f8fbff;
+}
+.andy-dashed-upload[data-state="focus"] .andy-dashed-upload-control{
+ --upload-border-color:#006eff;
+ background:#fff;
+}
+.andy-dashed-upload[data-state="completed"] .andy-dashed-upload-value{color:#236999}
+.andy-dashed-upload[data-state="error"] .andy-dashed-upload-control{
+ --upload-border-color:#ef284c;
+ background:#fff;
+}
+.andy-dashed-upload[data-state="error"] .andy-dashed-upload-title{color:#ef284c}
+.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control{
+ --upload-border-color:#c6dff1;
+ background:#e5f0f9;
+ cursor:not-allowed;
+}
+.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-action,
+.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-value{color:#94c6e5}
+.andy-dashed-upload[data-state] input[type=file]{pointer-events:none}
+.andy-dashed-upload[data-state] .andy-dashed-upload-control{cursor:default}
+.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control{cursor:not-allowed}
+/* Evitar estilos de la matriz original que agregan borde sólido. */
+.andy-dashed-state-matrix .andy-state-cell[data-state="focus"] .andy-dashed-upload-control,
+.andy-dashed-state-matrix .andy-state-cell[data-state="error"] .andy-dashed-upload-control{
+ border:1px solid transparent;
+ box-shadow:none;
+}
+.andy-upload-preview-pair{display:flex;flex-direction:column;gap:28px;width:min(100%,640px);min-width:0}
+.andy-upload-preview-case{display:flex;flex-direction:column;gap:12px;min-width:0}
+.andy-upload-preview-heading{color:#236999;font-size:15px;line-height:22px;font-weight:700}
+.andy-solid-upload-preview{display:flex;flex-direction:column;gap:8px;min-width:0;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.andy-solid-upload-control{
+ position:relative;display:flex;align-items:center;gap:8px;
+ width:100%;min-width:0;min-height:48px;padding:6px;
+ border:1px solid transparent;border-radius:var(--mlz-radius-sm);background:#e5f0f9;
+}
+.andy-solid-upload-button{
+ height:36px;display:inline-flex;align-items:center;justify-content:center;gap:4px;
+ padding:6px 8px;flex:none;border-radius:var(--mlz-radius-xs);
+ background:#236999;color:#fff;font-size:14px;font-weight:600;white-space:nowrap;
+}
+.andy-solid-upload-file{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#94a8b8;font-size:13px}
+.andy-solid-upload-file.has-file{color:#236999}
+.andy-solid-upload-control input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
+.andy-solid-upload-control:hover{border-color:#5ba8d5}
+.andy-solid-upload-control:focus-within{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-solid-upload-control.is-error,.andy-solid-upload-control.is-error:focus-within{border-color:#ef284c;box-shadow:inset 0 0 0 1px #ef284c}
+@media(max-width:650px){.andy-dashed-state-matrix .andy-dashed-upload-action,.andy-dashed-state-matrix .andy-dashed-upload-value{font-size:14px}}
