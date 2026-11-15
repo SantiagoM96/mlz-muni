@@ -14,7 +14,7 @@ import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndySportsSearchExample } from './AndySportsSearchExample';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
-import { AndyDashedUploadGallery } from './AndyDashedUpload';
+import { AndyDashedUploadStates, AndyUploadPreviews } from './AndyDashedUpload';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
 import './andy-kit.css';
@@ -265,13 +265,20 @@ function ComponentDetails({id}:{id:ComponentId}){
   <ComponentExample title="Texto multilínea" description="Permite escribir varias líneas y ajustar la altura.">
    <div className="andy-form-grid"><label className="andy-field"><span>Observaciones</span><textarea placeholder="Escribí una observación"/></label></div>
   </ComponentExample></>;
- if(id==='adjuntos')return <><FormStates family="upload"/>
-  <DocSection title="Variante con borde punteado" description="Input alternativo con selección de archivo nativa: el texto de la derecha se adapta a fotos, documentos o PDF y muestra el nombre al adjuntar.">
-   <DocPreview align="start"><AndyDashedUploadGallery/></DocPreview>
+ if(id==='adjuntos')return <>
+  <DocSection title="Adjuntar · estados" description="Variante original con bandeja celeste y botón sólido. Comparación de Default, Hover, Focus, Completo, Error y Disabled.">
+   <DocPreview align="start"><FormStateMatrix onlyFamily="upload" showExtras={false}/></DocPreview>
   </DocSection>
-  <DocSection title="Criterios de uso" description="La acción de adjuntar se acompaña del nombre del archivo y de mensajes de validación.">
-   <DocPreview><div className="andy-doc-guideline"><strong>Adjuntar</strong><span>La acción se mantiene diferenciada del nombre del archivo.</span><strong>Error y deshabilitado</strong><span>Conservar su semántica y el espacio del contenido.</span></div></DocPreview>
-  </DocSection></>;
+  <DocSection title="Borde punteado · estados" description="La variante alternativa usa los mismos seis estados y mantiene siempre un trazo de 1 px, con guiones de 8 px y espacios de 4 px.">
+   <DocPreview align="start"><AndyDashedUploadStates/></DocPreview>
+  </DocSection>
+  <DocSection title="Vista previa · ambas variantes" description="Dos casos interactivos de documentación. Seleccioná un archivo para ver su nombre y reemplazarlo; formatos PDF, DOC y DOCX, hasta 10 MB.">
+   <DocPreview><AndyUploadPreviews/></DocPreview>
+  </DocSection>
+  <DocSection title="Criterios de uso" description="Las dos variantes conservan la selección nativa de archivos y la validación de tamaño y formato.">
+   <DocPreview><div className="andy-doc-guideline"><strong>Adjuntar original</strong><span>Bandeja celeste con acción sólida y nombre de archivo.</span><strong>Borde punteado</strong><span>Acción de seleccionar o cambiar integrada al campo.</span><strong>Estados</strong><span>Default, Hover, Focus, Completo, Error y Disabled; comparar ambas matrices antes de usarlas.</span></div></DocPreview>
+  </DocSection>
+ </>;
  if(id==='select')return <><FormStates family="dropdown"/>
   {([['simple','Selección normal','Una opción con marca de confirmación.'],['radio','Selección con radio','Una sola elección con un indicador circular.'],['checkbox','Selección múltiple','Varias opciones con indicadores independientes.'],['search','Con buscador','Filtrado de opciones dentro del menú.']] as const).map(([variant,title,description])=>
    <ComponentExample key={variant} title={title} description={description}><DropdownVariantsGallery only={variant}/></ComponentExample>)}
