@@ -758,3 +758,76 @@
  background:var(--andy-chrome-accent);
  border-color:var(--andy-chrome-accent);
 }
+
+/* Header del catálogo Andy — solo mobile: identidad a la izquierda,
+   versión corta y botón de menú icon-only a la derecha. */
+@media(max-width:790px){
+ .andy-doc-layout .andy-topbar{
+  display:flex;
+  align-items:center;
+  flex-wrap:nowrap;
+  justify-content:space-between;
+  gap:var(--mlz-space-8);
+  min-height:64px;
+ }
+ .andy-doc-layout .andy-topbar-heading{
+  min-width:0;
+  flex:1 1 auto;
+  padding-block:var(--mlz-space-10);
+ }
+ .andy-doc-layout .andy-topbar-heading .andy-eyebrow{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  max-width:100%;
+ }
+ .andy-doc-layout .andy-topbar-actions{
+  display:flex;
+  flex:0 0 auto;
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:var(--mlz-space-8);
+ }
+ .andy-doc-layout .andy-version-prefix,
+ .andy-doc-layout .andy-sidebar-toggle-label{display:none}
+ .andy-doc-layout .andy-topbar-actions .andy-version{
+  min-height:36px;
+  padding:var(--mlz-space-6) var(--mlz-space-10);
+  border-radius:var(--mlz-radius-full);
+  white-space:nowrap;
+ }
+ .andy-doc-layout .andy-sidebar-toggle{
+  display:inline-flex;
+  width:40px;
+  height:40px;
+  min-width:40px;
+  min-height:40px;
+  padding:0;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 40px;
+  border-radius:var(--mlz-radius-full);
+  font-size:0;
+  gap:0;
+ }
+ .andy-doc-layout .andy-sidebar-toggle .material-symbols-outlined{
+  width:24px!important;
+  height:24px!important;
+  font-size:24px!important;
+ }
+}
+@media(max-width:580px){
+ .andy-doc-layout .andy-topbar{min-height:64px}
+ .andy-doc-layout .andy-sidebar-toggle{
+  width:40px;
+  height:40px;
+  min-width:40px;
+  min-height:40px;
+  padding:0;
+ }
+ .andy-doc-layout .andy-sidebar-toggle .material-symbols-outlined{
+  width:24px!important;
+  height:24px!important;
+  font-size:24px!important;
+ }
+}
