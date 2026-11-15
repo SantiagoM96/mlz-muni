@@ -100,6 +100,19 @@ function MoreFiltersDemo() {
   const [intensity,setIntensity] = useState('');
   const root = useRef<HTMLDivElement>(null);
   const trigger=useRef<HTMLButtonElement>(null);
+  const [availableHeight,setAvailableHeight]=useState<number | undefined>(undefined);
+  useEffect(()=>{
+    if(!open||mobile)return;
+    const measure=()=>{
+      const bottom=trigger.current?.getBoundingClientRect().bottom??0;
+      // The desktop dropdown starts 8 px below its trigger and keeps a 50 px viewport gutter.
+      setAvailableHeight(Math.max(0,window.innerHeight-bottom-8-50));
+    };
+    measure();
+    window.addEventListener('resize',measure);
+    window.addEventListener('scroll',measure,true);
+    return()=>{window.removeEventListener('resize',measure);window.removeEventListener('scroll',measure,true);};
+  },[open,mobile]);
   const count=days.length+Number(Boolean(type))+Number(Boolean(intensity))+Number(disability);
   const close=()=>{setOpen(false);trigger.current?.focus({preventScroll:true});};
   useEffect(()=>{
@@ -155,7 +168,7 @@ function MoreFiltersDemo() {
     </button>
     {open&&!mobile&&<>
       <button type="button" className="kit-sports-backdrop" aria-label="Cerrar Más filtros" onClick={close}/>
-      <div className="kit-sports-popover kit-sports-more-popover kit-sports-advanced-popover" role="dialog" aria-label="Más filtros">
+      <div className="kit-sports-popover kit-sports-more-popover kit-sports-advanced-popover" style={availableHeight === undefined ? undefined : {maxHeight: `${availableHeight}px`}} role="dialog" aria-label="Más filtros">
         {panel}
         <div className="kit-sports-actions">
           <button className="kit-sports-apply" type="button" onClick={close}>Ver resultados ({count})</button>
