@@ -43,7 +43,7 @@ export function ConsoleGeneralInfoSection({
                         <option key={type} value={type}>{type}</option>)}
                     </SelectControl>
                     <button type="button" onClick={() => onAddType()}
-                      className="mt-2 inline-flex min-h-10 items-center gap-1.5 rounded-[6px] text-[15px] font-bold text-primary-600 hover:underline">
+                      className="console-action-link console-action-md console-icon-start mt-2 inline-flex items-center gap-2">
                       <MaterialIcon name="add" size={19}/> Agregar tipo de actividad
                     </button>
                   </FormField>
