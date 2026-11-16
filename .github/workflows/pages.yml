@@ -37,6 +37,23 @@ jobs:
         run: npm run typecheck
       - name: Verificar ESLint
         run: npm run lint
+      - name: Recuperar fotografías originales de tarjetas
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p public/assets/andy-cards
+          if curl --fail --location --silent --show-error --retry 2 --max-time 30 'https://lomasdezamora.gov.ar/gestion/salud-lomas.webp' -o /tmp/mlz-salud.webp && [ "$(wc -c </tmp/mlz-salud.webp)" -gt 25000 ]; then
+            cp /tmp/mlz-salud.webp public/assets/andy-cards/salud-lomas.webp
+            echo "Salud Lomas: fotografía original de alta resolución"
+          else
+            echo "::warning::No se pudo actualizar Salud Lomas; se conserva el recurso local"
+          fi
+          if curl --fail --location --silent --show-error --retry 2 --max-time 30 'https://agenciacomunas.com.ar/wp-content/uploads/2026/11/13112026042411p.m-780x470.jpg' -o /tmp/mlz-obras.jpg && [ "$(wc -c </tmp/mlz-obras.jpg)" -gt 18000 ]; then
+            cp /tmp/mlz-obras.jpg public/assets/andy-cards/noticia-obras.jpg
+            echo "Noticias: fotografía original en resolución editorial"
+          else
+            echo "::warning::No se pudo actualizar Noticias; se conserva el recurso local"
+          fi
       - name: Compilar para /mlz-muni/
         run: npm run build:pages
       - name: Configurar Pages
