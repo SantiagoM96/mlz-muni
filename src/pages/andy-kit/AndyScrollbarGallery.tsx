@@ -14,12 +14,12 @@ export function AndyScrollbarGallery(){
  return <div className="andy-scrollbar-docs">
   <section className="andy-scrollbar-section">
    <h3>Barra principal · página</h3>
-   <p>Se mantiene visible en el borde derecho de la ventana. Su apariencia nativa depende del navegador y del sistema operativo; no se oculta ni se sustituye.</p>
+   <p>Se muestra en el borde derecho del documento: 6 px en Chromium y Safari, thumb #C4D2DC, hover #91AAB9 y pista transparente. Firefox utiliza el equivalente thin.</p>
    <div className="andy-scrollbar-frame"><ScrollPreview variant="page" title="Ejemplo de desplazamiento de página"/></div>
   </section>
   <section className="andy-scrollbar-section">
    <h3>Barra interna · dropdown y drawer</h3>
-   <p>Variante estándar del UI Kit: <strong>4 px de ancho</strong>, sin flechas, con <strong>8 px de separación</strong> respecto del contenido y deslizador gris azulado <code>#A9BDCD</code> sobre pista transparente. Se aplica en dropdowns, calendarios y filtros.</p>
+   <p>Variante interna para dropdowns y paneles: <strong>4 px de ancho</strong>, sin flechas, con <strong>8 px de resguardo</strong> respecto del contenido y thumb <code>#A9BDCD</code> sobre pista transparente. Se aplica cuando el contenido excede la altura disponible.</p>
    <div className="andy-scrollbar-frame"><ScrollPreview variant="dropdown" title="Ejemplo de desplazamiento interno"/></div>
   </section>
   <section className="andy-scrollbar-section">
