@@ -152,3 +152,22 @@
 .andy-doc-layout .andy-doc-page-actions :is(button,a):focus-visible{outline:2px solid #006eff;outline-offset:2px}
 .andy-doc-layout .andy-doc-step-links{display:flex;align-items:center;gap:6px}
 .andy-doc-layout .andy-doc-step-links a{padding:6px}
+
+
+/* Empty State tiene su propio ejemplo de búsqueda, separado de Alert. */
+.andy-empty-context{width:min(100%,760px);margin-inline:auto;border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);background:#fff;overflow:hidden;color:#3d3d3d;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.andy-empty-search-context{display:flex;flex-direction:column;gap:var(--mlz-space-16);padding:var(--mlz-space-24);border-bottom:1px solid #e1e7eb}
+.andy-empty-search-context>div:first-child{display:flex;flex-direction:column;gap:var(--mlz-space-4)}
+.andy-empty-search-context strong{color:#236999;font-size:22px;line-height:29px}
+.andy-empty-search-context span{font-size:16px;line-height:24px}
+.andy-empty-search-filter{display:flex;gap:var(--mlz-space-8);align-items:center;min-height:48px;padding:0 var(--mlz-space-16);border:1px solid #c6dff1;border-radius:var(--mlz-radius-lg);background:#fff;color:#4e5a65}
+.andy-empty-search-filter .material-symbols-outlined{color:#236999}
+.andy-empty-context .andy-empty{max-width:520px;padding:var(--mlz-space-40) var(--mlz-space-24);margin:0 auto}
+.andy-empty-context .andy-empty>.material-symbols-outlined{color:#236999}
+.andy-empty-context .andy-empty p{font-size:16px;line-height:24px}
+.andy-empty-results{display:flex;flex-wrap:wrap;align-items:center;gap:var(--mlz-space-12);padding:var(--mlz-space-24)}
+.andy-empty-results>.material-symbols-outlined{color:#1d9c48}
+.andy-empty-results>div{flex:1;min-width:180px}
+.andy-empty-results strong{color:#236999;font-size:18px;line-height:26px}
+.andy-empty-results p{margin:var(--mlz-space-4) 0 0;font-size:16px;line-height:24px}
+@media(max-width:600px){.andy-empty-search-context{padding:var(--mlz-space-16)}.andy-empty-context .andy-empty{padding:var(--mlz-space-32) var(--mlz-space-16)}}
