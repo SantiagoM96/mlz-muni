@@ -172,8 +172,8 @@ function AlertDocs(){return <>
    ['Padding','16 px vertical y horizontal (--mlz-space-16).'],
    ['Espaciado','12 px entre ícono y contenido (--mlz-space-12); 4 px entre título y descripción (--mlz-space-4).'],
    ['Ícono','Material Symbols de 24 px; color según variante.'],
-   ['Título','Geometria, 17 px, peso 700 (bold).'],
-   ['Descripción','Geometria, 16 px, interlineado de 24 px.'],
+   ['Título','Geometria, 18 px / 26 px, peso 700 (bold).'],
+   ['Descripción','Geometria, 18 px / 26 px, peso 400 (regular).'],
    ['Colores','Info: azul; Success: verde; Warning: amarillo; Error: rojo. Fondo, borde y texto dependen de la variante.'],
    ['Ancho','Fluido hasta el ancho del contenedor; en la preview se limita a 640 px.'],
    ['Acción','Opcional; botón integrado al mensaje, con etiqueta explícita y foco visible.']
@@ -192,7 +192,52 @@ function AlertDocs(){return <>
    ['Qué no usar','Un error individual va junto a su campo; una lista sin resultados utiliza Empty State; un aviso breve y temporal puede utilizar Toast.']
   ]}/>
  </DocSection>
+ <DocSection title="Ejemplo en contexto" description="Un Alert de advertencia ubicado dentro del formulario de preinscripción, junto a los datos que el usuario está completando.">
+  <DocPreview><AlertInContext/></DocPreview>
+ </DocSection>
 </>}
+
+/** Patrón reutilizable para mostrar componentes dentro de pantallas reales del producto. */
+function ProductContext({eyebrow,title,description,children}:{eyebrow:string;title:string;description:string;children:ReactNode}){
+ return <div className="andy-context-screen">
+  <div className="andy-context-screen-heading">
+   <span className="andy-context-screen-eyebrow">{eyebrow}</span>
+   <h4>{title}</h4>
+   <p>{description}</p>
+  </div>
+  {children}
+  <p className="andy-context-screen-footnote">Vista ilustrativa del producto Deportes Anual. No envía ni almacena datos.</p>
+ </div>;
+}
+function ContextField({label,placeholder,required=false}:{label:string;placeholder:string;required?:boolean}){
+ return <label className="andy-field andy-context-field">
+  <span>{label}{required&&' *'}</span>
+  <input type="text" placeholder={placeholder}/>
+ </label>;
+}
+function AlertInContext(){
+ return <ProductContext eyebrow="DEPORTES ANUAL · INSCRIPCIÓN" title="Datos de la persona participante" description="Paso 2 de 3 · Completá la información necesaria para continuar.">
+  <div className="andy-context-fields">
+   <ContextField label="Nombre" placeholder="Ingresá el nombre" required/>
+   <ContextField label="Apellido" placeholder="Ingresá el apellido" required/>
+  </div>
+  <AlertExample tone="warning" title="Documentación necesaria">
+   Para finalizar la preinscripción vas a necesitar un documento de identidad y la documentación adicional que indique la actividad. Podés consultar los requisitos antes de continuar.
+  </AlertExample>
+  <div className="andy-context-actions"><span className="andy-context-action-illustration">Continuar <Icon name="arrow_forward" size={20}/></span></div>
+ </ProductContext>;
+}
+function AccordionInContext(){
+ return <ProductContext eyebrow="DEPORTES ANUAL · ACTIVIDAD" title="Natación recreativa" description="De 6 a 12 años · Natatorio Gregorio «Guyo» Sember">
+  <div className="andy-context-info">
+   <div><Icon name="event_available" size={20}/><span>Lunes, miércoles y viernes</span></div>
+   <div><Icon name="schedule" size={20}/><span>10:00 a 11:00 h</span></div>
+   <div><Icon name="location_on" size={20}/><span>Calle Ejemplo 1234, Lomas de Zamora (dirección ilustrativa)</span></div>
+  </div>
+  <div className="andy-context-faq"><h5>Preguntas frecuentes</h5><p>Encontrá información útil antes de realizar la preinscripción.</p><AccordionDemo/></div>
+ </ProductContext>;
+}
+
 function Messages(){return <AlertDocs/>}
 function ComponentExample({title,description,children}:{title:string;description?:string;children:ReactNode}){
  return <DocSection title={title} description={description}><DocPreview>{children}</DocPreview></DocSection>;
@@ -326,6 +371,9 @@ function ComponentDetails({id}:{id:ComponentId}){
   <ComponentExample title="Apertura única" description="Solo un panel abierto a la vez."><AccordionDemo/></ComponentExample>
   <ComponentExample title="Apertura múltiple" description="Podés desplegar varios paneles a la vez."><AccordionDemo multiple/></ComponentExample>
   <ComponentExample title="Deshabilitado" description="El segundo ítem, «¿Puedo cambiar el horario?», está deshabilitado; los demás siguen siendo interactivos."><AccordionDemo disabledMiddle/></ComponentExample>
+  <DocSection title="Ejemplo en contexto" description="Preguntas frecuentes dentro de la ficha de Natación recreativa, después de la información de sede y horario.">
+   <DocPreview><AccordionInContext/></DocPreview>
+  </DocSection>
  </>;
  return null;
 }
