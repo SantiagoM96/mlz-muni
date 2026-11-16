@@ -1139,3 +1139,23 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  .andy-foundation-intro-copy h2{font-size:22px;line-height:29px}
  .andy-foundation-intro{padding:18px}
 }
+
+
+/* Control global de retorno al inicio del Design System */
+.andy-back-to-top{
+ position:fixed;z-index:60;right:max(20px,calc((100vw - 1200px)/2 + 20px));bottom:28px;
+ width:44px;height:44px;display:grid;place-items:center;
+ border:1px solid #d6e0e8;border-radius:var(--mlz-radius-md);
+ background:#fff;color:#236999;box-shadow:0 3px 12px rgba(25,55,75,.14);
+ cursor:pointer;opacity:0;visibility:hidden;pointer-events:none;
+ transform:translateY(8px);transition:opacity .18s ease,transform .18s ease,background .18s ease,border-color .18s ease,visibility .18s;
+}
+.andy-back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.andy-back-to-top:hover{background:#f3f7fc;border-color:#9ebbd0}
+.andy-back-to-top:focus-visible{outline:2px solid #006eff;outline-offset:3px}
+@media(max-width:760px){
+ .andy-back-to-top{right:16px;bottom:18px;width:42px;height:42px}
+}
+@media(prefers-reduced-motion:reduce){
+ .andy-back-to-top{transition:none}
+}
