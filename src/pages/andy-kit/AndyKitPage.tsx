@@ -140,11 +140,11 @@ function Messages(){return <>
 function ComponentExample({title,description,children}:{title:string;description?:string;children:ReactNode}){
  return <DocSection title={title} description={description}><DocPreview>{children}</DocPreview></DocSection>;
 }
-function AccordionDemo({multiple=false}:{multiple?:boolean}){
+function AccordionDemo({multiple=false,disabledMiddle=false}:{multiple?:boolean;disabledMiddle?:boolean}){
  const [open,setOpen]=useState<string[]>(['1']);
  const items:[string,string,string][]=[['1','¿Cómo puedo inscribirme?','Elegí una actividad, seleccioná el horario disponible y completá los datos solicitados.'],['2','¿Puedo cambiar el horario?','Podés volver a la ficha de la actividad para elegir otra comisión disponible.'],['3','¿Dónde encuentro la sede?','La dirección y los detalles se muestran en la ficha de cada actividad.']];
  return <div className="andy-doc-accordion">{items.map(([id,title,content])=><div className="andy-doc-accordion-item" key={id}>
-  <button type="button" aria-expanded={open.includes(id)} onClick={()=>setOpen(prev=>prev.includes(id)?prev.filter(v=>v!==id):multiple?[...prev,id]:[id])}>
+  <button type="button" disabled={disabledMiddle&&id==='2'} aria-expanded={open.includes(id)} onClick={()=>setOpen(prev=>prev.includes(id)?prev.filter(v=>v!==id):multiple?[...prev,id]:[id])}>
     {title}<Icon name="expand_more" size={24}/>
   </button>{open.includes(id)&&<div className="andy-doc-accordion-content">{content}</div>}
  </div>)}</div>;
@@ -277,7 +277,7 @@ function ComponentDetails({id}:{id:ComponentId}){
  if(id==='acordeon')return <>
   <ComponentExample title="Apertura única" description="Solo un panel abierto a la vez."><AccordionDemo/></ComponentExample>
   <ComponentExample title="Apertura múltiple" description="Podés desplegar varios paneles a la vez."><AccordionDemo multiple/></ComponentExample>
-  <ComponentExample title="Deshabilitado" description="El panel no responde a interacciones."><div className="andy-doc-accordion"><div className="andy-doc-accordion-item"><button type="button" aria-expanded={false} disabled>Sección no disponible <Icon name="expand_more" size={24}/></button></div></div></ComponentExample>
+  <ComponentExample title="Deshabilitado" description="El segundo ítem, «¿Puedo cambiar el horario?», está deshabilitado; los demás siguen siendo interactivos."><AccordionDemo disabledMiddle/></ComponentExample>
  </>;
  return null;
 }
