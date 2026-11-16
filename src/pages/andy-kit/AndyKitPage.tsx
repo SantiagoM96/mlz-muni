@@ -126,17 +126,74 @@ function Cards(){return <div className="andy-cards-unified">
  <AndyActivityCardGallery/>
  <AndyMunicipalCardGallery/>
 </div>}
-function Messages(){return <>
- <DemoSection title="Mensajes destacados" description="Cuatro variantes semánticas de Figma · mensaje_destacado. Mismos tokens para desktop y mobile.">
-  <div className="andy-messages">
-   <div className="andy-alert andy-alert-success"><Icon name="check_circle"/><div><strong>Datos completos</strong><p>El formulario de demostración está listo para continuar.</p></div></div>
-   <div className="andy-alert andy-alert-info"><Icon name="error"/><div><strong>Antes de empezar</strong><p>Completá los datos para continuar con la inscripción.</p></div></div>
-   <div className="andy-alert andy-alert-warning"><Icon name="warning"/><div><strong>Información importante</strong><p>Revisá los requisitos de la actividad antes de inscribirte.</p></div></div>
-   <div className="andy-alert andy-alert-error"><Icon name="cancel"/><div><strong>Revisá el formulario</strong><p>Hay campos obligatorios pendientes.</p></div></div>
+type AlertTone='info'|'success'|'warning'|'error';
+function AlertExample({tone,title,children,action}:{
+ tone:AlertTone;title:string;children:ReactNode;action?:ReactNode;
+}){
+ const icons:Record<AlertTone,MaterialIconName>={info:'error',success:'check_circle',warning:'warning',error:'cancel'};
+ return <div className={'andy-alert andy-alert-'+tone}>
+  <Icon name={icons[tone]}/>
+  <div className="andy-alert-body">
+   <strong>{title}</strong><p>{children}</p>
   </div>
- </DemoSection>
- <DemoSection title="Estado sin resultados"><div className="andy-empty"><Icon name="search" size={42}/><h3>No encontramos actividades</h3><p>Probá con otros filtros o cambiá el término de búsqueda.</p><button className="andy-btn andy-btn-outline" type="button">Limpiar filtros</button></div></DemoSection>
+  {action&&<div className="andy-alert-action">{action}</div>}
+ </div>;
+}
+function AlertActionExample(){
+ const [resolved,setResolved]=useState(false);
+ return <AlertExample tone={resolved?'success':'error'} title={resolved?'Datos revisados':'No se pudieron guardar los datos'}
+  action={!resolved&&<button type="button" className="andy-alert-action-button" onClick={()=>setResolved(true)}>Reintentar</button>}>
+  {resolved?'La operación se completó correctamente. Ya podés continuar con la inscripción.':'Ocurrió un problema al procesar la solicitud. Volvé a intentar para comprobar el estado de la operación.'}
+ </AlertExample>;
+}
+function AlertDocs(){return <>
+ <DocSection title="Descripción" description="Alert comunica información importante dentro del flujo de una página, sin interrumpir la tarea ni exigir que el usuario cierre una ventana.">
+  <p className="andy-alert-doc-description">Usalo para explicar una condición relevante, confirmar una operación, advertir sobre requisitos o informar un error. A diferencia de un Toast, puede permanecer visible mientras esa información siga siendo necesaria. No reemplaza los mensajes de error asociados a un campo ni los estados vacíos de una lista.</p>
+ </DocSection>
+ <DocSection title="Básico" description="Composición de referencia: ícono, título y descripción. Utiliza la misma geometría y colores del mensaje destacado institucional.">
+  <DocPreview><AlertExample tone="info" title="Antes de empezar">Revisá los requisitos de la actividad y tené a mano la documentación necesaria. Cuando tengas todo listo, completá los datos de la inscripción.</AlertExample></DocPreview>
+ </DocSection>
+ <DocSection title="Variantes semánticas" description="La intención del mensaje determina el color y el ícono. No cambies los colores de forma arbitraria: cada variante comunica un significado distinto.">
+  <DocPreview>
+   <div className="andy-alert-variants">
+    <AlertExample tone="info" title="Información">Podés consultar los días, horarios y sedes disponibles antes de comenzar la inscripción.</AlertExample>
+    <AlertExample tone="success" title="Datos completos">La información del formulario se guardó correctamente y ya podés continuar.</AlertExample>
+    <AlertExample tone="warning" title="Atención">Algunas actividades requieren documentación adicional. Revisá los requisitos antes de confirmar.</AlertExample>
+    <AlertExample tone="error" title="Revisá el formulario">Hay datos obligatorios pendientes. Completá los campos señalados para continuar.</AlertExample>
+   </div>
+  </DocPreview>
+ </DocSection>
+ <DocSection title="Con acción" description="Sumá una acción cuando el mensaje permita resolver una situación concreta. El botón debe indicar qué sucede al presionarlo.">
+  <DocPreview><AlertActionExample/></DocPreview>
+ </DocSection>
+ <DocSection title="Especificaciones" description="Valores reales de la implementación actual en el UI Kit. Se documenta la composición compartida y se conserva la paleta semántica ya establecida.">
+  <GuidelineTable rows={[
+   ['Contenedor','Borde sólido de 1 px; radio de 4 px (--mlz-radius-sm).'],
+   ['Padding','16 px vertical y horizontal (--mlz-space-16).'],
+   ['Espaciado','12 px entre ícono y contenido (--mlz-space-12); 4 px entre título y descripción (--mlz-space-4).'],
+   ['Ícono','Material Symbols de 24 px; color según variante.'],
+   ['Título','Geometria, 17 px, peso 700 (bold).'],
+   ['Descripción','Geometria, 16 px, interlineado de 24 px.'],
+   ['Colores','Info: azul; Success: verde; Warning: amarillo; Error: rojo. Fondo, borde y texto dependen de la variante.'],
+   ['Ancho','Fluido hasta el ancho del contenedor; en la preview se limita a 640 px.'],
+   ['Acción','Opcional; botón integrado al mensaje, con etiqueta explícita y foco visible.']
+  ]}/>
+ </DocSection>
+ <DocSection title="Buenas prácticas" description="Criterios para elegir la variante, redactar el contenido y evitar mensajes redundantes o difíciles de interpretar.">
+  <GuidelineTable rows={[
+   ['Info','Informá condiciones, requisitos o instrucciones que el usuario necesite conocer.'],
+   ['Success','Confirmá una operación que efectivamente se haya completado; no anuncies éxito antes de obtener la confirmación.'],
+   ['Warning','Destacá un riesgo o un requisito a revisar, sin presentarlo como un error si todavía se puede continuar.'],
+   ['Error','Explicá qué falló y, cuando sea posible, cómo resolverlo. No dependas solo del color para comunicarlo.'],
+   ['Redacción','Priorizá un título breve y una descripción concreta. Evitá repetir la misma información en ambos.'],
+   ['Acciones','Incorporá una sola acción principal cuando exista un paso claro. Usá verbos específicos como «Reintentar» o «Ver requisitos».'],
+   ['Ubicación','Mostrá el mensaje cerca del contenido o del paso al que se refiere, sin bloquear la interfaz.'],
+   ['Accesibilidad','Para avisos dinámicos, elegí el anuncio apropiado según la urgencia; no uses role="alert" indiscriminadamente.'],
+   ['Qué no usar','Un error individual va junto a su campo; una lista sin resultados utiliza Empty State; un aviso breve y temporal puede utilizar Toast.']
+  ]}/>
+ </DocSection>
 </>}
+function Messages(){return <AlertDocs/>}
 function ComponentExample({title,description,children}:{title:string;description?:string;children:ReactNode}){
  return <DocSection title={title} description={description}><DocPreview>{children}</DocPreview></DocSection>;
 }
@@ -214,12 +271,6 @@ function InputDocs(){
   </ComponentExample>
  </>;
 }
-const notices=[
- {id:'success',title:'Success',heading:'Datos completos',body:'El formulario de demostración está listo para continuar.',icon:'check_circle' as const},
- {id:'info',title:'Info',heading:'Antes de empezar',body:'Completá los datos para continuar con la inscripción.',icon:'error' as const},
- {id:'warning',title:'Alert',heading:'Información importante',body:'Revisá los requisitos de la actividad antes de inscribirte.',icon:'warning' as const},
- {id:'error',title:'Error',heading:'Revisá el formulario',body:'Hay campos obligatorios pendientes.',icon:'cancel' as const}
-];
 function ComponentDetails({id}:{id:ComponentId}){
  if(id==='field')return <FieldDocs/>;
  if(id==='input')return <InputDocs/>;
@@ -269,14 +320,7 @@ function ComponentDetails({id}:{id:ComponentId}){
   </DocSection>
  </>;
  if(id==='tarjeta')return <Cards/>;
- if(id==='mensaje')return <>
-  {notices.map(item=><ComponentExample key={item.id} title={item.title} description="Colores de texto, borde, fondo e ícono tomados del componente mensaje_destacado de Figma.">
-   <div className={'andy-alert andy-alert-'+item.id}><Icon name={item.icon}/><div><strong>{item.heading}</strong><p>{item.body}</p></div></div>
-  </ComponentExample>)}
-  <ComponentExample title="Estado vacío" description="Se muestra cuando no hay resultados para los filtros actuales.">
-   <div className="andy-empty"><Icon name="search" size={42}/><h3>No encontramos actividades</h3><p>Probá con otros filtros o cambiá el término de búsqueda.</p><button type="button" className="andy-btn andy-btn-outline">Limpiar filtros</button></div>
-  </ComponentExample>
- </>;
+ if(id==='mensaje')return <AlertDocs/>;
  if(additionalComponents.some(([key])=>key===id)) return <AndyAdditionalComponent key={id} id={id as typeof additionalComponents[number][0]}/>;
  if(id==='acordeon')return <>
   <ComponentExample title="Apertura única" description="Solo un panel abierto a la vez."><AccordionDemo/></ComponentExample>
