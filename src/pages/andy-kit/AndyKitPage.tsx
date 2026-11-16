@@ -12,7 +12,6 @@ import { AndyActivityCard } from './AndyActivityCards';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
-import { AndySportsSearchExample } from './AndySportsSearchExample';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadStates, AndyUploadPreviews } from './AndyDashedUpload';
@@ -22,14 +21,12 @@ import { componentGroups, componentAliases, componentEntries, componentMeta, typ
 import './andy-kit.css';
 
 const categories = [
-  { id:'fundamentos', name:'Fundamentos' },
-  { id:'filtros', name:'Buscador y filtros' },
-  { id:'formularios', name:'Formularios' },
-  { id:'seleccion', name:'Selección y estados' },
-  { id:'botones', name:'Botones' },
-  { id:'etiquetas', name:'Chips y etiquetas' },
-  { id:'tarjetas', name:'Tarjetas y resúmenes' },
-  { id:'mensajes', name:'Mensajes' },
+  { id:'fundamentos', name:'Foundations' },
+  { id:'filtros', name:'Search & Filters' },
+  { id:'formularios', name:'Form Layouts' },
+  { id:'seleccion', name:'Selection Groups' },
+  { id:'tarjetas', name:'Cards & Summaries' },
+  { id:'mensajes', name:'Feedback States' },
 ] as const;
 type Category = typeof categories[number]['id'];
 const commit = import.meta.env.VITE_MLZ_COMMIT_SHA ?? 'local';
@@ -100,7 +97,6 @@ function ChipGallery({compact=false}:{compact?:boolean}){
  const [chips,setChips]=useState(['Lunes','Casa Ari','Recreativo']);
  return <div className="andy-chip-demo">{chips.map(t=><span className="andy-chip" key={t}>{t}<button type="button" aria-label={'Quitar '+t} onClick={()=>setChips(v=>v.filter(c=>c!==t))}><Icon name="close" size={18}/></button></span>)}<button type="button" className="andy-chip-clear" onClick={()=>setChips(compact?['Lunes','Casa Ari','Recreativo']:[])}>{compact?'Restablecer':'Limpiar filtros'}</button></div>;
 }
-function Tags(){return <AndyTagPaletteGallery/>;}
 function Cards(){return <DemoSection title="Tarjetas de actividad · Deportes y Agenda" description="Dos variantes hermanas: Deportes utiliza la banda degradada original (34 px desktop y 32 px mobile) y Agenda conserva su fotografía de 154 px. Comparten tipografía, espaciados, metadatos y tratamiento de bordes.">
  <AndyActivityCardGallery/>
 </DemoSection>}
@@ -301,7 +297,7 @@ function HeadingToc({items}:{items:{id:string;title:string}[]}){
    }}>{item.title}</a>)}</nav>
  </aside>;
 }
-const views:Record<Category,()=>ReactNode>={fundamentos:Foundations,filtros:Filters,formularios:Forms,seleccion:Selection,botones:Buttons,etiquetas:Tags,tarjetas:Cards,mensajes:Messages};
+const views:Record<Category,()=>ReactNode>={fundamentos:Foundations,filtros:Filters,formularios:Forms,seleccion:Selection,tarjetas:Cards,mensajes:Messages};
 export function AndyKitPage(){
  const {categoria,componente}=useParams<{categoria?:string;componente?:string}>();
  const aliasedComponent=componente?componentAliases[componente]:undefined;
@@ -341,7 +337,7 @@ export function AndyKitPage(){
       <NavLink end to="/ui-kit-andy/fundamentos" onClick={()=>setNavOpen(false)} className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}>Fundamentos y tokens</NavLink>
      </div>
      <div className="andy-nav-divider"/>
-     <NavLink end to="/ui-kit-andy/componentes" onClick={()=>setNavOpen(false)} className={({isActive})=>"andy-nav-label andy-nav-label-link"+(isActive?" active":"")}>Componentes</NavLink>
+     <NavLink end to="/ui-kit-andy/componentes" onClick={()=>setNavOpen(false)} className={({isActive})=>"andy-nav-label andy-nav-label-link"+(isActive?" active":"")}>Components</NavLink>
      <div className="andy-component-search">
       <Icon name="search" size={20}/>
       <input type="search" aria-label="Buscar componentes" placeholder="Buscar componentes" value={componentSearch}
@@ -362,7 +358,7 @@ export function AndyKitPage(){
    </aside>
    <main className="andy-doc-main" id="andy-content">
     <div className="andy-main-heading">
-     <div><p>{isComponent?'Componentes / '+meta?.category:'Patterns / '+(legacy?.name||'Fundamentos')}</p>
+     <div><p>{isComponent?'Components / '+meta?.category:(categoria==='fundamentos'?'Foundations':'Patterns')+' / '+(legacy?.name||'Foundations')}</p>
       <h2>{displayName}</h2>
       {meta&&<div className="andy-doc-description">{meta.description}</div>}
      </div>
