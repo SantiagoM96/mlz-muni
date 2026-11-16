@@ -1,7 +1,7 @@
 /* Tarjetas hermanas de Deportes Anual y Agenda de la Comunidad.
    Base común: radio 8, borde gris, cabecera Deportes 34/32 / imagen Agenda 154, título 22/28,
    categoría 16/26, contenido 24 y Material Symbols 20/24. */
-.andy-family-card-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:var(--mlz-space-24)}
+.andy-family-card-gallery{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:var(--mlz-space-32)}
 .andy-family-card-gallery>div{min-width:0}
 .andy-family-card-gallery h4{font-size:18px;font-weight:700;color:#236999;margin:0 0 var(--mlz-space-4)}
 .andy-family-card-gallery>div>p{font-size:13px;line-height:21px;color:#71808c;margin:0 0 var(--mlz-space-14)}
