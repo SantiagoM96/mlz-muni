@@ -77,12 +77,7 @@ function Foundations() {
    </DemoSection>
   </div>
   <div id="foundation-icons" className="andy-foundation-module">
-   <DemoSection title="04 · Iconography" description="La interfaz utiliza Google Material Symbols Outlined desde la biblioteca local. Mantené una misma familia, peso visual y criterio semántico; evitá mezclar sets de iconos.">
-    <div className="andy-foundation-icon-rules">
-     <div><strong>Familia</strong><span>Material Symbols Outlined</span></div>
-     <div><strong>Consistencia</strong><span>No mezclar estilos filled, rounded o sets externos dentro de una misma interfaz.</span></div>
-     <div><strong>Uso</strong><span>Elegir iconos por significado y reconocimiento, no solo por semejanza visual.</span></div>
-    </div>
+   <DemoSection title="04 · Iconography">
     <MaterialIconLibrary/>
    </DemoSection>
   </div>
