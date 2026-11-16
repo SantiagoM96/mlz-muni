@@ -2,7 +2,12 @@
    Base común: radio 8, borde gris, cabecera Deportes 34/32 / imagen Agenda 154, título 22/28,
    categoría 16/26, contenido 24 y Material Symbols 20/24. */
 .andy-family-card-gallery{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:var(--mlz-space-32)}
-.andy-family-card-gallery>div{min-width:0}
+.andy-family-card-gallery>.andy-doc-section{display:flex;flex-direction:column;min-width:0;gap:var(--mlz-space-14)}
+.andy-family-card-gallery>.andy-doc-section>.andy-doc-section-heading{display:flex;flex-direction:column;gap:var(--mlz-space-4)}
+.andy-family-card-gallery>.andy-doc-section>.andy-doc-section-heading h3{margin:0;color:var(--a-blue,#236999);font-size:18px;line-height:26px;font-weight:700}
+.andy-family-card-gallery>.andy-doc-section>.andy-doc-section-heading p{margin:0;color:#71808c;font-size:13px;line-height:21px}
+.andy-family-card-gallery .andy-doc-demo{width:100%;box-sizing:border-box}
+
 .andy-family-card-gallery h4{font-size:18px;font-weight:700;color:#236999;margin:0 0 var(--mlz-space-4)}
 .andy-family-card-gallery>div>p{font-size:13px;line-height:21px;color:#71808c;margin:0 0 var(--mlz-space-14)}
 .andy-family-card{display:flex;flex-direction:column;overflow:hidden;min-width:0;max-width:420px;min-height:0;height:100%;border:1px solid #e7e7e7;border-radius:var(--mlz-radius-lg);background:#fff;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
