@@ -20,7 +20,7 @@ type CardData={
 };
 const sportsCard:CardData={
  kind:'sports',category:'DEPORTE Y RECREACIÓN',title:'Natación recreativa',chip:'De 6 a 12 años',
- date:'Lunes y miércoles',time:'10:00 a 11:00 h',
+ date:'Lunes, miércoles y viernes',time:'10:00 a 11:00 h',
  venue:'Natatorio Gregorio «Guyo» Sember',address:'Calle Ejemplo 1234, Lomas de Zamora'
 };
 const agendaSample=agendaActivities.find(activity=>activity.type==='Teatro')??agendaActivities[0];
