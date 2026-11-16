@@ -9,7 +9,7 @@ const componentGroups=[
  {title:'Overlays',items:[['dialog','Dialog'],['alert-dialog','Alert Dialog'],['sheet','Sheet'],['tooltip','Tooltip']]},
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
-const componentAliases:Record<string,string>={sede:'filtros',edad:'filtros','mas-filtros':'filtros',ordenar:'filtros','seleccion-unica':'filtros','seleccion-multiple':'filtros','filtros-avanzados':'filtros',ordenamiento:'filtros'};
+const componentAliases:Record<string,string>={espaciados:'fundamentos','border-radius':'fundamentos',buscador:'filtros',scrollbars:'fundamentos',sede:'filtros',edad:'filtros','mas-filtros':'filtros',ordenar:'filtros','seleccion-unica':'filtros','seleccion-multiple':'filtros','filtros-avanzados':'filtros',ordenamiento:'filtros'};
 const componentEntries:ReadonlyArray<readonly [ComponentId,string]>=componentGroups.flatMap(group=>group.items as ReadonlyArray<readonly [ComponentId,string]>);
 const componentMeta:Record<ComponentId,{description:string;category:string}>={
  field:{description:'Estructura accesible para asociar etiqueta, control, ayuda, validación y grupos de campos.',category:'Forms'},
