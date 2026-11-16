@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { figmaColorVariables } from './figma-color-variables';
 import './color-tokens-gallery.css';
 
@@ -21,12 +22,17 @@ function copyHex(hex: string) {
   }
 }
 
+const previewCount = 28;
+
 export function ColorTokensGallery() {
   const [copied, setCopied] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState(false);
+  const colorsToShow = expanded ? figmaColorVariables : figmaColorVariables.slice(0, previewCount);
 
   return <div className="andy-color-library" data-testid="andy-figma-color-library">
+    <div className={"andy-color-library-preview" + (expanded ? " is-expanded" : " is-collapsed")} id="andy-color-library-grid">
     {groups.map(group => {
-      const colors = figmaColorVariables.filter(color => color.name.startsWith(group.key + '/'));
+      const colors = colorsToShow.filter(color => color.name.startsWith(group.key + '/'));
       if (!colors.length) return null;
       return <section className="andy-color-family" key={group.key}>
         <h3 className="andy-color-family-title">{group.title}</h3>
@@ -44,5 +50,9 @@ export function ColorTokensGallery() {
         </div>
       </section>;
     })}
+    </div>
+    {figmaColorVariables.length > previewCount && <button type="button" className="andy-color-library-expand" aria-expanded={expanded} aria-controls="andy-color-library-grid" onClick={() => setExpanded(value => !value)}>
+      {expanded ? 'Ver menos' : 'Ver más'} <MaterialIcon name={expanded ? 'expand_less' : 'expand_more'} size={20}/>
+    </button>}
   </div>;
 }
