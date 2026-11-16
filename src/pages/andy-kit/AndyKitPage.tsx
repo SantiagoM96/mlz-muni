@@ -127,9 +127,6 @@ function AccordionDemo({multiple=false}:{multiple?:boolean}){
   </button>{open.includes(id)&&<div className="andy-doc-accordion-content">{content}</div>}
  </div>)}</div>;
 }
-function FilterExample({kind}:{kind:'sede'|'edad'|'mas-filtros'|'ordenar'}){
- return <SportsControlsGallery mode="filters" only={kind}/>;
-}
 function FormStates({family}:{family:'text'|'dropdown'|'textarea'|'date'|'upload'}){
  return <DocSection title="Estados" description="Comparación simultánea de Default, Hover, Focus, Completo, Error y Disabled. Una única superficie contiene todos los controles.">
   <DocPreview align="start"><FormStateMatrix onlyFamily={family} showExtras={false}/></DocPreview>
@@ -236,26 +233,6 @@ function ComponentDetails({id}:{id:ComponentId}){
  if(id==='checkbox'||id==='radio'||id==='switch')return <ComponentExample title="Ejemplo interactivo" description={id==='checkbox'?'Permití seleccionar varias opciones de forma independiente.':id==='radio'?'Solo una alternativa puede estar seleccionada.':'Activá o desactivá la configuración.'}>
   <SelectionGallery only={id}/>
  </ComponentExample>;
- if(id==='buscador')return <>
-  <DocSection title="Buscador estándar" description="Patrón de Deportes Anual: 48 px de alto, ícono Material Symbols a la derecha, borde Primario 300 y foco Info 500 de 2 px. Escribí para filtrar los resultados de demostración.">
-   <DocPreview><AndySportsSearchExample/></DocPreview>
-  </DocSection>
-  <DocSection title="Selección única" description="Filtro de Edad: una sola opción seleccionada mediante radio button. Popover en desktop y drawer mobile.">
-   <DocPreview><FilterExample kind="edad"/></DocPreview>
-  </DocSection>
-  <DocSection title="Selección múltiple" description="Filtro de Sede: permite combinar varias opciones mediante checkbox con contador de seleccionados.">
-   <DocPreview><FilterExample kind="sede"/></DocPreview>
-  </DocSection>
-  <DocSection title="Filtros avanzados" description="Más filtros combina secciones desplegables, opciones múltiples y exclusivas, y acciones de aplicar y limpiar.">
-   <DocPreview><FilterExample kind="mas-filtros"/></DocPreview>
-  </DocSection>
-  <DocSection title="Ordenamiento" description="Un único criterio de orden a la vez, independiente de los demás filtros.">
-   <DocPreview><FilterExample kind="ordenar"/></DocPreview>
-  </DocSection>
-  <DocSection title="Vista previa en Deportes Anual" description="Buscador y filtros interactivos sobre una muestra de actividades. El buscador filtra los resultados; los filtros mantienen el comportamiento del producto.">
-   <DocPreview><AndySportsSearchExample integrated/></DocPreview>
-  </DocSection>
- </>;
  if(id==='boton')return <Buttons/>;
  if(id==='chips')return <>
   <DocSection title="Fondo suave" description="Seis colores de Figma con fondo claro y texto intenso. Cada color se muestra con y sin ícono.">
@@ -343,7 +320,7 @@ export function AndyKitPage(){
  const displayName=isComponent?componentEntry[1]:isDirectory?'Componentes':legacy?.name;
  const meta=isComponent?componentMeta[componentEntry[0]]:null;
  useEffect(()=>{document.title='MLZ UI Kit - Andy'+(displayName?' · '+displayName:'');},[displayName]);
- if(categoria==='componentes'&&aliasedComponent)return <Navigate to={'/ui-kit-andy/componentes/'+aliasedComponent} replace/>;
+ if(categoria==='componentes'&&aliasedComponent)return <Navigate to={'/ui-kit-andy/'+aliasedComponent} replace/>;
  if(!isComponent&&!isDirectory&&!legacy)return <Navigate to="/ui-kit-andy/fundamentos" replace/>;
  const Gallery=legacy?views[legacy.id]:null;
  return <div className="andy-kit andy-doc-layout" data-testid="andy-ui-kit">
