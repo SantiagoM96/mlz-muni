@@ -8,7 +8,6 @@ import { DropdownVariantsGallery } from './DropdownVariantsGallery';
 import { AndyCalendarShowcase } from './AndyCalendarShowcase';
 import { SportsCalendarPicker } from './SportsCalendarPicker';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
-import { AndyActivityCard } from './AndyActivityCards';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
 import { AndyMunicipalCardGallery } from './AndyMunicipalCards';
