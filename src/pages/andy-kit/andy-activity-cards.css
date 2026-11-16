@@ -1,3 +1,8 @@
+/* Las ocho variantes son pares editoriales: sin títulos de grupo intermedios. */
+.andy-cards-unified{display:flex;flex-direction:column;gap:var(--mlz-space-32);min-width:0}
+.andy-cards-unified>.andy-family-card-gallery,
+.andy-cards-unified>.andy-municipal-card-gallery{width:100%;min-width:0}
+
 /* Tarjetas hermanas de Deportes Anual y Agenda de la Comunidad.
    Base común: radio 8, borde gris, cabecera Deportes 34/32 / imagen Agenda 154, título 22/28,
    categoría y contenido secundario 18px, contenido 24 y Material Symbols 20/24. */
