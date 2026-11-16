@@ -162,8 +162,8 @@
 .andy-doc-accordion-item{min-width:0;padding:var(--mlz-space-8) 0;border-bottom:1px solid #dbe6ef}
 .andy-doc-accordion-item:first-child{border-top:1px solid #dbe6ef}
 .andy-doc-accordion-item>button{
- display:inline-flex;align-items:center;justify-content:flex-start;gap:var(--mlz-space-12);
- width:fit-content;max-width:100%;min-height:48px;padding:0 var(--mlz-space-16);
+ display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-12);
+ width:100%;min-height:48px;padding:0 var(--mlz-space-16);
  border:0;border-radius:var(--mlz-radius-lg);
  background:transparent;color:#236999;font-size:16px;line-height:24px;
  text-align:left;font-weight:700;cursor:pointer;
