@@ -248,7 +248,6 @@ const iconGroups = {
   ],
   "Imágenes y multimedia": [
     "image",
-    "images",
     "photo",
     "photo_camera",
     "camera_alt",
