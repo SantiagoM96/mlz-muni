@@ -25,11 +25,11 @@ export function AndyMunicipalCardGallery() {
   <CardExample title="Noticias">
    <article className="andy-municipal-card andy-municipal-card-news">
     <div className="andy-municipal-card-media">
-     <EmptyImage label="Imagen pendiente para la noticia"/>
-     <span className="andy-municipal-card-tag">Comunidad</span>
+     <img className="andy-municipal-card-news-image" src={image("noticia-obras.webp")} alt="Refugio de transporte intervenido en Lomas de Zamora" loading="lazy"/>
+     <span className="andy-municipal-card-tag">Obras</span>
     </div>
     <div className="andy-municipal-card-content">
-     <h3>Actividades para encontrarnos en comunidad</h3>
+     <h3>El Municipio realizó trabajos de mantenimiento en más de 100 refugios</h3>
      <div className="andy-municipal-card-meta"><MaterialIcon name="calendar_month" size={20}/><span>13 nov 2026</span></div>
      <Action label="Leer más"/>
     </div>
