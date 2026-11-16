@@ -1,6 +1,6 @@
 /* Tarjetas hermanas de Deportes Anual y Agenda de la Comunidad.
    Base común: radio 8, borde gris, cabecera Deportes 34/32 / imagen Agenda 154, título 22/28,
-   categoría 16/26, contenido 24 y Material Symbols 20/24. */
+   categoría y contenido secundario 18px, contenido 24 y Material Symbols 20/24. */
 .andy-family-card-gallery{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:var(--mlz-space-32)}
 .andy-family-card-gallery>.andy-doc-section{display:flex;flex-direction:column;min-width:0;gap:var(--mlz-space-14)}
 .andy-family-card-gallery>.andy-doc-section>.andy-doc-section-heading{display:flex;flex-direction:column;gap:var(--mlz-space-4)}
@@ -17,17 +17,17 @@
 .andy-family-card-sports-head{display:block;padding:0;background:linear-gradient(115deg,#208fb8 0%,#2ba2c9 45%,#66b8da 100%)}
 .andy-family-card-body{display:flex;flex-direction:column;flex:1;min-width:0;gap:var(--mlz-space-16);padding:var(--mlz-space-16) var(--mlz-space-24) var(--mlz-space-16)}.andy-family-card.is-sports{background:#fafafa}.andy-family-card.is-sports .andy-family-card-body{gap:var(--mlz-space-12);padding:var(--mlz-space-16) var(--mlz-space-24) var(--mlz-space-24)}
 .andy-family-card-intro{display:flex;flex-direction:column;align-items:start;min-width:0;gap:var(--mlz-space-8)}
-.andy-family-card-category{font-size:16px;line-height:26px;font-weight:500;color:#888;text-transform:uppercase}
+.andy-family-card-category{font-size:18px;line-height:26px;font-weight:500;color:#888;text-transform:uppercase}
 .andy-family-card-intro h3{font-size:22px;line-height:28px;font-weight:700;color:#236999;margin:0;overflow-wrap:break-word}
 .andy-family-card-tags{display:flex;flex-wrap:wrap;gap:var(--mlz-space-6)}
-.andy-family-card-tags>span{display:inline-flex;align-items:center;min-height:24px;border-radius:var(--mlz-radius-md);padding:var(--mlz-space-2) var(--mlz-space-8);background:#e5f0ff;color:#006eff;font-size:14px;line-height:20px;font-weight:500}
+.andy-family-card-tags>span{display:inline-flex;align-items:center;min-height:30px;border-radius:var(--mlz-radius-md);padding:var(--mlz-space-2) var(--mlz-space-8);background:#e5f0ff;color:#006eff;font-size:18px;line-height:26px;font-weight:500}
 .andy-family-card-details{display:flex;flex-direction:column;gap:var(--mlz-space-14);margin-top:var(--mlz-space-2);min-width:0}
-.andy-family-card-line{display:flex;align-items:start;gap:var(--mlz-space-8);color:#3d3d3d;font-size:18px;line-height:22px}
+.andy-family-card-line{display:flex;align-items:start;gap:var(--mlz-space-8);color:#3d3d3d;font-size:18px;line-height:26px}
 .andy-family-card-line>.material-symbols-outlined{color:#236999;flex:0 0 20px;margin-top:var(--mlz-space-2)}
 .andy-family-card-line>div{min-width:0;display:flex;flex-direction:column;gap:var(--mlz-space-4);overflow-wrap:anywhere}
 .andy-family-card-line strong{font-weight:700}
 .andy-family-card-line span{font-weight:400}
-.andy-family-card-action{margin-top:auto;padding-top:var(--mlz-space-8);display:flex;align-items:center;gap:var(--mlz-space-8);min-height:36px;color:#236999;font-size:16px;line-height:24px;font-weight:500}
+.andy-family-card-action{margin-top:auto;padding-top:var(--mlz-space-8);display:flex;align-items:center;gap:var(--mlz-space-8);min-height:36px;color:#236999;font-size:18px;line-height:26px;font-weight:500}
 .andy-family-card-action .material-symbols-outlined{color:#236999}
 @media(max-width:900px){.andy-family-card-gallery{gap:var(--mlz-space-16)}.andy-family-card-body{padding:var(--mlz-space-16) var(--mlz-space-16) var(--mlz-space-16)}}
 @media(max-width:650px){.andy-family-card-gallery{grid-template-columns:1fr;gap:var(--mlz-space-32)}.andy-family-card{max-width:420px}.andy-family-card-body{padding:var(--mlz-space-16) var(--mlz-space-24) var(--mlz-space-16)}}
@@ -45,7 +45,7 @@
 .andy-family-card.is-sports .andy-family-card-intro{gap:var(--mlz-space-10)}
 .andy-family-card.is-sports .andy-family-card-intro h3{line-height:29px}
 .andy-family-card.is-sports .andy-family-card-details{gap:var(--mlz-space-12)}
-.andy-family-card.is-sports .andy-family-card-line{font-size:16px;line-height:23px}
+.andy-family-card.is-sports .andy-family-card-line{font-size:18px;line-height:26px}
 .andy-family-card.is-sports .andy-family-card-action{padding-top:var(--mlz-space-14)}
 .andy-family-agenda-original [data-testid="agenda-card"]{width:100%;max-width:100%;background:#fff}
 @media(max-width:650px){
@@ -54,7 +54,7 @@
 }
 
 /* Documentación Andy: la tarjeta real de Agenda adopta las medidas del
-   cuerpo Deportes (16/23, íconos Primario600, gap 8/13, padding 24).
+   cuerpo Deportes (18/26, íconos Primario600, gap 8/12, padding 24).
    Estas reglas están limitadas a la galería: no modifican Agenda pública. */
 .andy-family-agenda-original [data-testid="agenda-card"]{
   border-color:#e7e7e7;
@@ -88,8 +88,8 @@
   margin-top:var(--mlz-space-2);
 }
 .andy-family-agenda-original [data-testid="agenda-card"] [data-agenda-characteristic] p{
-  font-size:16px;
-  line-height:23px;
+  font-size:18px;
+  line-height:26px;
   color:#3d3d3d;
   margin:0;
 }
@@ -101,13 +101,27 @@
 }
 .andy-family-agenda-original [data-testid="agenda-card"] > a > div > .mt-auto > span{
   color:#236999;
-  font-size:16px;
-  line-height:24px;
+  font-size:18px;
+  line-height:26px;
   font-weight:500;
   gap:var(--mlz-space-8);
 }
 .andy-family-agenda-original [data-testid="agenda-card"] > a > div > .mt-auto .material-symbols-outlined{
   color:#236999;
+}
+/* En las dos tarjetas de referencia ningún texto de contenido queda bajo 18px.
+   El título conserva 22px; la documentación exterior mantiene su propia escala. */
+.andy-family-agenda-original [data-testid="agenda-card"] p.text-\\[16px\\]{
+  font-size:18px;
+  line-height:26px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] [data-agenda-chip="activity"]{
+  font-size:18px;
+  line-height:26px;
+  min-height:30px;
+}
+.andy-family-agenda-original [data-testid="agenda-card"] [data-agenda-chip-label]{
+  line-height:26px;
 }
 @media(max-width:650px){
  .andy-family-agenda-original [data-testid="agenda-card"] > a > div{
