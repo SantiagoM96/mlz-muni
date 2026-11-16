@@ -275,7 +275,6 @@ export type MaterialIconName =
   | 'location_off'
   | 'place'
   | 'map'
-  | 'location_on'
   | 'maps_home_work'
   | 'explore'
   | 'near_me'
