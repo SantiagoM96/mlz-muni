@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import './material-icon-library.css';
 
@@ -675,6 +675,8 @@ export function MaterialIconLibrary(){
  const [weight,setWeight]=useState<300|400|500>(400);
  const [weightOpen,setWeightOpen]=useState(false);
  const weightRef=useRef<HTMLDivElement>(null);
+ const categoriesRef=useRef<HTMLDivElement>(null);
+ const dragState=useRef<{pointerId:number;startX:number;scrollLeft:number;dragged:boolean}|null>(null);
  useEffect(()=>{
   if(!weightOpen)return;
   const onPointer=(event:PointerEvent)=>{if(weightRef.current&&!weightRef.current.contains(event.target as Node))setWeightOpen(false);};
@@ -692,7 +694,7 @@ export function MaterialIconLibrary(){
  return <div className="andy-icon-library" data-testid="andy-material-icon-library">
   <div className="andy-icon-library-toolbar">
    <div className="andy-search-field andy-icon-library-search">
-    <input type="search" value={query} onChange={event=>setQuery(event.target.value)} placeholder="¿Qué estás buscando?" aria-label="Buscar iconos por nombre o concepto"/>
+    <input type="text" value={query} onChange={event=>setQuery(event.target.value)} placeholder="¿Qué estás buscando?" aria-label="Buscar iconos por nombre o concepto" autoComplete="off"/>
     {query&&<button type="button" className="andy-icon-search-clear" onClick={()=>setQuery('')} aria-label="Limpiar búsqueda"><MaterialIcon name="close" size={18}/></button>}
     <MaterialIcon name="search" size={24}/>
    </div>
@@ -711,7 +713,12 @@ export function MaterialIconLibrary(){
     <button type="button" className={'andy-btn andy-btn-outline andy-icon-library-fill'+(filled?' is-active':'')} aria-pressed={filled} onClick={()=>setFilled(value=>!value)}><MaterialIcon name="format_paint" size={18}/>{filled?'Relleno activo':'Sin relleno'}</button>
    </div>
   </div>
-  <div className="andy-icon-library-categories" aria-label="Categorías de iconos">
+  <div className="andy-icon-library-categories" ref={categoriesRef} aria-label="Categorías de iconos"
+   onPointerDown={(event:ReactPointerEvent<HTMLDivElement>)=>{if(event.pointerType==='mouse'&&event.button!==0)return;const el=categoriesRef.current;if(!el)return;dragState.current={pointerId:event.pointerId,startX:event.clientX,scrollLeft:el.scrollLeft,dragged:false};}}
+   onPointerMove={(event:ReactPointerEvent<HTMLDivElement>)=>{const state=dragState.current;const el=categoriesRef.current;if(!state||!el||state.pointerId!==event.pointerId)return;const delta=event.clientX-state.startX;if(Math.abs(delta)>4)state.dragged=true;if(state.dragged){el.scrollLeft=state.scrollLeft-delta;event.preventDefault();}}}
+   onPointerUp={(event:ReactPointerEvent<HTMLDivElement>)=>{if(dragState.current?.pointerId===event.pointerId)dragState.current=null;}}
+   onPointerCancel={()=>{dragState.current=null;}}
+   onClickCapture={(event)=>{if(dragState.current?.dragged){event.preventDefault();event.stopPropagation();dragState.current=null;}}}>
    {categories.map(item=><button type="button" key={item} className={category===item?'is-active':''} aria-pressed={category===item} onClick={()=>setCategory(item)}>{item}</button>)}
   </div>
   <div className="andy-icon-library-summary"><strong>{visible.length} iconos</strong><span>Material Symbols Outlined · fuente local</span></div>
