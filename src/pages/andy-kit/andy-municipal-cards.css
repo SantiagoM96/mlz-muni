@@ -12,6 +12,7 @@
 .andy-municipal-card-action>.material-symbols-outlined{color:inherit}
 .andy-municipal-card-media{position:relative;height:154px;min-height:154px;flex:0 0 154px;overflow:hidden;background:#e1e7eb}
 .andy-municipal-card-placeholder{width:100%;height:100%;background:#e1e7eb}
+.andy-municipal-card-news-image{display:block;width:100%;height:100%;object-fit:cover}
 .andy-municipal-card-tag{position:absolute;bottom:16px;left:16px;display:inline-flex;align-items:center;min-height:26px;padding:2px 8px;border-radius:var(--mlz-radius-sm);background:var(--a-blue,#236999);color:#fff;font-size:13px;line-height:20px;font-weight:700}
 .andy-municipal-card-news{background:#f3f7fc}
 .andy-municipal-card-news .andy-municipal-card-content{min-height:210px}
