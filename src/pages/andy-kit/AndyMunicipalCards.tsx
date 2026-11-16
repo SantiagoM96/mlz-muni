@@ -2,98 +2,96 @@ import type { ReactNode } from 'react';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import './andy-municipal-cards.css';
 
-const image = (filename:string) => import.meta.env.BASE_URL + 'assets/agenda/' + filename;
+const image = (filename: string) => import.meta.env.BASE_URL + 'assets/andy-cards/' + filename;
 
-type ReferenceCardProps = {
- title:string;
- description:string;
- children:ReactNode;
-};
-function ReferenceCard({title,description,children}:ReferenceCardProps){
- return <section className="andy-municipal-card-reference">
-  <div className="andy-municipal-card-heading">
-   <h4>{title}</h4><p>{description}</p>
-  </div>
+function CardExample({title, children}: {title: string; children: ReactNode}) {
+ return <section className="andy-municipal-card-example" aria-label={title}>
+  <h4>{title}</h4>
   {children}
  </section>;
 }
-function PreviewAction({children,icon}:{children:string;icon?:MaterialIconName}){
- return <span className="andy-municipal-card-cta">{children}{icon&&<MaterialIcon name={icon} size={18}/>}</span>;
+
+function Action({label, icon}: {label: string; icon?: MaterialIconName}) {
+ return <span className="andy-municipal-card-action">{label}{icon && <MaterialIcon name={icon} size={20}/>}</span>;
 }
 
-/** Variantes ilustrativas adaptadas a los tokens del UI Kit. Los CTAs no navegan. */
-export function AndyMunicipalCardGallery(){
+function EmptyImage({label}: {label: string}) {
+ return <div className="andy-municipal-card-placeholder" role="img" aria-label={label}/>;
+}
+
+/** Ejemplos de anatomía: no son enlaces reales ni corresponden a turnos o eventos publicados. */
+export function AndyMunicipalCardGallery() {
  return <div className="andy-municipal-card-gallery" data-testid="andy-municipal-card-gallery">
-  <ReferenceCard title="Noticias" description="Fotografía, categoría superpuesta, título destacado, fecha y enlace de lectura.">
-   <article className="andy-municipal-card andy-municipal-news">
-    <div className="andy-municipal-news-media">
-     <img src={image('home-hero.jpg')} alt="Imagen de ejemplo para una noticia municipal" loading="lazy"/>
-     <span className="andy-municipal-news-tag">Comunidad</span>
+  <CardExample title="Noticias">
+   <article className="andy-municipal-card andy-municipal-card-news">
+    <div className="andy-municipal-card-media">
+     <EmptyImage label="Imagen pendiente para la noticia"/>
+     <span className="andy-municipal-card-tag">Comunidad</span>
     </div>
-    <div className="andy-municipal-news-body">
+    <div className="andy-municipal-card-content">
      <h3>Actividades para encontrarnos en comunidad</h3>
-     <p className="andy-municipal-news-date"><MaterialIcon name="calendar_month" size={20}/>13 nov 2026</p>
-     <PreviewAction>Leer más</PreviewAction>
+     <div className="andy-municipal-card-meta"><MaterialIcon name="calendar_month" size={20}/><span>13 nov 2026</span></div>
+     <Action label="Leer más"/>
     </div>
    </article>
-  </ReferenceCard>
+  </CardExample>
 
-  <ReferenceCard title="Áreas y servicios" description="Imagen de fondo y panel claro superpuesto, con el nombre del área como foco.">
-   <article className="andy-municipal-card andy-municipal-service">
-    <img src={image('home-cafe.jpg')} alt="Imagen ilustrativa de un espacio comunitario" loading="lazy"/>
-    <div className="andy-municipal-service-panel">
-     <h3>Atención a la Comunidad</h3>
-     <PreviewAction>Ver más</PreviewAction>
+  <CardExample title="Áreas y servicios">
+   <article className="andy-municipal-card andy-municipal-card-service">
+    <img className="andy-municipal-card-service-image" src={image('salud-lomas.webp')} alt="Profesional de salud atendiendo en un consultorio odontológico municipal" loading="lazy"/>
+    <div className="andy-municipal-card-service-panel">
+     <h3>Salud Lomas</h3>
+     <Action label="Ver más"/>
     </div>
    </article>
-  </ReferenceCard>
+  </CardExample>
 
-  <ReferenceCard title="Turnos online" description="Tarjeta informativa compacta para describir una gestión y su acceso.">
-   <article className="andy-municipal-card andy-municipal-appointment">
-    <h3>Salud</h3>
-    <p>Clínica médica, especialidades y vacunación</p>
-    <PreviewAction>Ingresar</PreviewAction>
+  <CardExample title="Turnos online">
+   <article className="andy-municipal-card andy-municipal-card-appointment">
+    <div className="andy-municipal-card-content">
+     <h3>Salud</h3>
+     <p>Clínica médica, especialidades y vacunación</p>
+     <Action label="Ingresar"/>
+    </div>
    </article>
-  </ReferenceCard>
+  </CardExample>
 
-  <ReferenceCard title="Trámites destacados" description="Superficie primaria, pictograma y descripción con acción al pie.">
-   <article className="andy-municipal-card andy-municipal-procedure">
-    <div className="andy-municipal-procedure-icon"><MaterialIcon name="badge" size={28}/></div>
+  <CardExample title="Trámites destacados">
+   <article className="andy-municipal-card andy-municipal-card-procedure">
+    <span className="andy-municipal-card-procedure-icon"><MaterialIcon name="badge" size={24}/></span>
     <h3>Licencias</h3>
     <p>Realizá los trámites de tu licencia de conducir</p>
-    <PreviewAction>Ingresar</PreviewAction>
+    <Action label="Ingresar"/>
    </article>
-  </ReferenceCard>
+  </CardExample>
 
-  <ReferenceCard title="Accesos rápidos" description="Banner gráfico con título corto y una única acción implícita.">
-   <article className="andy-municipal-card andy-municipal-shortcut">
-    <div className="andy-municipal-shortcut-pattern" aria-hidden="true"/>
-    <h3>Turnos de salud</h3>
-    <span className="andy-municipal-shortcut-arrow" aria-hidden="true"><MaterialIcon name="arrow_forward" size={24}/></span>
+  <CardExample title="Accesos rápidos">
+   <article className="andy-municipal-card andy-municipal-card-shortcut">
+    <EmptyImage label="Imagen pendiente para acceso rápido"/>
+    <div className="andy-municipal-card-shortcut-content"><h3>Turnos de salud</h3></div>
    </article>
-  </ReferenceCard>
+  </CardExample>
 
-  <ReferenceCard title="Eventos con fecha" description="Imagen de cabecera, fecha destacada y metadatos separados para lectura rápida.">
-   <article className="andy-municipal-card andy-municipal-event">
-    <div className="andy-municipal-event-media">
-     <img src={image('home-theater.jpg')} alt="Imagen de ejemplo de una actividad cultural" loading="lazy"/>
-     <div className="andy-municipal-event-date"><strong>21</strong><span>NOV</span></div>
+  <CardExample title="Eventos con fecha">
+   <article className="andy-municipal-card andy-municipal-card-event">
+    <div className="andy-municipal-card-media">
+     <EmptyImage label="Imagen pendiente para evento"/>
+     <div className="andy-municipal-card-date"><strong>21</strong><span>NOV</span></div>
     </div>
-    <div className="andy-municipal-event-body">
-     <span className="andy-municipal-event-category">MÚSICA</span>
+    <div className="andy-municipal-card-content">
+     <span className="andy-municipal-card-category">MÚSICA</span>
      <h3>Jazz Internacional</h3>
-     <div className="andy-municipal-event-detail">
+     <div className="andy-municipal-card-info">
       <MaterialIcon name="event_available" size={20}/>
       <div><strong>Próxima fecha</strong><span>Sábado 21 de noviembre</span></div>
      </div>
-     <div className="andy-municipal-event-detail">
+     <div className="andy-municipal-card-info">
       <MaterialIcon name="schedule" size={20}/>
       <div><strong>Horario</strong><span>21:00 h</span></div>
      </div>
-     <PreviewAction icon="chevron_right">Ver evento</PreviewAction>
+     <Action label="Ver evento" icon="chevron_right"/>
     </div>
    </article>
-  </ReferenceCard>
-  <p className="andy-municipal-card-note">Ejemplos ilustrativos de componentes. Las fotografías son recursos existentes del proyecto; los títulos y datos son demostrativos y las acciones no realizan navegación.</p>
+  </CardExample>
  </div>;
 }
