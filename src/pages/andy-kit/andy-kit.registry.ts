@@ -10,7 +10,7 @@ const componentGroups=[
  {title:'Patterns',items:[['buscador','Search & Filters']]},
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
-const componentAliases:Record<string,string>={sede:'buscador',edad:'buscador','mas-filtros':'buscador',ordenar:'buscador','seleccion-unica':'buscador','seleccion-multiple':'buscador','filtros-avanzados':'buscador',ordenamiento:'buscador',scrollbars:'buscador'};
+const componentAliases:Record<string,string>={sede:'buscador',edad:'buscador','mas-filtros':'buscador',ordenar:'buscador','seleccion-unica':'buscador','seleccion-multiple':'buscador','filtros-avanzados':'buscador',ordenamiento:'buscador'};
 const componentEntries:ReadonlyArray<readonly [ComponentId,string]>=componentGroups.flatMap(group=>group.items as ReadonlyArray<readonly [ComponentId,string]>);
 const componentMeta:Record<ComponentId,{description:string;category:string}>={
  field:{description:'Estructura accesible para asociar etiqueta, control, ayuda, validación y grupos de campos.',category:'Forms'},
