@@ -111,7 +111,7 @@
 }
 /* En las dos tarjetas de referencia ningún texto de contenido queda bajo 18px.
    El título conserva 22px; la documentación exterior mantiene su propia escala. */
-.andy-family-agenda-original [data-testid="agenda-card"] p.text-\\[16px\\]{
+.andy-family-agenda-original [data-testid="agenda-card"] p{
   font-size:18px;
   line-height:26px;
 }
