@@ -24,7 +24,7 @@
 .andy-family-card-details{display:flex;flex-direction:column;gap:var(--mlz-space-14);margin-top:var(--mlz-space-2);min-width:0}
 .andy-family-card-line{display:flex;align-items:start;gap:var(--mlz-space-8);color:#3d3d3d;font-size:18px;line-height:22px}
 .andy-family-card-line>.material-symbols-outlined{color:#236999;flex:0 0 20px;margin-top:var(--mlz-space-2)}
-.andy-family-card-line>div{min-width:0;display:flex;flex-direction:column;gap:var(--mlz-space-8);overflow-wrap:anywhere}
+.andy-family-card-line>div{min-width:0;display:flex;flex-direction:column;gap:var(--mlz-space-4);overflow-wrap:anywhere}
 .andy-family-card-line strong{font-weight:700}
 .andy-family-card-line span{font-weight:400}
 .andy-family-card-action{margin-top:auto;padding-top:var(--mlz-space-8);display:flex;align-items:center;gap:var(--mlz-space-8);min-height:36px;color:#236999;font-size:16px;line-height:24px;font-weight:500}
@@ -94,7 +94,7 @@
   margin:0;
 }
 .andy-family-agenda-original [data-testid="agenda-card"] [data-agenda-characteristic] > div{
-  gap:var(--mlz-space-8);
+  gap:var(--mlz-space-4);
 }
 .andy-family-agenda-original [data-testid="agenda-card"] > a > div > .mt-auto{
   padding-top:var(--mlz-space-14);
