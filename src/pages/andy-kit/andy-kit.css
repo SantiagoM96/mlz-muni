@@ -162,14 +162,15 @@
 .andy-doc-accordion-item{min-width:0;padding:var(--mlz-space-8) 0;border-bottom:1px solid #dbe6ef}
 .andy-doc-accordion-item:first-child{border-top:1px solid #dbe6ef}
 .andy-doc-accordion-item>button{
- display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-12);
- width:100%;min-height:48px;padding:0 var(--mlz-space-16);
+ display:inline-flex;align-items:center;justify-content:flex-start;gap:var(--mlz-space-12);
+ width:fit-content;max-width:100%;min-height:48px;padding:0 var(--mlz-space-16);
  border:0;border-radius:var(--mlz-radius-lg);
  background:transparent;color:#236999;font-size:16px;line-height:24px;
  text-align:left;font-weight:700;cursor:pointer;
- transition:background-color .18s ease;
 }
-.andy-doc-accordion-item>button:hover{background:#f3f8fc}
+.andy-doc-accordion-trigger-label{text-decoration:none;text-underline-offset:3px;text-decoration-thickness:1px}
+.andy-doc-accordion-item>button:hover:not(:disabled) .andy-doc-accordion-trigger-label,
+.andy-doc-accordion-item>button:focus-visible .andy-doc-accordion-trigger-label{text-decoration:underline}
 .andy-doc-accordion-item>button:focus-visible{outline:2px solid var(--color-info-500,#006eff);outline-offset:2px}
 .andy-doc-accordion-item>button[aria-expanded=true] .material-symbols-outlined{transform:rotate(180deg)}
 .andy-doc-accordion-item>button .material-symbols-outlined{flex-shrink:0;transition:transform .18s ease}
