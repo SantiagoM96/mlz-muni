@@ -174,7 +174,8 @@
 .andy-doc-accordion-item>button[aria-expanded=true] .material-symbols-outlined{transform:rotate(180deg)}
 .andy-doc-accordion-item>button .material-symbols-outlined{flex-shrink:0;transition:transform .18s ease}
 .andy-doc-accordion-content{padding:var(--mlz-space-8) var(--mlz-space-16) var(--mlz-space-8);font-size:15px;line-height:24px;color:#4e5a65}
-.andy-doc-accordion-item>button:disabled{color:#94a8b8;background:#f3f7fc;cursor:not-allowed}
+.andy-doc-accordion-item>button:disabled,.andy-doc-accordion-item>button:disabled:hover{color:#94a8b8;background:transparent;cursor:not-allowed}
+.andy-doc-accordion-item>button:disabled .material-symbols-outlined{color:inherit}
 @media(prefers-reduced-motion:reduce){
  .andy-doc-accordion-item>button,
  .andy-doc-accordion-item>button .material-symbols-outlined{transition:none}
