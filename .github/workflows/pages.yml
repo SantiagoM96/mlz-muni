@@ -42,7 +42,7 @@ jobs:
         run: |
           set -uo pipefail
           mkdir -p public/assets/andy-cards
-          if curl --fail --location --silent --show-error --retry 2 --max-time 30 'https://lomasdezamora.gov.ar/gestion/salud-lomas.webp' -o /tmp/mlz-salud.webp && [ "$(wc -c </tmp/mlz-salud.webp)" -gt 25000 ]; then
+          if curl --insecure --fail --location --silent --show-error --retry 2 --max-time 30 'https://lomasdezamora.gov.ar/gestion/salud-lomas.webp' -o /tmp/mlz-salud.webp && [ "$(wc -c </tmp/mlz-salud.webp)" -gt 25000 ] && [ "$(file --brief --mime-type /tmp/mlz-salud.webp)" = "image/webp" ]; then
             cp /tmp/mlz-salud.webp public/assets/andy-cards/salud-lomas.webp
             echo "Salud Lomas: fotografía original de alta resolución"
           else
