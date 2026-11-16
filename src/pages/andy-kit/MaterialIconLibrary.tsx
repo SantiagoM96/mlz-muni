@@ -643,6 +643,28 @@ const iconGroups = {
   ]
 } as const satisfies Record<string, readonly MaterialIconName[]>;
 const allIcons = [...new Set(Object.values(iconGroups).flat())] as MaterialIconName[];
+const iconAliases: Partial<Record<MaterialIconName,string>> = {
+ search:'buscar búsqueda lupa',home:'inicio casa hogar',person:'persona usuario perfil',groups:'personas grupo comunidad',
+ calendar_month:'calendario fecha',event:'evento fecha',schedule:'horario hora reloj',location_on:'ubicación lugar dirección',
+ map:'mapa',directions:'direcciones ruta camino',directions_walk:'caminar caminata',directions_bike:'bicicleta',
+ sports:'deporte deportes',sports_soccer:'fútbol pelota',sports_basketball:'básquet basquetbol',sports_tennis:'tenis',
+ pool:'pileta natación',fitness_center:'gimnasio ejercicio entrenamiento',health_and_safety:'salud',
+ accessibility:'accesibilidad discapacidad',accessible:'accesible',hearing:'audición',blind:'ceguera',
+ mail:'correo email email',chat:'chat conversación',call:'llamada teléfono',notifications:'notificaciones aviso',
+ settings:'configuración preferencias ajustes',tune:'ajustes filtros configuración',filter_list:'filtros filtrar',
+ sort:'ordenar ordenamiento',download:'descargar descarga',upload:'subir carga',file_upload:'adjuntar archivo',
+ attach_file:'adjunto adjuntar archivo',folder:'carpeta',description:'documento archivo texto',
+ image:'imagen foto',photo_camera:'cámara fotografía',videocam:'video cámara',music_note:'música audio',
+ play_arrow:'reproducir play',pause:'pausar',share:'compartir',content_copy:'copiar duplicar',
+ edit:'editar modificación',delete:'eliminar borrar papelera',save:'guardar',print:'imprimir',
+ add:'agregar nuevo sumar',close:'cerrar salir',check:'confirmar aceptar listo',cancel:'cancelar',
+ warning:'advertencia precaución',error:'error problema',info:'información ayuda',help:'ayuda soporte',
+ check_circle:'correcto éxito completado',cloud:'nube online internet',wifi:'wifi conexión internet',
+ smartphone:'celular móvil teléfono',computer:'computadora ordenador pc',shopping_cart:'compras carrito',
+ payments:'pago pagos dinero',receipt:'recibo comprobante factura',bar_chart:'gráfico estadísticas',
+ analytics:'analítica datos métricas',school:'educación escuela',park:'parque naturaleza',
+ sunny:'sol clima',rainy:'lluvia clima',water:'agua',pets:'mascotas animales'
+};
 const categories = ['Todos', ...Object.keys(iconGroups)];
 
 function copyName(name:string){
@@ -658,7 +680,7 @@ export function MaterialIconLibrary(){
  const visible=useMemo(()=>{
   const term=query.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().trim();
   const source=category==='Todos'?allIcons:iconGroups[category as keyof typeof iconGroups];
-  return source.filter(name=>!term||name.replaceAll('_',' ').includes(term)||name.includes(term));
+  return source.filter(name=>!term||name.replaceAll('_',' ').includes(term)||name.includes(term)||iconAliases[name]?.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().includes(term));
  },[category,query]);
  return <div className="andy-icon-library" data-testid="andy-material-icon-library">
   <div className="andy-icon-library-toolbar">
