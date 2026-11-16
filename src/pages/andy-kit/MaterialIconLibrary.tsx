@@ -656,7 +656,8 @@ export function MaterialIconLibrary(){
  const icons=expanded?allIcons:allIcons.slice(0,previewCount);
 
  return <div className="andy-icon-library" data-testid="andy-material-icon-library">
-  <div className="andy-icon-library-grid" id="andy-icon-library-grid">
+  <div className={"andy-icon-library-preview"+(expanded?" is-expanded":" is-collapsed")} id="andy-icon-library-grid">
+   <div className="andy-icon-library-grid">
    {icons.map(name=><button type="button" className="andy-icon-tile" key={name}
     onClick={()=>{copyName(name);setCopied(name);}} title={`Copiar ${name}`}
     aria-label={`Copiar identificador ${name}`}>
@@ -664,6 +665,7 @@ export function MaterialIconLibrary(){
     <code>{name}</code>
     <small>{copied===name?'Copiado':'Copiar'}</small>
    </button>)}
+   </div>
   </div>
   {allIcons.length>previewCount&&<button type="button" className="andy-icon-library-expand"
    aria-expanded={expanded} aria-controls="andy-icon-library-grid"
