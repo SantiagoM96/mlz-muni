@@ -44,58 +44,109 @@ function DemoSection({ title, description, children }: {title:string;description
 }
 function Icon({name,size=24}: {name:MaterialIconName;size?:number}) { return <MaterialIcon name={name} size={size} />; }
 function Foundations() {
+ const sections=[
+  {id:'foundation-colors',number:'01',title:'Color',description:'Paleta de referencia y tokens semánticos del producto.'},
+  {id:'foundation-type',number:'02',title:'Typography',description:'Familia tipográfica, jerarquía, tamaños y pesos.'},
+  {id:'foundation-geometry',number:'03',title:'Geometry',description:'Escalas de espaciado y radios de superficie.'},
+  {id:'foundation-icons',number:'04',title:'Iconography',description:'Biblioteca de iconos y criterios de uso.'},
+  {id:'foundation-layout',number:'05',title:'Layout',description:'Contenedores, gutters y comportamiento responsive.'},
+  {id:'foundation-scroll',number:'06',title:'Scrollbars',description:'Reglas de desplazamiento global e interno.'},
+ ];
  return <>
-  <DemoSection title="Color · variables y paleta" description="Fuente cromática original de Figma. Conserva los 91 nombres y valores HEX; buscá por familia, nombre o código.">
-    <ColorTokensGallery/>
-  </DemoSection>
-  <DemoSection title="Color · tokens de interfaz" description="Valores semánticos que el producto consume hoy desde src/styles/tokens.css. Esta tabla diferencia los tokens de sistema de la biblioteca cromática completa.">
-   <div className="andy-foundation-color-roles">
-    {[
-     ['Primary 500','#358DC2','Acento institucional y variación primaria'],
-     ['Primary 600','#236999','Acciones primarias, títulos y enlaces'],
-     ['Primary 700','#19577F','Hover de acciones primarias'],
-     ['Info 500','#006EFF','Foco, selección y estados activos'],
-     ['Grey 900','#3D3D3D','Texto principal'],
-     ['Success 500','#2ABB5B','Confirmaciones y estados positivos'],
-     ['Success 600','#208C43','Énfasis de éxito y contraste'],
-     ['Panel','#F3F7FC','Superficies secundarias'],
-     ['Divider','#E1E7EB','Separadores y bordes sutiles'],
-    ].map(([name,hex,usage])=><div className="andy-foundation-color-role" key={name}>
-     <span style={{backgroundColor:hex}}/><div><strong>{name}</strong><code>{hex}</code><small>{usage}</small></div>
-    </div>)}
+  <section className="andy-foundation-intro">
+   <div className="andy-foundation-intro-copy">
+    <span className="andy-foundation-eyebrow">Foundations · Reglas globales</span>
+    <h2>Los fundamentos que ordenan la interfaz</h2>
+    <p>Esta sección reúne las decisiones visuales compartidas por todo el sistema. Define los valores de referencia y cómo aplicarlos; los componentes individuales muestran su uso, pero no vuelven a definir estas reglas.</p>
    </div>
-   <p className="andy-foundation-note">Los colores de borde y estados específicos pueden existir como valores de componente. No deben presentarse como tokens globales si no están declarados en tokens.css.</p>
-  </DemoSection>
-  <DemoSection title="Tipografía · Geometria" description="Familia institucional local. Los pesos disponibles en el proyecto son Regular 400, Medium 500 y Bold 700.">
-   <div className="andy-foundation-type">
-    <div className="andy-foundation-type-row"><div><span>Section / 24 · 30</span><code>--text-institutional-section</code></div><strong className="type-section">Título de sección</strong></div>
-    <div className="andy-foundation-type-row"><div><span>Body / 18 · 26</span><code>--text-institutional-body</code></div><p className="type-body">Texto de lectura. Se utiliza para contenido institucional y descripciones relevantes.</p></div>
-    <div className="andy-foundation-type-row"><div><span>Control / 16 · 24</span><code>Uso recurrente en controles</code></div><span className="type-control">Etiqueta de campo y opciones</span></div>
-    <div className="andy-foundation-type-row"><div><span>Helper / 13 · 20</span><code>Uso auxiliar</code></div><span className="type-helper">Texto de ayuda, aclaraciones y metadatos</span></div>
-    <div className="andy-foundation-weights"><span className="weight-400">Regular · 400</span><span className="weight-500">Medium · 500</span><span className="weight-700">Bold · 700</span></div>
+   <div className="andy-foundation-principles">
+    <div><strong>Una fuente de verdad</strong><span>Los tokens declarados prevalecen sobre valores aislados en ejemplos.</span></div>
+    <div><strong>Referencia vs. uso</strong><span>La paleta de Figma es la biblioteca; los tokens semánticos indican qué usa el producto.</span></div>
+    <div><strong>Reglas compartidas</strong><span>Los componentes consumen estas escalas sin redefinirlas.</span></div>
    </div>
-   <p className="andy-foundation-note">Los pares Section y Body son tokens tipográficos globales declarados en tokens.css. Control y Helper se documentan como tamaños recurrentes observados en los componentes, no como tokens globales independientes.</p>
-  </DemoSection>
-  <DemoSection title="Espaciado · escala" description="Escala oficial en píxeles para padding, margin y gap. La visualización amplía proporcionalmente las medidas pequeñas para que puedan compararse.">
-   <AndySpacingGuide/>
-  </DemoSection>
-  <DemoSection title="Border radius · escala y aplicación" description="Ocho valores disponibles. El radio se elige según la función y jerarquía de la superficie, no por preferencia aislada.">
-   <AndyRadiusGuide/>
-  </DemoSection>
-  <DemoSection title="Scrollbars · comportamiento" description="Tres comportamientos de desplazamiento documentados con contenido neutro para que la atención esté en la barra.">
-   <AndyScrollbarGallery/>
-  </DemoSection>
-  <DemoSection title="Iconografía · Google Material Symbols" description="Biblioteca local ampliada, organizada por categorías y con búsqueda. Seleccioná cualquier icono para copiar su identificador.">
-   <MaterialIconLibrary/>
-  </DemoSection>
-  <DemoSection title="Layout · contenedores y responsive" description="Reglas estructurales compartidas por las páginas del producto y sus componentes.">
-   <div className="andy-foundation-layout">
-    <div className="layout-measure"><span>Contenedor máximo</span><strong>1200 px</strong><div><i style={{width:'100%'}}/></div></div>
-    <div className="layout-measure"><span>Gutter horizontal</span><strong>24 px</strong><div><i style={{width:'24px'}}/></div></div>
-    <div className="layout-measure"><span>Breakpoint mobile</span><strong>680 px</strong><div><i style={{width:'56.7%'}}/></div></div>
-   </div>
-   <p className="andy-foundation-note">El contenedor de contenido no supera los 1200 px. En pantallas menores, el gutter se mantiene en 24 px. El breakpoint de 680 px está definido en las reglas globales de layout y scrollbars; otros componentes pueden tener breakpoints específicos.</p>
-  </DemoSection>
+   <nav className="andy-foundation-index" aria-label="Secciones de Foundations">
+    {sections.map(item=><a key={item.id} href={'#'+item.id}><span>{item.number}</span><strong>{item.title}</strong><small>{item.description}</small></a>)}
+   </nav>
+  </section>
+  <div id="foundation-colors" className="andy-foundation-module">
+   <DemoSection title="01 · Color" description="Dos niveles con funciones distintas: la biblioteca conserva los colores originales de Figma; los tokens semánticos identifican los valores globales que consume el producto. No son dos paletas alternativas.">
+    <div className="andy-foundation-submodule">
+     <div className="andy-foundation-subhead"><strong>Biblioteca de referencia · Figma</strong><span>91 variables · consulta y copia de HEX</span></div>
+     <ColorTokensGallery/>
+    </div>
+    <div className="andy-foundation-submodule">
+     <div className="andy-foundation-subhead"><strong>Tokens semánticos · producto</strong><span>Valores declarados en src/styles/tokens.css</span></div>
+     <p className="andy-foundation-explainer">Estos son los valores que deben utilizarse al construir nuevas interfaces. La paleta completa sirve para consultar el origen cromático, pero no habilita a elegir cualquier tono sin una función definida.</p>
+     <div className="andy-foundation-color-roles">
+      {[
+       ['Primary 500','#358DC2','Acento institucional y variación primaria'],
+       ['Primary 600','#236999','Acciones primarias, títulos y enlaces'],
+       ['Primary 700','#19577F','Hover de acciones primarias'],
+       ['Info 500','#006EFF','Foco, selección y estados activos'],
+       ['Grey 900','#3D3D3D','Texto principal'],
+       ['Success 500','#2ABB5B','Confirmaciones y estados positivos'],
+       ['Success 600','#208C43','Énfasis de éxito y contraste'],
+       ['Panel','#F3F7FC','Superficies secundarias'],
+       ['Divider','#E1E7EB','Separadores y bordes sutiles'],
+      ].map(([name,hex,usage])=><div className="andy-foundation-color-role" key={name}>
+       <span style={{backgroundColor:hex}}/><div><strong>{name}</strong><code>{hex}</code><small>{usage}</small></div>
+      </div>)}
+     </div>
+     <p className="andy-foundation-note">No sumar a esta lista colores que solo aparecen en CSS de un componente. Si un valor se vuelve transversal, primero debe incorporarse al archivo de tokens y luego documentarse acá.</p>
+    </div>
+   </DemoSection>
+  </div>
+  <div id="foundation-type" className="andy-foundation-module">
+   <DemoSection title="02 · Typography" description="Geometria es la familia institucional del sistema. La escala distingue estilos globales declarados como tokens de tamaños recurrentes usados por los controles.">
+    <div className="andy-foundation-type">
+     <div className="andy-foundation-type-row"><div><span>Section · 24 / 30</span><code>--text-institutional-section</code></div><strong className="type-section">Título de sección</strong></div>
+     <div className="andy-foundation-type-row"><div><span>Body · 18 / 26</span><code>--text-institutional-body</code></div><p className="type-body">Texto de lectura para contenido institucional y descripciones relevantes.</p></div>
+     <div className="andy-foundation-type-row"><div><span>Control · 16 / 24</span><code>Uso recurrente · no token independiente</code></div><span className="type-control">Etiqueta de campo y opciones</span></div>
+     <div className="andy-foundation-type-row"><div><span>Helper · 13 / 20</span><code>Uso recurrente · no token independiente</code></div><span className="type-helper">Texto de ayuda, aclaraciones y metadatos</span></div>
+     <div className="andy-foundation-weights"><span className="weight-400">Regular · 400</span><span className="weight-500">Medium · 500</span><span className="weight-700">Bold · 700</span></div>
+    </div>
+    <p className="andy-foundation-note">Solo Section y Body están declarados como tokens tipográficos globales en tokens.css. Control y Helper describen usos recurrentes observados; no deben presentarse como variables oficiales hasta que se definan como tales.</p>
+   </DemoSection>
+  </div>
+  <div id="foundation-geometry" className="andy-foundation-module">
+   <DemoSection title="03 · Geometry" description="Dos escalas independientes que resuelven necesidades distintas: spacing controla la distancia entre elementos; radius define el redondeo de superficies y controles.">
+    <div className="andy-foundation-submodule">
+     <div className="andy-foundation-subhead"><strong>Spacing · separación</strong><span>Padding · margin · gap</span></div>
+     <p className="andy-foundation-explainer">Usá la escala compartida para construir ritmo y alineación. Elegí el valor según la relación entre elementos, no agregando medidas arbitrarias.</p>
+     <AndySpacingGuide/>
+    </div>
+    <div className="andy-foundation-submodule">
+     <div className="andy-foundation-subhead"><strong>Border radius · superficies</strong><span>Controles · tarjetas · paneles</span></div>
+     <p className="andy-foundation-explainer">El radio responde a la función del elemento: controles compactos, tarjetas, paneles y superficies superpuestas mantienen niveles diferenciados.</p>
+     <AndyRadiusGuide/>
+    </div>
+   </DemoSection>
+  </div>
+  <div id="foundation-icons" className="andy-foundation-module">
+   <DemoSection title="04 · Iconography" description="La interfaz utiliza Google Material Symbols Outlined desde la biblioteca local. Mantené una misma familia, peso visual y criterio semántico; evitá mezclar sets de iconos.">
+    <div className="andy-foundation-icon-rules">
+     <div><strong>Familia</strong><span>Material Symbols Outlined</span></div>
+     <div><strong>Consistencia</strong><span>No mezclar estilos filled, rounded o sets externos dentro de una misma interfaz.</span></div>
+     <div><strong>Uso</strong><span>Elegir iconos por significado y reconocimiento, no solo por semejanza visual.</span></div>
+    </div>
+    <MaterialIconLibrary/>
+   </DemoSection>
+  </div>
+  <div id="foundation-layout" className="andy-foundation-module">
+   <DemoSection title="05 · Layout" description="Reglas de estructura compartidas para mantener alineación, ancho de lectura y adaptación entre desktop y mobile.">
+    <div className="andy-foundation-layout">
+     <div className="layout-measure"><span>Contenedor máximo</span><strong>1200 px</strong><div><i style={{width:'100%'}}/></div></div>
+     <div className="layout-measure"><span>Gutter horizontal</span><strong>24 px</strong><div><i style={{width:'24px'}}/></div></div>
+     <div className="layout-measure"><span>Breakpoint mobile</span><strong>680 px</strong><div><i style={{width:'56.7%'}}/></div></div>
+    </div>
+    <p className="andy-foundation-note">El contenedor de contenido no supera los 1200 px. El gutter horizontal es de 24 px. 680 px es el breakpoint principal documentado para esta vista; los componentes pueden definir ajustes responsive específicos cuando su comportamiento lo requiera.</p>
+   </DemoSection>
+  </div>
+  <div id="foundation-scroll" className="andy-foundation-module">
+   <DemoSection title="06 · Scrollbars" description="Reglas de desplazamiento del sistema. Las demostraciones utilizan contenido neutro para que la atención se concentre en la barra y su comportamiento.">
+    <AndyScrollbarGallery/>
+   </DemoSection>
+  </div>
  </>;
 }
 function Filters() {return <>
