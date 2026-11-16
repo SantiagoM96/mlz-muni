@@ -16,6 +16,7 @@ import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadStates, AndyUploadPreviews } from './AndyDashedUpload';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
+import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
 import { componentGroups, componentAliases, componentEntries, componentMeta, type ComponentId } from './andy-kit.registry';
 import './andy-kit.css';
@@ -37,39 +38,63 @@ const buildParts = new Intl.DateTimeFormat('es-AR', {
 }).formatToParts(buildDate).reduce<Record<string,string>>((parts,part)=>({...parts,[part.type]:part.value}),{});
 const buildDateLabel = `${buildParts.day}/${buildParts.month}/${buildParts.year}`;
 const buildTimeLabel = `${buildParts.hour}:${buildParts.minute}`;
-const colors = [
- ['Primario 600','#236999','Acciones, títulos e íconos'],
- ['Primario 500','#358DC2','Variación institucional'],
- ['Primario 700','#19577F','Hover primario'],
- ['Info / selección','#006EFF','Foco, selección, contador'],
- ['Borde de control','#5BA8D5','Input o filtro en reposo'],
- ['Texto 900','#3D3D3D','Texto principal'],
- ['Panel deshabilitado','#E5F0F9','Campos disabled / adjuntos'],
- ['Divisor','#E1E7EB','Separadores'],
- ['Error','#EF284C','Validaciones'],
- ['Éxito','#2ABB5B','Estados positivos'],
-] as const;
+
 function DemoSection({ title, description, children }: {title:string;description?:string;children:ReactNode}) {
  return <section className="andy-section"><div className="andy-section-head"><h2>{title}</h2>{description && <p>{description}</p>}</div>{children}</section>;
 }
 function Icon({name,size=24}: {name:MaterialIconName;size?:number}) { return <MaterialIcon name={name} size={size} />; }
 function Foundations() {
  return <>
-  <DemoSection title="Paleta cromática completa de Figma" description="Las 91 variables originales de Color Styles, agrupadas por familia, con nombres exactos y valores HEX. Tocá una muestra para copiar su código.">
+  <DemoSection title="Color · variables y paleta" description="Fuente cromática original de Figma. Conserva los 91 nombres y valores HEX; buscá por familia, nombre o código.">
     <ColorTokensGallery/>
   </DemoSection>
-  <DemoSection title="Colores utilizados actualmente en Deportes" description="Selección de valores presentes en el producto. No todos tienen el mismo rol que una variable semántica global.">
-    <div className="andy-swatches">{colors.map(([name,color,desc])=><div className="andy-swatch" key={name}><span style={{backgroundColor:color}}/><strong>{name}</strong><code>{color}</code><small>{desc}</small></div>)}</div>
+  <DemoSection title="Color · tokens de interfaz" description="Valores semánticos que el producto consume hoy desde src/styles/tokens.css. Esta tabla diferencia los tokens de sistema de la biblioteca cromática completa.">
+   <div className="andy-foundation-color-roles">
+    {[
+     ['Primary 500','#358DC2','Acento institucional y variación primaria'],
+     ['Primary 600','#236999','Acciones primarias, títulos y enlaces'],
+     ['Primary 700','#19577F','Hover de acciones primarias'],
+     ['Info 500','#006EFF','Foco, selección y estados activos'],
+     ['Grey 900','#3D3D3D','Texto principal'],
+     ['Success 500','#2ABB5B','Confirmaciones y estados positivos'],
+     ['Success 600','#208C43','Énfasis de éxito y contraste'],
+     ['Panel','#F3F7FC','Superficies secundarias'],
+     ['Divider','#E1E7EB','Separadores y bordes sutiles'],
+    ].map(([name,hex,usage])=><div className="andy-foundation-color-role" key={name}>
+     <span style={{backgroundColor:hex}}/><div><strong>{name}</strong><code>{hex}</code><small>{usage}</small></div>
+    </div>)}
+   </div>
+   <p className="andy-foundation-note">Los colores de borde y estados específicos pueden existir como valores de componente. No deben presentarse como tokens globales si no están declarados en tokens.css.</p>
   </DemoSection>
-  <DemoSection title="Tipografía" description="Geometria en pesos 400, 500 y 700. Contenedores de hasta 1200 px.">
-   <div className="andy-type"><h2>Agenda de deportes 2026</h2><p>Conocé todas las actividades deportivas y recreativas de la comunidad.</p><strong>Etiqueta de formulario</strong><span>Texto de contenido y ayuda</span></div>
-   <div className="andy-metrics">{['Control 48 px','Borde 1 px','Activo 2 px','Radio 4 px','Gap opciones 2 px','Breakpoint móvil 680 px','Scrollbar 6 px','Material Symbols Outlined'].map(t=><span key={t}>{t}</span>)}</div>
+  <DemoSection title="Tipografía · Geometria" description="Familia institucional local. Los pesos disponibles en el proyecto son Regular 400, Medium 500 y Bold 700.">
+   <div className="andy-foundation-type">
+    <div className="andy-foundation-type-row"><div><span>Section / 24 · 30</span><code>--text-institutional-section</code></div><strong className="type-section">Título de sección</strong></div>
+    <div className="andy-foundation-type-row"><div><span>Body / 18 · 26</span><code>--text-institutional-body</code></div><p className="type-body">Texto de lectura. Se utiliza para contenido institucional y descripciones relevantes.</p></div>
+    <div className="andy-foundation-type-row"><div><span>Control / 16 · 24</span><code>Uso recurrente en controles</code></div><span className="type-control">Etiqueta de campo y opciones</span></div>
+    <div className="andy-foundation-type-row"><div><span>Helper / 13 · 20</span><code>Uso auxiliar</code></div><span className="type-helper">Texto de ayuda, aclaraciones y metadatos</span></div>
+    <div className="andy-foundation-weights"><span className="weight-400">Regular · 400</span><span className="weight-500">Medium · 500</span><span className="weight-700">Bold · 700</span></div>
+   </div>
+   <p className="andy-foundation-note">Los pares Section y Body son tokens tipográficos globales declarados en tokens.css. Control y Helper se documentan como tamaños recurrentes observados en los componentes, no como tokens globales independientes.</p>
   </DemoSection>
-  <DemoSection title="Espaciado" description="Escala de espaciado utilizada en gaps, márgenes y padding."><AndySpacingGuide/></DemoSection>
-  <DemoSection title="Border radius" description="Escala de radios y su aplicación en controles y superficies."><AndyRadiusGuide/></DemoSection>
-  <DemoSection title="Scrollbars" description="Reglas de desplazamiento global, interno y oculto."><AndyScrollbarGallery/></DemoSection>
-  <DemoSection title="Iconografía" description="Material Symbols Outlined, trazo sin relleno, vinculados a la fuente local del proyecto.">
-   <div className="andy-icons">{(['search','expand_more','tune','check','calendar_month','schedule','location_on','visibility','visibility_off','attach_file','info','arrow_back','arrow_forward','close','sort','grid_view','map','edit','delete','add','content_copy','link'] as MaterialIconName[]).map(name=><div key={name}><Icon name={name}/><small>{name}</small></div>)}</div>
+  <DemoSection title="Espaciado · escala" description="Escala oficial en píxeles para padding, margin y gap. La visualización amplía proporcionalmente las medidas pequeñas para que puedan compararse.">
+   <AndySpacingGuide/>
+  </DemoSection>
+  <DemoSection title="Border radius · escala y aplicación" description="Ocho valores disponibles. El radio se elige según la función y jerarquía de la superficie, no por preferencia aislada.">
+   <AndyRadiusGuide/>
+  </DemoSection>
+  <DemoSection title="Scrollbars · comportamiento" description="Tres comportamientos de desplazamiento documentados con contenido neutro para que la atención esté en la barra.">
+   <AndyScrollbarGallery/>
+  </DemoSection>
+  <DemoSection title="Iconografía · Google Material Symbols" description="Biblioteca local ampliada, organizada por categorías y con búsqueda. Seleccioná cualquier icono para copiar su identificador.">
+   <MaterialIconLibrary/>
+  </DemoSection>
+  <DemoSection title="Layout · contenedores y responsive" description="Reglas estructurales compartidas por las páginas del producto y sus componentes.">
+   <div className="andy-foundation-layout">
+    <div className="layout-measure"><span>Contenedor máximo</span><strong>1200 px</strong><div><i style={{width:'100%'}}/></div></div>
+    <div className="layout-measure"><span>Gutter horizontal</span><strong>24 px</strong><div><i style={{width:'24px'}}/></div></div>
+    <div className="layout-measure"><span>Breakpoint mobile</span><strong>680 px</strong><div><i style={{width:'56.7%'}}/></div></div>
+   </div>
+   <p className="andy-foundation-note">El contenedor de contenido no supera los 1200 px. En pantallas menores, el gutter se mantiene en 24 px. El breakpoint de 680 px está definido en las reglas globales de layout y scrollbars; otros componentes pueden tener breakpoints específicos.</p>
   </DemoSection>
  </>;
 }
