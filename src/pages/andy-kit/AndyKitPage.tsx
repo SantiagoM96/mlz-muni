@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
+import { SiteFooter } from '../../shared/layout/SiteFooter';
 import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
 import { AndySportsFormExamples } from './AndySportsFormExamples';
@@ -214,28 +215,54 @@ function AlertInContext(){
   <div className="andy-context-actions"><span className="andy-context-action-illustration">Continuar <Icon name="arrow_forward" size={20}/></span></div>
  </ProductContext>;
 }
+const lomasBailaQuestions:AccordionQuestion[]=[
+ ['1','¿Quiénes pueden participar?','Pueden participar parejas cuyos integrantes tengan 18 años o más. Ambas personas deben autorizar el uso de su imagen.'],
+ ['2','¿Cómo puedo inscribirme?','Podés completar el formulario online desde la web del Municipio o inscribirte presencialmente el mismo día del encuentro.'],
+ ['3','¿Cómo se desarrolla la competencia?','Habrá cuatro encuentros clasificatorios en distintos barrios de Lomas de Zamora. En cada sede se seleccionarán parejas para la gran final.'],
+ ['4','¿Puedo volver a competir si no clasifico?','¡Sí! Si no clasificás en una fecha, podés participar en los siguientes encuentros para intentar llegar a la final.'],
+ ['5','¿Dónde y cuándo se realizan los encuentros?','Los encuentros se realizan en distintos barrios de Lomas de Zamora durante noviembre. Consultá el cronograma de fechas y sedes para conocer cada ubicación y el horario confirmado.']
+];
 function AccordionInContext(){
- return <ProductContext eyebrow="DEPORTES ANUAL · ACTIVIDAD" title="Natación recreativa" description="De 6 a 12 años · Natatorio Gregorio «Guyo» Sember">
-  <div className="andy-context-info">
-   <div><Icon name="event_available" size={20}/><span>Lunes, miércoles y viernes</span></div>
-   <div><Icon name="schedule" size={20}/><span>10:00 a 11:00 h</span></div>
-   <div><Icon name="location_on" size={20}/><span>Calle Ejemplo 1234, Lomas de Zamora (dirección ilustrativa)</span></div>
+ return <div className="andy-baila-preview">
+  <div className="andy-baila-preview-content">
+   <div className="andy-baila-demo-marker">LOMAS BAILA EN COMUNIDAD · VISTA PARCIAL</div>
+   <section className="andy-baila-section">
+    <div className="andy-baila-section-heading"><h4>Modalidades de inscripción</h4><p>Para participar, ambas personas deben tener 18 años o más y autorizar el uso de su imagen. Inscribite online o el día del encuentro.</p></div>
+    <div className="andy-baila-grid andy-baila-grid-two">
+     <div className="andy-baila-info-card"><h5>Inscripción online</h5><strong>Completá el formulario antes del encuentro.</strong><p>Completá el formulario desde la web del Municipio y participá de los encuentros de Lomas Baila.</p></div>
+     <div className="andy-baila-info-card"><h5>Inscripción presencial</h5><strong>Inscribite el mismo día del encuentro.</strong><p>También podés anotarte el mismo día del encuentro, en el espacio donde se realiza la competencia.</p></div>
+    </div>
+   </section>
+   <section className="andy-baila-section">
+    <div className="andy-baila-section-heading"><h4>Premiación</h4><p>Las tres parejas que obtengan los primeros puestos en la gran final recibirán un trofeo. Además, todas las parejas finalistas recibirán un certificado de participación.</p></div>
+    <div className="andy-baila-grid andy-baila-grid-three">
+     <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="music_note" size={32}/></div><h5>Primer puesto</h5><p>Trofeo para la pareja ganadora del certamen.</p></div>
+     <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="play_circle" size={32}/></div><h5>Segundo y tercer puesto</h5><p>Trofeos para las parejas que completen el podio.</p></div>
+     <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="check_circle" size={32}/></div><h5>Certificado de participación</h5><p>Todas las parejas finalistas recibirán un certificado.</p></div>
+    </div>
+   </section>
+   <section className="andy-baila-section andy-baila-questions">
+    <div className="andy-baila-section-heading"><h4>Preguntas frecuentes</h4><p>Encontrá respuestas sobre la inscripción, los requisitos y las distintas etapas del certamen.</p></div>
+    <AccordionDemo questions={lomasBailaQuestions} initiallyOpen={false}/>
+   </section>
   </div>
-  <div className="andy-context-faq"><h5>Preguntas frecuentes</h5><p>Encontrá información útil antes de realizar la preinscripción.</p><AccordionDemo/></div>
- </ProductContext>;
+  <div className="andy-baila-preview-footer"><SiteFooter/></div>
+ </div>;
 }
 
 function Messages(){return <AlertDocs/>}
 function ComponentExample({title,description,children}:{title:string;description?:string;children:ReactNode}){
  return <DocSection title={title} description={description}><DocPreview>{children}</DocPreview></DocSection>;
 }
-function AccordionDemo({multiple=false,disabledMiddle=false}:{multiple?:boolean;disabledMiddle?:boolean}){
- const [open,setOpen]=useState<string[]>(['1']);
- const items:[string,string,string][]=[
+type AccordionQuestion=[string,string,string];
+function AccordionDemo({multiple=false,disabledMiddle=false,questions,initiallyOpen=true}:{multiple?:boolean;disabledMiddle?:boolean;questions?:AccordionQuestion[];initiallyOpen?:boolean}){
+ const [open,setOpen]=useState<string[]>(initiallyOpen?['1']:[]);
+ const defaultItems:AccordionQuestion[]=[
   ['1','¿Cómo puedo inscribirme?','Elegí la actividad que te interese y revisá los días, horarios y sedes disponibles. Después seleccioná una comisión, completá los datos solicitados y seguí los pasos indicados para finalizar tu preinscripción.'],
   ['2','¿Puedo cambiar el horario?','Antes de confirmar la preinscripción, podés volver a la ficha de la actividad y elegir otra comisión que tenga cupos disponibles. Revisá el nuevo día y horario para asegurarte de que se ajusten a tu disponibilidad.'],
   ['3','¿Dónde encuentro la sede?','En la ficha de cada actividad vas a encontrar el nombre de la sede, la dirección y la localidad correspondiente. Consultá esa información antes de inscribirte para comprobar que podés llegar al lugar en el horario elegido.']
  ];
+ const items=questions??defaultItems;
  return <div className="andy-doc-accordion">{items.map(([id,title,content])=><div className="andy-doc-accordion-item" key={id}>
   <button type="button" disabled={disabledMiddle&&id==='2'} aria-expanded={open.includes(id)} onClick={()=>setOpen(prev=>prev.includes(id)?prev.filter(v=>v!==id):multiple?[...prev,id]:[id])}>
     <span className="andy-doc-accordion-trigger-label">{title}</span><Icon name="expand_more" size={24}/>
@@ -377,7 +404,7 @@ function ComponentDetails({id}:{id:ComponentId}){
     ['Comportamiento','Apertura única o múltiple; el botón expone el estado abierto/cerrado con aria-expanded.']
    ]}/>
   </DocSection>
-  <DocSection title="Ejemplo en contexto" description="Preguntas frecuentes dentro de la ficha de Natación recreativa, después de la información de sede y horario.">
+  <DocSection title="Ejemplo en contexto" description="Recorte del Frame 2392 de Lomas Baila en Comunidad: modalidades de inscripción, premiación, cinco preguntas inicialmente cerradas y footer institucional.">
    <DocPreview><AccordionInContext/></DocPreview>
   </DocSection>
  </>;
@@ -477,7 +504,7 @@ export function AndyKitPage(){
      {filteredGroups.map(group=><div className="andy-nav-group" key={group.title}>
       <span className="andy-nav-heading">{group.title}</span>
       {group.items.map(([id,title])=><NavLink key={id} to={'/ui-kit-andy/componentes/'+id} onClick={()=>setNavOpen(false)}
-        className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}>{title}</NavLink>)}
+        className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}><span className="andy-nav-component-name">{title}</span>{(id==='acordeon'||id==='mensaje')&&<span className="andy-nav-review-mark" title="Componente revisado" aria-label="Revisado"><Icon name="check_circle" size={17}/></span>}</NavLink>)}
      </div>)}
      <div className="andy-nav-divider"/>
      <div className="andy-nav-group"><span className="andy-nav-heading">Patterns · Composiciones</span>
