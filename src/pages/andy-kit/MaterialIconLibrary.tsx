@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { useState } from 'react';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import './material-icon-library.css';
 
@@ -640,101 +640,36 @@ const iconGroups = {
   ]
 } as const satisfies Record<string, readonly MaterialIconName[]>;
 const allIcons = [...new Set(Object.values(iconGroups).flat())] as MaterialIconName[];
-const iconAliases: Partial<Record<MaterialIconName,string>> = {
- search:'buscar búsqueda lupa',home:'inicio casa hogar',person:'persona usuario perfil',groups:'personas grupo comunidad',
- calendar_month:'calendario fecha',event:'evento fecha',schedule:'horario hora reloj',location_on:'ubicación lugar dirección',
- map:'mapa',directions:'direcciones ruta camino',directions_walk:'caminar caminata',directions_bike:'bicicleta',
- sports:'deporte deportes',sports_soccer:'fútbol pelota',sports_basketball:'básquet basquetbol',sports_tennis:'tenis',
- pool:'pileta natación',fitness_center:'gimnasio ejercicio entrenamiento',health_and_safety:'salud',
- accessibility:'accesibilidad discapacidad',accessible:'accesible',hearing:'audición',blind:'ceguera',
- mail:'correo email email',chat:'chat conversación',call:'llamada teléfono',notifications:'notificaciones aviso',
- settings:'configuración preferencias ajustes',tune:'ajustes filtros configuración',filter_list:'filtros filtrar',
- sort:'ordenar ordenamiento',download:'descargar descarga',upload:'subir carga',file_upload:'adjuntar archivo',
- attach_file:'adjunto adjuntar archivo',folder:'carpeta',description:'documento archivo texto',
- image:'imagen foto',photo_camera:'cámara fotografía',videocam:'video cámara',music_note:'música audio',
- play_arrow:'reproducir play',pause:'pausar',share:'compartir',content_copy:'copiar duplicar',
- edit:'editar modificación',delete:'eliminar borrar papelera',save:'guardar',print:'imprimir',
- add:'agregar nuevo sumar',close:'cerrar salir',check:'confirmar aceptar listo',cancel:'cancelar',
- warning:'advertencia precaución',error:'error problema',info:'información ayuda',help:'ayuda soporte',
- check_circle:'correcto éxito completado',cloud:'nube online internet',wifi:'wifi conexión internet',
- smartphone:'celular móvil teléfono',computer:'computadora ordenador pc',shopping_cart:'compras carrito',
- payments:'pago pagos dinero',receipt:'recibo comprobante factura',bar_chart:'gráfico estadísticas',
- analytics:'analítica datos métricas',school:'educación escuela',park:'parque naturaleza',
- sunny:'sol clima',rainy:'lluvia clima',water:'agua',pets:'mascotas animales'
-};
-const categories = ['Todos', ...Object.keys(iconGroups)];
+
+// Vista inicial breve; la biblioteca completa se muestra a demanda.
+const previewCount = 30;
 
 function copyName(name:string){
- if(typeof navigator!=='undefined' && navigator.clipboard?.writeText) void navigator.clipboard.writeText(name).catch(()=>undefined);
+ if(typeof navigator!=='undefined' && navigator.clipboard?.writeText) {
+  void navigator.clipboard.writeText(name).catch(()=>undefined);
+ }
 }
 
 export function MaterialIconLibrary(){
- const [query,setQuery]=useState('');
- const [category,setCategory]=useState('Todos');
- const [filled,setFilled]=useState(false);
- const [weight,setWeight]=useState<300|400|500>(400);
- const [weightOpen,setWeightOpen]=useState(false);
- const weightRef=useRef<HTMLDivElement>(null);
- const categoriesRef=useRef<HTMLDivElement>(null);
- const dragState=useRef<{pointerId:number;startX:number;scrollLeft:number;dragged:boolean}|null>(null);
- const suppressCategoryClick=useRef(false);
- useEffect(()=>{
-  if(!weightOpen)return;
-  const onPointer=(event:PointerEvent)=>{if(weightRef.current&&!weightRef.current.contains(event.target as Node))setWeightOpen(false);};
-  const onKey=(event:KeyboardEvent)=>{if(event.key==='Escape')setWeightOpen(false);};
-  document.addEventListener('pointerdown',onPointer);
-  document.addEventListener('keydown',onKey);
-  return()=>{document.removeEventListener('pointerdown',onPointer);document.removeEventListener('keydown',onKey);};
- },[weightOpen]);
+ const [expanded,setExpanded]=useState(false);
  const [copied,setCopied]=useState<string|null>(null);
- const visible=useMemo(()=>{
-  const term=query.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().trim();
-  const source=category==='Todos'?allIcons:iconGroups[category as keyof typeof iconGroups];
-  return source.filter(name=>!term||name.replaceAll('_',' ').includes(term)||name.includes(term)||iconAliases[name]?.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().includes(term));
- },[category,query]);
+ const icons=expanded?allIcons:allIcons.slice(0,previewCount);
+
  return <div className="andy-icon-library" data-testid="andy-material-icon-library">
-  <div className="andy-icon-library-toolbar">
-   <div className="andy-search-field andy-icon-library-search">
-    <input type="text" value={query} onChange={event=>setQuery(event.target.value)} placeholder="¿Qué estás buscando?" aria-label="Buscar iconos por nombre o concepto" autoComplete="off"/>
-    {query&&<button type="button" className="andy-icon-search-clear" onClick={()=>setQuery('')} aria-label="Limpiar búsqueda"><MaterialIcon name="close" size={18}/></button>}
-    <MaterialIcon name="search" size={24}/>
-   </div>
-   <div className="andy-icon-library-options">
-    <div className="kit-sports-filter andy-icon-weight-filter" ref={weightRef}>
-     <button type="button" className={'kit-sports-trigger'+(weightOpen?' is-active':'')} aria-haspopup="listbox" aria-expanded={weightOpen} onClick={()=>setWeightOpen(value=>!value)}>
-      <span className="kit-sports-truncate">{weight===300?'Light · 300':weight===400?'Regular · 400':'Medium · 500'}</span>
-      <MaterialIcon name="expand_more" size={22}/>
-     </button>
-     {weightOpen&&<div className="kit-sports-popover andy-icon-weight-popover" role="listbox" aria-label="Peso del icono">
-      {([{value:300,label:'Light · 300'},{value:400,label:'Regular · 400'},{value:500,label:'Medium · 500'}] as const).map(option=><button type="button" role="option" aria-selected={weight===option.value} key={option.value} className={'kit-sports-option'+(weight===option.value?' is-selected':'')} onClick={()=>{setWeight(option.value);setWeightOpen(false);}}>
-       <span>{option.label}</span>{weight===option.value&&<MaterialIcon name="check" size={20}/>}
-      </button>)}
-     </div>}
-    </div>
-    <label className="andy-icon-fill-control">
-     <span>{filled?'Relleno activo':'Relleno inactivo'}</span>
-     <span className="andy-switch">
-      <input type="checkbox" checked={filled} onChange={event=>setFilled(event.target.checked)} aria-label="Activar relleno de iconos"/>
-      <span className="andy-switch-track" aria-hidden="true"/>
-     </span>
-    </label>
-   </div>
+  <div className="andy-icon-library-grid" id="andy-icon-library-grid">
+   {icons.map(name=><button type="button" className="andy-icon-tile" key={name}
+    onClick={()=>{copyName(name);setCopied(name);}} title={`Copiar ${name}`}
+    aria-label={`Copiar identificador ${name}`}>
+    <MaterialIcon name={name} size={26}/>
+    <code>{name}</code>
+    <small>{copied===name?'Copiado':'Copiar'}</small>
+   </button>)}
   </div>
-  <div className="andy-icon-library-categories" ref={categoriesRef} aria-label="Categorías de iconos"
-   onPointerDown={(event:ReactPointerEvent<HTMLDivElement>)=>{if(event.pointerType==='mouse'&&event.button!==0)return;const el=categoriesRef.current;if(!el)return;el.setPointerCapture(event.pointerId);dragState.current={pointerId:event.pointerId,startX:event.clientX,scrollLeft:el.scrollLeft,dragged:false};}}
-   onPointerMove={(event:ReactPointerEvent<HTMLDivElement>)=>{const state=dragState.current;const el=categoriesRef.current;if(!state||!el||state.pointerId!==event.pointerId)return;const delta=event.clientX-state.startX;if(Math.abs(delta)>4)state.dragged=true;if(state.dragged){el.scrollLeft=state.scrollLeft-delta;event.preventDefault();}}}
-   onPointerUp={(event:ReactPointerEvent<HTMLDivElement>)=>{if(dragState.current?.pointerId===event.pointerId){suppressCategoryClick.current=dragState.current.dragged;dragState.current=null;}}}
-   onPointerCancel={()=>{dragState.current=null;}}
-   onClickCapture={(event)=>{if(suppressCategoryClick.current){event.preventDefault();event.stopPropagation();suppressCategoryClick.current=false;}}}>
-   {categories.map(item=><button type="button" key={item} className={category===item?'is-active':''} aria-pressed={category===item} onClick={()=>setCategory(item)}>{item}</button>)}
-  </div>
-  <div className="andy-icon-library-summary"><strong>{visible.length} iconos</strong><span>Material Symbols Outlined · fuente local</span></div>
-  {category==='Todos'?Object.entries(iconGroups).map(([group,names])=>{
-   const filtered=names.filter(name=>visible.includes(name));
-   if(!filtered.length)return null;
-   return <section className="andy-icon-library-group" key={group}><h3>{group}<span>{filtered.length}</span></h3><div className="andy-icon-library-grid">{filtered.map(name=><button type="button" className="andy-icon-tile" key={name} onClick={()=>{copyName(name);setCopied(name)}} title={'Copiar '+name}><MaterialIcon name={name} size={26} weight={weight} filled={filled}/><code>{name}</code><small>{copied===name?'Copiado':'Copiar nombre'}</small></button>)}</div></section>
-  }):<div className="andy-icon-library-grid">{visible.map(name=><button type="button" className="andy-icon-tile" key={name} onClick={()=>{copyName(name);setCopied(name)}} title={'Copiar '+name}><MaterialIcon name={name} size={26} weight={weight} filled={filled}/><code>{name}</code><small>{copied===name?'Copiado':'Copiar nombre'}</small></button>)}</div>}
-  {!visible.length&&<p className="andy-icon-library-empty">No encontramos iconos con ese término. Probá con otra palabra.</p>}
-  <p className="andy-icon-library-footer">Seleccioná un icono para copiar su identificador y utilizarlo con <code>MaterialIcon</code>. Los nombres corresponden a ligaduras de Google Material Symbols; no son emojis ni imágenes rasterizadas.</p>
+  {allIcons.length>previewCount&&<button type="button" className="andy-icon-library-expand"
+   aria-expanded={expanded} aria-controls="andy-icon-library-grid"
+   onClick={()=>setExpanded(value=>!value)}>
+   {expanded?'Ver menos':'Ver más'}
+   <MaterialIcon name={expanded?'expand_less':'expand_more'} size={20}/>
+  </button>}
  </div>;
 }
