@@ -64,10 +64,13 @@ function Foundations() {
   <DemoSection title="Colores utilizados actualmente en Deportes" description="Selección de valores presentes en el producto. No todos tienen el mismo rol que una variable semántica global.">
     <div className="andy-swatches">{colors.map(([name,color,desc])=><div className="andy-swatch" key={name}><span style={{backgroundColor:color}}/><strong>{name}</strong><code>{color}</code><small>{desc}</small></div>)}</div>
   </DemoSection>
-  <DemoSection title="Tipografía y geometría" description="Geometria en pesos 400, 500 y 700. Contenedores de hasta 1200 px.">
+  <DemoSection title="Tipografía" description="Geometria en pesos 400, 500 y 700. Contenedores de hasta 1200 px.">
    <div className="andy-type"><h2>Agenda de deportes 2026</h2><p>Conocé todas las actividades deportivas y recreativas de la comunidad.</p><strong>Etiqueta de formulario</strong><span>Texto de contenido y ayuda</span></div>
    <div className="andy-metrics">{['Control 48 px','Borde 1 px','Activo 2 px','Radio 4 px','Gap opciones 2 px','Breakpoint móvil 680 px','Scrollbar 6 px','Material Symbols Outlined'].map(t=><span key={t}>{t}</span>)}</div>
   </DemoSection>
+  <DemoSection title="Espaciado" description="Escala de espaciado utilizada en gaps, márgenes y padding."><AndySpacingGuide/></DemoSection>
+  <DemoSection title="Border radius" description="Escala de radios y su aplicación en controles y superficies."><AndyRadiusGuide/></DemoSection>
+  <DemoSection title="Scrollbars" description="Reglas de desplazamiento global, interno y oculto."><AndyScrollbarGallery/></DemoSection>
   <DemoSection title="Iconografía" description="Material Symbols Outlined, trazo sin relleno, vinculados a la fuente local del proyecto.">
    <div className="andy-icons">{(['search','expand_more','tune','check','calendar_month','schedule','location_on','visibility','visibility_off','attach_file','info','arrow_back','arrow_forward','close','sort','grid_view','map','edit','delete','add','content_copy','link'] as MaterialIconName[]).map(name=><div key={name}><Icon name={name}/><small>{name}</small></div>)}</div>
   </DemoSection>
@@ -242,14 +245,9 @@ function ComponentDetails({id}:{id:ComponentId}){
    <div className="andy-matrix-calendar-sample andy-calendar-dropdown-sample"><SportsCalendarPicker/></div>
   </ComponentExample>
  </>;
- if(id==='checkbox'||id==='radio'||id==='switch')return <>
-  <ComponentExample title="Ejemplo interactivo" description={id==='checkbox'?'Permití seleccionar varias opciones de forma independiente.':id==='radio'?'Solo una alternativa puede estar seleccionada.':'Activá o desactivá la configuración.'}>
-   <SelectionGallery only={id}/>
-  </ComponentExample>
-  <ComponentExample title="Comportamiento y estados" description="Probá la interacción y los indicadores de reposo y seleccionado.">
-   <SelectionGallery embedded only={id}/>
-  </ComponentExample>
- </>;
+ if(id==='checkbox'||id==='radio'||id==='switch')return <ComponentExample title="Ejemplo interactivo" description={id==='checkbox'?'Permití seleccionar varias opciones de forma independiente.':id==='radio'?'Solo una alternativa puede estar seleccionada.':'Activá o desactivá la configuración.'}>
+  <SelectionGallery only={id}/>
+ </ComponentExample>;
  if(id==='buscador')return <>
   <DocSection title="Buscador estándar" description="Patrón de Deportes Anual: 48 px de alto, ícono Material Symbols a la derecha, borde Primario 300 y foco Info 500 de 2 px. Escribí para filtrar los resultados de demostración.">
    <DocPreview><AndySportsSearchExample/></DocPreview>
@@ -265,9 +263,6 @@ function ComponentDetails({id}:{id:ComponentId}){
   </DocSection>
   <DocSection title="Ordenamiento" description="Un único criterio de orden a la vez, independiente de los demás filtros.">
    <DocPreview><FilterExample kind="ordenar"/></DocPreview>
-  </DocSection>
-  <DocSection title="Barras de scroll" description="Tres patrones de desplazamiento: página, dropdown y navegación lateral.">
-   <AndyScrollbarGallery/>
   </DocSection>
   <DocSection title="Vista previa en Deportes Anual" description="Buscador y filtros interactivos sobre una muestra de actividades. El buscador filtra los resultados; los filtros mantienen el comportamiento del producto.">
    <DocPreview><AndySportsSearchExample integrated/></DocPreview>
