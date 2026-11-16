@@ -198,18 +198,6 @@ const notices=[
  {id:'error',title:'Error',heading:'Revisá el formulario',body:'Hay campos obligatorios pendientes.',icon:'cancel' as const}
 ];
 function ComponentDetails({id}:{id:ComponentId}){
- if(id==='espaciados')return <>
-  <DocSection title="Escala" description="Los espacios se documentan como tokens, desde 2 px hasta 64 px."><AndySpacingGuide/></DocSection>
-  <DocSection title="Criterios de uso" description="Aplicación consistente de padding, gap y margin en botones, campos y contenedores.">
-   <GuidelineTable rows={[["Pequeños · 2–8 px","Separación entre ícono y etiqueta."],["Medios · 10–16 px","Padding de controles y distancia entre campos."],["Grandes · 24–64 px","Separación de bloques y secciones."]]}/>
-  </DocSection>
- </>;
- if(id==='border-radius')return <>
-  <DocSection title="Escala de radios" description="Radios semánticos para cada familia de superficies."><AndyRadiusGuide/></DocSection>
-  <DocSection title="Dónde utilizar cada radio" description="Se prioriza un radio de 4 px para controles, 6 px para chips y 8 px para tarjetas.">
-   <GuidelineTable rows={[["4 px · Controles","Input, dropdown y botones."],["6–8 px · Superficies","Chips, popovers y tarjetas."],["12–16 px · Contenedores","Paneles y drawers móviles."]]}/>
-  </DocSection>
- </>;
  if(id==='field')return <FieldDocs/>;
  if(id==='input')return <InputDocs/>;
  if(id==='textarea')return <><FormStates family="textarea"/>
