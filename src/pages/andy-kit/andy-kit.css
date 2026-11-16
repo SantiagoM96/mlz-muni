@@ -1095,3 +1095,47 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .layout-measure i{display:block;height:8px;background:#5ba8d5;border-radius:var(--mlz-radius-full)}
 @media(max-width:760px){.andy-foundation-color-roles{grid-template-columns:repeat(2,minmax(0,1fr))}.andy-foundation-layout{grid-template-columns:1fr}}
 @media(max-width:580px){.andy-foundation-color-roles{grid-template-columns:1fr}.andy-foundation-type-row{grid-template-columns:1fr;gap:var(--mlz-space-8)}}
+
+
+/* Foundations — arquitectura editorial y navegación interna */
+.andy-foundation-intro{
+ background:#fff;border:1px solid #e1e7eb;border-radius:var(--mlz-radius-lg);
+ padding:clamp(20px,3vw,32px);margin-bottom:var(--mlz-space-24);
+}
+.andy-foundation-intro-copy{max-width:820px}
+.andy-foundation-eyebrow{display:block;color:#236999;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px}
+.andy-foundation-intro-copy h2{font-size:26px;line-height:34px;color:#236999;margin:0 0 8px;font-weight:700}
+.andy-foundation-intro-copy p{font-size:15px;line-height:24px;color:#616d79;margin:0}
+.andy-foundation-principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+.andy-foundation-principles>div{display:flex;flex-direction:column;gap:5px;padding:14px;background:#f6f9fc;border-radius:var(--mlz-radius-md)}
+.andy-foundation-principles strong{font-size:14px;color:#3d3d3d}
+.andy-foundation-principles span{font-size:13px;line-height:19px;color:#687782}
+.andy-foundation-index{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:20px}
+.andy-foundation-index a{display:grid;grid-template-columns:30px 1fr;column-gap:8px;align-items:center;padding:11px 12px;border:1px solid #e1e7eb;border-radius:var(--mlz-radius-md);text-decoration:none;color:#3d3d3d;transition:background .15s,border-color .15s}
+.andy-foundation-index a:hover{background:#f3f7fc;border-color:#b9cfdf}
+.andy-foundation-index a>span{grid-row:span 2;color:#236999;font-size:12px;font-weight:700}
+.andy-foundation-index a strong{font-size:14px;font-weight:700}
+.andy-foundation-index a small{font-size:11px;line-height:16px;color:#687782}
+.andy-foundation-module{scroll-margin-top:24px;margin-bottom:24px}
+.andy-foundation-module .andy-section{margin-bottom:0}
+.andy-foundation-submodule+.andy-foundation-submodule{border-top:1px solid #e1e7eb;margin-top:28px;padding-top:24px}
+.andy-foundation-subhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.andy-foundation-subhead strong{font-size:16px;color:#3d3d3d}
+.andy-foundation-subhead span{font-size:12px;color:#687782}
+.andy-foundation-explainer{font-size:14px;line-height:22px;color:#616d79;margin:0 0 16px;max-width:900px}
+.andy-foundation-icon-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.andy-foundation-icon-rules>div{display:flex;flex-direction:column;gap:4px;padding:12px;background:#f6f9fc;border-radius:var(--mlz-radius-md)}
+.andy-foundation-icon-rules strong{font-size:13px;color:#3d3d3d}
+.andy-foundation-icon-rules span{font-size:13px;line-height:19px;color:#687782}
+.andy-foundation-module .andy-section-head{margin-bottom:20px}
+.andy-foundation-module .andy-section-head h2{font-size:20px;line-height:28px}
+.andy-foundation-module .andy-section-head p{max-width:940px}
+.andy-foundation-module:target{scroll-margin-top:24px}
+@media(max-width:760px){
+ .andy-foundation-principles,.andy-foundation-index,.andy-foundation-icon-rules{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+ .andy-foundation-principles,.andy-foundation-index,.andy-foundation-icon-rules{grid-template-columns:1fr}
+ .andy-foundation-intro-copy h2{font-size:22px;line-height:29px}
+ .andy-foundation-intro{padding:18px}
+}
