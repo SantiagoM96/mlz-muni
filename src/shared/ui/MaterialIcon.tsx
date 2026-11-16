@@ -233,7 +233,6 @@ export type MaterialIconName =
   | 'schema'
   | 'terminal'
   | 'image'
-  | 'images'
   | 'photo'
   | 'photo_camera'
   | 'camera_alt'
