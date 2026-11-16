@@ -277,7 +277,7 @@ function ComponentDetails({id}:{id:ComponentId}){
  if(id==='acordeon')return <>
   <ComponentExample title="Apertura única" description="Solo un panel abierto a la vez."><AccordionDemo/></ComponentExample>
   <ComponentExample title="Apertura múltiple" description="Podés desplegar varios paneles a la vez."><AccordionDemo multiple/></ComponentExample>
-  <ComponentExample title="Deshabilitado" description="El panel no responde a interacciones."><div className="andy-doc-accordion"><button type="button" disabled>Sección no disponible <Icon name="expand_more"/></button></div></ComponentExample>
+  <ComponentExample title="Deshabilitado" description="El panel no responde a interacciones."><div className="andy-doc-accordion"><div className="andy-doc-accordion-item"><button type="button" aria-expanded={false} disabled>Sección no disponible <Icon name="expand_more" size={24}/></button></div></div></ComponentExample>
  </>;
  return null;
 }
