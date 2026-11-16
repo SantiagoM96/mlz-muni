@@ -468,7 +468,7 @@ const iconGroups = {
     "warning",
     "warning_amber",
     "info",
-    "info_outline",
+    "info",
     "help",
     "help_outline",
     "priority_high",
