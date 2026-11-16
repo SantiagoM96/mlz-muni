@@ -123,14 +123,10 @@ function ChipGallery({compact=false}:{compact?:boolean}){
  const [chips,setChips]=useState(['Lunes','Casa Ari','Recreativo']);
  return <div className="andy-chip-demo">{chips.map(t=><span className="andy-chip" key={t}>{t}<button type="button" aria-label={'Quitar '+t} onClick={()=>setChips(v=>v.filter(c=>c!==t))}><Icon name="close" size={18}/></button></span>)}<button type="button" className="andy-chip-clear" onClick={()=>setChips(compact?['Lunes','Casa Ari','Recreativo']:[])}>{compact?'Restablecer':'Limpiar filtros'}</button></div>;
 }
-function Cards(){return <>
- <DemoSection title="Tarjetas de actividad · Deportes y Agenda" description="Variantes actuales utilizadas por los productos municipales.">
-  <AndyActivityCardGallery/>
- </DemoSection>
- <DemoSection title="Tarjetas municipales · Variantes de referencia" description="Seis patrones derivados de las referencias: noticias, áreas, turnos, trámites, accesos rápidos y eventos. Ejemplos adaptados a la geometría y tipografía MLZ.">
-  <AndyMunicipalCardGallery/>
- </DemoSection>
-</>}
+function Cards(){return <div className="andy-cards-unified">
+ <AndyActivityCardGallery/>
+ <AndyMunicipalCardGallery/>
+</div>}
 function Messages(){return <>
  <DemoSection title="Mensajes destacados" description="Cuatro variantes semánticas de Figma · mensaje_destacado. Mismos tokens para desktop y mobile.">
   <div className="andy-messages">
@@ -269,17 +265,7 @@ function ComponentDetails({id}:{id:ComponentId}){
    <DocPreview align="start"><AndyTagPaletteGallery onlyAppearance="outline"/></DocPreview>
   </DocSection>
  </>;
- if(id==='tarjeta')return <>
-  <ComponentExample title="Deportes Anual" description="Cabecera degradada de 34 px y contenido compacto, con metadatos e íconos del producto deportivo.">
-   <div className="andy-single-card-demo"><AndyActivityCard kind="sports"/></div>
-  </ComponentExample>
-  <ComponentExample title="Agenda de la Comunidad" description="Fotografía de 154 px y la misma jerarquía interior que Deportes.">
-   <div className="andy-single-card-demo"><AndyActivityCard kind="agenda"/></div>
-  </ComponentExample>
-  <DocSection title="Variantes de tarjetas municipales" description="Patrones de referencia adaptados al sistema MLZ. Las imágenes y los textos son demostrativos.">
-   <AndyMunicipalCardGallery/>
-  </DocSection>
- </>;
+ if(id==='tarjeta')return <Cards/>;
  if(id==='mensaje')return <>
   {notices.map(item=><ComponentExample key={item.id} title={item.title} description="Colores de texto, borde, fondo e ícono tomados del componente mensaje_destacado de Figma.">
    <div className={'andy-alert andy-alert-'+item.id}><Icon name={item.icon}/><div><strong>{item.heading}</strong><p>{item.body}</p></div></div>
