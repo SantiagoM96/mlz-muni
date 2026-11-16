@@ -46,14 +46,13 @@ function Icon({name,size=24}: {name:MaterialIconName;size?:number}) { return <Ma
 function Foundations() {
  return <>
   <div id="foundation-colors" className="andy-foundation-module">
-   <DemoSection title="01 · Color" description="Dos niveles con funciones distintas: la biblioteca conserva los colores originales de Figma; los tokens semánticos identifican los valores globales que consume el producto. No son dos paletas alternativas.">
+   <DemoSection title="01 · Color" description="Paleta de referencia y colores de uso del producto.">
     <div className="andy-foundation-submodule">
-     <div className="andy-foundation-subhead"><strong>Biblioteca de referencia · Figma</strong><span>91 variables · consulta y copia de HEX</span></div>
+     <div className="andy-foundation-subhead"><strong>Paleta de referencia</strong></div>
      <ColorTokensGallery/>
     </div>
     <div className="andy-foundation-submodule">
-     <div className="andy-foundation-subhead"><strong>Tokens semánticos · producto</strong><span>Valores declarados en src/styles/tokens.css</span></div>
-     <p className="andy-foundation-explainer">Estos son los valores que deben utilizarse al construir nuevas interfaces. La paleta completa sirve para consultar el origen cromático, pero no habilita a elegir cualquier tono sin una función definida.</p>
+     <div className="andy-foundation-subhead"><strong>Colores de uso del producto</strong></div>
      <div className="andy-foundation-color-roles">
       {[
        ['Primary 500','#358DC2','Acento institucional y variación primaria'],
@@ -69,7 +68,6 @@ function Foundations() {
        <span style={{backgroundColor:hex}}/><div><strong>{name}</strong><code>{hex}</code><small>{usage}</small></div>
       </div>)}
      </div>
-     <p className="andy-foundation-note">No sumar a esta lista colores que solo aparecen en CSS de un componente. Si un valor se vuelve transversal, primero debe incorporarse al archivo de tokens y luego documentarse acá.</p>
     </div>
    </DemoSection>
   </div>
