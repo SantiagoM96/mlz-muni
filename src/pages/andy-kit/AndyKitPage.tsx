@@ -179,19 +179,6 @@ function AlertDocs(){return <>
    ['Acción','Opcional; botón integrado al mensaje, con etiqueta explícita y foco visible.']
   ]}/>
  </DocSection>
- <DocSection title="Buenas prácticas" description="Criterios para elegir la variante, redactar el contenido y evitar mensajes redundantes o difíciles de interpretar.">
-  <GuidelineTable rows={[
-   ['Info','Informá condiciones, requisitos o instrucciones que el usuario necesite conocer.'],
-   ['Success','Confirmá una operación que efectivamente se haya completado; no anuncies éxito antes de obtener la confirmación.'],
-   ['Warning','Destacá un riesgo o un requisito a revisar, sin presentarlo como un error si todavía se puede continuar.'],
-   ['Error','Explicá qué falló y, cuando sea posible, cómo resolverlo. No dependas solo del color para comunicarlo.'],
-   ['Redacción','Priorizá un título breve y una descripción concreta. Evitá repetir la misma información en ambos.'],
-   ['Acciones','Incorporá una sola acción principal cuando exista un paso claro. Usá verbos específicos como «Reintentar» o «Ver requisitos».'],
-   ['Ubicación','Mostrá el mensaje cerca del contenido o del paso al que se refiere, sin bloquear la interfaz.'],
-   ['Accesibilidad','Para avisos dinámicos, elegí el anuncio apropiado según la urgencia; no uses role="alert" indiscriminadamente.'],
-   ['Qué no usar','Un error individual va junto a su campo; una lista sin resultados utiliza Empty State; un aviso breve y temporal puede utilizar Toast.']
-  ]}/>
- </DocSection>
  <DocSection title="Ejemplo en contexto" description="Un Alert de advertencia ubicado dentro del formulario de preinscripción, junto a los datos que el usuario está completando.">
   <DocPreview><AlertInContext/></DocPreview>
  </DocSection>
