@@ -539,7 +539,15 @@ export type MaterialIconName =
   | 'recommend'
   | 'reviews'
   | 'outlined_flag'
-  | 'flag';
+  | 'flag'  | 'radio_button_unchecked'
+  | 'radio_button_checked'
+  | 'check_box_outline_blank'
+  | 'check_box'
+  | 'record_voice_over'
+  | 'comedy_mask'
+  | 'confirmation_number'
+  | 'close_small'
+;
 
 export type MaterialIconProps = {
   name: MaterialIconName;
