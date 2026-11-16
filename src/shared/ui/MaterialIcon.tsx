@@ -427,7 +427,6 @@ export type MaterialIconName =
   | 'cancel_presentation'
   | 'error_outline'
   | 'warning_amber'
-  | 'info_outline'
   | 'help_outline'
   | 'priority_high'
   | 'report'
