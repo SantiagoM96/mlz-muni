@@ -348,7 +348,6 @@ export type MaterialIconName =
   | 'ac_unit'
   | 'mode_heat'
   | 'air'
-  | 'air_quality'
   | 'water_drop'
   | 'business_center'
   | 'work'
