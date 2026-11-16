@@ -144,7 +144,14 @@ export function AndyAdditionalComponent({id}:{id:AdditionalId}){
   case 'slider':demo=null;break;
   case 'toggle':demo=<button className={'andy-btn '+(on?'andy-btn-primary':'andy-btn-outline')} type="button" aria-pressed={on} onClick={()=>setOn(!on)}>{on?'Activado':'Desactivado'}</button>;break;
   case 'toggle-group':demo=<div className="andy-add-inline" role="group" aria-label="Vista">{['Día','Semana','Mes'].map(v=><button key={v} className={'andy-btn '+(selected.includes(v)?'andy-btn-primary':'andy-btn-outline')} type="button" aria-pressed={selected.includes(v)} onClick={()=>setSelected(old=>old.includes(v)?old.filter(x=>x!==v):[...old,v])}>{v}</button>)}</div>;break;
-  case 'empty':demo=<div className="andy-empty"><h3>No hay resultados</h3><p>Modificá los filtros para volver a buscar.</p>{button('Volver a intentar',()=>setOn(!on))}{on&&<small>Se actualizó la búsqueda de demostración.</small>}</div>;break;
+  case 'empty':demo=<div className="andy-empty-context">
+   <div className="andy-empty-search-context">
+    <div><strong>Actividades deportivas</strong><span>Encontrá propuestas para participar en Lomas de Zamora.</span></div>
+    <div className="andy-empty-search-filter"><MaterialIcon name="search" size={20}/><span>{on?'Todas las actividades':'Básquet acuático'}</span></div>
+   </div>
+   {on?<div className="andy-empty-results" role="status"><MaterialIcon name="check_circle" size={24}/><div><strong>Filtros restablecidos</strong><p>Se quitó el término de búsqueda. Ya podés explorar las actividades disponibles.</p></div><button type="button" className="andy-btn andy-btn-outline" onClick={()=>setOn(false)}>Probar estado vacío</button></div>
+   :<div className="andy-empty"><MaterialIcon name="search_off" size={40}/><h3>No encontramos actividades</h3><p>No hay resultados para «Básquet acuático». Probá con otro término o restablecé los filtros para ver las actividades disponibles.</p><button type="button" className="andy-btn andy-btn-outline" onClick={()=>setOn(true)}>Limpiar filtros</button></div>}
+  </div>;break;
   case 'separator':demo=<div className="andy-add-stack"><span>Primera sección</span><hr/><span>Segunda sección</span></div>;break;
   case 'collapsible':demo=<div className="andy-add-stack"><button className="andy-btn andy-btn-outline" type="button" aria-expanded={expanded} aria-controls="andy-collapsible-content" onClick={()=>setExpanded(!expanded)}>Información adicional {expanded?'−':'+'}</button>{expanded&&<div id="andy-collapsible-content" className="andy-add-panel">Contenido complementario expandido.</div>}</div>;break;
   case 'button-group':demo=<div className="andy-add-inline" role="group" aria-label="Alineación">{['Izquierda','Centro','Derecha'].map(v=><button key={v} className={'andy-btn '+(selected.includes(v)?'andy-btn-primary':'andy-btn-outline')} type="button" aria-pressed={selected.includes(v)} onClick={()=>setSelected([v])}>{v}</button>)}</div>;break;
