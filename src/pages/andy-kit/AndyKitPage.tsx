@@ -44,30 +44,7 @@ function DemoSection({ title, description, children }: {title:string;description
 }
 function Icon({name,size=24}: {name:MaterialIconName;size?:number}) { return <MaterialIcon name={name} size={size} />; }
 function Foundations() {
- const sections=[
-  {id:'foundation-colors',number:'01',title:'Color',description:'Paleta de referencia y tokens semánticos del producto.'},
-  {id:'foundation-type',number:'02',title:'Typography',description:'Familia tipográfica, jerarquía, tamaños y pesos.'},
-  {id:'foundation-geometry',number:'03',title:'Geometry',description:'Escalas de espaciado y radios de superficie.'},
-  {id:'foundation-icons',number:'04',title:'Iconography',description:'Biblioteca de iconos y criterios de uso.'},
-  {id:'foundation-layout',number:'05',title:'Layout',description:'Contenedores, gutters y comportamiento responsive.'},
-  {id:'foundation-scroll',number:'06',title:'Scrollbars',description:'Reglas de desplazamiento global e interno.'},
- ];
  return <>
-  <section className="andy-foundation-intro">
-   <div className="andy-foundation-intro-copy">
-    <span className="andy-foundation-eyebrow">Foundations · Reglas globales</span>
-    <h2>Los fundamentos que ordenan la interfaz</h2>
-    <p>Esta sección reúne las decisiones visuales compartidas por todo el sistema. Define los valores de referencia y cómo aplicarlos; los componentes individuales muestran su uso, pero no vuelven a definir estas reglas.</p>
-   </div>
-   <div className="andy-foundation-principles">
-    <div><strong>Una fuente de verdad</strong><span>Los tokens declarados prevalecen sobre valores aislados en ejemplos.</span></div>
-    <div><strong>Referencia vs. uso</strong><span>La paleta de Figma es la biblioteca; los tokens semánticos indican qué usa el producto.</span></div>
-    <div><strong>Reglas compartidas</strong><span>Los componentes consumen estas escalas sin redefinirlas.</span></div>
-   </div>
-   <nav className="andy-foundation-index" aria-label="Secciones de Foundations">
-    {sections.map(item=><a key={item.id} href={'#'+item.id}><span>{item.number}</span><strong>{item.title}</strong><small>{item.description}</small></a>)}
-   </nav>
-  </section>
   <div id="foundation-colors" className="andy-foundation-module">
    <DemoSection title="01 · Color" description="Dos niveles con funciones distintas: la biblioteca conserva los colores originales de Figma; los tokens semánticos identifican los valores globales que consume el producto. No son dos paletas alternativas.">
     <div className="andy-foundation-submodule">
