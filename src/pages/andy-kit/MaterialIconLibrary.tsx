@@ -522,7 +522,6 @@ const iconGroups = {
     "hearing_disabled",
     "blind",
     "sign_language",
-    "assistive_listening",
     "wheelchair_pickup",
     "pregnant_woman",
     "elderly",
