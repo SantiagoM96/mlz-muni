@@ -461,7 +461,6 @@ export type MaterialIconName =
   | 'masks'
   | 'sanitizer'
   | 'sign_language'
-  | 'assistive_listening'
   | 'wheelchair_pickup'
   | 'pregnant_woman'
   | 'self_improvement'
