@@ -1288,3 +1288,15 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  .andy-baila-preview-upper .andy-baila-prize-card p{font-size:12px;line-height:17px}
  .andy-context-fade-top,.andy-context-fade-focus,.andy-context-fade-bottom{padding-left:0;padding-right:0}
 }
+
+/* El recorte de la web conserva su propia superficie blanca; no se reintroduce la caja de demo. */
+.andy-doc-page .andy-doc-section>.andy-baila-preview,
+.andy-doc-page .andy-doc-section>.andy-context-screen--fade{
+ background:#fff;
+ border:1px solid #e1e7eb;
+ border-radius:var(--mlz-radius-lg);
+ overflow:hidden;
+}
+.andy-baila-preview-content{padding:var(--mlz-space-16);background:#fff}
+.andy-context-screen--fade{background:#fff}
+@media(max-width:850px){.andy-baila-preview-content{padding:var(--mlz-space-12)}}
