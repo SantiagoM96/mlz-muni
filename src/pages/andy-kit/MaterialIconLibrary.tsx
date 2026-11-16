@@ -711,7 +711,13 @@ export function MaterialIconLibrary(){
       </button>)}
      </div>}
     </div>
-    <button type="button" className={'andy-btn andy-btn-outline andy-icon-library-fill'+(filled?' is-active':'')} aria-pressed={filled} onClick={()=>setFilled(value=>!value)}><MaterialIcon name="format_paint" size={18}/>{filled?'Relleno activo':'Sin relleno'}</button>
+    <label className="andy-icon-fill-control">
+     <span>{filled?'Relleno activo':'Relleno inactivo'}</span>
+     <span className="andy-switch">
+      <input type="checkbox" checked={filled} onChange={event=>setFilled(event.target.checked)} aria-label="Activar relleno de iconos"/>
+      <span className="andy-switch-track" aria-hidden="true"/>
+     </span>
+    </label>
    </div>
   </div>
   <div className="andy-icon-library-categories" ref={categoriesRef} aria-label="Categorías de iconos"
