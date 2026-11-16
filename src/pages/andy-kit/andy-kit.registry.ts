@@ -1,5 +1,3 @@
-import { additionalComponents } from './AndyAdditionalComponents';
-
 /** Registro único de componentes: la navegación y el directorio consumen esta misma fuente. */
 const componentGroups=[
  {title:'Forms',items:[['field','Field'],['input','Input'],['select','Select'],['textarea','Textarea'],['calendario','Date Picker'],['adjuntos','Attachment']]},
