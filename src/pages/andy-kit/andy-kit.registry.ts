@@ -13,8 +13,6 @@ type ComponentId=typeof componentGroups[number]['items'][number][0];
 const componentAliases:Record<string,string>={sede:'buscador',edad:'buscador','mas-filtros':'buscador',ordenar:'buscador','seleccion-unica':'buscador','seleccion-multiple':'buscador','filtros-avanzados':'buscador',ordenamiento:'buscador',scrollbars:'buscador'};
 const componentEntries:ReadonlyArray<readonly [ComponentId,string]>=componentGroups.flatMap(group=>group.items as ReadonlyArray<readonly [ComponentId,string]>);
 const componentMeta:Record<ComponentId,{description:string;category:string}>={
- espaciados:{description:'Escala oficial 2–64 px de gaps, márgenes y padding de todos los componentes.',category:'Fundamentos'},
- 'border-radius':{description:'Escala semántica de redondeos para controles, paneles, tarjetas y drawers.',category:'Fundamentos'},
  field:{description:'Estructura accesible para asociar etiqueta, control, ayuda, validación y grupos de campos.',category:'Forms'},
  input:{description:'Control de texto de una línea para el ingreso de datos.',category:'Campos de formulario'},
  select:{description:'Selección única, múltiple y con búsqueda; menús desktop y drawers mobile.',category:'Campos de formulario'},
