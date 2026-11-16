@@ -67,7 +67,7 @@ export function AndyMunicipalCardGallery() {
 
   <CardExample title="Accesos rápidos" description="Banner de acceso con imagen de fondo y título destacado.">
    <article className="andy-municipal-card andy-municipal-card-shortcut">
-    <EmptyImage label="Imagen pendiente para acceso rápido"/>
+    <img className="andy-municipal-card-shortcut-image" src={image("turnos-salud.webp")} alt="" aria-hidden="true" loading="lazy"/>
     <div className="andy-municipal-card-shortcut-content"><h3>Turnos de salud</h3></div>
    </article>
   </CardExample>
