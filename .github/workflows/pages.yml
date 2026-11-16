@@ -48,9 +48,12 @@ jobs:
           else
             echo "::warning::No se pudo actualizar Salud Lomas; se conserva el recurso local"
           fi
-          if curl --fail --location --silent --show-error --retry 2 --max-time 30 'https://agenciacomunas.com.ar/wp-content/uploads/2026/11/13112026042411p.m-780x470.jpg' -o /tmp/mlz-obras.jpg && [ "$(wc -c </tmp/mlz-obras.jpg)" -gt 18000 ]; then
+          if curl --fail --location --silent --show-error --retry 2 --max-time 30 'https://agenciacomunas.com.ar/wp-content/uploads/2026/11/13112026042411p.m.jpg' -o /tmp/mlz-obras.jpg && [ "$(wc -c </tmp/mlz-obras.jpg)" -gt 35000 ] && [ "$(file --brief --mime-type /tmp/mlz-obras.jpg)" = "image/jpeg" ]; then
             cp /tmp/mlz-obras.jpg public/assets/andy-cards/noticia-obras.jpg
-            echo "Noticias: fotografía original en resolución editorial"
+            echo "Noticias: fotografía original sin recorte"
+          elif curl --fail --location --silent --show-error --retry 2 --max-time 30 'https://agenciacomunas.com.ar/wp-content/uploads/2026/11/13112026042411p.m-780x470.jpg' -o /tmp/mlz-obras.jpg && [ "$(wc -c </tmp/mlz-obras.jpg)" -gt 18000 ] && [ "$(file --brief --mime-type /tmp/mlz-obras.jpg)" = "image/jpeg" ]; then
+            cp /tmp/mlz-obras.jpg public/assets/andy-cards/noticia-obras.jpg
+            echo "Noticias: fotografía editorial de 780 px"
           else
             echo "::warning::No se pudo actualizar Noticias; se conserva el recurso local"
           fi
