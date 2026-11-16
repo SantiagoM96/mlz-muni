@@ -681,10 +681,10 @@ export function MaterialIconLibrary(){
  },[category,query]);
  return <div className="andy-icon-library" data-testid="andy-material-icon-library">
   <div className="andy-icon-library-toolbar">
-   <label className="andy-icon-library-search"><span>Buscar icono por nombre o concepto</span><div><MaterialIcon name="search" size={20}/><input type="search" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Ej.: calendar, location, sports, upload…"/></div></label>
+   <label className="andy-field andy-icon-library-search"><span>Buscar icono</span><div className="andy-icon-library-search-control"><MaterialIcon name="search" size={20}/><input type="search" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Buscar por nombre o concepto…"/>{query&&<button type="button" className="andy-icon-search-clear" onClick={()=>setQuery('')} aria-label="Limpiar búsqueda"><MaterialIcon name="close" size={18}/></button>}</div></label>
    <div className="andy-icon-library-options">
-    <label><span>Peso</span><select value={weight} onChange={event=>setWeight(Number(event.target.value) as 300|400|500)}><option value={300}>Light · 300</option><option value={400}>Regular · 400</option><option value={500}>Medium · 500</option></select></label>
-    <button type="button" className={'andy-icon-library-fill'+(filled?' is-active':'')} aria-pressed={filled} onClick={()=>setFilled(value=>!value)}><MaterialIcon name="format_paint" size={18}/>{filled?'Relleno activo':'Sin relleno'}</button>
+    <label className="andy-field andy-icon-weight-field"><span>Peso del icono</span><div className="andy-icon-weight-control"><select className="andy-select-trigger" value={weight} onChange={event=>setWeight(Number(event.target.value) as 300|400|500)} aria-label="Peso del icono"><option value={300}>Light · 300</option><option value={400}>Regular · 400</option><option value={500}>Medium · 500</option></select><MaterialIcon name="expand_more" size={20}/></div></label>
+    <button type="button" className={'andy-btn andy-btn-outline andy-icon-library-fill'+(filled?' is-active':'')} aria-pressed={filled} onClick={()=>setFilled(value=>!value)}><MaterialIcon name="format_paint" size={18}/>{filled?'Relleno activo':'Sin relleno'}</button>
    </div>
   </div>
   <div className="andy-icon-library-categories" aria-label="Categorías de iconos">
