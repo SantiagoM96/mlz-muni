@@ -46,29 +46,8 @@ function Icon({name,size=24}: {name:MaterialIconName;size?:number}) { return <Ma
 function Foundations() {
  return <>
   <div id="foundation-colors" className="andy-foundation-module">
-   <DemoSection title="01 · Color" description="Paleta de referencia y colores de uso del producto.">
-    <div className="andy-foundation-submodule">
-     <div className="andy-foundation-subhead"><strong>Paleta de referencia</strong></div>
-     <ColorTokensGallery/>
-    </div>
-    <div className="andy-foundation-submodule">
-     <div className="andy-foundation-subhead"><strong>Colores de uso del producto</strong></div>
-     <div className="andy-foundation-color-roles">
-      {[
-       ['Primary 500','#358DC2','Acento institucional y variación primaria'],
-       ['Primary 600','#236999','Acciones primarias, títulos y enlaces'],
-       ['Primary 700','#19577F','Hover de acciones primarias'],
-       ['Info 500','#006EFF','Foco, selección y estados activos'],
-       ['Grey 900','#3D3D3D','Texto principal'],
-       ['Success 500','#2ABB5B','Confirmaciones y estados positivos'],
-       ['Success 600','#208C43','Énfasis de éxito y contraste'],
-       ['Panel','#F3F7FC','Superficies secundarias'],
-       ['Divider','#E1E7EB','Separadores y bordes sutiles'],
-      ].map(([name,hex,usage])=><div className="andy-foundation-color-role" key={name}>
-       <span style={{backgroundColor:hex}}/><div><strong>{name}</strong><code>{hex}</code><small>{usage}</small></div>
-      </div>)}
-     </div>
-    </div>
+   <DemoSection title="01 · Color">
+    <ColorTokensGallery/>
    </DemoSection>
   </div>
   <div id="foundation-type" className="andy-foundation-module">
