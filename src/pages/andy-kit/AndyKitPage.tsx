@@ -180,23 +180,12 @@ function AlertDocs(){return <>
    ['Acción','Opcional; botón integrado al mensaje, con etiqueta explícita y foco visible.']
   ]}/>
  </DocSection>
- <DocSection title="Ejemplo en contexto" description="Un Alert de advertencia ubicado dentro del formulario de preinscripción, junto a los datos que el usuario está completando.">
-  <DocPreview><AlertInContext/></DocPreview>
+ <DocSection title="Ejemplo en contexto" description="Ejemplo de uso del alert.">
+  <AlertInContext/>
  </DocSection>
 </>}
 
 /** Patrón reutilizable para mostrar componentes dentro de pantallas reales del producto. */
-function ProductContext({eyebrow,title,description,children}:{eyebrow:string;title:string;description:string;children:ReactNode}){
- return <div className="andy-context-screen">
-  <div className="andy-context-screen-heading">
-   <span className="andy-context-screen-eyebrow">{eyebrow}</span>
-   <h4>{title}</h4>
-   <p>{description}</p>
-  </div>
-  {children}
-  <p className="andy-context-screen-footnote">Vista ilustrativa del producto Deportes Anual. No envía ni almacena datos.</p>
- </div>;
-}
 function ContextField({label,placeholder,required=false}:{label:string;placeholder:string;required?:boolean}){
  return <label className="andy-field andy-context-field">
   <span>{label}{required&&' *'}</span>
@@ -204,16 +193,26 @@ function ContextField({label,placeholder,required=false}:{label:string;placehold
  </label>;
 }
 function AlertInContext(){
- return <ProductContext eyebrow="DEPORTES ANUAL · INSCRIPCIÓN" title="Datos de la persona participante" description="Paso 2 de 3 · Completá la información necesaria para continuar.">
-  <div className="andy-context-fields">
-   <ContextField label="Nombre" placeholder="Ingresá el nombre" required/>
-   <ContextField label="Apellido" placeholder="Ingresá el apellido" required/>
+ return <div className="andy-context-screen andy-context-screen--fade">
+  <div className="andy-context-fade-top" aria-label="Extracto de formulario de preinscripción">
+   <div className="andy-context-screen-heading">
+    <h4>Datos de la persona participante</h4>
+    <p>Paso 2 de 3 · Completá la información necesaria para continuar.</p>
+   </div>
+   <div className="andy-context-fields">
+    <ContextField label="Nombre" placeholder="Ingresá el nombre" required/>
+    <ContextField label="Apellido" placeholder="Ingresá el apellido" required/>
+   </div>
   </div>
-  <AlertExample tone="warning" title="Documentación necesaria">
-   Para finalizar la preinscripción vas a necesitar un documento de identidad y la documentación adicional que indique la actividad. Podés consultar los requisitos antes de continuar.
-  </AlertExample>
-  <div className="andy-context-actions"><span className="andy-context-action-illustration">Continuar <Icon name="arrow_forward" size={20}/></span></div>
- </ProductContext>;
+  <div className="andy-context-fade-focus">
+   <AlertExample tone="warning" title="Documentación necesaria">
+    Para finalizar la preinscripción vas a necesitar un documento de identidad y la documentación adicional que indique la actividad. Podés consultar los requisitos antes de continuar.
+   </AlertExample>
+  </div>
+  <div className="andy-context-fade-bottom" aria-hidden="true">
+   <div className="andy-context-actions"><span className="andy-context-action-illustration">Continuar <Icon name="arrow_forward" size={20}/></span></div>
+  </div>
+ </div>;
 }
 const lomasBailaQuestions:AccordionQuestion[]=[
  ['1','¿Quiénes pueden participar?','Pueden participar parejas cuyos integrantes tengan 18 años o más. Ambas personas deben autorizar el uso de su imagen.'],
@@ -225,23 +224,14 @@ const lomasBailaQuestions:AccordionQuestion[]=[
 function AccordionInContext(){
  return <div className="andy-baila-preview">
   <div className="andy-baila-preview-content">
-   <div className="andy-baila-demo-marker">LOMAS BAILA EN COMUNIDAD · VISTA PARCIAL</div>
-   <section className="andy-baila-section">
-    <div className="andy-baila-section-heading"><h4>Modalidades de inscripción</h4><p>Para participar, ambas personas deben tener 18 años o más y autorizar el uso de su imagen. Inscribite online o el día del encuentro.</p></div>
-    <div className="andy-baila-grid andy-baila-grid-two">
-     <div className="andy-baila-info-card"><h5>Inscripción online</h5><strong>Completá el formulario antes del encuentro.</strong><p>Completá el formulario desde la web del Municipio y participá de los encuentros de Lomas Baila.</p></div>
-     <div className="andy-baila-info-card"><h5>Inscripción presencial</h5><strong>Inscribite el mismo día del encuentro.</strong><p>También podés anotarte el mismo día del encuentro, en el espacio donde se realiza la competencia.</p></div>
-    </div>
-   </section>
-   <section className="andy-baila-section">
-    <div className="andy-baila-section-heading"><h4>Premiación</h4><p>Las tres parejas que obtengan los primeros puestos en la gran final recibirán un trofeo. Además, todas las parejas finalistas recibirán un certificado de participación.</p></div>
+   <div className="andy-baila-preview-upper" aria-label="Extracto de tarjetas de premiación">
     <div className="andy-baila-grid andy-baila-grid-three">
      <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="music_note" size={32}/></div><h5>Primer puesto</h5><p>Trofeo para la pareja ganadora del certamen.</p></div>
      <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="music_note" size={32}/></div><h5>Segundo y tercer puesto</h5><p>Trofeos para las parejas que completen el podio.</p></div>
      <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="check_circle" size={32}/></div><h5>Certificado de participación</h5><p>Todas las parejas finalistas recibirán un certificado.</p></div>
     </div>
-   </section>
-   <section className="andy-baila-section andy-baila-questions">
+   </div>
+   <section className="andy-baila-questions" aria-label="Preguntas frecuentes">
     <div className="andy-baila-section-heading"><h4>Preguntas frecuentes</h4><p>Encontrá respuestas sobre la inscripción, los requisitos y las distintas etapas del certamen.</p></div>
     <AccordionDemo questions={lomasBailaQuestions} initiallyOpen={false}/>
    </section>
@@ -404,8 +394,8 @@ function ComponentDetails({id}:{id:ComponentId}){
     ['Comportamiento','Apertura única o múltiple; el botón expone el estado abierto/cerrado con aria-expanded.']
    ]}/>
   </DocSection>
-  <DocSection title="Ejemplo en contexto" description="Recorte del Frame 2392 de Lomas Baila en Comunidad: modalidades de inscripción, premiación, cinco preguntas inicialmente cerradas y footer institucional.">
-   <DocPreview><AccordionInContext/></DocPreview>
+  <DocSection title="Ejemplo en contexto" description="Ejemplo de uso del acordeón.">
+   <AccordionInContext/>
   </DocSection>
  </>;
  return null;
