@@ -25,7 +25,7 @@ export function AndyMunicipalCardGallery() {
   <CardExample title="Noticias" description="Fotografía de 154 px, categoría superpuesta, título, fecha y acción de lectura.">
    <article className="andy-municipal-card andy-municipal-card-news">
     <div className="andy-municipal-card-media">
-     <img className="andy-municipal-card-news-image" src={image("noticia-obras.webp")} alt="Refugio de transporte intervenido en Lomas de Zamora" loading="lazy"/>
+     <img className="andy-municipal-card-news-image" src={image("noticia-obras.jpg")} onError={event=>{event.currentTarget.onerror=null;event.currentTarget.src=image("noticia-obras.webp");}} alt="Refugio de transporte intervenido en Lomas de Zamora" loading="lazy"/>
      <span className="andy-municipal-card-tag">Obras</span>
     </div>
     <div className="andy-municipal-card-content">
