@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import './material-icon-library.css';
 
@@ -673,6 +673,16 @@ export function MaterialIconLibrary(){
  const [category,setCategory]=useState('Todos');
  const [filled,setFilled]=useState(false);
  const [weight,setWeight]=useState<300|400|500>(400);
+ const [weightOpen,setWeightOpen]=useState(false);
+ const weightRef=useRef<HTMLDivElement>(null);
+ useEffect(()=>{
+  if(!weightOpen)return;
+  const onPointer=(event:PointerEvent)=>{if(weightRef.current&&!weightRef.current.contains(event.target as Node))setWeightOpen(false);};
+  const onKey=(event:KeyboardEvent)=>{if(event.key==='Escape')setWeightOpen(false);};
+  document.addEventListener('pointerdown',onPointer);
+  document.addEventListener('keydown',onKey);
+  return()=>{document.removeEventListener('pointerdown',onPointer);document.removeEventListener('keydown',onKey);};
+ },[weightOpen]);
  const [copied,setCopied]=useState<string|null>(null);
  const visible=useMemo(()=>{
   const term=query.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().trim();
@@ -687,9 +697,16 @@ export function MaterialIconLibrary(){
     <MaterialIcon name="search" size={24}/>
    </div>
    <div className="andy-icon-library-options">
-    <div className="andy-select-holder andy-icon-weight-control">
-     <select className="andy-select-trigger" value={weight} onChange={event=>setWeight(Number(event.target.value) as 300|400|500)} aria-label="Peso del icono"><option value={300}>Light · 300</option><option value={400}>Regular · 400</option><option value={500}>Medium · 500</option></select>
-     <MaterialIcon name="expand_more" size={22}/>
+    <div className="kit-sports-filter andy-icon-weight-filter" ref={weightRef}>
+     <button type="button" className={'kit-sports-trigger'+(weightOpen?' is-active':'')} aria-haspopup="listbox" aria-expanded={weightOpen} onClick={()=>setWeightOpen(value=>!value)}>
+      <span className="kit-sports-truncate">{weight===300?'Light · 300':weight===400?'Regular · 400':'Medium · 500'}</span>
+      <MaterialIcon name="expand_more" size={22}/>
+     </button>
+     {weightOpen&&<div className="kit-sports-popover andy-icon-weight-popover" role="listbox" aria-label="Peso del icono">
+      {([{value:300,label:'Light · 300'},{value:400,label:'Regular · 400'},{value:500,label:'Medium · 500'}] as const).map(option=><button type="button" role="option" aria-selected={weight===option.value} key={option.value} className={'kit-sports-option'+(weight===option.value?' is-selected':'')} onClick={()=>{setWeight(option.value);setWeightOpen(false);}}>
+       <span>{option.label}</span>{weight===option.value&&<MaterialIcon name="check" size={20}/>}
+      </button>)}
+     </div>}
     </div>
     <button type="button" className={'andy-btn andy-btn-outline andy-icon-library-fill'+(filled?' is-active':'')} aria-pressed={filled} onClick={()=>setFilled(value=>!value)}><MaterialIcon name="format_paint" size={18}/>{filled?'Relleno activo':'Sin relleno'}</button>
    </div>
