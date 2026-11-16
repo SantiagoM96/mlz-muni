@@ -1245,3 +1245,46 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-nav-component-name{min-width:0}
 .andy-nav-review-mark{display:inline-flex;flex-shrink:0;align-items:center;justify-content:center;color:#236999;opacity:.8}
 .andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-review-mark{color:#fff;opacity:1}
+
+
+/* Ejemplos en contexto: recortes de interfaz sin una card exterior. */
+.andy-doc-page .andy-doc-section:has(> .andy-baila-preview),
+.andy-doc-page .andy-doc-section:has(> .andy-context-screen--fade){gap:var(--mlz-space-16)}
+.andy-doc-page .andy-doc-section>.andy-baila-preview,
+.andy-doc-page .andy-doc-section>.andy-context-screen--fade{border:0;border-radius:0;box-shadow:none;max-width:none}
+.andy-baila-preview{overflow:visible;background:#fff}
+.andy-baila-preview-content{padding:0;gap:var(--mlz-space-24)}
+.andy-baila-preview-upper{background:#f5f7fa;padding:var(--mlz-space-16);border-radius:var(--mlz-radius-lg);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.35) 0%,rgba(0,0,0,.85) 32%,#000 100%);mask-image:linear-gradient(to bottom,rgba(0,0,0,.35) 0%,rgba(0,0,0,.85) 32%,#000 100%)}
+.andy-baila-preview-upper .andy-baila-grid-three{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-12)}
+.andy-baila-preview-upper .andy-baila-prize-card{padding:var(--mlz-space-16);gap:var(--mlz-space-8);border-radius:var(--mlz-radius-lg)}
+.andy-baila-preview-upper .andy-baila-prize-card h5{font-size:16px;line-height:22px}
+.andy-baila-preview-upper .andy-baila-prize-card p{font-size:14px;line-height:20px}
+.andy-baila-preview-upper .andy-baila-prize-icon{width:40px;flex-basis:40px;border-radius:var(--mlz-radius-lg)}
+.andy-baila-preview-upper .andy-baila-prize-icon .material-symbols-outlined{font-size:24px!important}
+.andy-baila-questions{display:flex;flex-direction:column;gap:var(--mlz-space-12);padding:var(--mlz-space-16) 0 var(--mlz-space-8);background:#fff;min-width:0}
+.andy-baila-questions .andy-baila-section-heading h4{font-size:22px;line-height:30px}
+.andy-baila-questions .andy-baila-section-heading p{font-size:16px;line-height:24px}
+.andy-baila-questions .andy-doc-accordion{margin:0;max-width:none}
+.andy-baila-questions .andy-doc-accordion-item>button{font-size:16px;line-height:24px}
+.andy-baila-preview-footer{height:150px;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.72) 40%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.72) 40%,transparent 100%)}
+.andy-baila-preview-footer footer{margin:0!important;padding-top:var(--mlz-space-24)!important}
+.andy-baila-preview-footer footer img{max-height:70px;width:auto;max-width:100%}
+.andy-context-screen--fade{padding:0;background:transparent;overflow:visible}
+.andy-context-fade-top{padding:var(--mlz-space-16) var(--mlz-space-16) 0;-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,.7) 38%,#000 100%);mask-image:linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,.7) 38%,#000 100%)}
+.andy-context-screen--fade .andy-context-screen-heading{margin-bottom:var(--mlz-space-16)}
+.andy-context-screen--fade .andy-context-fields{margin-bottom:var(--mlz-space-16)}
+.andy-context-fade-focus{position:relative;z-index:1;padding-inline:var(--mlz-space-16)}
+.andy-context-fade-focus .andy-alert{max-width:none}
+.andy-context-fade-bottom{padding:0 var(--mlz-space-16) var(--mlz-space-8);-webkit-mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.5) 50%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.5) 50%,transparent 100%)}
+@media(max-width:850px){
+ .andy-baila-preview-content{padding:0;gap:var(--mlz-space-16)}
+ .andy-baila-preview-upper{padding:var(--mlz-space-8)}
+ .andy-baila-preview-upper .andy-baila-grid-three{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-8)}
+ .andy-baila-preview-upper .andy-baila-prize-card{padding:var(--mlz-space-12)}
+}
+@media(max-width:420px){
+ .andy-baila-preview-upper .andy-baila-prize-card{padding:var(--mlz-space-8)}
+ .andy-baila-preview-upper .andy-baila-prize-card h5{font-size:13px;line-height:19px}
+ .andy-baila-preview-upper .andy-baila-prize-card p{font-size:12px;line-height:17px}
+ .andy-context-fade-top,.andy-context-fade-focus,.andy-context-fade-bottom{padding-left:0;padding-right:0}
+}
