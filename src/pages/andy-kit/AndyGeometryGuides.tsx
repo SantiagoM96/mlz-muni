@@ -17,10 +17,10 @@ export function AndySpacingGuide(){
   <div className="andy-geometry-items">
    {mlzSpacing.map(px=><div className="andy-geometry-spacing-row" key={px}>
     <div className="andy-geometry-measure"><strong>{px} px</strong><code>--mlz-space-{px}</code></div>
-    <div className="andy-geometry-track"><span style={{width:px+'px'}}/></div>
+    <div className="andy-geometry-track"><span style={{width:(px*3)+'px'}}/></div>
    </div>)}
   </div>
-  <p className="andy-geometry-guideline">Ejemplos de uso: 4–8 px entre ícono y texto; 8–16 px entre controles; 16–24 px de padding en superficies y 24–32 px entre secciones. Elegir siempre un valor de la escala.</p>
+  <p className="andy-geometry-guideline">La barra representa cada valor a una escala visual de 3× (no es una medida real en pantalla). Ejemplos de uso: 4–8 px entre ícono y texto; 8–16 px entre controles; 16–24 px de padding en superficies y 24–32 px entre secciones. Elegir siempre un valor de la escala.</p>
  </div>;
 }
 export function AndyRadiusGuide(){
@@ -28,7 +28,7 @@ export function AndyRadiusGuide(){
   <p className="andy-geometry-lead">Radios definidos por función: los controles conservan un redondeo moderado, las tarjetas uno mayor y los drawers su forma superior redondeada. No se aplican radios arbitrarios.</p>
   <div className="andy-radius-grid">
    {mlzRadii.map(radius=><div className="andy-radius-tile" key={radius.name}>
-    <div className="andy-radius-illustration"><div style={{borderRadius:radius.value+'px'}}/></div>
+    <div className="andy-radius-illustration"><div style={{borderRadius:radius.value+'px'}}/><span>{radius.value===9999?'Pill':radius.value===0?'Square':radius.value<=4?'Control':radius.value<=8?'Card':'Panel'}</span></div>
     <strong>{radius.name} · {radius.value===9999?'Full':radius.value+' px'}</strong>
     <code>--mlz-radius-{radius.name.toLowerCase()==='2xl'?'2xl':radius.name.toLowerCase()==='small'?'sm':radius.name.toLowerCase()==='medium'?'md':radius.name.toLowerCase()==='large'?'lg':radius.name.toLowerCase()==='none'?'none':radius.name.toLowerCase()==='full'?'full':radius.name.toLowerCase()==='xl'?'xl':'xs'}</code>
     <span>{radius.usage}</span>
