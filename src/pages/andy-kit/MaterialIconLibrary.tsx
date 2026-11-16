@@ -677,6 +677,7 @@ export function MaterialIconLibrary(){
  const weightRef=useRef<HTMLDivElement>(null);
  const categoriesRef=useRef<HTMLDivElement>(null);
  const dragState=useRef<{pointerId:number;startX:number;scrollLeft:number;dragged:boolean}|null>(null);
+ const suppressCategoryClick=useRef(false);
  useEffect(()=>{
   if(!weightOpen)return;
   const onPointer=(event:PointerEvent)=>{if(weightRef.current&&!weightRef.current.contains(event.target as Node))setWeightOpen(false);};
@@ -714,11 +715,11 @@ export function MaterialIconLibrary(){
    </div>
   </div>
   <div className="andy-icon-library-categories" ref={categoriesRef} aria-label="Categorías de iconos"
-   onPointerDown={(event:ReactPointerEvent<HTMLDivElement>)=>{if(event.pointerType==='mouse'&&event.button!==0)return;const el=categoriesRef.current;if(!el)return;dragState.current={pointerId:event.pointerId,startX:event.clientX,scrollLeft:el.scrollLeft,dragged:false};}}
+   onPointerDown={(event:ReactPointerEvent<HTMLDivElement>)=>{if(event.pointerType==='mouse'&&event.button!==0)return;const el=categoriesRef.current;if(!el)return;el.setPointerCapture(event.pointerId);dragState.current={pointerId:event.pointerId,startX:event.clientX,scrollLeft:el.scrollLeft,dragged:false};}}
    onPointerMove={(event:ReactPointerEvent<HTMLDivElement>)=>{const state=dragState.current;const el=categoriesRef.current;if(!state||!el||state.pointerId!==event.pointerId)return;const delta=event.clientX-state.startX;if(Math.abs(delta)>4)state.dragged=true;if(state.dragged){el.scrollLeft=state.scrollLeft-delta;event.preventDefault();}}}
-   onPointerUp={(event:ReactPointerEvent<HTMLDivElement>)=>{if(dragState.current?.pointerId===event.pointerId)dragState.current=null;}}
+   onPointerUp={(event:ReactPointerEvent<HTMLDivElement>)=>{if(dragState.current?.pointerId===event.pointerId){suppressCategoryClick.current=dragState.current.dragged;dragState.current=null;}}}
    onPointerCancel={()=>{dragState.current=null;}}
-   onClickCapture={(event)=>{if(dragState.current?.dragged){event.preventDefault();event.stopPropagation();dragState.current=null;}}}>
+   onClickCapture={(event)=>{if(suppressCategoryClick.current){event.preventDefault();event.stopPropagation();suppressCategoryClick.current=false;}}}>
    {categories.map(item=><button type="button" key={item} className={category===item?'is-active':''} aria-pressed={category===item} onClick={()=>setCategory(item)}>{item}</button>)}
   </div>
   <div className="andy-icon-library-summary"><strong>{visible.length} iconos</strong><span>Material Symbols Outlined · fuente local</span></div>
