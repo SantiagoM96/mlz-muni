@@ -1300,3 +1300,77 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-baila-preview-content{padding:var(--mlz-space-16);background:#fff}
 .andy-context-screen--fade{background:#fff}
 @media(max-width:850px){.andy-baila-preview-content{padding:var(--mlz-space-12)}}
+
+
+/* Figma 2392: desvanecimiento visible desde premiación hasta el encabezado FAQ. */
+.andy-baila-preview-upper{
+  position:relative;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.08) 22%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.8) 83%,#000 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.08) 22%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.8) 83%,#000 100%);
+}
+.andy-baila-preview-upper .andy-baila-prize-icon{
+  width:40px;
+  height:40px;
+  min-width:40px;
+  min-height:40px;
+  flex:0 0 40px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  line-height:1;
+}
+.andy-baila-preview-upper .andy-baila-prize-icon > *,
+.andy-baila-preview-upper .andy-baila-prize-icon .material-symbols-outlined{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  height:24px;
+  margin:0;
+  line-height:1;
+  vertical-align:middle;
+}
+/* El footer muestra la composición institucional y se desvanece después del encabezado y los contactos. */
+.andy-baila-preview-footer{
+  height:300px;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 38%,rgba(0,0,0,.85) 60%,rgba(0,0,0,.35) 82%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 38%,rgba(0,0,0,.85) 60%,rgba(0,0,0,.35) 82%,transparent 100%);
+}
+.andy-baila-preview-footer footer{
+  background:#236999;
+  color:#fff;
+  padding-top:var(--mlz-space-32)!important;
+}
+.andy-baila-preview-footer footer > div{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:var(--mlz-space-16);
+}
+.andy-baila-preview-footer footer img{
+  display:block;
+  width:min(350px,80%);
+  max-height:none;
+  height:auto;
+}
+.andy-baila-preview-footer footer section{
+  display:flex;
+  flex-direction:column;
+  gap:var(--mlz-space-12);
+}
+.andy-baila-preview-footer footer section h2{
+  font-size:20px;
+  line-height:28px;
+  margin:0;
+}
+.andy-baila-preview-footer footer section p{
+  margin:0;
+  font-size:22px;
+  line-height:30px;
+}
+@media(max-width:600px){
+  .andy-baila-preview-footer{height:280px}
+  .andy-baila-preview-footer footer img{width:min(260px,82%)}
+  .andy-baila-preview-footer footer section h2{font-size:18px;line-height:26px}
+  .andy-baila-preview-footer footer section p{font-size:18px;line-height:26px}
+}
