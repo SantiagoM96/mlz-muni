@@ -11,6 +11,7 @@ import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { AndyActivityCard } from './AndyActivityCards';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
+import { AndyMunicipalCardGallery } from './AndyMunicipalCards';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
@@ -122,9 +123,14 @@ function ChipGallery({compact=false}:{compact?:boolean}){
  const [chips,setChips]=useState(['Lunes','Casa Ari','Recreativo']);
  return <div className="andy-chip-demo">{chips.map(t=><span className="andy-chip" key={t}>{t}<button type="button" aria-label={'Quitar '+t} onClick={()=>setChips(v=>v.filter(c=>c!==t))}><Icon name="close" size={18}/></button></span>)}<button type="button" className="andy-chip-clear" onClick={()=>setChips(compact?['Lunes','Casa Ari','Recreativo']:[])}>{compact?'Restablecer':'Limpiar filtros'}</button></div>;
 }
-function Cards(){return <DemoSection title="Tarjetas de actividad · Deportes y Agenda" description="Dos variantes hermanas: Deportes utiliza la banda degradada original (34 px desktop y 32 px mobile) y Agenda conserva su fotografía de 154 px. Comparten tipografía, espaciados, metadatos y tratamiento de bordes.">
- <AndyActivityCardGallery/>
-</DemoSection>}
+function Cards(){return <>
+ <DemoSection title="Tarjetas de actividad · Deportes y Agenda" description="Variantes actuales utilizadas por los productos municipales.">
+  <AndyActivityCardGallery/>
+ </DemoSection>
+ <DemoSection title="Tarjetas municipales · Variantes de referencia" description="Seis patrones derivados de las referencias: noticias, áreas, turnos, trámites, accesos rápidos y eventos. Ejemplos adaptados a la geometría y tipografía MLZ.">
+  <AndyMunicipalCardGallery/>
+ </DemoSection>
+</>}
 function Messages(){return <>
  <DemoSection title="Mensajes destacados" description="Cuatro variantes semánticas de Figma · mensaje_destacado. Mismos tokens para desktop y mobile.">
   <div className="andy-messages">
@@ -270,6 +276,9 @@ function ComponentDetails({id}:{id:ComponentId}){
   <ComponentExample title="Agenda de la Comunidad" description="Fotografía de 154 px y la misma jerarquía interior que Deportes.">
    <div className="andy-single-card-demo"><AndyActivityCard kind="agenda"/></div>
   </ComponentExample>
+  <DocSection title="Variantes de tarjetas municipales" description="Patrones de referencia adaptados al sistema MLZ. Las imágenes y los textos son demostrativos.">
+   <AndyMunicipalCardGallery/>
+  </DocSection>
  </>;
  if(id==='mensaje')return <>
   {notices.map(item=><ComponentExample key={item.id} title={item.title} description="Colores de texto, borde, fondo e ícono tomados del componente mensaje_destacado de Figma.">
