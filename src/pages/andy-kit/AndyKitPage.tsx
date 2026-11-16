@@ -237,7 +237,7 @@ function AccordionInContext(){
     <div className="andy-baila-section-heading"><h4>Premiación</h4><p>Las tres parejas que obtengan los primeros puestos en la gran final recibirán un trofeo. Además, todas las parejas finalistas recibirán un certificado de participación.</p></div>
     <div className="andy-baila-grid andy-baila-grid-three">
      <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="music_note" size={32}/></div><h5>Primer puesto</h5><p>Trofeo para la pareja ganadora del certamen.</p></div>
-     <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="play_circle" size={32}/></div><h5>Segundo y tercer puesto</h5><p>Trofeos para las parejas que completen el podio.</p></div>
+     <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="music_note" size={32}/></div><h5>Segundo y tercer puesto</h5><p>Trofeos para las parejas que completen el podio.</p></div>
      <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="check_circle" size={32}/></div><h5>Certificado de participación</h5><p>Todas las parejas finalistas recibirán un certificado.</p></div>
     </div>
    </section>
