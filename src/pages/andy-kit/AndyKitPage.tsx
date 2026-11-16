@@ -355,9 +355,28 @@ function ComponentDetails({id}:{id:ComponentId}){
  if(id==='mensaje')return <AlertDocs/>;
  if(additionalComponents.some(([key])=>key===id)) return <AndyAdditionalComponent key={id} id={id as typeof additionalComponents[number][0]}/>;
  if(id==='acordeon')return <>
+  <DocSection title="Descripción" description="Accordion organiza información secundaria en paneles expandibles, para que las personas consulten los detalles que necesitan sin sobrecargar la pantalla.">
+   <p className="andy-alert-doc-description">Utilizalo para preguntas frecuentes, aclaraciones sobre requisitos y contenido complementario. Cada encabezado es un botón: permite abrir o cerrar su contenido, funciona con teclado e indica si el panel está expandido. No lo uses para ocultar información imprescindible para completar una tarea.</p>
+  </DocSection>
   <ComponentExample title="Apertura única" description="Solo un panel abierto a la vez."><AccordionDemo/></ComponentExample>
   <ComponentExample title="Apertura múltiple" description="Podés desplegar varios paneles a la vez."><AccordionDemo multiple/></ComponentExample>
   <ComponentExample title="Deshabilitado" description="El segundo ítem, «¿Puedo cambiar el horario?», está deshabilitado; los demás siguen siendo interactivos."><AccordionDemo disabledMiddle/></ComponentExample>
+  <DocSection title="Especificaciones" description="Medidas, espaciados y estados de los acordeones implementados actualmente en el UI Kit MLZ.">
+   <GuidelineTable rows={[
+    ['Ancho','El grupo ocupa hasta 670 px en los ejemplos. Cada encabezado utiliza el 100 % del ancho disponible.'],
+    ['Área clickeable','Altura mínima de 48 px por encabezado, en toda su anchura; sin borde ni relleno de fondo.'],
+    ['Padding del encabezado','16 px horizontales (--mlz-space-16); el contenido se centra verticalmente.'],
+    ['Tipografía del encabezado','Geometria, 16 px / 24 px, peso 700 (bold), color primario #236999.'],
+    ['Chevron','Material Symbols de 24 px, alineado a la derecha. Gira 180° al expandirse el panel.'],
+    ['Separadores','Línea de 1 px (#dbe6ef) entre ítems; también al inicio del primer ítem.'],
+    ['Espaciado entre ítems','8 px arriba y abajo del encabezado (--mlz-space-8).'],
+    ['Contenido expandido','Geometria, 15 px / 24 px. Padding: 8 px arriba y abajo, 16 px a ambos lados.'],
+    ['Hover','Solo se subraya el texto del encabezado; no se aplica fondo ni borde. La zona clickeable no cambia.'],
+    ['Focus visible','Contorno de 2 px, separado 2 px del encabezado, al navegar con teclado.'],
+    ['Deshabilitado','Misma geometría y peso tipográfico; texto e ícono grisados, sin interacción.'],
+    ['Comportamiento','Apertura única o múltiple; el botón expone el estado abierto/cerrado con aria-expanded.']
+   ]}/>
+  </DocSection>
   <DocSection title="Ejemplo en contexto" description="Preguntas frecuentes dentro de la ficha de Natación recreativa, después de la información de sede y horario.">
    <DocPreview><AccordionInContext/></DocPreview>
   </DocSection>
