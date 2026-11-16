@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { ActivityCard } from '../../modules/agenda/components/public/ActivityCard';
 import { agendaActivities } from '../../modules/agenda/data/agenda';
+import { DocPreview, DocSection } from './AndyDocsPrimitives';
 import './andy-activity-cards.css';
 
 /** Dos variaciones del mismo patrón: Deportes conserva su cabecera celeste;
@@ -51,7 +52,11 @@ export function AndyActivityCard({kind}:{kind:CardKind}){
 }
 export function AndyActivityCardGallery(){
  return <div className="andy-family-card-gallery">
-  <div><h4>Deportes Anual</h4><p>Variante con cabecera celeste, sin fotografía.</p><AndyActivityCard kind="sports"/></div>
-  <div><h4>Agenda de la Comunidad</h4><p>Variante con imagen del catálogo público.</p><AndyActivityCard kind="agenda"/></div>
+  <DocSection title="Deportes Anual" description="Cabecera degradada de 34 px y contenido compacto, con metadatos e íconos del producto deportivo.">
+   <DocPreview><div className="andy-single-card-demo"><AndyActivityCard kind="sports"/></div></DocPreview>
+  </DocSection>
+  <DocSection title="Agenda de la Comunidad" description="Fotografía de 154 px y la misma jerarquía interior que Deportes.">
+   <DocPreview><div className="andy-single-card-demo"><AndyActivityCard kind="agenda"/></div></DocPreview>
+  </DocSection>
  </div>;
 }
