@@ -298,7 +298,7 @@ const iconGroups = {
     "location_off",
     "place",
     "map",
-    "map_pin",
+    "location_on",
     "maps_home_work",
     "explore",
     "near_me",
