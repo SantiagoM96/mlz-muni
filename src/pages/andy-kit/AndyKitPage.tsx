@@ -380,6 +380,7 @@ export function AndyKitPage(){
  const [navOpen,setNavOpen]=useState(false);
  const [componentSearch,setComponentSearch]=useState('');
  const [copied,setCopied]=useState(false);
+ const [showBackToTop,setShowBackToTop]=useState(false);
  const normalizedSearch=componentSearch.normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
  const filteredGroups=componentGroups.map(group=>({...group,items:group.items.filter(([id,title])=>!normalizedSearch||[title,id,componentMeta[id].description,group.title].some(value=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(normalizedSearch)))})).filter(group=>group.items.length>0);
  const legacy=categories.find(c=>c.id===(categoria??'fundamentos'));
@@ -392,6 +393,13 @@ export function AndyKitPage(){
  const displayName=isComponent?componentEntry[1]:isDirectory?'Componentes':legacy?.name;
  const meta=isComponent?componentMeta[componentEntry[0]]:null;
  useEffect(()=>{document.title='MLZ UI Kit - Andy'+(displayName?' · '+displayName:'');},[displayName]);
+ useEffect(()=>{
+  const updateVisibility=()=>setShowBackToTop(window.scrollY>360);
+  updateVisibility();
+  window.addEventListener('scroll',updateVisibility,{passive:true});
+  return()=>window.removeEventListener('scroll',updateVisibility);
+ },[]);
+
  if(categoria==='componentes'&&aliasedComponent)return <Navigate to={'/ui-kit-andy/'+aliasedComponent} replace/>;
  if(!isComponent&&!isDirectory&&!legacy)return <Navigate to="/ui-kit-andy/fundamentos" replace/>;
  const Gallery=legacy?views[legacy.id]:null;
@@ -449,6 +457,9 @@ export function AndyKitPage(){
    </main>
    <HeadingToc key={displayName} items={EMPTY_TOC_ITEMS}/>
   </div>
+  <button type="button" className={'andy-back-to-top'+(showBackToTop?' is-visible':'')} aria-label="Volver al inicio de la página" title="Volver arriba" tabIndex={showBackToTop?0:-1} onClick={()=>window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}>
+   <Icon name="arrow_upward" size={22}/>
+  </button>
   <footer className="andy-footer">Catálogo de trabajo. Las demostraciones no registran inscripciones ni modifican datos reales.</footer>
  </div>;
 }
