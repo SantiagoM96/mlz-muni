@@ -142,7 +142,11 @@ function ComponentExample({title,description,children}:{title:string;description
 }
 function AccordionDemo({multiple=false,disabledMiddle=false}:{multiple?:boolean;disabledMiddle?:boolean}){
  const [open,setOpen]=useState<string[]>(['1']);
- const items:[string,string,string][]=[['1','¿Cómo puedo inscribirme?','Elegí una actividad, seleccioná el horario disponible y completá los datos solicitados.'],['2','¿Puedo cambiar el horario?','Podés volver a la ficha de la actividad para elegir otra comisión disponible.'],['3','¿Dónde encuentro la sede?','La dirección y los detalles se muestran en la ficha de cada actividad.']];
+ const items:[string,string,string][]=[
+  ['1','¿Cómo puedo inscribirme?','Elegí la actividad que te interese y revisá los días, horarios y sedes disponibles. Después seleccioná una comisión, completá los datos solicitados y seguí los pasos indicados para finalizar tu preinscripción.'],
+  ['2','¿Puedo cambiar el horario?','Antes de confirmar la preinscripción, podés volver a la ficha de la actividad y elegir otra comisión que tenga cupos disponibles. Revisá el nuevo día y horario para asegurarte de que se ajusten a tu disponibilidad.'],
+  ['3','¿Dónde encuentro la sede?','En la ficha de cada actividad vas a encontrar el nombre de la sede, la dirección y la localidad correspondiente. Consultá esa información antes de inscribirte para comprobar que podés llegar al lugar en el horario elegido.']
+ ];
  return <div className="andy-doc-accordion">{items.map(([id,title,content])=><div className="andy-doc-accordion-item" key={id}>
   <button type="button" disabled={disabledMiddle&&id==='2'} aria-expanded={open.includes(id)} onClick={()=>setOpen(prev=>prev.includes(id)?prev.filter(v=>v!==id):multiple?[...prev,id]:[id])}>
     {title}<Icon name="expand_more" size={24}/>
