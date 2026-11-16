@@ -149,7 +149,7 @@ function AccordionDemo({multiple=false,disabledMiddle=false}:{multiple?:boolean;
  ];
  return <div className="andy-doc-accordion">{items.map(([id,title,content])=><div className="andy-doc-accordion-item" key={id}>
   <button type="button" disabled={disabledMiddle&&id==='2'} aria-expanded={open.includes(id)} onClick={()=>setOpen(prev=>prev.includes(id)?prev.filter(v=>v!==id):multiple?[...prev,id]:[id])}>
-    {title}<Icon name="expand_more" size={24}/>
+    <span className="andy-doc-accordion-trigger-label">{title}</span><Icon name="expand_more" size={24}/>
   </button>{open.includes(id)&&<div className="andy-doc-accordion-content">{content}</div>}
  </div>)}</div>;
 }
