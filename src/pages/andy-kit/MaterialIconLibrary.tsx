@@ -598,7 +598,6 @@ const iconGroups = {
     "ac_unit",
     "mode_heat",
     "air",
-    "air_quality",
     "water_drop",
     "thermostat",
     "energy_savings_leaf",
