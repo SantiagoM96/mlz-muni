@@ -1202,3 +1202,46 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 @media(prefers-reduced-motion:reduce){
  .andy-back-to-top{transition:none}
 }
+
+
+/* Ejemplo contextual del Frame 2392 · Lomas Baila en Comunidad. */
+.andy-baila-preview{width:100%;min-width:0;background:#fff;border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);overflow:hidden;color:#142a3d;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.andy-baila-preview-content{display:flex;flex-direction:column;gap:var(--mlz-space-32);padding:var(--mlz-space-24)}
+.andy-baila-demo-marker{font-size:12px;line-height:20px;font-weight:700;color:#647686;letter-spacing:.035em}
+.andy-baila-section{display:flex;flex-direction:column;gap:var(--mlz-space-16);min-width:0;padding:var(--mlz-space-24);background:#f5f7fa;border-radius:var(--mlz-radius-lg)}
+.andy-baila-section-heading{display:flex;flex-direction:column;gap:var(--mlz-space-8);min-width:0}
+.andy-baila-section-heading h4{margin:0;color:#142a3d;font-size:26px;line-height:34px;font-weight:700}
+.andy-baila-section-heading p{margin:0;font-size:18px;line-height:26px;color:#535353}
+.andy-baila-grid{display:grid;gap:var(--mlz-space-16);width:100%}
+.andy-baila-grid-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.andy-baila-grid-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.andy-baila-info-card,.andy-baila-prize-card{display:flex;flex-direction:column;gap:var(--mlz-space-12);background:#fff;border-radius:var(--mlz-radius-lg);min-width:0;padding:var(--mlz-space-24)}
+.andy-baila-info-card h5,.andy-baila-prize-card h5{margin:0;color:#142a3d;font-size:20px;line-height:28px;font-weight:700}
+.andy-baila-info-card strong{font-size:16px;line-height:24px;font-weight:700}
+.andy-baila-info-card p,.andy-baila-prize-card p{margin:0;color:#535353;font-size:16px;line-height:24px}
+.andy-baila-prize-icon{display:flex;align-items:center;justify-content:center;flex:0 0 56px;width:56px;border-radius:var(--mlz-radius-xl);background:#e7eefd;color:#236999}
+.andy-baila-prize-card:nth-child(1) .andy-baila-prize-icon{background:#ffecf6;color:#e91e63}
+.andy-baila-prize-card:nth-child(3) .andy-baila-prize-icon{background:#fef7da;color:#a37c00}
+.andy-baila-questions{background:#fff;padding-inline:0}
+.andy-baila-questions .andy-doc-accordion{max-width:none;width:100%}
+.andy-baila-questions .andy-doc-accordion-item>button{font-size:18px;line-height:26px}
+.andy-baila-questions .andy-doc-accordion-content{font-size:16px;line-height:24px}
+.andy-baila-preview-footer{min-width:0}
+.andy-baila-preview-footer>footer{margin-top:0!important}
+.andy-baila-preview-footer footer>div{width:100%!important;max-width:none!important;padding-inline:var(--mlz-space-24)!important}
+.andy-baila-preview-footer footer h2{font-size:22px;line-height:30px}
+.andy-baila-preview-footer footer p{overflow-wrap:anywhere}
+.andy-baila-preview-footer footer .text-\[32px\]{font-size:24px}
+@media(max-width:850px){
+ .andy-baila-preview-content{padding:var(--mlz-space-16);gap:var(--mlz-space-24)}
+ .andy-baila-section{padding:var(--mlz-space-16)}
+ .andy-baila-section-heading h4{font-size:22px;line-height:30px}
+ .andy-baila-grid-three{grid-template-columns:1fr}
+ .andy-baila-preview-footer footer>div{padding-inline:var(--mlz-space-16)!important}
+}
+@media(max-width:540px){.andy-baila-grid-two{grid-template-columns:1fr}}
+/* Marca editorial de revisión. Solo Alert y Accordion están verificados. */
+.andy-doc-layout .andy-sidebar .andy-nav-link{justify-content:space-between;gap:var(--mlz-space-8)}
+.andy-nav-component-name{min-width:0}
+.andy-nav-review-mark{display:inline-flex;flex-shrink:0;align-items:center;justify-content:center;color:#236999;opacity:.8}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-review-mark{color:#fff;opacity:1}
