@@ -1374,3 +1374,32 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
   .andy-baila-preview-footer footer section h2{font-size:18px;line-height:26px}
   .andy-baila-preview-footer footer section p{font-size:18px;line-height:26px}
 }
+
+
+/* Ajuste final: la superficie de la web es blanca, pero no está enmarcada. */
+.andy-doc-page .andy-doc-section>.andy-baila-preview,
+.andy-doc-page .andy-doc-section>.andy-context-screen--fade{
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+}
+/* Footer/Sitio de Figma 2392: reutiliza el SiteFooter real y su logo SVG municipal. */
+.andy-baila-preview-footer{height:355px;overflow:hidden;
+ -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 42%,rgba(0,0,0,.85) 67%,transparent 100%);
+ mask-image:linear-gradient(to bottom,#000 0%,#000 42%,rgba(0,0,0,.85) 67%,transparent 100%);
+}
+.andy-baila-preview-footer>footer{margin:0!important;padding:40px 0!important;background:#236999!important;color:#fff!important}
+.andy-baila-preview-footer footer>div{width:100%!important;max-width:1230px!important;padding-inline:16px!important;margin-inline:auto!important;display:flex;flex-direction:column;align-items:flex-start;gap:24px!important}
+.andy-baila-preview-footer footer img[alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad"]{width:min(350px,100%)!important;height:auto!important;max-height:none!important;object-fit:contain;object-position:left center}
+.andy-baila-preview-footer footer section{display:flex;flex-direction:column;align-items:flex-start;gap:16px!important;width:100%}
+.andy-baila-preview-footer footer section h2{font-size:24px!important;line-height:32px!important;font-weight:700;margin:0}
+.andy-baila-preview-footer footer section>div{display:flex;flex-wrap:wrap;gap:16px}
+.andy-baila-preview-footer footer section>div>span{min-height:48px;border-radius:4px}
+.andy-baila-preview-footer footer section>p{display:flex;flex-wrap:wrap;gap:8px;font-size:32px!important;line-height:40px!important;font-weight:700;margin:0}
+@media(max-width:600px){
+ .andy-baila-preview-footer{height:310px}
+ .andy-baila-preview-footer footer>div{gap:16px!important}
+ .andy-baila-preview-footer footer img[alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad"]{width:min(287px,100%)!important}
+ .andy-baila-preview-footer footer section h2{font-size:20px!important;line-height:28px!important}
+ .andy-baila-preview-footer footer section>p{font-size:21px!important;line-height:29px!important}
+}
