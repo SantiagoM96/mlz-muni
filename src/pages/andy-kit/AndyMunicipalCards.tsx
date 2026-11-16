@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import './andy-municipal-cards.css';
 
@@ -6,7 +7,7 @@ const image = (filename:string) => import.meta.env.BASE_URL + 'assets/agenda/' +
 type ReferenceCardProps = {
  title:string;
  description:string;
- children:React.ReactNode;
+ children:ReactNode;
 };
 function ReferenceCard({title,description,children}:ReferenceCardProps){
  return <section className="andy-municipal-card-reference">
