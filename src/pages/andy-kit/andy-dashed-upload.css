@@ -43,10 +43,10 @@
 .andy-single-upload[data-state="disabled"] .andy-dashed-upload-control,
 .andy-single-upload[data-state="disabled"] .andy-dashed-upload-control:hover,
 .andy-single-upload[data-state="disabled"] .andy-dashed-upload-control:focus-within{
- background:#e5f0f9;border-color:#c6dff1;box-shadow:none;cursor:not-allowed;
+ background:#f5f9fc;border-color:#c6dff1;box-shadow:none;cursor:not-allowed;
 }
 .andy-single-upload[data-state="disabled"] .andy-dashed-upload-action,
-.andy-single-upload[data-state="disabled"] .andy-dashed-upload-value{color:#94c6e5}
+.andy-single-upload[data-state="disabled"] .andy-dashed-upload-value{color:#94b6cd}
 .andy-single-upload[data-state] input[type=file]{pointer-events:none}
 .andy-single-upload[data-state] .andy-dashed-upload-control{cursor:default}
 .andy-single-upload[data-state="disabled"] .andy-dashed-upload-control{cursor:not-allowed}
@@ -71,12 +71,12 @@
  box-shadow:none;
  outline:none;
 }
-/* Disabled: superficie más clara y guiones visibles, pero atenuados. */
+/* Disabled: el mismo fondo y trazo que Ícono; se conserva el borde dashed. */
 .andy-single-upload.is-dashed[data-state="disabled"] .andy-dashed-upload-control,
 .andy-single-upload.is-dashed[data-state="disabled"] .andy-dashed-upload-control:hover,
 .andy-single-upload.is-dashed[data-state="disabled"] .andy-dashed-upload-control:focus-within{
  background:#f5f9fc;
- border-color:#94c6e5;
+ border-color:#c6dff1;
  border-style:dashed;
  box-shadow:none;
 }
@@ -114,7 +114,7 @@
 .andy-single-upload .andy-upload-inline-remove:hover{background:#e5f0f9}
 .andy-single-upload .andy-upload-inline-remove:focus-visible{outline:2px solid #006eff;outline-offset:1px}
 .andy-single-upload .andy-upload-inline-remove:disabled{opacity:.5;cursor:default}
-.andy-single-upload[data-state="disabled"] .andy-upload-inline-icon{color:#94c6e5}
+.andy-single-upload[data-state="disabled"] .andy-upload-inline-icon{color:#94b6cd}
 /* El clip conserva Primario 600 incluso en Error; solo borde y feedback son rojos. */
 .andy-single-upload[data-state="error"] .andy-upload-inline-icon,
 .andy-single-upload .andy-dashed-upload-control.is-error .andy-upload-inline-icon{color:var(--color-primary-600,#236999)}
