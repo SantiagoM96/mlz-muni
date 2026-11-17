@@ -468,7 +468,7 @@ export function AndyKitPage(){
      {filteredGroups.map(group=><div className="andy-nav-group" key={group.title}>
       <span className="andy-nav-heading">{group.title}</span>
       {group.items.map(([id,title])=><NavLink key={id} to={'/ui-kit-andy/componentes/'+id} onClick={()=>setNavOpen(false)}
-        className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}><span className="andy-nav-component-name">{title}</span>{(id==='acordeon'||id==='mensaje'||id==='dialog'||id==='alert-dialog'||id==='avatar'||id==='chips')&&<span className="andy-nav-review-mark" title="Componente revisado" aria-label="Revisado"><Icon name="check_circle" size={17}/></span>}</NavLink>)}
+        className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}><span className="andy-nav-component-name">{title}</span>{(id==='acordeon'||id==='mensaje'||id==='dialog'||id==='alert-dialog'||id==='avatar'||id==='chips')&&<span className="andy-nav-review-mark" title="Componente revisado" aria-label="Revisado"><Icon name="check_circle" size={17}/></span>}{id==='breadcrumb'&&<span className="andy-nav-review-mark andy-nav-progress-mark" title="En revisión · pendiente de refinar" aria-label="En revisión"><Icon name="pending_actions" size={17}/></span>}</NavLink>)}
      </div>)}
      <div className="andy-nav-divider"/>
      <div className="andy-nav-group"><span className="andy-nav-heading">Patterns · Composiciones</span>
