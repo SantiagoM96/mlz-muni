@@ -28,3 +28,44 @@
  .andy-doc-section-heading>h3{font-size:20px;line-height:28px}
  .andy-doc-page .andy-doc-section+.andy-doc-section{padding-top:var(--mlz-space-32)}
 }
+
+/* Patrón único para las páginas marcadas como revisadas en la navegación. */
+.andy-doc-page.is-reviewed .andy-doc-demo{
+ padding:var(--mlz-space-40,40px);
+}
+.andy-doc-variant-stack{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-32,32px);
+ width:100%;
+ min-width:0;
+}
+.andy-doc-variant-item{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-12,12px);
+ width:100%;
+ min-width:0;
+}
+.andy-doc-variant-caption{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-4,4px);
+}
+.andy-doc-variant-caption h4{
+ margin:0;
+ color:var(--color-grey-950,#000);
+ font:700 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+}
+.andy-doc-variant-caption p{
+ margin:0;
+ color:var(--color-grey-500,#6d6d6d);
+ font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+ max-width:760px;
+}
+@media(max-width:680px){
+ .andy-doc-page.is-reviewed .andy-doc-demo{
+  padding:var(--mlz-space-24,24px) var(--mlz-space-16,16px);
+ }
+ .andy-doc-variant-stack{gap:var(--mlz-space-24,24px)}
+}

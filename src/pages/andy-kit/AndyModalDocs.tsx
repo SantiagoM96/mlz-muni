@@ -24,17 +24,27 @@ export function AndyAlertDialogDocs(){
   <DocSection title="Descripción" description="Alert Dialog solicita una decisión explícita antes de ejecutar una acción que puede tener consecuencias importantes.">
    <p className="andy-alert-doc-description">Usalo para confirmar acciones sensibles, advertir sobre cambios que no se pueden deshacer o solicitar una respuesta antes de continuar. A diferencia de Dialog, no se cierra al presionar fuera de la ventana; permite confirmar o cancelar con una decisión consciente.</p>
   </DocSection>
-  {examples.map(example=><DocSection key={example.id} title={example.label}
-   description={example.id==='basic'
-    ? 'Alert Dialog solicita una respuesta cuando la acción tiene consecuencias importantes. Probá una confirmación con dos acciones visibles.'
-    : example.description}>
+  <DocSection title="Básico" description="Alert Dialog solicita una respuesta cuando la acción tiene consecuencias importantes. Probá una confirmación con dos acciones visibles.">
    <DocPreview>
     <button type="button" className="andy-system-button is-tertiary is-medium icon-start"
-     onClick={()=>setActive(example.id)}>
-     <MaterialIcon name="visibility" size={18}/>{example.trigger}
+     onClick={()=>setActive('basic')}>
+     <MaterialIcon name="visibility" size={18}/>Abrir confirmación
     </button>
    </DocPreview>
-  </DocSection>)}
+  </DocSection>
+  <DocSection title="Variantes" description="El mismo patrón de confirmación puede ser compacto, incluir iconografía o reforzar una acción destructiva.">
+   <div className="andy-doc-variant-stack">
+    {examples.filter(example=>example.id!=='basic').map(example=><div className="andy-doc-variant-item" key={example.id}>
+     <div className="andy-doc-variant-caption"><h4>{example.label}</h4><p>{example.description}</p></div>
+     <DocPreview>
+      <button type="button" className="andy-system-button is-tertiary is-medium icon-start"
+       onClick={()=>setActive(example.id)}>
+       <MaterialIcon name="visibility" size={18}/>{example.trigger}
+      </button>
+     </DocPreview>
+    </div>)}
+   </div>
+  </DocSection>
   <DocSection title="Anatomía" description="Partes reutilizables del modal, diferenciando estructura de contenido y acciones.">
    <GuidelineTable rows={[
     ['Overlay','Fondo modal que desactiva la interacción con la página.'],
@@ -45,7 +55,17 @@ export function AndyAlertDialogDocs(){
     ['Acción destructiva','Usa la variante de error del producto cuando la consecuencia no puede deshacerse.']
    ]}/>
   </DocSection>
-  <DocSection title="Comportamiento" description="La confirmación requiere una decisión explícita; los controles mantienen la navegación accesible por teclado.">
+  <DocSection title="Especificaciones" description="El tamaño, la composición y las acciones conservan los estilos institucionales del sistema.">
+   <GuidelineTable rows={[
+    ['Tamaños','Default o Small, según la complejidad de la decisión.'],
+    ['Superficie','Panel con overlay; el contenido mantiene título, descripción y acciones.'],
+    ['Acciones','Cancelar y Confirmar, con etiquetas explícitas y jerarquía visual definida.'],
+    ['Iconografía','Material Symbols opcional para reforzar la intención del mensaje.'],
+    ['Destructivo','Confirma consecuencias de alto impacto mediante el estilo de error del sistema.'],
+    ['Mobile','El panel y las acciones se adaptan al espacio disponible.']
+   ]}/>
+  </DocSection>
+  <DocSection title="Comportamiento y accesibilidad" description="La confirmación requiere una decisión explícita; los controles mantienen la navegación accesible por teclado.">
    <GuidelineTable rows={[
     ['Foco','Al abrir, se coloca sobre Cancelar; Tab permanece dentro del diálogo y al cerrar vuelve al disparador.'],
     ['Teclado','Escape cancela; Enter activa solo la acción que tiene el foco.'],
@@ -92,11 +112,16 @@ export function AndyDialogDocs(){
   <DocSection title="Básico" description="Abrí un diálogo para agregar horarios a una actividad deportiva. Los controles siguen los criterios del formulario MLZ.">
    <DocPreview><button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
   </DocSection>
-  {variants.map(variant=><DocSection key={variant.id} title={variant.title} description={variant.description}>
-   <DocPreview><button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open(variant.id)}>
-    <MaterialIcon name="visibility" size={18}/>{variant.trigger}
-   </button></DocPreview>
-  </DocSection>)}
+  <DocSection title="Variantes" description="Distintas composiciones del mismo Dialog: compacto, informativo o con un ícono de apoyo.">
+   <div className="andy-doc-variant-stack">
+    {variants.map(variant=><div className="andy-doc-variant-item" key={variant.id}>
+     <div className="andy-doc-variant-caption"><h4>{variant.title}</h4><p>{variant.description}</p></div>
+     <DocPreview><button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open(variant.id)}>
+      <MaterialIcon name="visibility" size={18}/>{variant.trigger}
+     </button></DocPreview>
+    </div>)}
+   </div>
+  </DocSection>
   <DocSection title="Anatomía" description="Dialog utiliza una estructura reutilizable; los contenidos y campos son propios de cada tarea.">
    <GuidelineTable rows={[
     ['Overlay','Oscurece toda la ventana, incluido el encabezado del UI Kit; el contenido de fondo queda inactivo.'],
@@ -106,7 +131,16 @@ export function AndyDialogDocs(){
     ['Tamaños','Default 480 px, Small 380 px y formulario deportivo hasta 760 px, fluidos en mobile.']
    ]}/>
   </DocSection>
-  <DocSection title="Comportamiento" description="El foco permanece dentro del diálogo, los controles responden al teclado y la acción principal valida los datos.">
+  <DocSection title="Especificaciones" description="Propiedades visuales y composición reutilizadas por las variantes del Dialog.">
+   <GuidelineTable rows={[
+    ['Tamaños','Default 480 px, Small 380 px y formulario deportivo hasta 760 px; fluidos en mobile.'],
+    ['Contenido','Encabezado, descripción, controles opcionales y pie con acciones.'],
+    ['Cierre','Botón X, Cancelar, Escape o clic fuera del panel.'],
+    ['Overlay','Oscurece el fondo e impide interactuar con la pantalla subyacente.'],
+    ['Acciones','Botones institucionales con foco visible y etiquetas claras.']
+   ]}/>
+  </DocSection>
+  <DocSection title="Comportamiento y accesibilidad" description="El foco permanece dentro del diálogo, los controles responden al teclado y la acción principal valida los datos.">
    <GuidelineTable rows={[
     ['Apertura','El disparador indica su acción con texto e ícono. El foco entra al modal.'],
     ['Cerrar','Cancelar, X, Escape o clic sobre el fondo cierran el Dialog sin guardar.'],

@@ -24,6 +24,8 @@ import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalC
 import { componentGroups, componentAliases, componentEntries, componentMeta, type ComponentId } from './andy-kit.registry';
 import './andy-kit.css';
 
+const reviewedComponentIds=new Set<ComponentId>(['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb']);
+
 const categories = [
   { id:'fundamentos', name:'Foundations' },
   { id:'filtros', name:'Search & Filters' },
@@ -163,7 +165,7 @@ function AlertDocs(){return <>
  <DocSection title="Básico" description="Composición de referencia: ícono, título y descripción. Utiliza la misma geometría y colores del mensaje destacado institucional.">
   <DocPreview><AlertExample tone="info" title="Antes de empezar">Revisá los requisitos de la actividad y tené a mano la documentación necesaria. Cuando tengas todo listo, completá los datos de la inscripción.</AlertExample></DocPreview>
  </DocSection>
- <DocSection title="Variantes semánticas" description="La intención del mensaje determina el color y el ícono. No cambies los colores de forma arbitraria: cada variante comunica un significado distinto.">
+ <DocSection title="Variantes" description="La intención del mensaje determina el color y el ícono. No cambies los colores de forma arbitraria: cada variante comunica un significado distinto.">
   <DocPreview>
    <div className="andy-alert-variants">
     <AlertExample tone="info" title="Información">Podés consultar los días, horarios y sedes disponibles antes de comenzar la inscripción.</AlertExample>
@@ -176,6 +178,16 @@ function AlertDocs(){return <>
  <DocSection title="Con acción" description="Sumá una acción cuando el mensaje permita resolver una situación concreta. El botón debe indicar qué sucede al presionarlo.">
   <DocPreview><AlertActionExample/></DocPreview>
  </DocSection>
+
+ <DocSection title="Anatomía" description="Partes comunes del mensaje y función de cada elemento.">
+  <GuidelineTable rows={[
+   ['Contenedor','Superficie que agrupa el contenido informativo y utiliza un tono semántico.'],
+   ['Ícono','Símbolo Material Symbols que comunica el tipo de mensaje.'],
+   ['Título','Descripción corta de la situación, en Geometria Bold.'],
+   ['Descripción','Texto que explica el contexto y la acción que corresponde.'],
+   ['Acción opcional','Botón visible cuando existe una forma concreta de resolver la situación.']
+  ]}/>
+ </DocSection>
  <DocSection title="Especificaciones" description="Valores reales de la implementación actual en el UI Kit. Se documenta la composición compartida y se conserva la paleta semántica ya establecida.">
   <GuidelineTable rows={[
    ['Contenedor','Borde sólido de 1 px; radio de 4 px (--mlz-radius-sm).'],
@@ -187,6 +199,15 @@ function AlertDocs(){return <>
    ['Colores','Info: azul; Success: verde; Warning: amarillo; Error: rojo. Fondo, borde y texto dependen de la variante.'],
    ['Ancho','Fluido hasta el ancho del contenedor; en la preview se limita a 640 px.'],
    ['Acción','Opcional; botón integrado al mensaje, con etiqueta explícita y foco visible.']
+  ]}/>
+ </DocSection>
+ <DocSection title="Comportamiento y accesibilidad" description="Alert comunica información persistente sin interrumpir el flujo ni exigir que se cierre el mensaje.">
+  <GuidelineTable rows={[
+   ['Persistencia','El mensaje permanece visible mientras la información sea relevante; no desaparece automáticamente como un Toast.'],
+   ['Semántica','El ícono y el texto transmiten juntos el significado; no depender solo del color para comunicar el estado.'],
+   ['Acción','Cuando hay botón, su etiqueta describe lo que sucederá y permite activación mediante teclado.'],
+   ['Jerarquía','El mensaje complementa el contenido, sin sustituir errores asociados a campos específicos.'],
+   ['Demostración','El ejemplo con acción simula un resultado sin enviar ni modificar datos reales.']
   ]}/>
  </DocSection>
 </>}
@@ -352,9 +373,31 @@ function ComponentDetails({id}:{id:ComponentId}){
   <DocSection title="Descripción" description="Accordion organiza información secundaria en paneles expandibles, para que las personas consulten los detalles que necesitan sin sobrecargar la pantalla.">
    <p className="andy-alert-doc-description">Utilizalo para preguntas frecuentes, aclaraciones sobre requisitos y contenido complementario. Cada encabezado es un botón: permite abrir o cerrar su contenido, funciona con teclado e indica si el panel está expandido. No lo uses para ocultar información imprescindible para completar una tarea.</p>
   </DocSection>
-  <ComponentExample title="Apertura única" description="Solo un panel abierto a la vez."><AccordionDemo/></ComponentExample>
-  <ComponentExample title="Apertura múltiple" description="Podés desplegar varios paneles a la vez."><AccordionDemo multiple/></ComponentExample>
-  <ComponentExample title="Deshabilitado" description="El segundo ítem, «¿Puedo cambiar el horario?», está deshabilitado; los demás siguen siendo interactivos."><AccordionDemo disabledMiddle/></ComponentExample>
+  <DocSection title="Básico" description="Apertura única: un panel abierto a la vez, con encabezados interactivos y chevron de estado.">
+   <DocPreview><AccordionDemo/></DocPreview>
+  </DocSection>
+  <DocSection title="Variantes" description="La estructura se conserva; únicamente cambian la cantidad de paneles abiertos y la disponibilidad de cada uno.">
+   <div className="andy-doc-variant-stack">
+    <div className="andy-doc-variant-item">
+     <div className="andy-doc-variant-caption"><h4>Apertura múltiple</h4><p>Podés desplegar varios paneles a la vez.</p></div>
+     <DocPreview><AccordionDemo multiple/></DocPreview>
+    </div>
+    <div className="andy-doc-variant-item">
+     <div className="andy-doc-variant-caption"><h4>Deshabilitado</h4><p>El segundo ítem, «¿Puedo cambiar el horario?», está deshabilitado; los demás siguen siendo interactivos.</p></div>
+     <DocPreview><AccordionDemo disabledMiddle/></DocPreview>
+    </div>
+   </div>
+  </DocSection>
+  <DocSection title="Anatomía" description="Partes estructurales presentes en todas las variantes del acordeón.">
+   <GuidelineTable rows={[
+    ['Grupo','Contenedor que organiza los paneles relacionados.'],
+    ['Encabezado','Botón que ocupa toda la anchura y expone aria-expanded.'],
+    ['Etiqueta','Pregunta o título que explica el contenido disponible.'],
+    ['Indicador','Chevron al extremo derecho; indica si el panel está expandido.'],
+    ['Panel','Contenido mostrado bajo el encabezado cuando se expande.'],
+    ['Separadores','Líneas que distinguen ítems sin añadir tarjetas anidadas.']
+   ]}/>
+  </DocSection>
   <DocSection title="Especificaciones" description="Medidas, espaciados y estados de los acordeones implementados actualmente en el UI Kit MLZ.">
    <GuidelineTable rows={[
     ['Ancho','El grupo ocupa hasta 670 px en los ejemplos. Cada encabezado utiliza el 100 % del ancho disponible.'],
@@ -369,6 +412,16 @@ function ComponentDetails({id}:{id:ComponentId}){
     ['Focus visible','Contorno de 2 px, separado 2 px del encabezado, al navegar con teclado.'],
     ['Deshabilitado','Misma geometría y peso tipográfico; texto e ícono grisados, sin interacción.'],
     ['Comportamiento','Apertura única o múltiple; el botón expone el estado abierto/cerrado con aria-expanded.']
+   ]}/>
+  </DocSection>
+  <DocSection title="Comportamiento y accesibilidad" description="Las variantes comparten manejo de teclado, estados y reglas de uso.">
+   <GuidelineTable rows={[
+    ['Apertura única','Al abrir un panel, se cierra el anterior.'],
+    ['Apertura múltiple','Cada panel se abre y se cierra de forma independiente.'],
+    ['Teclado','Enter y Espacio activan el encabezado; Tab recorre los botones disponibles.'],
+    ['Estado','El botón informa abierto o cerrado mediante aria-expanded.'],
+    ['Deshabilitado','El botón no recibe clics ni responde al teclado mientras está deshabilitado.'],
+    ['Contenido','No ocultar información imprescindible para completar una gestión.']
    ]}/>
   </DocSection>
  </>;
@@ -468,7 +521,7 @@ export function AndyKitPage(){
      {filteredGroups.map(group=><div className="andy-nav-group" key={group.title}>
       <span className="andy-nav-heading">{group.title}</span>
       {group.items.map(([id,title])=><NavLink key={id} to={'/ui-kit-andy/componentes/'+id} onClick={()=>setNavOpen(false)}
-        className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}><span className="andy-nav-component-name">{title}</span>{(id==='acordeon'||id==='mensaje'||id==='dialog'||id==='alert-dialog'||id==='avatar'||id==='chips'||id==='breadcrumb')&&<span className="andy-nav-review-mark" title="Componente revisado" aria-label="Revisado"><Icon name="check_circle" size={17}/></span>}</NavLink>)}
+        className={({isActive})=>'andy-nav-link'+(isActive?' active':'')}><span className="andy-nav-component-name">{title}</span>{reviewedComponentIds.has(id)&&<span className="andy-nav-review-mark" title="Componente revisado" aria-label="Revisado"><Icon name="check_circle" size={17}/></span>}</NavLink>)}
      </div>)}
      <div className="andy-nav-divider"/>
      <div className="andy-nav-group"><span className="andy-nav-heading">Patterns · Composiciones</span>
@@ -484,7 +537,7 @@ export function AndyKitPage(){
      {isComponent&&<div className="andy-doc-page-actions"><button type="button" onClick={()=>{void navigator.clipboard?.writeText(window.location.href).then(()=>setCopied(true)).catch(()=>setCopied(false))}}><Icon name="content_copy" size={18}/>{copied?'Copiado':'Copiar enlace'}</button><span className="andy-doc-step-links">{previousComponent&&<NavLink to={'/ui-kit-andy/componentes/'+previousComponent[0]} aria-label={'Componente anterior: '+previousComponent[1]}><Icon name="arrow_back" size={20}/></NavLink>}{nextComponent&&<NavLink to={'/ui-kit-andy/componentes/'+nextComponent[0]} aria-label={'Componente siguiente: '+nextComponent[1]}><Icon name="arrow_forward" size={20}/></NavLink>}</span></div>}
      {meta&&<div className="andy-doc-description">{meta.description}</div>}
     </div>
-    {isComponent?<div className="andy-doc-page"><ComponentDetails id={componentEntry[0]}/></div>:
+    {isComponent?<div className={'andy-doc-page'+(reviewedComponentIds.has(componentEntry[0])?' is-reviewed':'')}><ComponentDetails id={componentEntry[0]}/></div>:
      isDirectory?<div className="andy-component-directory">{componentGroups.map(group=><section key={group.title}>
        <h3>{group.title}</h3><div className="andy-directory-grid">{group.items.map(([id,title])=><NavLink to={'/ui-kit-andy/componentes/'+id} key={id}>
         <strong>{title}</strong><span>{componentMeta[id].description}</span><Icon name="chevron_right" size={24}/>

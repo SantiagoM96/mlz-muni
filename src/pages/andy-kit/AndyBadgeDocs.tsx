@@ -145,7 +145,7 @@ function ChipGallery(){
 export function AndyBadgeDocs(){
  return <>
   <DocSection title="Descripción" description="Badge identifica estados, categorías o información breve. Es informativo por defecto; las acciones y la navegación se implementan con elementos semánticos diferentes.">{null}</DocSection>
-  <DocSection title="Apariencias" description="Elegí entre Fondo suave, Outline, Solid y Ghost. Cada presentación usa los mismos tokens de color institucionales.">
+  <DocSection title="Variantes" description="Elegí entre Fondo suave, Outline, Solid y Ghost. Cada presentación usa los mismos tokens de color institucionales.">
    <BadgeAppearanceDemo/>
   </DocSection>
   <DocSection title="Colores" description="Los siete colores del Design System en dos filas: fondo pleno arriba y fondo suave abajo. Todos en tamaño Mediano (28 px).">
@@ -157,7 +157,7 @@ export function AndyBadgeDocs(){
   <DocSection title="Íconos" description="Visualizá Material Symbols Outlined a la izquierda, a la derecha o sin ícono.">
    <BadgeIconDemo/>
   </DocSection>
-  <DocSection title="Con spinner" description="Un indicador de operación en curso acompaña el texto. No comunica por sí solo un porcentaje de avance.">
+  <DocSection title="Loading / Spinner" description="Un indicador de operación en curso acompaña el texto. No comunica por sí solo un porcentaje de avance.">
    <SpinnerGallery/>
   </DocSection>
   <DocSection title="Como enlace" description="Para navegar, el Badge debe renderizar un enlace real, con destino, foco visible y respuesta al teclado.">
@@ -189,7 +189,7 @@ export function AndyBadgeDocs(){
     ['Vista previa','Una única caja blanca con al menos 40 px de padding; controles de ejemplo por fuera y encima.'],
    ]}/>
   </DocSection>
-  <DocSection title="Comportamiento" description="Badge comunica información; solo las composiciones explícitamente interactivas responden a acciones.">
+  <DocSection title="Comportamiento y accesibilidad" description="Badge comunica información; solo las composiciones explícitamente interactivas responden a acciones.">
    <GuidelineTable rows={[
     ['Informativo','Usar span, sin hover de botón ni foco de teclado. El color complementa el texto.'],
     ['Como enlace','Usar un enlace real, subrayado en hover y foco visible de 2 px, sin simular un botón.'],
