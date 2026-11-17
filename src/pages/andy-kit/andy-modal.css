@@ -75,3 +75,29 @@
  .andy-modal.is-schedule .andy-modal-footer{width:calc(100% + 2 * var(--mlz-space-16));margin-inline:calc(-1 * var(--mlz-space-16));margin-top:var(--mlz-space-4);padding:var(--mlz-space-24) var(--mlz-space-16) 0}
  .andy-modal-footer .andy-system-button{width:100%}
 }
+
+
+/* Footer compartido: Dialog y Alert Dialog usan el separador y
+   la banda de acciones a todo el ancho, como Agregar horario. */
+.andy-modal .andy-modal-content{--andy-modal-gutter:28px}
+.andy-modal.is-sm .andy-modal-content,
+.andy-modal.is-schedule .andy-modal-content{--andy-modal-gutter:24px}
+.andy-modal .andy-modal-footer,
+.andy-modal.is-schedule .andy-modal-footer{
+ box-sizing:border-box;
+ width:calc(100% + (2 * var(--andy-modal-gutter)));
+ margin-inline:calc(-1 * var(--andy-modal-gutter));
+ padding:var(--mlz-space-24) var(--andy-modal-gutter) 0;
+ border-top:1px solid var(--color-divider,#e1e7eb);
+}
+@media(max-width:530px){
+ .andy-modal .andy-modal-content,
+ .andy-modal.is-sm .andy-modal-content{--andy-modal-gutter:18px}
+ .andy-modal.is-schedule .andy-modal-content{--andy-modal-gutter:16px}
+ .andy-modal .andy-modal-footer,
+ .andy-modal.is-schedule .andy-modal-footer{
+  width:calc(100% + (2 * var(--andy-modal-gutter)));
+  margin-inline:calc(-1 * var(--andy-modal-gutter));
+  padding:var(--mlz-space-24) var(--andy-modal-gutter) 0;
+ }
+}
