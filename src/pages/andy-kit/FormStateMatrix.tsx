@@ -32,7 +32,7 @@ function StateCell({children, state, title, note}:{children:ReactNode;state:Fiel
 function StateField({family, state}:{family:Family;state:FieldState}) {
   const [value,setValue]=useState('');
   const isDone=state==='completed',isError=state==='error',isDisabled=state==='disabled';
-  const label=family==='text'?'Nombre y apellido':family==='dropdown'?'Tipo de documento':family==='textarea'?'Observaciones':family==='date'?'Fecha de nacimiento':'Documentación adjunta';
+  const label=family==='text'?'Nombre y apellido':family==='dropdown'?'Tipo de documento':family==='textarea'?'Observaciones (opcional)':family==='date'?'Fecha de nacimiento':'Documentación adjunta';
   const content=isDone?(family==='text'?'María González':family==='dropdown'?'DNI':family==='textarea'?'Información adicional de la inscripción':family==='date'?'15/06/2000':'documentacion.pdf'):'';
   return <div className="andy-matrix-field">
     <label className="andy-matrix-field-label">{label}</label>
@@ -57,7 +57,8 @@ function StateField({family, state}:{family:Family;state:FieldState}) {
 }
 export function FormStateMatrix({onlyFamily,showExtras=true}:{onlyFamily?:Family;showExtras?:boolean}={}){
  return <div className="andy-state-matrix">
-  {!onlyFamily&&<p className="andy-matrix-intro">Cada familia aparece una sola vez, con sus seis estados simultáneos para comparar bordes, fondos, íconos, textos y dimensiones. El dropdown incluye además sus cuatro variantes abiertas e interactivas.</p>}
+  {(onlyFamily==='text'||onlyFamily==='dropdown')&&<p className="andy-matrix-intro">Convención de obligatoriedad: los campos sin aclaración son obligatorios. Solo los campos no requeridos agregan «(opcional)» después del nombre, con la misma tipografía y color del label. No se utilizan asteriscos.</p>}
+  {!onlyFamily&&<p className="andy-matrix-intro">Cada familia aparece una sola vez, con sus seis estados simultáneos para comparar bordes, fondos, íconos, textos y dimensiones. Los campos obligatorios no llevan asterisco; los no requeridos se identifican con «(opcional)» en el mismo estilo del label. El dropdown incluye además sus cuatro variantes abiertas e interactivas.</p>}
   {families.filter(family=>!onlyFamily||family.id===onlyFamily).map(family=><section key={family.id} className="andy-matrix-family">
     <div className="andy-matrix-family-head"><h3>{family.name}</h3><span>{family.desc}</span></div>
     <div className="andy-matrix-grid">
