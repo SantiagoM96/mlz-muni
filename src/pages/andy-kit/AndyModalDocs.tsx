@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { AndyModal, type ModalIntent, type ModalSize } from './AndyModal';
+import { AndyScheduleDialogForm, defaultSchedule, type ScheduleDraft } from './AndyScheduleDialogForm';
 import './andy-modal-docs.css';
 
 type AlertVariant = 'basic' | 'small' | 'media' | 'small-media' | 'destructive';
@@ -59,53 +60,66 @@ export function AndyAlertDialogDocs(){
  </>;
 }
 
-type DialogVariant = 'standard' | 'compact' | 'form' | 'media';
+type DialogVariant = 'schedule' | 'compact' | 'details' | 'media';
 export function AndyDialogDocs(){
  const [active,setActive]=useState<DialogVariant|null>(null);
- const [name,setName]=useState('Centro cultural');
+ const [draft,setDraft]=useState<ScheduleDraft>(defaultSchedule);
+ const [error,setError]=useState('');
  const [result,setResult]=useState<string|null>(null);
- const close=()=>setActive(null);
+ const close=()=>{setActive(null);setError('');};
+ const open=(variant:DialogVariant)=>{setError('');if(variant==='schedule')setDraft(defaultSchedule);setActive(variant);};
+ const save=()=>{
+  if(active==='schedule'){
+   if(!draft.activity.trim()||draft.days.length===0){setError('Completá la actividad y seleccioná al menos un día.');return;}
+   const [startH,startM]=draft.start.split(':').map(Number);
+   const [endH,endM]=draft.end.split(':').map(Number);
+   if((endH??0)*60+(endM??0)<=(startH??0)*60+(startM??0)){setError('La hora de finalización debe ser posterior al inicio.');return;}
+   if(draft.capacity!==''&&(!Number.isInteger(Number(draft.capacity))||Number(draft.capacity)<1)){setError('Ingresá un número válido de cupos.');return;}
+   setResult('Horario agregado a esta demostración: '+draft.days.join(', ')+' de '+draft.start+' a '+draft.end+'. No se guardaron datos reales.');
+  }else setResult('Diálogo cerrado. No se modificaron datos reales.');
+  close();
+ };
  const variants=[
-  {id:'standard' as const,label:'Básico',desc:'Título, descripción, acciones y cierre opcional.',trigger:'Abrir diálogo'},
-  {id:'compact' as const,label:'Small',desc:'Tamaño reducido para información breve.',trigger:'Abrir small'},
-  {id:'form' as const,label:'Con formulario',desc:'Permite editar información sin abandonar la página.',trigger:'Editar registro'},
-  {id:'media' as const,label:'Con iconografía',desc:'El ícono acompaña el contenido sin reemplazar el título.',trigger:'Abrir con ícono'}
+  {id:'schedule' as const,label:'Agregar horarios deportivos',desc:'Formulario completo, con días, horarios, duración, cupos y sede.',trigger:'Agregar horario'},
+  {id:'compact' as const,label:'Small',desc:'Tamaño reducido para información breve.',trigger:'Ver small'},
+  {id:'details' as const,label:'Detalle informativo',desc:'Contenido sencillo con cierre y acción principal.',trigger:'Ver detalle'},
+  {id:'media' as const,label:'Con iconografía',desc:'Un ícono acompaña el contenido y refuerza la orientación.',trigger:'Ver con ícono'}
  ];
  return <>
-  <DocSection title="Básico" description="Dialog sirve para mostrar información o completar una tarea modal sin salir de la pantalla.">
-   <DocPreview><button type="button" className="andy-modal-trigger" onClick={()=>setActive('standard')}>Abrir diálogo</button></DocPreview>
+  <DocSection title="Básico" description="Abrí un diálogo para agregar horarios a una actividad deportiva. Los controles siguen los criterios del formulario MLZ.">
+   <DocPreview><button type="button" className="andy-modal-trigger" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario <MaterialIcon name="open_in_new" size={18}/></button></DocPreview>
   </DocSection>
-  <DocSection title="Variantes" description="Composiciones del mismo componente, con tamaños y contenido adaptados al caso de uso.">
+  <DocSection title="Variantes" description="El formulario deportivo es la referencia principal. Las variantes adicionales muestran tamaños y composiciones de Dialog.">
    <div className="andy-modal-variant-list">{variants.map(v=><div className="andy-modal-variant" key={v.id}>
     <div className="andy-modal-variant-info"><div><strong>{v.label}</strong><p>{v.desc}</p></div></div>
-    <button type="button" className="andy-modal-trigger is-outline" onClick={()=>setActive(v.id)}>{v.trigger}</button>
+    <button type="button" className="andy-modal-trigger is-outline" onClick={()=>open(v.id)}><MaterialIcon name={v.id==='schedule'?'add_circle':'open_in_new'} size={18}/>{v.trigger}</button>
    </div>)}</div>
   </DocSection>
-  <DocSection title="Anatomía" description="Estructura compartida con Alert Dialog, con cierre opcional y contenido interactivo.">
+  <DocSection title="Anatomía" description="Dialog utiliza una estructura reutilizable; los contenidos y campos son propios de cada tarea.">
    <GuidelineTable rows={[
-    ['Overlay','Capa que bloquea la interacción con el resto de la página.'],
-    ['Header','Título, descripción y botón opcional de cerrar.'],
-    ['Content','Puede contener texto, campos y elementos interactivos.'],
-    ['Footer','Acciones alineadas al final del panel.'],
-    ['Tamaños','Default hasta 480 px y Small hasta 380 px; ambos son fluidos en mobile.']
+    ['Overlay','Oscurece toda la ventana, incluido el encabezado del UI Kit; el contenido de fondo queda inactivo.'],
+    ['Header','Título, descripción y botón explícito de cerrar.'],
+    ['Content','Campos, selección de días, opciones de horario y cualquier contenido de la tarea.'],
+    ['Footer','Cancelar y acción principal; botones del sistema municipal.'],
+    ['Tamaños','Default 480 px, Small 380 px y formulario deportivo hasta 640 px, fluidos en mobile.']
    ]}/>
   </DocSection>
-  <DocSection title="Comportamiento" description="Cierre con botón, Escape o clic fuera del panel; el foco se mantiene dentro del modal mientras está abierto.">
+  <DocSection title="Comportamiento" description="El foco permanece dentro del diálogo, los controles responden al teclado y la acción principal valida los datos.">
    <GuidelineTable rows={[
-    ['Apertura','El foco entra al diálogo y el contenido de fondo queda inactivo.'],
-    ['Salida','Se puede cancelar desde la X, Cancelar, Escape o el fondo.'],
-    ['Foco','El foco retorna al botón que abrió el modal.'],
-    ['Contenido largo','El contenido se desplaza dentro del panel, respetando el alto disponible.']
+    ['Apertura','El disparador indica su acción con texto e ícono. El foco entra al modal.'],
+    ['Cerrar','Cancelar, X, Escape o clic sobre el fondo cierran el Dialog sin guardar.'],
+    ['Horario','Cambiar hora de inicio recalcula finalización; cambiar duración recalcula finalización.'],
+    ['Validación','Se requiere actividad, al menos un día y horario de finalización posterior al inicio.'],
+    ['Entorno','Esta demostración no envía ni persiste información.']
    ]}/>
   </DocSection>
   {result&&<p className="andy-modal-result" role="status">{result}</p>}
-  {active&&<AndyModal open={true} kind="dialog" size={active==='compact'?'sm':'default'}
-   title={active==='form'?'Editar nombre de la sede':active==='compact'?'Información de actividad':active==='media'?'Detalle de la inscripción':'Detalle de actividad'}
-   description={active==='form'?'Podés actualizar el nombre de esta sede.':active==='compact'?'Los detalles de la actividad se muestran en una ventana compacta.':active==='media'?'Revisá la información antes de continuar.':'Esta ventana permite revisar información sin abandonar la página.'}
+  {active&&<AndyModal open={true} kind="dialog" schedule={active==='schedule'} size={active==='compact'?'sm':'default'}
+   title={active==='schedule'?'Agregar horario':active==='compact'?'Información de actividad':active==='media'?'Detalle de la inscripción':'Detalle de actividad'}
+   description={active==='schedule'?'Definí los días, la franja horaria y los cupos disponibles para esta actividad.':active==='compact'?'Revisá esta información sin salir de la pantalla.':active==='media'?'Consultá los datos antes de continuar.':'Podés revisar información sin abandonar la página.'}
    media={active==='media'?'info':undefined}
-   confirmLabel={active==='form'?'Guardar cambios':'Entendido'}
-   onClose={close}
-   onConfirm={()=>{setResult(active==='form'?'Nombre actualizado en esta demostración: '+name+'.':'Diálogo cerrado.');close();}}
-  >{active==='form'&&<label htmlFor="andy-modal-venue">Nombre de la sede<input id="andy-modal-venue" value={name} onChange={e=>setName(e.target.value)}/></label>}</AndyModal>}
+   confirmLabel={active==='schedule'?'Agregar horario':'Entendido'}
+   onClose={close} onConfirm={save}
+  >{active==='schedule'&&<AndyScheduleDialogForm value={draft} onChange={setDraft} error={error}/>}</AndyModal>}
  </>;
 }
