@@ -87,7 +87,7 @@ export function AndyDialogDocs(){
  ];
  return <>
   <DocSection title="Básico" description="Abrí un diálogo para agregar horarios a una actividad deportiva. Los controles siguen los criterios del formulario MLZ.">
-   <DocPreview><button type="button" className="andy-system-button is-primary is-medium icon-start" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
+   <DocPreview><button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
   </DocSection>
   {variants.map(variant=><DocSection key={variant.id} title={variant.title} description={variant.description}>
    <DocPreview><button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open(variant.id)}>
