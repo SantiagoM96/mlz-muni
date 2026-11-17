@@ -47,3 +47,18 @@
 .andy-attachment-lifecycle.is-list .andy-attachment-lifecycle-row{border-color:#e1e7eb;border-radius:var(--mlz-radius-lg)}
 .andy-attachment-lifecycle.is-list .andy-attachment-lifecycle-row.is-error{border-color:#ef284c}
 @media(max-width:440px){.andy-attachment-lifecycle-row{padding:var(--mlz-space-8);gap:var(--mlz-space-4)}.andy-attachment-lifecycle-media{width:36px;height:36px;flex-basis:36px}}
+
+
+/* Attachment · variante Ícono: un solo campo clickeable, alineado con
+   los controles del sistema. La fila seleccionada conserva acciones independientes. */
+.andy-icon-upload{width:min(100%,640px);display:flex;flex-direction:column;gap:8px;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.andy-icon-upload-trigger{display:flex;align-items:center;gap:12px;position:relative;width:100%;min-height:64px;padding:8px 12px;box-sizing:border-box;border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm);background:#fff;cursor:pointer;transition:border-color .14s ease,background-color .14s ease,box-shadow .14s ease}
+.andy-icon-upload-trigger:hover{border-color:#236999;background:#fafcfe}
+.andy-icon-upload-trigger:focus-within{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-icon-upload-trigger .andy-attachment-lifecycle-media{pointer-events:none}
+.andy-icon-upload-trigger-copy{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;pointer-events:none}
+.andy-icon-upload-trigger-copy strong{color:#236999;font-size:14px;line-height:20px;font-weight:700}
+.andy-icon-upload-trigger-copy>span{color:#8795a2;font-size:12px;line-height:18px}
+.andy-icon-upload-trigger input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
+.andy-icon-upload>.andy-attachment-lifecycle-row{border-radius:var(--mlz-radius-sm)}
+.andy-icon-upload>.andy-attachment-lifecycle-row.is-error{border-color:#ef284c}
