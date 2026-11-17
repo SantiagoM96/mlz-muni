@@ -1,8 +1,9 @@
 /* Breadcrumbs institucionales. No intervenir en el ancho/layout del producto. */
 .mlz-breadcrumb{
- --breadcrumb-link:#236999;
- --breadcrumb-current:#3d3d3d;
- --breadcrumb-muted:#6d6d6d;
+ /* Todo el texto y la iconografía del Breadcrumb usan Primario 600. */
+ --breadcrumb-link:var(--color-primary-600,#236999);
+ --breadcrumb-current:var(--color-primary-600,#236999);
+ --breadcrumb-muted:var(--color-primary-600,#236999);
  position:relative;
  box-sizing:border-box;
  width:100%;
@@ -12,7 +13,6 @@
  line-height:24px;
  color:var(--breadcrumb-current);
 }
-.mlz-breadcrumb.is-neutral{--breadcrumb-link:#6d6d6d}
 .mlz-breadcrumb-list{
  display:flex;
  align-items:center;

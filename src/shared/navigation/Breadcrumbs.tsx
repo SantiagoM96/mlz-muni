@@ -14,7 +14,7 @@ export type BreadcrumbSeparator = 'chevron' | 'slash' | 'dot';
 export interface BreadcrumbsProps {
   items: readonly BreadcrumbItem[];
   className?: string;
-  /** Links en Primario 600 o variante neutral. El último nivel siempre es texto informativo. */
+  /** @deprecated Se conserva por compatibilidad; el Breadcrumb institucional usa siempre Primario 600. */
   tone?: 'primary' | 'neutral';
   /** Mostrar solo el vínculo al padre en mobile, evitando truncar la página actual. */
   mobileParentOnly?: boolean;

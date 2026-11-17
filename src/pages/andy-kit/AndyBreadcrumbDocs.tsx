@@ -125,13 +125,13 @@ export function AndyBreadcrumbDocs(){
   <DocSection title="Especificaciones" description="Reglas visuales del Breadcrumb institucional, reutilizadas en el producto y en esta documentación.">
    <GuidelineTable rows={[
     ['Tipografía','Geometria 18 px / 24 px; enlaces en peso 500 y página actual en 700.'],
-    ['Color de enlaces','Primario 600 (#236999); la variante tone="neutral" permite enlaces Grey 500.'],
-    ['Color de página actual','Natural/Grey 900 (#3D3D3D); no confundirla con un enlace.'],
-    ['Separadores','Material Symbols Outlined de 20 px, peso 400; color Grey 500 (#6D6D6D).'],
+    ['Color de enlaces','Primario 600 (#236999) en todos los niveles, incluidos los vínculos visitados y el enlace móvil Volver.'],
+    ['Color de página actual','Primario 600 (#236999), peso 700 para diferenciarla de los enlaces de peso 500.'],
+    ['Separadores','Material Symbols Outlined de 20 px, peso 400; siempre Primario 600 (#236999).'],
     ['Espaciado','8 px entre elementos y dentro de cada nivel; basado en --mlz-space-8.'],
     ['Opciones de separador','chevron (predeterminado), slash y dot.'],
     ['Colapsado','Disponible a partir de cinco niveles; conserva Inicio, padre y página actual visibles.'],
-    ['Menú','Contenedor de fondo blanco, radio 8 px, borde Grey 200 y foco visible de 2 px.'],
+    ['Menú','Contenedor de fondo blanco, radio 8 px, borde Grey 200; textos e ícono en Primario 600 y foco visible de 2 px.'],
     ['Responsive','Por debajo de 640 px, «Volver» sustituye la ruta cuando mobileParentOnly está activo y existe padre navegable.'],
     ['Ejemplos','Un solo contenedor blanco; controles grises por fuera, debajo de la descripción.'],
    ]}/>
