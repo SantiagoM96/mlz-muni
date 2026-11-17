@@ -1944,3 +1944,74 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-section-head>p{font-size:18px;line-height:28px}
 .andy-doc-layout .andy-sidebar .andy-nav-link{font-size:16px;line-height:24px;min-height:40px}
 .andy-doc-layout .andy-doc-toc nav a{font-size:14px;line-height:22px}
+
+
+/* Navegación del catálogo — jerarquía editorial Natural Black 950. */
+.andy-doc-layout .andy-sidebar .andy-nav-heading,
+.andy-doc-layout .andy-sidebar .andy-nav-label{
+ text-transform:uppercase;
+ color:#000;
+ font-weight:700;
+ letter-spacing:.02em;
+}
+
+/* Índice derecho: hover subrayado regular, activo subrayado bold.
+   Se conserva toda el área de interacción sin pintura de fondo. */
+.andy-doc-layout .andy-doc-toc nav a,
+.andy-doc-layout .andy-doc-toc nav a:hover,
+.andy-doc-layout .andy-doc-toc nav a:active,
+.andy-doc-layout .andy-doc-toc nav a:focus-visible{
+ background:transparent;
+ border:0;
+}
+.andy-doc-layout .andy-doc-toc nav a:not(.is-active):not([aria-current=location]){
+ font-weight:400;
+ text-decoration:none;
+}
+.andy-doc-layout .andy-doc-toc nav a:hover:not(.is-active):not([aria-current=location]),
+.andy-doc-layout .andy-doc-toc nav a:focus-visible:not(.is-active):not([aria-current=location]){
+ background:transparent;
+ color:#000;
+ font-weight:400;
+ text-decoration:underline;
+ text-decoration-color:currentColor;
+ text-decoration-thickness:1px;
+ text-underline-offset:3px;
+}
+.andy-doc-layout .andy-doc-toc nav a.is-active,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location],
+.andy-doc-layout .andy-doc-toc nav a.is-active:hover,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location]:hover{
+ background:transparent;
+ color:#000;
+ font-weight:700;
+ text-decoration:underline;
+ text-decoration-color:currentColor;
+ text-decoration-thickness:1px;
+ text-underline-offset:3px;
+}
+
+/* Buscador lateral: paridad de estados con Search & Filters,
+   usando una paleta neutra y un borde interior para evitar layout shift. */
+.andy-doc-layout .andy-component-search{
+ border:1px solid #b0b0b0;
+ box-shadow:none;
+ background:#fff;
+ transition:border-color .13s ease,background-color .13s ease,box-shadow .13s ease;
+}
+.andy-doc-layout .andy-component-search:hover{
+ border-color:#3d3d3d;
+ background:#fafafa;
+}
+.andy-doc-layout .andy-component-search:focus-within,
+.andy-doc-layout .andy-component-search:focus-within:hover{
+ border:1px solid #000;
+ box-shadow:inset 0 0 0 1px #000;
+ background:#f6f6f6;
+}
+.andy-doc-layout .andy-component-search input{
+ color:#000;
+}
+.andy-doc-layout .andy-component-search input::placeholder{
+ color:#888;
+}
