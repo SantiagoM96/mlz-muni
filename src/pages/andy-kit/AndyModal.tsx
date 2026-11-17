@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
 import './andy-modal.css';
+import './andy-button-matrix.css';
 
 export type ModalSize = 'default' | 'sm';
 export type ModalIntent = 'normal' | 'destructive';
@@ -69,8 +70,8 @@ export function AndyModal({
    </div>
    {children&&<div className="andy-modal-body">{children}</div>}
    <div className="andy-modal-footer">
-    <button type="button" ref={cancelRef} className="andy-modal-button is-secondary" onClick={onClose}>{cancelLabel}</button>
-    <button type="button" className={'andy-modal-button '+(intent==='destructive'?'is-danger':'is-primary')} disabled={disabledConfirm} onClick={onConfirm}>{confirmLabel}</button>
+    <button type="button" ref={cancelRef} className="andy-system-button is-tertiary is-large" onClick={onClose}>{cancelLabel}</button>
+    <button type="button" className={'andy-system-button is-large '+(intent==='destructive'?'andy-modal-danger':'is-primary')} disabled={disabledConfirm} onClick={onConfirm}>{confirmLabel}</button>
    </div>
   </div>
  </dialog>;
