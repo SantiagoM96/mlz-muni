@@ -53,7 +53,7 @@ export function AvatarBadge({tone='success',className='',children,...props}:Avat
 
 type AvatarGroupProps=HTMLAttributes<HTMLDivElement> & {children:ReactNode};
 export function AvatarGroup({className='',children,...props}:AvatarGroupProps){
-  return <div {...props} className={['mlz-avatar-group',className].filter(Boolean).join(' ')}>{children}</div>;
+  return <div role="group" {...props} className={['mlz-avatar-group',className].filter(Boolean).join(' ')}>{children}</div>;
 }
 
 type AvatarGroupCountProps=Omit<HTMLAttributes<HTMLSpanElement>,'children'> & {
@@ -62,5 +62,5 @@ type AvatarGroupCountProps=Omit<HTMLAttributes<HTMLSpanElement>,'children'> & {
 };
 export function AvatarGroupCount({count,size='md',className='',...props}:AvatarGroupCountProps){
   return <span {...props} className={['mlz-avatar-group-count',className].filter(Boolean).join(' ')}
-    data-size={size} aria-label={count+' personas más'}>+{count}</span>;
+    data-size={size} role="img" aria-label={count+' personas más'}>+{count}</span>;
 }
