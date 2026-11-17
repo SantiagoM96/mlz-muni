@@ -62,7 +62,7 @@
 @media(max-width:530px){.andy-modal.is-schedule .andy-modal-content{padding:20px 16px}}
 
 /* Los horarios se dimensionan por contenido: no se crea scroll interno en desktop. */
-.andy-modal.is-schedule{width:min(760px,calc(100vw - 32px));}
+.andy-modal.is-schedule{width:min(760px,calc(100vw - 32px));overflow:clip;}
 .andy-modal.is-schedule .andy-modal-content{gap:var(--mlz-space-16);overflow:visible;}
 /* La distancia del contenido al divisor coincide con el gutter lateral (24px). */
 .andy-modal.is-schedule .andy-modal-footer{margin-top:var(--mlz-space-8);}
