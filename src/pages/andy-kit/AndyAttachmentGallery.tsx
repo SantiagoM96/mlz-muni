@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ChangeEvent } from 'react';
+import { useEffect, useId, useRef, useState, type ChangeEvent } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './andy-attachment-gallery.css';
 
@@ -106,7 +106,7 @@ export function AndyIconUpload(){
  const [phase,setPhase]=useState<'empty'|'uploading'|'processing'|'completed'|'error'>('empty');
  const [progress,setProgress]=useState(0);
  const timer=useRef<ReturnType<typeof setInterval>|null>(null);
- const id='andy-icon-upload-input';
+ const id=useId();
  useEffect(()=>{
   if(phase!=='uploading')return;
   timer.current=setInterval(()=>setProgress(previous=>Math.min(100,previous+10)),160);
