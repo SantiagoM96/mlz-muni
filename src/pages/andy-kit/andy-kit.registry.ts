@@ -5,7 +5,7 @@ const componentGroups=[
  {title:'Actions',items:[['boton','Button'],['button-group','Button Group']]},
  {title:'Navigation',items:[['acordeon','Accordion'],['collapsible','Collapsible'],['paginacion','Pagination']]},
  {title:'Feedback',items:[['mensaje','Alert'],['toast','Toast'],['progreso','Progress'],['spinner','Spinner'],['skeleton','Skeleton']]},
- {title:'Data Display',items:[['chips','Badge'],['tarjeta','Card'],['tabla','Table'],['data-table','Data Table'],['empty','Empty'],['separator','Separator']]},
+ {title:'Data Display',items:[['avatar','Avatar'],['chips','Badge'],['tarjeta','Card'],['tabla','Table'],['data-table','Data Table'],['empty','Empty'],['separator','Separator']]},
  {title:'Overlays',items:[['dialog','Dialog'],['alert-dialog','Alert Dialog'],['sheet','Sheet'],['tooltip','Tooltip']]},
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
@@ -22,6 +22,7 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  radio:{description:'Selección exclusiva entre varias alternativas.',category:'Selection'},
  switch:{description:'Activar o desactivar una configuración.',category:'Selection'},
  boton:{description:'Acciones primarias, secundarias, de texto y con íconos.',category:'Data Display'},
+ avatar:{description:'Identidad visual de personas: fotografía, iniciales, indicador, grupo y contador.',category:'Data Display'},
  chips:{description:'Etiquetas y chips removibles.',category:'Data Display'},
  tarjeta:{description:'Tarjetas de actividad y resúmenes de inscripción.',category:'Data Display'},
  mensaje:{description:'Mensajes persistentes de información, éxito, advertencia y error, con acción opcional.',category:'Feedback'},
