@@ -343,10 +343,10 @@ function ComponentDetails({id}:{id:ComponentId}){
  if(id==='boton')return <Buttons/>;
  if(id==='chips')return <>
   <DocSection title="Fondo suave" description="Seis colores de Figma con fondo claro y texto intenso. Cada color se muestra con y sin ícono.">
-   <DocPreview align="start"><AndyTagPaletteGallery onlyAppearance="fill"/></DocPreview>
+   <AndyTagPaletteGallery onlyAppearance="fill"/>
   </DocSection>
   <DocSection title="Outline" description="Los mismos seis tonos con borde intenso, fondo blanco y texto del color semántico.">
-   <DocPreview align="start"><AndyTagPaletteGallery onlyAppearance="outline"/></DocPreview>
+   <AndyTagPaletteGallery onlyAppearance="outline"/>
   </DocSection>
  </>;
  if(id==='avatar')return <AndyAvatarDocs/>;
