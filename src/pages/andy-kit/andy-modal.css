@@ -1,0 +1,51 @@
+/* Dialogs are product components: municipal colors, never grayscale documentation chrome. */
+.andy-modal{
+ position:fixed;
+ inset:0;
+ width:min(480px,calc(100vw - 32px));
+ max-width:calc(100vw - 32px);
+ max-height:min(85dvh,720px);
+ margin:auto;
+ padding:0;
+ border:0;
+ border-radius:var(--mlz-radius-lg,16px);
+ color:#3d3d3d;
+ background:#fff;
+ box-shadow:0 24px 72px rgb(15 38 57 / 24%);
+ font-family:Geometria,'Century Gothic',Arial,sans-serif;
+ overscroll-behavior:contain;
+}
+.andy-modal::backdrop{background:rgb(12 31 45 / 55%);backdrop-filter:blur(2px)}
+.andy-modal.is-sm{width:min(380px,calc(100vw - 32px))}
+.andy-modal-content{position:relative;display:flex;flex-direction:column;gap:24px;padding:28px;min-width:0;max-height:inherit;overflow:auto}
+.andy-modal-header{display:flex;align-items:flex-start;flex-direction:column;gap:10px;padding-right:22px}
+.andy-modal-header h3{margin:0;color:#236999;font-size:22px;line-height:30px;font-weight:700}
+.andy-modal-header p{margin:0;font-size:15px;line-height:24px;color:#5f6e7b}
+.andy-modal.is-sm .andy-modal-content{gap:20px;padding:24px}
+.andy-modal.is-sm .andy-modal-header h3{font-size:20px;line-height:28px}
+.andy-modal-media{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;background:#e5f0f9;color:#236999;border-radius:var(--mlz-radius-md,12px);margin-bottom:4px}
+.andy-modal-media.is-danger{background:#fff0f2;color:#d62847}
+.andy-modal-footer{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.andy-modal-button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 18px;border:1px solid transparent;border-radius:var(--mlz-radius-md,12px);font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer;transition:background .15s,border-color .15s}
+.andy-modal-button.is-secondary{color:#236999;background:#fff;border-color:#94c6e5}
+.andy-modal-button.is-secondary:hover{background:#f3f7fc}
+.andy-modal-button.is-primary{background:#236999;color:#fff}
+.andy-modal-button.is-primary:hover{background:#1f5a85}
+.andy-modal-button.is-danger{background:#d62847;color:#fff}
+.andy-modal-button.is-danger:hover{background:#b51d37}
+.andy-modal-button:focus-visible,.andy-modal-dismiss:focus-visible{outline:2px solid #006eff;outline-offset:3px}
+.andy-modal-dismiss{position:absolute;top:19px;right:19px;display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:var(--mlz-radius-sm,8px);background:transparent;color:#647482;cursor:pointer}
+.andy-modal-dismiss:hover{background:#f3f7fc;color:#236999}
+.andy-modal-body{display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:22px;color:#5f6e7b}
+.andy-modal-body label{display:flex;flex-direction:column;gap:7px;font-size:14px;font-weight:700;color:#3d3d3d}
+.andy-modal-body input{width:100%;min-height:42px;border:1px solid #a8b7c4;border-radius:var(--mlz-radius-sm,8px);padding:8px 12px;font:400 15px/22px Geometria,'Century Gothic',Arial,sans-serif}
+.andy-modal-body input:focus-visible{outline:2px solid #006eff;outline-offset:0}
+@media(max-width:530px){
+ .andy-modal-content,.andy-modal.is-sm .andy-modal-content{padding:22px 18px;gap:20px}
+ .andy-modal-footer{flex-direction:column-reverse;align-items:stretch}
+ .andy-modal-button{width:100%}
+}
+@media(prefers-reduced-motion:no-preference){
+ .andy-modal[open]{animation:andy-modal-in .15s ease-out both}
+ @keyframes andy-modal-in{from{opacity:.25;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}
+}
