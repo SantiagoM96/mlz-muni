@@ -1,118 +1,59 @@
-/* Variante de adjunto con borde punteado, sin alterar el adjunto existente. */
+/* Attachment MLZ: dos variantes de archivo único, diferenciadas por border-style. */
 .andy-dashed-upload-gallery{display:grid;grid-template-columns:1fr;gap:24px;width:min(100%,640px)}
-.andy-dashed-upload{display:flex;flex-direction:column;gap:8px;min-width:0;width:100%;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.andy-dashed-upload,.andy-solid-upload-preview{display:flex;flex-direction:column;gap:8px;min-width:0;width:100%;font-family:Geometria,'Century Gothic',Arial,sans-serif}
 .andy-dashed-upload-title{font-weight:700;color:#236999;font-size:16px;line-height:22px}
-.andy-dashed-upload-control{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-width:0;min-height:48px;background:#fff;border:1px solid transparent;border-radius:var(--mlz-radius-sm);padding:10px 14px;cursor:pointer;color:#3d3d3d;transition:border-color .14s ease,background-color .14s ease}
-.andy-dashed-upload-control:hover{background:#f8fbff}
-.andy-dashed-upload-control:focus-within{box-shadow:none;outline:none}
+.andy-single-upload .andy-dashed-upload-control{
+ position:relative;display:flex;align-items:center;gap:12px;
+ width:100%;min-width:0;box-sizing:border-box;
+ height:48px;min-height:48px;max-height:48px;
+ background:#fff;border:1px solid #5ba8d5;
+ border-radius:var(--mlz-radius-sm);padding:8px 14px;
+ cursor:pointer;transition:border-color .14s ease,background-color .14s ease,box-shadow .14s ease;
+}
+.andy-single-upload.is-solid .andy-dashed-upload-control{border-style:solid}
+.andy-single-upload.is-dashed .andy-dashed-upload-control{border-style:dashed}
+.andy-single-upload .andy-dashed-upload-control:hover{border-color:#236999;background:#fafcfe}
+.andy-single-upload .andy-dashed-upload-control:focus-within{
+ border-color:#006eff;background:#fff;box-shadow:inset 0 0 0 1px #006eff;outline:none;
+}
 .andy-dashed-upload-action{flex:0 0 auto;color:#236999;font-weight:700;font-size:14px;line-height:22px;white-space:nowrap}
-.andy-dashed-upload-value{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#8795a2;font-size:14px;line-height:22px}
-.andy-dashed-upload-value.has-file{color:#3d3d3d;font-weight:500}
-.andy-dashed-upload-control input[type=file]{position:absolute;inset:0;z-index:1;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
+.andy-dashed-upload-value{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right;color:#8795a2;font-size:14px;line-height:22px}
+.andy-dashed-upload-value.has-file{color:#236999;font-weight:500}
+.andy-single-upload input[type=file]{position:absolute;inset:0;z-index:1;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
 .andy-dashed-upload-help{margin:0;color:#657886;font-size:13px;line-height:18px}
-.andy-dashed-upload-control.is-error{--upload-border-color:#ef284c}
 .andy-dashed-upload-error{margin:0;color:#ef284c;font-size:13px;line-height:18px}
-@media(max-width:400px){.andy-dashed-upload-control{gap:8px;padding-inline:10px}.andy-dashed-upload-action,.andy-dashed-upload-value{font-size:12px}}
-
-/* SVG alineado a las dimensiones reales del campo: dash 8px / gap 4px.
-   La geometría (radius) se toma del propio border-radius del input. */
-.andy-dashed-upload-control{
- /* Un SVG antialiasado se percibía más pesado que el borde CSS de 1 px del adjunto original. */
- --upload-border-width:.75px;
- --upload-border-color:#5ba8d5;
+.andy-single-upload .andy-dashed-upload-control.is-error,
+.andy-single-upload .andy-dashed-upload-control.is-error:hover,
+.andy-single-upload .andy-dashed-upload-control.is-error:focus-within{
+ border-color:#ef284c;box-shadow:inset 0 0 0 1px #ef284c;background:#fff;
 }
-.andy-dashed-upload-border{
- position:absolute;
- inset:0;
- display:block;
- width:100%;
- height:100%;
- pointer-events:none;
- overflow:visible;
- color:var(--upload-border-color);
+.andy-dashed-state-matrix,.andy-solid-state-matrix{width:100%;min-width:0}
+.andy-dashed-state-matrix .andy-state-cell,.andy-solid-state-matrix .andy-state-cell{min-width:0}
+.andy-dashed-state-matrix .andy-dashed-upload-control,.andy-solid-state-matrix .andy-dashed-upload-control{gap:8px;padding-inline:10px}
+.andy-dashed-state-matrix .andy-dashed-upload-action,.andy-dashed-state-matrix .andy-dashed-upload-value,
+.andy-solid-state-matrix .andy-dashed-upload-action,.andy-solid-state-matrix .andy-dashed-upload-value{font-size:14px}
+.andy-single-upload[data-state="hover"] .andy-dashed-upload-control{border-color:#236999;background:#fafcfe}
+.andy-single-upload[data-state="focus"] .andy-dashed-upload-control{
+ border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff;background:#fff;
 }
-.andy-dashed-upload-border rect{stroke-width:var(--upload-border-width)}
-.andy-dashed-upload-control:hover{--upload-border-color:#236999}
-.andy-dashed-upload-control:focus-within{
- --upload-border-width:.75px;
- --upload-border-color:#006eff;
+.andy-single-upload[data-state="completed"] .andy-dashed-upload-value{color:#236999}
+.andy-single-upload[data-state="error"] .andy-dashed-upload-control,
+.andy-single-upload[data-state="error"] .andy-dashed-upload-control:hover{border-color:#ef284c;box-shadow:inset 0 0 0 1px #ef284c;background:#fff}
+.andy-single-upload[data-state="error"] .andy-dashed-upload-title{color:#ef284c}
+.andy-single-upload[data-state="disabled"] .andy-dashed-upload-control,
+.andy-single-upload[data-state="disabled"] .andy-dashed-upload-control:hover,
+.andy-single-upload[data-state="disabled"] .andy-dashed-upload-control:focus-within{
+ background:#e5f0f9;border-color:#c6dff1;box-shadow:none;cursor:not-allowed;
 }
-.andy-dashed-upload-control.is-error,
-.andy-dashed-upload-control.is-error:hover,
-.andy-dashed-upload-control.is-error:focus-within{--upload-border-color:#ef284c}
-
-/* Matriz de estados: guiones 8 px / espacio 4 px y trazo óptico equivalente al borde sólido fino. */
-.andy-dashed-state-matrix{width:100%;min-width:0}
-.andy-dashed-state-matrix .andy-state-cell{min-width:0}
-.andy-dashed-state-matrix .andy-dashed-upload-title{font-size:16px}
-.andy-dashed-state-matrix .andy-dashed-upload-control{gap:8px;padding-inline:10px}
-.andy-dashed-state-matrix .andy-dashed-upload-action,
-.andy-dashed-state-matrix .andy-dashed-upload-value{font-size:12px}
-.andy-dashed-state-matrix .andy-dashed-upload-help{font-size:12px}
-.andy-dashed-upload[data-state="hover"] .andy-dashed-upload-control{
- --upload-border-color:#236999;
- background:#f8fbff;
-}
-.andy-dashed-upload[data-state="focus"] .andy-dashed-upload-control{
- --upload-border-color:#006eff;
- background:#fff;
-}
-.andy-dashed-upload[data-state="completed"] .andy-dashed-upload-value{color:#236999}
-.andy-dashed-upload[data-state="error"] .andy-dashed-upload-control{
- --upload-border-color:#ef284c;
- background:#fff;
-}
-.andy-dashed-upload[data-state="error"] .andy-dashed-upload-title{color:#ef284c}
-/* Disabled: superficie suave sin contorno punteado para evitar el choque
-   cromático entre borde y fondo. El campo sigue siendo reconocible. */
-.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control,
-.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control:hover,
-.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control:focus-within{
- background:#f3f7fc;
- border-color:transparent;
- box-shadow:none;
- cursor:not-allowed;
-}
-.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-border{display:none}
-.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-action,
-.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-value{color:#94c6e5}
-.andy-dashed-upload[data-state] input[type=file]{pointer-events:none}
-.andy-dashed-upload[data-state] .andy-dashed-upload-control{cursor:default}
-.andy-dashed-upload[data-state="disabled"] .andy-dashed-upload-control{cursor:not-allowed}
-/* Evitar estilos de la matriz original que agregan borde sólido. */
-.andy-dashed-state-matrix .andy-state-cell[data-state="focus"] .andy-dashed-upload-control,
-.andy-dashed-state-matrix .andy-state-cell[data-state="error"] .andy-dashed-upload-control{
- border:1px solid transparent;
- box-shadow:none;
-}
+.andy-single-upload[data-state="disabled"] .andy-dashed-upload-action,
+.andy-single-upload[data-state="disabled"] .andy-dashed-upload-value{color:#94c6e5}
+.andy-single-upload[data-state] input[type=file]{pointer-events:none}
+.andy-single-upload[data-state] .andy-dashed-upload-control{cursor:default}
+.andy-single-upload[data-state="disabled"] .andy-dashed-upload-control{cursor:not-allowed}
 .andy-upload-preview-pair{display:flex;flex-direction:column;gap:28px;width:min(100%,640px);min-width:0}
 .andy-upload-preview-case{display:flex;flex-direction:column;gap:12px;min-width:0}
-.andy-upload-preview-heading{color:#236999;font-size:15px;line-height:22px;font-weight:700}
-.andy-solid-upload-preview{display:flex;flex-direction:column;gap:8px;min-width:0;font-family:Geometria,'Century Gothic',Arial,sans-serif}
-.andy-solid-upload-control{
- position:relative;display:flex;align-items:center;gap:8px;
- width:100%;min-width:0;min-height:48px;padding:6px;
- border:1px solid transparent;border-radius:var(--mlz-radius-sm);background:#e5f0f9;
+.andy-upload-preview-heading{color:#236999;font-size:16px;line-height:24px;font-weight:700}
+@media(max-width:400px){
+ .andy-single-upload .andy-dashed-upload-control{gap:8px;padding-inline:10px}
+ .andy-dashed-upload-action,.andy-dashed-upload-value{font-size:12px}
 }
-/* El botón visual adopta exactamente las clases del botón Small/Primario del UI Kit. */
-.andy-solid-upload-button{flex:none;pointer-events:none}
-.andy-solid-upload-file{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#94a8b8;font-size:13px}
-.andy-solid-upload-file.has-file{color:#236999}
-.andy-solid-upload-control input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
-.andy-solid-upload-control:hover{border-color:#5ba8d5}
-.andy-solid-upload-control:focus-within{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
-.andy-solid-upload-control.is-error,.andy-solid-upload-control.is-error:focus-within{border-color:#ef284c;box-shadow:inset 0 0 0 1px #ef284c}
-@media(max-width:650px){.andy-dashed-state-matrix .andy-dashed-upload-action,.andy-dashed-state-matrix .andy-dashed-upload-value{font-size:14px}}
-
-
-/* Paridad con Input / Select MLZ: ambos controles de selección
-   tienen exactamente 48px de alto, sin alterar las filas de estado. */
-.andy-solid-upload-control,
-.andy-dashed-upload-control{
- box-sizing:border-box;
- height:48px;
- min-height:48px;
- max-height:48px;
-}
-.andy-solid-upload-control{padding-block:6px}
-.andy-dashed-upload-control{padding-block:8px}
