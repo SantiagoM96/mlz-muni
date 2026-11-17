@@ -1,31 +1,53 @@
-/* MLZ Buttons: estados visibles de los cinco tipos y tres tamaños. */
-.andy-button-documentation{display:flex;flex-direction:column;gap:var(--mlz-space-32);min-width:0}
-.andy-button-sizebar{display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-16);flex-wrap:wrap}
-.andy-button-sizebar strong{font-size:18px;line-height:26px;color:#236999}
-.andy-button-sizebar p,.andy-button-doc-section>p{margin:var(--mlz-space-4) 0 var(--mlz-space-14);color:#647686;font-size:14px;line-height:22px}
-.andy-button-size-options{display:flex;align-items:stretch;gap:var(--mlz-space-4);padding:var(--mlz-space-4);border-radius:var(--mlz-radius-md);background:#f3f7fc;flex-wrap:wrap}
-.andy-button-size-options button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--mlz-space-2);min-width:86px;padding:var(--mlz-space-6) var(--mlz-space-10);border:0;border-radius:var(--mlz-radius-sm);background:transparent;color:#236999;font:600 14px/19px Geometria,'Century Gothic',Arial,sans-serif}
-.andy-button-size-options button[aria-pressed=true],.andy-button-placement-options button[aria-pressed=true]{background:#236999;color:#fff}
-.andy-button-size-options small{font-size:11px;font-weight:400;opacity:.85}
-.andy-button-doc-section{min-width:0}
-.andy-button-doc-section>h3{font-size:20px;line-height:28px;color:#236999;font-weight:700;margin:0}
-.andy-button-preview{padding:var(--mlz-space-24) var(--mlz-space-16);border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);background:#fff;min-width:0}
-.andy-system-button{--b-height:48px;--b-padding:var(--mlz-space-24);--b-font:18px;--b-line:26px;display:inline-flex;align-items:center;justify-content:center;gap:var(--mlz-space-8);min-height:var(--b-height);height:var(--b-height);padding:0 var(--b-padding);border:1px solid transparent;border-radius:var(--mlz-radius-sm);box-sizing:border-box;font:700 var(--b-font)/var(--b-line) Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background-color .13s,border-color .13s,color .13s;max-width:100%}
-.andy-system-button.is-large{--b-height:48px;--b-padding:var(--mlz-space-24);--b-font:18px;--b-line:26px}
-.andy-system-button.is-medium{--b-height:40px;--b-padding:var(--mlz-space-16);--b-font:16px;--b-line:24px}
-.andy-system-button.is-small{--b-height:32px;--b-padding:var(--mlz-space-12);--b-font:14px;--b-line:20px;gap:var(--mlz-space-6)}
+/* Documentación Button — mismos DocSection, DocPreview y controles que el resto del DS. */
+.andy-doc-page .andy-button-showcase{
+ padding:var(--mlz-space-40,40px);
+ min-height:170px;
+}
+.andy-button-floating-samples{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:var(--mlz-space-24,24px);
+ width:100%;
+ min-width:0;
+}
+.andy-button-icon-controls{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-12,12px);
+}
+/* Componente mostrado: conserva la geometría y los colores ya aprobados. */
+.andy-system-button{
+ --b-height:48px;
+ --b-padding:var(--mlz-space-24,24px);
+ --b-font:18px;
+ --b-line:26px;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ flex:0 0 auto;
+ gap:var(--mlz-space-8,8px);
+ min-height:var(--b-height);
+ height:var(--b-height);
+ padding:0 var(--b-padding);
+ box-sizing:border-box;
+ border:1px solid transparent;
+ border-radius:var(--mlz-radius-sm,4px);
+ font:700 var(--b-font)/var(--b-line) Geometria,'Century Gothic',Arial,sans-serif;
+ white-space:nowrap;
+ text-decoration:none;
+ cursor:pointer;
+ max-width:100%;
+ transition:background-color .13s ease,border-color .13s ease,color .13s ease;
+}
+.andy-system-button.is-large{--b-height:48px;--b-padding:var(--mlz-space-24,24px);--b-font:18px;--b-line:26px;--b-icon-inset:var(--mlz-space-6,6px)}
+.andy-system-button.is-medium{--b-height:40px;--b-padding:var(--mlz-space-16,16px);--b-font:16px;--b-line:24px;--b-icon-inset:var(--mlz-space-4,4px)}
+.andy-system-button.is-small{--b-height:32px;--b-padding:var(--mlz-space-12,12px);--b-font:14px;--b-line:20px;--b-icon-inset:var(--mlz-space-4,4px);gap:var(--mlz-space-6,6px)}
 .andy-system-button.icon-only{width:var(--b-height);min-width:var(--b-height);padding:0}
-/* Compensación óptica: el pictograma contiene aire interno en su caja.
-   Se reduce solamente el padding del lado del ícono, sin tocar el lado del texto.
-   Solo ícono conserva caja cuadrada y Link conserva sus márgenes nulos. */
-.andy-system-button.is-large{--b-icon-inset:var(--mlz-space-6)}
-.andy-system-button.is-medium{--b-icon-inset:var(--mlz-space-4)}
-.andy-system-button.is-small{--b-icon-inset:var(--mlz-space-4)}
 .andy-system-button.icon-start{padding-inline-start:calc(var(--b-padding) - var(--b-icon-inset))}
 .andy-system-button.icon-end{padding-inline-end:calc(var(--b-padding) - var(--b-icon-inset))}
-.andy-system-button.is-link.icon-start,
-.andy-system-button.is-link.icon-end{padding-inline:0}
-
+.andy-system-button.is-link.icon-start,.andy-system-button.is-link.icon-end{padding-inline:0}
 .andy-system-button.is-primary{background:#236999;color:#fff}
 .andy-system-button.is-secondary{background:#5ba8d5;color:#fff}
 .andy-system-button.is-tertiary{background:#fff;color:#236999;border-color:#94c6e5}
@@ -44,83 +66,56 @@
 .andy-system-button.is-link.state-active,.andy-system-button.is-link:active:not(:disabled){color:#006eff;text-decoration:underline}
 .andy-system-button.state-focus,.andy-system-button:focus-visible{outline:2px solid #006eff;outline-offset:2px}
 .andy-system-button.state-disabled,.andy-system-button:disabled{opacity:.5;cursor:not-allowed;pointer-events:none}
+.andy-system-button.is-loading:disabled{opacity:1;cursor:wait;pointer-events:none}
 .andy-system-button .material-symbols-outlined{color:inherit}
-.andy-button-matrix{min-width:0}
-.andy-button-matrix-heading,.andy-button-state-row{display:grid;grid-template-columns:88px repeat(5,minmax(0,1fr));gap:var(--mlz-space-8);align-items:center}
-.andy-button-matrix-heading{color:#71808c;font-size:12px;text-align:center;padding:0 0 var(--mlz-space-10)}
-.andy-button-matrix-heading span{text-align:left}
-.andy-button-matrix-heading strong{font-size:12px}
-.andy-button-state-row{min-height:72px;padding:var(--mlz-space-10) 0;border-top:1px solid #edf1f4}
-.andy-button-state-name{font-size:14px;color:#236999;font-weight:700}
-.andy-button-sample-slot{display:flex;align-items:center;justify-content:center;min-width:0}
-.andy-button-states-preview{overflow-x:auto}
-.andy-button-states-preview .andy-button-matrix{min-width:840px}
-.andy-button-icon-matrix{display:flex;flex-direction:column;gap:var(--mlz-space-16)}
-.andy-button-icon-row{display:flex;flex-direction:column;gap:var(--mlz-space-10)}
-.andy-button-icon-row+.andy-button-icon-row{padding-top:var(--mlz-space-16);border-top:1px solid #edf1f4}
-.andy-button-icon-row>strong{color:#236999;font-size:14px}
-.andy-button-icon-row>div,.andy-button-interactive-row{display:flex;align-items:center;flex-wrap:wrap;gap:var(--mlz-space-12)}
-.andy-button-placement-options{display:flex;flex-wrap:wrap;gap:var(--mlz-space-6);margin:0 0 var(--mlz-space-14)}
-.andy-button-placement-options button{font-size:13px;line-height:20px;min-height:36px;padding:var(--mlz-space-8) var(--mlz-space-12);border:1px solid #c6dff1;border-radius:var(--mlz-radius-sm);color:#236999;background:#fff}
-.andy-button-placement-options button[aria-pressed=true]{border-color:#236999}
-.andy-button-feedback{font-size:13px;color:#236999;margin:var(--mlz-space-14) 0 0}
-@media(max-width:580px){.andy-button-preview{padding:var(--mlz-space-16) var(--mlz-space-10)}.andy-button-size-options{width:100%;justify-content:space-between}.andy-button-size-options button{min-width:0;flex:1}.andy-button-matrix-heading,.andy-button-state-row{column-gap:var(--mlz-space-4)}}
-
-
-/* Documentación editorial al estilo de shadcn/ui:
-   demostraciones separadas, centradas y con aire; sin código. */
-.andy-button-documentation{gap:var(--mlz-space-48)}
-.andy-button-introduction{display:flex;flex-direction:column;gap:var(--mlz-space-16)}
-.andy-button-introduction>p{max-width:700px;margin:0;color:#647686;font-size:15px;line-height:24px}
-.andy-button-documentation .andy-button-doc-section{scroll-margin-top:var(--mlz-space-24)}
-.andy-button-on-this-page{display:flex;align-items:center;flex-wrap:wrap;gap:var(--mlz-space-8) var(--mlz-space-16);padding:var(--mlz-space-16) 0;border-block:1px solid #e1e7eb}
-.andy-button-on-this-page strong{font-size:13px;color:#7b8893;margin-right:var(--mlz-space-8)}
-.andy-button-on-this-page a{font-size:13px;line-height:20px;text-decoration:none;color:#236999}
-.andy-button-on-this-page a:hover{text-decoration:underline;text-underline-offset:4px}
-.andy-button-section-intro{display:flex;flex-direction:column;gap:var(--mlz-space-8);margin-bottom:var(--mlz-space-24)}
-.andy-button-section-intro h3{color:#236999;font-size:22px;line-height:30px;font-weight:700;margin:0}
-.andy-button-section-intro p{font-size:14px;line-height:23px;color:#647686;margin:0;max-width:710px}
-.andy-button-doc-section+.andy-button-doc-section{border-top:1px solid #e1e7eb;padding-top:var(--mlz-space-40)}
-.andy-button-variant-example+.andy-button-variant-example{margin-top:var(--mlz-space-32)}
-.andy-button-variant-example h4{font-size:17px;line-height:24px;color:#236999;margin:0 0 var(--mlz-space-6);font-weight:700}
-.andy-button-variant-example>p:not(.andy-button-guidance){font-size:14px;line-height:22px;color:#647686;margin:0 0 var(--mlz-space-12)}
-.andy-button-documentation .andy-button-preview{display:flex;flex-direction:column;justify-content:center;min-height:160px;padding:var(--mlz-space-40,40px);border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);background:#fff;overflow:visible}
-.andy-button-floating-samples{min-height:72px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;column-gap:var(--mlz-space-24);row-gap:var(--mlz-space-24);min-width:0}
-.andy-button-guidance{display:flex;align-items:flex-start;gap:var(--mlz-space-8);font-size:13px;line-height:21px;color:#6b7b88;margin:var(--mlz-space-12) 0 0}
-.andy-button-guidance .material-symbols-outlined{color:#236999;flex-shrink:0;margin-top:2px}
-.andy-button-size-example{display:flex;flex-direction:column;align-items:center;gap:var(--mlz-space-8);min-width:120px}
-.andy-button-size-example strong{color:#236999;font-size:13px;line-height:18px}
-.andy-button-size-example>span{font-size:12px;line-height:18px;color:#74818c}
-.andy-button-control-row{display:flex;align-items:center;flex-wrap:wrap;gap:var(--mlz-space-6);margin:0 0 var(--mlz-space-16)}
-.andy-button-control-row button{min-height:36px;border:1px solid #c6dff1;border-radius:var(--mlz-radius-sm);padding:var(--mlz-space-8) var(--mlz-space-12);background:white;color:#236999;font-size:13px;line-height:18px;font-weight:600}
-.andy-button-control-row button:hover{background:#f3f7fc}
-.andy-button-control-row button[aria-pressed=true],.andy-button-control-row button[aria-pressed=true]:hover{background:#236999;color:white;border-color:#236999}
-.andy-button-documentation .andy-button-states-preview{overflow:visible}
-.andy-button-state-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-24);width:100%}
-.andy-button-state-example{min-width:0;min-height:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--mlz-space-6)}
-.andy-button-state-example>strong{color:#236999;font-size:14px}
-.andy-button-state-example>span{font-size:12px;color:#81909d;text-align:center}
-.andy-button-state-example>.andy-system-button{margin-top:var(--mlz-space-10)}
-.andy-button-usage-notes{display:flex;flex-direction:column;gap:var(--mlz-space-8);margin-top:var(--mlz-space-16)}
-.andy-button-usage-notes p{font-size:13px;line-height:22px;color:#647686;margin:0}
-@media(max-width:720px){.andy-button-state-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mlz-space-16)}.andy-button-floating-samples{gap:var(--mlz-space-16)}}
-@media(max-width:480px){.andy-button-documentation .andy-button-preview{padding:var(--mlz-space-24) var(--mlz-space-12)}.andy-button-state-gallery{grid-template-columns:1fr}.andy-button-state-example{min-height:96px}.andy-button-on-this-page{gap:var(--mlz-space-8)}}
-
-/* Loading del Button: preserva prominencia y evita repetir envíos. */
-.andy-system-button.is-loading:disabled{
- opacity:1;
- cursor:wait;
- pointer-events:none;
-}
-.andy-button-spinner{
- display:inline-flex;
- animation:andy-button-rotate 1s linear infinite;
- transform-origin:center center;
-}
+.andy-button-spinner{display:inline-flex;animation:andy-button-rotate 1s linear infinite;transform-origin:center}
 @keyframes andy-button-rotate{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){
- .andy-button-spinner{animation:none}
+@media(prefers-reduced-motion:reduce){.andy-button-spinner{animation:none}}
+.andy-doc-page .andy-button-showcase a.andy-system-button.is-link:visited{color:#236999}
+/* Textos de muestra: misma jerarquía y legibilidad de la documentación curada. */
+.andy-button-size-example{
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ min-width:125px;gap:var(--mlz-space-8,8px);
 }
-.andy-button-documentation .andy-button-preview a.andy-system-button.is-link:visited{
- color:#236999;
+.andy-button-size-example strong,
+.andy-button-state-example > strong{
+ color:var(--color-grey-950,#000);
+ font:700 18px/26px Geometria,'Century Gothic',Arial,sans-serif;
+ text-align:center;
+}
+.andy-button-size-example > span{
+ color:var(--color-grey-500,#6d6d6d);
+ font:400 18px/28px Geometria,'Century Gothic',Arial,sans-serif;
+ text-align:center;
+}
+.andy-button-state-gallery{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:var(--mlz-space-32,32px);
+ width:100%;
+ min-width:0;
+}
+.andy-button-state-example{
+ min-width:0;
+ min-height:100px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ gap:var(--mlz-space-12,12px);
+}
+.andy-button-feedback{
+ margin:0;
+ color:var(--color-grey-500,#6d6d6d);
+ font:400 18px/28px Geometria,'Century Gothic',Arial,sans-serif;
+}
+@media(max-width:760px){
+ .andy-button-state-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--mlz-space-24,24px)}
+}
+@media(max-width:680px){
+ .andy-doc-page .andy-button-showcase{padding:var(--mlz-space-24,24px) var(--mlz-space-16,16px)}
+ .andy-button-floating-samples{gap:var(--mlz-space-16,16px)}
+}
+@media(max-width:450px){
+ .andy-button-state-gallery{grid-template-columns:minmax(0,1fr)}
 }
