@@ -57,3 +57,26 @@
  .andy-single-upload .andy-dashed-upload-control{gap:8px;padding-inline:10px}
  .andy-dashed-upload-action,.andy-dashed-upload-value{font-size:12px}
 }
+
+
+/* Borde punteado: solo el dashed nativo, sin segunda línea interna
+   en Focus/Activo o Error. El sólido mantiene su focus de 2px. */
+.andy-single-upload.is-dashed .andy-dashed-upload-control:focus-within,
+.andy-single-upload.is-dashed[data-state="focus"] .andy-dashed-upload-control,
+.andy-single-upload.is-dashed .andy-dashed-upload-control.is-error,
+.andy-single-upload.is-dashed .andy-dashed-upload-control.is-error:hover,
+.andy-single-upload.is-dashed .andy-dashed-upload-control.is-error:focus-within,
+.andy-single-upload.is-dashed[data-state="error"] .andy-dashed-upload-control,
+.andy-single-upload.is-dashed[data-state="error"] .andy-dashed-upload-control:hover{
+ box-shadow:none;
+ outline:none;
+}
+/* Disabled: superficie más clara y guiones visibles, pero atenuados. */
+.andy-single-upload.is-dashed[data-state="disabled"] .andy-dashed-upload-control,
+.andy-single-upload.is-dashed[data-state="disabled"] .andy-dashed-upload-control:hover,
+.andy-single-upload.is-dashed[data-state="disabled"] .andy-dashed-upload-control:focus-within{
+ background:#f5f9fc;
+ border-color:#94c6e5;
+ border-style:dashed;
+ box-shadow:none;
+}
