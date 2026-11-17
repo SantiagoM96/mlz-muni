@@ -87,8 +87,8 @@ export function AndyButtonMatrix(){
    <p className="andy-button-guidance"><MaterialIcon name="info" size={16}/>Small 32 px · Medium 40 px · Large 48 px. Elegí según la densidad del contexto.</p>
   </DocSection>
   <DocSection id="estados" title="Estados" description="Compará los seis estados de forma persistente. Elegí el tipo de botón que querés inspeccionar.">
-   <div className="andy-doc-inspector">
-   <div className="andy-button-control-row" role="group" aria-label="Tipo de botón para estados">
+   <div className="andy-doc-example-controls">
+   <div className="andy-doc-example-group" role="group" aria-label="Tipo de botón para estados">
     {kinds.map(kind=><button key={kind.id} type="button" aria-pressed={stateKind===kind.id} onClick={()=>setStateKind(kind.id)}>{kind.label}</button>)}
    </div></div>
    <div className="andy-button-preview andy-button-states-preview"><div className="andy-button-state-gallery">
@@ -100,8 +100,8 @@ export function AndyButtonMatrix(){
    <p className="andy-button-guidance"><MaterialIcon name="info" size={16}/>Focus debe verse al navegar por teclado. Disabled mantiene una indicación visual clara de indisponibilidad.</p>
   </DocSection>
   <DocSection id="iconografia" title="Íconos" description="La compensación óptica reduce el padding únicamente del lado del ícono, sin cambiar la altura ni el estilo del botón.">
-   <div className="andy-doc-inspector">
-   <div className="andy-button-control-row" role="group" aria-label="Tamaño para opciones de ícono">
+   <div className="andy-doc-example-controls">
+   <div className="andy-doc-example-group" role="group" aria-label="Tamaño para opciones de ícono">
     {sizes.map(size=><button type="button" key={size.id} aria-pressed={iconSize===size.id} onClick={()=>setIconSize(size.id)}>{size.label} · {size.description}</button>)}
    </div></div>
    {placements.map(place=><div className="andy-button-variant-example" key={place.id}>
@@ -110,8 +110,8 @@ export function AndyButtonMatrix(){
    </div>)}
   </DocSection>
   <DocSection id="uso" title="Uso y comportamiento" description="Ejemplos interactivos para probar hover, focus y pressed reales.">
-   <div className="andy-doc-inspector">
-   <div className="andy-button-control-row" role="group" aria-label="Posición de ícono">
+   <div className="andy-doc-example-controls">
+   <div className="andy-doc-example-group" role="group" aria-label="Posición de ícono">
     {placements.map(place=><button type="button" key={place.id} aria-pressed={placement===place.id} onClick={()=>setPlacement(place.id)}>{place.label}</button>)}
    </div></div>
    <Preview>{kinds.map(kind=><ButtonSample key={kind.id} kind={kind.id} size="medium" icon={placement} onClick={()=>setLastClicked(kind.label)}/>)}</Preview>
