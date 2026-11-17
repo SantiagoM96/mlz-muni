@@ -217,7 +217,7 @@ export function AndyBadgeDocs(){
     ['Espaciado ícono-texto','6 px, token --mlz-space-6.'],
     ['Tipografía','Geometria 500: 14/18 px, 16/20 px y 18/22 px para cada tamaño.'],
     ['Colores','Primario, Amarillo, Rojo, Verde, Azul y Violeta de Figma; Neutral basado en Natural/Grey.'],
-    ['Contraste','Usar tonos de texto intensos del sistema; en Amarillo, texto Grey 900 en lugar de amarillo claro sobre amarillo.'],
+    ['Contraste','Los colores reproducen fielmente los tokens de Figma. En usos con texto informativo extenso, verificar contraste WCAG y acompañar el color con una etiqueta clara.'],
     ['Iconografía','Material Symbols Outlined, peso 400, con tamaños 14, 16 y 18 px.'],
     ['Vista previa','Una única caja blanca con al menos 40 px de padding; controles de ejemplo por fuera y encima.'],
    ]}/>
