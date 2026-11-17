@@ -6,8 +6,22 @@
  background:#fff;
  border-color:#d1d1d1;
 }
+/* Los Breadcrumb se centran dentro de cada preview sin alterar el componente compartido de producto. */
+.andy-doc-page .andy-doc-demo.andy-breadcrumb-preview{justify-content:center}
 .andy-breadcrumb-doc-instance{margin:0;max-width:100%}
-.andy-breadcrumb-preview .andy-doc-demo-content{overflow:visible}
+.andy-doc-page .andy-doc-demo.andy-breadcrumb-preview .andy-doc-demo-content{
+ align-items:center;
+ overflow:visible;
+}
+.andy-breadcrumb-doc-instance .mlz-breadcrumb-list{
+ justify-content:center;
+}
+.andy-breadcrumb-doc-instance .mlz-breadcrumb-item.is-current{
+ flex:0 1 auto;
+}
+.andy-breadcrumb-doc-instance .mlz-breadcrumb-back{
+ justify-content:center;
+}
 .andy-breadcrumb-responsive-gallery{
  display:flex;
  flex-direction:column;
@@ -17,8 +31,9 @@
 .andy-breadcrumb-responsive-row{
  display:flex;
  flex-direction:column;
- align-items:flex-start;
+ align-items:center;
  gap:var(--mlz-space-12,12px);
+ text-align:center;
  width:100%;
  min-width:0;
 }
@@ -28,6 +43,7 @@
 }
 .andy-breadcrumb-mobile-sample{
  box-sizing:border-box;
+ margin-inline:auto;
  max-width:360px;
  width:100%;
  min-width:0;
