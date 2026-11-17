@@ -1836,3 +1836,101 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-palette-sizebar.andy-doc-inspector h3,
 .andy-doc-layout .andy-doc-inspector-label{color:#000}
 .andy-doc-layout .andy-doc-inspector-label small{color:#888}
+
+
+/* Estados interactivos del chrome del UI Kit.
+   No aplicar a .andy-doc-demo ni a los componentes de producto. */
+.andy-kit.andy-doc-layout{
+ --andy-chrome-accent:#000;
+ --andy-chrome-hover:#f6f6f6;
+ --andy-chrome-outline:#d1d1d1;
+ --andy-doc-state-hover:#f6f6f6;
+ --andy-doc-state-pressed:#e7e7e7;
+ --andy-doc-state-border:#b0b0b0;
+ --andy-doc-state-disabled:#b0b0b0;
+}
+/* La misma respuesta visual para las dos navegaciones. */
+.andy-doc-layout .andy-sidebar .andy-nav-link:hover:not(.active),
+.andy-doc-layout .andy-sidebar .andy-nav-label-link:hover:not(.active),
+.andy-doc-layout .andy-doc-toc nav a:hover:not(.is-active):not([aria-current=location]){
+ background:#f6f6f6;color:#000;
+}
+.andy-doc-layout .andy-sidebar .andy-nav-link:active:not(.active),
+.andy-doc-layout .andy-sidebar .andy-nav-label-link:active:not(.active),
+.andy-doc-layout .andy-doc-toc nav a:active:not(.is-active){background:#e7e7e7;color:#000}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active:hover,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active:focus-visible,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active:hover,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active:focus-visible{background:#000;color:#fff}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-review-mark,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-component-name,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .material-symbols-outlined{color:#fff}
+.andy-doc-layout .andy-doc-toc nav a.is-active,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location],
+.andy-doc-layout .andy-doc-toc nav a.is-active:hover,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location]:hover{color:#000;background:transparent}
+.andy-doc-layout .andy-doc-toc nav a:focus-visible,
+.andy-doc-layout .andy-sidebar .andy-nav-link:focus-visible,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link:focus-visible{outline:2px solid #000;outline-offset:2px}
+/* Buscadores, versión y elementos auxiliares. */
+.andy-doc-layout .andy-component-search:focus-within{border-color:#000;box-shadow:0 0 0 2px #00000018}
+.andy-doc-layout .andy-component-search-clear:hover,
+.andy-doc-layout .andy-sidebar-toggle:hover,
+.andy-doc-layout .andy-back-to-top:hover{background:#f6f6f6;color:#000;border-color:#b0b0b0}
+.andy-doc-layout .andy-component-search-clear:active,
+.andy-doc-layout .andy-sidebar-toggle:active,
+.andy-doc-layout .andy-back-to-top:active{background:#e7e7e7}
+.andy-doc-layout .andy-topbar>.andy-version a:hover,
+.andy-doc-layout .andy-topbar-actions .andy-version a:hover{color:#000}
+.andy-doc-layout .andy-topbar>.andy-version:focus-within{outline:2px solid #000;outline-offset:2px}
+/* Acciones superiores: la ubicación fijada previamente no se altera. */
+.andy-doc-layout .andy-main-heading .andy-doc-page-actions button:hover,
+.andy-doc-layout .andy-main-heading .andy-doc-step-links a:hover{color:#000;background:#f6f6f6;border-color:#b0b0b0}
+.andy-doc-layout .andy-main-heading .andy-doc-page-actions button:active,
+.andy-doc-layout .andy-main-heading .andy-doc-step-links a:active{color:#000;background:#e7e7e7}
+.andy-doc-layout .andy-main-heading .andy-doc-page-actions button:focus-visible,
+.andy-doc-layout .andy-main-heading .andy-doc-step-links a:focus-visible{outline:2px solid #000;outline-offset:2px}
+.andy-doc-layout .andy-main-heading .andy-doc-page-actions button:disabled{color:#b0b0b0;cursor:not-allowed}
+/* Herramientas de documentación, no controles del producto. */
+.andy-doc-layout .andy-doc-page .andy-doc-inspector button:hover:not([aria-pressed=true]),
+.andy-doc-layout .andy-button-size-options button:hover:not([aria-pressed=true]),
+.andy-doc-layout .andy-button-placement-options button:hover:not([aria-pressed=true]),
+.andy-doc-layout .andy-button-control-row button:hover:not([aria-pressed=true]),
+.andy-doc-layout .andy-palette-size-options button:hover:not([aria-pressed=true]){
+ background:#f6f6f6;color:#000;border-color:#b0b0b0;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-inspector button:active:not([aria-pressed=true]),
+.andy-doc-layout .andy-button-size-options button:active:not([aria-pressed=true]),
+.andy-doc-layout .andy-button-placement-options button:active:not([aria-pressed=true]),
+.andy-doc-layout .andy-button-control-row button:active:not([aria-pressed=true]),
+.andy-doc-layout .andy-palette-size-options button:active:not([aria-pressed=true]){background:#e7e7e7}
+.andy-doc-layout .andy-doc-page .andy-doc-inspector button[aria-pressed=true],
+.andy-doc-layout .andy-button-size-options button[aria-pressed=true],
+.andy-doc-layout .andy-button-placement-options button[aria-pressed=true],
+.andy-doc-layout .andy-button-control-row button[aria-pressed=true],
+.andy-doc-layout .andy-palette-size-options button[aria-pressed=true]{
+ color:#fff;background:#000;border-color:#000;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-inspector button:focus-visible,
+.andy-doc-layout .andy-button-size-options button:focus-visible,
+.andy-doc-layout .andy-button-placement-options button:focus-visible,
+.andy-doc-layout .andy-button-control-row button:focus-visible,
+.andy-doc-layout .andy-palette-size-options button:focus-visible{outline:2px solid #000;outline-offset:2px}
+/* Directorio, índices auxiliares y acciones de bibliotecas. */
+.andy-doc-layout .andy-directory-grid>a:hover,
+.andy-doc-layout .andy-foundation-index a:hover{background:#f6f6f6;border-color:#b0b0b0;color:#000}
+.andy-doc-layout .andy-directory-grid>a:active,
+.andy-doc-layout .andy-foundation-index a:active{background:#e7e7e7}
+.andy-doc-layout .andy-directory-grid>a:focus-visible,
+.andy-doc-layout .andy-foundation-index a:focus-visible,
+.andy-doc-layout .andy-button-on-this-page a:focus-visible{outline:2px solid #000;outline-offset:2px}
+.andy-doc-layout .andy-button-on-this-page a:hover{color:#000;text-decoration:underline}
+.andy-doc-layout .andy-button-on-this-page a:active{color:#3d3d3d}
+.andy-doc-layout .andy-color-library-expand:hover,
+.andy-doc-layout .andy-icon-library-expand:hover{background:#f6f6f6;color:#000;border-color:#b0b0b0}
+.andy-doc-layout .andy-color-library-expand:active,
+.andy-doc-layout .andy-icon-library-expand:active{background:#e7e7e7}
+.andy-doc-layout .andy-color-library-expand:focus-visible,
+.andy-doc-layout .andy-icon-library-expand:focus-visible{outline:2px solid #000;outline-offset:2px}
