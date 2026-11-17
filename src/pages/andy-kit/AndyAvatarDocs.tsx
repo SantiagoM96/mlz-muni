@@ -8,9 +8,14 @@ import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import './andy-avatar-docs.css';
 
 type AvatarVariant='photo'|'initials'|'icon';
-const PHOTO_CAROLINA='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&h=160&fit=crop&crop=faces';
-const PHOTO_MARTIN='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&h=160&fit=crop&crop=faces';
-const PHOTO_LUCIA='https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=160&h=160&fit=crop&crop=faces';
+/** Las cuatro ilustraciones proporcionadas por el equipo se empaquetan en un único
+ * atlas optimizado. object-position permite mostrar cada recorte dentro del Avatar
+ * circular sin modificar el componente reutilizable. */
+type MiniMuniMood='heart'|'cool'|'party'|'smile';
+const MINI_MUNI_ATLAS=`${import.meta.env.BASE_URL}avatars/mini-muni-atlas.webp`;
+function MiniMuniImage({mood='smile'}:{mood?:MiniMuniMood}){
+ return <AvatarImage src={MINI_MUNI_ATLAS} alt="" className={'andy-mini-muni-'+mood}/>;
+}
 const sizes:{id:AvatarSize;label:string;value:string}[]=[
   {id:'xs',label:'XS',value:'24 px'},
   {id:'sm',label:'SM',value:'32 px'},
@@ -19,11 +24,11 @@ const sizes:{id:AvatarSize;label:string;value:string}[]=[
   {id:'xl',label:'XL',value:'64 px'},
 ];
 
-function PersonAvatar({size='md',variant='photo',status=false}:{
- size?:AvatarSize;variant?:AvatarVariant;status?:boolean
+function PersonAvatar({size='md',variant='photo',status=false,mood='smile'}:{
+ size?:AvatarSize;variant?:AvatarVariant;status?:boolean;mood?:MiniMuniMood
 }){
-  return <Avatar size={size} label={variant==='icon'?'Usuario sin datos':'Carolina Pérez'+(status?', disponible':'')}>
-   {variant==='photo'&&<AvatarImage src={PHOTO_CAROLINA} alt=""/>}
+  return <Avatar size={size} label={variant==='icon'?'Usuario sin datos':(variant==='photo'?'Mini Muni':'Carolina Pérez')+(status?', disponible':'')}>
+   {variant==='photo'&&<MiniMuniImage mood={mood}/>} 
    <AvatarFallback>
     {variant==='icon'?<MaterialIcon name="person" size={size==='xs'?16:size==='sm'?18:size==='xl'?32:24} weight={400}/>: 'CP'}
    </AvatarFallback>
@@ -80,9 +85,9 @@ function AvatarSizeGallery(){
 
 function AvatarBadgeGallery(){
  return <div className="andy-avatar-variant-grid">
-  <div className="andy-avatar-variant-item"><PersonAvatar status size="lg"/><strong>Disponible</strong><span>Indicador Success</span></div>
+  <div className="andy-avatar-variant-item"><PersonAvatar status size="lg" mood="heart"/><strong>Disponible</strong><span>Indicador Success</span></div>
   <div className="andy-avatar-variant-item"><Avatar label="Carolina Pérez, información disponible" size="lg">
-    <AvatarImage src={PHOTO_CAROLINA} alt=""/><AvatarFallback>CP</AvatarFallback><AvatarBadge tone="info"><MaterialIcon name="check" size={13} weight={400}/></AvatarBadge>
+    <MiniMuniImage mood="smile"/><AvatarFallback>CP</AvatarFallback><AvatarBadge tone="info"><MaterialIcon name="check" size={13} weight={400}/></AvatarBadge>
    </Avatar><strong>Con ícono</strong><span>Indicador superpuesto</span></div>
   <div className="andy-avatar-variant-item"><Avatar label="Carolina Pérez, sin disponibilidad" size="lg">
     <AvatarFallback>CP</AvatarFallback><AvatarBadge tone="neutral"/>
@@ -95,17 +100,17 @@ function AvatarGroupGallery(){
   <div className="andy-avatar-group-demo">
    <strong>Grupo de usuarios</strong>
    <AvatarGroup aria-label="Equipo de tres personas">
-    <Avatar label="Carolina Pérez"><AvatarImage src={PHOTO_CAROLINA} alt=""/><AvatarFallback>CP</AvatarFallback></Avatar>
-    <Avatar label="Martín López"><AvatarImage src={PHOTO_MARTIN} alt=""/><AvatarFallback>ML</AvatarFallback></Avatar>
-    <Avatar label="Lucía Gómez"><AvatarImage src={PHOTO_LUCIA} alt=""/><AvatarFallback>LG</AvatarFallback></Avatar>
+    <Avatar label="Carolina Pérez"><MiniMuniImage mood="smile"/><AvatarFallback>CP</AvatarFallback></Avatar>
+    <Avatar label="Martín López"><MiniMuniImage mood="cool"/><AvatarFallback>ML</AvatarFallback></Avatar>
+    <Avatar label="Lucía Gómez"><MiniMuniImage mood="party"/><AvatarFallback>LG</AvatarFallback></Avatar>
    </AvatarGroup>
   </div>
   <div className="andy-avatar-group-demo">
    <strong>Grupo con contador</strong>
    <AvatarGroup aria-label="Equipo: Carolina, Martín, Lucía y tres personas más">
-    <Avatar label="Carolina Pérez"><AvatarImage src={PHOTO_CAROLINA} alt=""/><AvatarFallback>CP</AvatarFallback></Avatar>
-    <Avatar label="Martín López"><AvatarImage src={PHOTO_MARTIN} alt=""/><AvatarFallback>ML</AvatarFallback></Avatar>
-    <Avatar label="Lucía Gómez"><AvatarImage src={PHOTO_LUCIA} alt=""/><AvatarFallback>LG</AvatarFallback></Avatar>
+    <Avatar label="Carolina Pérez"><MiniMuniImage mood="smile"/><AvatarFallback>CP</AvatarFallback></Avatar>
+    <Avatar label="Martín López"><MiniMuniImage mood="cool"/><AvatarFallback>ML</AvatarFallback></Avatar>
+    <Avatar label="Lucía Gómez"><MiniMuniImage mood="party"/><AvatarFallback>LG</AvatarFallback></Avatar>
     <AvatarGroupCount count={3}/>
    </AvatarGroup>
   </div>
@@ -116,10 +121,10 @@ function AvatarProfileTrigger(){
  const [open,setOpen]=useState(false);
  return <div className="andy-avatar-profile-demo">
   <button type="button" className="andy-avatar-trigger" aria-expanded={open}
-   aria-controls="andy-avatar-profile-details" aria-label="Mostrar datos de Carolina Pérez"
+   aria-controls="andy-avatar-profile-details" aria-label="Mostrar datos del avatar de Mini Muni"
    onClick={()=>setOpen(value=>!value)}><PersonAvatar size="lg"/></button>
   {open&&<div className="andy-avatar-profile-details" id="andy-avatar-profile-details">
-   <strong>Carolina Pérez</strong>
+   <strong>Mini Muni</strong>
    <span>Perfil de demostración</span>
    <button type="button" onClick={()=>setOpen(false)}>Cerrar</button>
   </div>}

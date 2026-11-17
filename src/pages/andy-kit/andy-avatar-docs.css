@@ -151,3 +151,25 @@
 }
 .andy-avatar-profile-details>button:hover{background:#e5f0f9}
 .andy-avatar-profile-details>button:focus-visible{outline:2px solid #006eff;outline-offset:2px}
+
+/* Avatar: los cuatro gestos de Mini Muni se recortan desde un atlas
+   optimizado. El clipping redondo y object-fit del Avatar no se alteran. */
+.mlz-avatar-image.andy-mini-muni-heart{object-position:0% center}
+.mlz-avatar-image.andy-mini-muni-cool{object-position:33.333333% center}
+.mlz-avatar-image.andy-mini-muni-party{object-position:66.666667% center}
+.mlz-avatar-image.andy-mini-muni-smile{object-position:100% center}
+
+/* Tokens oficiales MLZ: textos, encabezados y contenedores de los ejemplos
+   señalados en el módulo Avatar. Sin colores arbitrarios ni mini-tarjetas. */
+.andy-avatar-variant-item > strong,
+.andy-avatar-size-item > strong,
+.andy-avatar-group-demo > strong{color:var(--color-primary-600,#236999)}
+.andy-avatar-variant-item > span:not(.mlz-avatar):not(.mlz-avatar-fallback):not(.mlz-avatar-badge),
+.andy-avatar-size-item > span{color:var(--mlz-grey-500,#6d6d6d)}
+.andy-doc-page .andy-doc-demo:has(.andy-avatar-variant-grid),
+.andy-doc-page .andy-doc-demo:has(.andy-avatar-size-grid),
+.andy-doc-page .andy-doc-demo:has(.andy-avatar-groups),
+.andy-doc-page .andy-doc-demo:has(.andy-avatar-profile-demo){
+ background:#fff;
+ border-color:#d1d1d1;
+}

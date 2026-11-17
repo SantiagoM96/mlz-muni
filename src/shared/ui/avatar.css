@@ -28,8 +28,8 @@
  inset:0;
  border-radius:inherit;
  overflow:hidden;
- background:#e5f0f9;
- color:#236999;
+ background:var(--color-primary-100,#e5f0f9);
+ color:var(--color-primary-600,#236999);
  font-size:var(--mlz-avatar-text);
  line-height:1;
  font-weight:700;
@@ -65,7 +65,7 @@
  height:13px;
  border:2px solid #fff;
  border-radius:50%;
- background:#2abb5b;
+ background:var(--color-success-500,#2abb5b);
  color:#fff;
 }
 .mlz-avatar[data-size="xs"] .mlz-avatar-badge{min-width:9px;width:9px;height:9px;border-width:1.5px;right:-2px;bottom:-2px}
@@ -73,8 +73,8 @@
 .mlz-avatar[data-size="md"] .mlz-avatar-badge{min-width:13px;width:13px;height:13px;right:-2px;bottom:-2px}
 .mlz-avatar[data-size="lg"] .mlz-avatar-badge{min-width:15px;width:15px;height:15px;right:-2px;bottom:-2px}
 .mlz-avatar[data-size="xl"] .mlz-avatar-badge{min-width:18px;width:18px;height:18px;right:-1px;bottom:-1px}
-.mlz-avatar-badge.is-info{background:#006eff}
-.mlz-avatar-badge.is-neutral{background:#6d6d6d}
+.mlz-avatar-badge.is-info{background:var(--color-info-500,#006eff)}
+.mlz-avatar-badge.is-neutral{background:var(--color-grey-500,#6d6d6d)}
 /* El badge con icono interno mantiene su geometría específica en todas las escalas. */
 .mlz-avatar .mlz-avatar-badge:has(.material-symbols-outlined){
  width:20px;height:20px;min-width:20px;
@@ -100,8 +100,8 @@
 .mlz-avatar-group > :nth-child(4){z-index:2}
 .mlz-avatar-group > :nth-child(5){z-index:1}
 .mlz-avatar-group-count{
- background:#e5f0f9;
- color:#236999;
+ background:var(--color-primary-100,#e5f0f9);
+ color:var(--color-primary-600,#236999);
  font-size:var(--mlz-avatar-text);
  font-weight:700;
  line-height:1;
