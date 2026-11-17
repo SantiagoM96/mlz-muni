@@ -91,7 +91,7 @@ function ScheduleDropdown({id,label,value,options,onChange}:{id:string;label:str
    onClick={()=>open?setOpen(false):show()}>
    <span>{options[selected]?.label??value}</span><MaterialIcon name="expand_more" size={24}/>
   </button>
-  {open&&dialog&&createPortal(<div ref={menuRef} className="andy-dropdown-variant-menu andy-schedule-dropdown-menu" style={placement} onKeyDown={key}>
+  {open&&dialog&&createPortal(<div ref={menuRef} className="andy-dropdown-variant-menu andy-schedule-dropdown-menu" style={placement}>
    <div id={listId} role="listbox" aria-label={label} className="andy-dropdown-variant-options">
     {options.map((option,index)=><button id={listId+'-'+index} key={option.value} type="button"
      role="option" aria-selected={value===option.value} disabled={option.disabled}
