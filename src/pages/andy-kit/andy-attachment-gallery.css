@@ -79,3 +79,62 @@
 .andy-icon-upload .andy-attachment-lifecycle-progress>span{
  will-change:width;
 }
+
+
+/* Attachment / Ícono: geometría estable en todos los estados.
+   La barra de progreso se superpone en el espacio interior reservado,
+   sin modificar el alto del campo ni mover el contenido. */
+.andy-icon-upload .andy-icon-upload-trigger,
+.andy-icon-upload > .andy-attachment-lifecycle-row{
+ box-sizing:border-box;
+ width:100%;
+ height:64px;
+ min-height:64px;
+ max-height:64px;
+ padding:8px 12px;
+ gap:12px;
+ align-items:center;
+ border-width:1px;
+}
+.andy-icon-upload > .andy-attachment-lifecycle-row{
+ border-color:#5ba8d5;
+}
+.andy-icon-upload .andy-attachment-lifecycle-media{
+ width:40px;
+ height:40px;
+ flex:0 0 40px;
+}
+.andy-icon-upload .andy-icon-upload-trigger-copy,
+.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-copy{
+ display:flex;
+ flex:1 1 auto;
+ flex-direction:column;
+ justify-content:center;
+ gap:2px;
+ min-width:0;
+ position:relative;
+}
+.andy-icon-upload .andy-icon-upload-trigger-copy strong,
+.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-copy strong{
+ font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
+ margin:0;
+}
+.andy-icon-upload .andy-icon-upload-trigger-copy > span,
+.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-copy > span{
+ font:400 12px/18px Geometria,'Century Gothic',Arial,sans-serif;
+ margin:0;
+}
+.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-progress{
+ position:absolute;
+ bottom:-5px;
+ left:0;
+ margin:0;
+ width:100%;
+ max-width:220px;
+ height:3px;
+}
+@media(max-width:440px){
+ .andy-icon-upload .andy-icon-upload-trigger,
+ .andy-icon-upload > .andy-attachment-lifecycle-row{padding:8px 12px;gap:12px}
+ .andy-icon-upload .andy-attachment-lifecycle-media{width:40px;height:40px;flex-basis:40px}
+}
