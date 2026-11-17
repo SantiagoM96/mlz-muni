@@ -22,7 +22,7 @@ export function AndyAlertDialogDocs(){
  const close=()=>setActive(null);
  return <>
   <DocSection title="Básico" description="Alert Dialog solicita una respuesta cuando la acción tiene consecuencias importantes. Probá una confirmación con dos acciones visibles.">
-   <DocPreview><button type="button" className="andy-system-button is-primary is-large icon-start" onClick={()=>setActive('basic')}>Abrir confirmación</button></DocPreview>
+   <DocPreview><button type="button" className="andy-system-button is-primary is-medium icon-start" onClick={()=>setActive('basic')}>Abrir confirmación</button></DocPreview>
   </DocSection>
   <DocSection title="Variantes" description="Cinco composiciones inspiradas en Alert Dialog de shadcn/ui, utilizando la identidad institucional de MLZ.">
    <div className="andy-modal-variant-list">
@@ -31,7 +31,7 @@ export function AndyAlertDialogDocs(){
       {example.media&&<span className={'andy-modal-variant-icon'+(example.intent==='destructive'?' is-danger':'')}><MaterialIcon name={example.media} size={22}/></span>}
       <div><strong>{example.label}</strong><p>{example.description}</p></div>
      </div>
-     <button type="button" className="andy-system-button is-tertiary is-large icon-start" onClick={()=>setActive(example.id)}><MaterialIcon name={example.intent==='destructive'?'delete':'visibility'} size={18}/>{example.trigger}</button>
+     <button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>setActive(example.id)}><MaterialIcon name={example.intent==='destructive'?'delete':'visibility'} size={18}/>{example.trigger}</button>
     </div>)}
    </div>
   </DocSection>
@@ -88,12 +88,12 @@ export function AndyDialogDocs(){
  ];
  return <>
   <DocSection title="Básico" description="Abrí un diálogo para agregar horarios a una actividad deportiva. Los controles siguen los criterios del formulario MLZ.">
-   <DocPreview><button type="button" className="andy-system-button is-primary is-large icon-start" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
+   <DocPreview><button type="button" className="andy-system-button is-primary is-medium icon-start" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
   </DocSection>
   <DocSection title="Variantes" description="El formulario deportivo es la referencia principal. Las variantes adicionales muestran tamaños y composiciones de Dialog.">
    <div className="andy-modal-variant-list">{variants.map(v=><div className="andy-modal-variant" key={v.id}>
     <div className="andy-modal-variant-info"><div><strong>{v.label}</strong><p>{v.desc}</p></div></div>
-    <button type="button" className="andy-system-button is-tertiary is-large icon-start" onClick={()=>open(v.id)}><MaterialIcon name={v.id==='schedule'?'add_circle':'visibility'} size={18}/>{v.trigger}</button>
+    <button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open(v.id)}><MaterialIcon name={v.id==='schedule'?'add_circle':'visibility'} size={18}/>{v.trigger}</button>
    </div>)}</div>
   </DocSection>
   <DocSection title="Anatomía" description="Dialog utiliza una estructura reutilizable; los contenidos y campos son propios de cada tarea.">
