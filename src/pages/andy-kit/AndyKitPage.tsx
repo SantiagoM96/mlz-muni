@@ -15,6 +15,7 @@ import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadStates, AndyUploadPreviews } from './AndyDashedUpload';
+import { AndyAttachmentGallery, AndyAttachmentStates } from './AndyAttachmentGallery';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
@@ -276,17 +277,53 @@ function ComponentDetails({id}:{id:ComponentId}){
    <div className="andy-form-grid"><label className="andy-field"><span>Observaciones</span><textarea placeholder="Escribí una observación"/></label></div>
   </ComponentExample></>;
  if(id==='adjuntos')return <>
-  <DocSection title="Adjuntar · estados" description="Variante original con bandeja celeste y botón sólido. Comparación de Default, Hover, Focus, Completo, Error y Disabled.">
-   <DocPreview align="start"><FormStateMatrix onlyFamily="upload" showExtras={false}/></DocPreview>
+  <DocSection title="Descripción" description="Attachment permite seleccionar documentación y reconocer los archivos adjuntos mediante su nombre, tipo, tamaño, estado y acciones disponibles.">
+   <p className="andy-alert-doc-description">En MLZ separamos el campo para seleccionar archivos de la representación del archivo ya seleccionado. Usalo para documentación de inscripciones y trámites, con formatos y límites claros antes de adjuntar. No presentes una carga como finalizada hasta que el servicio confirme su resultado.</p>
   </DocSection>
-  <DocSection title="Borde punteado · estados" description="La variante alternativa usa los mismos seis estados y mantiene siempre un trazo de 1 px, con guiones de 8 px y espacios de 4 px.">
-   <DocPreview align="start"><AndyDashedUploadStates/></DocPreview>
-  </DocSection>
-  <DocSection title="Vista previa · ambas variantes" description="Dos casos interactivos de documentación. Seleccioná un archivo para ver su nombre y reemplazarlo; formatos PDF, DOC y DOCX, hasta 10 MB.">
+  <DocSection title="Básico" description="Dos formas de seleccionar documentación, construidas con los controles y estados del sistema municipal.">
    <DocPreview><AndyUploadPreviews/></DocPreview>
   </DocSection>
-  <DocSection title="Criterios de uso" description="Las dos variantes conservan la selección nativa de archivos y la validación de tamaño y formato.">
-   <GuidelineTable rows={[["Adjuntar original","Bandeja celeste con acción sólida y nombre de archivo."],["Borde punteado","Acción de seleccionar o cambiar integrada al campo."],["Estados","Default, Hover, Focus, Completo, Error y Disabled; comparar ambas matrices antes de usarlas."]]}/>
+  <DocSection title="Archivo adjunto" description="Una vez seleccionado, el archivo muestra su nombre, tipo, tamaño y acciones. Esta demostración representa la interfaz sin enviar archivos a un servidor.">
+   <DocPreview><AndyAttachmentGallery/></DocPreview>
+  </DocSection>
+  <DocSection title="Estados del campo" description="Variante original con bandeja celeste y botón sólido. Comparación de Default, Hover, Focus, Completo, Error y Disabled.">
+   <DocPreview align="start"><FormStateMatrix onlyFamily="upload" showExtras={false}/></DocPreview>
+  </DocSection>
+  <DocSection title="Borde punteado" description="Variante alternativa con los mismos seis estados. Mantiene el trazo punteado de 8 px, con separación y radios definidos por el Design System.">
+   <DocPreview align="start"><AndyDashedUploadStates/></DocPreview>
+  </DocSection>
+  <DocSection title="Estados del archivo" description="Diferenciá el archivo seleccionado de la carga al servidor: pendiente, cargando, procesando, error y completado. Los estados de carga son demostrativos.">
+   <DocPreview><AndyAttachmentStates/></DocPreview>
+  </DocSection>
+  <DocSection title="Anatomía" description="Composición reutilizable para el campo de carga y para la tarjeta del archivo, manteniendo las responsabilidades separadas.">
+   <GuidelineTable rows={[
+    ['Etiqueta','Nombre del campo. Sin asterisco cuando es obligatorio; «(opcional)» solo cuando corresponda.'],
+    ['Control de carga','Botón o superficie que abre el selector nativo de archivos.'],
+    ['Archivo / Media','Ícono del formato o miniatura cuando hay una imagen disponible.'],
+    ['Contenido','Nombre legible y metadatos: formato, tamaño y estado.'],
+    ['Acciones','Ver o quitar archivo; cada acción debe ser independiente y accesible.'],
+    ['Ayuda y error','Formatos, límite de tamaño y explicación textual del error; no depender únicamente del color.'],
+   ]}/>
+  </DocSection>
+  <DocSection title="Especificaciones" description="Criterios de implementación de MLZ; los elementos reutilizan tamaños, colores y estados del Design System.">
+   <GuidelineTable rows={[
+    ['Variantes','Bandeja celeste original y campo de borde punteado; ninguna reemplaza a la otra.'],
+    ['Altura del control','Mínimo 48 px, con contenido adaptable y token de radio del sistema.'],
+    ['Formatos documentales','PDF, DOC y DOCX en los ejemplos actuales; imágenes JPG, PNG o WEBP en la variante de fotografía.'],
+    ['Límite de ejemplo','10 MB por archivo; el producto debe validar también del lado del servidor.'],
+    ['Colores','Primario 600 para valores completos, Info 500 para foco y Error para validaciones incorrectas.'],
+    ['Estados','Default, Hover, Focus, Completo, Error y Disabled en el campo; pendiente, cargando, procesando, error y completado en el archivo.'],
+   ]}/>
+  </DocSection>
+  <DocSection title="Comportamiento" description="La selección, lectura y eliminación deben ser operables con teclado, con mensajes precisos y sin acciones ambiguas.">
+   <GuidelineTable rows={[
+    ['Seleccionar','Abrir el selector nativo y actualizar el nombre visible cuando se elige un archivo válido.'],
+    ['Reemplazar','Permitir seleccionar otro archivo sin conservar un error previo; validar formato y tamaño nuevamente.'],
+    ['Quitar','Acción independiente de Abrir o Ver, con nombre accesible que identifica el archivo.'],
+    ['Carga','Distinguir selección local de carga real; no simular progreso o éxito como si fueran confirmaciones del servidor.'],
+    ['Error','Indicar por escrito la causa y cómo resolverla, con aviso accesible.'],
+    ['Varios archivos','Usar una lista clara; recurrir a carrusel horizontal solo cuando la cantidad y el contexto lo justifiquen.'],
+   ]}/>
   </DocSection>
  </>;
  if(id==='select')return <><FormStates family="dropdown"/>
