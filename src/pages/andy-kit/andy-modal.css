@@ -53,7 +53,7 @@
 /* Acciones según el tamaño Medium del Design System municipal. */
 .andy-modal-footer .andy-modal-button{min-height:40px;padding:8px 16px;border-radius:var(--mlz-radius-sm,4px);font-size:16px;line-height:24px}
 .andy-modal.is-schedule .andy-modal-header{padding-right:32px}
-.andy-modal.is-schedule .andy-modal-footer{padding-top:8px;border-top:1px solid #e1e7eb}
+
 .andy-modal.is-schedule .andy-modal-content{padding:24px}
 .andy-modal::backdrop{background:rgb(13 24 34 / 65%);backdrop-filter:blur(2px)}
 .andy-modal.is-destructive .andy-modal-header h3{color:#d11c42}
@@ -64,11 +64,12 @@
 /* Los horarios se dimensionan por contenido: no se crea scroll interno en desktop. */
 .andy-modal.is-schedule{width:min(760px,calc(100vw - 32px));}
 .andy-modal.is-schedule .andy-modal-content{gap:var(--mlz-space-16);overflow:visible;}
-.andy-modal.is-schedule .andy-modal-footer{padding-top:var(--mlz-space-16);border-top:1px solid var(--color-divider,#e1e7eb);}
+ .andy-modal.is-schedule .andy-modal-footer{box-sizing:border-box;width:calc(100% + 2 * var(--mlz-space-24));margin-inline:calc(-1 * var(--mlz-space-24));padding:var(--mlz-space-24) var(--mlz-space-24) 0;border-top:1px solid var(--color-divider,#e1e7eb);}
 .andy-modal-footer .andy-system-button{flex-shrink:0;}
 .andy-modal-footer .andy-modal-danger{background:#ef284c;color:#fff;}
 .andy-modal-footer .andy-modal-danger:hover{background:#ce1e3e;}
 @media(max-width:530px){
  .andy-modal.is-schedule .andy-modal-content{gap:var(--mlz-space-12);padding:var(--mlz-space-16);overflow-y:auto;max-height:calc(100dvh - 32px)}
+ .andy-modal.is-schedule .andy-modal-footer{width:calc(100% + 2 * var(--mlz-space-16));margin-inline:calc(-1 * var(--mlz-space-16));padding:var(--mlz-space-24) var(--mlz-space-16) 0}
  .andy-modal-footer .andy-system-button{width:100%}
 }
