@@ -136,7 +136,7 @@ export function AndyIconUpload(){
  return <div className="andy-icon-upload">
   <label className="andy-dashed-upload-title" htmlFor={id}>Documentación adjunta</label>
   {phase==='empty'?<div className="andy-icon-upload-trigger">
-   <span className="andy-attachment-lifecycle-media" aria-hidden="true"><MaterialIcon name="touch_app" size={24}/></span>
+   <span className="andy-attachment-lifecycle-media" aria-hidden="true"><MaterialIcon name="attach_file" size={24}/></span>
    <span className="andy-icon-upload-trigger-copy"><strong>Seleccionar archivo</strong><span>Seleccioná un documento</span></span>
    <input id={id} type="file" accept=".pdf,.doc,.docx" onChange={onChange}
     aria-label="Seleccionar documentación adjunta" aria-describedby={id+'-help'}/>
