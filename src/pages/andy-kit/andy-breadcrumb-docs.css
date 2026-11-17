@@ -1,0 +1,41 @@
+/* Documentación Breadcrumb: superficies únicas y controles grises compartidos. */
+.andy-doc-page .andy-breadcrumb-preview{
+ padding:var(--mlz-space-40,40px);
+ min-height:170px;
+ overflow:visible;
+ background:#fff;
+ border-color:#d1d1d1;
+}
+.andy-breadcrumb-doc-instance{margin:0;max-width:100%}
+.andy-breadcrumb-preview .andy-doc-demo-content{overflow:visible}
+.andy-breadcrumb-responsive-gallery{
+ display:flex;
+ flex-direction:column;
+ width:100%;
+ gap:var(--mlz-space-32,32px);
+}
+.andy-breadcrumb-responsive-row{
+ display:flex;
+ flex-direction:column;
+ align-items:flex-start;
+ gap:var(--mlz-space-12,12px);
+ width:100%;
+ min-width:0;
+}
+.andy-breadcrumb-responsive-row > strong{
+ font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
+ color:var(--color-black-950,#000);
+}
+.andy-breadcrumb-mobile-sample{
+ box-sizing:border-box;
+ max-width:360px;
+ width:100%;
+ min-width:0;
+}
+.andy-breadcrumb-mobile-sample .mlz-breadcrumb-back{display:flex}
+.andy-breadcrumb-mobile-sample .mlz-breadcrumb-list.has-mobile-back{display:none}
+@media(max-width:680px){
+ .andy-doc-page .andy-breadcrumb-preview{
+  padding:var(--mlz-space-24,24px) var(--mlz-space-16,16px);
+ }
+}

@@ -17,6 +17,7 @@ import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadStates, AndySolidUploadStates, AndySolidUploadPreview, AndyDashedUpload } from './AndyDashedUpload';
 import { AndyIconUpload, AndyIconUploadStates } from './AndyAttachmentGallery';
 import { AndyAvatarDocs } from './AndyAvatarDocs';
+import { AndyBreadcrumbDocs } from './AndyBreadcrumbDocs';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
@@ -343,6 +344,7 @@ function ComponentDetails({id}:{id:ComponentId}){
  if(id==='boton')return <Buttons/>;
  if(id==='chips')return <AndyBadgeDocs/>;
  if(id==='avatar')return <AndyAvatarDocs/>;
+ if(id==='breadcrumb')return <AndyBreadcrumbDocs/>;
  if(id==='tarjeta')return <Cards/>;
  if(id==='mensaje')return <AlertDocs/>;
  if(additionalComponents.some(([key])=>key===id)) return <AndyAdditionalComponent key={id} id={id as typeof additionalComponents[number][0]}/>;
