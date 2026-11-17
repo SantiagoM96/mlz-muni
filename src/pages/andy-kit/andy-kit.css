@@ -1496,3 +1496,80 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  .andy-foundation-type-row{grid-template-columns:1fr;gap:var(--mlz-space-16);min-height:auto;padding:var(--mlz-space-24) 0}
  .andy-foundation-type-name{font-size:42px}
 }
+
+
+/* Identidad editorial global del catálogo — Info 700 (#00377F).
+   Solo UI de documentación: NO modifica las demos ni los tokens Primary municipales. */
+.andy-doc-layout{
+ --andy-editorial-accent:#00377f;
+ --andy-editorial-accent-hover:#0058cc;
+}
+.andy-doc-layout .andy-topbar-heading h1,
+.andy-doc-layout .andy-topbar-actions .andy-version,
+.andy-doc-layout .andy-main-heading h2,
+.andy-doc-layout .andy-section-head h2,
+.andy-doc-layout .andy-doc-section-heading>h3,
+.andy-doc-layout .andy-doc-example>h3,
+.andy-doc-layout .andy-component-directory h3,
+.andy-doc-layout .andy-directory-grid>a>strong,
+.andy-doc-layout .andy-directory-grid>a>.material-symbols-outlined,
+.andy-doc-layout .andy-doc-toc>strong,
+.andy-doc-layout .andy-doc-toc nav a.is-active,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location],
+.andy-doc-layout .andy-doc-guideline strong,
+.andy-doc-layout .andy-doc-guideline-table tbody th,
+.andy-doc-layout .andy-foundation-color-role strong,
+.andy-doc-layout .andy-foundation-type-row>div>span,
+.andy-doc-layout .andy-foundation-weights span,
+.andy-doc-layout .andy-foundation-type .type-section,
+.andy-doc-layout .andy-foundation-eyebrow,
+.andy-doc-layout .andy-foundation-intro-copy h2,
+.andy-doc-layout .andy-foundation-index a>span,
+.andy-doc-layout .andy-foundation-type-name,
+.andy-doc-layout .andy-geometry-measure strong,
+.andy-doc-layout .andy-radius-data strong,
+.andy-doc-layout .layout-measure>strong,
+.andy-doc-layout .andy-scrollbar-section h3,
+.andy-doc-layout .andy-scrollbar-section>p code,
+.andy-doc-layout .andy-button-doc-section>h3,
+.andy-doc-layout .andy-button-section-intro h3,
+.andy-doc-layout .andy-button-variant-example h4,
+.andy-doc-layout .andy-button-sizebar strong,
+.andy-doc-layout .andy-button-state-name,
+.andy-doc-layout .andy-button-icon-row>strong,
+.andy-doc-layout .andy-button-size-example strong,
+.andy-doc-layout .andy-button-state-example>strong,
+.andy-doc-layout .andy-button-on-this-page a,
+.andy-doc-layout .andy-button-guidance .material-symbols-outlined,
+.andy-doc-layout .andy-add-guidance strong,
+.andy-doc-layout .andy-add-toast-label,
+.andy-doc-layout .andy-upload-preview-heading,
+.andy-doc-layout .andy-nav-review-mark,
+.andy-doc-layout .andy-component-search>.material-symbols-outlined,
+.andy-doc-layout .andy-component-search-clear,
+.andy-doc-layout .andy-sidebar-toggle{
+ color:var(--andy-editorial-accent);
+}
+.andy-doc-layout .andy-nav-link:hover,
+.andy-doc-layout .andy-nav-label-link:hover,
+.andy-doc-layout .andy-nav-label,
+.andy-doc-layout .andy-doc-toc nav a:hover,
+.andy-doc-layout .andy-directory-grid>a:hover>strong{
+ color:var(--andy-editorial-accent-hover);
+}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active:hover,
+.andy-doc-layout .andy-nav-label-link.active,
+.andy-doc-layout .andy-nav-label-link.active:hover{
+ color:var(--andy-editorial-accent);
+}
+/* Documentación de criterios: etiquetas informativas, no estados del producto. */
+.andy-doc-layout .andy-doc-guideline strong,
+.andy-doc-layout .andy-add-guidance strong,
+.andy-doc-layout .andy-doc-guideline-table tbody th{
+ color:var(--andy-editorial-accent);
+}
+/* El check del menú activo permanece visible y no confunde el estado seleccionado. */
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-review-mark{
+ color:var(--andy-editorial-accent);
+}
