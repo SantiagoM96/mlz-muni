@@ -1499,7 +1499,7 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 
 
 /* Identidad editorial global del catálogo — Info 600 (#0058CC).
-   Solo UI de documentación: NO modifica las demos ni los tokens Primary municipales. */
+   Solo contenido editorial: barras lateral izquierda y derecha sin cambios. */
 .andy-doc-layout{
  --andy-editorial-accent:#0058cc;
  --andy-editorial-accent-hover:#00377f;
@@ -1513,9 +1513,6 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-component-directory h3,
 .andy-doc-layout .andy-directory-grid>a>strong,
 .andy-doc-layout .andy-directory-grid>a>.material-symbols-outlined,
-.andy-doc-layout .andy-doc-toc>strong,
-.andy-doc-layout .andy-doc-toc nav a.is-active,
-.andy-doc-layout .andy-doc-toc nav a[aria-current=location],
 .andy-doc-layout .andy-doc-guideline strong,
 .andy-doc-layout .andy-doc-guideline-table tbody th,
 .andy-doc-layout .andy-foundation-color-role strong,
@@ -1543,25 +1540,11 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-button-guidance .material-symbols-outlined,
 .andy-doc-layout .andy-add-guidance strong,
 .andy-doc-layout .andy-add-toast-label,
-.andy-doc-layout .andy-upload-preview-heading,
-.andy-doc-layout .andy-nav-review-mark,
-.andy-doc-layout .andy-component-search>.material-symbols-outlined,
-.andy-doc-layout .andy-component-search-clear,
-.andy-doc-layout .andy-sidebar-toggle{
+.andy-doc-layout .andy-upload-preview-heading{
  color:var(--andy-editorial-accent);
 }
-.andy-doc-layout .andy-nav-link:hover,
-.andy-doc-layout .andy-nav-label-link:hover,
-.andy-doc-layout .andy-nav-label,
-.andy-doc-layout .andy-doc-toc nav a:hover,
 .andy-doc-layout .andy-directory-grid>a:hover>strong{
  color:var(--andy-editorial-accent-hover);
-}
-.andy-doc-layout .andy-sidebar .andy-nav-link.active,
-.andy-doc-layout .andy-sidebar .andy-nav-link.active:hover,
-.andy-doc-layout .andy-nav-label-link.active,
-.andy-doc-layout .andy-nav-label-link.active:hover{
- color:var(--andy-editorial-accent);
 }
 /* Documentación de criterios: etiquetas informativas, no estados del producto. */
 .andy-doc-layout .andy-doc-guideline strong,
@@ -1569,12 +1552,6 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-doc-guideline-table tbody th{
  color:var(--andy-editorial-accent);
 }
-/* El check del menú activo permanece visible y no confunde el estado seleccionado. */
-.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-review-mark{
- color:var(--andy-editorial-accent);
-}
-
-
 /* Tabla editorial: encabezado «Elemento» y etiquetas de criterios de uso. */
 .andy-doc-layout .andy-doc-guideline-table thead th{
  color:var(--andy-editorial-accent,#0058cc);
