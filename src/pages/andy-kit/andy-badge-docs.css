@@ -8,24 +8,28 @@
  display:flex;align-items:center;justify-content:center;
  min-height:64px;
 }
-/* Paleta en grilla abierta: sin tabla, encabezados, divisores ni tarjetas
-   dentro de la superficie principal de DocPreview. */
+/* Colores: siete familias × cuatro apariencias, todas Medium.
+   Un único DocPreview blanco; sin cabeceras, renglones, separadores o mini-cards. */
 .andy-badge-palette{
  display:grid;
- grid-template-columns:repeat(3,minmax(0,1fr));
- column-gap:var(--mlz-space-24,24px);
- row-gap:var(--mlz-space-32,32px);
+ grid-template-columns:repeat(2,minmax(0,1fr));
  width:100%;
  min-width:0;
+ column-gap:var(--mlz-space-32,32px);
+ row-gap:var(--mlz-space-32,32px);
 }
 .andy-badge-palette-item{
  display:flex;
  flex-direction:column;
- align-items:center;
- justify-content:center;
+ align-items:flex-start;
+ justify-content:flex-start;
  min-width:0;
  gap:var(--mlz-space-12,12px);
- text-align:center;
+ padding:0;
+ border:0;
+ background:transparent;
+ box-shadow:none;
+ text-align:left;
 }
 .andy-badge-palette-name{
  font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
@@ -34,7 +38,7 @@
 .andy-badge-palette-examples{
  display:flex;
  align-items:center;
- justify-content:center;
+ justify-content:flex-start;
  gap:var(--mlz-space-8,8px);
  flex-wrap:wrap;
  width:100%;
@@ -69,11 +73,10 @@
 .andy-badge-reset:focus-visible{outline:2px solid var(--color-grey-900,#3d3d3d);outline-offset:2px}
 .andy-badge-reset:disabled{opacity:.55;cursor:default}
 .andy-badge-empty{color:var(--color-grey-500,#6d6d6d);font-size:14px}
-@media(max-width:900px){
- .andy-badge-palette{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:760px){
+ .andy-badge-palette{grid-template-columns:1fr;row-gap:var(--mlz-space-24,24px)}
 }
 @media(max-width:640px){
- .andy-badge-palette{grid-template-columns:1fr;row-gap:var(--mlz-space-24,24px)}
  .andy-badge-sizes{gap:var(--mlz-space-8)}
  .andy-doc-page .andy-badge-controls{flex-wrap:wrap;overflow-x:visible}
  .andy-badge-reset{min-height:40px;height:40px;padding-inline:var(--mlz-space-16);font-size:16px}
