@@ -111,19 +111,6 @@ function PaletteGallery({appearance}:{appearance:'soft'|'outline'}){
  </DocPreview>;
 }
 
-function AdditionalVariants(){
- return <DocPreview>
-  <div className="andy-badge-example-row">
-   <Badge appearance="solid">Default</Badge>
-   <Badge appearance="solid" tone="warning">Alert</Badge>
-   <Badge appearance="solid" tone="error">Error</Badge>
-   <Badge appearance="solid" tone="success">Success</Badge>
-   <Badge appearance="solid" tone="neutral">Neutral</Badge>
-   <Badge appearance="ghost" tone="primary">Ghost</Badge>
-   <Badge appearance="ghost" tone="purple">Violeta</Badge>
-  </div>
- </DocPreview>;
-}
 function SizeGallery(){
  return <DocPreview>
   <div className="andy-badge-sizes">
@@ -133,15 +120,6 @@ function SizeGallery(){
    </div>)}
   </div>
  </DocPreview>;
-}
-function IconGallery(){
- return <DocPreview><div className="andy-badge-example-row">
-  <Badge tone="success">Sin ícono</Badge>
-  <Badge tone="success" icon="check_circle" iconPosition="start">Confirmado</Badge>
-  <Badge tone="success" icon="check_circle" iconPosition="end">Confirmado</Badge>
-  <Badge tone="primary" appearance="outline" icon="bookmark" iconPosition="start">Guardado</Badge>
-  <Badge tone="primary" appearance="outline" icon="bookmark" iconPosition="end">Guardado</Badge>
- </div></DocPreview>;
 }
 function SpinnerGallery(){
  return <DocPreview><div className="andy-badge-example-row">
