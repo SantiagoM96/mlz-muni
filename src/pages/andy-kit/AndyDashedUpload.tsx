@@ -100,7 +100,7 @@ export function AndySingleUpload({appearance='solid',kind='document',demoState}:
      aria-label={'Quitar '+displayName} disabled={simulated} onClick={remove}><MaterialIcon name="close" size={20} weight={400}/></button>}
    <input ref={fileInputRef} id={id} type="file" accept={config.accept} onChange={select}
     className={selecting?'andy-upload-file-input-full':'andy-upload-file-input-hidden'}
-    disabled={simulated} aria-describedby={currentError?feedbackId:helpId}
+    disabled={simulated} tabIndex={selecting?0:-1} aria-describedby={currentError?feedbackId:helpId}
     aria-invalid={Boolean(currentError)} aria-label={(selecting?'Seleccionar ':'Cambiar ')+config.label.toLowerCase()}/>
   </div>
   <p className="andy-dashed-upload-help" id={helpId}>{config.help}</p>
