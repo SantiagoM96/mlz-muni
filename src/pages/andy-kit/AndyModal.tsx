@@ -49,6 +49,8 @@ export function AndyModal({
  return <dialog
   ref={ref}
   className={'andy-modal is-'+size+' is-'+intent+' is-'+kind}
+  role={kind==='alert'?'alertdialog':'dialog'}
+  aria-modal="true"
   aria-labelledby={titleId}
   aria-describedby={descriptionId}
   onMouseDown={event=>{
