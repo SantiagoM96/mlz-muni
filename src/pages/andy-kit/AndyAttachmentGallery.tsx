@@ -110,12 +110,13 @@ export function AndyIconUpload(){
  useEffect(()=>{
   if(phase!=='uploading')return;
   timer.current=setInterval(()=>setProgress(previous=>Math.min(100,previous+10)),160);
-  return ()=>{if(timer.current)clearInterval(timer.current);timer.current=null;};
+  const finish=setTimeout(()=>setPhase('processing'),1600);
+  return ()=>{
+   if(timer.current)clearInterval(timer.current);
+   clearTimeout(finish);
+   timer.current=null;
+  };
  },[phase]);
- useEffect(()=>{
-  if(phase!=='uploading'||progress<100)return;
-  setPhase('processing');
- },[progress,phase]);
  useEffect(()=>{
   if(phase!=='processing')return;
   const timeout=setTimeout(()=>setPhase('completed'),650);
