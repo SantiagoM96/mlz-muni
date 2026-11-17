@@ -121,6 +121,9 @@ const visualGuidance:Partial<Record<AdditionalId,{heading:string;description:str
 export function AndyAdditionalComponent({id}:{id:AdditionalId}){
  if(id==='dialog')return <AndyDialogDocs/>;
  if(id==='alert-dialog')return <AndyAlertDialogDocs/>;
+ return <OtherAdditionalComponent id={id}/>;
+}
+function OtherAdditionalComponent({id}:{id:AdditionalId}){
  const guidance=visualGuidance[id];
  const [visible,setVisible]=useState(false);
  const [value,setValue]=useState(45);
