@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type ChangeEvent } from 'react';
+import { useEffect, useId, useState, type ChangeEvent } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './andy-attachment-gallery.css';
 
@@ -105,17 +105,26 @@ export function AndyIconUpload(){
  const [file,setFile]=useState<File|null>(null);
  const [phase,setPhase]=useState<'empty'|'uploading'|'processing'|'completed'|'error'>('empty');
  const [progress,setProgress]=useState(0);
- const timer=useRef<ReturnType<typeof setInterval>|null>(null);
  const id=useId();
+ // Progreso de demostración calculado a partir del tiempo transcurrido:
+ // una sola fuente de verdad alimenta barra, porcentaje y aria-valuenow.
  useEffect(()=>{
   if(phase!=='uploading')return;
-  timer.current=setInterval(()=>setProgress(previous=>Math.min(100,previous+10)),160);
-  const finish=setTimeout(()=>setPhase('processing'),1600);
-  return ()=>{
-   if(timer.current)clearInterval(timer.current);
-   clearTimeout(finish);
-   timer.current=null;
+  const duration=2400;
+  let frame=0;
+  let startedAt:number|undefined;
+  const animate=(timestamp:number)=>{
+   if(startedAt===undefined)startedAt=timestamp;
+   const fraction=Math.min(1,(timestamp-startedAt)/duration);
+   setProgress(fraction*100);
+   if(fraction<1){
+    frame=window.requestAnimationFrame(animate);
+   }else{
+    setPhase('processing');
+   }
   };
+  frame=window.requestAnimationFrame(animate);
+  return ()=>window.cancelAnimationFrame(frame);
  },[phase]);
  useEffect(()=>{
   if(phase!=='processing')return;
@@ -142,13 +151,13 @@ export function AndyIconUpload(){
     aria-label="Seleccionar documentación adjunta" aria-describedby={id+'-help'}/>
   </div>:<div className={'andy-attachment-lifecycle-row is-'+phase}>
    <span className="andy-attachment-lifecycle-media" aria-hidden="true">
-    <MaterialIcon name={phase==='error'?'error':phase==='completed'?'check_circle':phase==='processing'?'hourglass_top':'upload'} size={24}/>
+    <MaterialIcon name={phase==='error'?'error':phase==='completed'?'check_circle':phase==='processing'||phase==='uploading'?'sync':'upload'} size={24}/>
    </span>
    <div className="andy-attachment-lifecycle-copy">
     <strong title={file?.name}>{file?.name}</strong>
-    <span role="status">{phase==='uploading'?'Subiendo · '+progress+' % (simulación)':phase==='processing'?'Procesando documento (simulación)':phase==='error'?'Archivo inválido o supera los 10 MB. Intentá nuevamente.':'Archivo seleccionado (simulación)'}</span>
+    <span role="status">{phase==='uploading'?'Subiendo · '+Math.floor(progress)+' % (simulación)':phase==='processing'?'Procesando documento (simulación)':phase==='error'?'Archivo inválido o supera los 10 MB. Intentá nuevamente.':'Archivo seleccionado (simulación)'}</span>
     {phase==='uploading'&&<div className="andy-attachment-lifecycle-progress" role="progressbar"
-     aria-label="Progreso de demostración" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}><span style={{width:progress+'%'}}/></div>}
+     aria-label="Progreso de demostración" aria-valuenow={Math.floor(progress)} aria-valuemin={0} aria-valuemax={100}><span style={{width:progress+'%'}}/></div>}
    </div>
    {phase==='error'&&<button type="button" className="andy-attachment-lifecycle-action" onClick={startAgain} aria-label="Reintentar carga de ejemplo">
     <MaterialIcon name="refresh" size={20}/></button>}
