@@ -14,8 +14,8 @@ import { AndyMunicipalCardGallery } from './AndyMunicipalCards';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
-import { AndyDashedUploadStates, AndyUploadPreviews } from './AndyDashedUpload';
-import { AndyAttachmentGallery, AndyAttachmentStates } from './AndyAttachmentGallery';
+import { AndyDashedUploadStates, AndySolidUploadPreview, AndyDashedUpload } from './AndyDashedUpload';
+import { AndyAttachmentGallery, AndyAttachmentStates, AndyAttachmentLifecycle } from './AndyAttachmentGallery';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
@@ -280,8 +280,14 @@ function ComponentDetails({id}:{id:ComponentId}){
   <DocSection title="Descripción" description="Attachment permite seleccionar documentación y reconocer los archivos adjuntos mediante su nombre, tipo, tamaño, estado y acciones disponibles.">
    <p className="andy-alert-doc-description">En MLZ separamos el campo para seleccionar archivos de la representación del archivo ya seleccionado. Usalo para documentación de inscripciones y trámites, con formatos y límites claros antes de adjuntar. No presentes una carga como finalizada hasta que el servicio confirme su resultado.</p>
   </DocSection>
-  <DocSection title="Básico" description="Dos formas de seleccionar documentación, construidas con los controles y estados del sistema municipal.">
-   <DocPreview><AndyUploadPreviews/></DocPreview>
+  <DocSection title="Estándar" description="Variante original del sistema: bandeja celeste con botón Adjuntar, nombre del archivo y estados de carga.">
+   <DocPreview><div className="andy-upload-preview-pair"><AndySolidUploadPreview/><AndyAttachmentLifecycle appearance="standard"/></div></DocPreview>
+  </DocSection>
+  <DocSection title="Borde punteado" description="Control de selección con borde punteado y los mismos cinco estados del archivo. Mantenemos las reglas de campos y validación del sistema.">
+   <DocPreview><div className="andy-upload-preview-pair"><AndyDashedUpload kind="document"/><AndyAttachmentLifecycle appearance="dashed"/></div></DocPreview>
+  </DocSection>
+  <DocSection title="Lista de estado" description="Archivos en filas compactas, con ícono, nombre, información secundaria, progreso y acciones de quitar o reintentar. Adaptación del ejemplo visual a MLZ.">
+   <DocPreview><AndyAttachmentLifecycle appearance="list"/></DocPreview>
   </DocSection>
   <DocSection title="Archivo adjunto" description="Una vez seleccionado, el archivo muestra su nombre, tipo, tamaño y acciones. Esta demostración representa la interfaz sin enviar archivos a un servidor.">
    <DocPreview><AndyAttachmentGallery/></DocPreview>
@@ -289,7 +295,7 @@ function ComponentDetails({id}:{id:ComponentId}){
   <DocSection title="Estados del campo" description="Variante original con bandeja celeste y botón sólido. Comparación de Default, Hover, Focus, Completo, Error y Disabled.">
    <DocPreview align="start"><FormStateMatrix onlyFamily="upload" showExtras={false}/></DocPreview>
   </DocSection>
-  <DocSection title="Borde punteado" description="Variante alternativa con los mismos seis estados. Mantiene el trazo punteado de 8 px, con separación y radios definidos por el Design System.">
+  <DocSection title="Estados del borde punteado" description="Comparación adicional de los seis estados del campo: Default, Hover, Focus, Completo, Error y Disabled, con la geometría punteada del Design System.">
    <DocPreview align="start"><AndyDashedUploadStates/></DocPreview>
   </DocSection>
   <DocSection title="Estados del archivo" description="Diferenciá el archivo seleccionado de la carga al servidor: pendiente, cargando, procesando, error y completado. Los estados de carga son demostrativos.">
@@ -307,12 +313,12 @@ function ComponentDetails({id}:{id:ComponentId}){
   </DocSection>
   <DocSection title="Especificaciones" description="Criterios de implementación de MLZ; los elementos reutilizan tamaños, colores y estados del Design System.">
    <GuidelineTable rows={[
-    ['Variantes','Bandeja celeste original y campo de borde punteado; ninguna reemplaza a la otra.'],
-    ['Altura del control','Mínimo 48 px, con contenido adaptable y token de radio del sistema.'],
+    ['Variantes','Estándar, Borde punteado y Lista de estado: tres presentaciones independientes que comparten estados de archivo.'],
+    ['Altura del control','48 px en los campos Estándar y Borde punteado; la lista de archivos utiliza filas con altura adaptable.'],
     ['Formatos documentales','PDF, DOC y DOCX en los ejemplos actuales; imágenes JPG, PNG o WEBP en la variante de fotografía.'],
     ['Límite de ejemplo','10 MB por archivo; el producto debe validar también del lado del servidor.'],
     ['Colores','Primario 600 para valores completos, Info 500 para foco y Error para validaciones incorrectas.'],
-    ['Estados','Default, Hover, Focus, Completo, Error y Disabled en el campo; pendiente, cargando, procesando, error y completado en el archivo.'],
+    ['Estados','Default, Hover, Focus, Completo, Error y Disabled para los controles; pendiente, subiendo, procesando, error y completado para cada una de las tres variantes.'],
    ]}/>
   </DocSection>
   <DocSection title="Comportamiento" description="La selección, lectura y eliminación deben ser operables con teclado, con mensajes precisos y sin acciones ambiguas.">
