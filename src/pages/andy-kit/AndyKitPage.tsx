@@ -1,7 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { NavLink, Navigate, useParams } from 'react-router-dom';
 import { MaterialIcon, type MaterialIconName } from '../../shared/ui/MaterialIcon';
-import { SiteFooter } from '../../shared/layout/SiteFooter';
 import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
 import { AndySportsFormExamples } from './AndySportsFormExamples';
@@ -221,6 +220,25 @@ const lomasBailaQuestions:AccordionQuestion[]=[
  ['4','¿Puedo volver a competir si no clasifico?','¡Sí! Si no clasificás en una fecha, podés participar en los siguientes encuentros para intentar llegar a la final.'],
  ['5','¿Dónde y cuándo se realizan los encuentros?','Los encuentros se realizan en distintos barrios de Lomas de Zamora durante noviembre. Consultá el cronograma de fechas y sedes para conocer cada ubicación y el horario confirmado.']
 ];
+function AccordionContextFooter(){
+ const assets=import.meta.env.BASE_URL+'assets/';
+ const socials=['instagram','x','tiktok','facebook','youtube'];
+ const emergencyNumbers:[string,string][]=[['100','Bomberos'],['103','Defensa Civil'],['107','Emergencias'],['911','Policía'],['147','Seguridad Lomas'],['144','Violencia de Género']];
+ return <footer className="andy-baila-site-footer" aria-label="Pie institucional de la vista de ejemplo">
+  <div className="andy-baila-site-footer-inner">
+   <img className="andy-baila-site-logo" src={assets+'logo-municipio-blanco.svg'} alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad" width="287" height="72"/>
+   <div className="andy-baila-site-contact">
+    <h5>Centro de Atención a la Comunidad</h5>
+    <div className="andy-baila-site-buttons"><span>Escribinos por <strong>WhatsApp</strong></span><span>Consultas o solicitudes</span></div>
+    <div className="andy-baila-site-phones"><strong>0800-666-6666</strong><span aria-hidden="true">|</span><strong>0800-122-5662</strong></div>
+   </div>
+   <div className="andy-baila-site-links"><span>Newsletter</span><span>Boletín Oficial</span><span>HCD</span></div>
+   <div className="andy-baila-site-social"><h5>¡Seguinos en nuestras redes!</h5><div className="andy-baila-site-social-icons">{socials.map(name=><img key={name} src={assets+'social/'+name+'.svg'} alt={name} width="24" height="24"/>)}</div></div>
+   <div className="andy-baila-site-emergency">{emergencyNumbers.map(([n,label])=><span key={n}><strong>{n}</strong> {label}</span>)}</div>
+   <p className="andy-baila-site-copyright">© Municipio Lomas de Zamora | Todos los derechos reservados 2024.</p>
+  </div>
+ </footer>
+}
 function AccordionInContext(){
  return <div className="andy-baila-preview">
   <div className="andy-baila-preview-content">
@@ -236,7 +254,7 @@ function AccordionInContext(){
     <AccordionDemo questions={lomasBailaQuestions} initiallyOpen={false}/>
    </section>
   </div>
-  <div className="andy-baila-preview-footer"><SiteFooter/></div>
+  <div className="andy-baila-preview-footer"><AccordionContextFooter/></div>
  </div>;
 }
 
