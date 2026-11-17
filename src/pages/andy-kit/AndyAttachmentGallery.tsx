@@ -101,15 +101,33 @@ export function AndyAttachmentLifecycle({appearance}:{appearance:AttachmentAppea
 /** Tercera variante: campo de selección con ícono.
  * La carga se simula únicamente para documentar la transición de estados.
  */
-export function AndyIconUpload(){
+type IconUploadPhase='empty'|'uploading'|'processing'|'completed'|'error';
+type IconDemoState='default'|'hover'|'focus'|'uploading'|'processing'|'completed'|'error'|'disabled';
+const iconUploadStates:{id:IconDemoState;name:string;note:string}[]=[
+ {id:'default',name:'Default',note:'Sin interacción'},
+ {id:'hover',name:'Hover',note:'Cursor sobre el campo'},
+ {id:'focus',name:'Focus / Activo',note:'Campo enfocado'},
+ {id:'uploading',name:'Subiendo',note:'Progreso de carga'},
+ {id:'processing',name:'Procesando',note:'Validación del archivo'},
+ {id:'completed',name:'Completo',note:'Archivo cargado'},
+ {id:'error',name:'Error',note:'Validación incorrecta'},
+ {id:'disabled',name:'Disabled',note:'Interacción bloqueada'},
+];
+
+export function AndyIconUpload({demoState}:{demoState?:IconDemoState}={}){
  const [file,setFile]=useState<File|null>(null);
- const [phase,setPhase]=useState<'empty'|'uploading'|'processing'|'completed'|'error'>('empty');
+ const [phase,setPhase]=useState<IconUploadPhase>('empty');
  const [progress,setProgress]=useState(0);
  const id=useId();
- // Progreso de demostración calculado a partir del tiempo transcurrido:
- // una sola fuente de verdad alimenta barra, porcentaje y aria-valuenow.
+ const simulated=demoState!==undefined;
+ const current:IconUploadPhase=demoState==='uploading'?'uploading':
+  demoState==='processing'?'processing':demoState==='completed'?'completed':
+  demoState==='error'?'error':simulated?'empty':phase;
+ const currentProgress=demoState==='uploading'?64:progress;
+ const displayName=file?.name||(simulated&&current!=='empty'?'documentacion.pdf':'');
+ // Progreso de demostración: misma fuente temporal para barra y porcentaje.
  useEffect(()=>{
-  if(phase!=='uploading')return;
+  if(simulated||phase!=='uploading')return;
   const duration=2400;
   let frame=0;
   let startedAt:number|undefined;
@@ -125,12 +143,12 @@ export function AndyIconUpload(){
   };
   frame=window.requestAnimationFrame(animate);
   return ()=>window.cancelAnimationFrame(frame);
- },[phase]);
+ },[phase,simulated]);
  useEffect(()=>{
-  if(phase!=='processing')return;
+  if(simulated||phase!=='processing')return;
   const timeout=setTimeout(()=>setPhase('completed'),650);
   return ()=>clearTimeout(timeout);
- },[phase]);
+ },[phase,simulated]);
  const onChange=(event:ChangeEvent<HTMLInputElement>)=>{
   const selected=event.currentTarget.files?.[0];
   if(!selected)return;
@@ -142,28 +160,42 @@ export function AndyIconUpload(){
  };
  const reset=()=>{setFile(null);setProgress(0);setPhase('empty');};
  const startAgain=()=>{setProgress(0);setPhase('uploading');};
- return <div className="andy-icon-upload">
+ return <div className="andy-icon-upload" data-state={demoState}>
   <label className="andy-dashed-upload-title" htmlFor={id}>Documentación adjunta</label>
-  {phase==='empty'?<div className="andy-icon-upload-trigger">
-   <span className="andy-attachment-lifecycle-media" aria-hidden="true"><MaterialIcon name="attach_file" size={24}/></span>
+  {current==='empty'?<div className="andy-icon-upload-trigger">
+   <span className="andy-attachment-lifecycle-media" aria-hidden="true"><MaterialIcon name="attach_file" size={24} weight={400}/></span>
    <span className="andy-icon-upload-trigger-copy"><strong>Seleccionar archivo</strong><span>Seleccioná un documento</span></span>
    <input id={id} type="file" accept=".pdf,.doc,.docx" onChange={onChange}
-    aria-label="Seleccionar documentación adjunta" aria-describedby={id+'-help'}/>
-  </div>:<div className={'andy-attachment-lifecycle-row is-'+phase}>
+    disabled={simulated} aria-label="Seleccionar documentación adjunta" aria-describedby={id+'-help'}/>
+  </div>:<div className={'andy-attachment-lifecycle-row is-'+current}>
    <span className="andy-attachment-lifecycle-media" aria-hidden="true">
-    <MaterialIcon name={phase==='error'?'error':phase==='completed'?'check_circle':phase==='processing'||phase==='uploading'?'sync':'upload'} size={24}/>
+    <MaterialIcon name={current==='error'?'error':current==='completed'?'check_circle':'sync'} size={24} weight={400}/>
    </span>
    <div className="andy-attachment-lifecycle-copy">
-    <strong title={file?.name}>{file?.name}</strong>
-    <span role="status">{phase==='uploading'?'Subiendo · '+Math.floor(progress)+' % (simulación)':phase==='processing'?'Procesando documento (simulación)':phase==='error'?'Archivo inválido o supera los 10 MB. Intentá nuevamente.':'Archivo seleccionado (simulación)'}</span>
-    {phase==='uploading'&&<div className="andy-attachment-lifecycle-progress" role="progressbar"
-     aria-label="Progreso de demostración" aria-valuenow={Math.floor(progress)} aria-valuemin={0} aria-valuemax={100}><span style={{width:progress+'%'}}/></div>}
+    <strong title={displayName}>{displayName}</strong>
+    <span role={simulated?undefined:'status'}>{current==='uploading'?'Subiendo · '+Math.floor(currentProgress)+' % (simulación)':
+     current==='processing'?'Procesando documento (simulación)':
+     current==='error'?'Archivo inválido o supera los 10 MB. Intentá nuevamente.':'Archivo cargado (simulación)'}</span>
+    {current==='uploading'&&<div className="andy-attachment-lifecycle-progress" role="progressbar"
+     aria-label="Progreso de demostración" aria-valuenow={Math.floor(currentProgress)} aria-valuemin={0} aria-valuemax={100}>
+     <span style={{width:currentProgress+'%'}}/></div>}
    </div>
-   {phase==='error'&&<button type="button" className="andy-attachment-lifecycle-action" onClick={startAgain} aria-label="Reintentar carga de ejemplo">
-    <MaterialIcon name="refresh" size={20}/></button>}
-   <button type="button" className="andy-attachment-lifecycle-action" onClick={reset} aria-label="Quitar archivo">
-    <MaterialIcon name="close" size={20}/></button>
+   {current==='error'&&<button type="button" className="andy-attachment-lifecycle-action" onClick={startAgain}
+    disabled={simulated} aria-label="Reintentar carga de ejemplo"><MaterialIcon name="refresh" size={20} weight={400}/></button>}
+   <button type="button" className="andy-attachment-lifecycle-action" onClick={reset}
+    disabled={simulated} aria-label="Quitar archivo"><MaterialIcon name="close" size={20} weight={400}/></button>
   </div>}
   <p className="andy-dashed-upload-help" id={id+'-help'}>Formatos permitidos: PDF, DOC o DOCX. Tamaño máximo: 10 MB. Demo sin envío real.</p>
+ </div>;
+}
+
+export function AndyIconUploadStates(){
+ return <div className="andy-state-matrix andy-icon-state-matrix">
+  <div className="andy-matrix-grid">
+   {iconUploadStates.map(state=><div className="andy-state-cell" key={state.id} data-state={state.id}>
+    <div className="andy-state-label"><strong>{state.name}</strong><small>{state.note}</small></div>
+    <AndyIconUpload demoState={state.id}/>
+   </div>)}
+  </div>
  </div>;
 }
