@@ -1,5 +1,6 @@
 /* Variantes Tag de Figma: seis colores, tres tamaños, fill y outline. */
-.andy-tag-palette{display:flex;flex-direction:column;gap:var(--mlz-space-32);min-width:0}
+.andy-tag-palette{display:flex;flex-direction:column;gap:var(--mlz-space-16);min-width:0;width:100%}
+.andy-tag-palette-content{display:flex;flex-direction:column;gap:var(--mlz-space-16);width:100%;min-width:0}
 .andy-palette-sizebar{display:flex;justify-content:space-between;align-items:center;gap:var(--mlz-space-16);flex-wrap:wrap}
 .andy-palette-sizebar h3,.andy-palette-variant-heading h3{margin:0 0 var(--mlz-space-4);color:#236999;font-size:19px;line-height:27px;font-weight:700}
 .andy-palette-sizebar p,.andy-palette-variant-heading p{margin:0;color:#697988;font-size:14px;line-height:22px}
@@ -8,7 +9,8 @@
 .andy-palette-size-options button[aria-pressed=true]{background:#236999;color:#fff}
 .andy-palette-size-options button:focus-visible{outline:2px solid #006eff;outline-offset:2px}
 .andy-palette-variant{display:flex;flex-direction:column;gap:var(--mlz-space-14);min-width:0}
-.andy-palette-preview{border:1px solid #dce7ef;background:#fff;border-radius:var(--mlz-radius-lg);padding:var(--mlz-space-16);min-width:0}
+/* DocPreview es la única superficie; la grilla de etiquetas no agrega una caja interna. */
+.andy-tag-palette-content .andy-palette-preview{border:0;background:transparent;border-radius:0;padding:0;min-width:0}
 .andy-palette-column-labels,.andy-palette-row{display:grid;grid-template-columns:minmax(90px,.8fr) minmax(0,1fr) minmax(0,1fr);align-items:center;gap:var(--mlz-space-12)}
 .andy-palette-column-labels{color:#83919d;font-size:12px;line-height:18px;padding:0 var(--mlz-space-4) var(--mlz-space-12);font-weight:700}
 .andy-palette-row{min-height:60px;border-top:1px solid #edf1f4;padding:var(--mlz-space-10) var(--mlz-space-4)}
@@ -23,4 +25,4 @@
 .andy-palette-tag.is-grande{min-height:32px;padding:var(--mlz-space-4) var(--mlz-space-10);font-size:18px;line-height:22px}
 .andy-palette-tag>.material-symbols-outlined{color:inherit}
 .andy-palette-note{font-size:13px;line-height:21px;color:#71808c;margin:0}
-@media(max-width:580px){.andy-palette-preview{padding:var(--mlz-space-12)}.andy-palette-column-labels,.andy-palette-row{grid-template-columns:74px minmax(0,1fr) minmax(0,1fr);gap:var(--mlz-space-6)}.andy-palette-name{font-size:12px}.andy-palette-tag.is-grande{font-size:15px}.andy-palette-tag{gap:var(--mlz-space-2)}}
+@media(max-width:580px){.andy-tag-palette-content .andy-palette-preview{padding:0}.andy-palette-column-labels,.andy-palette-row{grid-template-columns:74px minmax(0,1fr) minmax(0,1fr);gap:var(--mlz-space-6)}.andy-palette-name{font-size:12px}.andy-palette-tag.is-grande{font-size:15px}.andy-palette-tag{gap:var(--mlz-space-2)}}
