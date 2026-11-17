@@ -1,6 +1,6 @@
 /* MLZ Badge — alturas 24/28/32, radio MD 6px y Geometria.
  * Tonos tomados de la biblioteca institucional de Figma.
- * Amarillo usa Grey 900 para texto legible: no usar Alert 800 sobre fondo claro. */
+ * Los tonos siguen las variables aplicadas a Chip Fill / Trazo en Figma. */
 .mlz-badge{
  --badge-bg:#f3f7fc;
  --badge-ink:var(--color-primary-600,#236999);
@@ -24,13 +24,16 @@
  text-decoration:none;
  transition:background-color .15s ease,border-color .15s ease,color .15s ease;
 }
-.mlz-badge.tone-primary{--badge-bg:#f3f7fc;--badge-ink:var(--color-primary-600,#236999);--badge-solid:var(--color-primary-600,#236999);--badge-border:var(--color-primary-600,#236999)}
-.mlz-badge.tone-warning{--badge-bg:#fffde7;--badge-ink:var(--color-grey-900,#3d3d3d);--badge-solid:#f9a825;--badge-solid-ink:var(--color-grey-900,#3d3d3d);--badge-border:#c35b00}
-.mlz-badge.tone-error{--badge-bg:#fff0f0;--badge-ink:#a70a2f;--badge-solid:#a70a2f;--badge-border:#c80830}
-.mlz-badge.tone-success{--badge-bg:#f1fcf4;--badge-ink:#1a6133;--badge-solid:#1a6133;--badge-border:#1d9c48}
-.mlz-badge.tone-info{--badge-bg:#e5f0ff;--badge-ink:#00377f;--badge-solid:#00377f;--badge-border:#0058cc}
-.mlz-badge.tone-purple{--badge-bg:#ecddff;--badge-ink:#5f1eb4;--badge-solid:#5f1eb4;--badge-border:#9747ff}
-.mlz-badge.tone-neutral{--badge-bg:var(--color-grey-50,#f6f6f6);--badge-ink:var(--color-grey-900,#3d3d3d);--badge-solid:var(--color-grey-900,#3d3d3d);--badge-border:var(--color-grey-400,#888888)}
+/* Paleta exacta de Tag / Chip Fill / Chip Trazo del UI Kit de Figma.
+   El color de trazo y texto es el token intenso de cada familia, sin tonos
+   oscurecidos arbitrariamente. */
+.mlz-badge.tone-primary{--badge-bg:#f3f7fc;--badge-ink:#236999;--badge-solid:#236999;--badge-border:#236999}
+.mlz-badge.tone-warning{--badge-bg:#fffde7;--badge-ink:#f9a825;--badge-solid:#f9a825;--badge-solid-ink:#3d3d3d;--badge-border:#f9a825}
+.mlz-badge.tone-error{--badge-bg:#fff0f0;--badge-ink:#ef284c;--badge-solid:#ef284c;--badge-border:#ef284c}
+.mlz-badge.tone-success{--badge-bg:#f1fcf4;--badge-ink:#2abb5b;--badge-solid:#2abb5b;--badge-border:#2abb5b}
+.mlz-badge.tone-info{--badge-bg:#e5f0ff;--badge-ink:#006eff;--badge-solid:#006eff;--badge-border:#006eff}
+.mlz-badge.tone-purple{--badge-bg:#ecddff;--badge-ink:#9747ff;--badge-solid:#9747ff;--badge-border:#9747ff}
+.mlz-badge.tone-neutral{--badge-bg:#f6f6f6;--badge-ink:#6d6d6d;--badge-solid:#6d6d6d;--badge-border:#6d6d6d}
 .mlz-badge.is-soft{color:var(--badge-ink);background:var(--badge-bg)}
 .mlz-badge.is-outline{color:var(--badge-ink);background:#fff;border-color:var(--badge-border)}
 .mlz-badge.is-solid{color:var(--badge-solid-ink,#fff);background:var(--badge-solid)}
