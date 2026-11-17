@@ -277,8 +277,7 @@ function ComponentDetails({id}:{id:ComponentId}){
    <div className="andy-form-grid"><label className="andy-field"><span>Observaciones</span><textarea placeholder="Escribí una observación"/></label></div>
   </ComponentExample></>;
  if(id==='adjuntos')return <>
-  <DocSection title="Descripción" description="Attachment permite incorporar un documento o representar archivos mediante un control consistente con los formularios de MLZ.">
-  </DocSection>
+  <DocSection title="Descripción" description="Attachment permite incorporar un documento o representar archivos mediante un control consistente con los formularios de MLZ.">{null}</DocSection>
   <DocSection title="Estándar" description="Archivo único de 48 px con borde continuo: clip inicial, progreso de carga, procesamiento y archivo cargado con acción de quitar, todo dentro del mismo control.">
    <DocPreview><AndySolidUploadPreview/></DocPreview>
    <DocPreview align="start"><AndySolidUploadStates/></DocPreview>
