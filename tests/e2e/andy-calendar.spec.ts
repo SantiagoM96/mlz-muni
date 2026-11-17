@@ -69,7 +69,7 @@ test('Andy: Date Picker usa controles y botones del sistema y los radios aprobad
 
 test('Andy: dos calendarios abiertos permiten seleccionar un día y un rango',async ({page})=>{
  await page.goto('/ui-kit-andy/componentes/calendario');
- const examples=page.locator('.andy-cal-case');
+ const examples=page.locator('.andy-cal-gallery');
  await expect(examples).toHaveCount(2);
  const day=examples.first(),range=examples.last();
  await expect(day.locator('.sports-cal-popup.is-inline')).toBeVisible();
@@ -88,7 +88,7 @@ test('Andy: dos calendarios abiertos permiten seleccionar un día y un rango',as
 
 test('Andy: mes y año respetan iconos, selección y tipografía de dropdowns MLZ',async ({page})=>{
  await page.goto('/ui-kit-andy/componentes/calendario');
- const day=page.locator('.andy-cal-case').first();
+ const day=page.locator('.andy-cal-gallery').first();
  await day.getByRole('button',{name:'Seleccionar mes'}).click();
  const menu=day.getByRole('listbox',{name:'Meses'});
  await expect(menu).toBeVisible();

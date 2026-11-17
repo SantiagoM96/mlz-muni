@@ -1,12 +1,12 @@
 import { useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
+import { CalendarMonthGrid } from '../../shared/calendar/CalendarMonthGrid';
 import { useSportsMobile } from './SportsMobileSheet';
 import './sports-calendar-picker.css';
 import './andy-button-matrix.css';
 
 const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-const WEEKDAYS=['L','M','M','J','V','S','D'];
 const pad=(n:number)=>String(n).padStart(2,'0');
 const toISO=(y:number,m:number,d:number)=>`${y}-${pad(m+1)}-${pad(d)}`;
 const formatISO=(v:string)=>{const [y,m,d]=v.split('-').map(Number);return `${pad(d!)} / ${pad(m!)} / ${y}`;};
@@ -39,8 +39,6 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
  const max=toISO(todayYear,todayMonth,today.getDate());
  const yearOptions=Array.from({length:todayYear-1899},(_,i)=>todayYear-i);
  const monthOptions=MONTHS.map((name,index)=>({name,index})).filter(x=>view.year<todayYear||x.index<=todayMonth);
- const offset=(new Date(view.year,view.month,1).getDay()+6)%7;
- const lastDay=new Date(view.year,view.month+1,0).getDate();
  const canPrevious=view.year>1900||(view.year===1900&&view.month>0);
  const canNext=view.year<todayYear||(view.year===todayYear&&view.month<todayMonth);
  const clearTimer=()=>{if(timeout.current){clearTimeout(timeout.current);timeout.current=null;}};
@@ -154,17 +152,8 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
          <button type="button" aria-label="Mes siguiente" disabled={!canNext} onClick={()=>changeMonth(1)}><MaterialIcon name="chevron_right" size={24}/></button>
        </div>
      </div>
-     <div className="sports-cal-week" aria-hidden="true">{WEEKDAYS.map((d,i)=><span key={i}>{d}</span>)}</div>
-     <div className="sports-cal-days" role="grid" aria-label="Días del mes">
-       {Array.from({length:offset},(_,i)=><span key={'blank-'+i} aria-hidden="true"/>)}
-       {Array.from({length:lastDay},(_,i)=>{
-         const day=i+1,iso=toISO(view.year,view.month,day),selected=pending===iso;
-         return <button type="button" role="gridcell" key={iso} aria-label={`${day} de ${MONTHS[view.month]} de ${view.year}`}
-           aria-selected={selected} disabled={iso>max||view.year<1900}
-           className={'sports-cal-day'+(selected?' is-selected':'')+(iso===max?' is-today':'')}
-           onClick={()=>setPending(iso)}>{day}</button>;
-       })}
-     </div>
+     <CalendarMonthGrid view={view} selected={pending} onSelect={setPending} onViewChange={setView}
+      minDate="1900-01-01" maxDate={max} today={max} label="Días disponibles para fecha de nacimiento"/>
      <div className="sports-cal-actions">
        <button type="button" className={'sports-cal-clear andy-system-button is-tertiary icon-none '+(mobile?'is-medium':'is-small')} onClick={reset}>Borrar fecha</button>
        <button type="button" className={'sports-cal-confirm andy-system-button is-primary icon-none '+(mobile?'is-medium':'is-small')} disabled={!pending} onClick={confirm}>Confirmar</button>

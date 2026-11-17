@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CalendarMonthGrid } from '../../shared/calendar/CalendarMonthGrid';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './sports-calendar-picker.css';
 import './andy-calendar-showcase.css';
@@ -8,19 +9,15 @@ import { DocPreview } from './AndyDocsPrimitives';
 type Mode='single'|'range';
 type Picker='month'|'year'|null;
 const months=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-const days=['L','M','M','J','V','S','D'];
-const iso=(y:number,m:number,d:number)=>[y,String(m+1).padStart(2,'0'),String(d).padStart(2,'0')].join('-');
 const readable=(date:string)=>{const [y,m,d]=date.split('-').map(Number);return `${String(d).padStart(2,'0')}/${String(m).padStart(2,'0')}/${y}`;};
-const optionYears=Array.from({length:41},(_,i)=>2026-i);
+const optionYears=Array.from({length:new Date().getFullYear()-1899},(_,i)=>new Date().getFullYear()-i);
 
-function CalendarExample({mode}:{mode:Mode}){
+function CalendarExample({mode,restricted=false}:{mode:Mode;restricted?:boolean}){
  const [view,setView]=useState({year:2008,month:10});
  const [dropdown,setDropdown]=useState<Picker>(null);
  const [single,setSingle]=useState('2008-11-13');
  const [range,setRange]=useState<{start:string;end:string}>({start:'2008-11-10',end:'2008-11-14'});
  const [confirmed,setConfirmed]=useState('');
- const startOffset=(new Date(view.year,view.month,1).getDay()+6)%7;
- const length=new Date(view.year,view.month+1,0).getDate();
  const changeMonth=(direction:number)=>{
   const next=new Date(view.year,view.month+direction,1);
   setView({year:next.getFullYear(),month:next.getMonth()});setDropdown(null);
@@ -67,20 +64,11 @@ function CalendarExample({mode}:{mode:Mode}){
       <button type="button" aria-label="Mes siguiente" onClick={()=>changeMonth(1)}><MaterialIcon name="chevron_right" size={24}/></button>
      </div>
     </div>
-    <div className="sports-cal-week" aria-hidden="true">{days.map((day,index)=><span key={index}>{day}</span>)}</div>
-    <div className={mode==='range'?'sports-cal-days is-range-grid':'sports-cal-days'} role="grid" aria-label="Días del mes">
-     {Array.from({length:startOffset},(_,index)=><span key={'blank'+index} aria-hidden="true"/>)}
-     {Array.from({length},(_,index)=>{
-       const date=iso(view.year,view.month,index+1);
-       const isStart=mode==='range'&&date===range.start;
-       const isEnd=mode==='range'&&!!range.end&&date===range.end;
-       const chosen=mode==='single'?date===single:isStart||isEnd;
-       const between=mode==='range'&&!!range.end&&date>range.start&&date<range.end;
-       return <button type="button" key={date} role="gridcell" aria-label={`${index+1} de ${months[view.month]} de ${view.year}`}
-        aria-selected={chosen} className={`sports-cal-day${chosen?' is-selected':''}${between?' is-in-range':''}${isStart?' is-range-start':''}${isEnd?' is-range-end':''}`}
-        onClick={()=>select(date)}>{index+1}</button>;
-     })}
-    </div>
+    <CalendarMonthGrid view={view} mode={mode} selected={single} range={range}
+     minDate={restricted?'2008-11-06':undefined} maxDate={restricted?'2008-11-25':undefined}
+     disabledDates={restricted?['2008-11-19','2008-11-20']:[]}
+     today="2008-11-17" onViewChange={setView} onSelect={select}
+     label={mode==='single'?'Días para seleccionar una fecha':'Días para seleccionar un rango'}/>
     <div className="sports-cal-actions">
      <button type="button" className="sports-cal-clear andy-system-button is-tertiary is-small icon-none" onClick={clear}>Borrar {mode==='single'?'fecha':'rango'}</button>
      <button type="button" disabled={!canConfirm} className="sports-cal-confirm andy-system-button is-primary is-small icon-none" onClick={confirm}>Confirmar</button>
@@ -90,13 +78,13 @@ function CalendarExample({mode}:{mode:Mode}){
   <div className="andy-cal-selection" role="status"><strong>{mode==='single'?'Día seleccionado':'Rango seleccionado'}</strong><span>{confirmed?`Confirmado: ${confirmed}`:selectedText}</span></div>
  </div>;
 }
-export function AndyCalendarShowcase({only}:{only?:Mode}={}){
+export function AndyCalendarShowcase({only,restricted=false}:{only?:Mode;restricted?:boolean}={}){
  return <div className="andy-cal-gallery">
   {(!only||only==='single')&&<DocPreview className="andy-cal-preview">
-   <CalendarExample mode="single"/>
+   <CalendarExample mode="single" restricted={restricted}/>
   </DocPreview>}
   {(!only||only==='range')&&<DocPreview className="andy-cal-preview">
-   <CalendarExample mode="range"/>
+   <CalendarExample mode="range" restricted={restricted}/>
   </DocPreview>}
  </div>;
 }

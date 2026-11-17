@@ -252,3 +252,20 @@
 @media(prefers-reduced-motion:reduce){
  .sports-cal-popup .sports-cal-x{transition:none}
 }
+/* Estructura semántica de filas para navegación accesible del calendario compartido. */
+.mlz-calendar-grid{width:100%;min-width:0}
+.mlz-calendar-grid .sports-cal-days.has-calendar-rows{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-2,2px);
+}
+.mlz-calendar-grid .sports-cal-row{
+ display:grid;
+ grid-template-columns:repeat(7,minmax(0,1fr));
+ gap:var(--mlz-space-2,2px);
+}
+.mlz-calendar-grid .sports-cal-days.is-range-grid,
+.mlz-calendar-grid .sports-cal-days.is-range-grid .sports-cal-row{gap:0}
+.mlz-calendar-grid .sports-cal-row > [role="gridcell"]{min-width:0}
+.mlz-calendar-grid .sports-cal-day:focus-visible{outline:2px solid #006eff;outline-offset:1px;z-index:1}
+.mlz-calendar-grid .sports-cal-day:disabled{cursor:not-allowed;opacity:.27}
