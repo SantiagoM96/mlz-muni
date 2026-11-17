@@ -1587,3 +1587,22 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-icon-library-expand{
  color:var(--andy-editorial-accent,#00377f);
 }
+
+
+/* Navegación lateral: restaurar el estado seleccionado original.
+   El fondo activo mantiene el color anterior y todo el contenido se ve blanco. */
+.andy-doc-layout .andy-sidebar .andy-nav-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active:hover,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active:hover{
+ color:#fff;
+}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-component-name,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-review-mark,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .material-symbols-outlined{
+ color:#fff;
+}
+/* «Elemento» y «Descripción» en todas las tablas de criterios: Grey 900. */
+.andy-doc-layout .andy-doc-guideline-table thead th{
+ color:#3d3d3d;
+}
