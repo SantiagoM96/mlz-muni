@@ -27,6 +27,8 @@ export function AndyModal({
 }:ModalProps){
  const ref=useRef<HTMLDialogElement>(null);
  const cancelRef=useRef<HTMLButtonElement>(null);
+ const closeRef=useRef(onClose);
+ closeRef.current=onClose;
  const titleId=useId();
  const descriptionId=useId();
  useEffect(()=>{
@@ -35,14 +37,14 @@ export function AndyModal({
   const previous=document.activeElement instanceof HTMLElement?document.activeElement:null;
   if(!node.open)node.showModal();
   cancelRef.current?.focus();
-  const onCancel=(event:Event)=>{event.preventDefault();onClose();};
+  const onCancel=(event:Event)=>{event.preventDefault();closeRef.current();};
   node.addEventListener('cancel',onCancel);
   return ()=>{
    node.removeEventListener('cancel',onCancel);
    if(node.open)node.close();
    previous?.focus();
   };
- },[open,onClose]);
+ },[open]);
  if(!open)return null;
  return <dialog
   ref={ref}
