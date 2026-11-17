@@ -3,8 +3,8 @@
 .andy-modal.is-schedule .andy-modal-content{gap:24px}
 .andy-schedule-form{display:flex;flex-direction:column;gap:22px;width:100%;min-width:0}
 .andy-schedule-field{display:flex;flex-direction:column;gap:8px;min-width:0}
-.andy-schedule-field>label,.andy-schedule-days>legend{font:700 16px/24px Geometria,'Century Gothic',Arial,sans-serif;color:#236999}
-.andy-schedule-field>label>span,.andy-schedule-days>legend>span{color:#ef284c}
+.andy-schedule-field>label{font:700 16px/24px Geometria,'Century Gothic',Arial,sans-serif;color:#236999}
+.andy-schedule-field>label>span{color:#ef284c}
 .andy-schedule-field>input,.andy-schedule-field select{box-sizing:border-box;display:block;width:100%;height:48px;min-height:48px;border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm,4px);background:#fff;color:#3d3d3d;padding:10px 14px;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;box-shadow:none}
 .andy-schedule-field>input::placeholder{color:#8695a0}
 .andy-schedule-field>input:hover,.andy-schedule-field select:hover{border-color:#236999}
@@ -12,16 +12,7 @@
 .andy-schedule-select-wrap{position:relative}
 .andy-schedule-select-wrap select{appearance:none;padding-right:42px;cursor:pointer}
 .andy-schedule-select-wrap>.material-symbols-outlined{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#236999;pointer-events:none}
-.andy-schedule-time-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
-.andy-schedule-days{display:flex;flex-direction:column;gap:12px;min-width:0;margin:0;padding:0;border:0}
-.andy-schedule-days legend{margin-bottom:10px}
-.andy-schedule-day-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px 12px}
-.andy-schedule-day{position:relative;display:flex;align-items:center;gap:8px;min-height:40px;color:#3d3d3d;font:400 14px/20px Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer}
-.andy-schedule-day input{position:absolute;top:8px;left:0;width:24px;height:24px;margin:0;opacity:0;cursor:pointer}
-.andy-schedule-checkbox{display:inline-flex;justify-content:center;align-items:center;flex:0 0 24px;width:24px;height:24px;border:1px solid #8b9dab;border-radius:var(--mlz-radius-xs,4px);color:transparent;background:#fff;transition:background .14s,border-color .14s}
-.andy-schedule-day input:checked+.andy-schedule-checkbox{background:#006eff;color:#fff;border-color:#006eff}
-.andy-schedule-day:hover .andy-schedule-checkbox{border-color:#006eff}
-.andy-schedule-day input:focus-visible+.andy-schedule-checkbox{outline:2px solid #006eff;outline-offset:2px}
+.andy-schedule-time-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-16)}
 .andy-schedule-error{display:flex;align-items:center;gap:8px;margin:0;color:#ef284c;font:500 13px/20px Geometria,'Century Gothic',Arial,sans-serif}
-@media(max-width:620px){.andy-schedule-day-options{grid-template-columns:repeat(2,minmax(0,1fr))}.andy-schedule-time-grid{grid-template-columns:1fr;gap:16px}}
-@media(prefers-reduced-motion:reduce){.andy-schedule-checkbox{transition:none}}
+@media(max-width:620px){.andy-schedule-time-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-8)}.andy-schedule-time-grid .andy-schedule-field>label{font-size:12px;line-height:18px;min-height:36px}.andy-schedule-time-grid .andy-schedule-field select{padding-left:var(--mlz-space-8);padding-right:24px;font-size:13px}.andy-schedule-time-grid .andy-schedule-select-wrap>.material-symbols-outlined{right:4px;font-size:18px}}
+
