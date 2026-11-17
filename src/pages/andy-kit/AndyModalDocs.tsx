@@ -7,8 +7,8 @@ import './andy-modal-docs.css';
 
 type AlertVariant = 'basic' | 'small' | 'media' | 'small-media' | 'destructive';
 const examples: {id:AlertVariant;label:string;description:string;trigger:string;title:string;body:string;confirm:string;size:ModalSize;intent:ModalIntent;media?:'info'|'warning'|'delete'}[] = [
- {id:'basic',label:'Básico',description:'Título, descripción y confirmación explícita.',trigger:'Abrir confirmación',title:'¿Querés continuar?',body:'Revisá la información antes de confirmar esta operación.',confirm:'Continuar',size:'default',intent:'normal'},
- {id:'small',label:'Small',description:'Composición compacta para decisiones breves.',trigger:'Abrir small',title:'¿Confirmar los cambios?',body:'Se guardarán las modificaciones realizadas.',confirm:'Guardar cambios',size:'sm',intent:'normal'},
+ {id:'basic',label:'Básico',description:'Título, descripción y confirmación explícita.',trigger:'Abrir confirmación',title:'¿Querés continuar?',body:'Revisá la información antes de confirmar esta operación.',confirm:'Continuar',size:'default',intent:'normal',media:'info'},
+ {id:'small',label:'Small',description:'Composición compacta para decisiones breves.',trigger:'Abrir small',title:'¿Confirmar los cambios?',body:'Se guardarán las modificaciones realizadas.',confirm:'Guardar cambios',size:'sm',intent:'normal',media:'info'},
  {id:'media',label:'Con ícono',description:'Un indicador visual refuerza el significado del mensaje.',trigger:'Abrir con ícono',title:'Confirmar inscripción',body:'Se registrarán los datos ingresados en la actividad seleccionada.',confirm:'Confirmar',size:'default',intent:'normal',media:'info'},
  {id:'small-media',label:'Small con ícono',description:'Variante reducida con un recurso visual.',trigger:'Abrir compacto',title:'Actualizar información',body:'Los datos guardados se reemplazarán por la nueva versión.',confirm:'Actualizar',size:'sm',intent:'normal',media:'warning'},
  {id:'destructive',label:'Destructivo',description:'Acción de alto impacto con una consecuencia explícita.',trigger:'Probar eliminación',title:'¿Eliminar este registro?',body:'Esta acción eliminará el registro y no se podrá deshacer.',confirm:'Eliminar registro',size:'default',intent:'destructive',media:'delete'}
@@ -30,7 +30,7 @@ export function AndyAlertDialogDocs(){
       {example.media&&<span className={'andy-modal-variant-icon'+(example.intent==='destructive'?' is-danger':'')}><MaterialIcon name={example.media} size={22}/></span>}
       <div><strong>{example.label}</strong><p>{example.description}</p></div>
      </div>
-     <button type="button" className="andy-modal-trigger is-outline" onClick={()=>setActive(example.id)}>{example.trigger}</button>
+     <button type="button" className="andy-modal-trigger is-outline" onClick={()=>setActive(example.id)}><MaterialIcon name={example.intent==='destructive'?'delete':'visibility'} size={18}/>{example.trigger}</button>
     </div>)}
    </div>
   </DocSection>
@@ -87,12 +87,12 @@ export function AndyDialogDocs(){
  ];
  return <>
   <DocSection title="Básico" description="Abrí un diálogo para agregar horarios a una actividad deportiva. Los controles siguen los criterios del formulario MLZ.">
-   <DocPreview><button type="button" className="andy-modal-trigger" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario <MaterialIcon name="open_in_new" size={18}/></button></DocPreview>
+   <DocPreview><button type="button" className="andy-modal-trigger" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
   </DocSection>
   <DocSection title="Variantes" description="El formulario deportivo es la referencia principal. Las variantes adicionales muestran tamaños y composiciones de Dialog.">
    <div className="andy-modal-variant-list">{variants.map(v=><div className="andy-modal-variant" key={v.id}>
     <div className="andy-modal-variant-info"><div><strong>{v.label}</strong><p>{v.desc}</p></div></div>
-    <button type="button" className="andy-modal-trigger is-outline" onClick={()=>open(v.id)}><MaterialIcon name={v.id==='schedule'?'add_circle':'open_in_new'} size={18}/>{v.trigger}</button>
+    <button type="button" className="andy-modal-trigger is-outline" onClick={()=>open(v.id)}><MaterialIcon name={v.id==='schedule'?'add_circle':'visibility'} size={18}/>{v.trigger}</button>
    </div>)}</div>
   </DocSection>
   <DocSection title="Anatomía" description="Dialog utiliza una estructura reutilizable; los contenidos y campos son propios de cada tarea.">
