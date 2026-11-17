@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type Dispatch, type KeyboardEvent, type SetStateAction } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
+import './dropdown-variants-gallery.css';
 import './andy-schedule-dialog-form.css';
 
 export type ScheduleDraft={
