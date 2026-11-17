@@ -141,6 +141,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
        <div className="sports-cal-period">
          {(['month','year'] as const).map(kind=><div className="sports-cal-choice-holder" key={kind}>
            <button type="button" className={'sports-cal-choice-trigger andy-calendar-select '+(mobile?'is-medium':'is-small')} aria-expanded={mode===kind}
+             aria-label={kind==='month'?'Seleccionar mes':'Seleccionar año'}
              onClick={()=>setMode(mode===kind?'calendar':kind)}>
              <span>{kind==='month'?MONTHS[view.month]:view.year}</span><MaterialIcon name="expand_more" size={24}/>
            </button>

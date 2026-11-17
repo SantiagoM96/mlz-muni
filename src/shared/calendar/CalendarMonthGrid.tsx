@@ -90,7 +90,8 @@ export function CalendarMonthGrid({
  ];
  while(rows.length%7!==0)rows.push(null);
 
- return <div className="mlz-calendar-grid" role="grid" aria-label={label} ref={gridRef}>
+ return <div className="mlz-calendar-grid" role="grid" aria-label={label}
+  aria-multiselectable={mode==='range'?true:undefined} ref={gridRef}>
   <div className="sports-cal-week" role="row">
    {WEEKDAYS.map(day=><span role="columnheader" aria-label={day.label} key={day.label}>{day.short}</span>)}
   </div>
