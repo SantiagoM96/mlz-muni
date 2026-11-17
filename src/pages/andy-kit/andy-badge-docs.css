@@ -8,43 +8,30 @@
  display:flex;align-items:center;justify-content:center;
  min-height:64px;
 }
-/* Colores: un renglón por tono; sus cuatro apariencias Medium en línea.
-   Sin cabeceras, divisores, tabla ni cajas internas. */
+/* Colores: exactamente dos filas, con los siete tonos alineados horizontalmente.
+   La primera usa Solid (fondo pleno), la segunda Soft (fondo suave).
+   Sin tablas, cabeceras, títulos por tono ni contenedores internos. */
 .andy-badge-palette{
- display:grid;
- grid-template-columns:minmax(0,1fr);
- width:100%;
- min-width:0;
- row-gap:var(--mlz-space-24,24px);
-}
-.andy-badge-palette-item{
- display:grid;
- grid-template-columns:92px minmax(0,1fr);
- align-items:center;
- gap:var(--mlz-space-16,16px);
- width:100%;
- min-width:0;
- padding:0;
- border:0;
- background:transparent;
- box-shadow:none;
-}
-.andy-badge-palette-name{
- font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
- color:var(--color-black-950,#000);
-}
-.andy-badge-palette-examples{
  display:flex;
- align-items:center;
- justify-content:flex-start;
- gap:var(--mlz-space-12,12px);
- flex-wrap:nowrap;
- overflow-x:auto;
+ flex-direction:column;
+ gap:var(--mlz-space-24,24px);
  width:100%;
  min-width:0;
+}
+.andy-badge-palette-row{
+ display:flex;
+ flex-direction:row;
+ align-items:center;
+ justify-content:space-between;
+ gap:var(--mlz-space-8,8px);
+ flex-wrap:nowrap;
+ width:100%;
+ min-width:0;
+ overflow-x:auto;
+ overflow-y:hidden;
  padding-block:2px;
 }
-.andy-badge-palette-examples > .mlz-badge{flex-shrink:0}
+.andy-badge-palette-row > .mlz-badge{flex:0 0 auto}
 .andy-badge-example-row{
  width:100%;display:flex;align-items:center;justify-content:center;
  flex-wrap:wrap;gap:var(--mlz-space-16);
@@ -74,10 +61,6 @@
 .andy-badge-reset:focus-visible{outline:2px solid var(--color-grey-900,#3d3d3d);outline-offset:2px}
 .andy-badge-reset:disabled{opacity:.55;cursor:default}
 .andy-badge-empty{color:var(--color-grey-500,#6d6d6d);font-size:14px}
-@media(max-width:640px){
- .andy-badge-palette-item{grid-template-columns:72px minmax(0,1fr);gap:var(--mlz-space-8,8px)}
- .andy-badge-palette-examples{gap:var(--mlz-space-8,8px)}
-}
 @media(max-width:640px){
  .andy-badge-sizes{gap:var(--mlz-space-8)}
  .andy-doc-page .andy-badge-controls{flex-wrap:wrap;overflow-x:visible}
