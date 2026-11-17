@@ -33,6 +33,10 @@
 .andy-doc-page.is-reviewed .andy-doc-demo{
  padding:var(--mlz-space-40,40px);
 }
+/* El acordeón conserva su respiración vertical aprobada de 64 px. */
+.andy-doc-page.is-reviewed .andy-doc-demo:has(.andy-doc-accordion){
+ padding-block:var(--mlz-space-64,64px);
+}
 .andy-doc-variant-stack{
  display:flex;
  flex-direction:column;
@@ -66,6 +70,9 @@
 @media(max-width:680px){
  .andy-doc-page.is-reviewed .andy-doc-demo{
   padding:var(--mlz-space-24,24px) var(--mlz-space-16,16px);
+ }
+ .andy-doc-page.is-reviewed .andy-doc-demo:has(.andy-doc-accordion){
+  padding-block:var(--mlz-space-48,48px);
  }
  .andy-doc-variant-stack{gap:var(--mlz-space-24,24px)}
 }
