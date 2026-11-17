@@ -1573,3 +1573,17 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-review-mark{
  color:var(--andy-editorial-accent);
 }
+
+
+/* Tabla editorial: encabezado «Elemento» y etiquetas de criterios de uso. */
+.andy-doc-layout .andy-doc-guideline-table thead th{
+ color:var(--andy-editorial-accent,#00377f);
+}
+/* Mantener semántica Info de títulos en otros módulos documentales. */
+.andy-doc-layout .andy-button-on-this-page a:hover,
+.andy-doc-layout .andy-button-on-this-page a[aria-current="true"],
+.andy-doc-layout .andy-button-control-row button:not([aria-pressed="true"]),
+.andy-doc-layout .andy-button-placement-options button:not([aria-pressed="true"]),
+.andy-doc-layout .andy-icon-library-expand{
+ color:var(--andy-editorial-accent,#00377f);
+}
