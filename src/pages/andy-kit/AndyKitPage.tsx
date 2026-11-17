@@ -179,84 +179,7 @@ function AlertDocs(){return <>
    ['Acción','Opcional; botón integrado al mensaje, con etiqueta explícita y foco visible.']
   ]}/>
  </DocSection>
- <DocSection title="Ejemplo en contexto" description="Ejemplo de uso del alert.">
-  <AlertInContext/>
- </DocSection>
 </>}
-
-/** Patrón reutilizable para mostrar componentes dentro de pantallas reales del producto. */
-function ContextField({label,placeholder,required=false}:{label:string;placeholder:string;required?:boolean}){
- return <label className="andy-field andy-context-field">
-  <span>{label}{required&&' *'}</span>
-  <input type="text" placeholder={placeholder}/>
- </label>;
-}
-function AlertInContext(){
- return <div className="andy-context-screen andy-context-screen--fade">
-  <div className="andy-context-fade-top" aria-label="Extracto de formulario de preinscripción">
-   <div className="andy-context-screen-heading">
-    <h4>Datos de la persona participante</h4>
-    <p>Paso 2 de 3 · Completá la información necesaria para continuar.</p>
-   </div>
-   <div className="andy-context-fields">
-    <ContextField label="Nombre" placeholder="Ingresá el nombre" required/>
-    <ContextField label="Apellido" placeholder="Ingresá el apellido" required/>
-   </div>
-  </div>
-  <div className="andy-context-fade-focus">
-   <AlertExample tone="warning" title="Documentación necesaria">
-    Para finalizar la preinscripción vas a necesitar un documento de identidad y la documentación adicional que indique la actividad. Podés consultar los requisitos antes de continuar.
-   </AlertExample>
-  </div>
-  <div className="andy-context-fade-bottom" aria-hidden="true">
-   <div className="andy-context-actions"><span className="andy-context-action-illustration">Continuar <Icon name="arrow_forward" size={20}/></span></div>
-  </div>
- </div>;
-}
-const lomasBailaQuestions:AccordionQuestion[]=[
- ['1','¿Quiénes pueden participar?','Pueden participar parejas cuyos integrantes tengan 18 años o más. Ambas personas deben autorizar el uso de su imagen.'],
- ['2','¿Cómo puedo inscribirme?','Podés completar el formulario online desde la web del Municipio o inscribirte presencialmente el mismo día del encuentro.'],
- ['3','¿Cómo se desarrolla la competencia?','Habrá cuatro encuentros clasificatorios en distintos barrios de Lomas de Zamora. En cada sede se seleccionarán parejas para la gran final.'],
- ['4','¿Puedo volver a competir si no clasifico?','¡Sí! Si no clasificás en una fecha, podés participar en los siguientes encuentros para intentar llegar a la final.'],
- ['5','¿Dónde y cuándo se realizan los encuentros?','Los encuentros se realizan en distintos barrios de Lomas de Zamora durante noviembre. Consultá el cronograma de fechas y sedes para conocer cada ubicación y el horario confirmado.']
-];
-function AccordionContextFooter(){
- const assets=import.meta.env.BASE_URL+'assets/';
- const socials=['instagram','x','tiktok','facebook','youtube'];
- const emergencyNumbers:[string,string][]=[['100','Bomberos'],['103','Defensa Civil'],['107','Emergencias'],['911','Policía'],['147','Seguridad Lomas'],['144','Violencia de Género']];
- return <footer className="andy-baila-site-footer" aria-label="Pie institucional de la vista de ejemplo">
-  <div className="andy-baila-site-footer-inner">
-   <img className="andy-baila-site-logo" src={assets+'logo-municipio-blanco.svg'} alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad" width="287" height="72"/>
-   <div className="andy-baila-site-contact">
-    <h5>Centro de Atención a la Comunidad</h5>
-    <div className="andy-baila-site-buttons"><span>Escribinos por <strong>WhatsApp</strong></span><span>Consultas o solicitudes</span></div>
-    <div className="andy-baila-site-phones"><strong>0800-666-6666</strong><span aria-hidden="true">|</span><strong>0800-122-5662</strong></div>
-   </div>
-   <div className="andy-baila-site-links"><span>Newsletter</span><span>Boletín Oficial</span><span>HCD</span></div>
-   <div className="andy-baila-site-social"><h5>¡Seguinos en nuestras redes!</h5><div className="andy-baila-site-social-icons">{socials.map(name=><img key={name} src={assets+'social/'+name+'.svg'} alt={name} width="24" height="24"/>)}</div></div>
-   <div className="andy-baila-site-emergency">{emergencyNumbers.map(([n,label])=><span key={n}><strong>{n}</strong> {label}</span>)}</div>
-   <p className="andy-baila-site-copyright">© Municipio Lomas de Zamora | Todos los derechos reservados 2024.</p>
-  </div>
- </footer>
-}
-function AccordionInContext(){
- return <div className="andy-baila-preview">
-  <div className="andy-baila-preview-content">
-   <div className="andy-baila-preview-upper" aria-label="Extracto de tarjetas de premiación">
-    <div className="andy-baila-grid andy-baila-grid-three">
-     <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="music_note" size={32}/></div><h5>Primer puesto</h5><p>Trofeo para la pareja ganadora del certamen.</p></div>
-     <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="music_note" size={32}/></div><h5>Segundo y tercer puesto</h5><p>Trofeos para las parejas que completen el podio.</p></div>
-     <div className="andy-baila-prize-card"><div className="andy-baila-prize-icon"><Icon name="check_circle" size={32}/></div><h5>Certificado de participación</h5><p>Todas las parejas finalistas recibirán un certificado.</p></div>
-    </div>
-   </div>
-   <section className="andy-baila-questions" aria-label="Preguntas frecuentes">
-    <div className="andy-baila-section-heading"><h4>Preguntas frecuentes</h4><p>Encontrá respuestas sobre la inscripción, los requisitos y las distintas etapas del certamen.</p></div>
-    <AccordionDemo questions={lomasBailaQuestions} initiallyOpen={false}/>
-   </section>
-  </div>
-  <div className="andy-baila-preview-footer"><AccordionContextFooter/></div>
- </div>;
-}
 
 function Messages(){return <AlertDocs/>}
 function ComponentExample({title,description,children}:{title:string;description?:string;children:ReactNode}){
@@ -411,9 +334,6 @@ function ComponentDetails({id}:{id:ComponentId}){
     ['Deshabilitado','Misma geometría y peso tipográfico; texto e ícono grisados, sin interacción.'],
     ['Comportamiento','Apertura única o múltiple; el botón expone el estado abierto/cerrado con aria-expanded.']
    ]}/>
-  </DocSection>
-  <DocSection title="Ejemplo en contexto" description="Ejemplo de uso del acordeón.">
-   <AccordionInContext/>
   </DocSection>
  </>;
  return null;
