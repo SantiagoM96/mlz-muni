@@ -69,7 +69,6 @@
 .andy-avatar-control-row .andy-avatar-choice:last-child{border-radius:0 var(--mlz-radius-sm) var(--mlz-radius-sm) 0}
 .andy-avatar-control-row .andy-avatar-choice:only-child{border-radius:var(--mlz-radius-sm)}
 .andy-avatar-indicator-toggle{border-radius:var(--mlz-radius-sm)}
-.andy-avatar-indicator-toggle .material-symbols-outlined{font-size:16px}
 .andy-avatar-choice:hover:not(.is-selected),
 .andy-avatar-indicator-toggle:hover:not(.is-selected){position:relative;z-index:1;background:var(--color-grey-50,#f6f6f6)}
 .andy-avatar-choice.is-selected,
@@ -98,7 +97,6 @@
   padding-inline:var(--mlz-space-16);
   font-size:16px;line-height:24px;
  }
- .andy-avatar-indicator-toggle .material-symbols-outlined{font-size:18px}
 }
 .andy-avatar-variant-grid{
  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-16);
