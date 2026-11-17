@@ -14,7 +14,7 @@ export const defaultSchedule:ScheduleDraft={
  activity:'Entrenamiento funcional',days:['Lunes','Miércoles'],start:'09:00',end:'10:00',capacity:'20',location:'Polideportivo Municipal'
 };
 const weekdays=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
-const timeSlots=Array.from({length:49},(_,i)=>{const minutes=i*30;return String(Math.floor(minutes/60)).padStart(2,'0')+':'+String(minutes%60).padStart(2,'0')});
+const timeSlots=Array.from({length:97},(_,i)=>{const minutes=i*15;return String(Math.floor(minutes/60)).padStart(2,'0')+':'+String(minutes%60).padStart(2,'0')});
 const durations=[30,45,60,90,120,180,240];
 const toMinutes=(time:string)=>{const [h,m]=time.split(':').map(Number);return (h??0)*60+(m??0)};
 const fromMinutes=(minutes:number)=>String(Math.floor(minutes/60)).padStart(2,'0')+':'+String(minutes%60).padStart(2,'0');
