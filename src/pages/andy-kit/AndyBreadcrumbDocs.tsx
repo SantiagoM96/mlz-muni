@@ -92,7 +92,7 @@ export function AndyBreadcrumbDocs(){
  return <>
   <DocSection title="Descripción" description="Breadcrumb muestra la ubicación de una página dentro de una jerarquía y permite volver a sus niveles anteriores. No reemplaza el título ni la navegación principal.">{null}</DocSection>
 
-  <DocSection title="Básico" description="Tres o cuatro niveles. Esta muestra es solo visual y no navega; en el producto los niveles anteriores pueden ser enlaces reales.">
+  <DocSection title="Básico" description="Tres o cuatro niveles. Los enlaces se ven y reaccionan como hipervínculos, pero no navegan dentro del UI Kit; en el producto conducen a sus destinos reales.">
    <BasicDemo/>
   </DocSection>
 
@@ -132,7 +132,7 @@ export function AndyBreadcrumbDocs(){
     ['Colapsado','Disponible a partir de cinco niveles; conserva Inicio, padre y página actual visibles.'],
     ['Menú','El disparador mide 28 × 26 px: solo tres puntos en Primario 600 en reposo, sin borde ni fondo; en hover aparece fondo Primario 100 (#E5F0F9). El desplegable conserva fondo blanco, radio 8 px y foco visible.'],
     ['Responsive','Por debajo de 640 px, «Volver» sustituye la ruta cuando mobileParentOnly está activo y existe padre navegable.'],
-    ['Ejemplos','Una sola caja blanca. Las etiquetas son estáticas, sin hipervínculos; el control de puntos suspensivos sí despliega los niveles ocultos.'],
+    ['Ejemplos','Una sola caja blanca. Los enlaces de ejemplo tienen cursor de mano, hover con subrayado y foco visible, pero no redirigen; el botón de puntos suspensivos sí despliega los niveles ocultos.'],
    ]}/>
   </DocSection>
 
@@ -140,9 +140,9 @@ export function AndyBreadcrumbDocs(){
    <GuidelineTable rows={[
     ['Orden','Las rutas se presentan desde el nivel superior hasta la página actual.'],
     ['Estado actual','Última etiqueta sin enlace, con aria-current="page". Nunca utilizarla como botón.'],
-    ['Enlaces','Solo crear vínculos en producto para destinos reales; los ejemplos del UI Kit no navegan. Mantener hover subrayado y foco visible en los enlaces funcionales.'],
+    ['Enlaces','En el UI Kit los niveles anteriores son enlaces demostrativos con cursor de mano, hover subrayado y foco visible, sin navegación. En producto conservan los destinos reales.'],
     ['Separadores','Elementos decorativos ocultos a tecnología asistiva con aria-hidden.'],
-    ['Menú colapsado','Se abre con Enter o Espacio y se cierra con Escape o al presionar fuera. En el UI Kit muestra solo textos; en producto permite enlaces intermedios reales.'],
+    ['Menú colapsado','Se abre con Enter o Espacio y se cierra con Escape o al presionar fuera. En el UI Kit los niveles del menú se comportan visualmente como enlaces sin redirigir; en el producto navegan a sus destinos.'],
     ['Mobile','Utilizar «Volver» si existe padre con URL explícita; de lo contrario, mantener la ruta y no fabricar enlaces.'],
     ['Texto extenso','Truncar visualmente solo el último nivel si el ancho no alcanza; mantener el texto completo en title.'],
     ['Producto','Componente compartido src/shared/navigation/Breadcrumbs.tsx, ya utilizado por Agenda de la Comunidad.'],
