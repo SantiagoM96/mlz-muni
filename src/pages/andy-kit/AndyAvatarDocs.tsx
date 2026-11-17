@@ -56,7 +56,7 @@ function AvatarPlayground(){
    <button type="button" className={'andy-avatar-indicator-toggle'+(withBadge?' is-selected':'')}
     aria-pressed={withBadge} onClick={()=>setWithBadge(value=>!value)}
     title={withBadge?'Ocultar indicador de disponibilidad':'Mostrar indicador de disponibilidad'}>
-    <MaterialIcon name={withBadge?'check_circle':'radio_button_unchecked'} size={18} weight={400}/>
+    <MaterialIcon name={withBadge?'check_circle':'radio_button_unchecked'} size={16} weight={400}/>
     <span>Indicador</span>
    </button>
   </div>
