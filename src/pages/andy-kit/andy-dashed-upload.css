@@ -127,3 +127,16 @@
  .andy-single-upload .andy-dashed-upload-action{font-size:12px}
  .andy-single-upload .andy-dashed-upload-value{font-size:12px}
 }
+
+/* Tipografía unificada — Figma Natural/Grey 500 para texto de campo
+   en Estándar y Borde punteado. Los estados semánticos conservan sus iconos,
+   bordes y mensajes de error, y las etiquetas de la matriz siguen negras. */
+.andy-single-upload .andy-dashed-upload-title,
+.andy-single-upload .andy-dashed-upload-action,
+.andy-single-upload .andy-dashed-upload-value,
+.andy-single-upload .andy-dashed-upload-value.has-file,
+.andy-single-upload[data-state="completed"] .andy-dashed-upload-value,
+.andy-single-upload .andy-dashed-upload-control.is-processing .andy-dashed-upload-value,
+.andy-single-upload .andy-dashed-upload-help{
+ color:var(--mlz-grey-500,#6d6d6d);
+}
