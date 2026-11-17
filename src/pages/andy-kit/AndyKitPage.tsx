@@ -280,11 +280,11 @@ function ComponentDetails({id}:{id:ComponentId}){
   <DocSection title="Descripción" description="Attachment permite incorporar un documento o representar archivos mediante un control consistente con los formularios de MLZ.">
    <p className="andy-alert-doc-description">Estándar y Borde punteado permiten seleccionar un solo archivo: muestran su nombre dentro del mismo campo, sin agregar listados debajo. Ícono es la tercera presentación, pensada para mostrar un archivo con dos líneas de información, estado y acción de quitar.</p>
   </DocSection>
-  <DocSection title="Estándar" description="Archivo único. Fondo blanco y borde continuo de 1 px: seleccionar y reemplazar documentos se resuelve en el mismo campo de 48 px.">
+  <DocSection title="Estándar" description="Archivo único de 48 px con borde continuo: clip inicial, progreso de carga, procesamiento y archivo cargado con acción de quitar, todo dentro del mismo control.">
    <DocPreview><AndySolidUploadPreview/></DocPreview>
    <DocPreview align="start"><AndySolidUploadStates/></DocPreview>
   </DocSection>
-  <DocSection title="Borde punteado" description="Archivo único. Mismo contenido y comportamiento que Estándar, con borde dashed nativo de CSS y altura de 48 px.">
+  <DocSection title="Borde punteado" description="El mismo flujo de archivo único en 48 px, con un borde dashed nativo: selección, progreso, procesamiento y eliminación desde el campo.">
    <DocPreview><AndyDashedUpload kind="document"/></DocPreview>
    <DocPreview align="start"><AndyDashedUploadStates/></DocPreview>
   </DocSection>
@@ -312,7 +312,7 @@ function ComponentDetails({id}:{id:ComponentId}){
     ['Formatos documentales','PDF, DOC y DOCX en los ejemplos actuales; imágenes JPG, PNG o WEBP en la variante de fotografía.'],
     ['Límite de ejemplo','10 MB por archivo; el producto debe validar también del lado del servidor.'],
     ['Colores','Primario 600 para valores completos, Info 500 para foco y Error para validaciones incorrectas.'],
-    ['Estados','Default, Hover, Focus, Completo, Error y Disabled en Estándar y Borde punteado; Default, Subiendo, Procesando, Error y Completado en Ícono.'],
+    ['Estados','Default, Hover, Focus, Subiendo, Procesando, Completo, Error y Disabled para Estándar y Borde punteado; Default, Subiendo, Procesando, Error y Completado en Ícono.'],
    ]}/>
   </DocSection>
   <DocSection title="Comportamiento" description="La selección, lectura y eliminación deben ser operables con teclado, con mensajes precisos y sin acciones ambiguas.">
@@ -320,7 +320,7 @@ function ComponentDetails({id}:{id:ComponentId}){
     ['Seleccionar','Abrir el selector nativo y actualizar el nombre visible cuando se elige un archivo válido.'],
     ['Reemplazar','Permitir seleccionar otro archivo sin conservar un error previo; validar formato y tamaño nuevamente.'],
     ['Quitar','Acción independiente de Abrir o Ver, con nombre accesible que identifica el archivo.'],
-    ['Carga','Distinguir selección local de carga real; no simular progreso o éxito como si fueran confirmaciones del servidor.'],
+    ['Carga','En Estándar y Borde punteado, mostrar progreso y procesamiento dentro del mismo campo; los ejemplos del UI Kit son simulaciones, no confirmaciones del servidor.'],
     ['Error','Indicar por escrito la causa y cómo resolverla, con aviso accesible.'],
     ['Varios archivos','Usar una lista clara; recurrir a carrusel horizontal solo cuando la cantidad y el contexto lo justifiquen.'],
    ]}/>
