@@ -112,15 +112,6 @@ function AvatarGroupGallery(){
  </div>;
 }
 
-const visualStates=[
- {name:'Imagen cargada',note:'Fotografía disponible',id:'loaded'},
- {name:'Cargando',note:'Reserva el espacio de imagen',id:'loading'},
- {name:'Fallback',note:'Iniciales sin fotografía',id:'fallback'},
- {name:'Error de imagen',note:'Fallback ante una URL fallida',id:'error'},
- {name:'Hover',note:'Solo si es interactivo',id:'hover'},
- {name:'Focus visible',note:'Solo si es interactivo',id:'focus'},
- {name:'Disabled',note:'Solo si es interactivo',id:'disabled'},
-] as const;
 function AvatarProfileTrigger(){
  const [open,setOpen]=useState(false);
  return <div className="andy-avatar-profile-demo">
@@ -133,23 +124,6 @@ function AvatarProfileTrigger(){
    <button type="button" onClick={()=>setOpen(false)}>Cerrar</button>
   </div>}
  </div>;
-}
-
-function AvatarStateGallery(){
- return <div className="andy-state-matrix andy-avatar-state-matrix"><div className="andy-matrix-grid">
-  {visualStates.map(item=><div className="andy-state-cell andy-avatar-state-cell" key={item.id} data-state={item.id}>
-   <div className="andy-state-label"><strong>{item.name}</strong><small>{item.note}</small></div>
-   <div className="andy-avatar-state-sample">
-    {item.id==='loaded'&&<PersonAvatar/>}
-    {item.id==='loading'&&<Avatar label="Fotografía en carga"><AvatarFallback><span className="andy-avatar-loading" aria-hidden="true"/></AvatarFallback></Avatar>}
-    {item.id==='fallback'&&<PersonAvatar variant="initials"/>}
-    {item.id==='error'&&<Avatar label="Carolina Pérez, sin fotografía"><AvatarImage src="/mlz-muni/avatar-imagen-inexistente.jpg" alt=""/><AvatarFallback>CP</AvatarFallback></Avatar>}
-    {item.id==='hover'&&<span className="andy-avatar-trigger is-hover"><PersonAvatar/></span>}
-    {item.id==='focus'&&<span className="andy-avatar-trigger is-focus"><PersonAvatar/></span>}
-    {item.id==='disabled'&&<button type="button" className="andy-avatar-trigger" disabled aria-label="Perfil de Carolina Pérez no disponible"><PersonAvatar/></button>}
-   </div>
-  </div>)}
- </div></div>;
 }
 
 export function AndyAvatarDocs(){
@@ -178,10 +152,6 @@ export function AndyAvatarDocs(){
 
   <DocSection title="Como disparador" description="Avatar puede formar parte de un botón de perfil. El botón conserva su propia área clickeable y foco visible.">
    <DocPreview><AvatarProfileTrigger/></DocPreview>
-  </DocSection>
-
-  <DocSection title="Estados" description="Los estados de carga y disponibilidad pertenecen al Avatar. Hover, Focus y Disabled corresponden únicamente al botón que lo envuelve si existe interacción.">
-   <DocPreview align="start"><AvatarStateGallery/></DocPreview>
   </DocSection>
 
   <DocSection title="Anatomía" description="Seis piezas reutilizables tomadas como referencia de la composición de shadcn/ui y adaptadas a MLZ.">
