@@ -128,14 +128,17 @@
  .andy-single-upload .andy-dashed-upload-value{font-size:12px}
 }
 
-/* Gris 500 solamente en el texto interno y ayuda del control.
-   El label «Documentación adjunta» conserva Primario 600 (#236999).
-   Los estados semánticos conservan sus colores y las etiquetas de matriz, negro. */
+/* Attachment: Primario 600 en label y en TODO el texto dentro del campo.
+   Grey 500 se reserva para la ayuda externa; Error y Disabled mantienen
+   sus colores de estado definidos arriba. */
+.andy-single-upload .andy-dashed-upload-title,
 .andy-single-upload .andy-dashed-upload-action,
 .andy-single-upload .andy-dashed-upload-value,
 .andy-single-upload .andy-dashed-upload-value.has-file,
 .andy-single-upload[data-state="completed"] .andy-dashed-upload-value,
-.andy-single-upload .andy-dashed-upload-control.is-processing .andy-dashed-upload-value,
+.andy-single-upload .andy-dashed-upload-control.is-processing .andy-dashed-upload-value{
+ color:var(--color-primary-600,#236999);
+}
 .andy-single-upload .andy-dashed-upload-help{
  color:var(--mlz-grey-500,#6d6d6d);
 }
