@@ -1,18 +1,22 @@
 /* Formulario de horarios: producto municipal, Geometria y controles MLZ. */
-.andy-modal.is-schedule{width:min(640px,calc(100vw - 32px))}
-.andy-modal.is-schedule .andy-modal-content{gap:24px}
 .andy-schedule-form{display:flex;flex-direction:column;gap:22px;width:100%;min-width:0}
 .andy-schedule-field{display:flex;flex-direction:column;gap:8px;min-width:0}
 .andy-schedule-field>label{font:700 16px/24px Geometria,'Century Gothic',Arial,sans-serif;color:#236999}
 .andy-schedule-field>label>span{color:#ef284c}
-.andy-schedule-field>input,.andy-schedule-field select{box-sizing:border-box;display:block;width:100%;height:48px;min-height:48px;border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm,4px);background:#fff;color:#3d3d3d;padding:10px 14px;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;box-shadow:none}
+.andy-schedule-field>input{box-sizing:border-box;display:block;width:100%;height:48px;min-height:48px;border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm,4px);background:#fff;color:#3d3d3d;padding:10px 14px;font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;box-shadow:none}
 .andy-schedule-field>input::placeholder{color:#8695a0}
-.andy-schedule-field>input:hover,.andy-schedule-field select:hover{border-color:#236999}
-.andy-schedule-field>input:focus-visible,.andy-schedule-field select:focus-visible{outline:0;border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
-.andy-schedule-select-wrap{position:relative}
-.andy-schedule-select-wrap select{appearance:none;padding-right:42px;cursor:pointer}
-.andy-schedule-select-wrap>.material-symbols-outlined{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#236999;pointer-events:none}
+.andy-schedule-field>input:hover{border-color:#236999}
+.andy-schedule-field>input:focus-visible{outline:0;border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-schedule-select-wrap{position:relative;min-width:0}
+.andy-schedule-select-wrap .andy-dropdown-variant-trigger{font-family:inherit;color:#3d3d3d;min-width:0}
+.andy-schedule-select-wrap .andy-dropdown-variant-trigger:hover{border-color:#236999}
+.andy-schedule-select-wrap .andy-dropdown-variant-trigger:focus-visible{outline:0;border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
+.andy-schedule-dropdown-menu{z-index:5;margin:0;overflow:hidden;min-height:0}
+.andy-schedule-dropdown-menu .andy-dropdown-variant-options{max-height:100%;overscroll-behavior:contain}
+.andy-schedule-dropdown-menu .andy-dropdown-variant-option{border:0;text-align:left;font-family:inherit}
+.andy-schedule-dropdown-menu .andy-dropdown-variant-option.is-keyboard-active:not(.selected):not(:disabled){background:#edf6fc}
+.andy-schedule-dropdown-menu .andy-dropdown-variant-option:disabled{opacity:.45;cursor:not-allowed}
 .andy-schedule-time-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-16)}
 .andy-schedule-error{display:flex;align-items:center;gap:8px;margin:0;color:#ef284c;font:500 13px/20px Geometria,'Century Gothic',Arial,sans-serif}
-@media(max-width:620px){.andy-schedule-time-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-8)}.andy-schedule-time-grid .andy-schedule-field>label{font-size:12px;line-height:18px;min-height:36px}.andy-schedule-time-grid .andy-schedule-field select{padding-left:var(--mlz-space-8);padding-right:24px;font-size:13px}.andy-schedule-time-grid .andy-schedule-select-wrap>.material-symbols-outlined{right:4px;font-size:18px}}
+@media(max-width:620px){.andy-schedule-time-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-8)}.andy-schedule-time-grid .andy-schedule-field>label{font-size:12px;line-height:18px;min-height:36px}.andy-schedule-time-grid .andy-dropdown-variant-trigger{padding-inline:var(--mlz-space-8);font-size:13px;gap:var(--mlz-space-4)}.andy-schedule-time-grid .andy-dropdown-variant-trigger>.material-symbols-outlined{font-size:18px}}
 
