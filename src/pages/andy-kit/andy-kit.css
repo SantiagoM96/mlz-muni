@@ -1583,3 +1583,66 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-doc-guideline-table thead th{
  color:#3d3d3d;
 }
+
+
+/* UI Kit chrome unificado con Info 600; los colores de las demos no cambian. */
+.andy-doc-layout{--andy-chrome-accent:#0058cc;--andy-chrome-outline:#99c5ff;}
+.andy-doc-layout .andy-component-search:focus-within{box-shadow:0 0 0 2px #0058cc20}
+.andy-doc-layout .andy-topbar > .andy-version,
+.andy-doc-layout .andy-topbar-actions .andy-version{color:#0058cc}
+.andy-doc-layout .andy-topbar > .andy-version a,
+.andy-doc-layout .andy-topbar-actions .andy-version a{color:inherit}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active:hover,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active:hover{
+ background:#0058cc;color:white;
+}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-review-mark,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-component-name,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .material-symbols-outlined{color:#fff}
+.andy-doc-layout .andy-doc-toc>strong,
+.andy-doc-layout .andy-doc-toc nav a.is-active,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location],
+.andy-doc-layout .andy-doc-toc nav a.is-active:hover,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location]:hover,
+.andy-doc-layout .andy-doc-toc nav a:hover{color:#0058cc}
+
+/* Encabezado de componente: acciones fijas arriba a la derecha,
+   descripción en una segunda fila que ocupa todo el ancho disponible. */
+.andy-doc-layout .andy-doc-main .andy-main-heading{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) max-content;
+ align-items:start;
+ justify-content:stretch;
+ column-gap:var(--mlz-space-16);
+ row-gap:var(--mlz-space-12);
+}
+.andy-doc-layout .andy-main-heading-title{grid-column:1;grid-row:1;min-width:0}
+.andy-doc-layout .andy-main-heading-title h2{overflow-wrap:break-word}
+.andy-doc-layout .andy-main-heading>.andy-doc-page-actions{
+ grid-column:2;grid-row:1;align-self:start;justify-self:end;
+ display:flex;align-items:center;flex-wrap:nowrap;
+ gap:var(--mlz-space-8);margin:0;white-space:nowrap;
+}
+.andy-doc-layout .andy-main-heading>.andy-doc-description{
+ grid-column:1/-1;grid-row:2;margin:0;max-width:780px;
+}
+.andy-doc-layout .andy-main-heading .andy-doc-page-actions button,
+.andy-doc-layout .andy-main-heading .andy-doc-step-links a{
+ color:#0058cc;
+ display:inline-flex;align-items:center;justify-content:center;
+ gap:var(--mlz-space-6);flex-shrink:0;
+}
+.andy-doc-layout .andy-main-heading .andy-doc-step-links{
+ display:inline-flex;align-items:center;flex-wrap:nowrap;gap:var(--mlz-space-4);
+}
+.andy-doc-layout .andy-main-heading .andy-doc-page-actions button:hover,
+.andy-doc-layout .andy-main-heading .andy-doc-step-links a:hover{color:#00377f}
+@media(max-width:530px){
+ .andy-doc-layout .andy-doc-main .andy-main-heading{column-gap:8px}
+ .andy-doc-layout .andy-main-heading>.andy-doc-page-actions{gap:4px}
+ .andy-doc-layout .andy-main-heading .andy-doc-page-actions button{font-size:0;gap:0;min-width:32px}
+ .andy-doc-layout .andy-main-heading .andy-doc-page-actions button .material-symbols-outlined{font-size:18px!important}
+ .andy-doc-layout .andy-main-heading .andy-doc-step-links{gap:2px}
+}
