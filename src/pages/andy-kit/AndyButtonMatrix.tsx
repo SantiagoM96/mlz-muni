@@ -1,183 +1,186 @@
-import { useState, type ReactNode } from 'react';
+import { useState } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
-import { GuidelineTable } from './AndyDocsPrimitives';
+import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import './andy-button-matrix.css';
 
 type Kind='primary'|'secondary'|'tertiary'|'ghost'|'link';
 type Size='large'|'medium'|'small';
 type State='default'|'hover'|'focus'|'pressed'|'active'|'disabled';
 type IconPlacement='none'|'start'|'end'|'only';
-const kinds:{id:Kind;label:string}[]=[
-  {id:'primary',label:'Primario'},
-  {id:'secondary',label:'Secundario'},
-  {id:'tertiary',label:'Terciario'},
-  {id:'ghost',label:'Ghost'},
-  {id:'link',label:'Link'}
-];
-const states:{id:State;label:string}[]=[
-  {id:'default',label:'Default'},
-  {id:'hover',label:'Hover'},
-  {id:'focus',label:'Focus'},
-  {id:'pressed',label:'Pressed'},
-  {id:'active',label:'Active'},
-  {id:'disabled',label:'Disabled'}
+
+const kinds:{id:Kind;label:string;description:string}[]=[
+ {id:'primary',label:'Primario',description:'La acción más importante del contexto. Utilizá una sola acción primaria por bloque de decisión.'},
+ {id:'secondary',label:'Secundario',description:'Complementa la acción principal sin competir con ella en prominencia visual.'},
+ {id:'tertiary',label:'Terciario',description:'Alternativa con borde para volver, cancelar o limpiar un valor sin protagonismo principal.'},
+ {id:'ghost',label:'Ghost',description:'Acción auxiliar sin fondo permanente; la superficie aparece al interactuar.'},
+ {id:'link',label:'Link',description:'Acción de apariencia textual. Para navegar de página, utilizá un enlace semántico.'},
 ];
 const sizes:{id:Size;label:string;description:string}[]=[
-  {id:'large',label:'Large',description:'48 px'},
-  {id:'medium',label:'Medium',description:'40 px'},
-  {id:'small',label:'Small',description:'32 px'}
+ {id:'small',label:'Small',description:'32 px'},
+ {id:'medium',label:'Medium',description:'40 px'},
+ {id:'large',label:'Large',description:'48 px'},
+];
+const states:{id:State;label:string}[]=[
+ {id:'default',label:'Default'},
+ {id:'hover',label:'Hover'},
+ {id:'focus',label:'Focus'},
+ {id:'pressed',label:'Pressed'},
+ {id:'active',label:'Active'},
+ {id:'disabled',label:'Disabled'},
 ];
 const placements:{id:IconPlacement;label:string}[]=[
-  {id:'none',label:'Sin ícono'},
-  {id:'start',label:'Ícono a la izquierda'},
-  {id:'end',label:'Ícono a la derecha'},
-  {id:'only',label:'Solo ícono'}
+ {id:'none',label:'Sin ícono'},
+ {id:'start',label:'Ícono a la izquierda'},
+ {id:'end',label:'Ícono a la derecha'},
+ {id:'only',label:'Solo ícono'},
 ];
+
 function ButtonSample({kind,size,state='default',icon='none',loading=false,onClick}:{
- kind:Kind;size:Size;state?:State;icon?:IconPlacement;loading?:boolean;onClick?:()=>void
+ kind:Kind;size:Size;state?:State;icon?:IconPlacement;loading?:boolean;onClick?:()=>void;
 }){
- const label=kinds.find(v=>v.id===kind)?.label??'Acción';
+ const label=kinds.find(item=>item.id===kind)?.label??'Acción';
  const iconSize=size==='small'?16:size==='medium'?18:20;
  return <button type="button" disabled={state==='disabled'||loading} onClick={onClick}
-  className={`andy-system-button is-${kind} is-${size} state-${state} icon-${icon}${loading?' is-loading':''}`}
+  className={'andy-system-button is-'+kind+' is-'+size+' state-'+state+' icon-'+icon+(loading?' is-loading':'')}
   data-kind={kind} data-state={state} data-size={size} data-icon={icon}
   aria-label={loading?'Procesando '+label:icon==='only'?label:undefined}
   aria-busy={loading||undefined}>
-   {loading&&<MaterialIcon name="sync" size={iconSize} className="andy-button-spinner"/>}
-   {!loading&&(icon==='start'||icon==='only')&&<MaterialIcon name="check" size={iconSize}/>}
-   {icon!=='only'&&<span>{loading?'Procesando…':label}</span>}
-   {!loading&&icon==='end'&&<MaterialIcon name="arrow_forward" size={iconSize}/>}
+  {loading&&<MaterialIcon name="sync" size={iconSize} className="andy-button-spinner"/>}
+  {!loading&&(icon==='start'||icon==='only')&&<MaterialIcon name="check" size={iconSize} weight={400}/>}
+  {icon!=='only'&&<span>{loading?'Procesando…':label}</span>}
+  {!loading&&icon==='end'&&<MaterialIcon name="arrow_forward" size={iconSize} weight={400}/>}
  </button>;
 }
-const variantDetails: Record<Kind,{purpose:string;example:string;guidance:string}>={
- primary:{purpose:'Acción principal de la pantalla.',example:'Continuar',guidance:'Usar un solo primario por bloque de decisión.'},
- secondary:{purpose:'Alternativa complementaria a la principal.',example:'Ver resultados',guidance:'Ideal cuando la acción no debe competir con la principal.'},
- tertiary:{purpose:'Opción con borde y peso visual menor.',example:'Borrar fecha',guidance:'Útil para limpiar, volver o cancelar un paso.'},
- ghost:{purpose:'Acción auxiliar sin superficie permanente.',example:'Limpiar filtros',guidance:'Usar en herramientas o acciones poco prominentes.'},
- link:{purpose:'Acción de aspecto textual.',example:'Ver detalles',guidance:'Para navegar realmente, utilizar un enlace semántico.'}
-};
-function DocSection({id,title,description,children}:{id:string;title:string;description:string;children:ReactNode}){
- return <section id={id} className="andy-button-doc-section">
-  <div className="andy-button-section-intro"><h3>{title}</h3><p>{description}</p></div>
-  {children}
- </section>;
+
+function ExampleControls<T extends string>({label,items,value,onChange}:{
+ label:string;items:readonly {id:T;label:string}[];value:T;onChange:(value:T)=>void;
+}){
+ return <div className="andy-doc-example-controls">
+  <div className="andy-doc-example-group" role="group" aria-label={label}>
+   {items.map(item=><button key={item.id} type="button" aria-pressed={value===item.id}
+    onClick={()=>onChange(item.id)}>{item.label}</button>)}
+  </div>
+ </div>;
 }
-function Preview({children}:{children:ReactNode}){
- return <div className="andy-button-preview"><div className="andy-button-floating-samples">{children}</div></div>;
+function Preview({children}:{children:React.ReactNode}){
+ return <DocPreview className="andy-button-showcase">
+  <div className="andy-button-floating-samples">{children}</div>
+ </DocPreview>;
 }
+
 export function AndyButtonMatrix(){
  const [stateKind,setStateKind]=useState<Kind>('primary');
+ const [iconKind,setIconKind]=useState<Kind>('primary');
  const [iconSize,setIconSize]=useState<Size>('medium');
- const [placement,setPlacement]=useState<IconPlacement>('none');
- const [lastClicked,setLastClicked]=useState('');
+ const [iconPlacement,setIconPlacement]=useState<IconPlacement>('start');
  const [loading,setLoading]=useState(false);
- return <div className="andy-button-documentation">
-  <div className="andy-button-introduction">
-   <p>Las acciones deben transmitir una jerarquía clara. Estas muestras utilizan los colores, la tipografía, las alturas y los íconos de MLZ.</p>
-   <Preview><ButtonSample kind="primary" size="large" onClick={()=>setLastClicked('Continuar')}/>
-    <ButtonSample kind="tertiary" size="large" onClick={()=>setLastClicked('Volver')}/></Preview>
-  </div>
-  <DocSection id="variantes" title="Variantes" description="Cada tipo aparece en una caja independiente y centrado, para evaluar su peso visual sin mezclarlo con otros tipos.">
-   {kinds.map(kind=><div key={kind.id} className="andy-button-variant-example">
-    <h4>{kind.label}</h4><p>{variantDetails[kind.id].purpose}</p>
-    <Preview><ButtonSample kind={kind.id} size="large" onClick={()=>setLastClicked(kind.label)}/></Preview>
-    <p className="andy-button-guidance"><MaterialIcon name="info" size={16}/>{variantDetails[kind.id].guidance}</p>
-   </div>)}
+ const [lastClicked,setLastClicked]=useState('');
+
+ return <>
+  <DocSection title="Descripción" description="Button representa una acción que una persona puede ejecutar. La jerarquía entre Primario, Secundario, Terciario, Ghost y Link debe ser consistente con la importancia de cada acción.">{null}</DocSection>
+
+  <DocSection title="Básico" description="Ejemplo de una acción principal junto a una alternativa de menor jerarquía. Conservan la geometría, los colores y la tipografía institucional.">
+   <Preview>
+    <ButtonSample kind="primary" size="large"/>
+    <ButtonSample kind="tertiary" size="large"/>
+   </Preview>
   </DocSection>
-  <DocSection id="tamanos" title="Tamaños" description="Small, Medium y Large mantienen el mismo radio de 4 px. La escala modifica alto, cuerpo, padding e íconos.">
-   <Preview>{sizes.map(size=><div key={size.id} className="andy-button-size-example">
-    <ButtonSample kind="primary" size={size.id}/>
-    <strong>{size.label}</strong><span>{size.description}</span>
-   </div>)}</Preview>
-   <p className="andy-button-guidance"><MaterialIcon name="info" size={16}/>Small 32 px · Medium 40 px · Large 48 px. Elegí según la densidad del contexto.</p>
-  </DocSection>
-  <DocSection id="estados" title="Estados" description="Compará los seis estados de forma persistente. Elegí el tipo de botón que querés inspeccionar.">
-   <div className="andy-doc-example-controls">
-   <div className="andy-doc-example-group" role="group" aria-label="Tipo de botón para estados">
-    {kinds.map(kind=><button key={kind.id} type="button" aria-pressed={stateKind===kind.id} onClick={()=>setStateKind(kind.id)}>{kind.label}</button>)}
-   </div></div>
-   <div className="andy-button-preview andy-button-states-preview"><div className="andy-button-state-gallery">
-    {states.map(state=><div className="andy-button-state-example" key={state.id}>
-     <strong>{state.label}</strong><span>{state.id==='default'?'En reposo':state.id==='hover'?'Puntero encima':state.id==='focus'?'Foco de teclado':state.id==='pressed'?'Durante el clic':state.id==='active'?'Seleccionado':'No interactivo'}</span>
-     <ButtonSample kind={stateKind} size="medium" state={state.id}/>
+
+  {kinds.map(kind=><DocSection key={kind.id} title={kind.label} description={kind.description}>
+   <Preview><ButtonSample kind={kind.id} size="large"/></Preview>
+  </DocSection>)}
+
+  <DocSection title="Tamaños" description="Los tres tamaños conservan el radio de 4 px. Small mide 32 px, Medium 40 px y Large 48 px de altura; la tipografía y el padding siguen la misma escala.">
+   <Preview>
+    {sizes.map(size=><div className="andy-button-size-example" key={size.id}>
+     <ButtonSample kind="primary" size={size.id}/>
+     <strong>{size.label}</strong>
+     <span>{size.description}</span>
     </div>)}
-   </div></div>
-   <p className="andy-button-guidance"><MaterialIcon name="info" size={16}/>Focus debe verse al navegar por teclado. Disabled mantiene una indicación visual clara de indisponibilidad.</p>
+   </Preview>
   </DocSection>
-  <DocSection id="iconografia" title="Íconos" description="La compensación óptica reduce el padding únicamente del lado del ícono, sin cambiar la altura ni el estilo del botón.">
-   <div className="andy-doc-example-controls">
-   <div className="andy-doc-example-group" role="group" aria-label="Tamaño para opciones de ícono">
-    {sizes.map(size=><button type="button" key={size.id} aria-pressed={iconSize===size.id} onClick={()=>setIconSize(size.id)}>{size.label} · {size.description}</button>)}
-   </div></div>
-   {placements.map(place=><div className="andy-button-variant-example" key={place.id}>
-    <h4>{place.label}</h4>
-    <Preview>{kinds.map(kind=><ButtonSample key={kind.id} kind={kind.id} size={iconSize} icon={place.id}/>)}</Preview>
-   </div>)}
-  </DocSection>
-  <DocSection id="loading" title="Loading / Spinner" description="Informa que una acción está procesándose y evita envíos duplicados. El ícono de carga conserva la escala Material Symbols Outlined.">
-   <div className="andy-doc-example-controls">
-    <div className="andy-doc-example-group" role="group" aria-label="Estado de carga">
-     <button type="button" aria-pressed={!loading} onClick={()=>setLoading(false)}>Default</button>
-     <button type="button" aria-pressed={loading} onClick={()=>setLoading(true)}>Loading</button>
+
+  <DocSection title="Estados" description="Compará Default, Hover, Focus, Pressed, Active y Disabled. Elegí el estilo de botón para ver cómo responde cada estado.">
+   <ExampleControls label="Estilo de botón" items={kinds} value={stateKind} onChange={setStateKind}/>
+   <DocPreview className="andy-button-showcase">
+    <div className="andy-button-state-gallery">
+     {states.map(state=><div className="andy-button-state-example" key={state.id}>
+      <strong>{state.label}</strong>
+      <ButtonSample kind={stateKind} size="medium" state={state.id}/>
+     </div>)}
     </div>
+   </DocPreview>
+  </DocSection>
+
+  <DocSection title="Íconos" description="La posición y el tamaño del ícono cambian, pero no alteran la altura del botón. Usamos Material Symbols Outlined de peso 400.">
+   <div className="andy-button-icon-controls">
+    <ExampleControls label="Posición del ícono" items={placements} value={iconPlacement} onChange={setIconPlacement}/>
+    <ExampleControls label="Tamaño del botón" items={sizes} value={iconSize} onChange={setIconSize}/>
+    <ExampleControls label="Estilo del botón" items={kinds} value={iconKind} onChange={setIconKind}/>
    </div>
-   <Preview>
-    <ButtonSample kind="primary" size="large" loading={loading} onClick={()=>setLoading(true)}/>
-    <ButtonSample kind="secondary" size="medium" loading={loading} onClick={()=>setLoading(true)}/>
-    <ButtonSample kind="tertiary" size="small" loading={loading} onClick={()=>setLoading(true)}/>
-   </Preview>
-   <p className="andy-button-guidance"><MaterialIcon name="info" size={16}/>En carga, el botón mantiene su color, informa aria-busy y bloquea clics repetidos. La muestra se restablece seleccionando Default.</p>
+   <Preview><ButtonSample kind={iconKind} size={iconSize} icon={iconPlacement}/></Preview>
   </DocSection>
-  <DocSection id="enlace" title="Como enlace" description="Una acción cambia de pantalla mediante un enlace semántico, no mediante un botón con apariencia de link.">
+
+  <DocSection title="Loading / Spinner" description="El estado Loading comunica que una operación está procesándose e impide activaciones repetidas. Conserva el estilo y el tamaño de cada botón.">
+   <ExampleControls label="Estado de carga" items={[{id:'default',label:'Default'},{id:'loading',label:'Loading'}] as const}
+    value={loading?'loading':'default'} onChange={next=>setLoading(next==='loading')}/>
    <Preview>
-    <a className="andy-system-button is-link is-medium icon-end" href="#enlace" onClick={event=>event.preventDefault()}>Ver detalles<MaterialIcon name="arrow_forward" size={18}/></a>
+    <ButtonSample kind="primary" size="large" loading={loading}/>
+    <ButtonSample kind="secondary" size="medium" loading={loading}/>
+    <ButtonSample kind="tertiary" size="small" loading={loading}/>
    </Preview>
-   <p className="andy-button-guidance"><MaterialIcon name="info" size={16}/>En esta demostración el enlace no navega fuera del UI Kit. En el producto usá un enlace real (&lt;a&gt; o Link del router) para la navegación.</p>
   </DocSection>
-  <DocSection id="uso" title="Uso y comportamiento" description="Ejemplos interactivos para probar hover, focus y pressed reales.">
-   <div className="andy-doc-example-controls">
-   <div className="andy-doc-example-group" role="group" aria-label="Posición de ícono">
-    {placements.map(place=><button type="button" key={place.id} aria-pressed={placement===place.id} onClick={()=>setPlacement(place.id)}>{place.label}</button>)}
-   </div></div>
-   <Preview>{kinds.map(kind=><ButtonSample key={kind.id} kind={kind.id} size="medium" icon={placement} onClick={()=>setLastClicked(kind.label)}/>)}</Preview>
+
+  <DocSection title="Como enlace" description="Si la acción cambia de página, corresponde usar un enlace real. Esta muestra conserva su apariencia, foco y hover, pero no navega fuera del Design System.">
+   <Preview>
+    <a className="andy-system-button is-link is-medium icon-end" href="#como-enlace" onClick={event=>event.preventDefault()}>
+     Ver detalles<MaterialIcon name="arrow_forward" size={18} weight={400}/>
+    </a>
+   </Preview>
+  </DocSection>
+
+  <DocSection title="Interacción" description="Probá los estados reales de hover, focus y pressed. Al hacer clic, el ejemplo indica qué botón se activó sin modificar información.">
+   <Preview>
+    {kinds.map(kind=><ButtonSample key={kind.id} kind={kind.id} size="medium" onClick={()=>setLastClicked(kind.label)}/>)}
+   </Preview>
    {lastClicked&&<p className="andy-button-feedback" role="status">Última acción de demostración: {lastClicked}</p>}
-   <div className="andy-button-usage-notes"><p><strong>Jerarquía.</strong> Evitar dos primarios compitiendo en el mismo bloque.</p>
-    <p><strong>Íconos.</strong> Material Symbols Outlined, con menor padding del lado del pictograma.</p>
-    <p><strong>Accesibilidad.</strong> Los botones de solo ícono requieren un nombre accesible.</p></div>
   </DocSection>
-  <DocSection id="anatomia" title="Anatomía" description="Composición del botón: una única superficie interactiva con contenido alineado y estados predecibles.">
+
+  <DocSection title="Anatomía" description="Partes del componente compartidas por todas las variantes de Button.">
    <GuidelineTable rows={[
-    ['Contenedor','Elemento button nativo; el enlace usa elemento a o Link del router con apariencia de botón.'],
-    ['Etiqueta','Texto de acción breve en Geometria Bold, centrado y legible.'],
-    ['Ícono opcional','Material Symbols Outlined, peso 400; al inicio, al final o solo ícono con nombre accesible.'],
-    ['Indicador Loading','Spinner dentro del botón, con aria-busy y prevención de nuevos clics.'],
-    ['Área interactiva','La altura y el padding cambian con la escala, no con el estado visual.'],
+    ['Contenedor','Botón nativo o enlace semántico con superficie interactiva y radio de 4 px.'],
+    ['Etiqueta','Texto descriptivo de acción, centrado y con tipografía Geometria Bold.'],
+    ['Ícono opcional','Material Symbols Outlined de peso 400, al inicio, al final o sin texto.'],
+    ['Indicador Loading','Spinner que representa la operación en curso y evita clics repetidos.'],
+    ['Área interactiva','Altura y padding definidos por Small, Medium o Large, independientemente del estado.'],
    ]}/>
   </DocSection>
-  <DocSection id="especificaciones" title="Especificaciones" description="Reglas del Button MLZ. La referencia shadcn se adapta a los estilos y tokens institucionales existentes.">
+
+  <DocSection title="Especificaciones" description="Valores de diseño institucionales que conserva el componente en todos sus estilos y estados.">
    <GuidelineTable rows={[
-    ['Variantes','Primario, Secundario, Terciario (con borde), Ghost y Link.'],
-    ['Tamaños','Small 32 px / Medium 40 px / Large 48 px.'],
-    ['Radio','4 px en todas las variantes; no adoptar rounded-full como valor predeterminado.'],
+    ['Estilos','Primario, Secundario, Terciario, Ghost y Link.'],
+    ['Tamaños','Small 32 px · Medium 40 px · Large 48 px.'],
+    ['Radio','4 px, sin redondeo pill predeterminado.'],
     ['Tipografía','Geometria Bold: 14 px Small, 16 px Medium y 18 px Large.'],
     ['Estados','Default, Hover, Focus, Pressed, Active, Disabled y Loading.'],
-    ['Foco','Contorno visible de 2 px, separado del borde del botón.'],
-    ['Íconos','Material Symbols Outlined; 16 px Small, 18 px Medium y 20 px Large.'],
-    ['Cargando','Spinner con animación respetando prefers-reduced-motion, sin alterar el color base.'],
-    ['Acción destructiva','No se agrega como sexto tipo base hasta definir su tratamiento institucional; las operaciones críticas requieren confirmación.'],
-    ['Button Group','Se documenta como componente separado en Actions.'],
+    ['Focus','Contorno de 2 px, visible al navegar con teclado.'],
+    ['Íconos','Material Symbols Outlined: 16 px Small, 18 px Medium y 20 px Large.'],
+    ['Loading','Spinner animado, respetando prefers-reduced-motion y sin perder la prominencia cromática.'],
+    ['Acción destructiva','Se documenta en contextos que requieren confirmación; no es un sexto estilo base.'],
+    ['Button Group','Se documenta de manera independiente en Actions.'],
    ]}/>
   </DocSection>
-  <DocSection id="accesibilidad" title="Accesibilidad y comportamiento" description="Distinguir activación, navegación y estados para conservar una semántica consistente.">
+
+  <DocSection title="Comportamiento y accesibilidad" description="El estilo debe reflejar la función real de cada control y comunicar sus estados sin depender exclusivamente del color.">
    <GuidelineTable rows={[
-    ['Tipo','Usar type="button" para acciones generales y submit solo cuando corresponde enviar un formulario.'],
-    ['Navegación','Usar enlaces semánticos para cambiar de página; el estilo Link no cambia su semántica por sí mismo.'],
-    ['Disabled','El botón deshabilitado no responde a clics ni recibe foco.'],
-    ['Loading','Deshabilitar activaciones repetidas, comunicar aria-busy y mantener un texto comprensible.'],
-    ['Solo ícono','Incluir aria-label descriptivo; no depender del pictograma para comunicar la acción.'],
-    ['Toggle','aria-pressed se reserva para botones con estado de selección real, no para simular visualmente Active.'],
-    ['Jerarquía','Priorizar una sola acción Primaria por bloque de decisión.'],
+    ['Acción','Usar type="button" para acciones generales y type="submit" al enviar un formulario.'],
+    ['Navegación','Usar enlaces a o Link para cambiar de pantalla, incluso cuando tienen aspecto de botón.'],
+    ['Disabled','Un botón deshabilitado no puede activarse y no recibe el foco mediante Tab.'],
+    ['Loading','Evita envíos duplicados y comunica aria-busy durante el proceso.'],
+    ['Solo ícono','Debe incluir un nombre accesible como aria-label.'],
+    ['Toggle','aria-pressed solo corresponde a botones de selección real.'],
+    ['Jerarquía','Evitar dos acciones primarias compitiendo en el mismo bloque.'],
    ]}/>
   </DocSection>
- </div>;
+ </>;
 }
