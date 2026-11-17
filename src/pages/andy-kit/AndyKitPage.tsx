@@ -53,11 +53,18 @@ function Foundations() {
   <div id="foundation-type" className="andy-foundation-module">
    <DemoSection title="02 · Typography" description="Geometria es la familia institucional del sistema. La escala distingue estilos globales declarados como tokens de tamaños recurrentes usados por los controles.">
     <div className="andy-foundation-type">
-     <div className="andy-foundation-type-row"><div><span>Section · 24 / 30</span><code>--text-institutional-section</code></div><strong className="type-section">Título de sección</strong></div>
-     <div className="andy-foundation-type-row"><div><span>Body · 18 / 26</span><code>--text-institutional-body</code></div><p className="type-body">Texto de lectura para contenido institucional y descripciones relevantes.</p></div>
-     <div className="andy-foundation-type-row"><div><span>Control · 16 / 24</span><code>Uso recurrente · no token independiente</code></div><span className="type-control">Etiqueta de campo y opciones</span></div>
-     <div className="andy-foundation-type-row"><div><span>Helper · 13 / 20</span><code>Uso recurrente · no token independiente</code></div><span className="type-helper">Texto de ayuda, aclaraciones y metadatos</span></div>
-     <div className="andy-foundation-weights"><span className="weight-400">Regular · 400</span><span className="weight-500">Medium · 500</span><span className="weight-700">Bold · 700</span></div>
+     <div className="andy-foundation-type-hero">
+      <div className="andy-foundation-type-overline">FAMILIA TIPOGRÁFICA INSTITUCIONAL</div>
+      <div className="andy-foundation-type-name">Geometria</div>
+      <p>Una voz tipográfica consistente para la comunicación municipal: clara en títulos, cómoda en lectura y precisa en controles.</p>
+      <div className="andy-foundation-weights"><span className="weight-400">Regular <small>400</small></span><span className="weight-500">Medium <small>500</small></span><span className="weight-700">Bold <small>700</small></span></div>
+     </div>
+     <div className="andy-foundation-type-list">
+      <div className="andy-foundation-type-row"><div><span>Section · 24 / 30</span><code>--text-institutional-section</code></div><strong className="type-section">Título de sección</strong></div>
+      <div className="andy-foundation-type-row"><div><span>Body · 18 / 26</span><code>--text-institutional-body</code></div><p className="type-body">Texto de lectura para contenido institucional y descripciones relevantes. Una composición de ejemplo que demuestra el ritmo de las líneas.</p></div>
+      <div className="andy-foundation-type-row"><div><span>Control · 16 / 24</span><code>Uso recurrente, sin token global</code></div><span className="type-control">Etiqueta de campo y opciones</span></div>
+      <div className="andy-foundation-type-row"><div><span>Helper · 13 / 20</span><code>Uso recurrente, sin token global</code></div><span className="type-helper">Texto de ayuda, aclaraciones y metadatos</span></div>
+     </div>
     </div>
     <p className="andy-foundation-note">Solo Section y Body están declarados como tokens tipográficos globales en tokens.css. Control y Helper describen usos recurrentes observados; no deben presentarse como variables oficiales hasta que se definan como tales.</p>
    </DemoSection>
