@@ -103,3 +103,16 @@
 .andy-solid-upload-control:focus-within{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
 .andy-solid-upload-control.is-error,.andy-solid-upload-control.is-error:focus-within{border-color:#ef284c;box-shadow:inset 0 0 0 1px #ef284c}
 @media(max-width:650px){.andy-dashed-state-matrix .andy-dashed-upload-action,.andy-dashed-state-matrix .andy-dashed-upload-value{font-size:14px}}
+
+
+/* Paridad con Input / Select MLZ: ambos controles de selección
+   tienen exactamente 48px de alto, sin alterar las filas de estado. */
+.andy-solid-upload-control,
+.andy-dashed-upload-control{
+ box-sizing:border-box;
+ height:48px;
+ min-height:48px;
+ max-height:48px;
+}
+.andy-solid-upload-control{padding-block:6px}
+.andy-dashed-upload-control{padding-block:8px}
