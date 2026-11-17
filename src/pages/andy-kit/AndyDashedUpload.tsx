@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type ChangeEvent } from 'react';
+import { useEffect, useId, useRef, useState, type ChangeEvent } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './andy-dashed-upload.css';
 
@@ -30,6 +30,7 @@ export function AndySingleUpload({appearance='solid',kind='document',demoState}:
  appearance?:BorderStyle;kind?:FileKind;demoState?:UploadState
 }){
  const id=useId(),helpId=id+'-help',feedbackId=id+'-feedback';
+ const fileInputRef=useRef<HTMLInputElement>(null);
  const [file,setFile]=useState<File|null>(null);
  const [phase,setPhase]=useState<UploadPhase>('empty');
  const [progress,setProgress]=useState(0);
@@ -87,7 +88,9 @@ export function AndySingleUpload({appearance='solid',kind='document',demoState}:
    <span className={'andy-upload-inline-icon'+(['uploading','processing'].includes(state)?' is-spinning':'')} aria-hidden="true">
     <MaterialIcon name={state==='uploading'||state==='processing'?'sync':'attach_file'} size={20} weight={400}/>
    </span>
-   <span className="andy-dashed-upload-action">Seleccionar archivo</span>
+   {selecting?<span className="andy-dashed-upload-action">Seleccionar archivo</span>:
+    <button type="button" className="andy-dashed-upload-action andy-upload-inline-change"
+     disabled={simulated} onClick={()=>fileInputRef.current?.click()}>Cambiar</button>}
    <span className={'andy-dashed-upload-value'+(displayName?' has-file':'')} title={displayName||config.hint} role="status">
     {state==='uploading'?<span className="andy-upload-inline-progress" role="progressbar" aria-label="Progreso de demostración" aria-valuenow={Math.floor(percent)} aria-valuemin={0} aria-valuemax={100}><span style={{width:percent+'%'}}/></span>:
      state==='processing'?'Procesando…':
@@ -95,9 +98,10 @@ export function AndySingleUpload({appearance='solid',kind='document',demoState}:
    </span>
    {state==='completed'&&<button type="button" className="andy-upload-inline-remove"
      aria-label={'Quitar '+displayName} disabled={simulated} onClick={remove}><MaterialIcon name="close" size={20} weight={400}/></button>}
-   {selecting&&<input id={id} type="file" accept={config.accept} onChange={select}
-    disabled={simulated||demoState==='disabled'} aria-describedby={currentError?feedbackId:helpId}
-    aria-invalid={Boolean(currentError)} aria-label={'Seleccionar '+config.label.toLowerCase()}/>}
+   <input ref={fileInputRef} id={id} type="file" accept={config.accept} onChange={select}
+    className={selecting?'andy-upload-file-input-full':'andy-upload-file-input-hidden'}
+    disabled={simulated} aria-describedby={currentError?feedbackId:helpId}
+    aria-invalid={Boolean(currentError)} aria-label={(selecting?'Seleccionar ':'Cambiar ')+config.label.toLowerCase()}/>
   </div>
   <p className="andy-dashed-upload-help" id={helpId}>{config.help}</p>
   {currentError&&<p className="andy-dashed-upload-error" id={feedbackId} role={simulated?undefined:'alert'}>{currentError}</p>}
