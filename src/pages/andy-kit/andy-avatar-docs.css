@@ -98,14 +98,16 @@
  min-height:145px;display:flex;flex-direction:column;align-items:center;justify-content:center;
  gap:10px;text-align:center;
 }
-.andy-avatar-variant-item strong,
-.andy-avatar-size-item strong,
-.andy-avatar-group-demo>strong{
- color:#236999;font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
+.andy-avatar-variant-item > strong,
+.andy-avatar-size-item > strong,
+.andy-avatar-group-demo > strong{
+ color:var(--color-black-950,#000000);
+ font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
 }
-.andy-avatar-variant-item span:not(.mlz-avatar):not(.mlz-avatar-fallback):not(.mlz-avatar-badge):not(.material-symbols-outlined),
-.andy-avatar-size-item>span{
- color:#6d6d6d;font:400 12px/18px Geometria,'Century Gothic',Arial,sans-serif;
+.andy-avatar-variant-item > span:not(.mlz-avatar):not(.mlz-avatar-fallback):not(.mlz-avatar-badge):not(.material-symbols-outlined),
+.andy-avatar-size-item > span{
+ color:var(--color-grey-500,#6d6d6d);
+ font:400 12px/18px Geometria,'Century Gothic',Arial,sans-serif;
 }
 .andy-avatar-size-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
 .andy-avatar-size-item{
@@ -159,13 +161,15 @@
 .mlz-avatar-image.andy-mini-muni-party{object-position:66.666667% center}
 .mlz-avatar-image.andy-mini-muni-smile{object-position:100% center}
 
-/* Tokens oficiales MLZ: textos, encabezados y contenedores de los ejemplos
-   señalados en el módulo Avatar. Sin colores arbitrarios ni mini-tarjetas. */
+/* Tipografía de las muestras (sin azul): Figma Natural/Black 950 para
+   nombres de variantes, tamaños, indicadores y grupos; Natural/Grey 500
+   para la descripción de cada ejemplo y sus medidas. El avatar conserva
+   sus propios colores y los badges sus tonos semánticos. */
 .andy-avatar-variant-item > strong,
 .andy-avatar-size-item > strong,
-.andy-avatar-group-demo > strong{color:var(--color-primary-600,#236999)}
+.andy-avatar-group-demo > strong{color:var(--color-black-950,#000000)}
 .andy-avatar-variant-item > span:not(.mlz-avatar):not(.mlz-avatar-fallback):not(.mlz-avatar-badge),
-.andy-avatar-size-item > span{color:var(--mlz-grey-500,#6d6d6d)}
+.andy-avatar-size-item > span{color:var(--color-grey-500,#6d6d6d)}
 .andy-doc-page .andy-doc-demo:has(.andy-avatar-variant-grid),
 .andy-doc-page .andy-doc-demo:has(.andy-avatar-size-grid),
 .andy-doc-page .andy-doc-demo:has(.andy-avatar-groups),
