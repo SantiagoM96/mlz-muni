@@ -4,7 +4,7 @@
  inset:0;
  width:min(480px,calc(100vw - 32px));
  max-width:calc(100vw - 32px);
- max-height:min(85dvh,720px);
+ max-height:calc(100dvh - 32px);
  margin:auto;
  padding:0;
  border:0;
@@ -60,3 +60,15 @@
 .andy-modal-footer .andy-modal-button.is-danger{background:#ef284c}
 .andy-modal-footer .andy-modal-button.is-danger:hover{background:#ce1e3e}
 @media(max-width:530px){.andy-modal.is-schedule .andy-modal-content{padding:20px 16px}}
+
+/* Los horarios se dimensionan por contenido: no se crea scroll interno en desktop. */
+.andy-modal.is-schedule{width:min(760px,calc(100vw - 32px));}
+.andy-modal.is-schedule .andy-modal-content{gap:var(--mlz-space-16);overflow:visible;}
+.andy-modal.is-schedule .andy-modal-footer{padding-top:var(--mlz-space-16);border-top:1px solid var(--color-divider,#e1e7eb);}
+.andy-modal-footer .andy-system-button{flex-shrink:0;}
+.andy-modal-footer .andy-modal-danger{background:#ef284c;color:#fff;}
+.andy-modal-footer .andy-modal-danger:hover{background:#ce1e3e;}
+@media(max-width:530px){
+ .andy-modal.is-schedule .andy-modal-content{gap:var(--mlz-space-12);padding:var(--mlz-space-16);overflow-y:auto;max-height:calc(100dvh - 32px)}
+ .andy-modal-footer .andy-system-button{width:100%}
+}
