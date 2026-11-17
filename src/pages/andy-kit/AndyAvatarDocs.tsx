@@ -55,9 +55,9 @@ function AvatarPlayground(){
     <span>Indicador</span>
    </button>
   </div>
-  <div className="andy-avatar-playground-preview">
+  <DocPreview className="andy-avatar-basic-demo">
    <PersonAvatar variant={variant} size={size} status={withBadge}/>
-  </div>
+  </DocPreview>
  </div>;
 }
 
@@ -157,7 +157,7 @@ export function AndyAvatarDocs(){
   <DocSection title="Descripción" description="Avatar representa a una persona mediante su imagen, sus iniciales o un ícono alternativo. Puede usarse individualmente, con indicadores o en grupos.">{null}</DocSection>
 
   <DocSection title="Básico" description="Probá las tres presentaciones, los cinco tamaños y el indicador. Esta muestra es interactiva.">
-   <DocPreview className="andy-avatar-basic-demo"><AvatarPlayground/></DocPreview>
+   <AvatarPlayground/>
   </DocSection>
 
   <DocSection title="Variantes" description="La fotografía es prioritaria cuando existe; iniciales e ícono actúan como alternativas.">
