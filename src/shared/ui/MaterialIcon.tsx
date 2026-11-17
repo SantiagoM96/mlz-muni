@@ -223,6 +223,7 @@ export type MaterialIconName =
   | 'unarchive'
   | 'attachment'
   | 'attach_file'
+  | 'touch_app'
   | 'link'
   | 'link_off'
   | 'content_paste_search'
