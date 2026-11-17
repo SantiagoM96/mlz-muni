@@ -95,17 +95,13 @@ function BadgeIconDemo(){
 
 function PaletteGallery({appearance}:{appearance:'soft'|'outline'}){
  return <DocPreview align="start">
-  <div className="andy-badge-palette">
-   <div className="andy-badge-palette-head" aria-hidden="true">
-    <span>Color</span><span>Sin ícono</span><span>Con ícono</span>
-   </div>
-   {tones.map(tone=><div className="andy-badge-palette-row" key={tone.id}>
-    <div className="andy-badge-palette-name">
-     <span className={'andy-badge-color-dot tone-'+tone.id} aria-hidden="true"/>
-     <span>{tone.name}</span>
+  <div className="andy-badge-palette" role="list" aria-label="Variantes de color">
+   {tones.map(tone=><div className="andy-badge-palette-item" role="listitem" key={tone.id}>
+    <strong className="andy-badge-palette-name">{tone.name}</strong>
+    <div className="andy-badge-palette-examples">
+     <Badge tone={tone.id} appearance={appearance} size="md">{tone.name}</Badge>
+     <Badge tone={tone.id} appearance={appearance} size="md" icon="info" iconPosition="start">{tone.name}</Badge>
     </div>
-    <div><Badge tone={tone.id} appearance={appearance} size="md">{tone.name}</Badge></div>
-    <div><Badge tone={tone.id} appearance={appearance} size="md" icon="info" iconPosition="start">{tone.name}</Badge></div>
    </div>)}
   </div>
  </DocPreview>;
