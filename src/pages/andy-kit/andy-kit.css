@@ -1390,7 +1390,7 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 }
 .andy-baila-preview-footer>footer{margin:0!important;padding:40px 0!important;background:#236999!important;color:#fff!important}
 .andy-baila-preview-footer footer>div{width:100%!important;max-width:1230px!important;padding-inline:16px!important;margin-inline:auto!important;display:flex;flex-direction:column;align-items:flex-start;gap:24px!important}
-.andy-baila-preview-footer footer img[alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad"]{width:min(350px,100%)!important;height:auto!important;max-height:none!important;object-fit:contain;object-position:left center}
+.andy-baila-preview-footer footer img[alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad"]{width:min(190px,100%)!important;height:auto!important;max-height:none!important;object-fit:contain;object-position:left center}
 .andy-baila-preview-footer footer section{display:flex;flex-direction:column;align-items:flex-start;gap:16px!important;width:100%}
 .andy-baila-preview-footer footer section h2{font-size:24px!important;line-height:32px!important;font-weight:700;margin:0}
 .andy-baila-preview-footer footer section>div{display:flex;flex-wrap:wrap;gap:16px}
@@ -1399,7 +1399,7 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 @media(max-width:600px){
  .andy-baila-preview-footer{height:310px}
  .andy-baila-preview-footer footer>div{gap:16px!important}
- .andy-baila-preview-footer footer img[alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad"]{width:min(287px,100%)!important}
+ .andy-baila-preview-footer footer img[alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad"]{width:min(166px,100%)!important}
  .andy-baila-preview-footer footer section h2{font-size:20px!important;line-height:28px!important}
  .andy-baila-preview-footer footer section>p{font-size:21px!important;line-height:29px!important}
 }
@@ -1442,4 +1442,18 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  .andy-baila-site-footer .andy-baila-site-logo{width:166px!important}
  .andy-baila-site-phones{font-size:15px;line-height:20px}
  .andy-baila-site-emergency{font-size:9px;line-height:13px;column-gap:8px}
+}
+
+/* Logo del footer en el ejemplo: 190 × 47,7 px en la referencia a escala 1:1. */
+.andy-doc-page .andy-baila-preview-footer .andy-baila-site-footer img.andy-baila-site-logo[alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad"]{
+ width:190px!important;
+ max-width:100%!important;
+ height:auto!important;
+ aspect-ratio:287 / 72;
+ flex:none;
+ align-self:flex-start;
+ object-fit:contain;
+}
+@media(max-width:520px){
+ .andy-doc-page .andy-baila-preview-footer .andy-baila-site-footer img.andy-baila-site-logo[alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad"]{width:166px!important}
 }
