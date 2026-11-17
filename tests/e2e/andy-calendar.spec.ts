@@ -99,7 +99,7 @@ test('Andy: mes y año respetan iconos, selección y tipografía de dropdowns ML
  await expect(chosen.locator('.material-symbols-outlined')).toHaveCSS('color','rgb(255, 255, 255)');
  const other=menu.getByRole('option',{name:'Octubre'});
  await expect(other).toHaveCSS('font-size','16px');
- await expect(other.locator('.material-symbols-outlined')).toHaveCSS('color','rgb(91, 168, 213)');
+ await expect(other.locator('.material-symbols-outlined')).toHaveCSS('color','rgb(35, 105, 153)');
  await other.click();
  await expect(day.getByRole('button',{name:'Seleccionar mes'})).toContainText('Octubre');
  await day.getByRole('button',{name:'Seleccionar año'}).click();
