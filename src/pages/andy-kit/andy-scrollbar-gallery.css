@@ -1,8 +1,8 @@
 .andy-scrollbar-docs{display:flex;flex-direction:column;gap:var(--mlz-space-32);width:100%}
 .andy-scrollbar-section+.andy-scrollbar-section{padding-top:var(--mlz-space-24);border-top:1px solid #e1e7eb}
-.andy-scrollbar-section h3{font-size:20px;line-height:28px;font-weight:700;color:var(--andy-editorial-accent,#0058cc);margin:0 0 var(--mlz-space-8)}
-.andy-scrollbar-section>p{max-width:760px;font-size:14px;line-height:23px;color:#617282;margin:0 0 var(--mlz-space-16)}
-.andy-scrollbar-section>p code{color:var(--andy-editorial-accent,#0058cc);background:#e5f0f9;padding:var(--mlz-space-2) var(--mlz-space-4);border-radius:var(--mlz-radius-sm)}
+.andy-scrollbar-section h3{font-size:20px;line-height:28px;font-weight:700;color:var(--andy-editorial-accent,#000);margin:0 0 var(--mlz-space-8)}
+.andy-scrollbar-section>p{max-width:760px;font-size:14px;line-height:23px;color:#6d6d6d;margin:0 0 var(--mlz-space-16)}
+.andy-scrollbar-section>p code{color:var(--andy-editorial-accent,#000);background:#f6f6f6;padding:var(--mlz-space-2) var(--mlz-space-4);border-radius:var(--mlz-radius-sm)}
 .andy-scrollbar-frame{display:flex;align-items:center;justify-content:center;min-height:260px;max-width:100%;padding:var(--mlz-space-24);border:1px solid #dce7ef;border-radius:var(--mlz-radius-lg);background:#fff}
 .andy-scrollbar-sample{width:min(100%,420px);min-width:0;padding:0}
 .andy-scrollbar-demo-scroll{display:flex;flex-direction:column;gap:0;height:215px;overflow-y:auto;overscroll-behavior:contain;border:1px solid #e1e7eb;border-radius:var(--mlz-radius-md);background:#fff}
