@@ -15,3 +15,19 @@
 .andy-radius-tile span{font-size:12px;line-height:18px;color:#647482}
 @media(max-width:900px){.andy-radius-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:580px){.andy-geometry-spacing-row{grid-template-columns:130px minmax(0,1fr);gap:var(--mlz-space-8)}.andy-geometry-items{padding:var(--mlz-space-12)}.andy-radius-grid{gap:var(--mlz-space-8)}.andy-radius-tile{padding:var(--mlz-space-12)}}
+
+
+/* Border radius: una sola forma ilustrativa, sin cajas anidadas. */
+.andy-radius-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+.andy-radius-tile{display:grid;grid-template-columns:68px minmax(0,1fr);align-items:center;gap:var(--mlz-space-16);min-width:0;padding:var(--mlz-space-20,20px) var(--mlz-space-16);border:0;border-bottom:1px solid #e1e7eb;border-radius:0}
+.andy-radius-tile:nth-child(odd){padding-left:0;padding-right:var(--mlz-space-24)}
+.andy-radius-tile:nth-child(even){padding-right:0;padding-left:var(--mlz-space-24)}
+.andy-radius-tile:nth-last-child(-n+2){border-bottom:0}
+.andy-radius-illustration{display:flex;align-items:center;justify-content:center;width:68px;height:62px;gap:0;border:0;border-radius:0;background:transparent}
+.andy-radius-illustration>span{display:block;width:52px;height:52px;border:1px solid #00377f;background:#cce2ff}
+.andy-radius-data{display:flex;flex-direction:column;gap:3px;min-width:0}
+.andy-radius-data strong{color:#00377f;font-size:15px;line-height:22px}
+.andy-radius-data strong>span{color:#647482;font-weight:400}
+.andy-radius-data code{color:#647482;font-size:11px;line-height:18px;overflow-wrap:anywhere}
+.andy-radius-data p{color:#647482;font-size:12px;line-height:18px;margin:0}
+@media(max-width:750px){.andy-radius-grid{grid-template-columns:1fr}.andy-radius-tile,.andy-radius-tile:nth-child(odd),.andy-radius-tile:nth-child(even){padding:var(--mlz-space-16) 0}.andy-radius-tile:nth-last-child(2){border-bottom:1px solid #e1e7eb}}
