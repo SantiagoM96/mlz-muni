@@ -15,7 +15,7 @@ import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadStates, AndySolidUploadStates, AndySolidUploadPreview, AndyDashedUpload } from './AndyDashedUpload';
-import { AndyAttachmentGallery, AndyIconUpload, AndyIconUploadStates } from './AndyAttachmentGallery';
+import { AndyIconUpload, AndyIconUploadStates } from './AndyAttachmentGallery';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
@@ -278,7 +278,6 @@ function ComponentDetails({id}:{id:ComponentId}){
   </ComponentExample></>;
  if(id==='adjuntos')return <>
   <DocSection title="Descripción" description="Attachment permite incorporar un documento o representar archivos mediante un control consistente con los formularios de MLZ.">
-   <p className="andy-alert-doc-description">Estándar y Borde punteado permiten seleccionar un solo archivo: muestran su nombre dentro del mismo campo, sin agregar listados debajo. Ícono es la tercera presentación, pensada para mostrar un archivo con dos líneas de información, estado y acción de quitar.</p>
   </DocSection>
   <DocSection title="Estándar" description="Archivo único de 48 px con borde continuo: clip inicial, progreso de carga, procesamiento y archivo cargado con acción de quitar, todo dentro del mismo control.">
    <DocPreview><AndySolidUploadPreview/></DocPreview>
@@ -291,9 +290,6 @@ function ComponentDetails({id}:{id:ComponentId}){
   <DocSection title="Ícono" description="Seleccioná un documento desde toda la superficie del campo. Después se muestran sus estados de subida, procesamiento, error y completado, con iconografía y acciones propias.">
    <DocPreview><AndyIconUpload/></DocPreview>
    <DocPreview align="start"><AndyIconUploadStates/></DocPreview>
-  </DocSection>
-  <DocSection title="Archivo adjunto" description="Una vez seleccionado, el archivo puede mostrar su nombre, tipo, tamaño y acciones. Esta demostración no envía documentos al servidor.">
-   <DocPreview><AndyAttachmentGallery/></DocPreview>
   </DocSection>
   <DocSection title="Anatomía" description="Composición reutilizable para el campo de carga y para la tarjeta del archivo, manteniendo las responsabilidades separadas.">
    <GuidelineTable rows={[
