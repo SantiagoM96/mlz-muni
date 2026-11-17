@@ -1,0 +1,45 @@
+/* Documentación Button Group: secciones compartidas, cajas de 40 px. */
+.andy-button-group-demo-row{
+ display:flex;align-items:center;justify-content:center;
+ flex-wrap:wrap;gap:var(--mlz-space-16,16px);
+ width:100%;min-width:0;
+}
+.andy-button-group-menu-anchor{position:relative;display:inline-flex;flex:0 0 auto}
+.andy-button-group-menu{
+ position:absolute;z-index:25;top:calc(100% + 8px);right:0;
+ display:flex;flex-direction:column;
+ width:max-content;min-width:204px;max-width:min(290px,80vw);
+ padding:var(--mlz-space-8,8px);
+ border:1px solid #d1d1d1;border-radius:var(--mlz-radius-lg,8px);
+ background:#fff;box-shadow:0 10px 30px rgba(20,42,61,.12);
+}
+.andy-button-group-menu button{
+ width:100%;padding:var(--mlz-space-8,8px) var(--mlz-space-12,12px);
+ border:0;border-radius:var(--mlz-radius-sm,4px);
+ background:transparent;color:#236999;text-align:left;
+ font:500 16px/24px Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer;
+}
+.andy-button-group-menu button:hover{background:#f3f7fc}
+.andy-button-group-menu button:focus-visible{outline:2px solid #006eff;outline-offset:2px}
+.andy-button-group-sizes{
+ display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
+ gap:var(--mlz-space-32,32px);width:100%;
+}
+.andy-button-group-size{
+ display:flex;flex-direction:column;align-items:center;gap:var(--mlz-space-8,8px);
+}
+.andy-button-group-size strong{
+ font:700 18px/26px Geometria,'Century Gothic',Arial,sans-serif;color:#000;
+}
+.andy-button-group-size > span{
+ font:400 18px/28px Geometria,'Century Gothic',Arial,sans-serif;color:#6d6d6d;
+}
+.andy-button-group-a11y-status{
+ position:absolute;width:1px;height:1px;padding:0;margin:-1px;border:0;
+ overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;
+}
+.andy-doc-page .andy-doc-demo:has(.andy-button-group-menu-anchor){overflow:visible}
+@media(max-width:680px){
+ .andy-button-group-demo-row{gap:var(--mlz-space-12,12px)}
+ .andy-button-group-sizes{gap:var(--mlz-space-24,24px)}
+}

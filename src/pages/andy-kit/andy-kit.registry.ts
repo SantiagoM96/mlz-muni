@@ -45,7 +45,7 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  'alert-dialog':{description:'Diálogo de confirmación.',category:'Overlays'},
  'sheet':{description:'Panel lateral superpuesto.',category:'Overlays'},
  'collapsible':{description:'Región de contenido expandible.',category:'Navigation'},
- 'button-group':{description:'Grupo de botones relacionados.',category:'Actions'}
+ 'button-group':{description:'Acciones relacionadas con bordes compartidos, botón dividido, tamaños y orientación.',category:'Actions'}
 };
 
 export { componentGroups, componentAliases, componentEntries, componentMeta };
