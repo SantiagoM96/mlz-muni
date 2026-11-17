@@ -46,11 +46,13 @@ function AndyToastDocs(){
    </div></DocPreview>
   </DocSection>
   <DocSection title="Vista previa interactiva" description="Elegí una variante para mostrar y cerrar su notificación.">
+   <div className="andy-doc-example-controls">
+    <div className="andy-doc-example-group" role="group" aria-label="Variante de notificación">
+     {toastVariants.map(item=><button key={item.id} type="button"
+      aria-pressed={active===item.id} onClick={()=>setActive(item.id)}>{item.label}</button>)}
+    </div>
+   </div>
    <DocPreview><div className="andy-add-toast-demo">
-    <div className="andy-add-toast-triggers">{toastVariants.map(item=><button
-      key={item.id} type="button" className="andy-btn andy-btn-outline" onClick={()=>setActive(item.id)}>
-      {item.label}
-    </button>)}</div>
     {selected&&<ToastExample variant={selected} onClose={()=>setActive(null)} example/>}
    </div></DocPreview>
   </DocSection>
