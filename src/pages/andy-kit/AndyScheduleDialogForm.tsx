@@ -31,13 +31,13 @@ function ScheduleDropdown({id,label,value,options,onChange}:{id:string;label:str
  const position=useCallback(()=>{
   const rect=trigger.current?.getBoundingClientRect();
   if(!rect)return;
-  const vw=window.innerWidth,vh=window.innerHeight;
-  const width=Math.min(vw-32,Math.max(rect.width,240));
-  const left=Math.max(16,Math.min(rect.left,vw-width-16));
-  const below=vh-rect.bottom-16,above=rect.top-16;
+  // Posicionar respecto del trigger, no del viewport: el diálogo animado
+  // puede crear un containing block que rompe position:fixed.
+  const below=window.innerHeight-rect.bottom-16;
+  const above=rect.top-16;
   const upwards=below<230&&above>below;
-  const height=Math.max(80,Math.min(280,upwards?above-8:below-8));
-  setPlacement({position:'fixed',left,top:upwards?Math.max(8,rect.top-height-6):rect.bottom+6,width,maxHeight:height});
+  const height=Math.max(90,Math.min(280,(upwards?above:below)-8));
+  setPlacement({position:'absolute',left:0,right:0,top:upwards?undefined:'calc(100% + 6px)',bottom:upwards?'calc(100% + 6px)':undefined,maxHeight:height});
  },[]);
  useEffect(()=>{
   if(!open)return;
