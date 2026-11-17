@@ -4,27 +4,103 @@
 .andy-avatar-size-grid,
 .andy-avatar-groups,
 .andy-avatar-state-matrix{width:min(100%,760px);max-width:100%;min-width:0;margin-inline:auto}
-.andy-avatar-playground{display:flex;flex-direction:column;align-items:center;gap:24px}
+/* Avatar / Básico: los controles se ubican sobre la esquina superior izquierda
+   de la caja de demo. El conjunto replica los Button Group del Design System,
+   evitando pills separadas y ocupación debajo de la vista previa. */
+.andy-doc-page .andy-avatar-basic-demo{
+ position:relative;
+ overflow:visible;
+}
+.andy-avatar-playground{
+ display:flex;
+ flex-direction:column;
+ align-items:stretch;
+ gap:0;
+}
 .andy-avatar-playground-preview{
- display:grid;place-items:center;width:100%;min-height:120px;
- border:1px solid #e1e7eb;border-radius:var(--mlz-radius-lg);background:#fafcfe;
+ display:grid;
+ place-items:center;
+ width:100%;
+ min-height:120px;
+ border:1px solid #e1e7eb;
+ border-radius:var(--mlz-radius-lg);
+ background:#fafcfe;
 }
-.andy-avatar-playground-options{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
-.andy-avatar-control-row{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
-.andy-avatar-choice{
- min-height:36px;padding:7px 14px;border:1px solid #c6dff1;border-radius:var(--mlz-radius-full);
- background:#fff;color:#236999;font:700 13px/20px Geometria,'Century Gothic',Arial,sans-serif;
- cursor:pointer;transition:background .13s ease,border-color .13s ease;
+.andy-avatar-toolbar{
+ position:absolute;
+ top:-17px;
+ left:12px;
+ z-index:2;
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ gap:8px;
+ max-width:calc(100% - 24px);
+ padding:0 8px;
+ background:#fff;
 }
-.andy-avatar-choice:hover{background:#f3f7fc;border-color:#5ba8d5}
-.andy-avatar-choice.is-selected{color:#fff;background:#236999;border-color:#236999}
-.andy-avatar-choice:focus-visible,.andy-avatar-badge-toggle input:focus-visible{
- outline:2px solid #006eff;outline-offset:2px;
+.andy-avatar-control-row{
+ display:inline-flex;
+ align-items:stretch;
+ flex:0 0 auto;
+ border-radius:var(--mlz-radius-lg);
 }
-.andy-avatar-badge-toggle{
- display:flex;align-items:center;gap:8px;cursor:pointer;color:#6d6d6d;font:400 13px/20px Geometria,'Century Gothic',Arial,sans-serif;
+.andy-avatar-choice,
+.andy-avatar-indicator-toggle{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:5px;
+ box-sizing:border-box;
+ height:34px;
+ min-height:34px;
+ padding:0 11px;
+ border:1px solid #d1d1d1;
+ border-radius:0;
+ background:#fff;
+ color:#3d3d3d;
+ font:700 12px/20px Geometria,'Century Gothic',Arial,sans-serif;
+ white-space:nowrap;
+ cursor:pointer;
+ transition:background-color .13s ease,border-color .13s ease,color .13s ease;
 }
-.andy-avatar-badge-toggle input{width:16px;height:16px;accent-color:#236999}
+.andy-avatar-control-row .andy-avatar-choice + .andy-avatar-choice{margin-left:-1px}
+.andy-avatar-control-row .andy-avatar-choice:first-child{border-radius:var(--mlz-radius-lg) 0 0 var(--mlz-radius-lg)}
+.andy-avatar-control-row .andy-avatar-choice:last-child{border-radius:0 var(--mlz-radius-lg) var(--mlz-radius-lg) 0}
+.andy-avatar-control-row .andy-avatar-choice:only-child{border-radius:var(--mlz-radius-lg)}
+.andy-avatar-choice:hover,
+.andy-avatar-indicator-toggle:hover{position:relative;z-index:1;background:#f6f6f6}
+.andy-avatar-choice.is-selected,
+.andy-avatar-indicator-toggle.is-selected{
+ position:relative;
+ z-index:1;
+ background:#e5f0f9;
+ color:#236999;
+ border-color:#5ba8d5;
+}
+.andy-avatar-choice.is-selected:hover,
+.andy-avatar-indicator-toggle.is-selected:hover{background:#d9eaf6}
+.andy-avatar-choice:focus-visible,
+.andy-avatar-indicator-toggle:focus-visible{
+ position:relative;
+ z-index:3;
+ outline:2px solid #006eff;
+ outline-offset:2px;
+}
+.andy-avatar-indicator-toggle{border-radius:var(--mlz-radius-lg)}
+@media(max-width:720px){
+ .andy-avatar-playground{gap:16px}
+ .andy-avatar-toolbar{
+  position:static;
+  align-self:flex-start;
+  flex-wrap:wrap;
+  max-width:100%;
+  padding:0;
+  background:transparent;
+ }
+ .andy-avatar-choice,
+ .andy-avatar-indicator-toggle{height:36px;min-height:36px;padding-inline:10px}
+}
 .andy-avatar-variant-grid{
  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-16);
 }
