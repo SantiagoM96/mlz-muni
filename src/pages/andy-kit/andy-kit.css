@@ -1934,3 +1934,13 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-icon-library-expand:active{background:#e7e7e7}
 .andy-doc-layout .andy-color-library-expand:focus-visible,
 .andy-doc-layout .andy-icon-library-expand:focus-visible{outline:2px solid #000;outline-offset:2px}
+
+/* Escala editorial del UI Kit: 18px para lectura principal;
+   tablas y metadatos mantienen una escala secundaria. */
+.andy-doc-layout .andy-doc-description{font-size:18px;line-height:28px;max-width:760px}
+.andy-doc-layout .andy-doc-section-heading>p{font-size:18px;line-height:28px}
+.andy-doc-layout .andy-alert-doc-description{font-size:18px;line-height:28px}
+.andy-doc-layout .andy-doc-example>p{font-size:18px;line-height:28px}
+.andy-doc-layout .andy-section-head>p{font-size:18px;line-height:28px}
+.andy-doc-layout .andy-sidebar .andy-nav-link{font-size:16px;line-height:24px;min-height:40px}
+.andy-doc-layout .andy-doc-toc nav a{font-size:14px;line-height:22px}
