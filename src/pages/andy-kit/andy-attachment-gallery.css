@@ -51,7 +51,7 @@
 
 /* Attachment · variante Ícono: un solo campo clickeable, alineado con
    los controles del sistema. La fila seleccionada conserva acciones independientes. */
-.andy-icon-upload{width:min(100%,640px);display:flex;flex-direction:column;gap:8px;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.andy-icon-upload{width:100%;max-width:100%;min-width:0;display:flex;flex-direction:column;gap:8px;font-family:Geometria,'Century Gothic',Arial,sans-serif}
 .andy-icon-upload-trigger{display:flex;align-items:center;gap:12px;position:relative;width:100%;min-height:64px;padding:8px 12px;box-sizing:border-box;border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm);background:#fff;cursor:pointer;transition:border-color .14s ease,background-color .14s ease,box-shadow .14s ease}
 .andy-icon-upload-trigger:hover{border-color:#236999;background:#fafcfe}
 .andy-icon-upload-trigger:focus-within{border-color:#006eff;box-shadow:inset 0 0 0 1px #006eff}
@@ -143,15 +143,16 @@
 /* La matriz de Ícono sigue el mismo patrón editorial que Estándar y Borde
    punteado: una muestra interactiva y otra caja con ocho estados rotulados. */
 .andy-doc-layout .andy-doc-page .andy-doc-demo .andy-icon-state-matrix{
- width:min(100%,674px);
+ width:min(100%,760px);
  max-width:100%;
  margin-inline:auto;
 }
 .andy-icon-state-matrix .andy-state-cell{min-width:0}
 .andy-icon-state-matrix .andy-icon-upload{
- width:min(100%,640px);
+ width:100%;
  max-width:100%;
- margin-inline:auto;
+ min-width:0;
+ margin-inline:0;
 }
 .andy-icon-upload[data-state="hover"] .andy-icon-upload-trigger{
  border-color:#236999;
