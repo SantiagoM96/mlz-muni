@@ -20,7 +20,7 @@
 .andy-modal-content{position:relative;display:flex;flex-direction:column;gap:24px;padding:28px;min-width:0;max-height:inherit;overflow:auto}
 .andy-modal-header{display:flex;align-items:flex-start;flex-direction:column;gap:10px;padding-right:22px}
 .andy-modal-header h3{margin:0;color:#236999;font-size:22px;line-height:30px;font-weight:700}
-.andy-modal-header p{margin:0;font-size:15px;line-height:24px;color:#5f6e7b}
+.andy-modal-header p{margin:0;font-size:18px;line-height:28px;color:#5f6e7b}
 .andy-modal.is-sm .andy-modal-content{gap:20px;padding:24px}
 .andy-modal.is-sm .andy-modal-header h3{font-size:20px;line-height:28px}
 .andy-modal-media{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;background:#e5f0f9;color:#236999;border-radius:var(--mlz-radius-md,12px);margin-bottom:4px}
