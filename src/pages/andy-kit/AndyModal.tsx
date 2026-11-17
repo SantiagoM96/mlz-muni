@@ -70,8 +70,8 @@ export function AndyModal({
    </div>
    {children&&<div className="andy-modal-body">{children}</div>}
    <div className="andy-modal-footer">
-    <button type="button" ref={cancelRef} className="andy-system-button is-tertiary is-medium" onClick={onClose}>{cancelLabel}</button>
-    <button type="button" className={'andy-system-button is-medium '+(intent==='destructive'?'andy-modal-danger':'is-primary')} disabled={disabledConfirm} onClick={onConfirm}>{confirmLabel}</button>
+    <button type="button" ref={cancelRef} className="andy-system-button is-tertiary is-large" onClick={onClose}>{cancelLabel}</button>
+    <button type="button" className={'andy-system-button is-large '+(intent==='destructive'?'andy-modal-danger':'is-primary')} disabled={disabledConfirm} onClick={onConfirm}>{confirmLabel}</button>
    </div>
   </div>
  </dialog>;
