@@ -2048,3 +2048,103 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 }
 /* Dos campos relacionados que funcionan como una composición pueden seguir
    compartiendo fila solo cuando tienen ancho suficiente. */
+
+
+/* Selectores editoriales de demostración — patrón Avatar / Básico.
+   Solo aplica a controles que ELIGEN qué variante se previsualiza.
+   Nunca sustituye botones, tabs o grupos que forman parte de un componente.
+   Ubicación: después de la descripción, antes de la única caja blanca. */
+.andy-doc-layout .andy-doc-page .andy-doc-example-controls{
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ gap:var(--mlz-space-8);
+ flex-wrap:wrap;
+ width:100%;
+ min-width:0;
+ padding:0;
+ margin:0;
+ background:transparent;
+ border:0;
+ border-radius:0;
+ box-shadow:none;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group{
+ display:inline-flex;
+ align-items:stretch;
+ flex:0 0 auto;
+ max-width:100%;
+ min-width:0;
+ border-radius:var(--mlz-radius-sm);
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button{
+ position:relative;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ flex:0 0 auto;
+ box-sizing:border-box;
+ height:32px;
+ min-height:32px;
+ padding:0 var(--mlz-space-12);
+ margin:0;
+ border:1px solid var(--color-grey-200,#d1d1d1);
+ border-radius:0;
+ background:#fff;
+ color:var(--color-grey-900,#3d3d3d);
+ box-shadow:none;
+ font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
+ white-space:nowrap;
+ text-decoration:none;
+ cursor:pointer;
+ transition:background-color .13s ease,border-color .13s ease,color .13s ease;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button + button{
+ margin-left:-1px;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button:first-child{
+ border-radius:var(--mlz-radius-sm) 0 0 var(--mlz-radius-sm);
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button:last-child{
+ border-radius:0 var(--mlz-radius-sm) var(--mlz-radius-sm) 0;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button:only-child{
+ border-radius:var(--mlz-radius-sm);
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button:hover:not([aria-pressed="true"]):not(:disabled){
+ z-index:1;
+ background:var(--color-grey-50,#f6f6f6);
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button[aria-pressed="true"]{
+ z-index:1;
+ background:var(--color-grey-100,#e7e7e7);
+ color:var(--color-grey-900,#3d3d3d);
+ border-color:var(--color-grey-400,#888888);
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button[aria-pressed="true"]:hover{
+ background:var(--color-grey-200,#d1d1d1);
+ border-color:var(--color-grey-500,#6d6d6d);
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button:focus-visible{
+ z-index:3;
+ outline:2px solid var(--color-grey-900,#3d3d3d);
+ outline-offset:2px;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-example-group > button:disabled{
+ color:var(--color-grey-400,#888888);
+ background:var(--color-grey-50,#f6f6f6);
+ cursor:not-allowed;
+}
+.andy-doc-layout .andy-doc-page .andy-button-doc-section > .andy-doc-example-controls{
+ margin-bottom:var(--mlz-space-16);
+}
+@media(max-width:720px){
+ .andy-doc-layout .andy-doc-page .andy-doc-example-controls{overflow-x:auto;flex-wrap:nowrap;padding-block:2px}
+ .andy-doc-layout .andy-doc-page .andy-doc-example-group > button{
+  height:40px;
+  min-height:40px;
+  padding-inline:var(--mlz-space-16);
+  font-size:16px;
+  line-height:24px;
+ }
+}
