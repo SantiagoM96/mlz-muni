@@ -37,22 +37,58 @@ function ChoiceGroup<T extends string>({label,items,value,onChange}:{
  </div>;
 }
 
-function BadgePlayground(){
- const [tone,setTone]=useState<BadgeTone>('primary');
+function BadgeAppearanceDemo(){
  const [appearance,setAppearance]=useState<BadgeAppearance>('soft');
- const [size,setSize]=useState<BadgeSize>('md');
- const [position,setPosition]=useState<BadgeIconPosition>('none');
- const label=tones.find(item=>item.id===tone)?.name||'Default';
  return <>
   <div className="andy-doc-example-controls andy-badge-controls">
    <ChoiceGroup label="Apariencia de Badge" items={appearances} value={appearance} onChange={setAppearance}/>
-   <ChoiceGroup label="Color de Badge" items={tones} value={tone} onChange={setTone}/>
+  </div>
+  <DocPreview className="andy-badge-basic-preview">
+   <div className="andy-badge-example-row">
+    <Badge tone="primary" appearance={appearance}>Default</Badge>
+    <Badge tone="info" appearance={appearance}>Información</Badge>
+    <Badge tone="neutral" appearance={appearance}>Neutral</Badge>
+   </div>
+  </DocPreview>
+ </>;
+}
+function BadgeColorDemo(){
+ const [appearance,setAppearance]=useState<'soft'|'outline'>('soft');
+ return <>
+  <div className="andy-doc-example-controls andy-badge-controls">
+   <ChoiceGroup label="Presentación del color" items={appearances.filter((item):item is {id:'soft'|'outline';name:string}=>item.id==='soft'||item.id==='outline')} value={appearance} onChange={setAppearance}/>
+  </div>
+  <PaletteGallery appearance={appearance}/>
+ </>;
+}
+function BadgeSizeDemo(){
+ const [size,setSize]=useState<BadgeSize>('md');
+ return <>
+  <div className="andy-doc-example-controls andy-badge-controls">
    <ChoiceGroup label="Tamaño de Badge" items={sizes} value={size} onChange={setSize}/>
+  </div>
+  <DocPreview className="andy-badge-basic-preview">
+   <div className="andy-badge-example-row">
+    <Badge size={size}>Default</Badge>
+    <Badge size={size} tone="success" icon="check_circle" iconPosition="start">Confirmado</Badge>
+    <Badge size={size} tone="neutral" appearance="outline">Neutral</Badge>
+   </div>
+  </DocPreview>
+  <SizeGallery/>
+ </>;
+}
+function BadgeIconDemo(){
+ const [position,setPosition]=useState<BadgeIconPosition>('start');
+ return <>
+  <div className="andy-doc-example-controls andy-badge-controls">
    <ChoiceGroup label="Posición del ícono" items={positions} value={position} onChange={setPosition}/>
   </div>
   <DocPreview className="andy-badge-basic-preview">
-   <Badge tone={tone} appearance={appearance} size={size} icon="info"
-    iconPosition={position}>{label}</Badge>
+   <div className="andy-badge-example-row">
+    <Badge tone="primary" icon="info" iconPosition={position}>Información</Badge>
+    <Badge tone="success" icon="check_circle" iconPosition={position}>Confirmado</Badge>
+    <Badge tone="error" icon="error" iconPosition={position}>Revisar</Badge>
+   </div>
   </DocPreview>
  </>;
 }
@@ -142,23 +178,17 @@ function ChipGallery(){
 export function AndyBadgeDocs(){
  return <>
   <DocSection title="Descripción" description="Badge identifica estados, categorías o información breve. Es informativo por defecto; las acciones y la navegación se implementan con elementos semánticos diferentes.">{null}</DocSection>
-  <DocSection title="Básico" description="Probá las apariencias, los siete colores, los tres tamaños y la ubicación del ícono. Los controles corresponden a la demostración, no al componente.">
-   <BadgePlayground/>
+  <DocSection title="Apariencias" description="Elegí entre Fondo suave, Outline, Solid y Ghost. Cada presentación usa los mismos tokens de color institucionales.">
+   <BadgeAppearanceDemo/>
   </DocSection>
-  <DocSection title="Fondo suave" description="Las seis familias de color de Figma y una opción neutral. Fondo tenue y texto legible; cada tono se presenta con y sin ícono.">
-   <PaletteGallery appearance="soft"/>
+  <DocSection title="Colores" description="Los colores proceden del componente Tag de Figma: Primario, Amarillo, Rojo, Verde, Azul, Violeta y Neutral, con sus respectivas superficies y trazos.">
+   <BadgeColorDemo/>
   </DocSection>
-  <DocSection title="Outline" description="Mismos tonos, con fondo blanco y borde semántico. El contenido mantiene el contraste de lectura.">
-   <PaletteGallery appearance="outline"/>
+  <DocSection title="Tamaños" description="Probá los tres tamaños institucionales: Chico 24 px, Mediano 28 px y Grande 32 px.">
+   <BadgeSizeDemo/>
   </DocSection>
-  <DocSection title="Variantes adicionales" description="Solid para énfasis puntual, Ghost cuando no se necesita superficie y Neutral para metadatos sin protagonismo.">
-   <AdditionalVariants/>
-  </DocSection>
-  <DocSection title="Tamaños" description="Tres alturas institucionales conservadas: Chico, Mediano y Grande.">
-   <SizeGallery/>
-  </DocSection>
-  <DocSection title="Con íconos" description="Material Symbols Outlined de peso 400: sin ícono, a la izquierda o a la derecha, según el contexto.">
-   <IconGallery/>
+  <DocSection title="Íconos" description="Visualizá Material Symbols Outlined a la izquierda, a la derecha o sin ícono.">
+   <BadgeIconDemo/>
   </DocSection>
   <DocSection title="Con spinner" description="Un indicador de operación en curso acompaña el texto. No comunica por sí solo un porcentaje de avance.">
    <SpinnerGallery/>
