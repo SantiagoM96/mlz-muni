@@ -102,7 +102,7 @@ export function AndyDialogDocs(){
     ['Header','Título, descripción y botón explícito de cerrar.'],
     ['Content','Campos y opciones de horario de la tarea.'],
     ['Footer','Cancelar y acción principal; botones del sistema municipal.'],
-    ['Tamaños','Default 480 px, Small 380 px y formulario deportivo hasta 640 px, fluidos en mobile.']
+    ['Tamaños','Default 480 px, Small 380 px y formulario deportivo hasta 760 px, fluidos en mobile.']
    ]}/>
   </DocSection>
   <DocSection title="Comportamiento" description="El foco permanece dentro del diálogo, los controles responden al teclado y la acción principal valida los datos.">
