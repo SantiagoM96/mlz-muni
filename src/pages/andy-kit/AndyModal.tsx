@@ -17,13 +17,15 @@ type ModalProps = {
  intent?: ModalIntent;
  media?: MaterialIconName;
  kind?: 'dialog' | 'alert';
+ schedule?: boolean;
+ disabledConfirm?: boolean;
  children?: ReactNode;
 };
 
 /** Uses the browser top-layer dialog: background inertness, tab confinement and Escape. */
 export function AndyModal({
  open,onClose,onConfirm,title,description,confirmLabel,cancelLabel='Cancelar',
- size='default',intent='normal',media,kind='alert',children,
+ size='default',intent='normal',media,kind='alert',schedule=false,disabledConfirm=false,children,
 }:ModalProps){
  const ref=useRef<HTMLDialogElement>(null);
  const cancelRef=useRef<HTMLButtonElement>(null);
@@ -48,7 +50,7 @@ export function AndyModal({
  if(!open)return null;
  return <dialog
   ref={ref}
-  className={'andy-modal is-'+size+' is-'+intent+' is-'+kind}
+  className={'andy-modal is-'+size+' is-'+intent+' is-'+kind+(schedule?' is-schedule':'')}
   role={kind==='alert'?'alertdialog':'dialog'}
   aria-modal="true"
   aria-labelledby={titleId}
@@ -68,7 +70,7 @@ export function AndyModal({
    {children&&<div className="andy-modal-body">{children}</div>}
    <div className="andy-modal-footer">
     <button type="button" ref={cancelRef} className="andy-modal-button is-secondary" onClick={onClose}>{cancelLabel}</button>
-    <button type="button" className={'andy-modal-button '+(intent==='destructive'?'is-danger':'is-primary')} onClick={onConfirm}>{confirmLabel}</button>
+    <button type="button" className={'andy-modal-button '+(intent==='destructive'?'is-danger':'is-primary')} disabled={disabledConfirm} onClick={onConfirm}>{confirmLabel}</button>
    </div>
   </div>
  </dialog>;
