@@ -22,7 +22,7 @@ export interface BreadcrumbsProps {
   separator?: BreadcrumbSeparator;
   /** Contraer niveles intermedios cuando hay cinco o más elementos. */
   collapseMiddle?: boolean;
-  /** Presentación de ejemplo: sin enlaces ni navegación, con controles de colapsado activos. */
+  /** En el UI Kit muestra enlaces demostrativos (hover, foco y cursor) sin navegar. */
   disableNavigation?: boolean;
 }
 
@@ -72,10 +72,13 @@ export function Breadcrumbs({
       {mobileParent&&(
         <div className="mlz-breadcrumb-back">
           {disableNavigation?(
-            <span className="mlz-breadcrumb-text mlz-breadcrumb-back-link" data-testid="breadcrumb-mobile-back">
+            <a href="#" onClick={event=>event.preventDefault()}
+              className="mlz-breadcrumb-link mlz-breadcrumb-back-link"
+              aria-label={'Volver a '+mobileParent.label}
+              data-testid="breadcrumb-mobile-back">
               <MaterialIcon name="arrow_back" size={20} weight={400}/>
               <span>Volver</span>
-            </span>
+            </a>
           ):(
             <Link to={mobileParent.to}
               className="mlz-breadcrumb-link mlz-breadcrumb-back-link"
@@ -107,10 +110,16 @@ export function Breadcrumbs({
                 <ul className="mlz-breadcrumb-menu" aria-label="Niveles intermedios">
                   {collapsedItems.map((hidden,hiddenIndex)=>(
                     <li key={hidden.to||hidden.label+'-'+hiddenIndex}>
-                      {hidden.to&&!disableNavigation?(
-                        <Link to={hidden.to} onClick={()=>{if(collapseRef.current)collapseRef.current.open=false}}>
-                          {hidden.label}
-                        </Link>
+                      {hidden.to?(
+                        disableNavigation?(
+                          <a href="#" onClick={event=>event.preventDefault()}>
+                            {hidden.label}
+                          </a>
+                        ):(
+                          <Link to={hidden.to} onClick={()=>{if(collapseRef.current)collapseRef.current.open=false}}>
+                            {hidden.label}
+                          </Link>
+                        )
                       ):<span>{hidden.label}</span>}
                     </li>
                   ))}
@@ -121,8 +130,14 @@ export function Breadcrumbs({
           return (
             <li key={item.to||item.label+'-'+index} className={itemClasses}>
               {index>0&&renderSeparator()}
-              {item.to&&!isLast&&!disableNavigation?(
-                <Link className="mlz-breadcrumb-link" to={item.to}>{item.label}</Link>
+              {item.to&&!isLast?(
+                disableNavigation?(
+                  <a className="mlz-breadcrumb-link" href="#" onClick={event=>event.preventDefault()}>
+                    {item.label}
+                  </a>
+                ):(
+                  <Link className="mlz-breadcrumb-link" to={item.to}>{item.label}</Link>
+                )
               ):(
                 <span className={isLast?'mlz-breadcrumb-current':'mlz-breadcrumb-text'}
                   title={isLast?item.label:undefined}
