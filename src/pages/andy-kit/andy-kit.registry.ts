@@ -16,7 +16,7 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  input:{description:'Control de texto de una línea para el ingreso de datos.',category:'Forms'},
  select:{description:'Selección única, múltiple y con búsqueda; menús desktop y drawers mobile.',category:'Forms'},
  textarea:{description:'Campos de texto multilínea y sus estados.',category:'Forms'},
- calendario:{description:'Selector de fechas del producto Deportes Anual, con vistas de mes y año.',category:'Forms'},
+ calendario:{description:'Calendario reutilizable de día o rango, con navegación por teclado, restricciones y Date Picker responsive.',category:'Forms'},
  adjuntos:{description:'Adjunto de documentación y sus estados visuales.',category:'Forms'},
  checkbox:{description:'Selección múltiple con Material Symbols Outlined.',category:'Selection'},
  radio:{description:'Selección exclusiva entre varias alternativas.',category:'Selection'},

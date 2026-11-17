@@ -11,7 +11,7 @@ const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto',
 const pad=(value:number)=>String(value).padStart(2,'0');
 export const dateToCalendarISO=(date:Date)=>[date.getFullYear(),pad(date.getMonth()+1),pad(date.getDate())].join('-');
 export const calendarISO=(year:number,month:number,day:number)=>[year,pad(month+1),pad(day)].join('-');
-const parseCalendarISO=(iso:string)=>{const [y,m,d]=iso.split('-').map(Number);return new Date(y,m-1,d)};
+const parseCalendarISO=(iso:string)=>{const [year=2000,month=1,day=1]=iso.split('-').map(Number);return new Date(year,month-1,day)};
 const monthStart=(date:string)=>date.slice(0,7);
 const weekdayIndex=(date:Date)=>(date.getDay()+6)%7;
 

@@ -69,9 +69,10 @@ test('Andy: Date Picker usa controles y botones del sistema y los radios aprobad
 
 test('Andy: dos calendarios abiertos permiten seleccionar un día y un rango',async ({page})=>{
  await page.goto('/ui-kit-andy/componentes/calendario');
- const examples=page.locator('.andy-cal-gallery');
- await expect(examples).toHaveCount(2);
- const day=examples.first(),range=examples.last();
+ const day=page.locator('#basico .andy-cal-gallery');
+ const range=page.locator('#seleccion-de-rango .andy-cal-gallery');
+ await expect(day).toBeVisible();
+ await expect(range).toBeVisible();
  await expect(day.locator('.sports-cal-popup.is-inline')).toBeVisible();
  await expect(range.locator('.sports-cal-popup.is-inline')).toBeVisible();
  await expect(day.getByText('13/11/2008')).toBeVisible();
@@ -88,7 +89,7 @@ test('Andy: dos calendarios abiertos permiten seleccionar un día y un rango',as
 
 test('Andy: mes y año respetan iconos, selección y tipografía de dropdowns MLZ',async ({page})=>{
  await page.goto('/ui-kit-andy/componentes/calendario');
- const day=page.locator('.andy-cal-gallery').first();
+ const day=page.locator('#basico .andy-cal-gallery');
  await day.getByRole('button',{name:'Seleccionar mes'}).click();
  const menu=day.getByRole('listbox',{name:'Meses'});
  await expect(menu).toBeVisible();
@@ -108,3 +109,31 @@ test('Andy: mes y año respetan iconos, selección y tipografía de dropdowns ML
  await expect(day.getByRole('button',{name:'Seleccionar año'})).toContainText('2007');
 });
 
+
+
+test('Andy: Calendar accesible navega con flechas y respeta restricciones',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ const example=page.locator('#fechas-restringidas');
+ const disabled=example.getByRole('gridcell',{name:'19 de Noviembre de 2008'});
+ await expect(disabled).toBeDisabled();
+ const day=example.getByRole('gridcell',{name:'17 de Noviembre de 2008'});
+ await day.focus();
+ await day.press('ArrowRight');
+ await expect(example.getByRole('gridcell',{name:'18 de Noviembre de 2008'})).toBeFocused();
+ await page.keyboard.press('ArrowRight');
+ await expect(example.getByRole('gridcell',{name:'21 de Noviembre de 2008'})).toBeFocused();
+ await page.keyboard.press('Enter');
+ await expect(example.locator('.andy-cal-selection')).toContainText('21/11/2008');
+ await expect(example.getByRole('gridcell',{name:'5 de Noviembre de 2008'})).toBeDisabled();
+ await expect(example.getByRole('gridcell',{name:'26 de Noviembre de 2008'})).toBeDisabled();
+});
+
+test('Andy: Calendar PageDown cambia de mes sin seleccionar un día',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ const example=page.locator('#basico');
+ const day=example.getByRole('gridcell',{name:'13 de Noviembre de 2008'});
+ await day.focus();
+ await day.press('PageDown');
+ await expect(example.getByRole('gridcell',{name:'13 de Diciembre de 2008'})).toBeFocused();
+ await expect(example.locator('.andy-cal-selection')).toContainText('13/11/2008');
+});

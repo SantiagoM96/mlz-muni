@@ -1,0 +1,40 @@
+/* Calendar: una sola caja para la demostración, sin tarjeta anidada. */
+.andy-doc-page .andy-cal-gallery > .andy-cal-preview{
+ align-items:center;
+ justify-content:center;
+ min-height:0;
+ overflow:visible;
+}
+.andy-doc-page .andy-cal-example{
+ width:min(100%,348px);
+}
+.andy-doc-page .andy-cal-example .sports-cal-popup.is-inline{
+ border:0;
+ box-shadow:none;
+ background:transparent;
+ padding:0;
+}
+.andy-doc-page .andy-cal-selection{
+ padding:0;
+ border:0;
+ background:transparent;
+ border-radius:0;
+ color:#6d6d6d;
+ gap:var(--mlz-space-4,4px);
+}
+.andy-doc-page .andy-cal-selection strong{
+ font:700 18px/26px Geometria,'Century Gothic',Arial,sans-serif;
+ color:#000;
+}
+.andy-doc-page .andy-cal-selection span{
+ font:400 18px/28px Geometria,'Century Gothic',Arial,sans-serif;
+ color:#6d6d6d;
+}
+.andy-doc-page .andy-calendar-dropdown-sample{
+ box-sizing:border-box;
+ width:min(100%,540px);
+ margin-inline:auto;
+}
+.andy-doc-page .andy-cal-example .sports-cal-days.is-range-grid .sports-cal-row{
+ gap:0;
+}

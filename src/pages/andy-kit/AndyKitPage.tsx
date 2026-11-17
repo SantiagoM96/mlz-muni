@@ -5,8 +5,7 @@ import { SportsControlsGallery } from '../ui-kit/SportsControlsGallery';
 import { FormStateMatrix } from './FormStateMatrix';
 import { AndySportsFormExamples } from './AndySportsFormExamples';
 import { DropdownVariantsGallery } from './DropdownVariantsGallery';
-import { AndyCalendarShowcase } from './AndyCalendarShowcase';
-import { SportsCalendarPicker } from './SportsCalendarPicker';
+import { AndyCalendarDocs } from './AndyCalendarDocs';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
@@ -231,8 +230,8 @@ function AccordionDemo({multiple=false,disabledMiddle=false,questions,initiallyO
   </button>{open.includes(id)&&<div className="andy-doc-accordion-content">{content}</div>}
  </div>)}</div>;
 }
-function FormStates({family}:{family:'text'|'dropdown'|'textarea'|'date'|'upload'}){
- return <DocSection title="Estados" description="Comparación simultánea de Default, Hover, Focus, Completo, Error y Disabled. Una única superficie contiene todos los controles.">
+function FormStates({family,title='Estados'}:{family:'text'|'dropdown'|'textarea'|'date'|'upload';title?:string}){
+ return <DocSection title={title} description="Comparación simultánea de Default, Hover, Focus, Completo, Error y Disabled. Una única superficie contiene todos los controles.">
   <DocPreview align="start"><FormStateMatrix onlyFamily={family} showExtras={false}/></DocPreview>
  </DocSection>;
 }
@@ -348,17 +347,7 @@ function ComponentDetails({id}:{id:ComponentId}){
   {([['simple','Selección normal','Una opción con marca de confirmación.'],['radio','Selección con radio','Una sola elección con un indicador circular.'],['checkbox','Selección múltiple','Varias opciones con indicadores independientes.'],['search','Con buscador','Filtrado de opciones dentro del menú.']] as const).map(([variant,title,description])=>
    <ComponentExample key={variant} title={title} description={description}><DropdownVariantsGallery only={variant}/></ComponentExample>)}
  </>;
- if(id==='calendario')return <><FormStates family="date"/>
-  <DocSection title="Selección de un día" description="Calendario abierto con un día seleccionado. Se puede navegar por meses y años, elegir otro día, borrar o confirmar.">
-   <AndyCalendarShowcase only="single"/>
-  </DocSection>
-  <DocSection title="Selección de un rango" description="Calendario abierto con inicio, fin y días intermedios resaltados. Se seleccionan dos fechas y se confirma el período.">
-   <AndyCalendarShowcase only="range"/>
-  </DocSection>
-  <ComponentExample title="Campo desplegable" description="El campo del formulario abre un popover en desktop o un drawer en mobile; conserva el mismo calendario y los controles del UI Kit.">
-   <div className="andy-matrix-calendar-sample andy-calendar-dropdown-sample"><SportsCalendarPicker/></div>
-  </ComponentExample>
- </>;
+ if(id==='calendario')return <AndyCalendarDocs fieldStates={<FormStates family="date" title="Estados del campo"/>}/>;
  if(id==='checkbox'||id==='radio'||id==='switch')return <ComponentExample title="Ejemplo interactivo" description={id==='checkbox'?'Permití seleccionar varias opciones de forma independiente.':id==='radio'?'Solo una alternativa puede estar seleccionada.':'Activá o desactivá la configuración.'}>
   <SelectionGallery only={id}/>
  </ComponentExample>;
