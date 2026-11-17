@@ -25,7 +25,6 @@ const longItems:readonly BreadcrumbItem[]=[
 const separatorChoices:{id:BreadcrumbSeparator;name:string}[]=[
  {id:'chevron',name:'Chevron'},
  {id:'slash',name:'Barra'},
- {id:'dot',name:'Punto'},
 ];
 
 function ExampleChoices<T extends string>({items,value,label,onChange}:{
@@ -50,7 +49,7 @@ function BasicDemo(){
    onChange={setLevels}
    items={[{id:'three',name:'3 niveles'},{id:'four',name:'4 niveles'}]}/>
   <DocPreview align="start" className="andy-breadcrumb-preview">
-   <Breadcrumbs items={items} className="andy-breadcrumb-doc-instance"/>
+   <Breadcrumbs items={items} className="andy-breadcrumb-doc-instance" disableNavigation/>
   </DocPreview>
  </>;
 }
@@ -61,14 +60,14 @@ function SeparatorDemo(){
   <ExampleChoices value={separator} label="Separador"
    onChange={setSeparator} items={separatorChoices}/>
   <DocPreview align="start" className="andy-breadcrumb-preview">
-   <Breadcrumbs items={shortItems} separator={separator} className="andy-breadcrumb-doc-instance"/>
+   <Breadcrumbs items={shortItems} separator={separator} className="andy-breadcrumb-doc-instance" disableNavigation/>
   </DocPreview>
  </>;
 }
 
 function CollapsedDemo(){
  return <DocPreview align="start" className="andy-breadcrumb-preview">
-  <Breadcrumbs items={longItems} collapseMiddle className="andy-breadcrumb-doc-instance"/>
+  <Breadcrumbs items={longItems} collapseMiddle className="andy-breadcrumb-doc-instance" disableNavigation/>
  </DocPreview>;
 }
 
@@ -77,12 +76,12 @@ function ResponsiveDemo(){
   <div className="andy-breadcrumb-responsive-gallery">
    <div className="andy-breadcrumb-responsive-row">
     <strong>Desktop</strong>
-    <Breadcrumbs items={basicItems} mobileParentOnly className="andy-breadcrumb-doc-instance"/>
+    <Breadcrumbs items={basicItems} mobileParentOnly className="andy-breadcrumb-doc-instance" disableNavigation/>
    </div>
    <div className="andy-breadcrumb-responsive-row">
     <strong>Mobile</strong>
     <div className="andy-breadcrumb-mobile-sample">
-     <Breadcrumbs items={basicItems} mobileParentOnly className="andy-breadcrumb-doc-instance"/>
+     <Breadcrumbs items={basicItems} mobileParentOnly className="andy-breadcrumb-doc-instance" disableNavigation/>
     </div>
    </div>
   </div>
@@ -93,11 +92,11 @@ export function AndyBreadcrumbDocs(){
  return <>
   <DocSection title="Descripción" description="Breadcrumb muestra la ubicación de una página dentro de una jerarquía y permite volver a sus niveles anteriores. No reemplaza el título ni la navegación principal.">{null}</DocSection>
 
-  <DocSection title="Básico" description="Tres o cuatro niveles con enlaces reales. El nivel actual se presenta como texto, sin enlace, y conserva aria-current.">
+  <DocSection title="Básico" description="Tres o cuatro niveles. Esta muestra es solo visual y no navega; en el producto los niveles anteriores pueden ser enlaces reales.">
    <BasicDemo/>
   </DocSection>
 
-  <DocSection title="Separadores" description="Chevron es el separador institucional predeterminado. Barra y Punto son alternativas disponibles cuando la composición lo requiere.">
+  <DocSection title="Separadores" description="Chevron es el separador institucional predeterminado. Barra es la única alternativa disponible cuando la composición lo requiere.">
    <SeparatorDemo/>
   </DocSection>
 
@@ -116,7 +115,7 @@ export function AndyBreadcrumbDocs(){
     ['BreadcrumbItem','Nivel con texto, enlace opcional y separador si no es el primero.'],
     ['BreadcrumbLink','Link de React Router hacia un nivel anterior real.'],
     ['BreadcrumbPage','Último nivel no navegable, con aria-current="page" y truncamiento cuando es necesario.'],
-    ['BreadcrumbSeparator','Chevron de Material Symbols por defecto; Slash o Dot opcionales.'],
+    ['BreadcrumbSeparator','Chevron de Material Symbols por defecto, o Barra (slash) como alternativa.'],
     ['BreadcrumbCollapse','Resumen de puntos suspensivos con menú de niveles intermedios y vínculos reales.'],
     ['MobileBack','Enlace «Volver» hacia el padre explícito; no inventa rutas de navegación.'],
    ]}/>
@@ -129,11 +128,11 @@ export function AndyBreadcrumbDocs(){
     ['Color de página actual','Primario 600 (#236999), peso 700 para diferenciarla de los enlaces de peso 500.'],
     ['Separadores','Material Symbols Outlined de 20 px, peso 400; siempre Primario 600 (#236999).'],
     ['Espaciado','8 px entre elementos y dentro de cada nivel; basado en --mlz-space-8.'],
-    ['Opciones de separador','chevron (predeterminado), slash y dot.'],
+    ['Opciones de separador','Chevron (predeterminado) o Barra (slash).'],
     ['Colapsado','Disponible a partir de cinco niveles; conserva Inicio, padre y página actual visibles.'],
-    ['Menú','Contenedor de fondo blanco, radio 8 px, borde Grey 200; textos e ícono en Primario 600 y foco visible de 2 px.'],
+    ['Menú','El disparador mide 28 × 26 px, usa fondo Primario 100 (#E5F0F9), trazo azul suave e ícono Primario 600. El desplegable conserva fondo blanco, radio 8 px y foco visible.'],
     ['Responsive','Por debajo de 640 px, «Volver» sustituye la ruta cuando mobileParentOnly está activo y existe padre navegable.'],
-    ['Ejemplos','Un solo contenedor blanco; controles grises por fuera, debajo de la descripción.'],
+    ['Ejemplos','Una sola caja blanca. Las etiquetas son estáticas, sin hipervínculos; el control de puntos suspensivos sí despliega los niveles ocultos.'],
    ]}/>
   </DocSection>
 
@@ -141,9 +140,9 @@ export function AndyBreadcrumbDocs(){
    <GuidelineTable rows={[
     ['Orden','Las rutas se presentan desde el nivel superior hasta la página actual.'],
     ['Estado actual','Última etiqueta sin enlace, con aria-current="page". Nunca utilizarla como botón.'],
-    ['Enlaces','Solo crear vínculos para destinos conocidos. Mantener hover subrayado y foco visible.'],
+    ['Enlaces','Solo crear vínculos en producto para destinos reales; los ejemplos del UI Kit no navegan. Mantener hover subrayado y foco visible en los enlaces funcionales.'],
     ['Separadores','Elementos decorativos ocultos a tecnología asistiva con aria-hidden.'],
-    ['Menú colapsado','Se abre con Enter o Espacio, cierra con Escape o al presionar fuera del menú y permite acceder a los enlaces intermedios.'],
+    ['Menú colapsado','Se abre con Enter o Espacio y se cierra con Escape o al presionar fuera. En el UI Kit muestra solo textos; en producto permite enlaces intermedios reales.'],
     ['Mobile','Utilizar «Volver» si existe padre con URL explícita; de lo contrario, mantener la ruta y no fabricar enlaces.'],
     ['Texto extenso','Truncar visualmente solo el último nivel si el ancho no alcanza; mantener el texto completo en title.'],
     ['Producto','Componente compartido src/shared/navigation/Breadcrumbs.tsx, ya utilizado por Agenda de la Comunidad.'],

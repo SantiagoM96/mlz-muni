@@ -9,7 +9,7 @@ export interface BreadcrumbItem {
   to?: string;
 }
 
-export type BreadcrumbSeparator = 'chevron' | 'slash' | 'dot';
+export type BreadcrumbSeparator = 'chevron' | 'slash';
 
 export interface BreadcrumbsProps {
   items: readonly BreadcrumbItem[];
@@ -22,6 +22,8 @@ export interface BreadcrumbsProps {
   separator?: BreadcrumbSeparator;
   /** Contraer niveles intermedios cuando hay cinco o más elementos. */
   collapseMiddle?: boolean;
+  /** Presentación de ejemplo: sin enlaces ni navegación, con controles de colapsado activos. */
+  disableNavigation?: boolean;
 }
 
 /** Breadcrumb institucional. Mantiene la navegación mobile «Volver» existente
@@ -33,6 +35,7 @@ export function Breadcrumbs({
   mobileParentOnly=false,
   separator='chevron',
   collapseMiddle=false,
+  disableNavigation=false,
 }: BreadcrumbsProps) {
   const mobileParent=getMobileBreadcrumbParent(items,mobileParentOnly);
   const collapsible=collapseMiddle&&items.length>=5;
@@ -60,7 +63,6 @@ export function Breadcrumbs({
 
   const renderSeparator=()=>{
     if(separator==='slash')return <span className="mlz-breadcrumb-separator" aria-hidden="true">/</span>;
-    if(separator==='dot')return <span className="mlz-breadcrumb-separator" aria-hidden="true">·</span>;
     return <span className="mlz-breadcrumb-separator" aria-hidden="true"><MaterialIcon name="chevron_right" size={20} weight={400}/></span>;
   };
 
@@ -69,13 +71,20 @@ export function Breadcrumbs({
       className={'mlz-breadcrumb my-6 w-full min-w-0 is-'+tone+' '+className}>
       {mobileParent&&(
         <div className="mlz-breadcrumb-back">
-          <Link to={mobileParent.to}
-            className="mlz-breadcrumb-link mlz-breadcrumb-back-link"
-            aria-label={'Volver a '+mobileParent.label}
-            data-testid="breadcrumb-mobile-back">
-            <MaterialIcon name="arrow_back" size={20} weight={400}/>
-            <span>Volver</span>
-          </Link>
+          {disableNavigation?(
+            <span className="mlz-breadcrumb-text mlz-breadcrumb-back-link" data-testid="breadcrumb-mobile-back">
+              <MaterialIcon name="arrow_back" size={20} weight={400}/>
+              <span>Volver</span>
+            </span>
+          ):(
+            <Link to={mobileParent.to}
+              className="mlz-breadcrumb-link mlz-breadcrumb-back-link"
+              aria-label={'Volver a '+mobileParent.label}
+              data-testid="breadcrumb-mobile-back">
+              <MaterialIcon name="arrow_back" size={20} weight={400}/>
+              <span>Volver</span>
+            </Link>
+          )}
         </div>
       )}
       <ol className={'mlz-breadcrumb-list'+(mobileParent?' has-mobile-back':'')}>
@@ -98,7 +107,7 @@ export function Breadcrumbs({
                 <ul className="mlz-breadcrumb-menu" aria-label="Niveles intermedios">
                   {collapsedItems.map((hidden,hiddenIndex)=>(
                     <li key={hidden.to||hidden.label+'-'+hiddenIndex}>
-                      {hidden.to?(
+                      {hidden.to&&!disableNavigation?(
                         <Link to={hidden.to} onClick={()=>{if(collapseRef.current)collapseRef.current.open=false}}>
                           {hidden.label}
                         </Link>
@@ -112,7 +121,7 @@ export function Breadcrumbs({
           return (
             <li key={item.to||item.label+'-'+index} className={itemClasses}>
               {index>0&&renderSeparator()}
-              {item.to&&!isLast?(
+              {item.to&&!isLast&&!disableNavigation?(
                 <Link className="mlz-breadcrumb-link" to={item.to}>{item.label}</Link>
               ):(
                 <span className={isLast?'mlz-breadcrumb-current':'mlz-breadcrumb-text'}

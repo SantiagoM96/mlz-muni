@@ -75,24 +75,24 @@
  min-height:32px;
 }
 /* Native details/summary: accesible con teclado, sin librería adicional. */
-.mlz-breadcrumb-collapse{position:relative;flex:0 0 auto}
+.mlz-breadcrumb-collapse{position:relative;flex:0 0 auto;display:inline-flex;align-items:center}
 .mlz-breadcrumb-collapse > summary{
  display:inline-flex;
  align-items:center;
  justify-content:center;
  box-sizing:border-box;
- width:32px;height:32px;
+ width:28px;height:26px;
  padding:0;
  cursor:pointer;
- border:1px solid #d1d1d1;
+ border:1px solid #b8d8ec;
  border-radius:var(--mlz-radius-sm,4px);
- background:#fff;
- color:var(--breadcrumb-muted);
+ background:#e5f0f9;
+ color:var(--color-primary-600,#236999);
  list-style:none;
 }
 .mlz-breadcrumb-collapse > summary::-webkit-details-marker{display:none}
 .mlz-breadcrumb-collapse > summary:hover,
-.mlz-breadcrumb-collapse[open] > summary{background:#f6f6f6;border-color:#888}
+.mlz-breadcrumb-collapse[open] > summary{background:#d5e9f6;border-color:#8fbfdb}
 .mlz-breadcrumb-menu{
  position:absolute;
  z-index:25;
