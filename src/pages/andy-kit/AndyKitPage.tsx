@@ -15,7 +15,7 @@ import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadStates, AndySolidUploadStates, AndySolidUploadPreview, AndyDashedUpload } from './AndyDashedUpload';
-import { AndyAttachmentGallery, AndyAttachmentLifecycle, AndyIconUpload } from './AndyAttachmentGallery';
+import { AndyAttachmentGallery, AndyIconUpload, AndyIconUploadStates } from './AndyAttachmentGallery';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
@@ -290,7 +290,7 @@ function ComponentDetails({id}:{id:ComponentId}){
   </DocSection>
   <DocSection title="Ícono" description="Seleccioná un documento desde toda la superficie del campo. Después se muestran sus estados de subida, procesamiento, error y completado, con iconografía y acciones propias.">
    <DocPreview><AndyIconUpload/></DocPreview>
-   <DocPreview align="start"><div className="andy-upload-preview-pair"><AndyIconUpload/><AndyAttachmentLifecycle appearance="list"/></div></DocPreview>
+   <DocPreview align="start"><AndyIconUploadStates/></DocPreview>
   </DocSection>
   <DocSection title="Archivo adjunto" description="Una vez seleccionado, el archivo puede mostrar su nombre, tipo, tamaño y acciones. Esta demostración no envía documentos al servidor.">
    <DocPreview><AndyAttachmentGallery/></DocPreview>
@@ -308,11 +308,11 @@ function ComponentDetails({id}:{id:ComponentId}){
   <DocSection title="Especificaciones" description="Criterios de implementación de MLZ; los elementos reutilizan tamaños, colores y estados del Design System.">
    <GuidelineTable rows={[
     ['Variantes','Estándar y Borde punteado son controles de archivo único; Ícono combina selección y presentación de estados de archivo en una fila.'],
-    ['Altura del control','48 px exactos en Estándar y Borde punteado. La variante Ícono usa filas con altura adaptable.'],
+    ['Altura del control','48 px exactos en Estándar y Borde punteado; Ícono conserva 64 px de altura en todos sus estados.'],
     ['Formatos documentales','PDF, DOC y DOCX en los ejemplos actuales; imágenes JPG, PNG o WEBP en la variante de fotografía.'],
     ['Límite de ejemplo','10 MB por archivo; el producto debe validar también del lado del servidor.'],
     ['Colores','Primario 600 para valores completos, Info 500 para foco y Error para validaciones incorrectas.'],
-    ['Estados','Default, Hover, Focus, Subiendo, Procesando, Completo, Error y Disabled para Estándar y Borde punteado; Default, Subiendo, Procesando, Error y Completado en Ícono.'],
+    ['Estados','Las tres variantes tienen su propia matriz: Default, Hover, Focus, Subiendo, Procesando, Completo, Error y Disabled.'],
    ]}/>
   </DocSection>
   <DocSection title="Comportamiento" description="La selección, lectura y eliminación deben ser operables con teclado, con mensajes precisos y sin acciones ambiguas.">
