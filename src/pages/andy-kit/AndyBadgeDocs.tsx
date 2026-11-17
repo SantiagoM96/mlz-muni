@@ -53,13 +53,18 @@ function BadgeAppearanceDemo(){
  </>;
 }
 function BadgeColorDemo(){
- const [appearance,setAppearance]=useState<'soft'|'outline'>('soft');
- return <>
-  <div className="andy-doc-example-controls andy-badge-controls">
-   <ChoiceGroup label="Presentación del color" items={appearances.filter((item):item is {id:'soft'|'outline';name:string}=>item.id==='soft'||item.id==='outline')} value={appearance} onChange={setAppearance}/>
+ return <DocPreview align="start">
+  <div className="andy-badge-palette" role="list" aria-label="Todos los colores y apariencias en tamaño mediano">
+   {tones.map(tone=><div className="andy-badge-palette-item" role="listitem" key={tone.id}>
+    <strong className="andy-badge-palette-name">{tone.name}</strong>
+    <div className="andy-badge-palette-examples">
+     {appearances.map(appearance=><Badge key={appearance.id} tone={tone.id} appearance={appearance.id} size="md" title={appearance.name}>
+      {tone.name}
+     </Badge>)}
+    </div>
+   </div>)}
   </div>
-  <PaletteGallery appearance={appearance}/>
- </>;
+ </DocPreview>;
 }
 function BadgeSizeDemo(){
  const [size,setSize]=useState<BadgeSize>('md');
@@ -91,20 +96,6 @@ function BadgeIconDemo(){
    </div>
   </DocPreview>
  </>;
-}
-
-function PaletteGallery({appearance}:{appearance:'soft'|'outline'}){
- return <DocPreview align="start">
-  <div className="andy-badge-palette" role="list" aria-label="Variantes de color">
-   {tones.map(tone=><div className="andy-badge-palette-item" role="listitem" key={tone.id}>
-    <strong className="andy-badge-palette-name">{tone.name}</strong>
-    <div className="andy-badge-palette-examples">
-     <Badge tone={tone.id} appearance={appearance} size="md">{tone.name}</Badge>
-     <Badge tone={tone.id} appearance={appearance} size="md" icon="info" iconPosition="start">{tone.name}</Badge>
-    </div>
-   </div>)}
-  </div>
- </DocPreview>;
 }
 
 function SizeGallery(){
@@ -155,7 +146,7 @@ export function AndyBadgeDocs(){
   <DocSection title="Apariencias" description="Elegí entre Fondo suave, Outline, Solid y Ghost. Cada presentación usa los mismos tokens de color institucionales.">
    <BadgeAppearanceDemo/>
   </DocSection>
-  <DocSection title="Colores" description="Los colores proceden del componente Tag de Figma: Primario, Amarillo, Rojo, Verde, Azul, Violeta y Neutral, con sus respectivas superficies y trazos.">
+  <DocSection title="Colores" description="Todos los colores del Design System en Fondo suave, Outline, Solid y Ghost, en tamaño Mediano (28 px).">
    <BadgeColorDemo/>
   </DocSection>
   <DocSection title="Tamaños" description="Probá los tres tamaños institucionales: Chico 24 px, Mediano 28 px y Grande 32 px.">
