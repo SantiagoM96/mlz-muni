@@ -116,6 +116,20 @@ const visualStates=[
  {name:'Focus visible',note:'Solo si es interactivo',id:'focus'},
  {name:'Disabled',note:'Solo si es interactivo',id:'disabled'},
 ] as const;
+function AvatarProfileTrigger(){
+ const [open,setOpen]=useState(false);
+ return <div className="andy-avatar-profile-demo">
+  <button type="button" className="andy-avatar-trigger" aria-expanded={open}
+   aria-controls="andy-avatar-profile-details" aria-label="Mostrar datos de Carolina Pérez"
+   onClick={()=>setOpen(value=>!value)}><PersonAvatar size="lg"/></button>
+  {open&&<div className="andy-avatar-profile-details" id="andy-avatar-profile-details">
+   <strong>Carolina Pérez</strong>
+   <span>Perfil de demostración</span>
+   <button type="button" onClick={()=>setOpen(false)}>Cerrar</button>
+  </div>}
+ </div>;
+}
+
 function AvatarStateGallery(){
  return <div className="andy-state-matrix andy-avatar-state-matrix"><div className="andy-matrix-grid">
   {visualStates.map(item=><div className="andy-state-cell andy-avatar-state-cell" key={item.id} data-state={item.id}>
@@ -125,8 +139,8 @@ function AvatarStateGallery(){
     {item.id==='loading'&&<Avatar label="Fotografía en carga"><AvatarFallback><span className="andy-avatar-loading" aria-hidden="true"/></AvatarFallback></Avatar>}
     {item.id==='fallback'&&<PersonAvatar variant="initials"/>}
     {item.id==='error'&&<Avatar label="Carolina Pérez, sin fotografía"><AvatarImage src="/mlz-muni/avatar-imagen-inexistente.jpg" alt=""/><AvatarFallback>CP</AvatarFallback></Avatar>}
-    {item.id==='hover'&&<button type="button" className="andy-avatar-trigger is-hover" aria-label="Abrir perfil de Carolina Pérez"><PersonAvatar/></button>}
-    {item.id==='focus'&&<button type="button" className="andy-avatar-trigger is-focus" aria-label="Abrir perfil de Carolina Pérez"><PersonAvatar/></button>}
+    {item.id==='hover'&&<span className="andy-avatar-trigger is-hover"><PersonAvatar/></span>}
+    {item.id==='focus'&&<span className="andy-avatar-trigger is-focus"><PersonAvatar/></span>}
     {item.id==='disabled'&&<button type="button" className="andy-avatar-trigger" disabled aria-label="Perfil de Carolina Pérez no disponible"><PersonAvatar/></button>}
    </div>
   </div>)}
@@ -155,6 +169,10 @@ export function AndyAvatarDocs(){
 
   <DocSection title="Grupo de avatares" description="La superposición permite representar varios usuarios sin ocupar el ancho de una lista. El contador representa los adicionales.">
    <DocPreview><AvatarGroupGallery/></DocPreview>
+  </DocSection>
+
+  <DocSection title="Como disparador" description="Avatar puede formar parte de un botón de perfil. El botón conserva su propia área clickeable y foco visible.">
+   <DocPreview><AvatarProfileTrigger/></DocPreview>
   </DocSection>
 
   <DocSection title="Estados" description="Los estados de carga y disponibilidad pertenecen al Avatar. Hover, Focus y Disabled corresponden únicamente al botón que lo envuelve si existe interacción.">
