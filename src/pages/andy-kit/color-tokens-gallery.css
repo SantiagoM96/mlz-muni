@@ -5,7 +5,7 @@
 .andy-color-family{margin:0;min-width:0;padding:0;border:0}
 .andy-color-family:not(:last-child){padding:0;border:0}
 .andy-color-family-header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
-.andy-color-family-title{margin:0;color:#00377f;font-size:18px;line-height:26px;font-weight:700}
+.andy-color-family-title{margin:0;color:#006eff;font-size:18px;line-height:26px;font-weight:700}
 .andy-color-family-header>span{font-size:12px;color:#71808c;white-space:nowrap}
 .andy-color-scale{display:flex;flex-direction:column;overflow:hidden;border:1px solid #00000012;border-radius:var(--mlz-radius-sm)}
 .andy-color-scale-row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:41px;border:0;border-bottom:1px solid #0000000a;padding:7px 13px;text-align:left;cursor:pointer;font:500 12px/18px Geometria,'Century Gothic',Arial,sans-serif;transition:filter .14s}
@@ -14,7 +14,7 @@
 .andy-color-scale-row:focus-visible{position:relative;z-index:1;outline:2px solid #006eff;outline-offset:-3px}
 .andy-color-scale-name{min-width:0;overflow-wrap:anywhere;font-weight:700}
 .andy-color-scale-code{display:inline-flex;align-items:center;justify-content:flex-end;gap:5px;white-space:nowrap;font-size:11px;font-weight:500;opacity:.9;font-variant-numeric:tabular-nums}
-.andy-color-library-expand{display:inline-flex;align-self:center;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 16px;border:1px solid #99c5ff;border-radius:var(--mlz-radius-lg);background:#fff;color:#00377f;font:700 14px/22px Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer}
+.andy-color-library-expand{display:inline-flex;align-self:center;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 16px;border:1px solid #99c5ff;border-radius:var(--mlz-radius-lg);background:#fff;color:#006eff;font:700 14px/22px Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer}
 .andy-color-library-expand:hover{background:#e5f0ff}
 .andy-color-library-expand:focus-visible{outline:2px solid #006eff;outline-offset:2px}
 @media(max-width:700px){.andy-color-library-preview{grid-template-columns:1fr;gap:var(--mlz-space-24)}}
