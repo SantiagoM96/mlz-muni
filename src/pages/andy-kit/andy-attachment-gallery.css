@@ -191,3 +191,17 @@
  opacity:.65;
  cursor:default;
 }
+
+/* Ícono: misma tinta en título, valor y ayuda, tanto en el ejemplo como
+   en sus estados. El color aporta semántica en iconografía y validación. */
+.andy-icon-upload .andy-dashed-upload-title,
+.andy-icon-upload .andy-icon-upload-trigger-copy strong,
+.andy-icon-upload .andy-icon-upload-trigger-copy > span,
+.andy-icon-upload .andy-dashed-upload-help,
+.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-copy strong,
+.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-copy > span{
+ color:var(--mlz-grey-500,#6d6d6d);
+}
+.andy-icon-upload > .andy-attachment-lifecycle-row.is-error .andy-attachment-lifecycle-copy > span{
+ color:#d62847;
+}
