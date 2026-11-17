@@ -28,7 +28,7 @@ export function AndyModal({
  const ref=useRef<HTMLDialogElement>(null);
  const cancelRef=useRef<HTMLButtonElement>(null);
  const closeRef=useRef(onClose);
- closeRef.current=onClose;
+ useEffect(()=>{closeRef.current=onClose;},[onClose]);
  const titleId=useId();
  const descriptionId=useId();
  useEffect(()=>{
