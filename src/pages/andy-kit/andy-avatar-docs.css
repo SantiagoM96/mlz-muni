@@ -23,15 +23,18 @@
  border:1px solid #d1d1d1;
  border-radius:var(--mlz-radius-lg);
 }
+/* Inspector Avatar Básico: botón Small del Design System MLZ (32px,
+   Geometria 14/20 bold, 12px horizontal, radius SM 4px).
+   El grupo permanece unido, con esquinas solo en sus extremos.
+   Paleta 100% Natural/Grey, sin primarios azules. */
 .andy-avatar-toolbar{
- position:static;
  display:flex;
  align-items:center;
  justify-content:flex-start;
  flex-wrap:wrap;
- gap:8px;
+ column-gap:var(--mlz-space-8);
+ row-gap:var(--mlz-space-8);
  width:100%;
- max-width:100%;
  margin:0;
  padding:0;
  background:transparent;
@@ -40,54 +43,62 @@
  display:inline-flex;
  align-items:stretch;
  flex:0 0 auto;
- border-radius:var(--mlz-radius-lg);
+ border-radius:var(--mlz-radius-sm);
 }
 .andy-avatar-choice,
 .andy-avatar-indicator-toggle{
  display:inline-flex;
  align-items:center;
  justify-content:center;
- gap:5px;
+ gap:var(--mlz-space-6);
  box-sizing:border-box;
- height:34px;
- min-height:34px;
- padding:0 11px;
- border:1px solid #d1d1d1;
+ height:32px;
+ min-height:32px;
+ padding:0 var(--mlz-space-12);
+ border:1px solid var(--color-grey-200,#d1d1d1);
  border-radius:0;
  background:#fff;
- color:#3d3d3d;
- font:700 12px/20px Geometria,'Century Gothic',Arial,sans-serif;
+ color:var(--color-grey-900,#3d3d3d);
+ font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
  white-space:nowrap;
  cursor:pointer;
  transition:background-color .13s ease,border-color .13s ease,color .13s ease;
 }
-.andy-avatar-control-row .andy-avatar-choice + .andy-avatar-choice{margin-left:-1px}
-.andy-avatar-control-row .andy-avatar-choice:first-child{border-radius:var(--mlz-radius-lg) 0 0 var(--mlz-radius-lg)}
-.andy-avatar-control-row .andy-avatar-choice:last-child{border-radius:0 var(--mlz-radius-lg) var(--mlz-radius-lg) 0}
-.andy-avatar-control-row .andy-avatar-choice:only-child{border-radius:var(--mlz-radius-lg)}
-.andy-avatar-choice:hover,
-.andy-avatar-indicator-toggle:hover{position:relative;z-index:1;background:#f6f6f6}
+.andy-avatar-control-row .andy-avatar-choice+.andy-avatar-choice{margin-left:-1px}
+.andy-avatar-control-row .andy-avatar-choice:first-child{border-radius:var(--mlz-radius-sm) 0 0 var(--mlz-radius-sm)}
+.andy-avatar-control-row .andy-avatar-choice:last-child{border-radius:0 var(--mlz-radius-sm) var(--mlz-radius-sm) 0}
+.andy-avatar-control-row .andy-avatar-choice:only-child{border-radius:var(--mlz-radius-sm)}
+.andy-avatar-indicator-toggle{border-radius:var(--mlz-radius-sm)}
+.andy-avatar-indicator-toggle .material-symbols-outlined{font-size:16px}
+.andy-avatar-choice:hover:not(.is-selected),
+.andy-avatar-indicator-toggle:hover:not(.is-selected){position:relative;z-index:1;background:var(--color-grey-50,#f6f6f6)}
 .andy-avatar-choice.is-selected,
 .andy-avatar-indicator-toggle.is-selected{
- position:relative;
- z-index:1;
- background:#e7e7e7;
- color:#3d3d3d;
- border-color:#888888;
+ position:relative;z-index:1;
+ background:var(--color-grey-100,#e7e7e7);
+ color:var(--color-grey-900,#3d3d3d);
+ border-color:var(--color-grey-400,#888888);
 }
 .andy-avatar-choice.is-selected:hover,
-.andy-avatar-indicator-toggle.is-selected:hover{background:#d1d1d1;border-color:#6d6d6d}
+.andy-avatar-indicator-toggle.is-selected:hover{
+ background:var(--color-grey-200,#d1d1d1);
+ border-color:var(--color-grey-500,#6d6d6d);
+}
 .andy-avatar-choice:focus-visible,
 .andy-avatar-indicator-toggle:focus-visible{
- position:relative;
- z-index:3;
- outline:2px solid #3d3d3d;
+ position:relative;z-index:3;
+ outline:2px solid var(--color-grey-900,#3d3d3d);
  outline-offset:2px;
 }
-.andy-avatar-indicator-toggle{border-radius:var(--mlz-radius-lg)}
 @media(max-width:720px){
+ /* Medium institucional para facilitar interacción táctil. */
  .andy-avatar-choice,
- .andy-avatar-indicator-toggle{height:36px;min-height:36px;padding-inline:10px}
+ .andy-avatar-indicator-toggle{
+  height:40px;min-height:40px;
+  padding-inline:var(--mlz-space-16);
+  font-size:16px;line-height:24px;
+ }
+ .andy-avatar-indicator-toggle .material-symbols-outlined{font-size:18px}
 }
 .andy-avatar-variant-grid{
  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--mlz-space-16);
