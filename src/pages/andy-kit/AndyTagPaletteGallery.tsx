@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react';
+import { DocPreview } from './AndyDocsPrimitives';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import './andy-tag-palette-gallery.css';
 
@@ -53,17 +54,20 @@ function VariantSection({appearance,size}: {appearance:Appearance;size:Size}){
 export function AndyTagPaletteGallery({onlyAppearance}:{onlyAppearance?:Appearance}={}){
  const [size,setSize]=useState<Size>('mediano');
  return <div className="andy-tag-palette">
-  <div className="andy-palette-sizebar andy-doc-inspector">
-   
-   <div className="andy-palette-size-options" role="group" aria-label="Tamaño de las etiquetas">
+  <div className="andy-doc-example-controls">
+   <div className="andy-doc-example-group" role="group" aria-label="Tamaño de las etiquetas">
     {(['chico','mediano','grande'] as const).map(option=><button key={option} type="button"
       aria-pressed={size===option} onClick={()=>setSize(option)}>
       {option.charAt(0).toUpperCase()+option.slice(1)}
     </button>)}
    </div>
   </div>
-  {(!onlyAppearance||onlyAppearance==='fill')&&<VariantSection appearance="fill" size={size}/>}
-  {(!onlyAppearance||onlyAppearance==='outline')&&<VariantSection appearance="outline" size={size}/>}
-  <p className="andy-palette-note">Los colores reproducen los seis estilos del componente <strong>Tag</strong> del UI Kit de Figma. El outline utiliza el mismo color intenso en el borde, texto e ícono.</p>
+  <DocPreview align="start">
+   <div className="andy-tag-palette-content">
+    {(!onlyAppearance||onlyAppearance==='fill')&&<VariantSection appearance="fill" size={size}/>}
+    {(!onlyAppearance||onlyAppearance==='outline')&&<VariantSection appearance="outline" size={size}/>}
+    <p className="andy-palette-note">Los colores reproducen los seis estilos del componente <strong>Tag</strong> del UI Kit de Figma. El outline utiliza el mismo color intenso en el borde, texto e ícono.</p>
+   </div>
+  </DocPreview>
  </div>;
 }
