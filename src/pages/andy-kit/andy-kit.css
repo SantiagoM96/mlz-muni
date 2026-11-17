@@ -1457,3 +1457,42 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 @media(max-width:520px){
  .andy-doc-page .andy-baila-preview-footer .andy-baila-site-footer img.andy-baila-site-logo[alt="Municipio de Lomas de Zamora — Gobierno de la Comunidad"]{width:166px!important}
 }
+
+
+/* Identidad editorial del UI Kit: Info 700. Los Primary de demos municipales no cambian. */
+.andy-doc-layout{--andy-editorial-accent:#00377f}
+.andy-doc-layout .andy-topbar-heading h1,
+.andy-doc-layout .andy-doc-main .andy-main-heading h2,
+.andy-doc-layout .andy-doc-main .andy-section-head h2,
+.andy-doc-layout .andy-doc-section-heading>h3,
+.andy-doc-layout .andy-foundation-intro-copy h2,
+.andy-doc-layout .andy-foundation-eyebrow,
+.andy-doc-layout .andy-foundation-index a>span,
+.andy-doc-layout .andy-foundation-type-row>div>span,
+.andy-doc-layout .andy-foundation-type .type-section,
+.andy-doc-layout .andy-foundation-color-role strong{
+ color:var(--andy-editorial-accent);
+}
+.andy-doc-layout .andy-topbar-actions .andy-version{color:var(--andy-editorial-accent)}
+/* Geometria: pieza editorial con aire, jerarquía y escala legible. */
+.andy-foundation-type{gap:0;border:0;border-radius:0;overflow:visible}
+.andy-foundation-type-hero{display:flex;flex-direction:column;gap:var(--mlz-space-12);padding:var(--mlz-space-24) 0 var(--mlz-space-32);border-bottom:1px solid #e1e7eb}
+.andy-foundation-type-overline{color:#71808c;font-size:12px;line-height:20px;font-weight:700;letter-spacing:.06em}
+.andy-foundation-type-name{font-size:clamp(40px,6vw,64px);line-height:1.1;font-weight:700;letter-spacing:-.025em;color:#00377f}
+.andy-foundation-type-hero>p{font-size:18px;line-height:28px;margin:0;max-width:600px;color:#4f4f4f}
+.andy-foundation-type .andy-foundation-weights{display:flex;gap:var(--mlz-space-24);align-items:center;flex-wrap:wrap;margin-top:var(--mlz-space-12);padding:0;border:0;background:transparent}
+.andy-foundation-weights span{display:inline-flex;align-items:baseline;gap:var(--mlz-space-8);font-size:18px;color:#00377f}
+.andy-foundation-weights small{font-size:12px;font-weight:400;color:#71808c}
+.andy-foundation-type-list{display:flex;flex-direction:column;padding:var(--mlz-space-8) 0}
+.andy-foundation-type-row{grid-template-columns:minmax(165px,220px) minmax(0,1fr);gap:var(--mlz-space-32);min-height:114px;padding:var(--mlz-space-24) 0;border-bottom:1px solid #e1e7eb}
+.andy-foundation-type-row:last-child{border:0}
+.andy-foundation-type-row>div{gap:var(--mlz-space-6)}
+.andy-foundation-type-row>div>span{font-size:14px}
+.andy-foundation-type-row code{font-size:12px;line-height:18px;overflow-wrap:anywhere}
+.andy-foundation-type .type-section{color:#00377f}
+.andy-foundation-type .type-body{max-width:580px}
+@media(max-width:660px){
+ .andy-foundation-type-hero{padding-top:var(--mlz-space-8);padding-bottom:var(--mlz-space-24)}
+ .andy-foundation-type-row{grid-template-columns:1fr;gap:var(--mlz-space-16);min-height:auto;padding:var(--mlz-space-24) 0}
+ .andy-foundation-type-name{font-size:42px}
+}
