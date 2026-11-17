@@ -7,10 +7,10 @@
 .andy-modal-variant-info p{margin:0;color:#6d6d6d;font-size:14px;line-height:22px}
 .andy-modal-variant-icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:12px;background:#e5f0f9;color:#236999}
 .andy-modal-variant-icon.is-danger{background:#fff0f2;color:#d62847}
-.andy-modal-trigger{min-height:40px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;padding:9px 16px;border:1px solid #236999;border-radius:var(--mlz-radius-md,12px);background:#236999;color:#fff;font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;cursor:pointer}
-.andy-modal-trigger:hover{background:#1f5a85}
-.andy-modal-trigger.is-outline{background:#fff;color:#236999;border-color:#94c6e5}
-.andy-modal-trigger.is-outline:hover{background:#f3f7fc}
-.andy-modal-trigger:focus-visible{outline:2px solid #006eff;outline-offset:3px}
+
+
+
+
+
 .andy-modal-result{margin:16px 0;color:#6d6d6d;font-size:13px;line-height:20px}
-@media(max-width:620px){.andy-modal-variant{align-items:flex-start;flex-direction:column;gap:12px}.andy-modal-trigger.is-outline{width:100%}}
+@media(max-width:620px){.andy-modal-variant{align-items:flex-start;flex-direction:column;gap:12px}.andy-modal-variant .andy-system-button{width:100%}}
