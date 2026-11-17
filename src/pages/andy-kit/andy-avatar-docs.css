@@ -55,7 +55,7 @@
 .andy-avatar-state-matrix .andy-avatar-state-cell{min-height:130px}
 .andy-avatar-state-sample{display:flex;align-items:center;justify-content:center;min-height:60px}
 .andy-avatar-loading{
- display:block;width:100%;height:100%;border-radius:inherit;
+ position:absolute;inset:0;display:block;width:100%;height:100%;border-radius:inherit;
  background:linear-gradient(90deg,#e5f0f9 0%,#f3f7fc 46%,#e5f0f9 100%);background-size:200% 100%;
  animation:andy-avatar-shimmer 1.25s ease-in-out infinite;
 }
@@ -77,3 +77,22 @@
  .andy-avatar-size-grid{justify-content:center;gap:18px}
 }
 @media(prefers-reduced-motion:reduce){.andy-avatar-loading{animation:none}}
+
+/* Botón de perfil: solo el contenedor es interactivo; el avatar sigue siendo
+   un elemento de identidad y conserva su tamaño. */
+.andy-avatar-profile-demo{position:relative;display:flex;align-items:center;justify-content:center;min-height:95px;width:min(100%,760px)}
+.andy-avatar-profile-details{
+ position:absolute;z-index:5;top:76px;left:50%;transform:translateX(-50%);
+ display:flex;flex-direction:column;align-items:flex-start;gap:8px;
+ min-width:220px;padding:16px;border:1px solid #c6dff1;
+ border-radius:var(--mlz-radius-lg);background:#fff;box-shadow:0 8px 24px #174d701a;
+}
+.andy-avatar-profile-details>strong{font:700 14px/20px Geometria,'Century Gothic',Arial,sans-serif;color:#236999}
+.andy-avatar-profile-details>span{font:400 13px/18px Geometria,'Century Gothic',Arial,sans-serif;color:#6d6d6d}
+.andy-avatar-profile-details>button{
+ border:1px solid #c6dff1;border-radius:var(--mlz-radius-sm);padding:6px 12px;
+ font:700 13px/20px Geometria,'Century Gothic',Arial,sans-serif;
+ background:#fff;color:#236999;cursor:pointer;
+}
+.andy-avatar-profile-details>button:hover{background:#e5f0f9}
+.andy-avatar-profile-details>button:focus-visible{outline:2px solid #006eff;outline-offset:2px}
