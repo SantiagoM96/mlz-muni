@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type Dispatch, type KeyboardEvent, type SetStateAction } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
+import { createPortal } from 'react-dom';
 import './dropdown-variants-gallery.css';
 import './andy-schedule-dialog-form.css';
 
@@ -25,37 +26,53 @@ function ScheduleDropdown({id,label,value,options,onChange}:{id:string;label:str
  const [active,setActive]=useState(0);
  const [placement,setPlacement]=useState<CSSProperties>({});
  const root=useRef<HTMLDivElement>(null);
+ const menuRef=useRef<HTMLDivElement>(null);
+ const [dialog,setDialog]=useState<HTMLDialogElement|null>(null);
  const trigger=useRef<HTMLButtonElement>(null);
  const listId=id+'-options';
  const selected=options.findIndex(option=>option.value===value);
  const position=useCallback(()=>{
   const rect=trigger.current?.getBoundingClientRect();
-  const modal=root.current?.closest('dialog')?.getBoundingClientRect();
+  const modal=dialog?.getBoundingClientRect();
   if(!rect||!modal)return;
-  // La lista flota sobre el formulario sin modificar el alto del diálogo.
-  // Su límite inferior es la mitad del padding inferior del modal (12px en desktop).
-  const bottomInset=window.innerWidth<=530?8:12;
-  const spaceBelow=modal.bottom-bottomInset-rect.bottom-6;
-  const spaceAbove=rect.top-modal.top-16;
-  const upwards=spaceBelow<92&&spaceAbove>spaceBelow;
-  const available=upwards?spaceAbove:spaceBelow;
-  const height=Math.max(0,Math.min(280,available));
-  setPlacement({position:'absolute',left:0,right:0,
-   top:upwards?undefined:'calc(100% + 6px)',
-   bottom:upwards?'calc(100% + 6px)':undefined,
-   maxHeight:height});
- },[]);
+  // Los menús pertenecen a la capa del dialog, nunca al flujo del formulario.
+  // El límite inferior queda 12 px por encima del borde interno del modal.
+  const bottomLimit=modal.bottom-12;
+  const below=bottomLimit-rect.bottom-6;
+  const above=rect.top-modal.top-16;
+  const upwards=below<100&&above>below;
+  const height=Math.max(0,Math.min(280,upwards?above-6:below));
+  setPlacement({position:'absolute',left:rect.left-modal.left,
+   top:upwards?rect.top-modal.top-height-6:rect.bottom-modal.top+6,
+   width:rect.width,maxHeight:height});
+ },[dialog]);
  useEffect(()=>{
-  if(!open)return;
+  if(!open||!dialog)return;
   position();
-  const outside=(event:PointerEvent)=>{if(root.current&&!root.current.contains(event.target as Node))setOpen(false);};
-  const refresh=(event?:Event)=>{if(event?.target instanceof Element&&root.current?.contains(event.target))return;position();};
+  const outside=(event:PointerEvent)=>{
+   const target=event.target as Node;
+   if(!root.current?.contains(target)&&!menuRef.current?.contains(target))setOpen(false);
+  };
+  const refresh=(event?:Event)=>{
+   if(event?.target instanceof Node&&menuRef.current?.contains(event.target))return;
+   position();
+  };
   document.addEventListener('pointerdown',outside);
   window.addEventListener('resize',refresh);
   window.addEventListener('scroll',refresh,true);
-  return ()=>{document.removeEventListener('pointerdown',outside);window.removeEventListener('resize',refresh);window.removeEventListener('scroll',refresh,true);};
- },[open,position]);
- const show=()=>{const first=selected>=0&&!options[selected]?.disabled?selected:options.findIndex(option=>!option.disabled);setActive(Math.max(0,first));setOpen(true);};
+  return ()=>{
+   document.removeEventListener('pointerdown',outside);
+   window.removeEventListener('resize',refresh);
+   window.removeEventListener('scroll',refresh,true);
+  };
+ },[open,dialog,position]);
+ useEffect(()=>{
+  if(!open)return;
+  const list=menuRef.current?.querySelector<HTMLElement>('.andy-dropdown-variant-options');
+  const current=list?.querySelector<HTMLElement>('[aria-selected="true"]');
+  if(list&&current)list.scrollTop=Math.max(0,current.offsetTop-list.offsetTop-list.clientHeight/2+current.clientHeight/2);
+ },[open]);
+ const show=()=>{setDialog(root.current?.closest('dialog')??null);const first=selected>=0&&!options[selected]?.disabled?selected:options.findIndex(option=>!option.disabled);setActive(Math.max(0,first));setOpen(true);};
  const choose=(index:number)=>{const option=options[index];if(!option||option.disabled)return;onChange(option.value);setOpen(false);trigger.current?.focus();};
  const move=(direction:number)=>{let index=active;for(let i=0;i<options.length;i++){index=(index+direction+options.length)%options.length;if(!options[index]?.disabled){setActive(index);break;}}};
  const key=(event:KeyboardEvent)=>{
@@ -74,7 +91,7 @@ function ScheduleDropdown({id,label,value,options,onChange}:{id:string;label:str
    onClick={()=>open?setOpen(false):show()}>
    <span>{options[selected]?.label??value}</span><MaterialIcon name="expand_more" size={24}/>
   </button>
-  {open&&<div className="andy-dropdown-variant-menu andy-schedule-dropdown-menu" style={placement}>
+  {open&&dialog&&createPortal(<div ref={menuRef} className="andy-dropdown-variant-menu andy-schedule-dropdown-menu" style={placement} onKeyDown={key}>
    <div id={listId} role="listbox" aria-label={label} className="andy-dropdown-variant-options">
     {options.map((option,index)=><button id={listId+'-'+index} key={option.value} type="button"
      role="option" aria-selected={value===option.value} disabled={option.disabled}
@@ -84,7 +101,7 @@ function ScheduleDropdown({id,label,value,options,onChange}:{id:string;label:str
       {value===option.value&&<span className="andy-dropdown-mark" aria-hidden="true"><MaterialIcon name="check" size={24}/></span>}
      </button>)}
    </div>
-  </div>}
+  </div>,dialog)}
  </div>;
 }
 export function AndyScheduleDialogForm({value,onChange,error}:{value:ScheduleDraft;onChange:Dispatch<SetStateAction<ScheduleDraft>>;error?:string}){
@@ -93,24 +110,24 @@ export function AndyScheduleDialogForm({value,onChange,error}:{value:ScheduleDra
  const set=<K extends keyof ScheduleDraft>(key:K,next:ScheduleDraft[K])=>onChange(previous=>({...previous,[key]:next}));
  return <div className="andy-schedule-form">
   <div className="andy-schedule-field">
-   <label htmlFor={id+'-activity'}>Actividad <span aria-hidden="true">*</span></label>
+   <label htmlFor={id+'-activity'}>Actividad</label>
    <input id={id+'-activity'} value={value.activity} onChange={e=>set('activity',e.target.value)} placeholder="Nombre de la actividad"/>
   </div>
-  <div className="andy-schedule-field"><label htmlFor={id+'-capacity'}>Cupos disponibles</label>
+  <div className="andy-schedule-field"><label htmlFor={id+'-capacity'}>Cupos disponibles (opcional)</label>
    <input id={id+'-capacity'} inputMode="numeric" type="number" min="1" max="999" value={value.capacity} onChange={e=>set('capacity',e.target.value)} placeholder="Ej. 20"/>
   </div>
   <div className="andy-schedule-time-grid">
-   <div className="andy-schedule-field"><label id={id+'-start-label'}>Hora de inicio <span aria-hidden="true">*</span></label>
+   <div className="andy-schedule-field"><label id={id+'-start-label'}>Hora de inicio</label>
     <ScheduleDropdown id={id+'-start'} label="Hora de inicio" value={value.start}
      options={timeSlots.slice(0,-2).map(time=>({value:time,label:time}))}
      onChange={start=>onChange(previous=>({...previous,start,end:fromMinutes(Math.min(1440,toMinutes(start)+Math.max(30,toMinutes(previous.end)-toMinutes(previous.start))))}))}/>
    </div>
-   <div className="andy-schedule-field"><label id={id+'-end-label'}>Hora de finalización <span aria-hidden="true">*</span></label>
+   <div className="andy-schedule-field"><label id={id+'-end-label'}>Hora de finalización</label>
     <ScheduleDropdown id={id+'-end'} label="Hora de finalización" value={value.end}
      options={timeSlots.filter(time=>toMinutes(time)>toMinutes(value.start)).map(time=>({value:time,label:time}))}
      onChange={end=>set('end',end)}/>
    </div>
-   <div className="andy-schedule-field"><label id={id+'-duration-label'}>Duración <span aria-hidden="true">*</span></label>
+   <div className="andy-schedule-field"><label id={id+'-duration-label'}>Duración</label>
     <ScheduleDropdown id={id+'-duration'} label="Duración"
      value={durations.includes(duration)?String(duration):'custom'}
      options={[...(!durations.includes(duration)?[{value:'custom',label:'Personalizada',disabled:true}]:[]),
@@ -118,7 +135,7 @@ export function AndyScheduleDialogForm({value,onChange,error}:{value:ScheduleDra
      onChange={next=>onChange(previous=>({...previous,end:fromMinutes(toMinutes(previous.start)+Number(next))}))}/>
    </div>
   </div>
-  <div className="andy-schedule-field"><label htmlFor={id+'-location'}>Sede</label>
+  <div className="andy-schedule-field"><label htmlFor={id+'-location'}>Sede (opcional)</label>
    <input id={id+'-location'} value={value.location} onChange={e=>set('location',e.target.value)} placeholder="Ingresá una sede"/>
   </div>
   {error&&<p className="andy-schedule-error" role="alert"><MaterialIcon name="error" size={18}/>{error}</p>}
