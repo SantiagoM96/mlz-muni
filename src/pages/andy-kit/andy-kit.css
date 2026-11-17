@@ -1403,3 +1403,43 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  .andy-baila-preview-footer footer section h2{font-size:20px!important;line-height:28px!important}
  .andy-baila-preview-footer footer section>p{font-size:21px!important;line-height:29px!important}
 }
+
+
+/* Footer institucional de Lomas Baila: fiel a la captura y acotado al ejemplo. */
+.andy-baila-preview-footer{
+ height:370px;
+ overflow:hidden;
+ background:#236999;
+ -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 76%,rgba(0,0,0,.8) 87%,transparent 100%);
+ mask-image:linear-gradient(to bottom,#000 0%,#000 76%,rgba(0,0,0,.8) 87%,transparent 100%);
+}
+.andy-baila-site-footer{margin:0!important;padding:24px 0 28px!important;background:#236999!important;color:white;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+.andy-baila-site-footer .andy-baila-site-footer-inner{
+ width:83%;max-width:1230px;margin:0 auto;padding:0;
+ display:flex;flex-direction:column;align-items:stretch;gap:12px;
+}
+.andy-baila-site-footer .andy-baila-site-logo{
+ display:block;align-self:flex-start;width:190px!important;height:auto!important;max-height:none!important;object-fit:contain;
+}
+.andy-baila-site-contact{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.andy-baila-site-footer h5{margin:0!important;color:white;font-size:13px;line-height:18px;font-weight:700}
+.andy-baila-site-buttons{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.andy-baila-site-buttons span{display:inline-flex;justify-content:center;align-items:center;min-height:27px;padding:4px 13px;border-radius:3px;background:#2abb5b;color:#fff;font-size:10px;line-height:16px;gap:3px}
+.andy-baila-site-buttons span+span{background:#358dc2;font-weight:700}
+.andy-baila-site-phones{display:flex;flex-wrap:wrap;align-items:center;gap:5px;color:white;font-size:18px;line-height:22px}
+.andy-baila-site-phones strong{font-weight:700}
+.andy-baila-site-links{display:flex;flex-wrap:wrap;gap:0;align-items:center;font-size:9px;line-height:13px}
+.andy-baila-site-links span+span{border-left:1px solid #ffffff87;margin-left:9px;padding-left:9px}
+.andy-baila-site-social{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.andy-baila-site-social-icons{display:flex;gap:10px;align-items:center;background:#fff;border-radius:3px;padding:5px 8px}
+.andy-baila-site-social-icons img{display:block;width:16px!important;height:16px!important;max-width:16px;object-fit:contain}
+.andy-baila-site-emergency{display:flex;flex-wrap:wrap;column-gap:9px;row-gap:5px;font-size:10px;line-height:15px;align-items:center}
+.andy-baila-site-emergency strong{font-weight:700}
+.andy-baila-site-copyright{margin:0!important;border-top:1px solid #ffffff99;padding-top:12px;color:#fff;font-size:8px;line-height:13px}
+@media(max-width:520px){
+ .andy-baila-preview-footer{height:355px}
+ .andy-baila-site-footer .andy-baila-site-footer-inner{width:88%;gap:10px}
+ .andy-baila-site-footer .andy-baila-site-logo{width:166px!important}
+ .andy-baila-site-phones{font-size:15px;line-height:20px}
+ .andy-baila-site-emergency{font-size:9px;line-height:13px;column-gap:8px}
+}
