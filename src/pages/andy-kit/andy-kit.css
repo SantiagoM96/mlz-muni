@@ -1646,3 +1646,161 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  .andy-doc-layout .andy-main-heading .andy-doc-page-actions button .material-symbols-outlined{font-size:18px!important}
  .andy-doc-layout .andy-main-heading .andy-doc-step-links{gap:2px}
 }
+
+
+/* UI Kit editorial — paleta Natural de Figma.
+   Black 950 #000; Grey 500 #6D6D6D; Grey 400 #888; Grey 300 #B0B0B0.
+   Sólo chrome/editorial: los componentes y previews del municipio no se recolorean. */
+.andy-kit.andy-doc-layout{
+ --andy-editorial-accent:#000;
+ --andy-editorial-accent-hover:#3d3d3d;
+ --andy-chrome-accent:#000;
+ --andy-chrome-hover:#f6f6f6;
+ --andy-chrome-outline:#d1d1d1;
+ --andy-editorial-text:#6d6d6d;
+ --andy-editorial-subtle:#888;
+ --andy-editorial-muted:#b0b0b0;
+}
+.andy-doc-layout .andy-topbar-heading h1,
+.andy-doc-layout .andy-main-heading h2,
+.andy-doc-layout .andy-section-head h2,
+.andy-doc-layout .andy-doc-section-heading>h3,
+.andy-doc-layout .andy-doc-example>h3,
+.andy-doc-layout .andy-component-directory h3,
+.andy-doc-layout .andy-directory-grid>a>strong,
+.andy-doc-layout .andy-directory-grid>a>.material-symbols-outlined,
+.andy-doc-layout .andy-foundation-type-name,
+.andy-doc-layout .andy-foundation-type .type-section,
+.andy-doc-layout .andy-foundation-intro-copy h2,
+.andy-doc-layout .andy-foundation-eyebrow,
+.andy-doc-layout .andy-foundation-index a>span,
+.andy-doc-layout .andy-foundation-type-row>div>span,
+.andy-doc-layout .andy-foundation-weights span,
+.andy-doc-layout .andy-foundation-color-role strong,
+.andy-doc-layout .andy-geometry-measure strong,
+.andy-doc-layout .andy-radius-data strong,
+.andy-doc-layout .layout-measure>strong,
+.andy-doc-layout .andy-scrollbar-section h3,
+.andy-doc-layout .andy-scrollbar-section>p code,
+.andy-doc-layout .andy-doc-guideline strong,
+.andy-doc-layout .andy-doc-guideline-table tbody th,
+.andy-doc-layout .andy-button-doc-section>h3,
+.andy-doc-layout .andy-button-section-intro h3,
+.andy-doc-layout .andy-button-variant-example h4,
+.andy-doc-layout .andy-button-sizebar strong,
+.andy-doc-layout .andy-button-state-name,
+.andy-doc-layout .andy-button-icon-row>strong,
+.andy-doc-layout .andy-button-size-example strong,
+.andy-doc-layout .andy-button-state-example>strong,
+.andy-doc-layout .andy-button-on-this-page a,
+.andy-doc-layout .andy-button-guidance .material-symbols-outlined,
+.andy-doc-layout .andy-add-guidance strong,
+.andy-doc-layout .andy-add-toast-label,
+.andy-doc-layout .andy-upload-preview-heading{color:#000}
+.andy-doc-layout .andy-main-heading p,
+.andy-doc-layout .andy-doc-description,
+.andy-doc-layout .andy-section-head p,
+.andy-doc-layout .andy-doc-section-heading>p,
+.andy-doc-layout .andy-foundation-intro-copy p,
+.andy-doc-layout .andy-foundation-explainer,
+.andy-doc-layout .andy-foundation-note,
+.andy-doc-layout .andy-foundation-type-hero>p,
+.andy-doc-layout .andy-geometry-lead,
+.andy-doc-layout .andy-geometry-guideline,
+.andy-doc-layout .andy-scrollbar-section>p,
+.andy-doc-layout .andy-doc-guideline-table tbody td,
+.andy-doc-layout .andy-doc-guideline span,
+.andy-doc-layout .andy-doc-section-note{color:#6d6d6d}
+.andy-doc-layout .andy-foundation-index a small,
+.andy-doc-layout .andy-foundation-type-row code,
+.andy-doc-layout .andy-foundation-weights small,
+.andy-doc-layout .andy-radius-data code,
+.andy-doc-layout .andy-radius-data p,
+.andy-doc-layout .andy-foundation-subhead span,
+.andy-doc-layout .andy-doc-toc nav a,
+.andy-doc-layout .andy-main-heading-title>p,
+.andy-doc-layout .andy-foundation-type-overline{color:#888}
+.andy-doc-layout .andy-doc-guideline-table thead th{color:#3d3d3d}
+
+/* Cabecera, versión y navegación lateral — controles del KIT en grises. */
+.andy-doc-layout .andy-topbar>.andy-version,
+.andy-doc-layout .andy-topbar-actions .andy-version{
+ color:#000;
+ background:#f6f6f6;
+ border-color:#d1d1d1;
+}
+.andy-doc-layout .andy-topbar>.andy-version a,
+.andy-doc-layout .andy-topbar-actions .andy-version a{color:inherit}
+.andy-doc-layout .andy-version-updated{color:#6d6d6d}
+.andy-doc-layout .andy-sidebar .andy-nav-link,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link{color:#6d6d6d}
+.andy-doc-layout .andy-sidebar .andy-nav-heading,
+.andy-doc-layout .andy-sidebar .andy-nav-label{color:#888}
+.andy-doc-layout .andy-sidebar .andy-nav-link:hover,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link:hover{
+ color:#000;background:#f6f6f6;
+}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active:hover,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link.active:hover{
+ background:#000;color:#fff;
+}
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-component-name,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .andy-nav-review-mark,
+.andy-doc-layout .andy-sidebar .andy-nav-link.active .material-symbols-outlined{color:#fff}
+.andy-doc-layout .andy-sidebar .andy-nav-review-mark,
+.andy-doc-layout .andy-component-search>.material-symbols-outlined,
+.andy-doc-layout .andy-component-search-clear{color:#6d6d6d}
+.andy-doc-layout .andy-component-search{border-color:#d1d1d1;background:#fff}
+.andy-doc-layout .andy-component-search:focus-within{
+ border-color:#000;box-shadow:0 0 0 2px #00000018;
+}
+.andy-doc-layout .andy-component-search input{color:#6d6d6d}
+.andy-doc-layout .andy-component-search input::placeholder{color:#888}
+.andy-doc-layout .andy-component-search:focus-within>.material-symbols-outlined,
+.andy-doc-layout .andy-component-search-clear:hover{color:#000}
+
+/* Índice derecho: Black 950 para el elemento activo, grises para el resto. */
+.andy-doc-layout .andy-doc-toc>strong{color:#000}
+.andy-doc-layout .andy-doc-toc nav a{color:#888}
+.andy-doc-layout .andy-doc-toc nav a:hover,
+.andy-doc-layout .andy-doc-toc nav a.is-active,
+.andy-doc-layout .andy-doc-toc nav a.is-active:hover,
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location],
+.andy-doc-layout .andy-doc-toc nav a[aria-current=location]:hover{color:#000}
+
+/* Acciones del encabezado — preservan la posición superior derecha. */
+.andy-doc-layout .andy-main-heading .andy-doc-page-actions button,
+.andy-doc-layout .andy-main-heading .andy-doc-step-links a{color:#000;border-color:#d1d1d1}
+.andy-doc-layout .andy-main-heading .andy-doc-page-actions button:hover,
+.andy-doc-layout .andy-main-heading .andy-doc-step-links a:hover{
+ color:#3d3d3d;background:#f6f6f6;
+}
+.andy-doc-layout .andy-main-heading .andy-doc-page-actions button:focus-visible,
+.andy-doc-layout .andy-main-heading .andy-doc-step-links a:focus-visible,
+.andy-doc-layout .andy-sidebar .andy-nav-link:focus-visible,
+.andy-doc-layout .andy-sidebar .andy-nav-label-link:focus-visible,
+.andy-doc-layout .andy-doc-toc nav a:focus-visible,
+.andy-doc-layout .andy-topbar>.andy-version a:focus-visible{
+ outline:2px solid #000;outline-offset:2px;
+}
+
+/* Herramientas de exploración del catálogo; no botones del producto. */
+.andy-doc-layout .andy-button-size-options,
+.andy-doc-layout .andy-button-placement-options{background:#f6f6f6}
+.andy-doc-layout .andy-button-size-options button:not([aria-pressed=true]),
+.andy-doc-layout .andy-button-placement-options button:not([aria-pressed=true]),
+.andy-doc-layout .andy-button-control-row button:not([aria-pressed=true]),
+.andy-doc-layout .andy-palette-size-options button:not([aria-pressed=true]){color:#6d6d6d;border-color:#d1d1d1}
+.andy-doc-layout .andy-button-size-options button[aria-pressed=true],
+.andy-doc-layout .andy-button-placement-options button[aria-pressed=true],
+.andy-doc-layout .andy-button-control-row button[aria-pressed=true],
+.andy-doc-layout .andy-palette-size-options button[aria-pressed=true]{
+ color:#fff;background:#000;border-color:#000;
+}
+.andy-doc-layout .andy-back-to-top,
+.andy-doc-layout .andy-sidebar-toggle{color:#000;border-color:#d1d1d1}
+.andy-doc-layout .andy-sidebar-toggle:hover{background:#f6f6f6}
+.andy-doc-layout .andy-directory-grid>a:hover{border-color:#b0b0b0;background:#fafafa}
+.andy-doc-layout .andy-directory-grid>a:hover>strong{color:#000}
