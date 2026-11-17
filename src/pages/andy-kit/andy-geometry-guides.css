@@ -24,9 +24,9 @@
 .andy-radius-tile:nth-child(even){padding-right:0;padding-left:var(--mlz-space-24)}
 .andy-radius-tile:nth-last-child(-n+2){border-bottom:0}
 .andy-radius-illustration{display:flex;align-items:center;justify-content:center;width:68px;height:62px;gap:0;border:0;border-radius:0;background:transparent}
-.andy-radius-illustration>span{display:block;width:52px;height:52px;border:1px solid #006eff;background:#cce2ff}
+.andy-radius-illustration>span{display:block;width:52px;height:52px;border:1px solid #0058cc;background:#cce2ff}
 .andy-radius-data{display:flex;flex-direction:column;gap:3px;min-width:0}
-.andy-radius-data strong{color:#006eff;font-size:15px;line-height:22px}
+.andy-radius-data strong{color:#0058cc;font-size:15px;line-height:22px}
 .andy-radius-data strong>span{color:#647482;font-weight:400}
 .andy-radius-data code{color:#647482;font-size:11px;line-height:18px;overflow-wrap:anywhere}
 .andy-radius-data p{color:#647482;font-size:12px;line-height:18px;margin:0}
