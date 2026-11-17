@@ -14,7 +14,11 @@
   --color-info-500: #006eff;
   --color-primary-600: #236999;
   --color-primary-700: #19577f;
-  --color-black-950: #000000; /* Figma Natural/Black 950: títulos dentro de las muestras */
+  --color-black-950: #000000; /* Figma Natural/Black 950 */
+  --color-grey-50: #f6f6f6;
+  --color-grey-100: #e7e7e7;
+  --color-grey-200: #d1d1d1;
+  --color-grey-400: #888888;
   --color-grey-500: #6d6d6d;
   --color-grey-900: #3d3d3d;
   --color-success-500: #2abb5b;
