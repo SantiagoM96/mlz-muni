@@ -34,7 +34,7 @@ function ToastExample({variant, onClose, example=false}:{variant:typeof toastVar
 }
 
 function AndyToastDocs(){
- const [active,setActive]=useState<ToastKind|null>(null);
+ const [active,setActive]=useState<ToastKind|null>('success');
  const selected=toastVariants.find(item=>item.id===active);
  return <>
   <DocSection title="Variantes" description="Cuatro notificaciones semánticas que reutilizan los colores e íconos de Mensajes y alertas de MLZ.">
