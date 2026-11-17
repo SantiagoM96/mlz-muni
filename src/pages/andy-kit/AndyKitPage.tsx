@@ -376,17 +376,11 @@ function ComponentDetails({id}:{id:ComponentId}){
   <DocSection title="Básico" description="Apertura única: un panel abierto a la vez, con encabezados interactivos y chevron de estado.">
    <DocPreview><AccordionDemo/></DocPreview>
   </DocSection>
-  <DocSection title="Variantes" description="La estructura se conserva; únicamente cambian la cantidad de paneles abiertos y la disponibilidad de cada uno.">
-   <div className="andy-doc-variant-stack">
-    <div className="andy-doc-variant-item">
-     <div className="andy-doc-variant-caption"><h4>Apertura múltiple</h4><p>Podés desplegar varios paneles a la vez.</p></div>
-     <DocPreview><AccordionDemo multiple/></DocPreview>
-    </div>
-    <div className="andy-doc-variant-item">
-     <div className="andy-doc-variant-caption"><h4>Deshabilitado</h4><p>El segundo ítem, «¿Puedo cambiar el horario?», está deshabilitado; los demás siguen siendo interactivos.</p></div>
-     <DocPreview><AccordionDemo disabledMiddle/></DocPreview>
-    </div>
-   </div>
+  <DocSection title="Apertura múltiple" description="Podés desplegar varios paneles a la vez. Cada encabezado conserva su estado y comportamiento de teclado.">
+   <DocPreview><AccordionDemo multiple/></DocPreview>
+  </DocSection>
+  <DocSection title="Deshabilitado" description="El segundo ítem, «¿Puedo cambiar el horario?», está deshabilitado; los demás siguen siendo interactivos.">
+   <DocPreview><AccordionDemo disabledMiddle/></DocPreview>
   </DocSection>
   <DocSection title="Anatomía" description="Partes estructurales presentes en todas las variantes del acordeón.">
    <GuidelineTable rows={[
