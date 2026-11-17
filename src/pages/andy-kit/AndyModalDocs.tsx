@@ -21,6 +21,9 @@ export function AndyAlertDialogDocs(){
  const selected=examples.find(e=>e.id===active);
  const close=()=>setActive(null);
  return <>
+  <DocSection title="Descripción" description="Alert Dialog solicita una decisión explícita antes de ejecutar una acción que puede tener consecuencias importantes.">
+   <p className="andy-alert-doc-description">Usalo para confirmar acciones sensibles, advertir sobre cambios que no se pueden deshacer o solicitar una respuesta antes de continuar. A diferencia de Dialog, no se cierra al presionar fuera de la ventana; permite confirmar o cancelar con una decisión consciente.</p>
+  </DocSection>
   {examples.map(example=><DocSection key={example.id} title={example.label}
    description={example.id==='basic'
     ? 'Alert Dialog solicita una respuesta cuando la acción tiene consecuencias importantes. Probá una confirmación con dos acciones visibles.'
@@ -83,6 +86,9 @@ export function AndyDialogDocs(){
   {id:'media' as const,title:'Con iconografía',description:'Un ícono acompaña el contenido y refuerza la orientación.',trigger:'Ver con ícono'}
  ];
  return <>
+  <DocSection title="Descripción" description="Dialog muestra contenido y controles en una ventana superpuesta sin abandonar la página actual.">
+   <p className="andy-alert-doc-description">Usalo para completar formularios breves, consultar detalles o editar información dentro del mismo flujo. Puede cerrarse con Cancelar, Escape, el botón de cierre o al presionar el fondo; no debe reemplazar una pantalla completa cuando la tarea necesita más espacio.</p>
+  </DocSection>
   <DocSection title="Básico" description="Abrí un diálogo para agregar horarios a una actividad deportiva. Los controles siguen los criterios del formulario MLZ.">
    <DocPreview><button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
   </DocSection>
