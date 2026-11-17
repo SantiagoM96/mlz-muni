@@ -70,9 +70,7 @@ function Preview({children}:{children:ReactNode}){
 
 export function AndyButtonMatrix(){
  const [stateKind,setStateKind]=useState<Kind>('primary');
- const [iconKind,setIconKind]=useState<Kind>('primary');
- const [iconSize,setIconSize]=useState<Size>('medium');
- const [iconPlacement,setIconPlacement]=useState<IconPlacement>('start');
+ const [iconPlacement,setIconPlacement]=useState<IconPlacement>('none');
  const [loading,setLoading]=useState(false);
  const [lastClicked,setLastClicked]=useState('');
 
@@ -112,13 +110,9 @@ export function AndyButtonMatrix(){
    </DocPreview>
   </DocSection>
 
-  <DocSection title="Íconos" description="La posición y el tamaño del ícono cambian, pero no alteran la altura del botón. Usamos Material Symbols Outlined de peso 400.">
-   <div className="andy-button-icon-controls">
-    <ExampleControls label="Posición del ícono" items={placements} value={iconPlacement} onChange={setIconPlacement}/>
-    <ExampleControls label="Tamaño del botón" items={sizes} value={iconSize} onChange={setIconSize}/>
-    <ExampleControls label="Estilo del botón" items={kinds} value={iconKind} onChange={setIconKind}/>
-   </div>
-   <Preview><ButtonSample kind={iconKind} size={iconSize} icon={iconPlacement}/></Preview>
+  <DocSection title="Íconos" description="Compará el botón Primario en tamaño Medium: sin ícono, con ícono a la izquierda, a la derecha o solo ícono. Usamos Material Symbols Outlined de peso 400.">
+   <ExampleControls label="Posición del ícono" items={placements} value={iconPlacement} onChange={setIconPlacement}/>
+   <Preview><ButtonSample kind="primary" size="medium" icon={iconPlacement}/></Preview>
   </DocSection>
 
   <DocSection title="Loading / Spinner" description="El estado Loading comunica que una operación está procesándose e impide activaciones repetidas. Conserva el estilo y el tamaño de cada botón.">
