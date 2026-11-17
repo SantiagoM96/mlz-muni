@@ -449,11 +449,11 @@ export function AndyKitPage(){
    </aside>
    <main className="andy-doc-main" id="andy-content">
     <div className="andy-main-heading">
-     <div><p>{isComponent?'Components / '+meta?.category:(categoria==='fundamentos'?'Foundations':'Patterns')+' / '+(legacy?.name||'Foundations')}</p>
+     <div className="andy-main-heading-title"><p>{isComponent?'Components / '+meta?.category:(categoria==='fundamentos'?'Foundations':'Patterns')+' / '+(legacy?.name||'Foundations')}</p>
       <h2>{displayName}</h2>
-      {meta&&<div className="andy-doc-description">{meta.description}</div>}
      </div>
      {isComponent&&<div className="andy-doc-page-actions"><button type="button" onClick={()=>{void navigator.clipboard?.writeText(window.location.href).then(()=>setCopied(true)).catch(()=>setCopied(false))}}><Icon name="content_copy" size={18}/>{copied?'Copiado':'Copiar enlace'}</button><span className="andy-doc-step-links">{previousComponent&&<NavLink to={'/ui-kit-andy/componentes/'+previousComponent[0]} aria-label={'Componente anterior: '+previousComponent[1]}><Icon name="arrow_back" size={20}/></NavLink>}{nextComponent&&<NavLink to={'/ui-kit-andy/componentes/'+nextComponent[0]} aria-label={'Componente siguiente: '+nextComponent[1]}><Icon name="arrow_forward" size={20}/></NavLink>}</span></div>}
+     {meta&&<div className="andy-doc-description">{meta.description}</div>}
     </div>
     {isComponent?<div className="andy-doc-page"><ComponentDetails id={componentEntry[0]}/></div>:
      isDirectory?<div className="andy-component-directory">{componentGroups.map(group=><section key={group.title}>
