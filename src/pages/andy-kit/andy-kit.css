@@ -2015,3 +2015,15 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-component-search input::placeholder{
  color:#888;
 }
+
+
+/* Contrato editorial compartido: todas las superficies de demostración
+   (Field Group, Responsive Layout, Dialog, Attachment, etc.) tienen
+   40px mínimos en ambos ejes. No modifica el padding de los componentes
+   internos ni las tablas de documentación. */
+.andy-doc-layout .andy-doc-page .andy-doc-demo,
+.andy-doc-layout .andy-doc-page .andy-doc-preview{
+ padding-block:max(40px,var(--mlz-space-40,40px));
+ padding-inline:max(40px,var(--mlz-space-40,40px));
+ box-sizing:border-box;
+}
