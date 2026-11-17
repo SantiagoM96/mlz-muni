@@ -3,7 +3,7 @@ import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import './andy-button-matrix.css';
 
-type Kind='primary'|'secondary'|'tertiary'|'ghost'|'link';
+type Kind='primary'|'secondary'|'tertiary'|'ghost'|'destructive'|'link';
 type Size='large'|'medium'|'small';
 type State='default'|'hover'|'focus'|'pressed'|'active'|'disabled';
 type IconPlacement='none'|'start'|'end'|'only';
@@ -13,6 +13,7 @@ const kinds:{id:Kind;label:string;description:string}[]=[
  {id:'secondary',label:'Secundario',description:'Complementa la acción principal sin competir con ella en prominencia visual.'},
  {id:'tertiary',label:'Terciario',description:'Alternativa con borde para volver, cancelar o limpiar un valor sin protagonismo principal.'},
  {id:'ghost',label:'Ghost',description:'Acción auxiliar sin fondo permanente; la superficie aparece al interactuar.'},
+ {id:'destructive',label:'Destructive',description:'Para eliminar o ejecutar acciones que pueden tener consecuencias irreversibles. Su color utiliza la paleta Error de MLZ y, cuando corresponde, la acción requiere confirmación explícita.'},
  {id:'link',label:'Link',description:'Acción de apariencia textual. Para navegar de página, utilizá un enlace semántico.'},
 ];
 const sizes:{id:Size;label:string;description:string}[]=[
@@ -38,7 +39,7 @@ const placements:{id:IconPlacement;label:string}[]=[
 function ButtonSample({kind,size,state='default',icon='none',loading=false,onClick}:{
  kind:Kind;size:Size;state?:State;icon?:IconPlacement;loading?:boolean;onClick?:()=>void;
 }){
- const label=kinds.find(item=>item.id===kind)?.label??'Acción';
+ const label=kind==='destructive'?'Eliminar':(kinds.find(item=>item.id===kind)?.label??'Acción');
  const iconSize=size==='small'?16:size==='medium'?18:20;
  return <button type="button" disabled={state==='disabled'||loading} onClick={onClick}
   className={'andy-system-button is-'+kind+' is-'+size+' state-'+state+' icon-'+icon+(loading?' is-loading':'')}
@@ -75,7 +76,7 @@ export function AndyButtonMatrix(){
  const [lastClicked,setLastClicked]=useState('');
 
  return <>
-  <DocSection title="Descripción" description="Button representa una acción que una persona puede ejecutar. La jerarquía entre Primario, Secundario, Terciario, Ghost y Link debe ser consistente con la importancia de cada acción.">{null}</DocSection>
+  <DocSection title="Descripción" description="Button representa una acción que una persona puede ejecutar. La jerarquía entre Primario, Secundario, Terciario, Ghost, Destructive y Link debe ser consistente con la importancia de cada acción.">{null}</DocSection>
 
   <DocSection title="Básico" description="Ejemplo de una acción principal junto a una alternativa de menor jerarquía. Conservan la geometría, los colores y la tipografía institucional.">
    <Preview>
@@ -152,7 +153,7 @@ export function AndyButtonMatrix(){
 
   <DocSection title="Especificaciones" description="Valores de diseño institucionales que conserva el componente en todos sus estilos y estados.">
    <GuidelineTable rows={[
-    ['Estilos','Primario, Secundario, Terciario, Ghost y Link.'],
+    ['Estilos','Primario, Secundario, Terciario, Ghost, Destructive y Link.'],
     ['Tamaños','Small 32 px · Medium 40 px · Large 48 px.'],
     ['Radio','4 px, sin redondeo pill predeterminado.'],
     ['Tipografía','Geometria Bold: 14 px Small, 16 px Medium y 18 px Large.'],
@@ -160,7 +161,7 @@ export function AndyButtonMatrix(){
     ['Focus','Contorno de 2 px, visible al navegar con teclado.'],
     ['Íconos','Material Symbols Outlined: 16 px Small, 18 px Medium y 20 px Large.'],
     ['Loading','Spinner animado, respetando prefers-reduced-motion y sin perder la prominencia cromática.'],
-    ['Acción destructiva','Se documenta en contextos que requieren confirmación; no es un sexto estilo base.'],
+    ['Destructive','Color Error de MLZ: #EF284C en reposo, #CE1E3E en hover y #B51D37 en pressed. Texto blanco.'],
     ['Button Group','Se documenta de manera independiente en Actions.'],
    ]}/>
   </DocSection>
@@ -173,6 +174,7 @@ export function AndyButtonMatrix(){
     ['Loading','Evita envíos duplicados y comunica aria-busy durante el proceso.'],
     ['Solo ícono','Debe incluir un nombre accesible como aria-label.'],
     ['Toggle','aria-pressed solo corresponde a botones de selección real.'],
+    ['Destructive','Usar solo para operaciones de riesgo como eliminar o descartar. Confirmar las irreversibles con Alert Dialog y no depender únicamente del color.'],
     ['Jerarquía','Evitar dos acciones primarias compitiendo en el mismo bloque.'],
    ]}/>
   </DocSection>

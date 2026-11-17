@@ -52,6 +52,7 @@
 .andy-system-button.is-secondary{background:#5ba8d5;color:#fff}
 .andy-system-button.is-tertiary{background:#fff;color:#236999;border-color:#94c6e5}
 .andy-system-button.is-ghost,.andy-system-button.is-link{background:transparent;color:#236999}
+.andy-system-button.is-destructive{background:#ef284c;color:#fff}
 .andy-system-button.is-link{padding-inline:0;text-underline-offset:3px}
 .andy-system-button.is-primary.state-hover,.andy-system-button.is-primary:hover:not(:disabled){background:#1f5a85}
 .andy-system-button.is-primary.state-pressed,.andy-system-button.is-primary.state-active,.andy-system-button.is-primary:active:not(:disabled){background:#1e415c}
@@ -61,6 +62,8 @@
 .andy-system-button.is-tertiary.state-pressed,.andy-system-button.is-tertiary.state-active,.andy-system-button.is-tertiary:active:not(:disabled){background:#e5f0ff}
 .andy-system-button.is-ghost.state-hover,.andy-system-button.is-ghost:hover:not(:disabled){background:#f3f7fc}
 .andy-system-button.is-ghost.state-pressed,.andy-system-button.is-ghost.state-active,.andy-system-button.is-ghost:active:not(:disabled){background:#e5f0ff}
+.andy-system-button.is-destructive.state-hover,.andy-system-button.is-destructive:hover:not(:disabled){background:#ce1e3e}
+.andy-system-button.is-destructive.state-pressed,.andy-system-button.is-destructive.state-active,.andy-system-button.is-destructive:active:not(:disabled){background:#b51d37}
 .andy-system-button.is-link.state-hover,.andy-system-button.is-link:hover:not(:disabled){text-decoration:underline}
 .andy-system-button.is-link.state-pressed{color:#358dc2;text-decoration:underline}
 .andy-system-button.is-link.state-active,.andy-system-button.is-link:active:not(:disabled){color:#006eff;text-decoration:underline}
