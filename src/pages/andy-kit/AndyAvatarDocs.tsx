@@ -39,10 +39,7 @@ function AvatarPlayground(){
   {id:'photo',label:'Fotografía'},{id:'initials',label:'Iniciales'},{id:'icon',label:'Ícono'},
  ];
  return <div className="andy-avatar-playground">
-  <div className="andy-avatar-playground-preview">
-   <PersonAvatar variant={variant} size={size} status={withBadge}/>
-  </div>
-  <div className="andy-avatar-playground-options">
+  <div className="andy-avatar-toolbar" role="toolbar" aria-label="Personalizar el avatar">
    <div className="andy-avatar-control-row" role="group" aria-label="Contenido del avatar">
     {variants.map(item=><button type="button" key={item.id} className={'andy-avatar-choice'+(variant===item.id?' is-selected':'')}
      aria-pressed={variant===item.id} onClick={()=>setVariant(item.id)}>{item.label}</button>)}
@@ -51,7 +48,15 @@ function AvatarPlayground(){
     {sizes.map(item=><button type="button" key={item.id} className={'andy-avatar-choice'+(size===item.id?' is-selected':'')}
      aria-pressed={size===item.id} onClick={()=>setSize(item.id)}>{item.label}</button>)}
    </div>
-   <label className="andy-avatar-badge-toggle"><input type="checkbox" checked={withBadge} onChange={e=>setWithBadge(e.target.checked)}/> Mostrar indicador de disponibilidad</label>
+   <button type="button" className={'andy-avatar-indicator-toggle'+(withBadge?' is-selected':'')}
+    aria-pressed={withBadge} onClick={()=>setWithBadge(value=>!value)}
+    title={withBadge?'Ocultar indicador de disponibilidad':'Mostrar indicador de disponibilidad'}>
+    <MaterialIcon name={withBadge?'check_circle':'radio_button_unchecked'} size={18} weight={400}/>
+    <span>Indicador</span>
+   </button>
+  </div>
+  <div className="andy-avatar-playground-preview">
+   <PersonAvatar variant={variant} size={size} status={withBadge}/>
   </div>
  </div>;
 }
@@ -152,7 +157,7 @@ export function AndyAvatarDocs(){
   <DocSection title="Descripción" description="Avatar representa a una persona mediante su imagen, sus iniciales o un ícono alternativo. Puede usarse individualmente, con indicadores o en grupos.">{null}</DocSection>
 
   <DocSection title="Básico" description="Probá las tres presentaciones, los cinco tamaños y el indicador. Esta muestra es interactiva.">
-   <DocPreview><AvatarPlayground/></DocPreview>
+   <DocPreview className="andy-avatar-basic-demo"><AvatarPlayground/></DocPreview>
   </DocSection>
 
   <DocSection title="Variantes" description="La fotografía es prioritaria cuando existe; iniciales e ícono actúan como alternativas.">
