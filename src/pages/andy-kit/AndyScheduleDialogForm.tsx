@@ -58,7 +58,7 @@ function ScheduleDropdown({id,label,value,options,onChange}:{id:string;label:str
    event.preventDefault();if(!open){show();return;}move(event.key==='ArrowDown'?1:-1);return;
   }
   if(event.key==='Home'&&open){event.preventDefault();setActive(Math.max(0,options.findIndex(option=>!option.disabled)));return;}
-  if(event.key==='End'&&open){event.preventDefault();setActive(Math.max(0,options.findLastIndex(option=>!option.disabled)));return;}
+  if(event.key==='End'&&open){event.preventDefault();setActive(Math.max(0,options.reduce((last,option,index)=>option.disabled?last:index,0)));return;}
   if((event.key==='Enter'||event.key===' ')&&open){event.preventDefault();choose(active);}
  };
  return <div className="andy-schedule-select-wrap" ref={root} onKeyDown={key}>
