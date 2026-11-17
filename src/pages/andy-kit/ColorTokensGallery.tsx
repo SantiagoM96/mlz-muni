@@ -21,7 +21,7 @@ function textColor(hex: string) {
  const g=parseInt(hex.slice(3,5),16)/255;
  const b=parseInt(hex.slice(5,7),16)/255;
  const linear=[r,g,b].map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4);
- const luminance=linear[0]*.2126+linear[1]*.7152+linear[2]*.0722;
+ const luminance=(linear[0]??0)*.2126+(linear[1]??0)*.7152+(linear[2]??0)*.0722;
  return luminance>.38?'#172532':'#ffffff';
 }
 
