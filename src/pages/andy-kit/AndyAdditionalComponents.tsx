@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
+import { AndyDialogDocs, AndyAlertDialogDocs } from './AndyModalDocs';
 import './andy-additional-components.css';
 
 export const additionalComponents = [
@@ -118,6 +119,8 @@ const visualGuidance:Partial<Record<AdditionalId,{heading:string;description:str
  'button-group':{heading:'Acciones agrupadas',description:'Botones relacionados presentados en una misma fila.',rows:[['Agrupación','Mantener próximas las acciones que pertenecen al mismo contexto.'],['Estados','Conservar la jerarquía y el estado de cada botón.']]}
 };
 export function AndyAdditionalComponent({id}:{id:AdditionalId}){
+ if(id==='dialog')return <AndyDialogDocs/>;
+ if(id==='alert-dialog')return <AndyAlertDialogDocs/>;
  const guidance=visualGuidance[id];
  const [visible,setVisible]=useState(false);
  const [value,setValue]=useState(45);
@@ -155,9 +158,7 @@ export function AndyAdditionalComponent({id}:{id:AdditionalId}){
   case 'separator':demo=<div className="andy-add-stack"><span>Primera sección</span><hr/><span>Segunda sección</span></div>;break;
   case 'collapsible':demo=<div className="andy-add-stack"><button className="andy-btn andy-btn-outline" type="button" aria-expanded={expanded} aria-controls="andy-collapsible-content" onClick={()=>setExpanded(!expanded)}>Información adicional {expanded?'−':'+'}</button>{expanded&&<div id="andy-collapsible-content" className="andy-add-panel">Contenido complementario expandido.</div>}</div>;break;
   case 'button-group':demo=<div className="andy-add-inline" role="group" aria-label="Alineación">{['Izquierda','Centro','Derecha'].map(v=><button key={v} className={'andy-btn '+(selected.includes(v)?'andy-btn-primary':'andy-btn-outline')} type="button" aria-pressed={selected.includes(v)} onClick={()=>setSelected([v])}>{v}</button>)}</div>;break;
-  case 'dialog':
-  case 'alert-dialog':
-  case 'sheet':demo=<>{button('Abrir '+(id==='sheet'?'panel':id==='alert-dialog'?'confirmación':'diálogo'),()=>setVisible(true))}{visible&&<div className="andy-add-overlay" onMouseDown={close}><div role="dialog" aria-modal="true" aria-labelledby="andy-add-dialog-title" className={'andy-add-dialog '+(id==='sheet'?'is-sheet':'')} onMouseDown={e=>e.stopPropagation()}><h3 id="andy-add-dialog-title">{id==='alert-dialog'?'¿Confirmar la acción?':id==='sheet'?'Panel lateral':'Detalle'}</h3><p>{id==='alert-dialog'?'Esta acción modifica únicamente el estado de esta demostración.':'Ejemplo de contenido que se presenta en una capa independiente.'}</p><div className="andy-add-inline"><button className="andy-btn andy-btn-outline" type="button" onClick={close}>Cancelar</button>{button('Confirmar',close)}</div></div></div>}</>;break;
+  case 'sheet':demo=<>{button('Abrir panel',()=>setVisible(true))}{visible&&<div className="andy-add-overlay" onMouseDown={close}><div role="dialog" aria-modal="true" aria-labelledby="andy-add-dialog-title" className="andy-add-dialog is-sheet" onMouseDown={e=>e.stopPropagation()}><h3 id="andy-add-dialog-title">Panel lateral</h3><p>Ejemplo de contenido que se presenta en una capa independiente.</p><div className="andy-add-inline"><button className="andy-btn andy-btn-outline" type="button" onClick={close}>Cancelar</button>{button('Confirmar',close)}</div></div></div>}</>;break;
   default: demo=null;
  }
  if(id==='toast')return <AndyToastDocs/>;
