@@ -32,19 +32,15 @@ export function AndyAlertDialogDocs(){
     </button>
    </DocPreview>
   </DocSection>
-  <DocSection title="Variantes" description="El mismo patrón de confirmación puede ser compacto, incluir iconografía o reforzar una acción destructiva.">
-   <div className="andy-doc-variant-stack">
-    {examples.filter(example=>example.id!=='basic').map(example=><div className="andy-doc-variant-item" key={example.id}>
-     <div className="andy-doc-variant-caption"><h4>{example.label}</h4><p>{example.description}</p></div>
-     <DocPreview>
-      <button type="button" className="andy-system-button is-tertiary is-medium icon-start"
-       onClick={()=>setActive(example.id)}>
-       <MaterialIcon name="visibility" size={18}/>{example.trigger}
-      </button>
-     </DocPreview>
-    </div>)}
-   </div>
-  </DocSection>
+  {examples.filter(example=>example.id!=='basic').map(example=><DocSection
+   key={example.id} title={example.label} description={example.description}>
+   <DocPreview>
+    <button type="button" className="andy-system-button is-tertiary is-medium icon-start"
+     onClick={()=>setActive(example.id)}>
+     <MaterialIcon name="visibility" size={18}/>{example.trigger}
+    </button>
+   </DocPreview>
+  </DocSection>)}
   <DocSection title="Anatomía" description="Partes reutilizables del modal, diferenciando estructura de contenido y acciones.">
    <GuidelineTable rows={[
     ['Overlay','Fondo modal que desactiva la interacción con la página.'],
@@ -112,16 +108,13 @@ export function AndyDialogDocs(){
   <DocSection title="Básico" description="Abrí un diálogo para agregar horarios a una actividad deportiva. Los controles siguen los criterios del formulario MLZ.">
    <DocPreview><button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
   </DocSection>
-  <DocSection title="Variantes" description="Distintas composiciones del mismo Dialog: compacto, informativo o con un ícono de apoyo.">
-   <div className="andy-doc-variant-stack">
-    {variants.map(variant=><div className="andy-doc-variant-item" key={variant.id}>
-     <div className="andy-doc-variant-caption"><h4>{variant.title}</h4><p>{variant.description}</p></div>
-     <DocPreview><button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open(variant.id)}>
-      <MaterialIcon name="visibility" size={18}/>{variant.trigger}
-     </button></DocPreview>
-    </div>)}
-   </div>
-  </DocSection>
+  {variants.map(variant=><DocSection key={variant.id} title={variant.title} description={variant.description}>
+   <DocPreview>
+    <button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open(variant.id)}>
+     <MaterialIcon name="visibility" size={18}/>{variant.trigger}
+    </button>
+   </DocPreview>
+  </DocSection>)}
   <DocSection title="Anatomía" description="Dialog utiliza una estructura reutilizable; los contenidos y campos son propios de cada tarea.">
    <GuidelineTable rows={[
     ['Overlay','Oscurece toda la ventana, incluido el encabezado del UI Kit; el contenido de fondo queda inactivo.'],
