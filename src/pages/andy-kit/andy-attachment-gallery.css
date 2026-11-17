@@ -138,3 +138,55 @@
  .andy-icon-upload > .andy-attachment-lifecycle-row{padding:8px 12px;gap:12px}
  .andy-icon-upload .andy-attachment-lifecycle-media{width:40px;height:40px;flex-basis:40px}
 }
+
+
+/* La matriz de Ícono sigue el mismo patrón editorial que Estándar y Borde
+   punteado: una muestra interactiva y otra caja con ocho estados rotulados. */
+.andy-doc-layout .andy-doc-page .andy-doc-demo .andy-icon-state-matrix{
+ width:min(100%,674px);
+ max-width:100%;
+ margin-inline:auto;
+}
+.andy-icon-state-matrix .andy-state-cell{min-width:0}
+.andy-icon-state-matrix .andy-icon-upload{
+ width:min(100%,640px);
+ max-width:100%;
+ margin-inline:auto;
+}
+.andy-icon-upload[data-state="hover"] .andy-icon-upload-trigger{
+ border-color:#236999;
+ background:#fafcfe;
+}
+.andy-icon-upload[data-state="focus"] .andy-icon-upload-trigger{
+ border-color:#006eff;
+ background:#fff;
+ box-shadow:inset 0 0 0 1px #006eff;
+}
+.andy-icon-upload[data-state="error"] > .andy-attachment-lifecycle-row,
+.andy-icon-upload > .andy-attachment-lifecycle-row.is-error{
+ border-color:#ef284c;
+}
+.andy-icon-upload[data-state="error"] .andy-dashed-upload-title{
+ color:#ef284c;
+}
+.andy-icon-upload[data-state="disabled"] .andy-icon-upload-trigger,
+.andy-icon-upload[data-state="disabled"] .andy-icon-upload-trigger:hover,
+.andy-icon-upload[data-state="disabled"] .andy-icon-upload-trigger:focus-within{
+ background:#f5f9fc;
+ border-color:#c6dff1;
+ box-shadow:none;
+ cursor:not-allowed;
+}
+.andy-icon-upload[data-state="disabled"] .andy-icon-upload-trigger-copy strong,
+.andy-icon-upload[data-state="disabled"] .andy-icon-upload-trigger-copy > span,
+.andy-icon-upload[data-state="disabled"] .andy-icon-upload-trigger .andy-attachment-lifecycle-media{
+ color:#94b6cd;
+}
+.andy-icon-upload[data-state="disabled"] .andy-icon-upload-trigger .andy-attachment-lifecycle-media{
+ background:#e8f1f8;
+}
+.andy-icon-upload[data-state] .andy-icon-upload-trigger input[type=file]{pointer-events:none}
+.andy-icon-upload[data-state] .andy-attachment-lifecycle-action:disabled{
+ opacity:.65;
+ cursor:default;
+}
