@@ -1804,3 +1804,35 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
 .andy-doc-layout .andy-sidebar-toggle:hover{background:#f6f6f6}
 .andy-doc-layout .andy-directory-grid>a:hover{border-color:#b0b0b0;background:#fafafa}
 .andy-doc-layout .andy-directory-grid>a:hover>strong{color:#000}
+
+
+/* Inspector, referencias y estados de interacción exclusivos del UI Kit. */
+.andy-doc-layout .andy-doc-page{
+ --andy-doc-tool-accent:#000;
+ --andy-doc-tool-wash:#f6f6f6;
+ --andy-doc-tool-text:#6d6d6d;
+}
+.andy-doc-layout .andy-doc-page .andy-button-control-row button,
+.andy-doc-layout .andy-doc-page .andy-palette-size-options button{
+ border-color:#d1d1d1;
+ color:#6d6d6d;
+}
+.andy-doc-layout .andy-doc-page .andy-button-control-row button:hover:not([aria-pressed=true]),
+.andy-doc-layout .andy-doc-page .andy-palette-size-options button:hover:not([aria-pressed=true]){
+ color:#000;background:#f6f6f6;border-color:#888;
+}
+.andy-doc-layout .andy-doc-page .andy-button-control-row button[aria-pressed=true],
+.andy-doc-layout .andy-doc-page .andy-button-control-row button[aria-pressed=true]:hover,
+.andy-doc-layout .andy-doc-page .andy-palette-size-options button[aria-pressed=true],
+.andy-doc-layout .andy-doc-page .andy-palette-size-options button[aria-pressed=true]:hover{
+ color:#fff;background:#000;border-color:#000;
+}
+.andy-doc-layout .andy-doc-guideline-table-wrap{border-left-color:#888}
+.andy-doc-layout .andy-doc-guideline-table{color:#6d6d6d}
+.andy-doc-layout .andy-doc-guideline-table th,
+.andy-doc-layout .andy-doc-guideline-table td{border-bottom-color:#e7e7e7}
+.andy-doc-layout .andy-doc-guideline-table thead th{color:#3d3d3d}
+.andy-doc-layout .andy-doc-guideline-table tbody th{color:#000}
+.andy-doc-layout .andy-palette-sizebar.andy-doc-inspector h3,
+.andy-doc-layout .andy-doc-inspector-label{color:#000}
+.andy-doc-layout .andy-doc-inspector-label small{color:#888}
