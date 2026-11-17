@@ -15,7 +15,7 @@ import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadStates, AndySolidUploadStates, AndySolidUploadPreview, AndyDashedUpload } from './AndyDashedUpload';
-import { AndyAttachmentGallery, AndyAttachmentStates, AndyAttachmentLifecycle, AndyIconUpload } from './AndyAttachmentGallery';
+import { AndyAttachmentGallery, AndyAttachmentLifecycle, AndyIconUpload } from './AndyAttachmentGallery';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
