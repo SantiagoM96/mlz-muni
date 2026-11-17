@@ -130,7 +130,7 @@ export function AndyBreadcrumbDocs(){
     ['Espaciado','8 px entre elementos y dentro de cada nivel; basado en --mlz-space-8.'],
     ['Opciones de separador','Chevron (predeterminado) o Barra (slash).'],
     ['Colapsado','Disponible a partir de cinco niveles; conserva Inicio, padre y página actual visibles.'],
-    ['Menú','El disparador mide 28 × 26 px, usa fondo Primario 100 (#E5F0F9), trazo azul suave e ícono Primario 600. El desplegable conserva fondo blanco, radio 8 px y foco visible.'],
+    ['Menú','El disparador mide 28 × 26 px: solo tres puntos en Primario 600 en reposo, sin borde ni fondo; en hover aparece fondo Primario 100 (#E5F0F9). El desplegable conserva fondo blanco, radio 8 px y foco visible.'],
     ['Responsive','Por debajo de 640 px, «Volver» sustituye la ruta cuando mobileParentOnly está activo y existe padre navegable.'],
     ['Ejemplos','Una sola caja blanca. Las etiquetas son estáticas, sin hipervínculos; el control de puntos suspensivos sí despliega los niveles ocultos.'],
    ]}/>
