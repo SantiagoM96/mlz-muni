@@ -81,21 +81,19 @@ export function AndyDialogDocs(){
   close();
  };
  const variants=[
-  {id:'schedule' as const,label:'Agregar horarios deportivos',desc:'Formulario con cupos, inicio, finalización, duración y sede.',trigger:'Agregar horario'},
-  {id:'compact' as const,label:'Small',desc:'Tamaño reducido para información breve.',trigger:'Ver small'},
-  {id:'details' as const,label:'Detalle informativo',desc:'Contenido sencillo con cierre y acción principal.',trigger:'Ver detalle'},
-  {id:'media' as const,label:'Con iconografía',desc:'Un ícono acompaña el contenido y refuerza la orientación.',trigger:'Ver con ícono'}
+  {id:'compact' as const,title:'Small',description:'Tamaño reducido para información breve.',trigger:'Ver small'},
+  {id:'details' as const,title:'Detalle informativo',description:'Contenido sencillo con cierre y acción principal.',trigger:'Ver detalle'},
+  {id:'media' as const,title:'Con iconografía',description:'Un ícono acompaña el contenido y refuerza la orientación.',trigger:'Ver con ícono'}
  ];
  return <>
   <DocSection title="Básico" description="Abrí un diálogo para agregar horarios a una actividad deportiva. Los controles siguen los criterios del formulario MLZ.">
    <DocPreview><button type="button" className="andy-system-button is-primary is-medium icon-start" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
   </DocSection>
-  <DocSection title="Variantes" description="El formulario deportivo es la referencia principal. Las variantes adicionales muestran tamaños y composiciones de Dialog.">
-   <div className="andy-modal-variant-list">{variants.map(v=><div className="andy-modal-variant" key={v.id}>
-    <div className="andy-modal-variant-info"><div><strong>{v.label}</strong><p>{v.desc}</p></div></div>
-    <button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open(v.id)}><MaterialIcon name={v.id==='schedule'?'add_circle':'visibility'} size={18}/>{v.trigger}</button>
-   </div>)}</div>
-  </DocSection>
+  {variants.map(variant=><DocSection key={variant.id} title={variant.title} description={variant.description}>
+   <DocPreview><button type="button" className="andy-system-button is-tertiary is-medium icon-start" onClick={()=>open(variant.id)}>
+    <MaterialIcon name="visibility" size={18}/>{variant.trigger}
+   </button></DocPreview>
+  </DocSection>)}
   <DocSection title="Anatomía" description="Dialog utiliza una estructura reutilizable; los contenidos y campos son propios de cada tarea.">
    <GuidelineTable rows={[
     ['Overlay','Oscurece toda la ventana, incluido el encabezado del UI Kit; el contenido de fondo queda inactivo.'],
