@@ -80,3 +80,50 @@
  border-style:dashed;
  box-shadow:none;
 }
+
+
+/* Archivo único: la carga ocurre dentro de la misma caja, sin cambiar sus 48px. */
+.andy-single-upload .andy-dashed-upload-control{gap:8px}
+.andy-single-upload .andy-upload-inline-icon{
+ display:grid;place-items:center;flex:0 0 20px;width:20px;height:20px;color:#236999;pointer-events:none;
+}
+.andy-single-upload .andy-upload-inline-icon.is-spinning .material-symbols-outlined{
+ animation:andy-upload-inline-spin 1.1s linear infinite;
+}
+@keyframes andy-upload-inline-spin{to{transform:rotate(360deg)}}
+.andy-single-upload .andy-dashed-upload-action{flex:0 0 auto}
+.andy-single-upload .andy-dashed-upload-value{
+ flex:0 1 auto;display:flex;align-items:center;min-width:0;max-width:100%;
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.andy-single-upload .andy-dashed-upload-control.is-uploading .andy-dashed-upload-value{
+ flex:1 1 auto;max-width:240px;
+}
+.andy-single-upload .andy-upload-inline-progress{
+ display:block;width:100%;min-width:44px;height:4px;overflow:hidden;
+ border-radius:var(--mlz-radius-full,999px);background:#e5f0f9;
+}
+.andy-single-upload .andy-upload-inline-progress>span{
+ display:block;width:0;height:100%;border-radius:inherit;background:#006eff;
+}
+.andy-single-upload .andy-upload-inline-remove{
+ margin-left:auto;flex:0 0 28px;display:grid;place-items:center;
+ width:28px;height:28px;padding:0;border:0;border-radius:var(--mlz-radius-sm);
+ background:transparent;color:#236999;cursor:pointer;position:relative;z-index:2;
+}
+.andy-single-upload .andy-upload-inline-remove:hover{background:#e5f0f9}
+.andy-single-upload .andy-upload-inline-remove:focus-visible{outline:2px solid #006eff;outline-offset:1px}
+.andy-single-upload .andy-upload-inline-remove:disabled{opacity:.5;cursor:default}
+.andy-single-upload[data-state="disabled"] .andy-upload-inline-icon{color:#94c6e5}
+.andy-single-upload[data-state="error"] .andy-upload-inline-icon,
+.andy-single-upload .andy-dashed-upload-control.is-error .andy-upload-inline-icon{color:#ef284c}
+.andy-single-upload .andy-dashed-upload-control.is-processing .andy-dashed-upload-value{color:#657886}
+@media(prefers-reduced-motion:reduce){
+ .andy-single-upload .andy-upload-inline-icon.is-spinning .material-symbols-outlined{animation:none}
+}
+@media(max-width:440px){
+ .andy-single-upload .andy-dashed-upload-control{gap:6px;padding-inline:10px}
+ .andy-single-upload .andy-upload-inline-icon{flex-basis:18px;width:18px}
+ .andy-single-upload .andy-dashed-upload-action{font-size:12px}
+ .andy-single-upload .andy-dashed-upload-value{font-size:12px}
+}
