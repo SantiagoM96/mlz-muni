@@ -128,10 +128,9 @@
  .andy-single-upload .andy-dashed-upload-value{font-size:12px}
 }
 
-/* Tipografía unificada — Figma Natural/Grey 500 para texto de campo
-   en Estándar y Borde punteado. Los estados semánticos conservan sus iconos,
-   bordes y mensajes de error, y las etiquetas de la matriz siguen negras. */
-.andy-single-upload .andy-dashed-upload-title,
+/* Gris 500 solamente en el texto interno y ayuda del control.
+   El label «Documentación adjunta» conserva Primario 600 (#236999).
+   Los estados semánticos conservan sus colores y las etiquetas de matriz, negro. */
 .andy-single-upload .andy-dashed-upload-action,
 .andy-single-upload .andy-dashed-upload-value,
 .andy-single-upload .andy-dashed-upload-value.has-file,
