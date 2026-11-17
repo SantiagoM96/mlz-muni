@@ -4,6 +4,7 @@ import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { AndyModal, type ModalIntent, type ModalSize } from './AndyModal';
 import { AndyScheduleDialogForm, defaultSchedule, type ScheduleDraft } from './AndyScheduleDialogForm';
 import './andy-modal-docs.css';
+import './andy-button-matrix.css';
 
 type AlertVariant = 'basic' | 'small' | 'media' | 'small-media' | 'destructive';
 const examples: {id:AlertVariant;label:string;description:string;trigger:string;title:string;body:string;confirm:string;size:ModalSize;intent:ModalIntent;media?:'info'|'warning'|'delete'}[] = [
@@ -21,7 +22,7 @@ export function AndyAlertDialogDocs(){
  const close=()=>setActive(null);
  return <>
   <DocSection title="Básico" description="Alert Dialog solicita una respuesta cuando la acción tiene consecuencias importantes. Probá una confirmación con dos acciones visibles.">
-   <DocPreview><button type="button" className="andy-modal-trigger" onClick={()=>setActive('basic')}>Abrir confirmación</button></DocPreview>
+   <DocPreview><button type="button" className="andy-system-button is-primary is-large icon-start" onClick={()=>setActive('basic')}>Abrir confirmación</button></DocPreview>
   </DocSection>
   <DocSection title="Variantes" description="Cinco composiciones inspiradas en Alert Dialog de shadcn/ui, utilizando la identidad institucional de MLZ.">
    <div className="andy-modal-variant-list">
@@ -30,7 +31,7 @@ export function AndyAlertDialogDocs(){
       {example.media&&<span className={'andy-modal-variant-icon'+(example.intent==='destructive'?' is-danger':'')}><MaterialIcon name={example.media} size={22}/></span>}
       <div><strong>{example.label}</strong><p>{example.description}</p></div>
      </div>
-     <button type="button" className="andy-modal-trigger is-outline" onClick={()=>setActive(example.id)}><MaterialIcon name={example.intent==='destructive'?'delete':'visibility'} size={18}/>{example.trigger}</button>
+     <button type="button" className="andy-system-button is-tertiary is-large icon-start" onClick={()=>setActive(example.id)}><MaterialIcon name={example.intent==='destructive'?'delete':'visibility'} size={18}/>{example.trigger}</button>
     </div>)}
    </div>
   </DocSection>
@@ -70,36 +71,36 @@ export function AndyDialogDocs(){
  const open=(variant:DialogVariant)=>{setError('');if(variant==='schedule')setDraft(defaultSchedule);setActive(variant);};
  const save=()=>{
   if(active==='schedule'){
-   if(!draft.activity.trim()||draft.days.length===0){setError('Completá la actividad y seleccioná al menos un día.');return;}
+   if(!draft.activity.trim()){setError('Completá la actividad.');return;}
    const [startH,startM]=draft.start.split(':').map(Number);
    const [endH,endM]=draft.end.split(':').map(Number);
    if((endH??0)*60+(endM??0)<=(startH??0)*60+(startM??0)){setError('La hora de finalización debe ser posterior al inicio.');return;}
    if(draft.capacity!==''&&(!Number.isInteger(Number(draft.capacity))||Number(draft.capacity)<1)){setError('Ingresá un número válido de cupos.');return;}
-   setResult('Horario agregado a esta demostración: '+draft.days.join(', ')+' de '+draft.start+' a '+draft.end+'. No se guardaron datos reales.');
+   setResult('Horario agregado a esta demostración: '+draft.start+' a '+draft.end+'. No se guardaron datos reales.');
   }else setResult('Diálogo cerrado. No se modificaron datos reales.');
   close();
  };
  const variants=[
-  {id:'schedule' as const,label:'Agregar horarios deportivos',desc:'Formulario completo, con días, horarios, duración, cupos y sede.',trigger:'Agregar horario'},
+  {id:'schedule' as const,label:'Agregar horarios deportivos',desc:'Formulario con cupos, inicio, finalización, duración y sede.',trigger:'Agregar horario'},
   {id:'compact' as const,label:'Small',desc:'Tamaño reducido para información breve.',trigger:'Ver small'},
   {id:'details' as const,label:'Detalle informativo',desc:'Contenido sencillo con cierre y acción principal.',trigger:'Ver detalle'},
   {id:'media' as const,label:'Con iconografía',desc:'Un ícono acompaña el contenido y refuerza la orientación.',trigger:'Ver con ícono'}
  ];
  return <>
   <DocSection title="Básico" description="Abrí un diálogo para agregar horarios a una actividad deportiva. Los controles siguen los criterios del formulario MLZ.">
-   <DocPreview><button type="button" className="andy-modal-trigger" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
+   <DocPreview><button type="button" className="andy-system-button is-primary is-large icon-start" onClick={()=>open('schedule')}><MaterialIcon name="add_circle" size={20}/>Agregar horario</button></DocPreview>
   </DocSection>
   <DocSection title="Variantes" description="El formulario deportivo es la referencia principal. Las variantes adicionales muestran tamaños y composiciones de Dialog.">
    <div className="andy-modal-variant-list">{variants.map(v=><div className="andy-modal-variant" key={v.id}>
     <div className="andy-modal-variant-info"><div><strong>{v.label}</strong><p>{v.desc}</p></div></div>
-    <button type="button" className="andy-modal-trigger is-outline" onClick={()=>open(v.id)}><MaterialIcon name={v.id==='schedule'?'add_circle':'visibility'} size={18}/>{v.trigger}</button>
+    <button type="button" className="andy-system-button is-tertiary is-large icon-start" onClick={()=>open(v.id)}><MaterialIcon name={v.id==='schedule'?'add_circle':'visibility'} size={18}/>{v.trigger}</button>
    </div>)}</div>
   </DocSection>
   <DocSection title="Anatomía" description="Dialog utiliza una estructura reutilizable; los contenidos y campos son propios de cada tarea.">
    <GuidelineTable rows={[
     ['Overlay','Oscurece toda la ventana, incluido el encabezado del UI Kit; el contenido de fondo queda inactivo.'],
     ['Header','Título, descripción y botón explícito de cerrar.'],
-    ['Content','Campos, selección de días, opciones de horario y cualquier contenido de la tarea.'],
+    ['Content','Campos y opciones de horario de la tarea.'],
     ['Footer','Cancelar y acción principal; botones del sistema municipal.'],
     ['Tamaños','Default 480 px, Small 380 px y formulario deportivo hasta 640 px, fluidos en mobile.']
    ]}/>
@@ -108,15 +109,15 @@ export function AndyDialogDocs(){
    <GuidelineTable rows={[
     ['Apertura','El disparador indica su acción con texto e ícono. El foco entra al modal.'],
     ['Cerrar','Cancelar, X, Escape o clic sobre el fondo cierran el Dialog sin guardar.'],
-    ['Horario','Cambiar hora de inicio recalcula finalización; cambiar duración recalcula finalización.'],
-    ['Validación','Se requiere actividad, al menos un día y horario de finalización posterior al inicio.'],
+    ['Horario','Cambiar inicio o duración recalcula finalización; cambiar finalización actualiza duración.'],
+    ['Validación','Se requiere actividad y un horario de finalización posterior al inicio.'],
     ['Entorno','Esta demostración no envía ni persiste información.']
    ]}/>
   </DocSection>
   {result&&<p className="andy-modal-result" role="status">{result}</p>}
   {active&&<AndyModal open={true} kind="dialog" schedule={active==='schedule'} size={active==='compact'?'sm':'default'}
    title={active==='schedule'?'Agregar horario':active==='compact'?'Información de actividad':active==='media'?'Detalle de la inscripción':'Detalle de actividad'}
-   description={active==='schedule'?'Definí los días, la franja horaria y los cupos disponibles para esta actividad.':active==='compact'?'Revisá esta información sin salir de la pantalla.':active==='media'?'Consultá los datos antes de continuar.':'Podés revisar información sin abandonar la página.'}
+   description={active==='schedule'?'Definí la franja horaria y los cupos disponibles para esta actividad.':active==='compact'?'Revisá esta información sin salir de la pantalla.':active==='media'?'Consultá los datos antes de continuar.':'Podés revisar información sin abandonar la página.'}
    media={active==='media'?'info':undefined}
    confirmLabel={active==='schedule'?'Agregar horario':'Entendido'}
    onClose={close} onConfirm={save}
