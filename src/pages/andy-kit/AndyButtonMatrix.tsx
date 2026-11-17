@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import './andy-button-matrix.css';
@@ -62,7 +62,7 @@ function ExampleControls<T extends string>({label,items,value,onChange}:{
   </div>
  </div>;
 }
-function Preview({children}:{children:React.ReactNode}){
+function Preview({children}:{children:ReactNode}){
  return <DocPreview className="andy-button-showcase">
   <div className="andy-button-floating-samples">{children}</div>
  </DocPreview>;
