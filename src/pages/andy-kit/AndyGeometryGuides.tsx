@@ -28,10 +28,12 @@ export function AndyRadiusGuide(){
   <p className="andy-geometry-lead">Radios definidos por función: los controles conservan un redondeo moderado, las tarjetas uno mayor y los drawers su forma superior redondeada. No se aplican radios arbitrarios.</p>
   <div className="andy-radius-grid">
    {mlzRadii.map(radius=><div className="andy-radius-tile" key={radius.name}>
-    <div className="andy-radius-illustration"><div style={{borderRadius:radius.value+'px'}}/><span>{radius.value===9999?'Pill':radius.value===0?'Square':radius.value<=4?'Control':radius.value<=8?'Card':'Panel'}</span></div>
-    <strong>{radius.name} · {radius.value===9999?'Full':radius.value+' px'}</strong>
-    <code>--mlz-radius-{radius.name.toLowerCase()==='2xl'?'2xl':radius.name.toLowerCase()==='small'?'sm':radius.name.toLowerCase()==='medium'?'md':radius.name.toLowerCase()==='large'?'lg':radius.name.toLowerCase()==='none'?'none':radius.name.toLowerCase()==='full'?'full':radius.name.toLowerCase()==='xl'?'xl':'xs'}</code>
-    <span>{radius.usage}</span>
+    <div className="andy-radius-illustration" aria-hidden="true"><span style={{borderRadius:radius.value+'px'}}/></div>
+    <div className="andy-radius-data">
+     <strong>{radius.name} <span>· {radius.value===9999?'Full':radius.value+' px'}</span></strong>
+     <code>--mlz-radius-{radius.name.toLowerCase()==='2xl'?'2xl':radius.name.toLowerCase()==='small'?'sm':radius.name.toLowerCase()==='medium'?'md':radius.name.toLowerCase()==='large'?'lg':radius.name.toLowerCase()==='none'?'none':radius.name.toLowerCase()==='full'?'full':radius.name.toLowerCase()==='xl'?'xl':'xs'}</code>
+     <p>{radius.usage}</p>
+    </div>
    </div>)}
   </div>
  </div>;
