@@ -30,20 +30,26 @@ function ScheduleDropdown({id,label,value,options,onChange}:{id:string;label:str
  const selected=options.findIndex(option=>option.value===value);
  const position=useCallback(()=>{
   const rect=trigger.current?.getBoundingClientRect();
-  if(!rect)return;
-  // Posicionar respecto del trigger, no del viewport: el diálogo animado
-  // puede crear un containing block que rompe position:fixed.
-  const below=window.innerHeight-rect.bottom-16;
-  const above=rect.top-16;
-  const upwards=below<230&&above>below;
-  const height=Math.max(90,Math.min(280,(upwards?above:below)-8));
-  setPlacement({position:'absolute',left:0,right:0,top:upwards?undefined:'calc(100% + 6px)',bottom:upwards?'calc(100% + 6px)':undefined,maxHeight:height});
+  const modal=root.current?.closest('dialog')?.getBoundingClientRect();
+  if(!rect||!modal)return;
+  // La lista flota sobre el formulario sin modificar el alto del diálogo.
+  // Su límite inferior es la mitad del padding inferior del modal (12px en desktop).
+  const bottomInset=window.innerWidth<=530?8:12;
+  const spaceBelow=modal.bottom-bottomInset-rect.bottom-6;
+  const spaceAbove=rect.top-modal.top-16;
+  const upwards=spaceBelow<92&&spaceAbove>spaceBelow;
+  const available=upwards?spaceAbove:spaceBelow;
+  const height=Math.max(0,Math.min(280,available));
+  setPlacement({position:'absolute',left:0,right:0,
+   top:upwards?undefined:'calc(100% + 6px)',
+   bottom:upwards?'calc(100% + 6px)':undefined,
+   maxHeight:height});
  },[]);
  useEffect(()=>{
   if(!open)return;
   position();
   const outside=(event:PointerEvent)=>{if(root.current&&!root.current.contains(event.target as Node))setOpen(false);};
-  const refresh=()=>position();
+  const refresh=(event?:Event)=>{if(event?.target instanceof Element&&root.current?.contains(event.target))return;position();};
   document.addEventListener('pointerdown',outside);
   window.addEventListener('resize',refresh);
   window.addEventListener('scroll',refresh,true);
