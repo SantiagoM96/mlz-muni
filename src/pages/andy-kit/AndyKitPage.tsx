@@ -15,7 +15,7 @@ import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadStates, AndySolidUploadStates, AndySolidUploadPreview, AndyDashedUpload } from './AndyDashedUpload';
-import { AndyAttachmentGallery, AndyAttachmentStates, AndyAttachmentLifecycle } from './AndyAttachmentGallery';
+import { AndyAttachmentGallery, AndyAttachmentStates, AndyAttachmentLifecycle, AndyIconUpload } from './AndyAttachmentGallery';
 import { AndySpacingGuide, AndyRadiusGuide } from './AndyGeometryGuides';
 import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
@@ -280,26 +280,20 @@ function ComponentDetails({id}:{id:ComponentId}){
   <DocSection title="Descripción" description="Attachment permite incorporar un documento o representar archivos mediante un control consistente con los formularios de MLZ.">
    <p className="andy-alert-doc-description">Estándar y Borde punteado permiten seleccionar un solo archivo: muestran su nombre dentro del mismo campo, sin agregar listados debajo. Ícono es la tercera presentación, pensada para mostrar un archivo con dos líneas de información, estado y acción de quitar.</p>
   </DocSection>
-  <DocSection title="Estándar" description="Archivo único. Fondo blanco y borde continuo: seleccionar y reemplazar se resuelven dentro de un control de 48 px.">
+  <DocSection title="Estándar" description="Archivo único. Fondo blanco y borde continuo de 1 px: seleccionar y reemplazar documentos se resuelve en el mismo campo de 48 px.">
    <DocPreview><AndySolidUploadPreview/></DocPreview>
-  </DocSection>
-  <DocSection title="Borde punteado" description="Archivo único. Mismo contenido, tamaño y comportamiento que Estándar; únicamente cambia a un borde dashed nativo de CSS.">
-   <DocPreview><AndyDashedUpload kind="document"/></DocPreview>
-  </DocSection>
-  <DocSection title="Ícono" description="Archivo con ícono, nombre, descripción secundaria y acción de quitar. Presenta los estados de carga en filas independientes, siguiendo el estilo MLZ.">
-   <DocPreview><AndyAttachmentLifecycle appearance="list"/></DocPreview>
-  </DocSection>
-  <DocSection title="Archivo adjunto" description="Una vez seleccionado, el archivo muestra su nombre, tipo, tamaño y acciones. Esta demostración representa la interfaz sin enviar archivos a un servidor.">
-   <DocPreview><AndyAttachmentGallery/></DocPreview>
-  </DocSection>
-  <DocSection title="Estados · Estándar" description="Estados del control de archivo único con borde continuo: Default, Hover, Focus, Completo, Error y Disabled.">
    <DocPreview align="start"><AndySolidUploadStates/></DocPreview>
   </DocSection>
-  <DocSection title="Estados · Borde punteado" description="Los mismos seis estados del control de archivo único, con trazo discontinuo nativo y sin una lista adicional.">
+  <DocSection title="Borde punteado" description="Archivo único. Mismo contenido y comportamiento que Estándar, con borde dashed nativo de CSS y altura de 48 px.">
+   <DocPreview><AndyDashedUpload kind="document"/></DocPreview>
    <DocPreview align="start"><AndyDashedUploadStates/></DocPreview>
   </DocSection>
-  <DocSection title="Estados del archivo" description="Diferenciá el archivo seleccionado de la carga al servidor: pendiente, cargando, procesando, error y completado. Los estados de carga son demostrativos.">
-   <DocPreview><AndyAttachmentStates/></DocPreview>
+  <DocSection title="Ícono" description="Seleccioná un documento desde toda la superficie del campo. Después se muestran sus estados de subida, procesamiento, error y completado, con iconografía y acciones propias.">
+   <DocPreview><AndyIconUpload/></DocPreview>
+   <DocPreview align="start"><div className="andy-upload-preview-pair"><AndyIconUpload/><AndyAttachmentLifecycle appearance="list"/></div></DocPreview>
+  </DocSection>
+  <DocSection title="Archivo adjunto" description="Una vez seleccionado, el archivo puede mostrar su nombre, tipo, tamaño y acciones. Esta demostración no envía documentos al servidor.">
+   <DocPreview><AndyAttachmentGallery/></DocPreview>
   </DocSection>
   <DocSection title="Anatomía" description="Composición reutilizable para el campo de carga y para la tarjeta del archivo, manteniendo las responsabilidades separadas.">
    <GuidelineTable rows={[
@@ -313,12 +307,12 @@ function ComponentDetails({id}:{id:ComponentId}){
   </DocSection>
   <DocSection title="Especificaciones" description="Criterios de implementación de MLZ; los elementos reutilizan tamaños, colores y estados del Design System.">
    <GuidelineTable rows={[
-    ['Variantes','Estándar y Borde punteado son controles de selección única; Ícono muestra estados de archivo con iconografía y acciones.'],
+    ['Variantes','Estándar y Borde punteado son controles de archivo único; Ícono combina selección y presentación de estados de archivo en una fila.'],
     ['Altura del control','48 px exactos en Estándar y Borde punteado. La variante Ícono usa filas con altura adaptable.'],
     ['Formatos documentales','PDF, DOC y DOCX en los ejemplos actuales; imágenes JPG, PNG o WEBP en la variante de fotografía.'],
     ['Límite de ejemplo','10 MB por archivo; el producto debe validar también del lado del servidor.'],
     ['Colores','Primario 600 para valores completos, Info 500 para foco y Error para validaciones incorrectas.'],
-    ['Estados','Default, Hover, Focus, Completo, Error y Disabled para Estándar y Borde punteado; Pendiente, Subiendo, Procesando, Error y Completado para Ícono.'],
+    ['Estados','Default, Hover, Focus, Completo, Error y Disabled en Estándar y Borde punteado; Default, Subiendo, Procesando, Error y Completado en Ícono.'],
    ]}/>
   </DocSection>
   <DocSection title="Comportamiento" description="La selección, lectura y eliminación deben ser operables con teclado, con mensajes precisos y sin acciones ambiguas.">
