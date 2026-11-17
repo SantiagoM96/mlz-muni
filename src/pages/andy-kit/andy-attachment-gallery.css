@@ -192,15 +192,15 @@
  cursor:default;
 }
 
-/* Primario 600: label y contenido dentro del input de Ícono.
-   Ayuda exterior en Grey 500; Error y Disabled conservan su semántica. */
+/* Jerarquía cromática de Ícono: label y acción principal en Primario 600;
+   descripción inicial y datos del archivo/procesamiento en Grey 500. */
 .andy-icon-upload .andy-dashed-upload-title,
-.andy-icon-upload .andy-icon-upload-trigger-copy strong,
-.andy-icon-upload .andy-icon-upload-trigger-copy > span,
-.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-copy strong,
-.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-copy > span{
+.andy-icon-upload .andy-icon-upload-trigger-copy strong{
  color:var(--color-primary-600,#236999);
 }
+.andy-icon-upload .andy-icon-upload-trigger-copy > span,
+.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-copy strong,
+.andy-icon-upload > .andy-attachment-lifecycle-row .andy-attachment-lifecycle-copy > span,
 .andy-icon-upload .andy-dashed-upload-help{
  color:var(--mlz-grey-500,#6d6d6d);
 }
