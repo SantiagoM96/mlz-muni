@@ -2027,3 +2027,24 @@ html:has(.andy-doc-layout){scrollbar-gutter:stable}
  padding-inline:max(40px,var(--mlz-space-40,40px));
  box-sizing:border-box;
 }
+
+
+/* Con el gutter editorial de 40px, las matrices de estados necesitan ancho
+   completo por control: seis estados apilados, sin campos comprimidos. */
+.andy-doc-layout .andy-doc-page .andy-matrix-grid,
+.andy-doc-layout .andy-doc-page .andy-doc-demo .andy-matrix-grid{
+ grid-template-columns:minmax(0,1fr);
+ row-gap:var(--mlz-space-24);
+ column-gap:0;
+ width:100%;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-demo .andy-state-matrix,
+.andy-doc-layout .andy-doc-page .andy-doc-demo .andy-dashed-state-matrix{
+ width:min(100%,760px);
+ margin-inline:auto;
+}
+.andy-doc-layout .andy-doc-page .andy-doc-demo .andy-dropdown-variants-grid{
+ grid-template-columns:minmax(0,1fr);
+}
+/* Dos campos relacionados que funcionan como una composición pueden seguir
+   compartiendo fila solo cuando tienen ancho suficiente. */
