@@ -54,15 +54,17 @@ function BadgeAppearanceDemo(){
 }
 function BadgeColorDemo(){
  return <DocPreview align="start">
-  <div className="andy-badge-palette" role="list" aria-label="Todos los colores y apariencias en tamaño mediano">
-   {tones.map(tone=><div className="andy-badge-palette-item" role="listitem" key={tone.id}>
-    <strong className="andy-badge-palette-name">{tone.name}</strong>
-    <div className="andy-badge-palette-examples">
-     {appearances.map(appearance=><Badge key={appearance.id} tone={tone.id} appearance={appearance.id} size="md" title={appearance.name}>
-      {tone.name}
-     </Badge>)}
-    </div>
-   </div>)}
+  <div className="andy-badge-palette" aria-label="Colores en fondo pleno y fondo suave">
+   <div className="andy-badge-palette-row" role="group" aria-label="Fondo pleno">
+    {tones.map(tone=><Badge key={tone.id} tone={tone.id} appearance="solid" size="md" title={'Fondo pleno · '+tone.name}>
+     {tone.name}
+    </Badge>)}
+   </div>
+   <div className="andy-badge-palette-row" role="group" aria-label="Fondo suave">
+    {tones.map(tone=><Badge key={tone.id} tone={tone.id} appearance="soft" size="md" title={'Fondo suave · '+tone.name}>
+     {tone.name}
+    </Badge>)}
+   </div>
   </div>
  </DocPreview>;
 }
@@ -146,7 +148,7 @@ export function AndyBadgeDocs(){
   <DocSection title="Apariencias" description="Elegí entre Fondo suave, Outline, Solid y Ghost. Cada presentación usa los mismos tokens de color institucionales.">
    <BadgeAppearanceDemo/>
   </DocSection>
-  <DocSection title="Colores" description="Todos los colores del Design System en Fondo suave, Outline, Solid y Ghost, en tamaño Mediano (28 px).">
+  <DocSection title="Colores" description="Los siete colores del Design System en dos filas: fondo pleno arriba y fondo suave abajo. Todos en tamaño Mediano (28 px).">
    <BadgeColorDemo/>
   </DocSection>
   <DocSection title="Tamaños" description="Probá los tres tamaños institucionales: Chico 24 px, Mediano 28 px y Grande 32 px.">
