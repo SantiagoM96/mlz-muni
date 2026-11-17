@@ -23,7 +23,7 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  switch:{description:'Activar o desactivar una configuración.',category:'Selection'},
  boton:{description:'Acciones primarias, secundarias, de texto y con íconos.',category:'Data Display'},
  avatar:{description:'Identidad visual de personas: fotografía, iniciales, indicador, grupo y contador.',category:'Data Display'},
- chips:{description:'Etiquetas y chips removibles.',category:'Data Display'},
+ chips:{description:'Badge de estado o categoría, con variantes, tamaños, íconos y enlaces; chips removibles separados.',category:'Data Display'},
  tarjeta:{description:'Tarjetas de actividad y resúmenes de inscripción.',category:'Data Display'},
  mensaje:{description:'Mensajes persistentes de información, éxito, advertencia y error, con acción opcional.',category:'Feedback'},
  acordeon:{description:'Secciones expandibles de contenido, con apertura única o múltiple.',category:'Data Display'},

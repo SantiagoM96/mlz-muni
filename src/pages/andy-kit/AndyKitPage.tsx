@@ -12,7 +12,7 @@ import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
 import { AndyMunicipalCardGallery } from './AndyMunicipalCards';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
-import { AndyTagPaletteGallery } from './AndyTagPaletteGallery';
+import { AndyBadgeDocs } from './AndyBadgeDocs';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
 import { AndyDashedUploadStates, AndySolidUploadStates, AndySolidUploadPreview, AndyDashedUpload } from './AndyDashedUpload';
 import { AndyIconUpload, AndyIconUploadStates } from './AndyAttachmentGallery';
@@ -341,14 +341,7 @@ function ComponentDetails({id}:{id:ComponentId}){
   <SelectionGallery only={id}/>
  </ComponentExample>;
  if(id==='boton')return <Buttons/>;
- if(id==='chips')return <>
-  <DocSection title="Fondo suave" description="Seis colores de Figma con fondo claro y texto intenso. Cada color se muestra con y sin ícono.">
-   <AndyTagPaletteGallery onlyAppearance="fill"/>
-  </DocSection>
-  <DocSection title="Outline" description="Los mismos seis tonos con borde intenso, fondo blanco y texto del color semántico.">
-   <AndyTagPaletteGallery onlyAppearance="outline"/>
-  </DocSection>
- </>;
+ if(id==='chips')return <AndyBadgeDocs/>;
  if(id==='avatar')return <AndyAvatarDocs/>;
  if(id==='tarjeta')return <Cards/>;
  if(id==='mensaje')return <AlertDocs/>;

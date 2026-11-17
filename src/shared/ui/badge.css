@@ -1,0 +1,68 @@
+/* MLZ Badge — alturas 24/28/32, radio MD 6px y Geometria.
+ * Tonos tomados de la biblioteca institucional de Figma.
+ * Amarillo usa Grey 900 para texto legible: no usar Alert 800 sobre fondo claro. */
+.mlz-badge{
+ --badge-bg:#f3f7fc;
+ --badge-ink:var(--color-primary-600,#236999);
+ --badge-solid:var(--color-primary-600,#236999);
+ --badge-solid-ink:#fff;
+ --badge-border:var(--color-primary-600,#236999);
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ gap:var(--mlz-space-6,6px);
+ box-sizing:border-box;
+ flex:0 0 auto;
+ max-width:100%;
+ min-width:0;
+ border:1px solid transparent;
+ border-radius:var(--mlz-radius-md,6px);
+ font-family:Geometria,'Century Gothic',Arial,sans-serif;
+ font-weight:500;
+ white-space:nowrap;
+ vertical-align:middle;
+ text-decoration:none;
+ transition:background-color .15s ease,border-color .15s ease,color .15s ease;
+}
+.mlz-badge.tone-primary{--badge-bg:#f3f7fc;--badge-ink:var(--color-primary-600,#236999);--badge-solid:var(--color-primary-600,#236999);--badge-border:var(--color-primary-600,#236999)}
+.mlz-badge.tone-warning{--badge-bg:#fffde7;--badge-ink:var(--color-grey-900,#3d3d3d);--badge-solid:#f9a825;--badge-solid-ink:var(--color-grey-900,#3d3d3d);--badge-border:#c35b00}
+.mlz-badge.tone-error{--badge-bg:#fff0f0;--badge-ink:#a70a2f;--badge-solid:#a70a2f;--badge-border:#c80830}
+.mlz-badge.tone-success{--badge-bg:#f1fcf4;--badge-ink:#1a6133;--badge-solid:#1a6133;--badge-border:#1d9c48}
+.mlz-badge.tone-info{--badge-bg:#e5f0ff;--badge-ink:#00377f;--badge-solid:#00377f;--badge-border:#0058cc}
+.mlz-badge.tone-purple{--badge-bg:#ecddff;--badge-ink:#5f1eb4;--badge-solid:#5f1eb4;--badge-border:#9747ff}
+.mlz-badge.tone-neutral{--badge-bg:var(--color-grey-50,#f6f6f6);--badge-ink:var(--color-grey-900,#3d3d3d);--badge-solid:var(--color-grey-900,#3d3d3d);--badge-border:var(--color-grey-400,#888888)}
+.mlz-badge.is-soft{color:var(--badge-ink);background:var(--badge-bg)}
+.mlz-badge.is-outline{color:var(--badge-ink);background:#fff;border-color:var(--badge-border)}
+.mlz-badge.is-solid{color:var(--badge-solid-ink,#fff);background:var(--badge-solid)}
+.mlz-badge.is-ghost{color:var(--badge-ink);background:transparent}
+.mlz-badge.is-sm{min-height:24px;padding:2px var(--mlz-space-6,6px);font-size:14px;line-height:18px}
+.mlz-badge.is-md{min-height:28px;padding:2px var(--mlz-space-8,8px);font-size:16px;line-height:20px}
+.mlz-badge.is-lg{min-height:32px;padding:4px var(--mlz-space-10,10px);font-size:18px;line-height:22px}
+.mlz-badge .mlz-badge-label{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.mlz-badge .material-symbols-outlined{color:inherit;flex-shrink:0}
+.mlz-badge.is-link{cursor:pointer}
+.mlz-badge.is-link:hover{text-decoration:underline;text-underline-offset:3px}
+.mlz-badge.is-link.is-ghost:hover{background:var(--badge-bg)}
+.mlz-badge.is-link:focus-visible,.mlz-chip-remove:focus-visible{
+ outline:2px solid var(--color-grey-900,#3d3d3d);
+ outline-offset:2px;
+}
+.mlz-badge-spinner{display:inline-flex;flex-shrink:0;align-items:center;justify-content:center}
+.mlz-badge-spinner .material-symbols-outlined{animation:mlz-badge-spin 1.1s linear infinite}
+@keyframes mlz-badge-spin{to{transform:rotate(360deg)}}
+/* El componente informativo no agrega estados de interacción a los <span>. */
+.mlz-removable-chip{padding-right:var(--mlz-space-4,4px)}
+.mlz-chip-remove{
+ display:inline-flex;align-items:center;justify-content:center;
+ box-sizing:border-box;flex:0 0 auto;
+ width:20px;height:20px;
+ padding:0;border:0;border-radius:var(--mlz-radius-sm,4px);
+ color:inherit;background:transparent;cursor:pointer;
+}
+.mlz-chip-remove:hover{background:rgb(0 0 0 / 9%)}
+.mlz-removable-chip.is-sm .mlz-chip-remove{width:16px;height:16px}
+.mlz-removable-chip.is-lg .mlz-chip-remove{width:22px;height:22px}
+@media(prefers-reduced-motion:reduce){
+ .mlz-badge-spinner .material-symbols-outlined{animation:none}
+ .mlz-badge{transition:none}
+}
