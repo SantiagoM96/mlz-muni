@@ -17,7 +17,7 @@
  border-color:#006eff;background:#fff;box-shadow:inset 0 0 0 1px #006eff;outline:none;
 }
 .andy-dashed-upload-action{flex:0 0 auto;color:#236999;font-weight:700;font-size:14px;line-height:22px;white-space:nowrap}
-.andy-dashed-upload-value{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right;color:#8795a2;font-size:14px;line-height:22px}
+.andy-dashed-upload-value{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;color:#8795a2;font-size:14px;line-height:22px}
 .andy-dashed-upload-value.has-file{color:#236999;font-weight:500}
 .andy-single-upload input[type=file]{position:absolute;inset:0;z-index:1;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
 .andy-dashed-upload-help{margin:0;color:#657886;font-size:13px;line-height:18px}
