@@ -62,3 +62,20 @@
 .andy-icon-upload-trigger input[type=file]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:0}
 .andy-icon-upload>.andy-attachment-lifecycle-row{border-radius:var(--mlz-radius-sm)}
 .andy-icon-upload>.andy-attachment-lifecycle-row.is-error{border-color:#ef284c}
+
+
+/* Ícono: rotación continua mientras sube y mientras procesa. El mismo
+   Material Symbol 'sync' permanece hasta que se confirma el estado final. */
+.andy-icon-upload>.andy-attachment-lifecycle-row:is(.is-uploading,.is-processing) .andy-attachment-lifecycle-media .material-symbols-outlined{
+ animation:andy-attachment-sync-spin 1.1s linear infinite;
+}
+@keyframes andy-attachment-sync-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){
+ .andy-icon-upload>.andy-attachment-lifecycle-row:is(.is-uploading,.is-processing) .andy-attachment-lifecycle-media .material-symbols-outlined{
+  animation:none;
+ }
+}
+/* El ancho de progreso es calculado por tiempo en cada frame (no por pasos). */
+.andy-icon-upload .andy-attachment-lifecycle-progress>span{
+ will-change:width;
+}
