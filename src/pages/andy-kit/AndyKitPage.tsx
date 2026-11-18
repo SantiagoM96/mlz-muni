@@ -23,6 +23,7 @@ import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
 import { componentGroups, componentAliases, componentEntries, componentMeta, type ComponentId } from './andy-kit.registry';
 import './andy-kit.css';
+import { useAndyScrollbarSpacing } from './useAndyScrollbarSpacing';
 import './andy-scrollbars.css';
 
 const reviewedComponentIds=new Set<ComponentId>(['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb','boton']);
@@ -451,6 +452,7 @@ function HeadingToc({items}:{items:{id:string;title:string}[]}){
 }
 const views:Record<Category,()=>ReactNode>={fundamentos:Foundations,filtros:Filters,formularios:Forms,seleccion:Selection,tarjetas:Cards,mensajes:Messages};
 export function AndyKitPage(){
+ useAndyScrollbarSpacing();
  const {categoria,componente}=useParams<{categoria?:string;componente?:string}>();
  const aliasedComponent=componente?componentAliases[componente]:undefined;
  const [navOpen,setNavOpen]=useState(false);

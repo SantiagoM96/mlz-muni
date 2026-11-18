@@ -56,6 +56,7 @@ test('Andy: dropdown de año muestra la barra interna del sistema sin ocultarla'
   await sample.getByRole('button', { name: 'Seleccionar año' }).click();
   const scroll = sample.locator('.sports-cal-choices');
   await expect(scroll).toBeVisible();
+  await expect(scroll).toHaveAttribute('data-andy-scroll-overflow','true');
   const result = await scroll.evaluate(el => ({
     overflow: getComputedStyle(el).overflowY,
     width: getComputedStyle(el, '::-webkit-scrollbar').width,
@@ -68,8 +69,9 @@ test('Andy: dropdown de año muestra la barra interna del sistema sin ocultarla'
   expect(result.overflow).toBe('auto');
   if (browserName === 'chromium' || browserName === 'webkit') {
     expect(result.nativeWidth).toBe('auto');
-    expect(result.width).toBe('10px');
-    expect(await scroll.evaluate(el => getComputedStyle(el, '::-webkit-scrollbar-thumb').borderLeftWidth)).toBe('6px');
+    expect(result.width).toBe('4px');
+    expect(await scroll.evaluate(el => getComputedStyle(el).paddingInlineEnd)).toBe('6px');
+    expect(await scroll.evaluate(el => getComputedStyle(el, '::-webkit-scrollbar-thumb').borderLeftWidth)).toBe('0px');
     expect(result.track).toBe('rgb(231, 231, 231)');
     expect(result.thumb).toBe('rgb(136, 136, 136)');
   } else {
@@ -85,6 +87,8 @@ test('Andy: dropdown con y sin scroll utiliza todo el ancho disponible correctam
  const checkbox=page.locator('.andy-dropdown-variant[data-variant="checkbox"] .andy-dropdown-variant-options');
  await expect(simple).toBeVisible();
  await expect(checkbox).toBeVisible();
+ await expect(simple).toHaveAttribute('data-andy-scroll-overflow','false');
+ await expect(checkbox).toHaveAttribute('data-andy-scroll-overflow','true');
  const read=async (locator: typeof simple)=>locator.evaluate(el=>{
   const first=el.querySelector<HTMLElement>('.andy-dropdown-variant-option')!;
   return {
@@ -102,10 +106,10 @@ test('Andy: dropdown con y sin scroll utiliza todo el ancho disponible correctam
  expect(noScroll.paddingEnd).toBe('0px');
  expect(noScroll.listRight-noScroll.optionRight).toBeLessThanOrEqual(1);
  expect(scroll.scrolls).toBe(true);
- expect(scroll.paddingEnd).toBe('0px');
+ expect(scroll.paddingEnd).toBe('6px');
  if(browserName==='chromium'||browserName==='webkit'){
-  expect(scroll.trackWidth).toBe('10px');
-  expect(scroll.thumbInset).toBe('6px');
+  expect(scroll.trackWidth).toBe('4px');
+  expect(scroll.thumbInset).toBe('0px');
   expect(scroll.listRight-scroll.optionRight).toBeGreaterThanOrEqual(9);
  }
 });
@@ -115,6 +119,7 @@ test('Andy: dropdowns de hora y año muestran un hueco real antes de la pista', 
  const checkGap=async (selector:string,inset:string,width:string)=>{
   const list=page.locator(selector);
   await expect(list).toBeVisible();
+  await expect(list).toHaveAttribute('data-andy-scroll-overflow','true');
   const found=await list.evaluate(el=>({
    scrolls:el.scrollHeight>el.clientHeight,
    paddingEnd:getComputedStyle(el).paddingInlineEnd,
@@ -122,17 +127,37 @@ test('Andy: dropdowns de hora y año muestran un hueco real antes de la pista', 
    thumbInset:getComputedStyle(el,'::-webkit-scrollbar-thumb').borderLeftWidth,
   }));
   expect(found.scrolls).toBe(true);
-  expect(found.paddingEnd).toBe('0px');
+  expect(found.paddingEnd).toBe(inset);
   if(browserName==='chromium'||browserName==='webkit'){
    expect(found.trackWidth).toBe(width);
-   expect(found.thumbInset).toBe(inset);
+   expect(found.thumbInset).toBe('0px');
   }
  };
  await page.goto('/ui-kit-andy/componentes/calendario');
  await page.locator('#fecha-y-hora').getByRole('button',{name:'Seleccionar hora'}).click();
- await checkGap('#fecha-y-hora .andy-dpv-time-options','4px','8px');
+ await checkGap('#fecha-y-hora .andy-dpv-time-options','4px','4px');
 
  await page.goto('/ui-kit-andy/componentes/calendar');
  await page.locator('#basico').getByRole('button',{name:'Seleccionar año'}).click();
- await checkGap('#basico .sports-cal-choices','6px','10px');
+ await checkGap('#basico .sports-cal-choices','6px','4px');
+});
+
+test('Andy: dropdown filtrado recupera ancho total al desaparecer el scroll', async ({page})=>{
+ await page.setViewportSize({width:900,height:768});
+ await page.goto('/ui-kit-andy/componentes/select');
+ const search=page.locator('.andy-dropdown-variant[data-variant="search"]');
+ const options=search.locator('.andy-dropdown-variant-options');
+ await expect(options).toHaveAttribute('data-andy-scroll-overflow','true');
+ await expect(options).toHaveCSS('padding-inline-end','6px');
+
+ await search.getByRole('searchbox',{name:'Buscar localidad'}).fill('Banfield');
+ await expect(options.locator('.andy-dropdown-variant-option')).toHaveCount(1);
+ await expect(options).toHaveAttribute('data-andy-scroll-overflow','false');
+ await expect(options).toHaveCSS('padding-inline-end','0px');
+
+ const distance=await options.evaluate(el=>{
+  const last=el.querySelector<HTMLElement>('.andy-dropdown-variant-option')!;
+  return el.getBoundingClientRect().right-last.getBoundingClientRect().right;
+ });
+ expect(distance).toBeLessThanOrEqual(1);
 });
