@@ -11,6 +11,7 @@ import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
 import { AndyMunicipalCardGallery } from './AndyMunicipalCards';
+import { AndyCardFoundationDocs } from './AndyCardFoundationDocs';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyBadgeDocs } from './AndyBadgeDocs';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
@@ -138,6 +139,8 @@ function ChipGallery({compact=false}:{compact?:boolean}){
  return <div className="andy-chip-demo">{chips.map(t=><span className="andy-chip" key={t}>{t}<button type="button" aria-label={'Quitar '+t} onClick={()=>setChips(v=>v.filter(c=>c!==t))}><Icon name="close" size={18}/></button></span>)}<button type="button" className="andy-chip-clear" onClick={()=>setChips(compact?['Lunes','Casa Ari','Recreativo']:[])}>{compact?'Restablecer':'Limpiar filtros'}</button></div>;
 }
 function Cards(){return <div className="andy-cards-unified">
+ <AndyCardFoundationDocs/>
+ <DocSection title="Aplicaciones municipales" description="Las ocho tarjetas originales se mantienen completas. Muestran cómo los productos de MLZ aplican la composición base con necesidades propias de contenido, imagen y acción.">{null}</DocSection>
  <AndyActivityCardGallery/>
  <AndyMunicipalCardGallery/>
 </div>}
