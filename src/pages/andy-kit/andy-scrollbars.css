@@ -61,3 +61,23 @@ html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden)::-webkit-scr
     scrollbar-color: var(--andy-scroll-thumb) var(--andy-scroll-track);
   }
 }
+
+
+/* Separación óptica de las opciones con el scrollbar.
+   La pista ya tiene aire a la derecha gracias al padding del popover.
+   Damos el mismo aire del lado del contenido para que el estado activo
+   no termine pegado a la barra. No se altera el ancho del scrollbar. */
+html:has(.andy-kit) :is(
+  .andy-dropdown-variant-options,
+  .sports-cal-choices,
+  .kit-sports-options,
+  .kit-sports-more-scroll,
+  .kit-sports-advanced-popover .kit-sports-advanced
+) {
+  padding-inline-end: var(--mlz-space-6);
+}
+
+/* El menú compacto de hora/minutos tiene un inset externo de 4 px. */
+html:has(.andy-kit) .andy-dpv-time-options {
+  padding-inline-end: var(--mlz-space-4);
+}

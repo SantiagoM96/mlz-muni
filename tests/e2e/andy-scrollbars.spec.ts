@@ -75,3 +75,41 @@ test('Andy: dropdown de año muestra la barra interna del sistema sin ocultarla'
     expect(result.nativeWidth).toBe('thin');
   }
 });
+
+
+test('Andy: las opciones activas de hora y año tienen separación antes de la barra', async ({page}) => {
+  const measure = async (selector: string, expectedGap: string) => {
+    const list = page.locator(selector);
+    await expect(list).toBeVisible();
+    await expect(list).toHaveCSS('padding-inline-end', expectedGap);
+    const geometry = await list.evaluate(el => {
+      const option = el.querySelector('[role="option"][aria-selected="true"]');
+      if (!(option instanceof HTMLElement)) return null;
+      const listRect = el.getBoundingClientRect();
+      const optionRect = option.getBoundingClientRect();
+      const scrollWidth = el.offsetWidth - el.clientWidth;
+      return {
+        canScroll: el.scrollHeight > el.clientHeight,
+        optionRight: optionRect.right,
+        trackLeft: listRect.right - scrollWidth,
+      };
+    });
+    expect(geometry).not.toBeNull();
+    expect(geometry?.canScroll).toBe(true);
+    // El extremo de la selección debe dejar al menos el espacio visual
+    // de la ficha y nunca tocar la pista.
+    expect((geometry?.trackLeft ?? 0) - (geometry?.optionRight ?? 0))
+      .toBeGreaterThanOrEqual(parseInt(expectedGap, 10) - 1);
+  };
+
+  await page.goto('/ui-kit-andy/componentes/calendario');
+  const timeSample = page.locator('#fecha-y-hora');
+  await timeSample.getByRole('button', {name:'Seleccionar hora'}).click();
+  await measure('#fecha-y-hora .andy-dpv-time-options', '4px');
+  await timeSample.getByRole('button', {name:'Seleccionar hora'}).click();
+
+  await page.goto('/ui-kit-andy/componentes/calendar');
+  const calendar = page.locator('#basico');
+  await calendar.getByRole('button', {name:'Seleccionar año'}).click();
+  await measure('#basico .sports-cal-choices', '6px');
+});
