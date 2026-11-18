@@ -7,9 +7,11 @@ test('UI Kit: Calendar y Date Picker tienen páginas independientes',async ({pag
  await expect(page.locator('#fecha-de-nacimiento')).toHaveCount(0);
  await page.goto('/ui-kit-andy/componentes/calendario');
  await expect(page.getByRole('heading',{name:'Date Picker',exact:true})).toBeVisible();
- for(const id of ['basico','seleccion-de-rango','fecha-de-nacimiento','campo-editable','fecha-y-hora','lenguaje-natural']){
+ for(const id of ['basico','seleccion-de-rango','campo-editable','fecha-y-hora','lenguaje-natural']){
   await expect(page.locator('#'+id)).toBeVisible();
  }
+ await expect(page.locator('#fecha-de-nacimiento')).toHaveCount(0);
+ await expect(page.getByRole('heading',{name:'Fecha de nacimiento',exact:true})).toHaveCount(0);
 });
 
 test('Date Picker: selección individual requiere confirmar',async ({page})=>{
@@ -118,4 +120,51 @@ test('Date Picker: el error del campo editable prevalece sobre el estado focus',
  await expect(field).toHaveCSS('border-top-color','rgb(239, 40, 76)');
  await expect(field).toHaveCSS('outline-style','none');
  await expect(field).toHaveCSS('box-shadow',/inset .*rgb\(239, 40, 76\)|rgb\(239, 40, 76\).*inset/);
+});
+
+
+test('Date Picker: los cinco calendarios de desktop se anclan debajo a la derecha',async ({page})=>{
+ await page.setViewportSize({width:1280,height:900});
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ for(const id of ['basico','seleccion-de-rango','campo-editable','fecha-y-hora','lenguaje-natural']){
+  const sample=page.locator('#'+id);
+  const trigger=sample.locator('.andy-dpv-icon-trigger, .sports-cal-trigger').first();
+  await trigger.click();
+  const popup=sample.locator('.sports-cal-popup.andy-dpv-popup');
+  await expect(popup).toBeVisible();
+  const triggerBox=await trigger.boundingBox();
+  const popupBox=await popup.boundingBox();
+  expect(triggerBox).not.toBeNull();
+  expect(popupBox).not.toBeNull();
+  if(triggerBox&&popupBox){
+   expect(Math.abs((popupBox.x+popupBox.width)-(triggerBox.x+triggerBox.width))).toBeLessThan(2);
+   expect(Math.abs(popupBox.y-(triggerBox.y+triggerBox.height+4))).toBeLessThan(2);
+  }
+  await popup.getByRole('button',{name:'Cerrar calendario'}).click();
+  await expect(popup).toHaveCount(0);
+ }
+});
+
+test('Date Picker: la X de cierre es neutra y no usa rojo en hover',async ({page})=>{
+ await page.setViewportSize({width:1280,height:900});
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ await page.locator('#campo-editable .andy-dpv-icon-trigger').click();
+ const close=page.getByRole('dialog',{name:'Seleccionar fecha'}).getByRole('button',{name:'Cerrar calendario'});
+ await expect(close).toHaveCSS('color','rgb(109, 109, 109)');
+ await close.hover();
+ await expect(close).toHaveCSS('color','rgb(35, 105, 153)');
+ await expect(close).toHaveCSS('background-color','rgb(243, 247, 252)');
+ await close.focus();
+ await expect(close).toHaveCSS('outline-style','none');
+ await expect(close).toHaveCSS('box-shadow',/rgb\(0, 110, 255\)/);
+});
+
+test('Date Picker: mobile mantiene el drawer inferior',async ({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ await page.locator('#basico .sports-cal-trigger').click();
+ const panel=page.getByRole('dialog',{name:'Seleccionar fecha'});
+ await expect(panel).toHaveClass(/is-mobile/);
+ await expect(panel).toHaveCSS('position','absolute');
+ await expect(panel).toHaveCSS('bottom','0px');
 });
