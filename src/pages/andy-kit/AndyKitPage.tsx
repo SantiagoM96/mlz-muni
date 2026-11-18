@@ -23,6 +23,7 @@ import { MaterialIconLibrary } from './MaterialIconLibrary';
 import { AndyAdditionalComponent, additionalComponents } from './AndyAdditionalComponents';
 import { componentGroups, componentAliases, componentEntries, componentMeta, type ComponentId } from './andy-kit.registry';
 import './andy-kit.css';
+import './andy-scrollbars.css';
 
 const reviewedComponentIds=new Set<ComponentId>(['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb','boton']);
 const inProgressComponentIds=new Set<ComponentId>(['calendar','calendario']);
