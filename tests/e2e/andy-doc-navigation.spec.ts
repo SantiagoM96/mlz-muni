@@ -179,3 +179,18 @@ test('Andy: la UI del catálogo usa píldoras Info 500 sin alterar componentes d
  await expect(primarySample).toHaveCSS('border-top-left-radius','4px');
 });
 
+
+
+test('Andy: Button, Button Group, Calendar y Date Picker muestran check de revisado',async ({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ await page.goto('/ui-kit-andy/componentes');
+ const nav=page.locator('#andy-component-nav');
+ for(const slug of ['boton','button-group','calendar','calendario']){
+  const link=nav.locator('a[href$="/componentes/'+slug+'"]');
+  await expect(link).toHaveCount(1);
+  const mark=link.locator('.andy-nav-review-mark');
+  await expect(mark).toBeVisible();
+  await expect(mark).toHaveAttribute('aria-label','Revisado');
+  await expect(mark).not.toHaveClass(/andy-nav-progress-mark/);
+ }
+});
