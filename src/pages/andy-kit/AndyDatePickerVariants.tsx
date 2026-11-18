@@ -18,7 +18,6 @@ export type DatePickerDemoVariant='basic'|'range'|'input'|'time'|'natural'|'rtl'
 type Period='calendar'|'month'|'year';
 const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const WEEKDAYS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-const pad=(value:number)=>String(value).padStart(2,'0');
 const readable=(value:string)=>{
  const [year,month,day]=value.split('-');
  return value?day+'/'+month+'/'+year:'';
