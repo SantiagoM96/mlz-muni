@@ -23,7 +23,7 @@ const readable=(value:string)=>{
  return value?day+'/'+month+'/'+year:'';
 };
 const parseDate=(text:string):string|null=>{
- const match=text.trim().match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+ const match=text.trim().match(/^(\d{1,2})[./-](\d{1,2})[./-](\d{4})$/);
  if(!match)return null;
  const day=Number(match[1]),month=Number(match[2]),year=Number(match[3]);
  const date=new Date(year,month-1,day);
