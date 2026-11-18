@@ -1,0 +1,147 @@
+/* Guía de Card dentro del Design System Andy.
+   Los estilos se aplican solo a las nuevas demostraciones, sin afectar
+   las ocho tarjetas de las galerías originales. */
+.andy-card-foundation-sample{
+ width:min(100%,400px);
+}
+.andy-card-foundation-chip{
+ display:inline-flex;
+ align-items:center;
+ min-height:26px;
+ padding:var(--mlz-space-2) var(--mlz-space-8);
+ border-radius:var(--mlz-radius-sm);
+ color:var(--color-primary-600);
+ background:var(--color-panel);
+ font:600 12px/20px Geometria,'Century Gothic',Arial,sans-serif;
+ white-space:nowrap;
+}
+.andy-card-foundation-controls{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:var(--mlz-space-8);
+ width:100%;
+}
+.andy-card-foundation-controls button{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-height:36px;
+ padding:var(--mlz-space-6) var(--mlz-space-14);
+ color:var(--color-primary-600);
+ background:#fff;
+ border:1px solid var(--color-primary-300);
+ border-radius:var(--mlz-radius-full);
+ font:600 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
+ cursor:pointer;
+}
+.andy-card-foundation-controls button:hover:not([aria-pressed="true"]){background:var(--color-panel)}
+.andy-card-foundation-controls button[aria-pressed="true"]{
+ color:#fff;
+ background:var(--color-info-500);
+ border-color:var(--color-info-500);
+}
+.andy-card-foundation-controls button:focus-visible{
+ outline:2px solid var(--color-info-500);
+ outline-offset:2px;
+}
+.andy-card-foundation-caption{
+ margin:0;
+ text-align:center;
+ font:400 14px/22px Geometria,'Century Gothic',Arial,sans-serif;
+ color:var(--color-grey-500);
+}
+.andy-card-foundation-caption code{
+ padding:var(--mlz-space-2) var(--mlz-space-4);
+ border-radius:var(--mlz-radius-sm);
+ color:var(--color-primary-600);
+ background:var(--color-panel);
+}
+.andy-card-foundation-composition{
+ width:min(100%,420px);
+}
+.andy-card-foundation-composition .mlz-card-header{
+ padding-block:var(--mlz-space-8);
+ margin-inline:var(--mlz-card-spacing);
+ padding-inline:var(--mlz-space-12);
+ border:1px dashed var(--color-primary-300);
+ border-radius:var(--mlz-radius-sm);
+ background:var(--color-panel);
+}
+.andy-card-foundation-composition .mlz-card-title{
+ font-size:16px;
+ line-height:24px;
+}
+.andy-card-foundation-composition .mlz-card-description{
+ font-size:14px;
+ line-height:20px;
+}
+.andy-card-foundation-composition .mlz-card-action{
+ padding:var(--mlz-space-4) var(--mlz-space-6);
+ border:1px solid var(--color-primary-300);
+ border-radius:var(--mlz-radius-sm);
+ color:var(--color-primary-600);
+ background:#fff;
+ font:600 11px/16px Geometria,'Century Gothic',Arial,sans-serif;
+}
+.andy-card-foundation-composition-slot{
+ padding:var(--mlz-space-12);
+ border:1px dashed var(--color-primary-300);
+ border-radius:var(--mlz-radius-sm);
+ color:var(--color-primary-600);
+ background:var(--color-panel);
+ font:600 14px/22px Geometria,'Century Gothic',Arial,sans-serif;
+}
+.andy-card-foundation-composition .mlz-card-footer .andy-card-foundation-composition-slot{
+ width:100%;
+}
+.andy-card-foundation-states{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:var(--mlz-space-24);
+ width:min(100%,900px);
+}
+.andy-card-foundation-state{display:flex;flex-direction:column;min-width:0;gap:var(--mlz-space-12)}
+.andy-card-foundation-state-label{display:flex;flex-direction:column;gap:var(--mlz-space-4)}
+.andy-card-foundation-state-label strong{
+ font:700 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+ color:var(--color-primary-600);
+}
+.andy-card-foundation-state-label span{
+ font:400 14px/22px Geometria,'Century Gothic',Arial,sans-serif;
+ color:var(--color-grey-500);
+}
+.andy-card-foundation-state-card{height:100%;min-height:230px}
+.andy-card-foundation-state-card .mlz-card-footer{margin-top:auto}
+.andy-card-foundation-state-card.is-hover{
+ border-color:var(--color-primary-300);
+ box-shadow:0 8px 23px #174d7017;
+}
+.andy-card-foundation-state-card.is-focus .andy-system-button{
+ outline:2px solid var(--color-info-500);
+ outline-offset:2px;
+}
+.andy-card-foundation-state-card.is-disabled .andy-system-button{
+ opacity:.45;
+ cursor:not-allowed;
+}
+.andy-card-foundation-status{
+ display:block;
+ min-height:0;
+ margin:0;
+ color:var(--color-grey-500);
+ font:400 14px/22px Geometria,'Century Gothic',Arial,sans-serif;
+}
+.andy-card-foundation-status:empty{display:none}
+.andy-cards-unified>.andy-card-foundation-docs{
+ display:flex;
+ flex-direction:column;
+ min-width:0;
+ gap:var(--mlz-space-32);
+}
+@media(max-width:700px){
+ .andy-card-foundation-states{grid-template-columns:1fr}
+ .andy-card-foundation-state-card{min-height:0}
+ .andy-card-foundation-controls button{min-height:40px}
+}
