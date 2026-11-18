@@ -19,7 +19,7 @@ export function AndyScrollbarGallery(){
   </section>
   <section className="andy-scrollbar-section">
    <h3>Barra interna · dropdown y drawer</h3>
-   <p>Los dropdowns, calendarios y paneles utilizan <strong>4 px de ancho</strong> en Chromium/Safari, extremos redondeados y la misma escala Grey 100 / Grey 400 / Grey 500, sin flechas ni borde exterior. La muestra conserva 8 px de resguardo entre contenido y barra. El espacio a la izquierda de la barra solo aparece cuando hay desplazamiento; sin scroll, las opciones ocupan todo el ancho.</p>
+   <p>Los dropdowns, calendarios y paneles utilizan <strong>4 px de ancho</strong> en Chromium/Safari, extremos redondeados y la misma escala Grey 100 / Grey 400 / Grey 500, sin flechas ni borde exterior. La muestra conserva 8 px de resguardo, mientras que las opciones reales mantienen 6 px (4 px para hora/minutos) solo cuando existe overflow. La barra mantiene 4 px efectivos, sin usar un ancho mayor con bordes transparentes. Sin scroll, las opciones ocupan todo el ancho.</p>
    <div className="andy-scrollbar-frame"><ScrollPreview variant="dropdown" title="Ejemplo de desplazamiento interno"/></div>
   </section>
   <section className="andy-scrollbar-section">
