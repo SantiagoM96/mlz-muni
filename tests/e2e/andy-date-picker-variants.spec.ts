@@ -90,6 +90,7 @@ test('Date Picker: no incluye la variante RTL',async ({page})=>{
 
 
 test('Date Picker: inputs editables y calendario comparten focus interior del Design System',async ({page})=>{
+ await page.setViewportSize({width:900,height:768});
  await page.goto('/ui-kit-andy/componentes/calendario');
  for(const section of ['campo-editable','lenguaje-natural']){
   const example=page.locator('#'+section);
