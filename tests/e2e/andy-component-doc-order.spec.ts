@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 // Los componentes con check siguen una estructura editorial compartida:
 // descripción -> ejemplos -> estados (cuando corresponda) -> anatomía -> especificaciones -> comportamiento.
-const reviewed=['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb','boton'] as const;
+const reviewed=['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb','boton','button-group','calendar','calendario'] as const;
 for(const id of reviewed){
  test('UI Kit: estructura de documentación aprobada en '+id,async ({page})=>{
   await page.goto('/ui-kit-andy/componentes/'+id);
