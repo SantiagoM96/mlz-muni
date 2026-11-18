@@ -26,8 +26,8 @@ import './andy-kit.css';
 import { useAndyScrollbarSpacing } from './useAndyScrollbarSpacing';
 import './andy-scrollbars.css';
 
-const reviewedComponentIds=new Set<ComponentId>(['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb','boton']);
-const inProgressComponentIds=new Set<ComponentId>(['calendar','calendario']);
+const reviewedComponentIds=new Set<ComponentId>(['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb','boton','button-group','calendar','calendario']);
+const inProgressComponentIds=new Set<ComponentId>();
 
 const categories = [
   { id:'fundamentos', name:'Foundations' },

@@ -42,7 +42,17 @@
 .sports-cal-day{width:100%;height:37px;min-height:37px;padding:0;border:0;border-radius:var(--mlz-radius-lg);background:transparent;color:#3d3d3d;font:400 14px/37px Geometria,'Century Gothic',Arial,sans-serif;text-align:center}
 .sports-cal-day:hover:not(:disabled){background:#eaf3ff;color:#006eff}
 .sports-cal-day.is-selected,.sports-cal-day.is-selected:hover{background:#006eff;color:#fff;font-weight:700}
-.sports-cal-day.is-today:not(.is-selected){outline:1px solid #9dbbd2;outline-offset:-2px}
+/* Today: fondo Primario 200, sin el contorno rectangular anterior.
+   Selected (Info 500) y rango intermedio mantienen su prioridad visual.
+   El outline de :focus-visible sigue reservado a la navegación por teclado. */
+.sports-cal-day.is-today:not(.is-selected):not(.is-in-range):not(:disabled){
+ background:var(--color-primary-200);
+ color:var(--color-primary-700);
+ font-weight:600;
+}
+.sports-cal-day.is-today:not(.is-selected):not(.is-in-range):not(:disabled):hover{
+ background:var(--color-primary-300);
+}
 .sports-cal-day:disabled{opacity:.25;cursor:not-allowed}
 .sports-cal-day:focus-visible,.sports-cal-nav button:focus-visible,.sports-cal-actions button:focus-visible{outline:2px solid #006eff;outline-offset:2px}
 .sports-cal-actions{display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-8);padding-top:var(--mlz-space-14);margin-top:var(--mlz-space-12);border-top:1px solid #e7edf2}
