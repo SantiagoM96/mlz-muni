@@ -5,7 +5,6 @@ test('Andy: página y barras internas usan pista y thumb grises, estrechos y sin
 
   const pageScroll = page.locator('.andy-scrollbar-demo-scroll.is-page');
   const dropdownScroll = page.locator('.andy-scrollbar-demo-scroll.is-dropdown');
-  const hiddenScroll = page.locator('.andy-scrollbar-demo-scroll.is-hidden');
 
   for (const scroller of [pageScroll, dropdownScroll]) {
     await expect(scroller).toBeVisible();
