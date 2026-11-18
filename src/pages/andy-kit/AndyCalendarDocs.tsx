@@ -37,6 +37,7 @@ export function AndyCalendarDocs(){
     ['Tipografía','Geometria; encabezados del calendario en Bold y fechas en Regular.'],
     ['Color de acciones','Primario 600 #236999; botón seleccionado y dropdown activo en Info 500 #006EFF.'],
     ['Selección de rango','Extremos en Info 500; fondo intermedio azul suave #E5F0FF.'],
+    ['Hoy (Today)','Fondo Primario 200 (#C6DFF1) y texto Primario 700, sin recuadro ni contorno. Hover Primario 300 (#94C6E5); si se selecciona, predomina Info 500.'],
     ['Focus','Anillo Info 500 de 2 px, visible durante la navegación con teclado.'],
     ['Radio de día','4 px, incluido el comienzo y el final del rango.'],
     ['Acciones de la muestra','Borrar y Confirmar permiten ensayar la selección; la grilla base no requiere confirmación propia.'],
