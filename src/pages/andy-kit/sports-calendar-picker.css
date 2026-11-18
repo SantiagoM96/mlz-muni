@@ -233,22 +233,26 @@
  outline:2px solid #006eff;outline-offset:-2px
 }
 
-/* Acción de cerrar el Date Picker: Primario 600 en reposo y alerta suave al hover. */
+/* Cierre neutro: no es una acción destructiva. Estados del UI Kit. */
 .sports-cal-popup .sports-cal-x{
- color:#236999;
+ color:var(--color-grey-500);
  background:transparent;
- transition:background-color .16s ease,color .16s ease;
+ transition:background-color .16s ease,color .16s ease,box-shadow .16s ease;
 }
-.sports-cal-popup .sports-cal-x:hover{
- color:#ef284c;
- background:#fff0f2;
+.sports-cal-popup .sports-cal-x:hover:not(:disabled){
+ color:#236999;
+ background:#f3f7fc;
+}
+.sports-cal-popup .sports-cal-x:active:not(:disabled){
+ color:#1e415c;
+ background:#e5f0f9;
 }
 .sports-cal-popup .sports-cal-x .material-symbols-outlined{
  color:inherit;
 }
 .sports-cal-popup .sports-cal-x:focus-visible{
- outline:2px solid #006eff;
- outline-offset:2px;
+ outline:none;
+ box-shadow:inset 0 0 0 2px #006eff;
 }
 @media(prefers-reduced-motion:reduce){
  .sports-cal-popup .sports-cal-x{transition:none}
