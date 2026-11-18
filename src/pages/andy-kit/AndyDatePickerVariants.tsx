@@ -9,12 +9,13 @@ import {
  type CalendarRange, type CalendarView,
 } from '../../shared/calendar/CalendarMonthGrid';
 import { MaterialIcon } from '../../shared/ui/MaterialIcon';
+import { AndyTimeSelect } from './AndyTimeSelect';
 import { useSportsMobile } from './SportsMobileSheet';
 import './sports-calendar-picker.css';
 import './andy-button-matrix.css';
 import './andy-date-picker-variants.css';
 
-export type DatePickerDemoVariant='basic'|'range'|'input'|'time'|'natural'|'rtl';
+export type DatePickerDemoVariant='basic'|'range'|'input'|'time'|'natural';
 type Period='calendar'|'month'|'year';
 const MONTHS=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const WEEKDAYS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
@@ -65,15 +66,14 @@ export function AndyDatePickerVariants({variant}:PickerProps){
  const rangeMode=variant==='range';
  const editable=variant==='input'||variant==='natural';
  const natural=variant==='natural';
- const rtl=variant==='rtl';
  const timeMode=variant==='time';
  const id=useId(),hintId=useId();
- const label=rtl?'التاريخ':({
+ const label=({
   basic:'Fecha',range:'Período de fechas',input:'Fecha de suscripción',
   time:'Fecha',natural:'Fecha de publicación',
  } as const)[variant];
- const title=rtl?'اختر تاريخًا':rangeMode?'Seleccionar rango':'Seleccionar fecha';
- const placeholder=rtl?'اختر تاريخًا':rangeMode?'Seleccionar rango':'Seleccionar fecha';
+ const title=rangeMode?'Seleccionar rango':'Seleccionar fecha';
+ const placeholder=rangeMode?'Seleccionar rango':'Seleccionar fecha';
  const minYear=1900,maxYear=new Date().getFullYear()+10;
  const minDate=minYear+'-01-01',maxDate=maxYear+'-12-31';
  const todayISO=dateToCalendarISO(new Date());
@@ -209,7 +209,6 @@ export function AndyDatePickerVariants({variant}:PickerProps){
 
  const popup=<div className={'sports-cal-popup andy-dpv-popup'+(mobile?' is-mobile':'')+
   (dragY?' is-dragging':'')} role="dialog" aria-modal={mobile} ref={panel}
-  dir={rtl?'rtl':undefined}
   aria-label={period==='calendar'?title:period==='month'?'Seleccionar mes':'Seleccionar año'}
   style={{'--cal-y':dragY+'px'} as CSSProperties}>
   {mobile&&<button type="button" className="sports-cal-grab"
@@ -263,7 +262,7 @@ export function AndyDatePickerVariants({variant}:PickerProps){
   {popup}
  </div>,document.body):popup;
 
- return <div className={'sports-cal-field andy-dpv'+(rtl?' is-rtl':'')} dir={rtl?'rtl':undefined} ref={root}>
+ return <div className="sports-cal-field andy-dpv" ref={root}>
   <label className="sports-cal-label" htmlFor={id}>{label}</label>
   {editable?
    <div className="andy-dpv-input-row">
@@ -285,10 +284,7 @@ export function AndyDatePickerVariants({variant}:PickerProps){
   {natural&&value&&!error&&<p className="andy-dpv-result" role="status">
    Fecha interpretada: <strong>{WEEKDAYS[new Date(value+'T12:00:00').getDay()]}, {readable(value)}</strong>
   </p>}
-  {timeMode&&<label className="andy-dpv-time-outside" htmlFor={id+'-time'}>
-   Hora
-   <input id={id+'-time'} type="time" value={clock} onChange={event=>setClock(event.target.value)}/>
-  </label>}
+  {timeMode&&<AndyTimeSelect value={clock} onChange={setClock}/>}
   {timeMode&&value&&<p className="andy-dpv-result" role="status">Fecha y hora: {readable(value)} · {clock}</p>}
   {open&&floating}
  </div>;

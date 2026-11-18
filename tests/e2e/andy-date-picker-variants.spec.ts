@@ -7,7 +7,7 @@ test('UI Kit: Calendar y Date Picker tienen páginas independientes',async ({pag
  await expect(page.locator('#fecha-de-nacimiento')).toHaveCount(0);
  await page.goto('/ui-kit-andy/componentes/calendario');
  await expect(page.getByRole('heading',{name:'Date Picker',exact:true})).toBeVisible();
- for(const id of ['basico','seleccion-de-rango','fecha-de-nacimiento','campo-editable','fecha-y-hora','lenguaje-natural','rtl']){
+ for(const id of ['basico','seleccion-de-rango','fecha-de-nacimiento','campo-editable','fecha-y-hora','lenguaje-natural']){
   await expect(page.locator('#'+id)).toBeVisible();
  }
 });
@@ -73,14 +73,17 @@ test('Date Picker: fecha y hora se muestran juntas después de confirmar',async 
  const popup=page.getByRole('dialog',{name:'Seleccionar fecha'});
  await popup.locator('[data-calendar-date$="-15"]').click();
  await popup.getByRole('button',{name:'Confirmar'}).click();
- await demo.getByLabel('Hora').fill('14:30');
+ await demo.getByRole('button',{name:'Seleccionar hora'}).click();
+ const hours=demo.getByRole('listbox',{name:'Horas'});
+ await expect(hours.getByRole('option',{name:'09'})).toHaveAttribute('aria-selected','true');
+ await hours.getByRole('option',{name:'14'}).click();
+ await demo.getByRole('button',{name:'Seleccionar minutos'}).click();
+ const minutes=demo.getByRole('listbox',{name:'Minutos'});
+ await minutes.getByRole('option',{name:'30'}).click();
  await expect(demo.getByRole('status')).toContainText('14:30');
 });
 
-test('Date Picker: variante RTL conserva apertura y orden lógico',async ({page})=>{
+test('Date Picker: no incluye la variante RTL',async ({page})=>{
  await page.goto('/ui-kit-andy/componentes/calendario');
- const demo=page.locator('#rtl .andy-dpv');
- await expect(demo).toHaveAttribute('dir','rtl');
- await demo.locator('.sports-cal-trigger').click();
- await expect(page.getByRole('dialog',{name:'اختر تاريخًا'})).toBeVisible();
+ await expect(page.locator('#rtl')).toHaveCount(0);
 });

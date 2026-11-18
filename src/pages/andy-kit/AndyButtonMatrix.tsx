@@ -99,18 +99,6 @@ export function AndyButtonMatrix(){
    </Preview>
   </DocSection>
 
-  <DocSection title="Estados" description="Compará Default, Hover, Focus, Pressed, Active y Disabled. Elegí el estilo de botón para ver cómo responde cada estado.">
-   <ExampleControls label="Estilo de botón" items={kinds} value={stateKind} onChange={setStateKind}/>
-   <DocPreview className="andy-button-showcase">
-    <div className="andy-button-state-gallery">
-     {states.map(state=><div className="andy-button-state-example" key={state.id}>
-      <strong>{state.label}</strong>
-      <ButtonSample kind={stateKind} size="medium" state={state.id}/>
-     </div>)}
-    </div>
-   </DocPreview>
-  </DocSection>
-
   <DocSection title="Íconos" description="Compará el botón Primario en tamaño Medium: sin ícono, con ícono a la izquierda, a la derecha o solo ícono. Usamos Material Symbols Outlined de peso 400.">
    <ExampleControls label="Posición del ícono" items={placements} value={iconPlacement} onChange={setIconPlacement}/>
    <Preview><ButtonSample kind="primary" size="medium" icon={iconPlacement}/></Preview>
@@ -139,6 +127,18 @@ export function AndyButtonMatrix(){
     {kinds.map(kind=><ButtonSample key={kind.id} kind={kind.id} size="medium" onClick={()=>setLastClicked(kind.label)}/>)}
    </Preview>
    {lastClicked&&<p className="andy-button-feedback" role="status">Última acción de demostración: {lastClicked}</p>}
+  </DocSection>
+
+  <DocSection title="Estados" description="Compará Default, Hover, Focus, Pressed, Active y Disabled. Elegí el estilo de botón para ver cómo responde cada estado.">
+   <ExampleControls label="Estilo de botón" items={kinds} value={stateKind} onChange={setStateKind}/>
+   <DocPreview className="andy-button-showcase">
+    <div className="andy-button-state-gallery">
+     {states.map(state=><div className="andy-button-state-example" key={state.id}>
+      <strong>{state.label}</strong>
+      <ButtonSample kind={stateKind} size="medium" state={state.id}/>
+     </div>)}
+    </div>
+   </DocPreview>
   </DocSection>
 
   <DocSection title="Anatomía" description="Partes del componente compartidas por todas las variantes de Button.">
