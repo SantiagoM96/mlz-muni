@@ -63,21 +63,55 @@ html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden)::-webkit-scr
 }
 
 
-/* Separación óptica de las opciones con el scrollbar.
-   La pista ya tiene aire a la derecha gracias al padding del popover.
-   Damos el mismo aire del lado del contenido para que el estado activo
-   no termine pegado a la barra. No se altera el ancho del scrollbar. */
-html:has(.andy-kit) :is(
+/* Dropdowns con scroll: la pista de 4 px se dibuja al extremo derecho de
+   una zona nativa de 10 px, con 6 px transparentes hacia las opciones.
+   La zona existe ÚNICAMENTE si el scroll es necesario: sin overflow, las
+   opciones usan el ancho entero, sin padding/gutter reservados.
+   El selector de hora/minutos usa 4 px de aire (8 px de zona total). */
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden):is(
   .andy-dropdown-variant-options,
   .sports-cal-choices,
   .kit-sports-options,
   .kit-sports-more-scroll,
   .kit-sports-advanced-popover .kit-sports-advanced
 ) {
-  padding-inline-end: var(--mlz-space-6);
+  padding-inline-end: 0;
+}
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden):is(
+  .andy-dropdown-variant-options,
+  .sports-cal-choices,
+  .kit-sports-options,
+  .kit-sports-more-scroll,
+  .kit-sports-advanced-popover .kit-sports-advanced
+)::-webkit-scrollbar {
+  width: 10px; /* 6 px de separación + 4 px visibles */
+}
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden).andy-dpv-time-options {
+  padding-inline-end: 0;
+}
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden).andy-dpv-time-options::-webkit-scrollbar {
+  width: 8px; /* 4 px de separación + 4 px visibles */
 }
 
-/* El menú compacto de hora/minutos tiene un inset externo de 4 px. */
-html:has(.andy-kit) .andy-dpv-time-options {
-  padding-inline-end: var(--mlz-space-4);
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden):is(
+  .andy-dropdown-variant-options,
+  .sports-cal-choices,
+  .kit-sports-options,
+  .kit-sports-more-scroll,
+  .kit-sports-advanced-popover .kit-sports-advanced
+)::-webkit-scrollbar-track,
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden):is(
+  .andy-dropdown-variant-options,
+  .sports-cal-choices,
+  .kit-sports-options,
+  .kit-sports-more-scroll,
+  .kit-sports-advanced-popover .kit-sports-advanced
+)::-webkit-scrollbar-thumb {
+  border-left: 6px solid transparent;
+  background-clip: padding-box;
+}
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden).andy-dpv-time-options::-webkit-scrollbar-track,
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden).andy-dpv-time-options::-webkit-scrollbar-thumb {
+  border-left: 4px solid transparent;
+  background-clip: padding-box;
 }
