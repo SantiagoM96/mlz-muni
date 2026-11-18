@@ -173,7 +173,7 @@ export function SportsCalendarPicker({label='Fecha de nacimiento',initialValue='
        <span>{value?formatISO(value):'Seleccionar fecha'}</span><MaterialIcon name="calendar_month" size={24}/>
      </button>
      {value&&<button type="button" className="sports-cal-inline-clear" aria-label="Borrar fecha de nacimiento" onClick={reset}><MaterialIcon name="close" size={24}/></button>}
+     {open&&popup}
    </div>
-   {open&&popup}
  </div>;
 }
