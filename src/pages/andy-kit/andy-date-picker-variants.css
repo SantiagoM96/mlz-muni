@@ -1,0 +1,65 @@
+/* Date Picker: variantes de la documentación shadcn compuestas con tokens MLZ. */
+.andy-doc-page .andy-dpv{
+ width:min(100%,540px);margin:0 auto;
+}
+.andy-dpv-input-row{display:flex;align-items:stretch;gap:var(--mlz-space-8,8px)}
+.andy-dpv-input{
+ box-sizing:border-box;
+ min-width:0;flex:1 1 auto;width:100%;height:48px;
+ padding:0 var(--mlz-space-16,16px);
+ border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm,4px);
+ background:#fff;color:#236999;
+ font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+}
+.andy-dpv-input::placeholder{color:#6d6d6d}
+.andy-dpv-input:hover{border-color:#236999}
+.andy-dpv-input:focus-visible{outline:2px solid #006eff;outline-offset:0;border-color:#006eff}
+.andy-dpv-input[aria-invalid=true]{border-color:#ef284c}
+.andy-dpv-icon-trigger{
+ display:inline-flex;align-items:center;justify-content:center;flex:0 0 48px;
+ width:48px;height:48px;padding:0;
+ border:1px solid #94c6e5;border-radius:var(--mlz-radius-sm,4px);
+ background:#fff;color:#236999;cursor:pointer;
+}
+.andy-dpv-icon-trigger:hover{background:#f3f7fc}
+.andy-dpv-icon-trigger:focus-visible,.andy-dpv-icon-trigger[aria-expanded=true]{
+ outline:2px solid #006eff;outline-offset:2px;
+}
+.andy-dpv-error,.andy-dpv-result{
+ margin:var(--mlz-space-8,8px) 0 0;
+ font:400 18px/28px Geometria,'Century Gothic',Arial,sans-serif;
+ color:#6d6d6d;
+}
+.andy-dpv-error{color:#b51d37}
+.andy-dpv-result strong{font-weight:700;color:#236999}
+.andy-dpv-time-outside{
+ display:flex;flex-direction:column;align-items:stretch;
+ gap:var(--mlz-space-8,8px);
+ margin-top:var(--mlz-space-16,16px);
+ font:700 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+ color:#236999;
+}
+.andy-dpv-time-outside input,.andy-dpv-time-inside input{
+ box-sizing:border-box;width:100%;height:48px;
+ padding:0 var(--mlz-space-12,12px);
+ border:1px solid #5ba8d5;border-radius:var(--mlz-radius-sm,4px);
+ color:#236999;background:#fff;
+ font:400 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+}
+.andy-dpv-time-outside input:focus-visible,.andy-dpv-time-inside input:focus-visible{
+ outline:2px solid #006eff;outline-offset:2px;
+}
+.andy-dpv-time-inside{
+ display:flex;flex-direction:column;gap:var(--mlz-space-8,8px);
+ margin-top:var(--mlz-space-12,12px);
+ font:700 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+ color:#236999;
+}
+.andy-dpv-time-inside input{height:40px}
+.andy-dpv.is-rtl .andy-dpv-popup{left:auto;right:0}
+.andy-dpv.is-rtl .sports-cal-trigger{text-align:right}
+.andy-dpv-popup .sports-cal-day:focus-visible{outline-offset:1px}
+@media(max-width:680px){
+ .andy-doc-page .andy-dpv{width:100%}
+ .andy-dpv-time-inside input{height:40px}
+}
