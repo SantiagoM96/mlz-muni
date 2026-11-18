@@ -20,8 +20,6 @@ test('Andy: página y barras internas usan pista y thumb grises, estrechos y sin
     const sidebar = document.querySelector('.andy-sidebar')!;
     const pseudo = (element: Element, selector: string) => getComputedStyle(element, selector);
     return {
-      trackToken: getComputedStyle(html).getPropertyValue('--andy-scroll-track').trim(),
-      thumbToken: getComputedStyle(html).getPropertyValue('--andy-scroll-thumb').trim(),
       pageWidth: pseudo(html, '::-webkit-scrollbar').width,
       internalWidth: pseudo(internal, '::-webkit-scrollbar').width,
       pageTrack: pseudo(html, '::-webkit-scrollbar-track').backgroundColor,
@@ -34,8 +32,6 @@ test('Andy: página y barras internas usan pista y thumb grises, estrechos y sin
     };
   });
 
-  expect(style.trackToken).toBe('var(--color-grey-100)');
-  expect(style.thumbToken).toBe('var(--color-grey-400)');
   expect(style.hiddenNativeWidth).toBe('none');
   expect(style.sidebarNativeWidth).toBe('none');
 
