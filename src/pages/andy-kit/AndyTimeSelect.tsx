@@ -34,7 +34,12 @@ function TimePartDropdown({label,values,value,onChange}:PartProps){
   const selected=[...list.current?.querySelectorAll<HTMLButtonElement>('[role="option"]')||[]]
    .find(option=>option.getAttribute('aria-selected')==='true');
   selected?.focus({preventScroll:true});
-  selected?.scrollIntoView({block:'nearest'});
+  // Desplazar solo las opciones, no la página ni el contenedor del ejemplo.
+  if(selected&&list.current){
+   const options=list.current;
+   const center=selected.offsetTop-options.offsetTop-selected.offsetHeight;
+   options.scrollTop=Math.max(0,center);
+  }
   return()=>{
    document.removeEventListener('pointerdown',outside);
    document.removeEventListener('keydown',escape);
