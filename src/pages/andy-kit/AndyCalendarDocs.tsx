@@ -40,7 +40,7 @@ export function AndyCalendarDocs(){
     ['Focus','Anillo Info 500 de 2 px, visible durante la navegación con teclado.'],
     ['Radio de día','4 px, incluido el comienzo y el final del rango.'],
     ['Acciones de la muestra','Borrar y Confirmar permiten ensayar la selección; la grilla base no requiere confirmación propia.'],
-    ['Presentación','Calendario centrado en una única caja de vista previa, sin tarjetas anidadas.'],
+    ['Presentación','Calendario centrado en su propia caja contenedora, dentro del área de vista previa; borde, radio y sombra coherentes con el UI Kit.'],
     ['Restricciones','minDate, maxDate y disabledDates; días bloqueados sin clic ni foco.'],
     ['Datos','Fecha ISO local YYYY-MM-DD, sin conversiones horarias al calcular días.'],
    ]}/>
