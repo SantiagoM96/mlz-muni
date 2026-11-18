@@ -34,6 +34,7 @@ export function AndyDatePickerDocs({fieldStates}:{fieldStates?:ReactNode}){
     ['Etiqueta','Identifica el dato requerido y se asocia al campo o disparador.'],
     ['Campo / disparador','Presenta el valor, el placeholder o permite escribirlo, según la variante.'],
     ['Ícono de calendario','Material Symbols Outlined para abrir el selector en las variantes editables.'],
+    ['Cerrar calendario','Ícono X en Grey 500; hover con Primario 600 y superficie Primario 50; foco interior Info 500. No se utiliza rojo.'],
     ['Popover / drawer','Superficie de selección de fechas en desktop y mobile respectivamente.'],
     ['CalendarMonthGrid','Grilla compartida por Date Picker y Calendar, con navegación y restricciones.'],
     ['Acciones','Borrar limpia el valor y Confirmar aplica la fecha o el rango pendiente.'],
