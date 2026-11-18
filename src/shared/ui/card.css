@@ -1,0 +1,60 @@
+/* Composición compartida de Card. No modifica las ocho tarjetas municipales existentes. */
+.mlz-card{
+ --mlz-card-spacing:var(--mlz-space-24);
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-card-spacing);
+ min-width:0;
+ width:100%;
+ overflow:hidden;
+ padding-block:var(--mlz-card-spacing);
+ border:1px solid var(--color-grey-100);
+ border-radius:var(--mlz-radius-lg);
+ background:#fff;
+ color:var(--color-grey-900);
+ font-family:Geometria,'Century Gothic',Arial,sans-serif;
+}
+.mlz-card[data-size="sm"]{--mlz-card-spacing:var(--mlz-space-16)}
+.mlz-card-header{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) auto;
+ grid-template-areas:"title action" "description action";
+ gap:var(--mlz-space-4) var(--mlz-space-8);
+ align-items:start;
+ padding-inline:var(--mlz-card-spacing);
+}
+.mlz-card-title{
+ grid-area:title;
+ min-width:0;
+ margin:0;
+ color:var(--color-primary-600);
+ font-size:22px;
+ line-height:29px;
+ font-weight:700;
+ overflow-wrap:anywhere;
+}
+.mlz-card-description{
+ grid-area:description;
+ min-width:0;
+ margin:0;
+ color:var(--color-grey-500);
+ font-size:16px;
+ line-height:24px;
+ font-weight:400;
+ overflow-wrap:anywhere;
+}
+.mlz-card-action{grid-area:action;display:flex;align-items:flex-start;justify-content:flex-end;min-width:0}
+.mlz-card-content{padding-inline:var(--mlz-card-spacing);font-size:16px;line-height:24px;min-width:0}
+.mlz-card-content p{margin:0}
+.mlz-card-footer{
+ display:flex;
+ flex-wrap:wrap;
+ align-items:center;
+ gap:var(--mlz-space-8);
+ padding-inline:var(--mlz-card-spacing);
+}
+.mlz-card-media{display:block;width:100%;height:154px;max-height:220px;object-fit:cover;flex:0 0 auto}
+.mlz-card:has(> .mlz-card-media:first-child){padding-top:0}
+.mlz-card[data-size="sm"] .mlz-card-title{font-size:18px;line-height:26px}
+.mlz-card[data-size="sm"] .mlz-card-description,
+.mlz-card[data-size="sm"] .mlz-card-content{font-size:14px;line-height:22px}
