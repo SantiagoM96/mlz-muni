@@ -171,6 +171,10 @@ export function AndyDatePickerVariants({variant}:PickerProps){
    document.body.style.overflow=previous;
   };
  },[open,mobile,period]);
+ useEffect(()=>{
+  if(!open||!mobile)return;
+  panel.current?.querySelector<HTMLElement>('button:not([disabled])')?.focus({preventScroll:true});
+ },[open,mobile,period]);
  const pointerDown=(event:ReactPointerEvent<HTMLButtonElement>)=>{
   if(!mobile||(event.pointerType==='mouse'&&event.button!==0))return;
   gesture.current={id:event.pointerId,start:event.clientY};
@@ -205,6 +209,7 @@ export function AndyDatePickerVariants({variant}:PickerProps){
 
  const popup=<div className={'sports-cal-popup andy-dpv-popup'+(mobile?' is-mobile':'')+
   (dragY?' is-dragging':'')} role="dialog" aria-modal={mobile} ref={panel}
+  dir={rtl?'rtl':undefined}
   aria-label={period==='calendar'?title:period==='month'?'Seleccionar mes':'Seleccionar año'}
   style={{'--cal-y':dragY+'px'} as CSSProperties}>
   {mobile&&<button type="button" className="sports-cal-grab"
