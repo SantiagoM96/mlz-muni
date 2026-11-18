@@ -179,3 +179,21 @@ test('Andy: fecha del formulario desplegada a la derecha del campo',async ({page
   expect(Math.abs(popupBox.y-(triggerBox.y+triggerBox.height+4))).toBeLessThan(2);
  }
 });
+
+
+test('Andy: Today se distingue con Primario 200 sin marco y Selected prevalece',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/calendar');
+ const example=page.locator('#basico');
+ const today=example.getByRole('gridcell',{name:'17 de Noviembre de 2008'});
+ const selected=example.getByRole('gridcell',{name:'13 de Noviembre de 2008'});
+ await expect(today).toHaveAttribute('aria-current','date');
+ await expect(today).toHaveClass(/is-today/);
+ await expect(today).toHaveCSS('background-color','rgb(198, 223, 241)');
+ await expect(today).toHaveCSS('outline-style','none');
+ await expect(selected).toHaveCSS('background-color','rgb(0, 110, 255)');
+ await today.hover();
+ await expect(today).toHaveCSS('background-color','rgb(148, 198, 229)');
+ await today.click();
+ await expect(today).toHaveCSS('background-color','rgb(0, 110, 255)');
+ await expect(today).toHaveAttribute('aria-current','date');
+});
