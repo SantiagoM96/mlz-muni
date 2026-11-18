@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
-import { SportsCalendarPicker } from './SportsCalendarPicker';
 import { AndyDatePickerVariants } from './AndyDatePickerVariants';
 import './andy-calendar-docs.css';
 
@@ -14,10 +13,6 @@ export function AndyDatePickerDocs({fieldStates}:{fieldStates?:ReactNode}){
 
   <DocSection title="Selección de rango" description="Elegí dos fechas para definir un período. La selección conserva extremos destacados y días intermedios unidos visualmente, reutilizando Calendar.">
    <DocPreview><AndyDatePickerVariants variant="range"/></DocPreview>
-  </DocSection>
-
-  <DocSection title="Fecha de nacimiento" description="Variante utilizada en Deportes. Permite seleccionar el mes y el año de forma directa y deshabilita las fechas futuras. Conserva el comportamiento productivo actual.">
-   <DocPreview><div className="andy-matrix-calendar-sample andy-calendar-dropdown-sample"><SportsCalendarPicker/></div></DocPreview>
   </DocSection>
 
   <DocSection title="Campo editable" description="Combinación de escritura manual con apertura del calendario. Acepta el formato DD/MM/AAAA y valida fechas reales antes de utilizarlas.">
@@ -39,6 +34,7 @@ export function AndyDatePickerDocs({fieldStates}:{fieldStates?:ReactNode}){
     ['Etiqueta','Identifica el dato requerido y se asocia al campo o disparador.'],
     ['Campo / disparador','Presenta el valor, el placeholder o permite escribirlo, según la variante.'],
     ['Ícono de calendario','Material Symbols Outlined para abrir el selector en las variantes editables.'],
+    ['Cerrar calendario','Ícono X en Grey 500; hover con Primario 600 y superficie Primario 50; foco interior Info 500. No se utiliza rojo.'],
     ['Popover / drawer','Superficie de selección de fechas en desktop y mobile respectivamente.'],
     ['CalendarMonthGrid','Grilla compartida por Date Picker y Calendar, con navegación y restricciones.'],
     ['Acciones','Borrar limpia el valor y Confirmar aplica la fecha o el rango pendiente.'],
@@ -53,7 +49,7 @@ export function AndyDatePickerDocs({fieldStates}:{fieldStates?:ReactNode}){
     ['Botones de acción','Primario 600 (#236999) y Terciario con borde #94C6E5.'],
     ['Seleccionado','Día activo en Info 500 (#006EFF), texto blanco; rango intermedio azul suave.'],
     ['Focus','Input editable e ícono de calendario: 1 px de borde y 1 px interior en Info 500, sin anillo exterior. El error mantiene prioridad sobre el foco.'],
-    ['Popover','348 px de ancho en desktop, ajustado al viewport.'],
+    ['Popover','348 px de ancho en desktop, debajo del disparador y alineado a su borde derecho, con separación vertical de 4 px y ancho limitado al viewport.'],
     ['Drawer mobile','Superficie inferior con overlay y controles de 40 px, conservando el gesto de cierre.'],
     ['Formato de fecha','DD/MM/AAAA en campos; estado interno en ISO local YYYY-MM-DD.'],
     ['Hora y minutos','Dos selectores de 48 px, menú MLZ con opción activa en Info 500 y lista desplazable; formato de 24 horas.'],
@@ -69,7 +65,6 @@ export function AndyDatePickerDocs({fieldStates}:{fieldStates?:ReactNode}){
     ['Fecha inválida','La entrada manual mantiene el valor visible e informa el error sin cambiar la fecha seleccionada.'],
     ['Lenguaje natural','Únicamente reconoce patrones declarados; muestra la fecha interpretada para verificarla.'],
     ['Responsive','El popover se sustituye por drawer en mobile y devuelve el foco al disparador al cerrar.'],
-    ['Producto','Fecha de nacimiento conserva sus límites y estados actuales para Deportes.'],
    ]}/>
   </DocSection>
  </>;

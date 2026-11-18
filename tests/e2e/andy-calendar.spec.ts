@@ -43,11 +43,10 @@ test('Andy: meses futuros deshabilitados y fecha pendiente requiere confirmació
 });
 
 
-test('Andy: Date Picker usa controles y botones del sistema y los radios aprobados',async ({page})=>{
- await page.goto('/ui-kit-andy/componentes/calendario');
- const sample=page.locator('.andy-calendar-dropdown-sample');
- await expect(sample).toHaveCSS('min-height','560px');
- await sample.getByRole('button',{name:'Fecha de nacimiento'}).click();
+test('Andy: Date Picker de formulario usa controles y botones del sistema y los radios aprobados',async ({page})=>{
+ await page.goto('/ui-kit-andy/formularios');
+ const sample=page.locator('.andy-matrix-calendar-sample').first();
+ await sample.locator('.sports-cal-trigger').click();
  const picker=page.getByRole('dialog',{name:'Seleccionar fecha'});
  await expect(picker).toBeVisible();
  const mobile=await page.evaluate(()=>window.innerWidth<=680);
@@ -160,5 +159,23 @@ test('Andy: los calendarios de documentación tienen contenedor visible alrededo
    expect(titleBox.y).toBeGreaterThan(cardBox.y);
    expect(actionsBox.y+actionsBox.height).toBeLessThan(cardBox.y+cardBox.height);
   }
+ }
+});
+
+test('Andy: fecha del formulario desplegada a la derecha del campo',async ({page})=>{
+ await page.setViewportSize({width:1280,height:900});
+ await page.goto('/ui-kit-andy/formularios');
+ const sample=page.locator('.andy-matrix-calendar-sample').first();
+ const trigger=sample.locator('.sports-cal-trigger');
+ await trigger.click();
+ const popup=sample.locator('.sports-cal-popup');
+ await expect(popup).toBeVisible();
+ const triggerBox=await trigger.boundingBox();
+ const popupBox=await popup.boundingBox();
+ expect(triggerBox).not.toBeNull();
+ expect(popupBox).not.toBeNull();
+ if(triggerBox&&popupBox){
+  expect(Math.abs((popupBox.x+popupBox.width)-(triggerBox.x+triggerBox.width))).toBeLessThan(2);
+  expect(Math.abs(popupBox.y-(triggerBox.y+triggerBox.height+4))).toBeLessThan(2);
  }
 });

@@ -264,6 +264,7 @@ export function AndyDatePickerVariants({variant}:PickerProps){
 
  return <div className="sports-cal-field andy-dpv" ref={root}>
   <label className="sports-cal-label" htmlFor={id}>{label}</label>
+  <div className="sports-cal-trigger-wrap">
   {editable?
    <div className="andy-dpv-input-row">
     <input id={id} className="andy-dpv-input" type="text"
@@ -280,12 +281,13 @@ export function AndyDatePickerVariants({variant}:PickerProps){
     onClick={show} aria-expanded={open} aria-haspopup="dialog">
     <span>{valueLabel}</span><MaterialIcon name="calendar_month" size={24}/>
    </button>}
+  {open&&floating}
+  </div>
   {error&&<p className="andy-dpv-error" id={hintId} role="alert">{error}</p>}
   {natural&&value&&!error&&<p className="andy-dpv-result" role="status">
    Fecha interpretada: <strong>{WEEKDAYS[new Date(value+'T12:00:00').getDay()]}, {readable(value)}</strong>
   </p>}
   {timeMode&&<AndyTimeSelect value={clock} onChange={setClock}/>}
   {timeMode&&value&&<p className="andy-dpv-result" role="status">Fecha y hora: {readable(value)} · {clock}</p>}
-  {open&&floating}
  </div>;
 }
