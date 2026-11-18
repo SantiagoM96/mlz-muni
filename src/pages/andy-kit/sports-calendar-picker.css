@@ -13,7 +13,8 @@
 .sports-cal-inline-clear{position:absolute;right:47px;top:9px;width:30px;height:30px;display:grid;place-items:center;background:transparent;color:#ef284c;border:0;border-radius:var(--mlz-radius-sm)}
 .sports-cal-inline-clear:hover{background:#fff0f2}
 .sports-cal-inline-clear:focus-visible{outline:2px solid #006eff;outline-offset:1px}
-.sports-cal-popup{position:absolute;z-index:110;top:calc(100% + 8px);left:0;width:348px;max-width:min(348px,calc(100vw - 32px));padding:var(--mlz-space-24) var(--mlz-space-16) var(--mlz-space-16);background:#fff;border:1px solid #dce3e9;border-radius:var(--mlz-radius-2xl);box-shadow:0 14px 38px #132c4425;font-family:Geometria,'Century Gothic',Arial,sans-serif}
+/* Popover desktop: debajo del disparador, alineado al borde derecho del ícono de calendario. */
+.sports-cal-popup{position:absolute;z-index:110;top:calc(100% + var(--mlz-space-4));right:0;left:auto;width:348px;max-width:min(348px,calc(100vw - 32px));padding:var(--mlz-space-24) var(--mlz-space-16) var(--mlz-space-16);background:#fff;border:1px solid #dce3e9;border-radius:var(--mlz-radius-2xl);box-shadow:0 14px 38px #132c4425;font-family:Geometria,'Century Gothic',Arial,sans-serif}
 .sports-cal-top{display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-8);min-height:30px;margin-bottom:var(--mlz-space-16)}
 .sports-cal-top strong{font-size:19px;line-height:28px;font-weight:700;color:#30363b}
 .sports-cal-x,.sports-cal-back{width:32px;height:32px;display:grid;place-items:center;border:0;border-radius:var(--mlz-radius-sm);background:transparent;color:#71808c}
