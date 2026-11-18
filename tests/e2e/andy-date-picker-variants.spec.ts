@@ -87,3 +87,35 @@ test('Date Picker: no incluye la variante RTL',async ({page})=>{
  await page.goto('/ui-kit-andy/componentes/calendario');
  await expect(page.locator('#rtl')).toHaveCount(0);
 });
+
+
+test('Date Picker: inputs editables y calendario comparten focus interior del Design System',async ({page})=>{
+ await page.setViewportSize({width:900,height:768});
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ for(const section of ['campo-editable','lenguaje-natural']){
+  const example=page.locator('#'+section);
+  const field=example.locator('.andy-dpv-input');
+  const calendar=example.locator('.andy-dpv-icon-trigger');
+  await field.click();
+  await expect(field).toHaveCSS('border-top-color','rgb(0, 110, 255)');
+  await expect(field).toHaveCSS('outline-style','none');
+  await expect(field).toHaveCSS('box-shadow',/inset .*rgb\(0, 110, 255\)|rgb\(0, 110, 255\).*inset/);
+  await calendar.click();
+  await expect(calendar).toHaveAttribute('aria-expanded','true');
+  await expect(calendar).toHaveCSS('outline-style','none');
+  await expect(calendar).toHaveCSS('border-top-color','rgb(0, 110, 255)');
+  await expect(calendar).toHaveCSS('box-shadow',/inset .*rgb\(0, 110, 255\)|rgb\(0, 110, 255\).*inset/);
+  await calendar.click();
+ }
+});
+
+test('Date Picker: el error del campo editable prevalece sobre el estado focus',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ const field=page.locator('#campo-editable .andy-dpv-input');
+ await field.fill('31/02/2026');
+ await field.press('Enter');
+ await field.click();
+ await expect(field).toHaveCSS('border-top-color','rgb(239, 40, 76)');
+ await expect(field).toHaveCSS('outline-style','none');
+ await expect(field).toHaveCSS('box-shadow',/inset .*rgb\(239, 40, 76\)|rgb\(239, 40, 76\).*inset/);
+});

@@ -13,8 +13,20 @@
 }
 .andy-dpv-input::placeholder{color:#6d6d6d}
 .andy-dpv-input:hover{border-color:#236999}
-.andy-dpv-input:focus-visible{outline:2px solid #006eff;outline-offset:0;border-color:#006eff}
-.andy-dpv-input[aria-invalid=true]{border-color:#ef284c}
+/* Focus del Text Field institucional: 1px de borde + 1px interior,
+   sin halo exterior ni cambio de dimensión. */
+.andy-doc-layout .andy-doc-page .andy-dpv-input:is(:focus,:focus-visible){
+ border:1px solid #006eff;
+ outline:none;
+ box-shadow:inset 0 0 0 1px #006eff;
+}
+/* El error prevalece sobre el foco: sigue el mismo contrato que Text Field. */
+.andy-doc-layout .andy-doc-page .andy-dpv-input[aria-invalid=true],
+.andy-doc-layout .andy-doc-page .andy-dpv-input[aria-invalid=true]:is(:focus,:focus-visible){
+ border:1px solid #ef284c;
+ outline:none;
+ box-shadow:inset 0 0 0 1px #ef284c;
+}
 .andy-dpv-icon-trigger{
  display:inline-flex;align-items:center;justify-content:center;flex:0 0 48px;
  width:48px;height:48px;padding:0;
@@ -22,8 +34,12 @@
  background:#fff;color:#236999;cursor:pointer;
 }
 .andy-dpv-icon-trigger:hover{background:#f3f7fc}
-.andy-dpv-icon-trigger:focus-visible,.andy-dpv-icon-trigger[aria-expanded=true]{
- outline:2px solid #006eff;outline-offset:2px;
+/* El disparador de calendario comparte el foco interior de los controles,
+   también cuando está abierto; el anillo externo pertenece a otros botones. */
+.andy-doc-layout .andy-doc-page .andy-dpv-icon-trigger:is(:focus,:focus-visible,[aria-expanded=true]){
+ border:1px solid #006eff;
+ outline:none;
+ box-shadow:inset 0 0 0 1px #006eff;
 }
 .andy-dpv-error,.andy-dpv-result{
  margin:var(--mlz-space-8,8px) 0 0;

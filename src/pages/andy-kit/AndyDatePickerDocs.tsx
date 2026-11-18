@@ -52,7 +52,7 @@ export function AndyDatePickerDocs({fieldStates}:{fieldStates?:ReactNode}){
     ['Campo','48 px de alto, tipografía Geometria 16/24, borde y radio de 4 px.'],
     ['Botones de acción','Primario 600 (#236999) y Terciario con borde #94C6E5.'],
     ['Seleccionado','Día activo en Info 500 (#006EFF), texto blanco; rango intermedio azul suave.'],
-    ['Focus','2 px en Info 500, con diferencia visible respecto del borde en reposo.'],
+    ['Focus','Input editable e ícono de calendario: 1 px de borde y 1 px interior en Info 500, sin anillo exterior. El error mantiene prioridad sobre el foco.'],
     ['Popover','348 px de ancho en desktop, ajustado al viewport.'],
     ['Drawer mobile','Superficie inferior con overlay y controles de 40 px, conservando el gesto de cierre.'],
     ['Formato de fecha','DD/MM/AAAA en campos; estado interno en ISO local YYYY-MM-DD.'],
