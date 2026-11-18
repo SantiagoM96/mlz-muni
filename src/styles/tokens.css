@@ -10,6 +10,9 @@
  * gris 900 para textos de contenido.
  */
 @theme {
+  /* Primario 200/300: tonos institucionales usados en superficies suaves. */
+  --color-primary-200: #c6dff1;
+  --color-primary-300: #94c6e5;
   --color-primary-500: #358dc2;
   --color-info-500: #006eff;
   --color-primary-600: #236999;
