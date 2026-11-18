@@ -68,7 +68,8 @@ test('Andy: dropdown de año muestra la barra interna del sistema sin ocultarla'
   expect(result.overflow).toBe('auto');
   if (browserName === 'chromium' || browserName === 'webkit') {
     expect(result.nativeWidth).toBe('auto');
-    expect(result.width).toBe('4px');
+    expect(result.width).toBe('10px');
+    expect(await scroll.evaluate(el => getComputedStyle(el, '::-webkit-scrollbar-thumb').borderLeftWidth)).toBe('6px');
     expect(result.track).toBe('rgb(231, 231, 231)');
     expect(result.thumb).toBe('rgb(136, 136, 136)');
   } else {
@@ -77,39 +78,61 @@ test('Andy: dropdown de año muestra la barra interna del sistema sin ocultarla'
 });
 
 
-test('Andy: las opciones activas de hora y año tienen separación antes de la barra', async ({page}) => {
-  const measure = async (selector: string, expectedGap: string) => {
-    const list = page.locator(selector);
-    await expect(list).toBeVisible();
-    await expect(list).toHaveCSS('padding-inline-end', expectedGap);
-    const geometry = await list.evaluate(el => {
-      const option = el.querySelector('[role="option"][aria-selected="true"]');
-      if (!(option instanceof HTMLElement)) return null;
-      const listRect = el.getBoundingClientRect();
-      const optionRect = option.getBoundingClientRect();
-      const scrollWidth = el.offsetWidth - el.clientWidth;
-      return {
-        canScroll: el.scrollHeight > el.clientHeight,
-        optionRight: optionRect.right,
-        trackLeft: listRect.right - scrollWidth,
-      };
-    });
-    expect(geometry).not.toBeNull();
-    expect(geometry?.canScroll).toBe(true);
-    // El extremo de la selección debe dejar al menos el espacio visual
-    // de la ficha y nunca tocar la pista.
-    expect((geometry?.trackLeft ?? 0) - (geometry?.optionRight ?? 0))
-      .toBeGreaterThanOrEqual(parseInt(expectedGap, 10) - 1);
+test('Andy: dropdown con y sin scroll utiliza todo el ancho disponible correctamente', async ({page, browserName})=>{
+ await page.setViewportSize({width:900,height:768});
+ await page.goto('/ui-kit-andy/componentes/select');
+ const simple=page.locator('.andy-dropdown-variant[data-variant="simple"] .andy-dropdown-variant-options');
+ const checkbox=page.locator('.andy-dropdown-variant[data-variant="checkbox"] .andy-dropdown-variant-options');
+ await expect(simple).toBeVisible();
+ await expect(checkbox).toBeVisible();
+ const read=async (locator: typeof simple)=>locator.evaluate(el=>{
+  const first=el.querySelector<HTMLElement>('.andy-dropdown-variant-option')!;
+  return {
+   scrolls:el.scrollHeight>el.clientHeight,
+   paddingEnd:getComputedStyle(el).paddingInlineEnd,
+   listRight:el.getBoundingClientRect().right,
+   optionRight:first.getBoundingClientRect().right,
+   trackWidth:getComputedStyle(el,'::-webkit-scrollbar').width,
+   thumbInset:getComputedStyle(el,'::-webkit-scrollbar-thumb').borderLeftWidth,
   };
+ });
+ const noScroll=await read(simple);
+ const scroll=await read(checkbox);
+ expect(noScroll.scrolls).toBe(false);
+ expect(noScroll.paddingEnd).toBe('0px');
+ expect(noScroll.listRight-noScroll.optionRight).toBeLessThanOrEqual(1);
+ expect(scroll.scrolls).toBe(true);
+ expect(scroll.paddingEnd).toBe('0px');
+ if(browserName==='chromium'||browserName==='webkit'){
+  expect(scroll.trackWidth).toBe('10px');
+  expect(scroll.thumbInset).toBe('6px');
+  expect(scroll.listRight-scroll.optionRight).toBeGreaterThanOrEqual(9);
+ }
+});
 
-  await page.goto('/ui-kit-andy/componentes/calendario');
-  const timeSample = page.locator('#fecha-y-hora');
-  await timeSample.getByRole('button', {name:'Seleccionar hora'}).click();
-  await measure('#fecha-y-hora .andy-dpv-time-options', '4px');
-  await timeSample.getByRole('button', {name:'Seleccionar hora'}).click();
+test('Andy: dropdowns de hora y año muestran un hueco real antes de la pista', async ({page, browserName})=>{
+ await page.setViewportSize({width:900,height:768});
+ const checkGap=async (selector:string,inset:string,width:string)=>{
+  const list=page.locator(selector);
+  await expect(list).toBeVisible();
+  const found=await list.evaluate(el=>({
+   scrolls:el.scrollHeight>el.clientHeight,
+   paddingEnd:getComputedStyle(el).paddingInlineEnd,
+   trackWidth:getComputedStyle(el,'::-webkit-scrollbar').width,
+   thumbInset:getComputedStyle(el,'::-webkit-scrollbar-thumb').borderLeftWidth,
+  }));
+  expect(found.scrolls).toBe(true);
+  expect(found.paddingEnd).toBe('0px');
+  if(browserName==='chromium'||browserName==='webkit'){
+   expect(found.trackWidth).toBe(width);
+   expect(found.thumbInset).toBe(inset);
+  }
+ };
+ await page.goto('/ui-kit-andy/componentes/calendario');
+ await page.locator('#fecha-y-hora').getByRole('button',{name:'Seleccionar hora'}).click();
+ await checkGap('#fecha-y-hora .andy-dpv-time-options','4px','8px');
 
-  await page.goto('/ui-kit-andy/componentes/calendar');
-  const calendar = page.locator('#basico');
-  await calendar.getByRole('button', {name:'Seleccionar año'}).click();
-  await measure('#basico .sports-cal-choices', '6px');
+ await page.goto('/ui-kit-andy/componentes/calendar');
+ await page.locator('#basico').getByRole('button',{name:'Seleccionar año'}).click();
+ await checkGap('#basico .sports-cal-choices','6px','10px');
 });
