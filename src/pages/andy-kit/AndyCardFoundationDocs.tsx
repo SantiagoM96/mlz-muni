@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { MaterialIcon } from '../../shared/ui/MaterialIcon';
 import {
  Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader,
  CardMedia, CardTitle, type CardSize, type CardSpacing,
@@ -67,7 +66,7 @@ export function AndyCardFoundationDocs(){
  const [spacing,setSpacing]=useState<CardSpacing>(24);
  const [action,setAction]=useState('');
  const onAction=(message:string)=>setAction('Demostración: '+message+'. No se realizó ninguna gestión.');
- return <>
+ return <div className="andy-card-foundation-docs">
   <DocSection title="Descripción" description="Card organiza contenido y acciones relacionadas dentro de una superficie con identidad propia. Puede ser informativa o interactiva: usarla cuando los datos formen una unidad que necesite distinguirse del resto. No reemplaza un Alert, un elemento de lista ni un diálogo.">{null}</DocSection>
 
   <DocSection title="Básico" description="Una tarjeta genérica sin estilos específicos de un producto. Se construye combinando cabecera, título, descripción, contenido y pie; la acción se ejecuta solo desde su botón.">
@@ -164,5 +163,5 @@ export function AndyCardFoundationDocs(){
    ]}/>
   </DocSection>
   <p className="andy-card-foundation-status" role="status" aria-live="polite">{action}</p>
- </>;
+ </div>;
 }
