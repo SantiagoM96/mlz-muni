@@ -245,9 +245,6 @@ export function AndyDatePickerVariants({variant}:PickerProps){
     today={todayISO} minDate={minDate} maxDate={maxDate}
     label={rangeMode?'Días para seleccionar un período':'Días para seleccionar una fecha'}
     onViewChange={setView} onSelect={select}/>
-   {timeMode&&<label className="andy-dpv-time-inside">Hora
-    <input type="time" value={clock} onChange={event=>setClock(event.target.value)}/>
-   </label>}
    <div className="sports-cal-actions">
     <button type="button" className={'sports-cal-clear andy-system-button is-tertiary icon-none '+(mobile?'is-medium':'is-small')}
      onClick={clear}>Borrar {rangeMode?'rango':'fecha'}</button>
