@@ -1,12 +1,10 @@
-import type { ReactNode } from 'react';
-import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
+import { DocSection, GuidelineTable } from './AndyDocsPrimitives';
 import { AndyCalendarShowcase } from './AndyCalendarShowcase';
-import { SportsCalendarPicker } from './SportsCalendarPicker';
 import './andy-calendar-docs.css';
 
-export function AndyCalendarDocs({fieldStates}:{fieldStates?:ReactNode}){
+export function AndyCalendarDocs(){
  return <>
-  <DocSection title="Descripción" description="Calendar permite elegir un día o un rango de fechas. Es la grilla reutilizable de días, independiente del campo que la abre. Date Picker combina ese calendario con el campo y un popover en escritorio o drawer en mobile.">{null}</DocSection>
+  <DocSection title="Descripción" description="Calendar presenta la grilla de días para seleccionar una fecha o un rango. Se utiliza sola o dentro de Date Picker. Esta página documenta únicamente las fechas, la navegación, las restricciones y la accesibilidad.">{null}</DocSection>
 
   <DocSection title="Básico" description="Calendario abierto con selección individual. Elegí una fecha y utilizá los controles Borrar y Confirmar. La demostración mantiene los valores históricos para evaluar los estados.">
    <AndyCalendarShowcase only="single"/>
@@ -24,43 +22,31 @@ export function AndyCalendarDocs({fieldStates}:{fieldStates?:ReactNode}){
    <AndyCalendarShowcase only="single" restricted/>
   </DocSection>
 
-  <DocSection title="Date Picker" description="El campo utiliza el calendario compartido. En desktop abre un popover; en mobile conserva el drawer de Deportes con gesto de cierre y los botones institucionales Borrar fecha y Confirmar.">
-   <DocPreview>
-    <div className="andy-matrix-calendar-sample andy-calendar-dropdown-sample">
-     <SportsCalendarPicker/>
-    </div>
-   </DocPreview>
-  </DocSection>
-
-  {fieldStates}
-
-  <DocSection title="Anatomía" description="Estructura del calendario y responsabilidades de cada pieza. Los estilos son institucionales; la composición sigue el criterio de separar Calendar de Date Picker.">
+  <DocSection title="Anatomía" description="Partes del calendario abierto y de la grilla reutilizable, independientes del campo que lo contiene.">
    <GuidelineTable rows={[
     ['CalendarMonthGrid','Grilla compartida de días; recibe mes visible, selección, restricciones y callback de cambio.'],
     ['Weekday header','Encabezados de lunes a domingo con nombres completos accesibles.'],
     ['CalendarDay','Celda por día, con estados Default, Hover, Focus, Today, Selected y Disabled.'],
     ['Range Start / End','Extremos del período seleccionado; los días intermedios tienen un fondo continuo.'],
     ['Period controls','Selectores de mes y año y botones para navegar al período anterior o siguiente.'],
-    ['Date Picker trigger','Campo que muestra la fecha elegida y abre el calendario.'],
-    ['Popover / Drawer','Superficie desktop o mobile; contiene Calendar, confirmación y borrado.'],
    ]}/>
   </DocSection>
 
-  <DocSection title="Especificaciones" description="Medidas y tokens compartidos por las demostraciones y el Date Picker de MLZ.">
+  <DocSection title="Especificaciones" description="Medidas y tokens del calendario abierto y de sus demostraciones.">
    <GuidelineTable rows={[
     ['Tipografía','Geometria; encabezados del calendario en Bold y fechas en Regular.'],
     ['Color de acciones','Primario 600 #236999; botón seleccionado y dropdown activo en Info 500 #006EFF.'],
     ['Selección de rango','Extremos en Info 500; fondo intermedio azul suave #E5F0FF.'],
     ['Focus','Anillo Info 500 de 2 px, visible durante la navegación con teclado.'],
     ['Radio de día','4 px, incluido el comienzo y el final del rango.'],
-    ['Botones de acción','Borrar como Terciario y Confirmar como Primario; Small 32 px desktop y Medium 40 px mobile.'],
-    ['Contenedor','Popover de 348 px en desktop; drawer inferior en mobile, con límite de altura y gesto de cierre.'],
+    ['Acciones de la muestra','Borrar y Confirmar permiten ensayar la selección; la grilla base no requiere confirmación propia.'],
+    ['Presentación','Calendario centrado en una única caja de vista previa, sin tarjetas anidadas.'],
     ['Restricciones','minDate, maxDate y disabledDates; días bloqueados sin clic ni foco.'],
     ['Datos','Fecha ISO local YYYY-MM-DD, sin conversiones horarias al calcular días.'],
    ]}/>
   </DocSection>
 
-  <DocSection title="Comportamiento y accesibilidad" description="Reglas de selección, navegación y foco compartidas entre el ejemplo abierto y el campo Date Picker.">
+  <DocSection title="Comportamiento y accesibilidad" description="Reglas de selección, navegación y foco de Calendar reutilizadas por cualquier control contenedor.">
    <GuidelineTable rows={[
     ['Semántica','La grilla tiene role="grid", filas y celdas; informa fecha completa mediante aria-label.'],
     ['Foco','Tab ingresa a un día habilitado; solo una celda de la grilla participa del orden natural de tabulación.'],
@@ -69,9 +55,7 @@ export function AndyCalendarDocs({fieldStates}:{fieldStates?:ReactNode}){
     ['Page Up / Down','Cambian de mes; junto con Shift cambian de año, conservando el día cuando sea posible.'],
     ['Selección','Enter, Espacio o clic seleccionan el día; en rango se eligen inicio y fin.'],
     ['Fechas deshabilitadas','No se pueden activar; el foco evita fechas bloqueadas o fuera de los límites.'],
-    ['Date Picker mobile','Escape y gesto de arrastre cierran el drawer; los controles devuelven el foco al campo.'],
-    ['Confirmación','La elección pendiente se hace definitiva con Confirmar; Borrar fecha limpia el valor.'],
-    ['Separación','Date Picker gestiona campo, popover y drawer; CalendarMonthGrid gestiona la grilla y los días.'],
+    ['Composición','CalendarMonthGrid administra la grilla; Date Picker le agrega disparador, popover/drawer y confirmación.'],
    ]}/>
   </DocSection>
  </>;

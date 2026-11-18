@@ -68,7 +68,7 @@ test('Andy: Date Picker usa controles y botones del sistema y los radios aprobad
 
 
 test('Andy: dos calendarios abiertos permiten seleccionar un día y un rango',async ({page})=>{
- await page.goto('/ui-kit-andy/componentes/calendario');
+ await page.goto('/ui-kit-andy/componentes/calendar');
  const day=page.locator('#basico .andy-cal-gallery');
  const range=page.locator('#seleccion-de-rango .andy-cal-gallery');
  await expect(day).toBeVisible();
@@ -88,7 +88,7 @@ test('Andy: dos calendarios abiertos permiten seleccionar un día y un rango',as
 });
 
 test('Andy: mes y año respetan iconos, selección y tipografía de dropdowns MLZ',async ({page})=>{
- await page.goto('/ui-kit-andy/componentes/calendario');
+ await page.goto('/ui-kit-andy/componentes/calendar');
  const day=page.locator('#basico .andy-cal-gallery');
  await day.getByRole('button',{name:'Seleccionar mes'}).click();
  const menu=day.getByRole('listbox',{name:'Meses'});
@@ -112,7 +112,7 @@ test('Andy: mes y año respetan iconos, selección y tipografía de dropdowns ML
 
 
 test('Andy: Calendar accesible navega con flechas y respeta restricciones',async ({page})=>{
- await page.goto('/ui-kit-andy/componentes/calendario');
+ await page.goto('/ui-kit-andy/componentes/calendar');
  const example=page.locator('#fechas-restringidas');
  const disabled=example.getByRole('gridcell',{name:'19 de Noviembre de 2008'});
  await expect(disabled).toBeDisabled();
@@ -129,7 +129,7 @@ test('Andy: Calendar accesible navega con flechas y respeta restricciones',async
 });
 
 test('Andy: Calendar PageDown cambia de mes sin seleccionar un día',async ({page})=>{
- await page.goto('/ui-kit-andy/componentes/calendario');
+ await page.goto('/ui-kit-andy/componentes/calendar');
  const example=page.locator('#basico');
  const day=example.getByRole('gridcell',{name:'13 de Noviembre de 2008'});
  await day.focus();

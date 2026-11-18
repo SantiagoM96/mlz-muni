@@ -1,6 +1,6 @@
 /** Registro único de componentes: la navegación y el directorio consumen esta misma fuente. */
 const componentGroups=[
- {title:'Forms',items:[['field','Field'],['input','Input'],['select','Select'],['textarea','Textarea'],['calendario','Date Picker'],['adjuntos','Attachment']]},
+ {title:'Forms',items:[['field','Field'],['input','Input'],['select','Select'],['textarea','Textarea'],['calendar','Calendar'],['calendario','Date Picker'],['adjuntos','Attachment']]},
  {title:'Selection',items:[['checkbox','Checkbox'],['radio','Radio Group'],['switch','Switch'],['slider','Slider'],['toggle','Toggle'],['toggle-group','Toggle Group']]},
  {title:'Actions',items:[['boton','Button'],['button-group','Button Group']]},
  {title:'Navigation',items:[['acordeon','Accordion'],['breadcrumb','Breadcrumb'],['collapsible','Collapsible'],['paginacion','Pagination']]},
@@ -16,7 +16,8 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  input:{description:'Control de texto de una línea para el ingreso de datos.',category:'Forms'},
  select:{description:'Selección única, múltiple y con búsqueda; menús desktop y drawers mobile.',category:'Forms'},
  textarea:{description:'Campos de texto multilínea y sus estados.',category:'Forms'},
- calendario:{description:'Calendario reutilizable de día o rango, con navegación por teclado, restricciones y Date Picker responsive.',category:'Forms'},
+ calendar:{description:'Grilla independiente para seleccionar fechas o rangos con navegación accesible y restricciones.',category:'Forms'},
+ calendario:{description:'Campo de selección de fechas con popover desktop, drawer mobile y variantes de shadcn adaptadas a MLZ.',category:'Forms'},
  adjuntos:{description:'Adjunto de documentación y sus estados visuales.',category:'Forms'},
  checkbox:{description:'Selección múltiple con Material Symbols Outlined.',category:'Selection'},
  radio:{description:'Selección exclusiva entre varias alternativas.',category:'Selection'},

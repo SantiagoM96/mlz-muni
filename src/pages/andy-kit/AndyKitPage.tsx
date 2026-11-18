@@ -6,6 +6,7 @@ import { FormStateMatrix } from './FormStateMatrix';
 import { AndySportsFormExamples } from './AndySportsFormExamples';
 import { DropdownVariantsGallery } from './DropdownVariantsGallery';
 import { AndyCalendarDocs } from './AndyCalendarDocs';
+import { AndyDatePickerDocs } from './AndyDatePickerDocs';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyActivityCardGallery } from './AndyActivityCards';
@@ -24,7 +25,7 @@ import { componentGroups, componentAliases, componentEntries, componentMeta, typ
 import './andy-kit.css';
 
 const reviewedComponentIds=new Set<ComponentId>(['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb','boton']);
-const inProgressComponentIds=new Set<ComponentId>(['calendario']);
+const inProgressComponentIds=new Set<ComponentId>(['calendar','calendario']);
 
 const categories = [
   { id:'fundamentos', name:'Foundations' },
@@ -348,7 +349,8 @@ function ComponentDetails({id}:{id:ComponentId}){
   {([['simple','Selección normal','Una opción con marca de confirmación.'],['radio','Selección con radio','Una sola elección con un indicador circular.'],['checkbox','Selección múltiple','Varias opciones con indicadores independientes.'],['search','Con buscador','Filtrado de opciones dentro del menú.']] as const).map(([variant,title,description])=>
    <ComponentExample key={variant} title={title} description={description}><DropdownVariantsGallery only={variant}/></ComponentExample>)}
  </>;
- if(id==='calendario')return <AndyCalendarDocs fieldStates={<FormStates family="date" title="Estados del campo"/>}/>;
+ if(id==='calendar')return <AndyCalendarDocs/>;
+ if(id==='calendario')return <AndyDatePickerDocs fieldStates={<FormStates family="date" title="Estados del campo"/>}/>;
  if(id==='checkbox'||id==='radio'||id==='switch')return <ComponentExample title="Ejemplo interactivo" description={id==='checkbox'?'Permití seleccionar varias opciones de forma independiente.':id==='radio'?'Solo una alternativa puede estar seleccionada.':'Activá o desactivá la configuración.'}>
   <SelectionGallery only={id}/>
  </ComponentExample>;
