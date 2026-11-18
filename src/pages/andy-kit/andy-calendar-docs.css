@@ -1,4 +1,4 @@
-/* Calendar: una sola caja para la demostración, sin tarjeta anidada. */
+/* Calendar: la caja interna encierra el título, la grilla y los botones; el estado queda afuera. */
 .andy-doc-page .andy-cal-gallery > .andy-cal-preview{
  align-items:center;
  justify-content:center;
@@ -9,10 +9,16 @@
  width:min(100%,348px);
 }
 .andy-doc-page .andy-cal-example .sports-cal-popup.is-inline{
- border:0;
- box-shadow:none;
- background:transparent;
- padding:0;
+ background:#fff;
+ border:1px solid #c7d8e7;
+ border-radius:var(--mlz-radius-lg);
+ box-shadow:0 8px 23px #15354a26;
+ padding:var(--mlz-space-24) var(--mlz-space-16) var(--mlz-space-16);
+}
+@media(max-width:680px){
+ .andy-doc-page .andy-cal-example .sports-cal-popup.is-inline{
+  padding:var(--mlz-space-16) var(--mlz-space-12);
+ }
 }
 .andy-doc-page .andy-cal-selection{
  padding:0;

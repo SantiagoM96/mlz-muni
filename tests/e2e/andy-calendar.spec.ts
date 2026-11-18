@@ -137,3 +137,28 @@ test('Andy: Calendar PageDown cambia de mes sin seleccionar un día',async ({pag
  await expect(example.getByRole('gridcell',{name:'13 de Diciembre de 2008'})).toBeFocused();
  await expect(example.locator('.andy-cal-selection')).toContainText('13/11/2008');
 });
+
+
+test('Andy: los calendarios de documentación tienen contenedor visible alrededor de título, días y acciones', async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/calendar');
+ for(const section of ['#basico','#seleccion-de-rango','#navegacion-por-mes-y-ano','#fechas-restringidas']){
+  const example=page.locator(section);
+  const card=example.locator('.andy-cal-example .sports-cal-popup.is-inline');
+  await expect(card).toBeVisible();
+  await expect(card).toHaveCSS('border-top-width','1px');
+  await expect(card).toHaveCSS('background-color','rgb(255, 255, 255)');
+  await expect(card).not.toHaveCSS('box-shadow','none');
+  const isMobile=await page.evaluate(()=>window.innerWidth<=680);
+  await expect(card).toHaveCSS('padding-top',isMobile?'16px':'24px');
+  const cardBox=await card.boundingBox();
+  const titleBox=await card.locator('.sports-cal-top').boundingBox();
+  const actionsBox=await card.locator('.sports-cal-actions').boundingBox();
+  expect(cardBox).not.toBeNull();
+  expect(titleBox).not.toBeNull();
+  expect(actionsBox).not.toBeNull();
+  if(cardBox && titleBox && actionsBox){
+   expect(titleBox.y).toBeGreaterThan(cardBox.y);
+   expect(actionsBox.y+actionsBox.height).toBeLessThan(cardBox.y+cardBox.height);
+  }
+ }
+});
