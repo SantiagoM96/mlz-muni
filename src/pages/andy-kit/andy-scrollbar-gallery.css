@@ -10,19 +10,10 @@
 .andy-scrollbar-demo-row{display:flex;align-items:center;justify-content:space-between;gap:var(--mlz-space-10);min-height:44px;flex:0 0 44px;padding:var(--mlz-space-8) var(--mlz-space-12);color:#3d3d3d;font-size:15px;line-height:22px;border-bottom:1px solid #f0f3f6}
 .andy-scrollbar-demo-row:last-child{border-bottom:0}
 .andy-scrollbar-demo-index{font-size:12px;color:#8899a5;font-variant-numeric:tabular-nums}
-.andy-scrollbar-demo-scroll.is-page{scrollbar-width:thin;scrollbar-color:#c4d2dc transparent}.andy-scrollbar-demo-scroll.is-page::-webkit-scrollbar{width:6px}.andy-scrollbar-demo-scroll.is-page::-webkit-scrollbar-thumb{background:#c4d2dc;border-radius:999px}.andy-scrollbar-demo-scroll.is-page::-webkit-scrollbar-thumb:hover{background:#91aab9}.andy-scrollbar-demo-scroll.is-page::-webkit-scrollbar-track{background:transparent}
-.andy-scrollbar-demo-scroll.is-dropdown{scrollbar-width:thin;scrollbar-color:#a9bdcd transparent;padding-right:var(--mlz-space-8)}
-.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar{width:4px}
-.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-thumb{background:#a9bdcd;border-radius:var(--mlz-radius-full)}
-.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-track{background:transparent}
+.andy-scrollbar-demo-scroll.is-dropdown{padding-right:var(--mlz-space-8)}
 .andy-scrollbar-demo-scroll.is-hidden{scrollbar-width:none;-ms-overflow-style:none}
 .andy-scrollbar-demo-scroll.is-hidden::-webkit-scrollbar{display:none;width:0;height:0}
 @media(max-width:580px){.andy-scrollbar-frame{padding:var(--mlz-space-16)}}
-
-/* Scrollbar interna MLZ: 4px, sin flechas, 8px de separación con la fila. */
-.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-button,
-.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-button:single-button{display:none;width:0;height:0}
-.andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-corner{background:transparent}
 
 /* Las muestras documentan exclusivamente la barra: el contenido se representa como placeholders neutros. */
 .andy-scrollbar-demo-row{

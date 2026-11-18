@@ -1,0 +1,63 @@
+/* Scrollbar visible del Design System Andy.
+   Referencia: pista suave y thumb redondeado, sin marco exterior ni flechas.
+   Gris 100 / 400 / 500 son tokens existentes; no se crean tonos paralelos.
+   Se conservan ocultas solo las barras expresamente señaladas como tales:
+   índice lateral, tabla de contenidos y demo "oculta".
+   El selector de documento también incluye popovers portaleados al <body>. */
+html:has(.andy-kit) {
+  --andy-scroll-track: var(--color-grey-100);
+  --andy-scroll-thumb: var(--color-grey-400);
+  --andy-scroll-thumb-hover: var(--color-grey-500);
+}
+
+/* En Chromium, scrollbar-width: thin anula el ancho de ::-webkit-scrollbar.
+   Por eso auto habilita 6px en página y 4px en controles internos;
+   Firefox recibe el equivalente thin a continuación. */
+html:has(.andy-kit),
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden) {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+}
+
+html:has(.andy-kit)::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden)::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+html:has(.andy-kit)::-webkit-scrollbar-track,
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden)::-webkit-scrollbar-track {
+  background: var(--andy-scroll-track);
+  border-radius: var(--mlz-radius-full);
+}
+html:has(.andy-kit)::-webkit-scrollbar-thumb,
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden)::-webkit-scrollbar-thumb {
+  background: var(--andy-scroll-thumb);
+  border: 0;
+  border-radius: var(--mlz-radius-full);
+}
+html:has(.andy-kit)::-webkit-scrollbar-thumb:hover,
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden)::-webkit-scrollbar-thumb:hover {
+  background: var(--andy-scroll-thumb-hover);
+}
+html:has(.andy-kit)::-webkit-scrollbar-button,
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden)::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+html:has(.andy-kit)::-webkit-scrollbar-corner,
+html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden)::-webkit-scrollbar-corner {
+  background: var(--andy-scroll-track);
+}
+
+/* Gecko no permite fijar el ancho exacto; thin es el equivalente nativo. */
+@supports (-moz-appearance: none) {
+  html:has(.andy-kit),
+  html:has(.andy-kit) *:not(.andy-sidebar, .andy-doc-toc, .is-hidden) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--andy-scroll-thumb) var(--andy-scroll-track);
+  }
+}

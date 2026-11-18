@@ -488,54 +488,7 @@
 }
 
 
-/* Scroll interno MLZ — especificación compartida.
-   4px, sin botones/flechas, 8px de espacio óptico a la selección.
-   Se excluye el scrollbar global del navegador y el sidebar oculto. */
-.andy-doc-layout .andy-dropdown-variant-options,
-.andy-doc-layout .andy-select-menu,
-.andy-doc-layout .kit-sports-options,
-.andy-doc-layout .kit-sports-more-scroll,
-.andy-doc-layout .kit-sports-advanced-popover .kit-sports-advanced,
-.andy-doc-layout .andy-scrollbar-demo-scroll.is-dropdown,
-.sports-cal-popup .sports-cal-choices,
-.sports-cal-popup.is-mobile>.sports-cal-choices{
-  scrollbar-width:thin;
-  scrollbar-color:#a9bdcd transparent;
-  padding-right:var(--mlz-space-8);
-}
-.andy-doc-layout .andy-dropdown-variant-options::-webkit-scrollbar,
-.andy-doc-layout .andy-select-menu::-webkit-scrollbar,
-.andy-doc-layout .kit-sports-options::-webkit-scrollbar,
-.andy-doc-layout .kit-sports-more-scroll::-webkit-scrollbar,
-.andy-doc-layout .kit-sports-advanced-popover .kit-sports-advanced::-webkit-scrollbar,
-.andy-doc-layout .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar,
-.sports-cal-popup .sports-cal-choices::-webkit-scrollbar,
-.sports-cal-popup.is-mobile>.sports-cal-choices::-webkit-scrollbar{width:4px;height:4px}
-.andy-doc-layout .andy-dropdown-variant-options::-webkit-scrollbar-thumb,
-.andy-doc-layout .andy-select-menu::-webkit-scrollbar-thumb,
-.andy-doc-layout .kit-sports-options::-webkit-scrollbar-thumb,
-.andy-doc-layout .kit-sports-more-scroll::-webkit-scrollbar-thumb,
-.andy-doc-layout .kit-sports-advanced-popover .kit-sports-advanced::-webkit-scrollbar-thumb,
-.andy-doc-layout .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-thumb,
-.sports-cal-popup .sports-cal-choices::-webkit-scrollbar-thumb,
-.sports-cal-popup.is-mobile>.sports-cal-choices::-webkit-scrollbar-thumb{background:#a9bdcd;border-radius:var(--mlz-radius-full)}
-.andy-doc-layout .andy-dropdown-variant-options::-webkit-scrollbar-track,
-.andy-doc-layout .andy-select-menu::-webkit-scrollbar-track,
-.andy-doc-layout .kit-sports-options::-webkit-scrollbar-track,
-.andy-doc-layout .kit-sports-more-scroll::-webkit-scrollbar-track,
-.andy-doc-layout .kit-sports-advanced-popover .kit-sports-advanced::-webkit-scrollbar-track,
-.andy-doc-layout .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-track,
-.sports-cal-popup .sports-cal-choices::-webkit-scrollbar-track,
-.sports-cal-popup.is-mobile>.sports-cal-choices::-webkit-scrollbar-track{background:transparent}
-.andy-doc-layout .andy-dropdown-variant-options::-webkit-scrollbar-button,
-.andy-doc-layout .andy-select-menu::-webkit-scrollbar-button,
-.andy-doc-layout .kit-sports-options::-webkit-scrollbar-button,
-.andy-doc-layout .kit-sports-more-scroll::-webkit-scrollbar-button,
-.andy-doc-layout .kit-sports-advanced-popover .kit-sports-advanced::-webkit-scrollbar-button,
-.andy-doc-layout .andy-scrollbar-demo-scroll.is-dropdown::-webkit-scrollbar-button,
-.sports-cal-popup .sports-cal-choices::-webkit-scrollbar-button,
-.sports-cal-popup.is-mobile>.sports-cal-choices::-webkit-scrollbar-button{display:none;width:0;height:0}
-
+/* Scrollbars visibles del catálogo y dropdowns: ver andy-scrollbars.css. */
 
 /* Títulos de grupos del índice izquierdo — Figma Primario 900 (#1E415C).
    No modifica labels de opciones ni estados activos. */
@@ -655,33 +608,8 @@
  .andy-doc-page .andy-doc-inspector .andy-button-control-row{flex:initial}
 }
 
-/* SOLO LISTAS DE OPCIONES DE DROPDOWNS.
-   Ocultar la pista y el deslizador no desactiva rueda, táctil o teclado.
-   Se elimina el gutter artificial de 8 px a la derecha: las opciones
-   vuelven a tener el mismo margen a ambos lados del menú. */
-.andy-doc-layout .andy-dropdown-variant-options,
-.andy-doc-layout .andy-select-menu,
-.andy-doc-layout .kit-sports-options,
-.andy-doc-layout .kit-sports-more-scroll,
-.andy-doc-layout .kit-sports-advanced-popover .kit-sports-advanced,
-.sports-cal-popup .sports-cal-choices,
-.sports-cal-popup.is-mobile>.sports-cal-choices{
- scrollbar-width:none;
- -ms-overflow-style:none;
- padding-right:0;
-}
-.andy-doc-layout .andy-dropdown-variant-options::-webkit-scrollbar,
-.andy-doc-layout .andy-select-menu::-webkit-scrollbar,
-.andy-doc-layout .kit-sports-options::-webkit-scrollbar,
-.andy-doc-layout .kit-sports-more-scroll::-webkit-scrollbar,
-.andy-doc-layout .kit-sports-advanced-popover .kit-sports-advanced::-webkit-scrollbar,
-.sports-cal-popup .sports-cal-choices::-webkit-scrollbar,
-.sports-cal-popup.is-mobile>.sports-cal-choices::-webkit-scrollbar{
- display:none;
- width:0;
- height:0;
-}
-
+/* Las listas de dropdown vuelven a mostrar la barra cuando tienen overflow.
+   La navegación lateral y el índice mantienen sus scrollbars ocultos. */
 
 /* INTERFAZ DEL CATÁLOGO — identidad diferenciada del producto documentado.
    Los cambios están acotados al chrome: header, índice, búsqueda, navegación
