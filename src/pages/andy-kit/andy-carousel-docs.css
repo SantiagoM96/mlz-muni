@@ -52,14 +52,20 @@
  flex-direction:column;
  align-items:flex-start;
  justify-content:center;
- width:min(63%,680px);
+ /* El ancho acompaña al banner, no al bloque visual de la izquierda.
+    Deja 400+ px útiles al texto incluso en el visor de documentación. */
+ width:min(83%,800px);
  max-height:100%;
  min-width:0;
- padding:var(--mlz-space-24) clamp(64px,7.5vw,108px);
+ padding-block:var(--mlz-space-16);
+ padding-inline:clamp(64px,7.5vw,108px) var(--mlz-space-16);
  gap:var(--mlz-space-8);
  text-align:left;
 }
 .andy-carousel-hero-eyebrow{
+ display:block;
+ max-width:100%;
+ white-space:nowrap;
  font-size:clamp(12px,1.2vw,16px);
  line-height:1.12;
  font-weight:700;
@@ -68,7 +74,7 @@
 .andy-carousel-hero-title{
  display:block;
  margin:0;
- max-width:460px;
+ max-width:440px;
  font-size:clamp(28px,2.7vw,44px);
  line-height:.98;
  font-weight:800;
@@ -132,8 +138,8 @@
 }
 @media(max-width:800px){
  .andy-carousel-docs .andy-carousel-hero-copy{
-  width:min(73%,540px);
-  padding-inline:clamp(48px,6vw,70px);
+  width:min(90%,720px);
+  padding-inline:clamp(52px,6vw,72px) var(--mlz-space-12);
  }
  .andy-carousel-docs .andy-carousel-hero-title{font-size:clamp(26px,3.7vw,40px)}
  .andy-carousel-docs .andy-carousel-photo{height:clamp(150px,24vw,205px)}
@@ -144,15 +150,16 @@
   height:220px;
  }
  .andy-carousel-docs .andy-carousel-hero-copy{
-  padding-block:var(--mlz-space-20);
-  padding-inline:45px 12px;
-  width:83%;
+  padding-block:var(--mlz-space-12);
+  padding-inline:48px var(--mlz-space-8);
+  width:100%;
   gap:var(--mlz-space-6);
  }
  .andy-carousel-docs .andy-carousel-hero-eyebrow{font-size:11px}
  .andy-carousel-docs .andy-carousel-hero-title{
-  font-size:clamp(23px,6vw,32px);
-  line-height:1.02;
+  max-width:310px;
+  font-size:clamp(22px,5.8vw,30px);
+  line-height:1.01;
  }
  .andy-carousel-docs .andy-carousel-hero-description{font-size:12px;line-height:1.2}
  .andy-carousel-docs .andy-carousel-hero-photo{left:34%;width:66%;object-position:center}
