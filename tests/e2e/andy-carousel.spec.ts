@@ -7,7 +7,7 @@ test('Carrusel: documentación reducida a Introducción, Banner Home, Galería y
  await expect(page.locator('#variantes,#configuracion,#estados-e-interaccion,#responsive')).toHaveCount(0);
  await expect(page.getByTestId('andy-carousel-settings')).toHaveCount(0);
  await expect(page.getByTestId('andy-carousel-docs')).toBeVisible();
- await expect(page.locator('#anatomia .andy-doc-guideline-table tbody tr')).toHaveCount(7);
+ await expect(page.locator('#anatomia .andy-doc-guideline-cards > .andy-doc-guideline-card')).toHaveCount(7);
  const nav=page.locator('#andy-component-nav a[href$="/componentes/carrusel"]');
  await expect(nav).toBeVisible();
  await expect(nav.locator('[aria-label="En revisión"]')).toHaveCount(1);
@@ -56,17 +56,17 @@ test('Carrusel: banner de portada mantiene alto, radio, flechas circulares trans
  await expect(banner).toHaveAttribute('data-current','0');
 });
 
-test('Carrusel: autoplay de 5 segundos se pausa con hover o interacción',async ({page})=>{
+test('Carrusel: autoplay de 4 segundos se pausa con hover o interacción',async ({page})=>{
  await page.clock.install();
  await page.goto('/ui-kit-andy/componentes/carrusel');
  const banner=page.locator('#introduccion [data-testid="mlz-carousel"]');
  await expect(banner).toHaveAttribute('data-current','0');
  await expect(banner).toHaveAttribute('data-autoplay','running');
- await page.clock.fastForward(5100);
+ await page.clock.fastForward(4100);
  await expect(banner).toHaveAttribute('data-current','1');
  await banner.hover();
  await expect(banner).toHaveAttribute('data-autoplay','paused');
- await page.clock.fastForward(10100);
+ await page.clock.fastForward(8100);
  await expect(banner).toHaveAttribute('data-current','1');
 });
 
@@ -129,5 +129,96 @@ test('Carrusel: Galería mobile mantiene swipe, parte de la siguiente foto y con
  expect(measure.item).toBeLessThan(measure.client);
  await gallery.getByRole('button',{name:'Imagen siguiente'}).click();
  await expect(gallery).toHaveAttribute('data-current','1');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+});
+
+test('Carrusel: los CTA blancos usan el color propio del banner y las tipografías son compactas',async ({page})=>{
+ await page.setViewportSize({width:1280,height:900});
+ await page.goto('/ui-kit-andy/componentes/carrusel');
+ const banner=page.locator('#banner-home [data-testid="mlz-carousel"]');
+ const expectedColors={
+  blue:'rgb(4, 60, 105)',
+  violet:'rgb(74, 36, 110)',
+  green:'rgb(4, 94, 88)',
+  coral:'rgb(158, 76, 85)',
+ };
+ for(const [tone,color] of Object.entries(expectedColors)){
+  const hero=banner.locator('.andy-carousel-hero.is-'+tone);
+  const cta=hero.locator('.andy-carousel-hero-cta');
+  await expect(cta).toHaveCSS('background-color','rgb(255, 255, 255)');
+  await expect(cta).toHaveCSS('color',color);
+  const values=await hero.evaluate(el=>{
+   const title=el.querySelector('.andy-carousel-hero-title')!;
+   const description=el.querySelector('.andy-carousel-hero-description')!;
+   const titleStyle=getComputedStyle(title);
+   const descriptionStyle=getComputedStyle(description);
+   return {
+    titleLineHeight:parseFloat(titleStyle.lineHeight),
+    titleFontSize:parseFloat(titleStyle.fontSize),
+    descriptionLineHeight:parseFloat(descriptionStyle.lineHeight),
+    descriptionFontSize:parseFloat(descriptionStyle.fontSize),
+    copyHeight:el.querySelector('.andy-carousel-hero-copy')!.getBoundingClientRect().height,
+    bannerHeight:el.getBoundingClientRect().height,
+   };
+  });
+  expect(values.titleLineHeight/values.titleFontSize).toBeLessThan(1.03);
+  expect(values.descriptionLineHeight/values.descriptionFontSize).toBeLessThan(1.25);
+  expect(values.copyHeight).toBeLessThan(values.bannerHeight);
+ }
+ const fourth=banner.locator('.andy-carousel-hero.is-coral .andy-carousel-hero-photo');
+ await expect(fourth).toHaveAttribute('src',/photo-1759143545924-beb85b33c0f1/);
+ await expect(banner).toHaveAttribute('data-autoplay','running');
+});
+
+test('Catálogo MLZ: cada término es una ficha individual con título y explicación a 16 px',async ({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ for(const component of ['carrusel','mensaje','acordeon','tarjeta']){
+  await page.goto('/ui-kit-andy/componentes/'+component);
+  const anatomy=page.locator('#anatomia .andy-doc-guideline-cards').first();
+  await expect(anatomy).toBeVisible();
+  const cards=anatomy.locator(':scope > .andy-doc-guideline-card');
+  expect(await cards.count()).toBeGreaterThanOrEqual(4);
+  await expect(anatomy).toHaveCSS('border-top-style','none');
+  for(const card of await cards.all()){
+   await expect(card).toHaveCSS('background-color','rgb(255, 255, 255)');
+   await expect(card).toHaveCSS('border-top-width','1px');
+   await expect(card).toHaveCSS('border-top-style','solid');
+   await expect(card.locator('dt')).toHaveCSS('font-size','16px');
+   await expect(card.locator('dd')).toHaveCSS('font-size','16px');
+   await expect(card.locator('dt')).toHaveCSS('line-height','24px');
+   await expect(card.locator('dd')).toHaveCSS('line-height','24px');
+  }
+  await expect(anatomy.locator('table,thead,tbody,tr')).toHaveCount(0);
+ }
+ // También alcanza Especificaciones y Comportamiento, no solo Anatomía.
+ await page.goto('/ui-kit-andy/componentes/mensaje');
+ for(const section of ['#especificaciones','#comportamiento-y-accesibilidad']){
+  const grid=page.locator(section+' .andy-doc-guideline-cards');
+  await expect(grid).toBeVisible();
+  const cards=grid.locator(':scope > .andy-doc-guideline-card');
+  expect(await cards.count()).toBeGreaterThan(2);
+  await expect(cards.first().locator('dt')).toHaveCSS('font-size','16px');
+  await expect(cards.first().locator('dd')).toHaveCSS('font-size','16px');
+ }
+});
+
+test('Catálogo MLZ: las fichas se organizan en dos columnas si entran y una en mobile',async ({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ await page.goto('/ui-kit-andy/componentes/carrusel');
+ const grid=page.locator('#anatomia .andy-doc-guideline-cards');
+ const cards=grid.locator(':scope > .andy-doc-guideline-card');
+ const rects=await cards.evaluateAll(elements=>elements.slice(0,3).map(el=>({
+  left:el.getBoundingClientRect().left,top:el.getBoundingClientRect().top,
+  width:el.getBoundingClientRect().width
+ })));
+ expect(Math.abs(rects[0].top-rects[1].top)).toBeLessThan(2);
+ expect(rects[1].left).toBeGreaterThan(rects[0].left+rects[0].width);
+ expect(rects[2].top).toBeGreaterThan(rects[0].top);
+ await page.setViewportSize({width:390,height:844});
+ const mobileRects=await cards.evaluateAll(elements=>elements.slice(0,3).map(el=>({
+  left:el.getBoundingClientRect().left,top:el.getBoundingClientRect().top,
+ })));
+ expect(mobileRects[1].top).toBeGreaterThan(mobileRects[0].top);
+ expect(Math.abs(mobileRects[0].left-mobileRects[1].left)).toBeLessThan(2);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
