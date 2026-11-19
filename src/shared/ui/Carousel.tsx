@@ -35,6 +35,8 @@ export function Carousel({
  const viewportRef=useRef<HTMLDivElement>(null);
  const currentRef=useRef(0);
  const programmaticTargetRef=useRef<number|null>(null);
+ const dragRef=useRef<{pointerId:number;startX:number;startScroll:number;didMove:boolean}|null>(null);
+ const [dragging,setDragging]=useState(false);
  const [width,setWidth]=useState(0);
  const [current,setCurrent]=useState(0);
  const [hovered,setHovered]=useState(false);
@@ -152,6 +154,13 @@ export function Carousel({
   return()=>window.clearInterval(timer);
  },[autoRunning,autoplayMs,goTo]);
 
+ const finishDrag=(element:HTMLDivElement,pointerId:number)=>{
+  if(dragRef.current?.pointerId!==pointerId)return;
+  dragRef.current=null;
+  setDragging(false);
+  if(element.hasPointerCapture(pointerId))element.releasePointerCapture(pointerId);
+  // El scroll-snap nativo al terminar el drag resuelve el destino más cercano.
+ };
  const advance=(direction:-1|1)=>{
   // Desde los extremos, Loop debe llegar a la primera/última página,
   // incluso cuando el paso configurado es una página completa.
@@ -178,9 +187,28 @@ export function Carousel({
   <div className="mlz-carousel-body">
    <div className={'mlz-carousel-viewport'+(align==='center'?' is-center':'')} ref={viewportRef}
     data-testid="mlz-carousel-viewport" onScroll={onScroll}
+    data-dragging={dragging?'true':'false'}
+    onDragStart={event=>{if(variant==='gallery')event.preventDefault();}}
+    onPointerDown={event=>{
+     programmaticTargetRef.current=null;
+     if(autoRequested)setPaused(true);
+     if(variant!=='gallery'||event.pointerType!=='mouse'||event.button!==0)return;
+     dragRef.current={pointerId:event.pointerId,startX:event.clientX,
+      startScroll:event.currentTarget.scrollLeft,didMove:false};
+     event.currentTarget.setPointerCapture(event.pointerId);
+     setDragging(true);
+    }}
+    onPointerMove={event=>{
+     const drag=dragRef.current;
+     if(variant!=='gallery'||!drag||drag.pointerId!==event.pointerId)return;
+     const offset=event.clientX-drag.startX;
+     if(Math.abs(offset)>3)drag.didMove=true;
+     if(drag.didMove)event.currentTarget.scrollLeft=drag.startScroll-offset;
+    }}
+    onPointerUp={event=>finishDrag(event.currentTarget,event.pointerId)}
+    onPointerCancel={event=>finishDrag(event.currentTarget,event.pointerId)}
     tabIndex={0} aria-label={'Desplazar '+label.toLowerCase()+
      (autoRequested?' (barra espaciadora para pausar o reanudar)':'')}
-    onPointerDown={()=>{programmaticTargetRef.current=null;if(autoRequested)setPaused(true);}}
     onWheel={()=>{programmaticTargetRef.current=null;}}
     onKeyDown={event=>{
      if(event.key===' '&&autoRequested){

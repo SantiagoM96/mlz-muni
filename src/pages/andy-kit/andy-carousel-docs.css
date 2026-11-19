@@ -150,18 +150,18 @@
   height:220px;
  }
  .andy-carousel-docs .andy-carousel-hero-copy{
-  padding-block:var(--mlz-space-12);
-  padding-inline:48px var(--mlz-space-8);
-  width:100%;
-  gap:var(--mlz-space-6);
+  width:calc(100% - 45px);
+  padding-block:var(--mlz-space-8);
+  padding-inline:44px var(--mlz-space-8);
+  gap:var(--mlz-space-4);
  }
- .andy-carousel-docs .andy-carousel-hero-eyebrow{font-size:11px}
+ .andy-carousel-docs .andy-carousel-hero-eyebrow{font-size:10px;line-height:1.1}
  .andy-carousel-docs .andy-carousel-hero-title{
-  max-width:310px;
-  font-size:clamp(22px,5.8vw,30px);
-  line-height:1.01;
+  max-width:260px;
+  font-size:clamp(18px,4.65vw,23px);
+  line-height:1.02;
  }
- .andy-carousel-docs .andy-carousel-hero-description{font-size:12px;line-height:1.2}
+ .andy-carousel-docs .andy-carousel-hero-description{max-width:255px;font-size:11px;line-height:1.16}
  .andy-carousel-docs .andy-carousel-hero-photo{left:34%;width:66%;object-position:center}
  .andy-carousel-docs .andy-carousel-hero::after{
   background:linear-gradient(100deg,var(--banner-deep) 0%,var(--banner-tint) 45%,#00000022 100%);
@@ -170,7 +170,7 @@
   margin-top:var(--mlz-space-4);
   min-height:30px;
   padding:var(--mlz-space-4) var(--mlz-space-10);
-  font-size:11px;
+  font-size:10px;
  }
  .andy-carousel-docs .andy-carousel-photo{height:175px}
 }

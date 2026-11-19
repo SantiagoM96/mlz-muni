@@ -46,6 +46,22 @@
 .mlz-carousel.is-gallery .mlz-carousel-viewport{
  padding:0;
  scrollbar-width:none;
+ cursor:grab;
+ user-select:none;
+ touch-action:pan-x pan-y;
+}
+.mlz-carousel.is-gallery .mlz-carousel-viewport img{
+ user-select:none;
+ -webkit-user-drag:none;
+ pointer-events:none;
+}
+.mlz-carousel.is-gallery .mlz-carousel-viewport[data-dragging="true"]{
+ cursor:grabbing;
+ scroll-snap-type:none;
+ scroll-behavior:auto;
+}
+.mlz-carousel.is-gallery .mlz-carousel-viewport[data-dragging="true"] *{
+ cursor:grabbing;
 }
 .mlz-carousel-viewport::-webkit-scrollbar{display:none}
 .mlz-carousel-overlay-arrows{

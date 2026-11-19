@@ -77,7 +77,7 @@ function BannerHome(){
 
 function Gallery(){
  return <Carousel label="Galería de actividades en la plaza" variant="gallery"
-  slides={gallerySlides} visible="auto" gap={12} showNavigation
+  slides={gallerySlides} visible="auto" gap={12} showNavigation={false}
   showIndicators={false} loop={false}/>;
 }
 
@@ -94,7 +94,7 @@ export function AndyCarouselDocs(){
   </DocSection>
 
   <DocSection title="Galería"
-   description="Secuencia horizontal de fotografías de actividades comunitarias en una plaza. Muestra varias imágenes y deja asomar la siguiente; se desplaza manualmente mediante flechas translúcidas, trackpad o gesto táctil.">
+   description="Secuencia horizontal de fotografías de actividades comunitarias en una plaza. Muestra varias imágenes y deja asomar la siguiente; se desplaza manualmente arrastrando con el mouse, mediante trackpad o gesto táctil; no tiene flechas.">
    <DocPreview><Gallery/></DocPreview>
    <p className="andy-carousel-photo-note">Fotografías ilustrativas para mostrar el comportamiento del componente. No representan actividades municipales concretas.</p>
   </DocSection>
@@ -106,7 +106,7 @@ export function AndyCarouselDocs(){
     ['Viewport','Área visible por la que se desplazan las imágenes; recorta el contenido y permite interacción táctil.'],
     ['Track','Secuencia horizontal con separación entre elementos y alineación mediante scroll-snap.'],
     ['Elementos','Cada banner o fotografía dentro del carrusel, sin tamaños rígidos impuestos a su contenido.'],
-    ['Navegación','Botones circulares translúcidos a los costados; se deshabilitan en los extremos de la galería.'],
+    ['Navegación','Flechas circulares translúcidas en Banner Home; la galería prescinde de controles y se arrastra con mouse o dedo.'],
     ['Indicadores','Guiones clickeables del Banner Home: el indicador activo se expande y marca la posición actual.'],
     ['Comportamiento','Banner Home avanza cada 4 s y se pausa al interactuar; Galería se desplaza manualmente. Ambos admiten teclado y respetan movimiento reducido.'],
    ]}/>
