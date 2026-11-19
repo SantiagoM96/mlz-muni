@@ -239,3 +239,23 @@
   transition:none;
  }
 }
+
+/* La cabecera sticky no tapa el índice lateral ni las anclas internas. */
+@media(min-width:791px){
+ .andy-doc-layout .andy-sidebar{
+  top:80px;
+  max-height:calc(100dvh - 96px);
+ }
+ .andy-doc-layout .andy-doc-toc{
+  top:80px;
+  max-height:calc(100dvh - 96px);
+ }
+ .andy-doc-layout .andy-doc-main [id]{
+  scroll-margin-top:88px;
+ }
+}
+@media(max-width:790px){
+ .andy-doc-layout .andy-doc-main [id]{
+  scroll-margin-top:96px;
+ }
+}
