@@ -5,7 +5,7 @@ import { agendaActivities } from '../../modules/agenda/data/agenda';
 import { DocPreview, DocSection } from './AndyDocsPrimitives';
 import './andy-activity-cards.css';
 
-/** Dos variaciones del mismo patrón: Deportes conserva su cabecera celeste;
+/** Dos variaciones del mismo patrón: Deportes usa una cabecera blanca;
  * Agenda utiliza la imagen real del catálogo público. */
 type CardKind='sports'|'agenda';
 type CardData={
@@ -52,7 +52,7 @@ export function AndyActivityCard({kind}:{kind:CardKind}){
 }
 export function AndyActivityCardGallery(){
  return <div className="andy-family-card-gallery">
-  <DocSection title="Deportes Anual" description="Cabecera degradada de 34 px y contenido compacto, con metadatos e íconos del producto deportivo.">
+  <DocSection title="Deportes Anual" description="Cabecera blanca de 50 px (48 px en mobile), con contenido compacto, metadatos e íconos del producto deportivo.">
    <DocPreview><div className="andy-single-card-demo"><AndyActivityCard kind="sports"/></div></DocPreview>
   </DocSection>
   <DocSection title="Agenda de la Comunidad" description="Fotografía de 154 px y la misma jerarquía interior que Deportes.">
