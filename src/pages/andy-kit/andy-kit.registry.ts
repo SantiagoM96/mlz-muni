@@ -5,7 +5,7 @@ const componentGroups=[
  {title:'Actions',items:[['boton','Button'],['button-group','Button Group']]},
  {title:'Navigation',items:[['acordeon','Accordion'],['breadcrumb','Breadcrumb'],['collapsible','Collapsible'],['paginacion','Pagination']]},
  {title:'Feedback',items:[['mensaje','Alert'],['toast','Toast'],['progreso','Progress'],['spinner','Spinner'],['skeleton','Skeleton']]},
- {title:'Data Display',items:[['avatar','Avatar'],['chips','Badge'],['tarjeta','Card'],['tabla','Table'],['data-table','Data Table'],['empty','Empty'],['separator','Separator']]},
+ {title:'Data Display',items:[['avatar','Avatar'],['chips','Badge'],['tarjeta','Card'],['carrusel','Carrusel'],['tabla','Table'],['data-table','Data Table'],['empty','Empty'],['separator','Separator']]},
  {title:'Overlays',items:[['dialog','Dialog'],['alert-dialog','Alert Dialog'],['sheet','Sheet'],['tooltip','Tooltip']]},
 ] as const;
 type ComponentId=typeof componentGroups[number]['items'][number][0];
@@ -26,6 +26,7 @@ const componentMeta:Record<ComponentId,{description:string;category:string}>={
  avatar:{description:'Identidad visual de personas: fotografía, iniciales, indicador, grupo y contador.',category:'Data Display'},
  chips:{description:'Badge de estado o categoría, con variantes, tamaños, íconos y enlaces; chips removibles separados.',category:'Data Display'},
  tarjeta:{description:'Tarjetas de actividad y resúmenes de inscripción.',category:'Data Display'},
+ carrusel:{description:'Banners automáticos y galerías horizontales con navegación, indicadores opcionales y scroll táctil.',category:'Data Display'},
  mensaje:{description:'Mensajes persistentes de información, éxito, advertencia y error, con acción opcional.',category:'Feedback'},
  acordeon:{description:'Secciones expandibles de contenido, con apertura única o múltiple.',category:'Data Display'},
  breadcrumb:{description:'Ruta de navegación jerárquica, separadores configurables, colapsado y vuelta al padre en mobile.',category:'Navigation'},
