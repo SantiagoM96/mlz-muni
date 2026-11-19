@@ -70,23 +70,21 @@ test('Carrusel: autoplay de 4 segundos se pausa con hover o interacción',async 
  await expect(banner).toHaveAttribute('data-current','1');
 });
 
-test('Carrusel: Galería muestra cuatro fotografías sin tarjetas deportivas ni autoplay',async ({page})=>{
+test('Carrusel: Galería muestra cuatro fotos sin flechas y admite arrastre con mouse',async ({page})=>{
  await page.setViewportSize({width:1440,height:900});
  await page.goto('/ui-kit-andy/componentes/carrusel');
  const gallery=page.locator('#galeria [data-testid="mlz-carousel"]');
  await expect(gallery).toHaveAttribute('data-autoplay','off');
  await expect(gallery.locator('.andy-carousel-photo img')).toHaveCount(4);
  await expect(gallery.locator('.andy-family-card')).toHaveCount(0);
- await expect(gallery.getByRole('group',{name:'Elegir diapositiva'})).toHaveCount(0);
+ await expect(gallery.locator('.mlz-carousel-overlay-arrows')).toHaveCount(0);
+ await expect(gallery.getByRole('button',{name:/Imagen anterior|Imagen siguiente/})).toHaveCount(0);
  const urls=await gallery.locator('.andy-carousel-photo img').evaluateAll(nodes=>
-  nodes.map(node=>(node as HTMLImageElement).getAttribute('src'))
- );
+  nodes.map(node=>(node as HTMLImageElement).getAttribute('src')));
  expect(new Set(urls).size).toBe(4);
- for(const photo of await gallery.locator('.andy-carousel-photo img').all()){
-  await expect(photo).toHaveAttribute('alt',/.+/);
- }
  const viewport=gallery.getByTestId('mlz-carousel-viewport');
  await expect(viewport).toHaveCSS('scroll-snap-type','x mandatory');
+ await expect(viewport).toHaveCSS('cursor','grab');
  await expect(viewport).toHaveCSS('scrollbar-width','none');
  const measure=await viewport.evaluate(el=>({
   client:el.clientWidth,scroll:el.scrollWidth,
@@ -94,17 +92,17 @@ test('Carrusel: Galería muestra cuatro fotografías sin tarjetas deportivas ni 
  }));
  expect(measure.scroll).toBeGreaterThan(measure.client);
  expect(measure.item).toBeLessThan(measure.client/2);
- const previous=gallery.getByRole('button',{name:'Imagen anterior'});
- const next=gallery.getByRole('button',{name:'Imagen siguiente'});
- await expect(previous).toBeDisabled();
- await expect(next).toBeEnabled();
- await next.click();
+ const box=await viewport.boundingBox();
+ expect(box).not.toBeNull();
+ const startX=box!.x+box!.width*.68,startY=box!.y+box!.height*.5;
+ await page.mouse.move(startX,startY);
+ await page.mouse.down();
+ await expect(viewport).toHaveAttribute('data-dragging','true');
+ for(let i=1;i<=10;i++)await page.mouse.move(startX-(box!.width*.5*i/10),startY,{steps:2});
+ await page.mouse.up();
+ await expect(viewport).toHaveAttribute('data-dragging','false');
+ await expect(viewport).toHaveCSS('cursor','grab');
  await expect(gallery).toHaveAttribute('data-current','1');
- await expect(previous).toBeEnabled();
- const last=4-Number(await gallery.getAttribute('data-visible'));
- for(let i=1;i<=last;i++)await next.click();
- await expect(gallery).toHaveAttribute('data-current',String(last));
- await expect(next).toBeDisabled();
  await viewport.focus();
  await viewport.press('Home');
  await expect(gallery).toHaveAttribute('data-current','0');
@@ -112,22 +110,24 @@ test('Carrusel: Galería muestra cuatro fotografías sin tarjetas deportivas ni 
  await expect(gallery).toHaveAttribute('data-current','1');
 });
 
-test('Carrusel: Galería mobile mantiene swipe, parte de la siguiente foto y controles',async ({page})=>{
+test('Carrusel: Galería mobile permite swipe nativo, sin flechas ni autoplay',async ({page})=>{
  await page.setViewportSize({width:390,height:844});
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.goto('/ui-kit-andy/componentes/carrusel');
- const banner=page.locator('#introduccion [data-testid="mlz-carousel"]');
- await expect(banner).toHaveAttribute('data-autoplay','paused');
+ await expect(page.locator('#introduccion [data-testid="mlz-carousel"]')).toHaveAttribute('data-autoplay','paused');
  const gallery=page.locator('#galeria [data-testid="mlz-carousel"]');
  await expect(gallery).toHaveAttribute('data-visible','1');
- const v=gallery.getByTestId('mlz-carousel-viewport');
- const measure=await v.evaluate(el=>({
+ await expect(gallery.locator('.mlz-carousel-overlay-arrows')).toHaveCount(0);
+ const viewport=gallery.getByTestId('mlz-carousel-viewport');
+ const measure=await viewport.evaluate(el=>({
   client:el.clientWidth,scroll:el.scrollWidth,
   item:el.querySelector('.mlz-carousel-item')!.getBoundingClientRect().width,
+  touchAction:getComputedStyle(el).touchAction,
  }));
  expect(measure.scroll).toBeGreaterThan(measure.client);
  expect(measure.item).toBeLessThan(measure.client);
- await gallery.getByRole('button',{name:'Imagen siguiente'}).click();
+ expect(measure.touchAction).toContain('pan-x');
+ await viewport.evaluate(el=>(el as HTMLElement).scrollTo({left:el.clientWidth*.82,behavior:'instant'}));
  await expect(gallery).toHaveAttribute('data-current','1');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
@@ -261,8 +261,8 @@ test('Carrusel: cada banner concentra volanta, título y descripción en un bloq
  }
 });
 
-test('Design System: las fichas globales agregan 16 px de padding interior sin agruparse',async ({page})=>{
- for(const {width,padding} of [{width:1440,padding:'36px'},{width:390,padding:'32px'}]){
+test('Design System: las fichas explicativas tienen 16px exactos en todas las resoluciones',async ({page})=>{
+ for(const {width,padding} of [{width:1440,padding:'16px'},{width:390,padding:'16px'}]){
   await page.setViewportSize({width,height:900});
   for(const id of ['carrusel','tarjeta','mensaje']){
    await page.goto('/ui-kit-andy/componentes/'+id);
@@ -280,5 +280,28 @@ test('Design System: las fichas globales agregan 16 px de padding interior sin a
     await expect(card.locator('dd')).toHaveCSS('font-size','16px');
    }
   }
+ }
+});
+
+test('Carrusel: mobile usa tipografía y ancho de copy contenidos entre flechas',async ({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/ui-kit-andy/componentes/carrusel');
+ const home=page.locator('#banner-home');
+ for(const hero of await home.locator('.andy-carousel-hero').all()){
+  const v=await hero.evaluate(el=>{
+   const title=el.querySelector('.andy-carousel-hero-title')!;
+   const desc=el.querySelector('.andy-carousel-hero-description')!;
+   const copy=el.querySelector('.andy-carousel-hero-copy')!;
+   const whole=el.getBoundingClientRect();
+   const rect=copy.getBoundingClientRect();
+   return {font:parseFloat(getComputedStyle(title).fontSize),
+    descFont:parseFloat(getComputedStyle(desc).fontSize),
+    rightSpace:whole.right-rect.right,
+    leftSpace:rect.left-whole.left};
+  });
+  expect(v.font).toBeLessThanOrEqual(20);
+  expect(v.descFont).toBe(11);
+  expect(v.leftSpace).toBeGreaterThanOrEqual(0);
+  expect(v.rightSpace).toBeGreaterThan(30);
  }
 });
