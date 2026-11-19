@@ -100,14 +100,21 @@ test('Andy: guías de espaciado y border radius usan la escala institucional com
 });
 
 
-test('Andy: header sin divisor, título encima del descriptor y documentación full width',async ({page})=>{
+test('Andy: header con marca Lomas UI en SVG y documentación full width',async ({page})=>{
  await page.setViewportSize({width:1600,height:900});
  await page.goto('/ui-kit-andy/componentes/boton');
  const header=page.locator('.andy-header');
  await expect(header).toHaveCSS('border-bottom-width','0px');
  const heading=header.locator('.andy-topbar-heading');
- await expect(heading.locator('h1')).toHaveText('MLZ UI Kit - Andy');
- await expect(heading.locator('.andy-eyebrow')).toHaveText('Municipio de Lomas de Zamora · Design System');
+ const logo=heading.locator('h1 img');
+ await expect(logo).toHaveAttribute('alt','Lomas UI — Design System');
+ await expect(logo).toHaveAttribute('src',/\/assets\/andy-kit\/lomas-ui-logo\.svg$/);
+ await expect(logo).toHaveCSS('width','192px');
+ await expect(header.locator('.andy-topbar')).toHaveCSS('min-height','104px');
+ await expect(heading.locator('.andy-eyebrow')).toHaveCount(0);
+ const svg=await logo.evaluate(async image=>(await fetch((image as HTMLImageElement).src)).text());
+ expect(svg).toContain('fill="#000000"');
+ expect(svg).not.toContain('#1E1E1E');
  await expect(header.locator('.andy-version')).toHaveCSS('border-top-width','1px');
  const container=page.locator('.andy-doc-body');
  const measurements=await container.evaluate(el=>{
@@ -193,4 +200,34 @@ test('Andy: Button, Button Group, Calendar y Date Picker muestran check de revis
   await expect(mark).toHaveAttribute('aria-label','Revisado');
   await expect(mark).not.toHaveClass(/andy-nav-progress-mark/);
  }
+});
+
+test('Andy: Cairo se aplica a la documentación y Geometria se mantiene en las demos',async ({page})=>{
+ await page.setViewportSize({width:1280,height:900});
+ await page.goto('/ui-kit-andy/componentes/tarjeta');
+ const editorial=page.locator('.andy-doc-layout');
+ const heading=page.locator('.andy-doc-section-heading>h3').first();
+ const sidebar=page.locator('.andy-sidebar');
+ const specimen=page.locator('#basico .andy-municipal-card-appointment');
+ for(const locator of [editorial,heading,sidebar]){
+  await expect(locator).toHaveCSS('font-family',/Cairo/);
+ }
+ await expect(page.locator('#basico .andy-doc-demo')).toHaveCSS('font-family',/Geometria/);
+ await expect(specimen).toHaveCSS('font-family',/Geometria/);
+ await expect(page.locator('.andy-doc-example-group button').first()).toHaveCSS('font-family',/Cairo/);
+});
+
+test('Andy: logotipo y alto de header se adaptan en mobile sin overflow horizontal',async ({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/ui-kit-andy/fundamentos');
+ const header=page.locator('.andy-header');
+ const topbar=header.locator('.andy-topbar');
+ const logo=header.locator('.andy-kit-brand img');
+ await expect(topbar).toHaveCSS('min-height','90px');
+ await expect(logo).toBeVisible();
+ const size=await logo.boundingBox();
+ expect(size).not.toBeNull();
+ expect(size!.width).toBeGreaterThan(115);
+ expect(size!.width).toBeLessThan(170);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });

@@ -8,11 +8,11 @@
  width:100%;
  min-width:0;
  /* Contraste editorial deliberadamente tenue sobre fondos reales. */
- --andy-anatomy-header-stroke:#b5d5e5;
+ --andy-anatomy-header-stroke:#80b7d0;
  --andy-anatomy-header-fill:rgba(185,223,242,.10);
- --andy-anatomy-content-stroke:#e8c0c3;
+ --andy-anatomy-content-stroke:#d99aa1;
  --andy-anatomy-content-fill:rgba(251,208,213,.09);
- --andy-anatomy-footer-stroke:#e5d4aa;
+ --andy-anatomy-footer-stroke:#d4ae62;
  --andy-anatomy-footer-fill:rgba(250,230,172,.11);
 }
 .andy-card-anatomy-controls{

@@ -84,12 +84,12 @@ test('UI Kit: Composition usa seis tarjetas y resalta con bordes CSS dashed fino
  await expect(viewer.locator('.andy-card-anatomy-swatch')).toHaveCount(3);
  await expect(viewer.locator('.andy-card-anatomy-stage')).toHaveCSS('background-color','rgb(255, 255, 255)');
  const expected=[
-  {label:'Deportes Anual',header:1,content:1,footer:1,root:'.andy-family-card.is-sports'},
+  {label:'Deporte anual',header:1,content:1,footer:1,root:'.andy-family-card.is-sports'},
   {label:'Agenda de la Comunidad',header:1,content:1,footer:1,root:'[data-testid="agenda-card"]'},
   {label:'Noticias',header:1,content:1,footer:1,root:'.andy-municipal-card-news'},
   {label:'Turnos online',header:1,content:1,footer:1,root:'.andy-municipal-card-appointment'},
-  {label:'Trámites destacados',header:1,content:1,footer:1,root:'.andy-municipal-card-procedure'},
-  {label:'Eventos con fecha',header:1,content:1,footer:1,root:'.andy-municipal-card-event'},
+  {label:'Destacados',header:1,content:1,footer:1,root:'.andy-municipal-card-procedure'},
+  {label:'Eventos',header:1,content:1,footer:1,root:'.andy-municipal-card-event'},
  ] as const;
  for(const item of expected){
   await buttons.getByRole('button',{name:item.label,exact:true}).click();
@@ -113,8 +113,8 @@ test('UI Kit: Composition usa seis tarjetas y resalta con bordes CSS dashed fino
   await expect(stage.getByText('CardContent',{exact:true})).toHaveCount(0);
   await expect(stage.getByText('CardFooter',{exact:true})).toHaveCount(0);
  }
- await buttons.getByRole('button',{name:'Deportes Anual'}).click();
- await expect(buttons.getByRole('button',{name:'Deportes Anual'})).toHaveAttribute('aria-pressed','true');
+ await buttons.getByRole('button',{name:'Deporte anual'}).click();
+ await expect(buttons.getByRole('button',{name:'Deporte anual'})).toHaveAttribute('aria-pressed','true');
 });
 
 test('UI Kit: visor de Agenda no navega y galería original se conserva',async ({page})=>{
@@ -144,7 +144,7 @@ test('UI Kit: Card responsive sin scroll horizontal involuntario',async ({page})
  await page.setViewportSize({width:390,height:844});
  await page.goto('/ui-kit-andy/componentes/tarjeta');
  const viewer=page.getByTestId('andy-card-anatomy-viewer');
- await viewer.getByRole('group',{name:'Tarjeta municipal'}).getByRole('button',{name:'Trámites destacados'}).click();
+ await viewer.getByRole('group',{name:'Tarjeta municipal'}).getByRole('button',{name:'Destacados'}).click();
  await expect(viewer.locator('.andy-municipal-card-procedure')).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
@@ -153,7 +153,7 @@ test('UI Kit: Eventos muestra imagen propia y cajas agrupadas con aire y acción
  await page.setViewportSize({width:1280,height:900});
  await page.goto('/ui-kit-andy/componentes/tarjeta');
  const viewer=page.getByTestId('andy-card-anatomy-viewer');
- await viewer.getByRole('group',{name:'Tarjeta municipal'}).getByRole('button',{name:'Eventos con fecha'}).click();
+ await viewer.getByRole('group',{name:'Tarjeta municipal'}).getByRole('button',{name:'Eventos'}).click();
  const sample=viewer.locator('.andy-municipal-card-event');
  await expect(sample.locator('img.andy-municipal-card-event-image')).toHaveAttribute('src',/jazz-internacional\.svg$/);
  await expect(sample.locator('.andy-municipal-card-event-heading')).toHaveAttribute('data-card-anatomy-part','header');
@@ -187,4 +187,28 @@ test('UI Kit: seis superficies de Card son blancas y Licencias ya no usa fondo p
   .toHaveCSS('background-color','rgb(255, 255, 255)');
  await expect(page.locator('.andy-municipal-card-gallery .andy-municipal-card-shortcut')).toHaveCount(0);
  await expect(page.locator('.andy-municipal-card-gallery .andy-municipal-card-service')).toHaveCount(0);
+});
+
+test('UI Kit: etiquetas compactas y punteados más intensos sin alterar los fondos',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/tarjeta');
+ const viewer=page.getByTestId('andy-card-anatomy-viewer');
+ const controls=viewer.getByRole('group',{name:'Tarjeta municipal'});
+ await expect(controls.getByRole('button')).toHaveText([
+  'Deporte anual','Agenda de la Comunidad','Noticias',
+  'Turnos online','Destacados','Eventos',
+ ]);
+ const specimens=[
+  {part:'header',line:'rgb(128, 183, 208)',fill:'rgba(185, 223, 242, 0.1)'},
+  {part:'content',line:'rgb(217, 154, 161)',fill:'rgba(251, 208, 213, 0.09)'},
+  {part:'footer',line:'rgb(212, 174, 98)',fill:'rgba(250, 230, 172, 0.11)'},
+ ] as const;
+ for(const {part,line,fill} of specimens){
+  const box=viewer.locator('[data-card-anatomy-part="'+part+'"]').first();
+  const computed=await box.evaluate(el=>({
+   border:getComputedStyle(el,'::after').borderTopColor,
+   background:getComputedStyle(el,'::after').backgroundColor,
+  }));
+  expect(computed.border).toBe(line);
+  expect(computed.background).toBe(fill);
+ }
 });
