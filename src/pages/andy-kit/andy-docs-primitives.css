@@ -76,3 +76,57 @@
  }
  .andy-doc-variant-stack{gap:var(--mlz-space-24,24px)}
 }
+
+/* Anatomía, especificaciones y criterios: fichas editoriales semánticas.
+   Se aplica a GuidelineTable de todo el catálogo, nunca a Table/Data Table.
+   Dos columnas de igual ancho y una columna cuando el espacio no alcanza. */
+.andy-doc-layout .andy-doc-guideline-cards{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ align-items:stretch;
+ column-gap:var(--mlz-space-16);
+ row-gap:var(--mlz-space-16);
+ width:min(100%,980px);
+ max-width:100%;
+ margin:0;
+ padding:0;
+ font-family:var(--andy-editorial-font,Cairo,Arial,sans-serif);
+}
+.andy-doc-layout .andy-doc-guideline-card{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-8);
+ min-width:0;
+ margin:0;
+ padding:var(--mlz-space-20);
+ border:1px solid var(--color-grey-100,#e7e7e7);
+ border-radius:var(--mlz-radius-lg,8px);
+ background:#fff;
+ box-sizing:border-box;
+}
+.andy-doc-layout .andy-doc-guideline-card dt{
+ margin:0;
+ color:var(--color-grey-950,#000);
+ font-family:inherit;
+ font-size:16px;
+ font-weight:700;
+ line-height:24px;
+}
+.andy-doc-layout .andy-doc-guideline-card dd{
+ margin:0;
+ color:var(--color-grey-700,#525252);
+ font-family:inherit;
+ font-size:16px;
+ font-weight:400;
+ line-height:24px;
+ overflow-wrap:anywhere;
+}
+@media(max-width:760px){
+ .andy-doc-layout .andy-doc-guideline-cards{
+  grid-template-columns:1fr;
+  row-gap:var(--mlz-space-12);
+ }
+ .andy-doc-layout .andy-doc-guideline-card{
+  padding:var(--mlz-space-16);
+ }
+}
