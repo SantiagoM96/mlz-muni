@@ -127,7 +127,7 @@ test('Carrusel: Galería mobile permite swipe nativo, sin flechas ni autoplay',a
  expect(measure.scroll).toBeGreaterThan(measure.client);
  expect(measure.item).toBeLessThan(measure.client);
  expect(measure.touchAction).toContain('pan-x');
- await viewport.evaluate(el=>(el as HTMLElement).scrollTo({left:el.clientWidth*.82,behavior:'instant'}));
+ await viewport.evaluate(el=>(el as HTMLElement).scrollTo({left:el.clientWidth*.82,behavior:'auto'}));
  await expect(gallery).toHaveAttribute('data-current','1');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
