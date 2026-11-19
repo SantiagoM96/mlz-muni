@@ -222,3 +222,63 @@ test('Catálogo MLZ: las fichas se organizan en dos columnas si entran y una en 
  expect(Math.abs(mobileRects[0].left-mobileRects[1].left)).toBeLessThan(2);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
+
+
+test('Carrusel: cada banner concentra volanta, título y descripción en un bloque central',async ({page})=>{
+ for(const width of [1440,768,390]){
+  await page.setViewportSize({width,height:900});
+  await page.goto('/ui-kit-andy/componentes/carrusel');
+  for(const section of ['#introduccion','#banner-home']){
+   const heroes=page.locator(section+' .andy-carousel-hero');
+   await expect(heroes).toHaveCount(4);
+   for(const hero of await heroes.all()){
+    const layout=await hero.evaluate(el=>{
+     const copy=el.querySelector('.andy-carousel-hero-copy')!;
+     const eyebrow=el.querySelector('.andy-carousel-hero-eyebrow')!;
+     const title=el.querySelector('.andy-carousel-hero-title')!;
+     const description=el.querySelector('.andy-carousel-hero-description')!;
+     const area=el.getBoundingClientRect();
+     const rect=copy.getBoundingClientRect();
+     const lines=(node:Element)=>node.getBoundingClientRect().height/parseFloat(getComputedStyle(node).lineHeight);
+     return {
+      eyebrowLines:lines(eyebrow),
+      titleLines:lines(title),
+      descriptionLines:lines(description),
+      centerDelta:Math.abs((rect.top+rect.bottom)/2-(area.top+area.bottom)/2),
+      copyFits:rect.top>=area.top-1&&rect.bottom<=area.bottom+1,
+      horizontalFits:rect.left>=area.left-1&&rect.right<=area.right+1,
+     };
+    });
+    expect(layout.eyebrowLines).toBeLessThanOrEqual(1.1);
+    expect(layout.titleLines).toBeLessThanOrEqual(2.1);
+    expect(layout.descriptionLines).toBeLessThanOrEqual(3.1);
+    expect(layout.centerDelta).toBeLessThan(4);
+    expect(layout.copyFits).toBe(true);
+    expect(layout.horizontalFits).toBe(true);
+   }
+  }
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+ }
+});
+
+test('Design System: las fichas globales agregan 16 px de padding interior sin agruparse',async ({page})=>{
+ for(const {width,padding} of [{width:1440,padding:'36px'},{width:390,padding:'32px'}]){
+  await page.setViewportSize({width,height:900});
+  for(const id of ['carrusel','tarjeta','mensaje']){
+   await page.goto('/ui-kit-andy/componentes/'+id);
+   const section=page.locator('#anatomia .andy-doc-guideline-cards');
+   await expect(section).toBeVisible();
+   const cards=section.locator(':scope > .andy-doc-guideline-card');
+   expect(await cards.count()).toBeGreaterThanOrEqual(4);
+   await expect(section).toHaveCSS('padding-top','0px');
+   await expect(section).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
+   for(const card of await cards.all()){
+    for(const side of ['top','right','bottom','left']){
+     await expect(card).toHaveCSS('padding-'+side,padding);
+    }
+    await expect(card.locator('dt')).toHaveCSS('font-size','16px');
+    await expect(card.locator('dd')).toHaveCSS('font-size','16px');
+   }
+  }
+ }
+});
