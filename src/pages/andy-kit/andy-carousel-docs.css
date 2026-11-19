@@ -1,0 +1,116 @@
+/* Documentación editorial Carrusel: controles grises iguales a Button,
+   ejemplos dentro de DocPreview y el contenido visual con Geometria. */
+.andy-carousel-docs{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-32);
+ width:100%;
+ min-width:0;
+}
+.andy-carousel-docs .andy-doc-section{min-width:0}
+.andy-carousel-docs .andy-doc-preview,
+.andy-carousel-docs .andy-doc-demo-content{width:100%;min-width:0}
+.andy-carousel-docs .andy-carousel-placeholder{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ min-height:260px;
+ height:clamp(220px,29vw,355px);
+ border-radius:var(--mlz-radius-lg);
+}
+.andy-carousel-placeholder-content{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ gap:var(--mlz-space-8);
+ color:var(--color-grey-900);
+ font-family:Geometria,'Century Gothic',Arial,sans-serif;
+ text-align:center;
+}
+.andy-carousel-placeholder-content strong{
+ font-size:28px;
+ line-height:34px;
+ font-weight:700;
+}
+.andy-carousel-placeholder-content span{
+ font-size:16px;
+ line-height:24px;
+}
+.andy-carousel-placeholder.is-2 .andy-carousel-placeholder-content{
+ color:#fff;
+}
+.andy-carousel-docs .andy-carousel-variant-stack{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-32);
+ width:100%;
+}
+.andy-carousel-docs .andy-carousel-variant-item{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-16);
+ width:100%;
+ min-width:0;
+}
+.andy-carousel-docs .andy-carousel-variant-item .andy-doc-variant-caption{
+ width:100%;
+}
+.andy-carousel-docs .andy-carousel-settings{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ column-gap:var(--mlz-space-24);
+ row-gap:var(--mlz-space-16);
+ width:100%;
+}
+.andy-carousel-setting{
+ display:flex;
+ flex-direction:column;
+ align-items:flex-start;
+ gap:var(--mlz-space-8);
+ min-width:0;
+}
+.andy-carousel-setting-label{
+ color:var(--color-grey-900);
+ font-family:var(--andy-editorial-font,Cairo,Arial,sans-serif);
+ font-size:14px;
+ line-height:22px;
+ font-weight:600;
+}
+.andy-carousel-docs .andy-doc-example-group{
+ display:inline-flex;
+ max-width:100%;
+ overflow-x:auto;
+ scrollbar-width:thin;
+}
+.andy-carousel-docs .andy-doc-example-group button{
+ white-space:nowrap;
+}
+.andy-doc-layout .andy-doc-page .andy-carousel-docs .andy-doc-example-group button[aria-pressed="true"]{
+ border:2px solid var(--color-grey-400);
+ background:var(--color-grey-100);
+ padding-inline:11px;
+ background-clip:padding-box;
+ position:relative;
+ z-index:1;
+}
+.andy-carousel-docs .mlz-carousel.is-gallery .andy-family-card{
+ margin:0;
+}
+.andy-carousel-docs .mlz-carousel.is-gallery .andy-family-card:hover{
+ transform:none;
+}
+.andy-carousel-docs .mlz-carousel.is-gallery .andy-family-card-body{
+ gap:var(--mlz-space-12);
+}
+@media(max-width:800px){
+ .andy-carousel-docs .andy-carousel-settings{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+ .andy-carousel-docs .andy-carousel-placeholder{
+  min-height:200px;
+  height:220px;
+ }
+ .andy-carousel-placeholder-content strong{font-size:22px;line-height:30px}
+ .andy-carousel-docs .andy-carousel-variant-stack{gap:var(--mlz-space-24)}
+}
