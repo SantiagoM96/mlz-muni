@@ -175,23 +175,18 @@ export function Carousel({
    const next=event.relatedTarget;
    if(!(next instanceof Node)||!event.currentTarget.contains(next))setFocused(false);
   }}>
-  {variant==='gallery'&&showNavigation&&<div className="mlz-carousel-toolbar">
-   <span className="mlz-carousel-count">{Math.min(current+1,slides.length)} de {slides.length}</span>
-   <ButtonGroup aria-label="Navegación de actividades" className="mlz-carousel-gallery-arrows">
-    <ButtonGroupButton iconOnly aria-label="Actividad anterior" disabled={!canPrevious}
-     onClick={()=>advance(-1)}><MaterialIcon name="arrow_back" size={20}/></ButtonGroupButton>
-    <ButtonGroupButton iconOnly aria-label="Actividad siguiente" disabled={!canNext}
-     onClick={()=>advance(1)}><MaterialIcon name="arrow_forward" size={20}/></ButtonGroupButton>
-   </ButtonGroup>
-  </div>}
   <div className="mlz-carousel-body">
    <div className={'mlz-carousel-viewport'+(align==='center'?' is-center':'')} ref={viewportRef}
     data-testid="mlz-carousel-viewport" onScroll={onScroll}
-    tabIndex={0} aria-label={'Desplazar '+label.toLowerCase()}
-    onPointerDown={()=>{programmaticTargetRef.current=null;}}
+    tabIndex={0} aria-label={'Desplazar '+label.toLowerCase()+
+     (autoRequested?' (barra espaciadora para pausar o reanudar)':'')}
+    onPointerDown={()=>{programmaticTargetRef.current=null;if(autoRequested)setPaused(true);}}
     onWheel={()=>{programmaticTargetRef.current=null;}}
     onKeyDown={event=>{
-     if(event.key==='ArrowRight'||event.key==='ArrowLeft'){
+     if(event.key===' '&&autoRequested){
+      event.preventDefault();
+      setPaused(old=>!old);
+     }else if(event.key==='ArrowRight'||event.key==='ArrowLeft'){
       event.preventDefault();
       advance(event.key==='ArrowRight'?1:-1);
      }else if(event.key==='Home'){event.preventDefault();goTo(0);}
@@ -203,31 +198,24 @@ export function Carousel({
      {slide}
     </div>)}
    </div>
-   {variant==='banner'&&showNavigation&&<div className="mlz-carousel-overlay-arrows">
-    <ButtonGroup aria-label="Diapositiva anterior">
-     <ButtonGroupButton iconOnly aria-label="Diapositiva anterior"
+   {showNavigation&&<div className="mlz-carousel-overlay-arrows">
+    <ButtonGroup aria-label={variant==='banner'?'Diapositiva anterior':'Imagen anterior'}>
+     <ButtonGroupButton iconOnly aria-label={variant==='banner'?'Diapositiva anterior':'Imagen anterior'}
       disabled={!canPrevious} onClick={()=>advance(-1)}>
       <MaterialIcon name="chevron_left" size={24}/>
      </ButtonGroupButton>
     </ButtonGroup>
-    <ButtonGroup aria-label="Diapositiva siguiente">
-     <ButtonGroupButton iconOnly aria-label="Diapositiva siguiente"
+    <ButtonGroup aria-label={variant==='banner'?'Diapositiva siguiente':'Imagen siguiente'}>
+     <ButtonGroupButton iconOnly aria-label={variant==='banner'?'Diapositiva siguiente':'Imagen siguiente'}
       disabled={!canNext} onClick={()=>advance(1)}>
       <MaterialIcon name="chevron_right" size={24}/>
      </ButtonGroupButton>
     </ButtonGroup>
    </div>}
-   {variant==='banner'&&<div className="mlz-carousel-banner-controls">
-    {showIndicators&&<div className="mlz-carousel-indicators" role="group" aria-label="Elegir diapositiva">
-     {slides.map((_,i)=><button key={i} type="button" className={'mlz-carousel-indicator'+(i===current?' is-current':'')}
-      aria-label={'Ir a diapositiva '+(i+1)} aria-current={i===current?'true':undefined}
-      onClick={()=>goTo(i)}><span/></button>)}
-    </div>}
-    {autoRequested&&<button type="button" className="mlz-carousel-play-toggle"
-     aria-label={paused?'Reanudar carrusel automático':'Pausar carrusel automático'}
-     aria-pressed={paused} onClick={()=>setPaused(old=>!old)}>
-     <MaterialIcon name={paused?'play_arrow':'pause'} size={20}/>
-    </button>}
+   {variant==='banner'&&showIndicators&&<div className="mlz-carousel-indicators" role="group" aria-label="Elegir diapositiva">
+    {slides.map((_,i)=><button key={i} type="button" className={'mlz-carousel-indicator'+(i===current?' is-current':'')}
+     aria-label={'Ir a diapositiva '+(i+1)} aria-current={i===current?'true':undefined}
+     onClick={()=>goTo(i)}><span/></button>)}
    </div>}
   </div>
   <span className="mlz-carousel-sr-status" aria-live={autoRunning?'off':'polite'} aria-atomic="true">
