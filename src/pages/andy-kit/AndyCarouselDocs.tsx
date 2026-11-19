@@ -171,7 +171,6 @@ export function AndyCarouselDocs(){
     ['Scroll','No depender exclusivamente del gesto; mantener controles alternativos.'],
     ['Cards','Separar el desplazamiento y los breakpoints de la presentación del contenido.'],
     ['Contenido','Usar el banner para comunicación destacada y la galería para descubrir actividades; no insertar formularios complejos dentro de diapositivas móviles.'],
-    ['RTL','No se incluye porque no forma parte del alcance actual de MLZ.'],
    ]}/>
   </DocSection>
  </div>;
