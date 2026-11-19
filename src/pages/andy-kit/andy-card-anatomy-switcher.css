@@ -21,7 +21,7 @@
  flex-wrap:nowrap;
  padding-block:2px;
 }
-.andy-card-anatomy-controls .andy-card-anatomy-group{
+.andy-doc-layout .andy-doc-page .andy-card-anatomy-controls .andy-card-anatomy-group{
  display:inline-flex;
  flex:0 0 auto;
  max-width:none;
