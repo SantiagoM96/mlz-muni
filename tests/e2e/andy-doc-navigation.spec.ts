@@ -109,7 +109,7 @@ test('Andy: header con marca Lomas UI en SVG y documentación full width',async 
  const logo=heading.locator('h1 img');
  await expect(logo).toHaveAttribute('alt','Lomas UI — Design System');
  await expect(logo).toHaveAttribute('src',/\/assets\/andy-kit\/lomas-ui-logo\.svg$/);
- await expect(logo).toHaveCSS('width','192px');
+ await expect(logo).toHaveCSS('width','249.6px');
  await expect(header.locator('.andy-topbar')).toHaveCSS('min-height','104px');
  await expect(heading.locator('.andy-eyebrow')).toHaveCount(0);
  const svg=await logo.evaluate(async image=>(await fetch((image as HTMLImageElement).src)).text());
@@ -227,7 +227,7 @@ test('Andy: logotipo y alto de header se adaptan en mobile sin overflow horizont
  await expect(logo).toBeVisible();
  const size=await logo.boundingBox();
  expect(size).not.toBeNull();
- expect(size!.width).toBeGreaterThan(115);
- expect(size!.width).toBeLessThan(170);
+ expect(size!.width).toBeGreaterThan(175);
+ expect(size!.width).toBeLessThan(205);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });

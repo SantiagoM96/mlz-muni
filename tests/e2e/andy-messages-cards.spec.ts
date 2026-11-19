@@ -16,29 +16,34 @@ test('Andy: los cuatro mensajes usan exactamente los tokens de Figma mensaje_des
  }
 });
 
-test('Andy: las tarjetas Deportes y Agenda conservan sus cabeceras propias y tipografía común',async ({page})=>{
+test('Andy: Deportes y Agenda conservan cabeceras y tipografía en el visor unificado',async ({page})=>{
+ await page.setViewportSize({width:1280,height:900});
  await page.goto('/ui-kit-andy/componentes/tarjeta');
- const sports=page.getByTestId('andy-family-card-sports');
- const agenda=page.getByTestId('andy-family-card-agenda');
+ const viewer=page.getByTestId('andy-card-anatomy-viewer');
+ const options=viewer.getByRole('group',{name:'Tarjeta municipal'});
+ await options.getByRole('button',{name:'Deporte anual'}).click();
+ const sports=viewer.getByTestId('andy-family-card-sports');
  await expect(sports).toBeVisible();
- await expect(agenda).toBeVisible();
- await expect(sports.locator('.andy-family-card-sports-head')).toHaveCSS('height',(await page.evaluate(()=>innerWidth<=650))?'32px':'34px');
+ await expect(sports.locator('.andy-family-card-sports-head')).toHaveCSS('height','50px');
  await expect(sports.locator('.andy-family-card-sports-head')).toBeEmpty();
  await expect(sports.locator('.andy-family-card-sports-head')).toHaveCSS('background-image','linear-gradient(115deg, rgb(32, 143, 184) 0%, rgb(43, 162, 201) 45%, rgb(102, 184, 218) 100%)');
- await expect(agenda.locator('article img')).toHaveCSS('height','154px');
  await expect(sports.locator('h3')).toHaveCSS('font-size','22px');
+ const sportsDate=sports.locator('.andy-family-card-line').first();
+ await expect(sportsDate).toHaveCSS('font-size','16px');
+ await expect(sportsDate.locator('.material-symbols-outlined')).toHaveCSS('color','rgb(35, 105, 153)');
+ await expect(sports.getByText('Preinscribirse')).toBeVisible();
+
+ await options.getByRole('button',{name:'Agenda de la Comunidad'}).click();
+ const agenda=viewer.getByTestId('andy-family-card-agenda');
+ await expect(agenda).toBeVisible();
+ await expect(agenda.locator('article img')).toHaveCSS('height','154px');
  await expect(agenda.locator('article h2')).toHaveCSS('font-size','22px');
  await expect(agenda.locator('article p').first()).toHaveCSS('font-size','16px');
  const agendaDate=agenda.locator('[data-agenda-field="date"] p').first();
- const sportsDate=sports.locator('.andy-family-card-line').first();
  await expect(agendaDate).toHaveCSS('font-size','16px');
  await expect(agendaDate).toHaveCSS('line-height','23px');
- await expect(sportsDate).toHaveCSS('font-size','16px');
  await expect(agenda.locator('[data-agenda-field="date"] .material-symbols-outlined')).toHaveCSS('color','rgb(35, 105, 153)');
- await expect(sportsDate.locator('.material-symbols-outlined')).toHaveCSS('color','rgb(35, 105, 153)');
  await expect(agenda.locator('[data-testid="agenda-card-schedules"]')).toHaveCSS('row-gap','13px');
-
- await expect(sports.getByText('Preinscribirse')).toBeVisible();
  await expect(agenda.getByText('Ver más')).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
