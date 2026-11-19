@@ -71,7 +71,6 @@ export function Carousel({
  const breakpointCount=width<480?1:width<850?2:3;
  const visibleCount=variant==='banner'?1:Math.min(visible==='auto'?3:visible,breakpointCount);
  const maxIndex=Math.max(0,slides.length-visibleCount);
- const maxSlide=slides.length-1;
  const canMove=slides.length>visibleCount;
  const canPrevious=canMove&&(loop||current>0);
  const canNext=canMove&&(loop||current<maxIndex);
@@ -165,7 +164,7 @@ export function Carousel({
    </ButtonGroup>
   </div>}
   <div className="mlz-carousel-body">
-   <div className="mlz-carousel-viewport" ref={viewportRef}
+   <div className={'mlz-carousel-viewport'+(align==='center'?' is-center':'')} ref={viewportRef}
     data-testid="mlz-carousel-viewport" onScroll={onScroll}
     tabIndex={0} aria-label={'Desplazar '+label.toLowerCase()}
     onKeyDown={event=>{
