@@ -10,6 +10,7 @@ import { AndyDatePickerDocs } from './AndyDatePickerDocs';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { ColorTokensGallery } from './ColorTokensGallery';
 import { AndyCardFoundationDocs } from './AndyCardFoundationDocs';
+import { AndyCarouselDocs } from './AndyCarouselDocs';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyBadgeDocs } from './AndyBadgeDocs';
 import { AndyButtonMatrix } from './AndyButtonMatrix';
@@ -27,7 +28,7 @@ import './andy-scrollbars.css';
 import './andy-brand-cairo.css';
 
 const reviewedComponentIds=new Set<ComponentId>(['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb','boton','button-group','calendar','calendario']);
-const inProgressComponentIds=new Set<ComponentId>();
+const inProgressComponentIds=new Set<ComponentId>(['carrusel']);
 
 const categories = [
   { id:'fundamentos', name:'Foundations' },
@@ -295,6 +296,7 @@ function InputDocs(){
  </>;
 }
 function ComponentDetails({id}:{id:ComponentId}){
+  if(id==='carrusel')return <AndyCarouselDocs/>;
  if(id==='field')return <FieldDocs/>;
  if(id==='input')return <InputDocs/>;
  if(id==='textarea')return <><FormStates family="textarea"/>

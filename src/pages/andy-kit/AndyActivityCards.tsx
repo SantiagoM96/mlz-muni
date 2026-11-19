@@ -8,7 +8,7 @@ import './andy-activity-cards.css';
 /** Dos variaciones del mismo patrón: Deportes conserva una cabecera celeste degradada;
  * Agenda utiliza la imagen real del catálogo público. */
 type CardKind='sports'|'agenda';
-type CardData={
+export type CardData={
  kind:'sports';
  category:string;
  title:string;
@@ -28,11 +28,11 @@ const agendaSample=agendaActivities.find(activity=>activity.type==='Teatro')??ag
 function DataLine({icon,children}:{icon:'event_available'|'schedule'|'location_on';children:ReactNode}) {
  return <div className="andy-family-card-line"><MaterialIcon name={icon} size={20}/><div>{children}</div></div>;
 }
-export function AndyActivityCard({kind}:{kind:CardKind}){
+export function AndyActivityCard({kind,data:sportsOverride}:{kind:CardKind;data?:CardData}){
  if(kind==='agenda')return <div className="andy-family-agenda-original" data-testid="andy-family-card-agenda">
   {agendaSample?<ActivityCard activity={agendaSample}/>:<p>No hay actividades de Agenda disponibles.</p>}
  </div>;
- const data=sportsCard;
+ const data=sportsOverride??sportsCard;
  return <article className={'andy-family-card is-'+kind} data-testid={'andy-family-card-'+kind}>
   <div className="andy-family-card-sports-head" aria-hidden="true"/>
   <div className="andy-family-card-body">
