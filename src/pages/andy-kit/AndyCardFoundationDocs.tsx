@@ -54,13 +54,13 @@ export function AndyCardFoundationDocs(){
  const [state,setState]=useState<VisualState>('default');
 
  return <div className="andy-card-foundation-docs">
-  <DocSection title="Descripción" description="Card agrupa información y acciones relacionadas dentro de una superficie con identidad propia. Nuestras composiciones de Deportes, Agenda, Noticias y gestiones municipales son los ejemplos de referencia; no inventamos una tarjeta ficticia para representarlas.">{null}</DocSection>
+  <DocSection title="Descripción" description="Card agrupa información y acciones relacionadas dentro de una superficie con identidad propia. Las seis tarjetas seleccionadas —Deportes, Agenda, Noticias, Turnos, Licencias y Eventos— son los ejemplos de referencia, todas con superficie blanca y jerarquía de contenido consistente.">{null}</DocSection>
 
   <DocSection title="Básico" description="La tarjeta de Turnos online es una muestra existente de Card informativa con título, descripción y acceso. Sirve como punto de partida para estudiar la estructura más sencilla de esta familia.">
    <DocPreview><RealCardSample id="appointment"/></DocPreview>
   </DocSection>
 
-  <DocSection title="Composición" description="Seleccioná cualquiera de las ocho tarjetas municipales. Los fondos casi imperceptibles y las líneas punteadas finas señalan Header, Content y Footer directamente sobre los elementos reales. No se agregan piezas inexistentes.">
+  <DocSection title="Composición" description="Recorré las seis tarjetas municipales seleccionadas. Las cajas punteadas tienen mayor aire alrededor del contenido y agrupan elementos contiguos de una misma región; el footer rodea solamente la acción.">
    <AndyCardAnatomySwitcher/>
   </DocSection>
 
@@ -109,20 +109,20 @@ export function AndyCardFoundationDocs(){
 
   <DocSection title="Especificaciones" description="La composición base propone reglas compartidas, pero las tarjetas municipales publicadas mantienen sus medidas y estilos particulares. Los controles de esta página son instrumentos de inspección, no nuevas variantes productivas.">
    <GuidelineTable rows={[
-    ['Superficie','Blanco y borde Grey 100 de 1 px para tarjetas estándar; hay superficies primarias como Trámites.'],
+    ['Superficie','Fondo blanco y borde Grey 100 de 1 px en las seis tarjetas seleccionadas; textos y acciones conservan jerarquía primaria.'],
     ['Radio','8 px de radio de tarjeta en los ejemplos existentes.'],
     ['Anchos','Las muestras admiten hasta 420 px; 340 px se usa aquí para verificar la adaptación.'],
     ['Espaciado','24 px de padding usual en contenidos municipales; 16, 20 y 32 px son valores de comparación en la demo.'],
     ['Título','Geometria Bold, generalmente 22/29, Primario 600; contraste específico en fondos oscuros.'],
     ['Texto secundario','Grey 900 / Grey 500 según función, manteniendo jerarquía y legibilidad.'],
-    ['Imagen','154 px de alto en Noticias y Agenda; las imágenes de fondo tienen tratamientos independientes.'],
-    ['Deportes Anual','Cabecera blanca de 50 px en desktop y 48 px en mobile, 16 px más alta que antes.'],
+    ['Imagen','154 px de alto en Noticias, Agenda y Eventos; Eventos utiliza una fotografía ilustrativa de jazz.'],
+    ['Deportes Anual','Cabecera celeste degradada de 50 px en desktop y 48 px en mobile; cuerpo con fondo blanco.'],
     ['Acción','Aplicar las reglas de Button o Link cuando la tarjeta tenga una acción real.'],
     ['Focus','El foco sigue al enlace o control interactivo real; no se dibuja en tarjetas informativas sin acción.'],
    ]}/>
   </DocSection>
 
-  <DocSection title="Comportamiento y accesibilidad" description="Las ocho tarjetas originales siguen siendo la referencia visual. Los estados de inspección no crean acciones nuevas ni reemplazan los enlaces, botones y estructuras semánticas reales de cada producto.">
+  <DocSection title="Comportamiento y accesibilidad" description="Las seis tarjetas seleccionadas mantienen su estructura real. Los estados de inspección no crean acciones nuevas ni reemplazan los enlaces, botones y estructuras semánticas reales de cada producto.">
    <GuidelineTable rows={[
     ['Semántica','Usar article para agrupar una unidad de contenido; no hacer clickeable una tarjeta informativa sin destino.'],
     ['Navegación','Si toda la tarjeta abre un detalle, ofrecer un enlace real y evitar controles interactivos anidados.'],
