@@ -7,13 +7,10 @@
  gap:var(--mlz-space-16);
  width:100%;
  min-width:0;
- /* Contraste editorial deliberadamente tenue sobre fondos reales. */
- --andy-anatomy-header-stroke:#80b7d0;
- --andy-anatomy-header-fill:rgba(185,223,242,.10);
- --andy-anatomy-content-stroke:#d99aa1;
- --andy-anatomy-content-fill:rgba(251,208,213,.09);
- --andy-anatomy-footer-stroke:#d4ae62;
- --andy-anatomy-footer-fill:rgba(250,230,172,.11);
+ /* Paleta auxiliar oficial MLZ: solo el trazo, sin relleno cromático. */
+ --andy-anatomy-header-stroke:var(--color-aux-celeste-brillante);
+ --andy-anatomy-content-stroke:var(--color-aux-violeta);
+ --andy-anatomy-footer-stroke:var(--color-aux-rosa-fuerte);
 }
 .andy-card-anatomy-controls{
  justify-content:flex-start;
@@ -56,15 +53,15 @@
 }
 .andy-card-anatomy-swatch.is-header{
  border-color:var(--andy-anatomy-header-stroke);
- background:var(--andy-anatomy-header-fill);
+ background:transparent;
 }
 .andy-card-anatomy-swatch.is-content{
  border-color:var(--andy-anatomy-content-stroke);
- background:var(--andy-anatomy-content-fill);
+ background:transparent;
 }
 .andy-card-anatomy-swatch.is-footer{
  border-color:var(--andy-anatomy-footer-stroke);
- background:var(--andy-anatomy-footer-fill);
+ background:transparent;
 }
 .andy-card-anatomy-stage{
  display:flex;
@@ -103,7 +100,7 @@
 .andy-card-anatomy-demo [data-card-anatomy-part]{
  position:relative;
  border-radius:var(--mlz-radius-sm);
- background-color:var(--andy-anatomy-part-fill);
+ background-color:transparent;
 }
 .andy-card-anatomy-demo [data-card-anatomy-part]::after{
  content:"";
@@ -116,15 +113,12 @@
 }
 .andy-card-anatomy-demo [data-card-anatomy-part="header"]{
  --andy-anatomy-part-stroke:var(--andy-anatomy-header-stroke);
- --andy-anatomy-part-fill:var(--andy-anatomy-header-fill);
 }
 .andy-card-anatomy-demo [data-card-anatomy-part="content"]{
  --andy-anatomy-part-stroke:var(--andy-anatomy-content-stroke);
- --andy-anatomy-part-fill:var(--andy-anatomy-content-fill);
 }
 .andy-card-anatomy-demo [data-card-anatomy-part="footer"]{
  --andy-anatomy-part-stroke:var(--andy-anatomy-footer-stroke);
- --andy-anatomy-part-fill:var(--andy-anatomy-footer-fill);
 }
 .andy-card-anatomy-demo .andy-family-card:hover,
 .andy-card-anatomy-demo .andy-municipal-card:hover,
@@ -154,7 +148,7 @@
 }
 .andy-card-anatomy-demo [data-card-anatomy-part]::after{
  inset:-8px -12px;
- background-color:var(--andy-anatomy-part-fill);
+ background-color:transparent;
 }
 .andy-card-anatomy-demo .andy-family-card.is-sports .andy-family-card-body{
  gap:var(--mlz-space-28,28px);
