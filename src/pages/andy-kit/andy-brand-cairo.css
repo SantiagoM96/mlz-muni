@@ -48,7 +48,7 @@
 }
 .andy-doc-layout .andy-kit-brand img{
  display:block;
- width:192px;
+ width:249.6px; /* 192 px + 30 %, sin modificar el header */
  max-width:100%;
  height:auto;
  flex:0 1 auto;
@@ -66,11 +66,11 @@
   align-self:center;
  }
  .andy-doc-layout .andy-kit-brand img{
-  width:clamp(118px,36vw,168px);
+  width:clamp(153.4px,46.8vw,218.4px); /* escalado 30 % */
  }
 }
 @media(max-width:360px){
  .andy-doc-layout .andy-kit-brand img{
-  width:min(34vw,125px);
+  width:min(44.2vw,162.5px); /* escalado 30 % */
  }
 }
