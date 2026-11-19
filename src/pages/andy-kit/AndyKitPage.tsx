@@ -9,8 +9,6 @@ import { AndyCalendarDocs } from './AndyCalendarDocs';
 import { AndyDatePickerDocs } from './AndyDatePickerDocs';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
 import { ColorTokensGallery } from './ColorTokensGallery';
-import { AndyActivityCardGallery } from './AndyActivityCards';
-import { AndyMunicipalCardGallery } from './AndyMunicipalCards';
 import { AndyCardFoundationDocs } from './AndyCardFoundationDocs';
 import { AndyScrollbarGallery } from './AndyScrollbarGallery';
 import { AndyBadgeDocs } from './AndyBadgeDocs';
@@ -141,9 +139,6 @@ function ChipGallery({compact=false}:{compact?:boolean}){
 }
 function Cards(){return <div className="andy-cards-unified">
  <AndyCardFoundationDocs/>
- <DocSection title="Aplicaciones municipales" description="Seis ejemplos seleccionados de Deportes, Agenda, Noticias, Turnos, Licencias y Eventos muestran cómo se aplica la anatomía. Áreas y servicios y Accesos rápidos no se presentan en esta galería.">{null}</DocSection>
- <AndyActivityCardGallery/>
- <AndyMunicipalCardGallery/>
 </div>}
 type AlertTone='info'|'success'|'warning'|'error';
 function AlertExample({tone,title,children,action}:{
