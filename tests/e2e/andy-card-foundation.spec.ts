@@ -188,3 +188,27 @@ test('UI Kit: seis superficies de Card son blancas y Licencias ya no usa fondo p
  await expect(page.locator('.andy-municipal-card-gallery .andy-municipal-card-shortcut')).toHaveCount(0);
  await expect(page.locator('.andy-municipal-card-gallery .andy-municipal-card-service')).toHaveCount(0);
 });
+
+test('UI Kit: etiquetas compactas y punteados más intensos sin alterar los fondos',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/tarjeta');
+ const viewer=page.getByTestId('andy-card-anatomy-viewer');
+ const controls=viewer.getByRole('group',{name:'Tarjeta municipal'});
+ await expect(controls.getByRole('button')).toHaveText([
+  'Deporte anual','Agenda de la Comunidad','Noticias',
+  'Turnos online','Destacados','Eventos',
+ ]);
+ const specimens=[
+  {part:'header',line:'rgb(128, 183, 208)',fill:'rgba(185, 223, 242, 0.1)'},
+  {part:'content',line:'rgb(217, 154, 161)',fill:'rgba(251, 208, 213, 0.09)'},
+  {part:'footer',line:'rgb(212, 174, 98)',fill:'rgba(250, 230, 172, 0.11)'},
+ ] as const;
+ for(const {part,line,fill} of specimens){
+  const box=viewer.locator('[data-card-anatomy-part="'+part+'"]').first();
+  const computed=await box.evaluate(el=>({
+   border:getComputedStyle(el,'::after').borderTopColor,
+   background:getComputedStyle(el,'::after').backgroundColor,
+  }));
+  expect(computed.border).toBe(line);
+  expect(computed.background).toBe(fill);
+ }
+});
