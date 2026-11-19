@@ -32,7 +32,7 @@ const anatomy:Record<ExampleId,Partial<Record<Part,readonly string[]>>>={
   footer:['[data-testid="agenda-card"] > a > div > .mt-auto'],
  },
  news:{
-  header:['.andy-municipal-card-news .andy-municipal-card-tag','.andy-municipal-card-news h3'],
+  header:['.andy-municipal-card-news h3'],
   content:['.andy-municipal-card-news .andy-municipal-card-meta'],
   footer:['.andy-municipal-card-news .andy-municipal-card-action'],
  },
