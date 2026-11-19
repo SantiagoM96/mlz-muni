@@ -137,7 +137,13 @@ export function Carousel({
   return()=>window.clearInterval(timer);
  },[autoRunning,autoplayMs,goTo]);
 
- const advance=(direction:-1|1)=>goTo(currentRef.current+direction*(step==='page'?visibleCount:1));
+ const advance=(direction:-1|1)=>{
+  // Desde los extremos, Loop debe llegar a la primera/última página,
+  // incluso cuando el paso configurado es una página completa.
+  if(loop&&direction===-1&&currentRef.current===0){goTo(maxIndex);return;}
+  if(loop&&direction===1&&currentRef.current===maxIndex){goTo(0);return;}
+  goTo(currentRef.current+direction*(step==='page'?visibleCount:1));
+ };
  const style={
   '--mlz-carousel-gap':'var(--mlz-space-'+gap+')',
   '--mlz-carousel-visible':visibleCount,
