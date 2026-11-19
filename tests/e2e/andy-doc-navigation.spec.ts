@@ -106,15 +106,27 @@ test('Andy: header con marca Lomas UI en SVG y documentación full width',async 
  const header=page.locator('.andy-header');
  await expect(header).toHaveCSS('border-bottom-width','0px');
  const heading=header.locator('.andy-topbar-heading');
- const logo=heading.locator('h1 img');
- await expect(logo).toHaveAttribute('alt','Lomas UI — Design System');
- await expect(logo).toHaveAttribute('src',/\/assets\/andy-kit\/lomas-ui-logo\.svg$/);
- await expect(logo).toHaveCSS('width','249.6px');
+ const logo=heading.locator('h1.andy-kit-brand');
+ await expect(logo).toHaveAttribute('aria-label','Lomas UI — Design System');
+ const full=logo.locator('.andy-brand-mark-full');
+ const small=logo.locator('.andy-brand-mark-small');
+ const descriptor=logo.locator('.andy-brand-descriptor');
+ await expect(full).toHaveAttribute('src',/\/assets\/andy-kit\/lomas-ui-full\.svg$/);
+ await expect(small).toHaveAttribute('src',/\/assets\/andy-kit\/lomas-ui-small\.svg$/);
+ await expect(full).toHaveCSS('width','249.6px');
+ await expect(small).toHaveCSS('opacity','0');
+ await expect(descriptor).toHaveCSS('width','58.6px');
+ await expect(header).toHaveCSS('position','sticky');
+ await expect(header).toHaveCSS('top','0px');
+ await expect(header).toHaveAttribute('data-header-state','expanded');
  await expect(header.locator('.andy-topbar')).toHaveCSS('min-height','104px');
- await expect(heading.locator('.andy-eyebrow')).toHaveCount(0);
- const svg=await logo.evaluate(async image=>(await fetch((image as HTMLImageElement).src)).text());
- expect(svg).toContain('fill="#000000"');
- expect(svg).not.toContain('#1E1E1E');
+ const svgs=await Promise.all([full,small].map(img=>
+  img.evaluate(async image=>(await fetch((image as HTMLImageElement).src)).text())));
+ for(const svg of svgs){
+  expect(svg).toContain('<svg');
+  expect(svg).toContain('fill="#000000"');
+  expect(svg).not.toContain('#1E1E1E');
+ }
  await expect(header.locator('.andy-version')).toHaveCSS('border-top-width','1px');
  const container=page.locator('.andy-doc-body');
  const measurements=await container.evaluate(el=>{
@@ -222,12 +234,52 @@ test('Andy: logotipo y alto de header se adaptan en mobile sin overflow horizont
  await page.goto('/ui-kit-andy/fundamentos');
  const header=page.locator('.andy-header');
  const topbar=header.locator('.andy-topbar');
- const logo=header.locator('.andy-kit-brand img');
+ const logo=header.locator('.andy-kit-brand');
+ const full=logo.locator('.andy-brand-mark-full');
  await expect(topbar).toHaveCSS('min-height','90px');
  await expect(logo).toBeVisible();
+ await expect(full).toHaveCSS('width','160px');
  const size=await logo.boundingBox();
  expect(size).not.toBeNull();
- expect(size!.width).toBeGreaterThan(175);
- expect(size!.width).toBeLessThan(205);
+ expect(size!.width).toBeGreaterThan(145);
+ expect(size!.width).toBeLessThan(175);
+ await page.evaluate(()=>window.scrollTo(0,500));
+ await expect(header).toHaveAttribute('data-header-state','compact');
+ await expect(topbar).toHaveCSS('min-height','80px');
+ await expect(header.locator('.andy-sidebar-toggle')).toBeVisible();
+ await expect(header.locator('.andy-brand-descriptor')).toHaveCSS('width','0px');
+ await expect(header.locator('.andy-brand-mark-small')).toHaveCSS('opacity','1');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+});
+
+test('Andy: header sticky desktop se compacta al alto del badge y revierte al subir',async ({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ await page.goto('/ui-kit-andy/componentes/carrusel');
+ const header=page.locator('.andy-header');
+ const topbar=header.locator('.andy-topbar');
+ const badge=header.locator('.andy-version');
+ await expect(header).toHaveAttribute('data-header-state','expanded');
+ await expect(topbar).toHaveCSS('min-height','104px');
+ await page.evaluate(()=>window.scrollTo(0,450));
+ await expect(header).toHaveAttribute('data-header-state','compact');
+ await expect(topbar).toHaveCSS('min-height','64px');
+ const sizes=await header.evaluate(el=>{
+  const bar=el.querySelector('.andy-topbar')!;
+  const version=el.querySelector('.andy-version')!;
+  return {
+   badge:version.getBoundingClientRect().height,
+   bar:bar.getBoundingClientRect().height,
+   headerTop:el.getBoundingClientRect().top,
+  };
+ });
+ expect(Math.abs(sizes.bar-(sizes.badge+32))).toBeLessThan(1);
+ expect(Math.abs(sizes.headerTop)).toBeLessThan(1);
+ await expect(header.locator('.andy-brand-descriptor')).toHaveCSS('width','0px');
+ await expect(header.locator('.andy-brand-mark-small')).toHaveCSS('opacity','1');
+ await expect(badge).toBeVisible();
+ await page.evaluate(()=>window.scrollTo(0,0));
+ await expect(header).toHaveAttribute('data-header-state','expanded');
+ await expect(topbar).toHaveCSS('min-height','104px');
+ await expect(header.locator('.andy-brand-descriptor')).toHaveCSS('width','58.6px');
+ await expect(header.locator('.andy-brand-mark-full')).toHaveCSS('opacity','1');
 });
