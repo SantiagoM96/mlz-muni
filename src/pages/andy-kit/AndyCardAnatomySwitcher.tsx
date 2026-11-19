@@ -5,12 +5,12 @@ import { AndyMunicipalCardGallery, type MunicipalCardKind } from './AndyMunicipa
 import './andy-card-anatomy-switcher.css';
 
 export const cardExamples=[
- {id:'sports',label:'Deportes Anual'},
+ {id:'sports',label:'Deporte anual'},
  {id:'agenda',label:'Agenda de la Comunidad'},
  {id:'news',label:'Noticias'},
  {id:'appointment',label:'Turnos online'},
- {id:'procedure',label:'Trámites destacados'},
- {id:'event',label:'Eventos con fecha'},
+ {id:'procedure',label:'Destacados'},
+ {id:'event',label:'Eventos'},
 ] as const;
 
 export type CardExampleId=typeof cardExamples[number]['id'];
