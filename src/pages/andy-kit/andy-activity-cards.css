@@ -19,7 +19,7 @@
 .andy-family-card:hover{border-color:#bed8ed;box-shadow:0 8px 23px #174d7017;transform:translateY(-2px)}
 .andy-family-card-image,.andy-family-card-sports-head{display:block;width:100%}.andy-family-card-image{height:154px;flex:0 0 154px}.andy-family-card-sports-head{height:50px;min-height:50px;flex:0 0 50px}
 .andy-family-card-image{object-fit:cover;background:#e5f0f9}
-.andy-family-card-sports-head{display:block;padding:0;background:#fff}
+.andy-family-card-sports-head{display:block;padding:0;background:linear-gradient(115deg,#208fb8 0%,#2ba2c9 45%,#66b8da 100%)}
 .andy-family-card-body{display:flex;flex-direction:column;flex:1;min-width:0;gap:var(--mlz-space-16);padding:var(--mlz-space-16) var(--mlz-space-24) var(--mlz-space-16)}.andy-family-card.is-sports{background:#fff}.andy-family-card.is-sports .andy-family-card-body{gap:var(--mlz-space-12);padding:var(--mlz-space-16) var(--mlz-space-24) var(--mlz-space-24)}
 .andy-family-card-intro{display:flex;flex-direction:column;align-items:start;min-width:0;gap:var(--mlz-space-8)}
 .andy-family-card-category{font-size:18px;line-height:26px;font-weight:500;color:#888;text-transform:uppercase}
