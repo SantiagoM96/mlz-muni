@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+/* Identidad tipográfica de la DOCUMENTACIÓN del Design System.
+   Los componentes presentados como demos conservan Geometria, que es la
+   fuente propia de los productos municipales. No se toca el sitio público. */
+.andy-doc-layout{
+ --andy-editorial-font:'Cairo','Geometria',Arial,sans-serif;
+ --color-grey-950:var(--color-black-950,#000);
+ font-family:var(--andy-editorial-font);
+}
+.andy-doc-layout .andy-doc-demo,
+.andy-doc-layout .andy-foundation-type,
+.andy-doc-layout .andy-context-screen,
+.andy-doc-layout .andy-embedded-sports{
+ font-family:Geometria,'Century Gothic',Arial,sans-serif;
+}
+/* Elementos explicativos con tipografía fijada en estilos antiguos. */
+.andy-doc-layout .andy-doc-variant-caption h4,
+.andy-doc-layout .andy-doc-variant-caption p,
+.andy-doc-layout .andy-doc-guideline-table,
+.andy-doc-layout .andy-doc-example-group button,
+.andy-doc-layout .andy-card-anatomy-key,
+.andy-doc-layout .andy-card-anatomy-explanation{
+ font-family:var(--andy-editorial-font);
+}
+/* La cabecera editorial crece 16px (+8 arriba y +8 abajo).
+   Sustituimos texto y subtítulo por la marca SVG original. */
+.andy-doc-layout .andy-topbar{
+ min-height:104px;
+ padding-block:8px;
+}
+.andy-doc-layout .andy-header .andy-topbar-heading{
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ flex-direction:row;
+ padding:0;
+ gap:0;
+ min-width:0;
+}
+.andy-doc-layout .andy-header h1.andy-kit-brand{
+ display:flex;
+ align-items:center;
+ margin:0;
+ padding:0;
+ min-width:0;
+ line-height:1;
+}
+.andy-doc-layout .andy-kit-brand img{
+ display:block;
+ width:192px;
+ max-width:100%;
+ height:auto;
+ flex:0 1 auto;
+ object-fit:contain;
+}
+/* La marca ya usa negro 950 en los vectores.
+   El blanco del monograma UI se mantiene para que sea legible. */
+@media(max-width:790px){
+ .andy-doc-layout .andy-topbar{
+  min-height:90px;
+  padding-block:8px;
+ }
+ .andy-doc-layout .andy-header .andy-topbar-heading{
+  padding:0;
+  align-self:center;
+ }
+ .andy-doc-layout .andy-kit-brand img{
+  width:clamp(118px,36vw,168px);
+ }
+}
+@media(max-width:360px){
+ .andy-doc-layout .andy-kit-brand img{
+  width:min(34vw,125px);
+ }
+}
