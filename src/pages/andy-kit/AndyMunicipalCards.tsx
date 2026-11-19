@@ -16,10 +16,6 @@ function Action({label, icon}: {label: string; icon?: MaterialIconName}) {
  return <span className="andy-municipal-card-action">{label}{icon && <MaterialIcon name={icon} size={20}/>}</span>;
 }
 
-function EmptyImage({label}: {label: string}) {
- return <div className="andy-municipal-card-placeholder" role="img" aria-label={label}/>;
-}
-
 /** Ejemplos de anatomía: no son enlaces reales ni corresponden a turnos o eventos publicados. */
 export type MunicipalCardKind='news'|'service'|'appointment'|'procedure'|'shortcut'|'event';
 export function AndyMunicipalCardGallery({only,bare=false}:{only?:MunicipalCardKind;bare?:boolean}={}) {
@@ -39,7 +35,7 @@ export function AndyMunicipalCardGallery({only,bare=false}:{only?:MunicipalCardK
    </article>
   </CardExample>}
 
-  {(!only||only==='service')&&<CardExample bare={bare} title="Áreas y servicios" description="Fotografía de fondo, panel superpuesto y acción de acceso.">
+  {(only==='service')&&<CardExample bare={bare} title="Áreas y servicios" description="Fotografía de fondo, panel superpuesto y acción de acceso.">
    <article className="andy-municipal-card andy-municipal-card-service">
     <img className="andy-municipal-card-service-image" src={image('salud-lomas.webp')} alt="Profesional de salud atendiendo en un consultorio odontológico municipal" loading="lazy"/>
     <div className="andy-municipal-card-service-panel">
@@ -61,29 +57,34 @@ export function AndyMunicipalCardGallery({only,bare=false}:{only?:MunicipalCardK
 
   {(!only||only==='procedure')&&<CardExample bare={bare} title="Trámites destacados" description="Superficie institucional, ícono, título, descripción y acción.">
    <article className="andy-municipal-card andy-municipal-card-procedure">
-    <span className="andy-municipal-card-procedure-icon"><MaterialIcon name="badge" size={24}/></span>
-    <h3>Licencias</h3>
+    <div className="andy-municipal-card-procedure-head">
+     <span className="andy-municipal-card-procedure-icon"><MaterialIcon name="badge" size={24}/></span>
+     <h3>Licencias</h3>
+    </div>
     <p>Realizá los trámites de tu licencia de conducir</p>
     <Action label="Ingresar"/>
    </article>
   </CardExample>}
 
-  {(!only||only==='shortcut')&&<CardExample bare={bare} title="Accesos rápidos" description="Banner de acceso con imagen de fondo y título destacado.">
+  {(only==='shortcut')&&<CardExample bare={bare} title="Accesos rápidos" description="Banner de acceso con imagen de fondo y título destacado.">
    <article className="andy-municipal-card andy-municipal-card-shortcut">
     <img className="andy-municipal-card-shortcut-image" src={image("turnos-salud.webp")} alt="" aria-hidden="true" loading="lazy"/>
     <div className="andy-municipal-card-shortcut-content"><h3>Turnos de salud</h3></div>
    </article>
   </CardExample>}
 
-  {(!only||only==='event')&&<CardExample bare={bare} title="Eventos con fecha" description="Imagen de 154 px, fecha superpuesta, categoría, horarios y acción.">
+  {(!only||only==='event')&&<CardExample bare={bare} title="Eventos con fecha" description="Fotografía de jazz de 154 px, fecha superpuesta, categoría, horarios y acción.">
    <article className="andy-municipal-card andy-municipal-card-event">
     <div className="andy-municipal-card-media">
-     <EmptyImage label="Imagen pendiente para evento"/>
+     <img className="andy-municipal-card-event-image" src={image("jazz-internacional.svg")} alt="Saxofonista de jazz sobre un escenario iluminado" loading="lazy"/>
      <div className="andy-municipal-card-date"><strong>21</strong><span>NOV</span></div>
     </div>
     <div className="andy-municipal-card-content">
-     <span className="andy-municipal-card-category">MÚSICA</span>
-     <h3>Jazz Internacional</h3>
+     <div className="andy-municipal-card-event-heading">
+      <span className="andy-municipal-card-category">MÚSICA</span>
+      <h3>Jazz Internacional</h3>
+     </div>
+     <div className="andy-municipal-card-event-details">
      <div className="andy-municipal-card-info">
       <MaterialIcon name="event_available" size={20}/>
       <div><strong>Próxima fecha</strong><span>Sábado 21 de noviembre</span></div>
@@ -91,6 +92,7 @@ export function AndyMunicipalCardGallery({only,bare=false}:{only?:MunicipalCardK
      <div className="andy-municipal-card-info">
       <MaterialIcon name="schedule" size={20}/>
       <div><strong>Horario</strong><span>21:00 h</span></div>
+     </div>
      </div>
      <Action label="Ver evento" icon="chevron_right"/>
     </div>
