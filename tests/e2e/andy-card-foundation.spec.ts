@@ -1,17 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-test('UI Kit: las nuevas secciones de Card preceden las ocho tarjetas originales',async ({page})=>{
+test('UI Kit: las nuevas secciones de Card preceden las seis tarjetas seleccionadas',async ({page})=>{
  await page.goto('/ui-kit-andy/componentes/tarjeta');
  const titles=await page.locator('.andy-doc-page .andy-doc-section > .andy-doc-section-heading h3').allTextContents();
  const newBlocks=['Descripción','Básico','Composición','Tamaños','Espaciado','Imagen','Estados','Anatomía','Especificaciones','Comportamiento y accesibilidad','Aplicaciones municipales'];
- const original=['Deportes Anual','Agenda de la Comunidad','Noticias','Áreas y servicios','Turnos online','Trámites destacados','Accesos rápidos','Eventos con fecha'];
+ const original=['Deportes Anual','Agenda de la Comunidad','Noticias','Turnos online','Trámites destacados','Eventos con fecha'];
  expect(titles.slice(0,newBlocks.length)).toEqual(newBlocks);
  expect(titles.slice(newBlocks.length)).toEqual(original);
  await expect(page.locator('.andy-family-card-gallery>.andy-doc-section')).toHaveCount(2);
- await expect(page.locator('.andy-municipal-card-gallery>.andy-doc-section')).toHaveCount(6);
+ await expect(page.locator('.andy-municipal-card-gallery>.andy-doc-section')).toHaveCount(4);
  await expect(page.locator('.andy-family-card-gallery [data-testid="andy-family-card-sports"]')).toHaveCount(1);
  await expect(page.locator('.andy-family-card-gallery [data-testid="andy-family-card-agenda"]')).toHaveCount(1);
- await expect(page.getByTestId('andy-municipal-card-gallery').locator('article')).toHaveCount(6);
+ await expect(page.getByTestId('andy-municipal-card-gallery').locator('article')).toHaveCount(4);
 });
 
 test('UI Kit: Básico, Tamaños, Espaciado, Imagen y Estados utilizan cards existentes',async ({page})=>{
@@ -75,23 +75,21 @@ test('UI Kit: todos los controles editoriales de Card siguen los grises agrupado
  }
 });
 
-test('UI Kit: Composition usa las ocho tarjetas y resalta con bordes CSS dashed finos y tintes tenues',async ({page})=>{
+test('UI Kit: Composition usa seis tarjetas y resalta con bordes CSS dashed finos y tintes tenues',async ({page})=>{
  await page.setViewportSize({width:1280,height:900});
  await page.goto('/ui-kit-andy/componentes/tarjeta');
  const viewer=page.getByTestId('andy-card-anatomy-viewer');
  const buttons=viewer.getByRole('group',{name:'Tarjeta municipal'});
- await expect(buttons.getByRole('button')).toHaveCount(8);
+ await expect(buttons.getByRole('button')).toHaveCount(6);
  await expect(viewer.locator('.andy-card-anatomy-swatch')).toHaveCount(3);
  await expect(viewer.locator('.andy-card-anatomy-stage')).toHaveCSS('background-color','rgb(255, 255, 255)');
  const expected=[
   {label:'Deportes Anual',header:1,content:1,footer:1,root:'.andy-family-card.is-sports'},
   {label:'Agenda de la Comunidad',header:1,content:1,footer:1,root:'[data-testid="agenda-card"]'},
   {label:'Noticias',header:1,content:1,footer:1,root:'.andy-municipal-card-news'},
-  {label:'Áreas y servicios',header:1,content:0,footer:1,root:'.andy-municipal-card-service'},
   {label:'Turnos online',header:1,content:1,footer:1,root:'.andy-municipal-card-appointment'},
   {label:'Trámites destacados',header:1,content:1,footer:1,root:'.andy-municipal-card-procedure'},
-  {label:'Accesos rápidos',header:1,content:0,footer:0,root:'.andy-municipal-card-shortcut'},
-  {label:'Eventos con fecha',header:2,content:2,footer:1,root:'.andy-municipal-card-event'},
+  {label:'Eventos con fecha',header:1,content:1,footer:1,root:'.andy-municipal-card-event'},
  ] as const;
  for(const item of expected){
   await buttons.getByRole('button',{name:item.label,exact:true}).click();
@@ -127,16 +125,16 @@ test('UI Kit: visor de Agenda no navega y galería original se conserva',async (
  await agendaLink.click();
  await expect(page).toHaveURL(/\/ui-kit-andy\/componentes\/tarjeta$/);
  await expect(page.locator('.andy-family-card-gallery > .andy-doc-section')).toHaveCount(2);
- await expect(page.locator('.andy-municipal-card-gallery > .andy-doc-section')).toHaveCount(6);
+ await expect(page.locator('.andy-municipal-card-gallery > .andy-doc-section')).toHaveCount(4);
 });
 
-test('UI Kit: Deportes tiene cabecera blanca 16px más alta en desktop y mobile',async ({page})=>{
+test('UI Kit: Deportes recupera banda celeste de 50px y cuerpo blanco en desktop y mobile',async ({page})=>{
  await page.setViewportSize({width:1280,height:900});
  await page.goto('/ui-kit-andy/componentes/tarjeta');
  const sports=page.locator('.andy-family-card-gallery .andy-family-card.is-sports');
  const head=sports.locator('.andy-family-card-sports-head');
  await expect(head).toHaveCSS('height','50px');
- await expect(head).toHaveCSS('background-color','rgb(255, 255, 255)');
+ await expect(head).toHaveCSS('background-image',/linear-gradient/);
  await expect(sports).toHaveCSS('background-color','rgb(255, 255, 255)');
  await page.setViewportSize({width:390,height:844});
  await expect(head).toHaveCSS('height','48px');
@@ -146,7 +144,47 @@ test('UI Kit: Card responsive sin scroll horizontal involuntario',async ({page})
  await page.setViewportSize({width:390,height:844});
  await page.goto('/ui-kit-andy/componentes/tarjeta');
  const viewer=page.getByTestId('andy-card-anatomy-viewer');
- await viewer.getByRole('group',{name:'Tarjeta municipal'}).getByRole('button',{name:'Áreas y servicios'}).click();
- await expect(viewer.locator('.andy-municipal-card-service')).toBeVisible();
+ await viewer.getByRole('group',{name:'Tarjeta municipal'}).getByRole('button',{name:'Trámites destacados'}).click();
+ await expect(viewer.locator('.andy-municipal-card-procedure')).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+});
+
+test('UI Kit: Eventos muestra imagen propia y cajas agrupadas con aire y acción breve',async ({page})=>{
+ await page.setViewportSize({width:1280,height:900});
+ await page.goto('/ui-kit-andy/componentes/tarjeta');
+ const viewer=page.getByTestId('andy-card-anatomy-viewer');
+ await viewer.getByRole('group',{name:'Tarjeta municipal'}).getByRole('button',{name:'Eventos con fecha'}).click();
+ const sample=viewer.locator('.andy-municipal-card-event');
+ await expect(sample.locator('img.andy-municipal-card-event-image')).toHaveAttribute('src',/jazz-internacional\.svg$/);
+ await expect(sample.locator('.andy-municipal-card-event-heading')).toHaveAttribute('data-card-anatomy-part','header');
+ await expect(sample.locator('.andy-municipal-card-event-details')).toHaveAttribute('data-card-anatomy-part','content');
+ await expect(sample.locator('.andy-municipal-card-info')).toHaveCount(2);
+ await expect(sample.locator('.andy-municipal-card-info[data-card-anatomy-part]')).toHaveCount(0);
+ const footer=sample.locator('.andy-municipal-card-action');
+ await expect(footer).toHaveAttribute('data-card-anatomy-part','footer');
+ const footerBox=await footer.boundingBox();
+ expect(footerBox).not.toBeNull();
+ expect(footerBox!.height).toBeLessThan(35);
+ const padding=await footer.evaluate(el=>({
+  borderInset:getComputedStyle(el,'::after').top,
+  borderWidth:getComputedStyle(el,'::after').borderTopWidth,
+ }));
+ expect(padding.borderInset).toBe('-8px');
+ expect(padding.borderWidth).toBe('1px');
+ const originalFooter=page.locator('.andy-municipal-card-gallery .andy-municipal-card-event .andy-municipal-card-action');
+ await expect(originalFooter).toHaveCSS('padding-top','14px');
+});
+
+test('UI Kit: seis superficies de Card son blancas y Licencias ya no usa fondo primario',async ({page})=>{
+ await page.goto('/ui-kit-andy/componentes/tarjeta');
+ for(const cls of ['news','appointment','procedure','event']){
+  await expect(page.locator('.andy-municipal-card-gallery .andy-municipal-card-'+cls))
+   .toHaveCSS('background-color','rgb(255, 255, 255)');
+ }
+ await expect(page.locator('.andy-family-card-gallery .andy-family-card.is-sports'))
+  .toHaveCSS('background-color','rgb(255, 255, 255)');
+ await expect(page.locator('.andy-family-card-gallery [data-testid="agenda-card"]'))
+  .toHaveCSS('background-color','rgb(255, 255, 255)');
+ await expect(page.locator('.andy-municipal-card-gallery .andy-municipal-card-shortcut')).toHaveCount(0);
+ await expect(page.locator('.andy-municipal-card-gallery .andy-municipal-card-service')).toHaveCount(0);
 });
