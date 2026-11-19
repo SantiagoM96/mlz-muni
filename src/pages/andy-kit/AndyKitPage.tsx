@@ -26,6 +26,7 @@ import { componentGroups, componentAliases, componentEntries, componentMeta, typ
 import './andy-kit.css';
 import { useAndyScrollbarSpacing } from './useAndyScrollbarSpacing';
 import './andy-scrollbars.css';
+import './andy-brand-cairo.css';
 
 const reviewedComponentIds=new Set<ComponentId>(['acordeon','mensaje','dialog','alert-dialog','avatar','chips','breadcrumb','boton','button-group','calendar','calendario']);
 const inProgressComponentIds=new Set<ComponentId>();
@@ -487,8 +488,12 @@ export function AndyKitPage(){
  return <div className="andy-kit andy-doc-layout" data-testid="andy-ui-kit">
   <a href="#andy-content" className="skip-link">Ir al contenido</a>
   <header className="andy-header"><div className="andy-container andy-topbar">
-   <div className="andy-topbar-heading"><h1>MLZ UI Kit - Andy</h1>
-     <span className="andy-eyebrow"><span>Municipio de Lomas de Zamora</span><span className="andy-eyebrow-divider"> · </span><span className="andy-design-system-label">Design System</span></span></div>
+   <div className="andy-topbar-heading">
+    <h1 className="andy-kit-brand">
+     <img src={import.meta.env.BASE_URL+'assets/andy-kit/lomas-ui-logo.svg'}
+      alt="Lomas UI — Design System" width="117" height="22"/>
+    </h1>
+   </div>
    <p className="andy-version">{commit==='local'?<b><span className="andy-version-prefix">Desarrollo </span>local</b>:<a href={'https://github.com/SantiagoM96/mlz-muni/commit/'+commit} target="_blank" rel="noopener noreferrer" aria-label={'Versión '+commit.slice(-3).toUpperCase()}><b><span className="andy-version-prefix">Versión </span>{commit.slice(-3).toUpperCase()}</b></a>}<span className="andy-version-updated"><span className="andy-version-updated-label">Actualizado</span><span className="andy-version-date">{buildDateLabel}</span><time dateTime={buildTimestamp}>{buildTimeLabel}</time></span></p>
    <button type="button" className="andy-sidebar-toggle" aria-label={navOpen?'Cerrar menú de componentes':'Abrir menú de componentes'} aria-expanded={navOpen} aria-controls="andy-component-nav" onClick={()=>setNavOpen(v=>!v)}>
      <Icon name="menu" size={24}/><span className="andy-sidebar-toggle-label">Componentes</span>
