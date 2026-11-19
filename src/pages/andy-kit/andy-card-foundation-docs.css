@@ -1,6 +1,6 @@
 /* Card: las demostraciones nuevas reutilizan exclusivamente componentes reales.
    Controladores comunes de Button: .andy-doc-example-controls/.andy-doc-example-group.
-   No se alteran los estilos de las ocho galerías municipales originales. */
+   No se alteran los estilos productivos de las tarjetas municipales. */
 .andy-cards-unified>.andy-card-foundation-docs{
  display:flex;
  flex-direction:column;
@@ -40,12 +40,34 @@
  width:100%;
  max-width:420px;
 }
-.andy-card-real-size.is-compact{
- width:min(100%,340px);
+/* Solo la muestra de Espaciado: padding exterior fijo en 24px.
+   La acción tiene un segundo espacio del mismo tamaño, de forma que las
+   distancias percibidas entre descripción y enlace son 16/24/32px. */
+.andy-card-real-spacing .andy-municipal-card-appointment{
+ min-height:0;
 }
 .andy-card-real-spacing .andy-municipal-card-appointment .andy-municipal-card-content{
- padding:var(--andy-inspection-spacing,24px);
- gap:var(--andy-inspection-spacing,24px);
+ padding:var(--mlz-space-24);
+ gap:var(--andy-inspection-gap,var(--mlz-space-12));
+}
+.andy-card-real-spacing .andy-municipal-card-appointment .andy-municipal-card-action{
+ margin-top:0;
+ padding-top:var(--andy-inspection-gap,var(--mlz-space-12));
+ min-height:0;
+}
+/* Active de los controles combinados de Card: borde de 2px sin outline
+   exterior que corte la esquina o desplace los otros botones del grupo. */
+.andy-doc-layout .andy-doc-page .andy-card-foundation-docs .andy-doc-example-group{
+ isolation:isolate;
+}
+.andy-doc-layout .andy-doc-page .andy-card-foundation-docs .andy-doc-example-group > button[aria-pressed="true"]{
+ z-index:2;
+ border:2px solid var(--color-grey-400);
+ padding-inline:11px;
+ background-clip:padding-box;
+}
+.andy-doc-layout .andy-doc-page .andy-card-foundation-docs .andy-doc-example-group > button[aria-pressed="true"]:hover{
+ border-color:var(--color-grey-500);
 }
 /* Son estados de inspección: el DOM de Agenda se mantiene real. */
 .andy-card-real-states[data-preview-state="hover"] [data-testid="agenda-card"]{
