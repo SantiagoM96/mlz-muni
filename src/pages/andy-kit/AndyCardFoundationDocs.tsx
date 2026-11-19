@@ -4,9 +4,8 @@ import { AndyCardAnatomySwitcher, AndyCardSpecimen } from './AndyCardAnatomySwit
 import './andy-card-foundation-docs.css';
 
 type VisualState='default'|'hover'|'focus';
-type CardWidth='regular'|'compact';
-type Spacing=16|20|24|32;
-type ImageExample='news'|'agenda';
+type Spacing='small'|'medium'|'large';
+type ImageExample='news'|'agenda'|'event';
 
 function ExampleControls<T extends string>({label,items,value,onChange}:{
  label:string;items:readonly {id:T;label:string}[];value:T;onChange:(id:T)=>void;
@@ -24,7 +23,7 @@ function ExampleControls<T extends string>({label,items,value,onChange}:{
 /** Una muestra real: ninguna tarjeta se recrea como maqueta en la documentación.
  * El enlace de Agenda queda desactivado únicamente dentro del visor educativo. */
 function RealCardSample({id,className='',style,state}:{
- id:'appointment'|'news'|'agenda';
+ id:'appointment'|'news'|'agenda'|'event';
  className?:string;
  style?:CSSProperties;
  state?:VisualState;
@@ -48,8 +47,7 @@ const stateItems:readonly {id:VisualState;label:string}[]=[
 ];
 
 export function AndyCardFoundationDocs(){
- const [size,setSize]=useState<CardWidth>('regular');
- const [spacing,setSpacing]=useState<Spacing>(24);
+ const [spacing,setSpacing]=useState<Spacing>('medium');
  const [image,setImage]=useState<ImageExample>('news');
  const [state,setState]=useState<VisualState>('default');
 
@@ -64,28 +62,19 @@ export function AndyCardFoundationDocs(){
    <AndyCardAnatomySwitcher/>
   </DocSection>
 
-  <DocSection title="Tamaños" description="Comprobá cómo responde una tarjeta real de Turnos online a dos anchos de contenedor. No se inventan variantes visuales ni se modifica la escala tipográfica original: cambia únicamente el espacio horizontal disponible.">
-   <ExampleControls label="Ancho de Card" value={size} onChange={setSize}
-    items={[{id:'regular',label:'420 px'},{id:'compact',label:'340 px'}]}/>
-   <DocPreview>
-    <RealCardSample id="appointment"
-     className={'andy-card-real-size is-'+size}/>
-   </DocPreview>
-  </DocSection>
-
-  <DocSection title="Espaciado" description="Probá 16, 20, 24 y 32 px sobre la misma tarjeta de Turnos online. Solo la muestra modifica temporalmente su padding y separación internos; la tarjeta municipal original de abajo conserva sus valores aprobados.">
-   <ExampleControls label="Espaciado de Card" value={String(spacing)}
-    onChange={value=>setSpacing(Number(value) as Spacing)}
-    items={([16,20,24,32] as const).map(value=>({id:String(value),label:value+' px'}))}/>
+  <DocSection title="Espaciado" description="Compará tres escalas proporcionales sobre la tarjeta real de Turnos online. El padding interior de la tarjeta se mantiene siempre en 24 px: solo se modifican las distancias entre título, descripción y acción. La muestra original del producto permanece intacta.">
+   <ExampleControls label="Espaciado de Card" value={spacing}
+    onChange={setSpacing}
+    items={[{id:'small',label:'Small'},{id:'medium',label:'Medium'},{id:'large',label:'Large'}]}/>
    <DocPreview>
     <RealCardSample id="appointment" className="andy-card-real-spacing"
-     style={{'--andy-inspection-spacing':spacing+'px'} as CSSProperties}/>
+     style={{'--andy-inspection-gap':({small:'8px',medium:'12px',large:'16px'} as const)[spacing]} as CSSProperties}/>
    </DocPreview>
   </DocSection>
 
-  <DocSection title="Imagen" description="Las fotografías reales de Noticias y Agenda muestran la cabecera visual de 154 px, el recorte con object-fit: cover y la relación con el cuerpo. En otras variantes una imagen puede funcionar como fondo.">
+  <DocSection title="Imagen" description="Las tarjetas reales de Noticias, Agenda de la Comunidad y Eventos muestran diferentes formas de integrar fotografías: cabecera, recorte y fecha superpuesta en el caso de Eventos.">
    <ExampleControls label="Tarjeta con imagen" value={image} onChange={setImage}
-    items={[{id:'news',label:'Noticias'},{id:'agenda',label:'Agenda de la Comunidad'}]}/>
+    items={[{id:'news',label:'Noticias'},{id:'agenda',label:'Agenda de la Comunidad'},{id:'event',label:'Eventos'}]}/>
    <DocPreview><RealCardSample id={image}/></DocPreview>
   </DocSection>
 
@@ -111,8 +100,8 @@ export function AndyCardFoundationDocs(){
    <GuidelineTable rows={[
     ['Superficie','Fondo blanco y borde Grey 100 de 1 px en las seis tarjetas seleccionadas; textos y acciones conservan jerarquía primaria.'],
     ['Radio','8 px de radio de tarjeta en los ejemplos existentes.'],
-    ['Anchos','Las muestras admiten hasta 420 px; 340 px se usa aquí para verificar la adaptación.'],
-    ['Espaciado','24 px de padding usual en contenidos municipales; 16, 20 y 32 px son valores de comparación en la demo.'],
+    ['Adaptación','El ancho de cada tarjeta depende de su contenido, contenedor y contexto; no se definen tamaños Small/Default para Card.'],
+    ['Espaciado','Padding constante de 24 px. Small: 8 px entre título y descripción / 16 px hasta la acción; Medium: 12 / 24 px; Large: 16 / 32 px.'],
     ['Título','Geometria Bold, generalmente 22/29, Primario 600; contraste específico en fondos oscuros.'],
     ['Texto secundario','Grey 900 / Grey 500 según función, manteniendo jerarquía y legibilidad.'],
     ['Imagen','154 px de alto en Noticias, Agenda y Eventos; Eventos utiliza una fotografía ilustrativa de jazz.'],
@@ -122,13 +111,13 @@ export function AndyCardFoundationDocs(){
    ]}/>
   </DocSection>
 
-  <DocSection title="Comportamiento y accesibilidad" description="Las seis tarjetas seleccionadas mantienen su estructura real. Los estados de inspección no crean acciones nuevas ni reemplazan los enlaces, botones y estructuras semánticas reales de cada producto.">
+  <DocSection title="Comportamiento y accesibilidad" description="Las seis tarjetas seleccionadas se pueden consultar en Composición y los ejemplos se distribuyen en los bloques superiores, sin repetir una galería al final. Los estados de inspección no crean acciones nuevas ni reemplazan los enlaces o botones reales.">
    <GuidelineTable rows={[
     ['Semántica','Usar article para agrupar una unidad de contenido; no hacer clickeable una tarjeta informativa sin destino.'],
     ['Navegación','Si toda la tarjeta abre un detalle, ofrecer un enlace real y evitar controles interactivos anidados.'],
     ['Hover','Aplicar solo a tarjetas con acción; la vista de Estados muestra un ejemplo real de Agenda.'],
     ['Teclado','Conservar foco visible en el enlace o botón que corresponda.'],
-    ['Tamaños','Mantener las medidas internas del componente y verificar su ancho responsive.'],
+    ['Responsive','Adaptar el ancho al contexto sin convertirlo en variantes de tamaño fijas.'],
     ['Imágenes','Alt descriptivo cuando aportan información; vacío cuando son decorativas.'],
     ['Contenido','Permitir crecimiento vertical cuando los textos necesiten más líneas.'],
     ['Demostraciones','Las muestras de inspección no navegan ni procesan gestiones; las versiones inferiores conservan su comportamiento.'],
