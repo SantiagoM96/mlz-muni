@@ -34,6 +34,7 @@ export function Carousel({
 }:CarouselProps){
  const viewportRef=useRef<HTMLDivElement>(null);
  const currentRef=useRef(0);
+ const programmaticTargetRef=useRef<number|null>(null);
  const [width,setWidth]=useState(0);
  const [current,setCurrent]=useState(0);
  const [hovered,setHovered]=useState(false);
@@ -88,6 +89,7 @@ export function Carousel({
   const origin=child.offsetLeft-first.offsetLeft;
   const aligned=align==='center'?origin-(viewport.clientWidth-child.clientWidth)/2:origin;
   const position=Math.max(0,Math.min(aligned,viewport.scrollWidth-viewport.clientWidth));
+  programmaticTargetRef.current=next;
   currentRef.current=next;
   setCurrent(next);
   viewport.scrollTo({left:position,behavior:reducedMotion?'auto':behavior});
@@ -121,6 +123,19 @@ export function Carousel({
     const position=Math.max(0,Math.min(aligned,maxScroll));
     const distance=Math.abs(viewport.scrollLeft-position);
     if(distance<bestDistance){bestDistance=distance;bestIndex=i;}
+   }
+   // No sobrescribir el índice elegido mientras una transición smooth cruza
+   // otras diapositivas. Se libera al alcanzar el destino.
+   const requested=programmaticTargetRef.current;
+   if(requested!==null){
+    const target=children[requested];
+    if(target){
+     const origin=target.offsetLeft-first.offsetLeft;
+     const aligned=align==='center'?origin-(viewport.clientWidth-target.clientWidth)/2:origin;
+     const goal=Math.max(0,Math.min(aligned,maxScroll));
+     if(Math.abs(viewport.scrollLeft-goal)>2)return;
+    }
+    programmaticTargetRef.current=null;
    }
    currentRef.current=bestIndex;
    setCurrent(old=>old===bestIndex?old:bestIndex);
@@ -173,6 +188,8 @@ export function Carousel({
    <div className={'mlz-carousel-viewport'+(align==='center'?' is-center':'')} ref={viewportRef}
     data-testid="mlz-carousel-viewport" onScroll={onScroll}
     tabIndex={0} aria-label={'Desplazar '+label.toLowerCase()}
+    onPointerDown={()=>{programmaticTargetRef.current=null;}}
+    onWheel={()=>{programmaticTargetRef.current=null;}}
     onKeyDown={event=>{
      if(event.key==='ArrowRight'||event.key==='ArrowLeft'){
       event.preventDefault();
