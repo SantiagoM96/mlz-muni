@@ -75,7 +75,7 @@ test('UI Kit: todos los controles editoriales de Card siguen los grises agrupado
  }
 });
 
-test('UI Kit: Composition usa seis tarjetas y resalta con bordes CSS dashed finos y tintes tenues',async ({page})=>{
+test('UI Kit: Composition usa seis tarjetas y resalta con bordes CSS dashed sin relleno',async ({page})=>{
  await page.setViewportSize({width:1280,height:900});
  await page.goto('/ui-kit-andy/componentes/tarjeta');
  const viewer=page.getByTestId('andy-card-anatomy-viewer');
@@ -103,10 +103,12 @@ test('UI Kit: Composition usa seis tarjetas y resalta con bordes CSS dashed fino
      width:getComputedStyle(el,'::after').borderTopWidth,
      style:getComputedStyle(el,'::after').borderTopStyle,
      color:getComputedStyle(el).backgroundColor,
+     pseudoBackground:getComputedStyle(el,'::after').backgroundColor,
     }));
     expect(css.width).toBe('1px');
     expect(css.style).toBe('dashed');
-    expect(css.color).toMatch(/rgba?\(/);
+    expect(css.color).toBe('rgba(0, 0, 0, 0)');
+    expect(css.pseudoBackground).toBe('rgba(0, 0, 0, 0)');
    }
   }
   await expect(stage.getByText('CardTitle',{exact:true})).toHaveCount(0);
@@ -189,7 +191,7 @@ test('UI Kit: seis superficies de Card son blancas y Licencias ya no usa fondo p
  await expect(page.locator('.andy-municipal-card-gallery .andy-municipal-card-service')).toHaveCount(0);
 });
 
-test('UI Kit: etiquetas compactas y punteados más intensos sin alterar los fondos',async ({page})=>{
+test('UI Kit: anatomía usa auxiliares MLZ y fondos transparentes en regiones y leyenda',async ({page})=>{
  await page.goto('/ui-kit-andy/componentes/tarjeta');
  const viewer=page.getByTestId('andy-card-anatomy-viewer');
  const controls=viewer.getByRole('group',{name:'Tarjeta municipal'});
@@ -198,17 +200,27 @@ test('UI Kit: etiquetas compactas y punteados más intensos sin alterar los fond
   'Turnos online','Destacados','Eventos',
  ]);
  const specimens=[
-  {part:'header',line:'rgb(128, 183, 208)',fill:'rgba(185, 223, 242, 0.1)'},
-  {part:'content',line:'rgb(217, 154, 161)',fill:'rgba(251, 208, 213, 0.09)'},
-  {part:'footer',line:'rgb(212, 174, 98)',fill:'rgba(250, 230, 172, 0.11)'},
+  {part:'header',line:'rgb(3, 169, 244)',swatch:'is-header'},
+  {part:'content',line:'rgb(151, 71, 255)',swatch:'is-content'},
+  {part:'footer',line:'rgb(233, 30, 99)',swatch:'is-footer'},
  ] as const;
- for(const {part,line,fill} of specimens){
+ for(const {part,line,swatch} of specimens){
   const box=viewer.locator('[data-card-anatomy-part="'+part+'"]').first();
   const computed=await box.evaluate(el=>({
    border:getComputedStyle(el,'::after').borderTopColor,
+   width:getComputedStyle(el,'::after').borderTopWidth,
+   style:getComputedStyle(el,'::after').borderTopStyle,
    background:getComputedStyle(el,'::after').backgroundColor,
+   elementBackground:getComputedStyle(el).backgroundColor,
   }));
   expect(computed.border).toBe(line);
-  expect(computed.background).toBe(fill);
+  expect(computed.width).toBe('1px');
+  expect(computed.style).toBe('dashed');
+  expect(computed.background).toBe('rgba(0, 0, 0, 0)');
+  expect(computed.elementBackground).toBe('rgba(0, 0, 0, 0)');
+  const legend=viewer.locator('.andy-card-anatomy-swatch.'+swatch);
+  await expect(legend).toHaveCSS('border-top-color',line);
+  await expect(legend).toHaveCSS('border-top-style','dashed');
+  await expect(legend).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
  }
 });
