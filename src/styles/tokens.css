@@ -17,6 +17,10 @@
   --color-info-500: #006eff;
   --color-primary-600: #236999;
   --color-primary-700: #19577f;
+  /* Auxiliares de Figma usados en la anatomía de Card. */
+  --color-aux-celeste-brillante: #03a9f4; /* Auxiliars/"New" Celeste brillante */
+  --color-aux-violeta: #9747ff; /* Auxiliars/Violeta */
+  --color-aux-rosa-fuerte: #e91e63; /* Auxiliars/"New" Rosa fuerte */
   --color-black-950: #000000; /* Figma Natural/Black 950 */
   --color-grey-50: #f6f6f6;
   --color-grey-100: #e7e7e7;
