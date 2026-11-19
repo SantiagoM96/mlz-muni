@@ -460,6 +460,7 @@ export function AndyKitPage(){
  const [componentSearch,setComponentSearch]=useState('');
  const [copied,setCopied]=useState(false);
  const [showBackToTop,setShowBackToTop]=useState(false);
+ const [compactHeader,setCompactHeader]=useState(false);
  const normalizedSearch=componentSearch.normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
  const filteredGroups=componentGroups.map(group=>({...group,items:group.items.filter(([id,title])=>!normalizedSearch||[title,id,componentMeta[id].description,group.title].some(value=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(normalizedSearch)))})).filter(group=>group.items.length>0);
  const legacy=categories.find(c=>c.id===(categoria??'fundamentos'));
@@ -473,7 +474,10 @@ export function AndyKitPage(){
  const meta=isComponent?componentMeta[componentEntry[0]]:null;
  useEffect(()=>{document.title='MLZ UI Kit - Andy'+(displayName?' · '+displayName:'');},[displayName]);
  useEffect(()=>{
-  const updateVisibility=()=>setShowBackToTop(window.scrollY>360);
+  const updateVisibility=()=>{
+   setShowBackToTop(window.scrollY>360);
+   setCompactHeader(window.scrollY>48);
+  };
   updateVisibility();
   window.addEventListener('scroll',updateVisibility,{passive:true});
   return()=>window.removeEventListener('scroll',updateVisibility);
@@ -484,11 +488,16 @@ export function AndyKitPage(){
  const Gallery=legacy?views[legacy.id]:null;
  return <div className="andy-kit andy-doc-layout" data-testid="andy-ui-kit">
   <a href="#andy-content" className="skip-link">Ir al contenido</a>
-  <header className="andy-header"><div className="andy-container andy-topbar">
+  <header className={'andy-header'+(compactHeader?' is-compact':'')} data-header-state={compactHeader?'compact':'expanded'}><div className="andy-container andy-topbar">
    <div className="andy-topbar-heading">
-    <h1 className="andy-kit-brand">
-     <img src={import.meta.env.BASE_URL+'assets/andy-kit/lomas-ui-logo.svg'}
-      alt="Lomas UI — Design System" width="117" height="22"/>
+    <h1 className="andy-kit-brand" aria-label="Lomas UI — Design System">
+     <span className="andy-brand-mark" aria-hidden="true">
+      <img className="andy-brand-mark-full" src={import.meta.env.BASE_URL+'assets/andy-kit/lomas-ui-full.svg'} alt=""/>
+      <img className="andy-brand-mark-small" src={import.meta.env.BASE_URL+'assets/andy-kit/lomas-ui-small.svg'} alt=""/>
+     </span>
+     <span className="andy-brand-descriptor" aria-hidden="true">
+      <img src={import.meta.env.BASE_URL+'assets/andy-kit/lomas-ui-full.svg'} alt=""/>
+     </span>
     </h1>
    </div>
    <p className="andy-version">{commit==='local'?<b><span className="andy-version-prefix">Desarrollo </span>local</b>:<a href={'https://github.com/SantiagoM96/mlz-muni/commit/'+commit} target="_blank" rel="noopener noreferrer" aria-label={'Versión '+commit.slice(-3).toUpperCase()}><b><span className="andy-version-prefix">Versión </span>{commit.slice(-3).toUpperCase()}</b></a>}<span className="andy-version-updated"><span className="andy-version-updated-label">Actualizado</span><span className="andy-version-date">{buildDateLabel}</span><time dateTime={buildTimestamp}>{buildTimeLabel}</time></span></p>
