@@ -1,0 +1,188 @@
+/* Visor de anatomía: resaltados exclusivamente en la muestra interactiva.
+   Las tarjetas originales debajo y la tarjeta de Agenda pública conservan su CSS. */
+.andy-card-anatomy-viewer{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ gap:var(--mlz-space-24);
+ width:100%;
+ min-width:0;
+ --andy-anatomy-header-stroke:#69a9ca;
+ --andy-anatomy-header-fill:rgba(171,222,246,.32);
+ --andy-anatomy-content-stroke:#d9929a;
+ --andy-anatomy-content-fill:rgba(255,205,211,.35);
+ --andy-anatomy-footer-stroke:#d2a846;
+ --andy-anatomy-footer-fill:rgba(255,230,148,.40);
+}
+.andy-card-anatomy-controls{
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:center;
+ align-items:end;
+ gap:var(--mlz-space-10);
+ width:100%;
+}
+.andy-card-anatomy-select-wrap{
+ display:flex;
+ flex-direction:column;
+ gap:var(--mlz-space-6);
+ width:min(100%,285px);
+ min-width:0;
+}
+.andy-card-anatomy-label{
+ color:var(--color-grey-500);
+ font:500 13px/20px Geometria,'Century Gothic',Arial,sans-serif;
+}
+.andy-card-anatomy-select-wrap select{
+ width:100%;
+ height:40px;
+ min-width:0;
+ padding:0 var(--mlz-space-32) 0 var(--mlz-space-12);
+ appearance:none;
+ color:var(--color-grey-900);
+ background:#fff;
+ border:1px solid var(--color-primary-300);
+ border-radius:var(--mlz-radius-sm);
+ font:500 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
+ cursor:pointer;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23236999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+ background-repeat:no-repeat;
+ background-position:right 10px center;
+}
+.andy-card-anatomy-select-wrap select:hover{border-color:var(--color-primary-600)}
+.andy-card-anatomy-select-wrap select:focus-visible{
+ outline:none;
+ border:1px solid var(--color-info-500);
+ box-shadow:inset 0 0 0 1px var(--color-info-500);
+}
+.andy-card-anatomy-nav{
+ display:grid;
+ place-items:center;
+ flex:0 0 40px;
+ width:40px;
+ height:40px;
+ border:1px solid var(--color-primary-300);
+ border-radius:var(--mlz-radius-sm);
+ background:#fff;
+ color:var(--color-primary-600);
+ cursor:pointer;
+}
+.andy-card-anatomy-nav:hover{background:var(--color-panel)}
+.andy-card-anatomy-nav:active{background:#e5f0ff}
+.andy-card-anatomy-nav:focus-visible{
+ outline:none;
+ border-color:var(--color-info-500);
+ box-shadow:inset 0 0 0 1px var(--color-info-500);
+}
+.andy-card-anatomy-count{
+ align-self:end;
+ display:inline-flex;
+ align-items:center;
+ min-height:40px;
+ color:var(--color-grey-500);
+ font:500 13px/20px Geometria,'Century Gothic',Arial,sans-serif;
+ white-space:nowrap;
+}
+.andy-card-anatomy-legend{
+ display:flex;
+ flex-wrap:wrap;
+ align-items:center;
+ justify-content:center;
+ gap:var(--mlz-space-12) var(--mlz-space-24);
+ width:100%;
+}
+.andy-card-anatomy-key{
+ display:inline-flex;
+ align-items:center;
+ gap:var(--mlz-space-8);
+ color:var(--color-grey-900);
+ font:500 14px/22px Geometria,'Century Gothic',Arial,sans-serif;
+}
+.andy-card-anatomy-swatch{
+ width:20px;
+ height:20px;
+ flex:0 0 20px;
+ border:2px dashed;
+ border-radius:var(--mlz-radius-sm);
+}
+.andy-card-anatomy-swatch.is-header{
+ border-color:var(--andy-anatomy-header-stroke);
+ background:var(--andy-anatomy-header-fill);
+}
+.andy-card-anatomy-swatch.is-content{
+ border-color:var(--andy-anatomy-content-stroke);
+ background:var(--andy-anatomy-content-fill);
+}
+.andy-card-anatomy-swatch.is-footer{
+ border-color:var(--andy-anatomy-footer-stroke);
+ background:var(--andy-anatomy-footer-fill);
+}
+.andy-card-anatomy-stage{
+ display:flex;
+ align-items:flex-start;
+ justify-content:center;
+ width:100%;
+ min-width:0;
+ padding:var(--mlz-space-32) var(--mlz-space-24);
+ border-radius:var(--mlz-radius-lg);
+ background:var(--color-grey-50);
+}
+.andy-card-anatomy-demo{
+ display:flex;
+ align-items:stretch;
+ justify-content:center;
+ width:min(100%,420px);
+ min-width:0;
+}
+.andy-card-anatomy-demo > :is(.andy-family-card,.andy-family-agenda-original,.andy-municipal-card-inspection){
+ width:100%;
+ min-width:0;
+ max-width:420px;
+}
+.andy-card-anatomy-demo .andy-municipal-card-inspection{
+ display:flex;
+ align-items:stretch;
+ justify-content:center;
+}
+.andy-card-anatomy-demo .andy-municipal-card-inspection > article{width:100%;max-width:420px}
+
+/* Highlight overlays are drawn on the actual DOM zones, not over a
+   fabricated card template. No inline labels and no new block hierarchy. */
+.andy-card-anatomy-demo [data-card-anatomy-part]{
+ border-radius:var(--mlz-radius-sm);
+ outline:2px dashed var(--andy-anatomy-part-stroke);
+ outline-offset:2px;
+ background-color:var(--andy-anatomy-part-fill);
+}
+.andy-card-anatomy-demo [data-card-anatomy-part="header"]{
+ --andy-anatomy-part-stroke:var(--andy-anatomy-header-stroke);
+ --andy-anatomy-part-fill:var(--andy-anatomy-header-fill);
+}
+.andy-card-anatomy-demo [data-card-anatomy-part="content"]{
+ --andy-anatomy-part-stroke:var(--andy-anatomy-content-stroke);
+ --andy-anatomy-part-fill:var(--andy-anatomy-content-fill);
+}
+.andy-card-anatomy-demo [data-card-anatomy-part="footer"]{
+ --andy-anatomy-part-stroke:var(--andy-anatomy-footer-stroke);
+ --andy-anatomy-part-fill:var(--andy-anatomy-footer-fill);
+}
+.andy-card-anatomy-demo .andy-family-card:hover,
+.andy-card-anatomy-demo .andy-municipal-card:hover,
+.andy-card-anatomy-demo [data-testid="agenda-card"]:hover{
+ transform:none;
+}
+.andy-card-anatomy-explanation{
+ max-width:650px;
+ margin:0;
+ color:var(--color-grey-500);
+ text-align:center;
+ font:400 14px/22px Geometria,'Century Gothic',Arial,sans-serif;
+}
+@media(max-width:700px){
+ .andy-card-anatomy-viewer{gap:var(--mlz-space-16)}
+ .andy-card-anatomy-stage{padding:var(--mlz-space-24) var(--mlz-space-12)}
+ .andy-card-anatomy-controls{gap:var(--mlz-space-8)}
+ .andy-card-anatomy-select-wrap{flex:1 1 180px}
+ .andy-card-anatomy-count{flex:0 0 100%;justify-content:center;min-height:20px}
+ .andy-card-anatomy-legend{justify-content:flex-start}
+}

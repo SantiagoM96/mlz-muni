@@ -5,7 +5,8 @@ import './andy-municipal-cards.css';
 
 const image = (filename: string) => import.meta.env.BASE_URL + 'assets/andy-cards/' + filename;
 
-function CardExample({title,description,children}: {title:string;description:string;children:ReactNode}) {
+function CardExample({title,description,children,bare=false}: {title:string;description:string;children:ReactNode;bare?:boolean}) {
+ if(bare)return <>{children}</>;
  return <DocSection title={title} description={description}>
   <DocPreview><div className="andy-municipal-card-preview">{children}</div></DocPreview>
  </DocSection>;
@@ -20,9 +21,11 @@ function EmptyImage({label}: {label: string}) {
 }
 
 /** Ejemplos de anatomía: no son enlaces reales ni corresponden a turnos o eventos publicados. */
-export function AndyMunicipalCardGallery() {
- return <div className="andy-municipal-card-gallery" data-testid="andy-municipal-card-gallery">
-  <CardExample title="Noticias" description="Fotografía de 154 px, categoría superpuesta, título, fecha y acción de lectura.">
+export type MunicipalCardKind='news'|'service'|'appointment'|'procedure'|'shortcut'|'event';
+export function AndyMunicipalCardGallery({only,bare=false}:{only?:MunicipalCardKind;bare?:boolean}={}) {
+ return <div className={bare?'andy-municipal-card-inspection':'andy-municipal-card-gallery'}
+  data-testid={bare?undefined:'andy-municipal-card-gallery'}>
+  {(!only||only==='news')&&<CardExample bare={bare} title="Noticias" description="Fotografía de 154 px, categoría superpuesta, título, fecha y acción de lectura.">
    <article className="andy-municipal-card andy-municipal-card-news">
     <div className="andy-municipal-card-media">
      <img className="andy-municipal-card-news-image" src={image("noticia-obras.jpg")} onError={event=>{event.currentTarget.onerror=null;event.currentTarget.src=image("noticia-obras.webp");}} alt="Refugio de transporte intervenido en Lomas de Zamora" loading="lazy"/>
@@ -34,9 +37,9 @@ export function AndyMunicipalCardGallery() {
      <Action label="Leer más"/>
     </div>
    </article>
-  </CardExample>
+  </CardExample>}
 
-  <CardExample title="Áreas y servicios" description="Fotografía de fondo, panel superpuesto y acción de acceso.">
+  {(!only||only==='service')&&<CardExample bare={bare} title="Áreas y servicios" description="Fotografía de fondo, panel superpuesto y acción de acceso.">
    <article className="andy-municipal-card andy-municipal-card-service">
     <img className="andy-municipal-card-service-image" src={image('salud-lomas.webp')} alt="Profesional de salud atendiendo en un consultorio odontológico municipal" loading="lazy"/>
     <div className="andy-municipal-card-service-panel">
@@ -44,9 +47,9 @@ export function AndyMunicipalCardGallery() {
      <Action label="Ver más"/>
     </div>
    </article>
-  </CardExample>
+  </CardExample>}
 
-  <CardExample title="Turnos online" description="Tarjeta informativa con título, descripción y acción de ingreso.">
+  {(!only||only==='appointment')&&<CardExample bare={bare} title="Turnos online" description="Tarjeta informativa con título, descripción y acción de ingreso.">
    <article className="andy-municipal-card andy-municipal-card-appointment">
     <div className="andy-municipal-card-content">
      <h3>Salud</h3>
@@ -54,25 +57,25 @@ export function AndyMunicipalCardGallery() {
      <Action label="Ingresar"/>
     </div>
    </article>
-  </CardExample>
+  </CardExample>}
 
-  <CardExample title="Trámites destacados" description="Superficie institucional, ícono, título, descripción y acción.">
+  {(!only||only==='procedure')&&<CardExample bare={bare} title="Trámites destacados" description="Superficie institucional, ícono, título, descripción y acción.">
    <article className="andy-municipal-card andy-municipal-card-procedure">
     <span className="andy-municipal-card-procedure-icon"><MaterialIcon name="badge" size={24}/></span>
     <h3>Licencias</h3>
     <p>Realizá los trámites de tu licencia de conducir</p>
     <Action label="Ingresar"/>
    </article>
-  </CardExample>
+  </CardExample>}
 
-  <CardExample title="Accesos rápidos" description="Banner de acceso con imagen de fondo y título destacado.">
+  {(!only||only==='shortcut')&&<CardExample bare={bare} title="Accesos rápidos" description="Banner de acceso con imagen de fondo y título destacado.">
    <article className="andy-municipal-card andy-municipal-card-shortcut">
     <img className="andy-municipal-card-shortcut-image" src={image("turnos-salud.webp")} alt="" aria-hidden="true" loading="lazy"/>
     <div className="andy-municipal-card-shortcut-content"><h3>Turnos de salud</h3></div>
    </article>
-  </CardExample>
+  </CardExample>}
 
-  <CardExample title="Eventos con fecha" description="Imagen de 154 px, fecha superpuesta, categoría, horarios y acción.">
+  {(!only||only==='event')&&<CardExample bare={bare} title="Eventos con fecha" description="Imagen de 154 px, fecha superpuesta, categoría, horarios y acción.">
    <article className="andy-municipal-card andy-municipal-card-event">
     <div className="andy-municipal-card-media">
      <EmptyImage label="Imagen pendiente para evento"/>
@@ -92,6 +95,6 @@ export function AndyMunicipalCardGallery() {
      <Action label="Ver evento" icon="chevron_right"/>
     </div>
    </article>
-  </CardExample>
+  </CardExample>}
  </div>;
 }

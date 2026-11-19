@@ -4,6 +4,7 @@ import {
  CardMedia, CardTitle, type CardSize, type CardSpacing,
 } from '../../shared/ui/Card';
 import { DocSection, DocPreview, GuidelineTable } from './AndyDocsPrimitives';
+import { AndyCardAnatomySwitcher } from './AndyCardAnatomySwitcher';
 import './andy-card-foundation-docs.css';
 
 const imageUrl=import.meta.env.BASE_URL+'assets/andy-cards/noticia-obras.webp';
@@ -73,18 +74,8 @@ export function AndyCardFoundationDocs(){
    <DocPreview><SampleCard onAction={onAction}/></DocPreview>
   </DocSection>
 
-  <DocSection title="Composición" description="Las partes son independientes y opcionales. CardHeader agrupa la identificación, CardContent contiene la información principal y CardFooter aloja acciones. CardAction reserva una posición junto al título, sin reemplazar el contenido.">
-   <DocPreview>
-    <Card className="andy-card-foundation-composition" size="default" aria-label="Esquema de composición de Card">
-     <CardHeader>
-      <CardTitle>CardTitle</CardTitle>
-      <CardDescription>CardDescription</CardDescription>
-      <CardAction><span>CardAction</span></CardAction>
-     </CardHeader>
-     <CardContent><div className="andy-card-foundation-composition-slot">CardContent</div></CardContent>
-     <CardFooter><div className="andy-card-foundation-composition-slot">CardFooter</div></CardFooter>
-    </Card>
-   </DocPreview>
+  <DocSection title="Composición" description="Explorá la anatomía directamente sobre las ocho tarjetas reales del municipio. Celeste identifica Header, rojo suave identifica Content y amarillo identifica Footer. Elegí otra tarjeta con el selector o las flechas: los resaltados se adaptan a las partes que efectivamente existen.">
+   <DocPreview><AndyCardAnatomySwitcher/></DocPreview>
   </DocSection>
 
   <DocSection title="Tamaños" description="Dos densidades de referencia: Default para contenido completo y Small para espacios reducidos. La estructura es la misma, pero se ajustan el espaciado y la escala tipográfica secundaria.">
