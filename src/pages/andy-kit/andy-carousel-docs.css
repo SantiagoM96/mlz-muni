@@ -120,8 +120,14 @@
 }
 /* La galería muestra 3 imágenes y parte de la siguiente, como la
    referencia original. En pantallas reducidas, permite un gesto horizontal. */
-.andy-carousel-docs .mlz-carousel.is-gallery .mlz-carousel-item{
- flex-basis:calc((100% - (var(--mlz-carousel-visible) - 1)*var(--mlz-carousel-gap)) / (var(--mlz-carousel-visible) + .22));
+.andy-carousel-docs .mlz-carousel.is-gallery[data-visible="3"] .mlz-carousel-item{
+ flex:0 0 30%;
+}
+.andy-carousel-docs .mlz-carousel.is-gallery[data-visible="2"] .mlz-carousel-item{
+ flex:0 0 46%;
+}
+.andy-carousel-docs .mlz-carousel.is-gallery[data-visible="1"] .mlz-carousel-item{
+ flex:0 0 82%;
 }
 @media(max-width:800px){
  .andy-carousel-docs .andy-carousel-hero-copy{
