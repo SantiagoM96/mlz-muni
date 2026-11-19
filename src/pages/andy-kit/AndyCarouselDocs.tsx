@@ -24,10 +24,10 @@ const banners=[
   alt:'Personas participando de una clase de actividad física al aire libre',
  },
  {
-  id:'servicios',eyebrow:'SERVICIOS MUNICIPALES',title:'Tus gestiones, más cerca',subtitle:'Información y atención para resolver lo que necesitás.',
+  id:'servicios',eyebrow:'SERVICIOS MUNICIPALES',title:'Gestiones más cerca',subtitle:'Información y atención para vos.',
   cta:'VER SERVICIOS',tone:'coral',
-  photo:'https://images.unsplash.com/photo-1765020553734-2c050ddb9494?auto=format&fit=crop&w=1440&q=78',
-  alt:'Una mujer atendiendo consultas en una reunión de orientación',
+  photo:'https://images.unsplash.com/photo-1759143545924-beb85b33c0f1?auto=format&fit=crop&w=1440&q=80',
+  alt:'Recepcionista trabajando con una tableta para atender consultas',
  },
 ] as const;
 
@@ -72,7 +72,7 @@ const gallerySlides=galleryPhotos.map(photo=>
 
 function BannerHome(){
  return <Carousel label="Banner Home municipal" variant="banner" slides={bannerSlides}
-  showNavigation showIndicators loop autoplayMs={5000}/>;
+  showNavigation showIndicators loop autoplayMs={4000}/>;
 }
 
 function Gallery(){
@@ -89,7 +89,7 @@ export function AndyCarouselDocs(){
   </DocSection>
 
   <DocSection title="Banner Home"
-   description="Carrusel principal de portada. Muestra un banner por vez con navegación lateral circular, guiones que indican la posición y avance automático cada 5 segundos. Las cuatro piezas son demostraciones ilustrativas y pueden reemplazarse por artes municipales.">
+   description="Carrusel principal de portada. Muestra un banner por vez con navegación lateral circular, guiones que indican la posición y avance automático cada 4 segundos. Las cuatro piezas son demostraciones ilustrativas y pueden reemplazarse por artes municipales.">
    <DocPreview><BannerHome/></DocPreview>
   </DocSection>
 
@@ -108,7 +108,7 @@ export function AndyCarouselDocs(){
     ['Elementos','Cada banner o fotografía dentro del carrusel, sin tamaños rígidos impuestos a su contenido.'],
     ['Navegación','Botones circulares translúcidos a los costados; se deshabilitan en los extremos de la galería.'],
     ['Indicadores','Guiones clickeables del Banner Home: el indicador activo se expande y marca la posición actual.'],
-    ['Comportamiento','Banner Home avanza cada 5 s y se pausa al interactuar; Galería se desplaza manualmente. Ambos admiten teclado y respetan movimiento reducido.'],
+    ['Comportamiento','Banner Home avanza cada 4 s y se pausa al interactuar; Galería se desplaza manualmente. Ambos admiten teclado y respetan movimiento reducido.'],
    ]}/>
   </DocSection>
  </div>;

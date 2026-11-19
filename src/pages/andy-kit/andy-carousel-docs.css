@@ -52,33 +52,34 @@
  flex-direction:column;
  align-items:flex-start;
  justify-content:center;
- width:min(65%,700px);
+ width:min(63%,680px);
  max-height:100%;
  min-width:0;
- padding:var(--mlz-space-32) clamp(58px,6vw,108px);
- gap:var(--mlz-space-12);
+ padding:var(--mlz-space-24) clamp(64px,7.5vw,108px);
+ gap:var(--mlz-space-8);
  text-align:left;
 }
 .andy-carousel-hero-eyebrow{
  font-size:clamp(12px,1.2vw,16px);
- line-height:1.3;
+ line-height:1.12;
  font-weight:700;
  letter-spacing:.06em;
 }
 .andy-carousel-hero-title{
  display:block;
  margin:0;
- font-size:clamp(28px,3.1vw,50px);
- line-height:1.02;
+ max-width:460px;
+ font-size:clamp(28px,2.7vw,44px);
+ line-height:.98;
  font-weight:800;
  letter-spacing:-.02em;
  text-wrap:balance;
 }
 .andy-carousel-hero-description{
  font-size:clamp(14px,1.25vw,18px);
- line-height:1.3;
+ line-height:1.18;
  font-weight:500;
- max-width:440px;
+ max-width:400px;
  text-wrap:pretty;
 }
 .andy-carousel-hero-cta{
@@ -86,12 +87,12 @@
  align-items:center;
  justify-content:center;
  gap:var(--mlz-space-8);
- margin-top:var(--mlz-space-12);
+ margin-top:var(--mlz-space-8);
  min-height:38px;
  padding:var(--mlz-space-8) var(--mlz-space-16);
  border-radius:var(--mlz-radius-lg);
  background:#fff;
- color:var(--color-primary-600);
+ color:var(--banner-deep);
  font-size:13px;
  line-height:19px;
  font-weight:800;
@@ -131,10 +132,10 @@
 }
 @media(max-width:800px){
  .andy-carousel-docs .andy-carousel-hero-copy{
-  width:min(74%,540px);
-  padding-inline:clamp(40px,6vw,64px);
+  width:min(73%,540px);
+  padding-inline:clamp(48px,6vw,70px);
  }
- .andy-carousel-docs .andy-carousel-hero-title{font-size:clamp(26px,4vw,42px)}
+ .andy-carousel-docs .andy-carousel-hero-title{font-size:clamp(26px,3.7vw,40px)}
  .andy-carousel-docs .andy-carousel-photo{height:clamp(150px,24vw,205px)}
 }
 @media(max-width:680px){
@@ -151,9 +152,9 @@
  .andy-carousel-docs .andy-carousel-hero-eyebrow{font-size:11px}
  .andy-carousel-docs .andy-carousel-hero-title{
   font-size:clamp(23px,6vw,32px);
-  line-height:1.08;
+  line-height:1.02;
  }
- .andy-carousel-docs .andy-carousel-hero-description{font-size:12px;line-height:1.35}
+ .andy-carousel-docs .andy-carousel-hero-description{font-size:12px;line-height:1.2}
  .andy-carousel-docs .andy-carousel-hero-photo{left:34%;width:66%;object-position:center}
  .andy-carousel-docs .andy-carousel-hero::after{
   background:linear-gradient(100deg,var(--banner-deep) 0%,var(--banner-tint) 45%,#00000022 100%);
