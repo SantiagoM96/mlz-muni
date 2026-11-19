@@ -145,3 +145,51 @@
   gap:var(--mlz-space-16);
  }
 }
+
+/* Anatomía didáctica: amplía el recuadro alrededor de su contenido sin
+   forzar padding real en las tarjetas productivas. La separación entre
+   grupos solo se incrementa en este visor, nunca en la galería inferior. */
+.andy-card-anatomy-demo [data-card-anatomy-part]{
+ background-color:transparent;
+}
+.andy-card-anatomy-demo [data-card-anatomy-part]::after{
+ inset:-8px -12px;
+ background-color:var(--andy-anatomy-part-fill);
+}
+.andy-card-anatomy-demo .andy-family-card.is-sports .andy-family-card-body{
+ gap:var(--mlz-space-28,28px);
+ padding-top:var(--mlz-space-24);
+}
+.andy-card-anatomy-demo .andy-family-card.is-sports .andy-family-card-action{
+ margin-top:0;
+ padding-top:0;
+ min-height:26px;
+ align-self:flex-start;
+}
+.andy-card-anatomy-demo .andy-family-agenda-original [data-testid="agenda-card"] > a > div{
+ gap:var(--mlz-space-28,28px);
+}
+.andy-card-anatomy-demo .andy-municipal-card-content{
+ gap:var(--mlz-space-28,28px);
+}
+.andy-card-anatomy-demo .andy-municipal-card-procedure{
+ gap:var(--mlz-space-28,28px);
+ min-height:0;
+}
+.andy-card-anatomy-demo .andy-municipal-card-news .andy-municipal-card-content,
+.andy-card-anatomy-demo .andy-municipal-card-event .andy-municipal-card-content{
+ min-height:0;
+}
+.andy-card-anatomy-demo .andy-municipal-card-event .andy-municipal-card-action,
+.andy-card-anatomy-demo .andy-municipal-card-news .andy-municipal-card-action,
+.andy-card-anatomy-demo .andy-municipal-card-appointment .andy-municipal-card-action,
+.andy-card-anatomy-demo .andy-municipal-card-procedure .andy-municipal-card-action{
+ align-self:flex-start;
+ margin-top:0;
+ padding-top:0;
+ min-height:26px;
+}
+.andy-card-anatomy-demo .andy-municipal-card-event .andy-municipal-card-event-heading,
+.andy-card-anatomy-demo .andy-municipal-card-event .andy-municipal-card-event-details{
+ gap:var(--mlz-space-12);
+}

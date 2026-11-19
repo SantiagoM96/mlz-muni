@@ -20,7 +20,7 @@
 .andy-municipal-card-placeholder{width:100%;height:100%;background:#e1e7eb}
 .andy-municipal-card-news-image{display:block;width:100%;height:100%;object-fit:cover}
 .andy-municipal-card-tag{position:absolute;bottom:16px;left:16px;display:inline-flex;align-items:center;min-height:26px;padding:2px 8px;border-radius:var(--mlz-radius-sm);background:var(--a-blue,#236999);color:#fff;font-size:13px;line-height:20px;font-weight:700}
-.andy-municipal-card-news{background:#f3f7fc}
+.andy-municipal-card-news{background:#fff}
 .andy-municipal-card-news .andy-municipal-card-content{min-height:210px}
 .andy-municipal-card-news h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
 .andy-municipal-card-meta{display:flex;align-items:center;gap:var(--mlz-space-8);font-size:16px;line-height:23px;color:var(--a-text,#3d3d3d)}
@@ -30,17 +30,21 @@
 .andy-municipal-card-service-image{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
 .andy-municipal-card-service-panel{position:relative;z-index:1;display:flex;flex-direction:column;gap:var(--mlz-space-12);width:calc(100% - 32px);min-height:130px;margin:auto 16px 16px;padding:var(--mlz-space-24);border-radius:var(--mlz-radius-lg);background:#f3f7fc}
 .andy-municipal-card-service-panel .andy-municipal-card-action{padding-top:0}
-.andy-municipal-card-appointment{min-height:196px;background:#f3f7fc}
+.andy-municipal-card-appointment{min-height:196px;background:#fff}
 .andy-municipal-card-appointment .andy-municipal-card-content{gap:var(--mlz-space-12);padding-top:var(--mlz-space-24)}
-.andy-municipal-card-procedure{min-height:264px;gap:var(--mlz-space-12);padding:var(--mlz-space-24);border-color:var(--a-blue,#236999);background:var(--a-blue,#236999);color:#fff}
-.andy-municipal-card-procedure h3,.andy-municipal-card-procedure p,.andy-municipal-card-procedure .andy-municipal-card-action{color:#fff}
-.andy-municipal-card-procedure-icon{display:grid;place-items:center;width:56px;height:56px;margin-bottom:var(--mlz-space-4);border-radius:var(--mlz-radius-sm);background:#358dc2;color:#fff}
+.andy-municipal-card-procedure{min-height:264px;gap:var(--mlz-space-12);padding:var(--mlz-space-24);border-color:var(--color-grey-100);background:#fff;color:var(--color-grey-900)}
+.andy-municipal-card-procedure h3,.andy-municipal-card-procedure .andy-municipal-card-action{color:var(--color-primary-600)}
+.andy-municipal-card-procedure p{color:var(--color-grey-900)}
+.andy-municipal-card-procedure-head{display:flex;flex-direction:column;gap:var(--mlz-space-12)}
+.andy-municipal-card-procedure-icon{display:grid;place-items:center;width:56px;height:56px;margin-bottom:var(--mlz-space-4);border-radius:var(--mlz-radius-sm);background:#e5f0f9;color:var(--color-primary-600)}
 .andy-municipal-card-procedure .andy-municipal-card-action{margin-top:var(--mlz-space-4);padding-top:0}
 .andy-municipal-card-shortcut{height:164px;min-height:164px;justify-content:center;background:#e1e7eb}
 .andy-municipal-card-shortcut-image{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 .andy-municipal-card-shortcut-content{z-index:1;position:relative;padding:var(--mlz-space-24)}
 .andy-municipal-card-shortcut h3{color:#fff}
 .andy-municipal-card-event .andy-municipal-card-content{min-height:300px;gap:var(--mlz-space-12)}
+.andy-municipal-card-event-image{display:block;width:100%;height:100%;object-fit:cover}
+.andy-municipal-card-event-heading,.andy-municipal-card-event-details{display:flex;flex-direction:column;gap:var(--mlz-space-12);min-width:0}
 .andy-municipal-card-category{font-size:16px;line-height:26px;font-weight:500;color:#888}
 .andy-municipal-card-date{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;width:76px;height:76px;border-radius:var(--mlz-radius-md);background:#fff}
 .andy-municipal-card-date strong{font-size:30px;line-height:37px;color:var(--a-text,#3d3d3d)}

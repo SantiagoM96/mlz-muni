@@ -140,7 +140,7 @@ function ChipGallery({compact=false}:{compact?:boolean}){
 }
 function Cards(){return <div className="andy-cards-unified">
  <AndyCardFoundationDocs/>
- <DocSection title="Aplicaciones municipales" description="Las ocho tarjetas originales se mantienen completas. Muestran cómo los productos de MLZ aplican la composición base con necesidades propias de contenido, imagen y acción.">{null}</DocSection>
+ <DocSection title="Aplicaciones municipales" description="Seis ejemplos seleccionados de Deportes, Agenda, Noticias, Turnos, Licencias y Eventos muestran cómo se aplica la anatomía. Áreas y servicios y Accesos rápidos no se presentan en esta galería.">{null}</DocSection>
  <AndyActivityCardGallery/>
  <AndyMunicipalCardGallery/>
 </div>}

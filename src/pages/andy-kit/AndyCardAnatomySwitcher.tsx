@@ -8,10 +8,8 @@ export const cardExamples=[
  {id:'sports',label:'Deportes Anual'},
  {id:'agenda',label:'Agenda de la Comunidad'},
  {id:'news',label:'Noticias'},
- {id:'service',label:'Áreas y servicios'},
  {id:'appointment',label:'Turnos online'},
  {id:'procedure',label:'Trámites destacados'},
- {id:'shortcut',label:'Accesos rápidos'},
  {id:'event',label:'Eventos con fecha'},
 ] as const;
 
@@ -19,7 +17,7 @@ export type CardExampleId=typeof cardExamples[number]['id'];
 type Part='header'|'content'|'footer';
 
 /** Las zonas se señalan sobre el DOM de las tarjetas reales, sin duplicar
- * el HTML ni alterar la presentación de las ocho muestras originales. */
+ * el HTML ni alterar la presentación de las seis muestras seleccionadas. */
 const anatomy:Record<CardExampleId,Partial<Record<Part,readonly string[]>>>={
  sports:{
   header:['.andy-family-card-intro'],
@@ -29,16 +27,12 @@ const anatomy:Record<CardExampleId,Partial<Record<Part,readonly string[]>>>={
  agenda:{
   header:['[data-testid="agenda-card"] > a > div > div:first-child'],
   content:['[data-testid="agenda-card-schedules"]'],
-  footer:['[data-testid="agenda-card"] > a > div > .mt-auto'],
+  footer:['[data-testid="agenda-card"] > a > div > .mt-auto > span'],
  },
  news:{
   header:['.andy-municipal-card-news h3'],
   content:['.andy-municipal-card-news .andy-municipal-card-meta'],
   footer:['.andy-municipal-card-news .andy-municipal-card-action'],
- },
- service:{
-  header:['.andy-municipal-card-service-panel h3'],
-  footer:['.andy-municipal-card-service-panel .andy-municipal-card-action'],
  },
  appointment:{
   header:['.andy-municipal-card-appointment h3'],
@@ -46,16 +40,13 @@ const anatomy:Record<CardExampleId,Partial<Record<Part,readonly string[]>>>={
   footer:['.andy-municipal-card-appointment .andy-municipal-card-action'],
  },
  procedure:{
-  header:['.andy-municipal-card-procedure h3'],
+  header:['.andy-municipal-card-procedure-head'],
   content:['.andy-municipal-card-procedure p'],
   footer:['.andy-municipal-card-procedure .andy-municipal-card-action'],
  },
- shortcut:{
-  header:['.andy-municipal-card-shortcut-content h3'],
- },
  event:{
-  header:['.andy-municipal-card-event .andy-municipal-card-category','.andy-municipal-card-event h3'],
-  content:['.andy-municipal-card-event .andy-municipal-card-info'],
+  header:['.andy-municipal-card-event-heading'],
+  content:['.andy-municipal-card-event-details'],
   footer:['.andy-municipal-card-event .andy-municipal-card-action'],
  },
 };
