@@ -74,7 +74,7 @@ function CardExample({id}:{id:ExampleId}){
 export function AndyCardAnatomySwitcher(){
  const [index,setIndex]=useState(0);
  const previewRef=useRef<HTMLDivElement>(null);
- const current=examples[index];
+ const current=examples[index] ?? examples[0]!;
  const choose=(next:number)=>setIndex((next+examples.length)%examples.length);
 
  useLayoutEffect(()=>{
