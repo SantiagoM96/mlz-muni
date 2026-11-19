@@ -1,109 +1,62 @@
-/* Guía de Card dentro del Design System Andy.
-   Los estilos se aplican solo a las nuevas demostraciones, sin afectar
-   las ocho tarjetas de las galerías originales. */
-.andy-card-foundation-sample{
- width:min(100%,400px);
-}
-.andy-card-foundation-chip{
- display:inline-flex;
- align-items:center;
- min-height:26px;
- padding:var(--mlz-space-2) var(--mlz-space-8);
- border-radius:var(--mlz-radius-sm);
- color:var(--color-primary-600);
- background:var(--color-panel);
- font:600 12px/20px Geometria,'Century Gothic',Arial,sans-serif;
- white-space:nowrap;
-}
-.andy-card-foundation-controls{
- display:flex;
- align-items:center;
- justify-content:center;
- flex-wrap:wrap;
- gap:var(--mlz-space-8);
- width:100%;
-}
-.andy-card-foundation-controls button{
- display:inline-flex;
- align-items:center;
- justify-content:center;
- min-height:36px;
- padding:var(--mlz-space-6) var(--mlz-space-14);
- color:var(--color-primary-600);
- background:#fff;
- border:1px solid var(--color-primary-300);
- border-radius:var(--mlz-radius-full);
- font:600 14px/20px Geometria,'Century Gothic',Arial,sans-serif;
- cursor:pointer;
-}
-.andy-card-foundation-controls button:hover:not([aria-pressed="true"]){background:var(--color-panel)}
-.andy-card-foundation-controls button[aria-pressed="true"]{
- color:#fff;
- background:var(--color-info-500);
- border-color:var(--color-info-500);
-}
-.andy-card-foundation-controls button:focus-visible{
- outline:2px solid var(--color-info-500);
- outline-offset:2px;
-}
-.andy-card-foundation-caption{
- margin:0;
- text-align:center;
- font:400 14px/22px Geometria,'Century Gothic',Arial,sans-serif;
- color:var(--color-grey-500);
-}
-.andy-card-foundation-caption code{
- padding:var(--mlz-space-2) var(--mlz-space-4);
- border-radius:var(--mlz-radius-sm);
- color:var(--color-primary-600);
- background:var(--color-panel);
-}
-.andy-card-foundation-states{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:var(--mlz-space-24);
- width:min(100%,900px);
-}
-.andy-card-foundation-state{display:flex;flex-direction:column;min-width:0;gap:var(--mlz-space-12)}
-.andy-card-foundation-state-label{display:flex;flex-direction:column;gap:var(--mlz-space-4)}
-.andy-card-foundation-state-label strong{
- font:700 16px/24px Geometria,'Century Gothic',Arial,sans-serif;
- color:var(--color-primary-600);
-}
-.andy-card-foundation-state-label span{
- font:400 14px/22px Geometria,'Century Gothic',Arial,sans-serif;
- color:var(--color-grey-500);
-}
-.andy-card-foundation-state-card{height:100%;min-height:230px}
-.andy-card-foundation-state-card .mlz-card-footer{margin-top:auto}
-.andy-card-foundation-state-card.is-hover{
- border-color:var(--color-primary-300);
- box-shadow:0 8px 23px #174d7017;
-}
-.andy-card-foundation-state-card.is-focus .andy-system-button{
- outline:2px solid var(--color-info-500);
- outline-offset:2px;
-}
-.andy-card-foundation-state-card.is-disabled .andy-system-button{
- opacity:.45;
- cursor:not-allowed;
-}
-.andy-card-foundation-status{
- display:block;
- min-height:0;
- margin:0;
- color:var(--color-grey-500);
- font:400 14px/22px Geometria,'Century Gothic',Arial,sans-serif;
-}
-.andy-card-foundation-status:empty{display:none}
+/* Card: las demostraciones nuevas reutilizan exclusivamente componentes reales.
+   Controladores comunes de Button: .andy-doc-example-controls/.andy-doc-example-group.
+   No se alteran los estilos de las ocho galerías municipales originales. */
 .andy-cards-unified>.andy-card-foundation-docs{
  display:flex;
  flex-direction:column;
  min-width:0;
  gap:var(--mlz-space-32);
 }
-@media(max-width:700px){
- .andy-card-foundation-states{grid-template-columns:1fr}
- .andy-card-foundation-state-card{min-height:0}
- .andy-card-foundation-controls button{min-height:40px}
+.andy-card-foundation-docs .andy-doc-section{
+ min-width:0;
+}
+.andy-card-foundation-docs .andy-doc-section>.andy-doc-example-controls{
+ width:100%;
+ max-width:100%;
+}
+.andy-card-foundation-docs .andy-doc-demo-content{
+ min-width:0;
+ width:100%;
+}
+.andy-card-real-sample{
+ display:flex;
+ justify-content:center;
+ align-items:stretch;
+ width:min(100%,420px);
+ min-width:0;
+ max-width:420px;
+}
+.andy-card-real-sample > :is(.andy-municipal-card-inspection,.andy-family-agenda-original){
+ width:100%;
+ min-width:0;
+ max-width:420px;
+}
+.andy-card-real-sample .andy-municipal-card-inspection{
+ display:flex;
+ align-items:stretch;
+ justify-content:center;
+}
+.andy-card-real-sample .andy-municipal-card-inspection > article{
+ width:100%;
+ max-width:420px;
+}
+.andy-card-real-size.is-compact{
+ width:min(100%,340px);
+}
+.andy-card-real-spacing .andy-municipal-card-appointment .andy-municipal-card-content{
+ padding:var(--andy-inspection-spacing,24px);
+ gap:var(--andy-inspection-spacing,24px);
+}
+/* Son estados de inspección: el DOM de Agenda se mantiene real. */
+.andy-card-real-states[data-preview-state="hover"] [data-testid="agenda-card"]{
+ border-color:var(--color-primary-300);
+ box-shadow:0 8px 23px #174d7017;
+ transform:translateY(-2px);
+}
+.andy-card-real-states[data-preview-state="focus"] [data-testid="agenda-card"] a[href]{
+ outline:2px solid var(--color-info-500);
+ outline-offset:-2px;
+}
+@media(prefers-reduced-motion:reduce){
+ .andy-card-real-states[data-preview-state="hover"] [data-testid="agenda-card"]{transform:none}
 }
